@@ -876,22 +876,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Bienvenida sin restricciones
-setTimeout(() => {
-    const mensajeBienvenida = `
-        <section class="container text-center">
-            <h5 class="mb-3" style="font-size: 16px;">🚀 ¡Bienvenido a <strong>Canales Online</strong>! 🚀</h5>
-            <p class="mt-3" style="font-size: 15px; color: #ccc;">
-                🔔 Para una mejor experiencia sin interrupciones, usá un navegador que permita tener extensiones.
-            </p>
-            <p class="mt-4" style="font-size: 18px;">
-                💖 <strong>¡Gracias por ser parte de esta comunidad!</strong> 💖
-            </p>
-        </section>
-    `;
-    showNotification('gray', mensajeBienvenida);
-}, 3500);
-
 const categorias = [
     { nombre: 'Todos', descripcion: 'Todos los canales', icono: 'Todos.png', alt: 'Todos los canales' },
     { nombre: 'Argentina', descripcion: 'Canales vistos en Argentina', icono: 'Argentina.png', alt: 'Argentina' },
