@@ -898,10 +898,7 @@
             <li class="nav-item">
                 <a class='nav-link btn btn-secondary px-3 bi bi-rocket-takeoff-fill' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/html/proyectos' title='Explorar opciones'></a>
             </li>
-            <li class="nav-item"><a class="nav-link btn btn-secondary px-3 bi bi-chat-dots-fill" data-bs-toggle="modal"
-                    data-bs-target="#chatModal" title="Chat general" data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"></a>
-            </li>
+
         </ul>
     </nav>
 
@@ -1011,21 +1008,7 @@
         <div id="zona-secciones"></div>
     </main>
 
-    <!-- Modal Chat -->
-    <section class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">
-        <article class="modal-dialog modal-dialog-centered">
-            <section class="modal-content">
-                <header class="modal-header">
-                    <h5 class="modal-title" id="chatModalLabel">Chat General</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </header>
-                <article class="modal-body">
-                    <p id="apkMessage" class="text-danger d-none">Chat no disponible desde la APK.</p>
-                    <iframe id="chatIframe" src="chat_canalesonline.html" width="100%" height="400" class="border-0"></iframe>
-                </article>
-            </section>
-        </article>
-    </section>
+
 
     <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
         <i class="bi bi-arrow-up"></i>

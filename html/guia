@@ -30,8 +30,7 @@
             <li class="nav-item">
                 <a class='nav-link btn btn-secondary px-3 bi bi-rocket-takeoff-fill' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/html/proyectos' title='Explorar opciones'></a>
             </li>
-            <li class="nav-item"><a class="nav-link btn btn-secondary px-3 bi bi-chat-dots-fill" data-bs-toggle="modal"
-                    data-bs-target="#chatModal" title="Chat general"></a></li>
+
             <!-- <li class="nav-item"><a class="nav-link btn btn-secondary px-3 bi bi-share-fill" href="compartir.html"
                     title="Compartir app"></a></li> -->
         </ul>
@@ -77,26 +76,6 @@
         </section>
     </main>
 
-
-    <!-- Modal -->
-    <section class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">
-        <article class="modal-dialog modal-dialog-centered">
-            <section class="modal-content">
-                <header class="modal-header">
-                    <h5 class="modal-title" id="chatModalLabel">Chat General</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </header>
-                <article class="modal-body">
-                    <p id="apkMessage" class="text-danger d-none">Chat no disponible desde la APK.</p>
-                    <!-- <iframe id="chatIframe" src="https://tvonlinelibre.chatbro.com/" width="100%" height="400" class="border-0"></iframe> -->
-                    <!-- <iframe id="chatIframe" src="https://canalesonline.chatbro.com" width="100%" height="400"
-                        class="border-0"></iframe> -->
-                    <iframe id="chatIframe" src="chat_canalesonline.html" width="100%" height="400"
-                        class="border-0"></iframe>
-                </article>
-            </section>
-        </article>
-    </section>
 
 
 
