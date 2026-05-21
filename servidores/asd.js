@@ -1,4 +1,4 @@
-﻿let channelList = [
+let channelList = [
     {
         name: '',
         getURL: '',
@@ -352,11 +352,11 @@ function getChannelKeys(getURL) {
     channelList[0].name = atob(getURL);
     channelList[0].getURL = getURL;
     channelList[0].number = getChannelNumber(getURL);
+    channelList[0].keyId = channelMap[getURL].keyId;
+    channelList[0].key = channelMap[getURL].key;
 
-    var channelData = channelMap[getURL] || { keyId: "", key: "" };
-    channelList[0].keyId = channelData.keyId;
-    channelList[0].key = channelData.key;
 
+    // return channelMap[getURL] || { keyId: null, key: null };
     return channelList;
 }
 
@@ -405,12 +405,12 @@ function getParameterByName(name) {
 //             if (match) {
 //                 // match[0] = "https://qn-xxxxx.cqloud.com/tok_eyJ..."
 //                 sessionStorage.setItem('token', match[0]);
-//                 console.info('[token-backup] Token extraÃ­do del MPD redirect:', match[0]);
+//                 console.info('[token-backup] Token extraído del MPD redirect:', match[0]);
 //                 return match[0];
 //             }
 //         }
 //     } catch (err) {
-//         console.warn('[token-backup] FallÃ³ redirect del MPD:', err.message);
+//         console.warn('[token-backup] Falló redirect del MPD:', err.message);
 //     }
 
 //     return null;
@@ -418,13 +418,13 @@ function getParameterByName(name) {
 
 
 async function getURLwithToken() {
-    // MÃ©todo principal: chromecast m3u8 redirect
+    // Método principal: chromecast m3u8 redirect
     let token = sessionStorage.getItem('token');
     if (token) return token;
 
     const TOKEN_REGEX = /(https:\/\/.+?)(?=\/live)/;
 
-    // MÃ©todo 1: chromecast m3u8
+    // Método 1: chromecast m3u8
     try {
         const url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc_C/La_Nacion.m3u8';
         // const url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/sa_dash_full_e_7CF9BB041AD89713AD8CF4CF/La_Nacion.m3u8';
@@ -434,33 +434,33 @@ async function getURLwithToken() {
             if (match) {
                 token = match[0];
                 sessionStorage.setItem('token', token);
-                console.info('[token] MÃ©todo 1 OK:', token);
+                console.info('[token] Método 1 OK:', token);
                 return token;
             }
         }
     } catch (err) {
-        console.warn('[token] MÃ©todo 1 fallÃ³:', err.message);
+        console.warn('[token] Método 1 falló:', err.message);
     }
 
-    // MÃ©todo 2: MPD directo â€” sin chequear response.redirected
+    // Método 2: MPD directo — sin chequear response.redirected
     try {
         const TEST_MPD = 'https://cdn.cvattv.com.ar/live/c7eds/Fox_Sports_Premiun_HD/SA_Live_dash_cenc/Fox_Sports_Premiun_HD.mpd';
         const response = await fetch(TEST_MPD, { signal: AbortSignal.timeout(5000) });
         
         // Loguear para debuggear
-        console.info('[token] MÃ©todo 2 - response.url:', response.url);
-        console.info('[token] MÃ©todo 2 - redirected:', response.redirected);
+        console.info('[token] Método 2 - response.url:', response.url);
+        console.info('[token] Método 2 - redirected:', response.redirected);
         
         const match = response.url.match(TOKEN_REGEX);
         if (match && !match[0].includes('cdn.cvattv.com.ar')) {
-            // Solo es vÃ¡lido si la URL final NO es la misma de origen (significa que hubo redirect)
+            // Solo es válido si la URL final NO es la misma de origen (significa que hubo redirect)
             token = match[0];
             sessionStorage.setItem('token', token);
-            console.info('[token] MÃ©todo 2 OK:', token);
+            console.info('[token] Método 2 OK:', token);
             return token;
         }
     } catch (err) {
-        console.warn('[token] MÃ©todo 2 fallÃ³:', err.message);
+        console.warn('[token] Método 2 falló:', err.message);
     }
 
     return null;

@@ -1,0 +1,33 @@
+name: Check original site for updates
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # todos los dias a las 06:00 UTC
+  workflow_dispatch:       # permite ejecutar manualmente desde GitHub
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for updates
+        id: check
+        run: |
+          node scripts/check-updates.js
+        continue-on-error: false
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "auto: update asd.js desde canalesonline"
+            git push
+          fi
