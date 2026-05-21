@@ -8,6 +8,7 @@ if (window.location.pathname.includes('/pro/')) {
 
 let MisCanales = new Map();
 
+// ---- INICIO: CANALES AUTO-GENERADOS ----
 MisCanales.set(
     "Agenda Deportiva",
     {
@@ -28,8 +29,7 @@ MisCanales.set(
     }
 );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "Gran Hermano",
 //     {
 //         pais: "Argentina",
@@ -43,7 +43,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canelo vs Crawford",
 //     {
 //         pais: "Argentina",
@@ -56,7 +56,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "La Velada del Año 5",
 //     {
 //         pais: "Argentina",
@@ -66,7 +66,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Parence de manos",
 //     {
 //         pais: "Argentina",
@@ -76,7 +76,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Inter Miami vs. Seattle Sounders",
 //     {
 //         pais: "Argentina",
@@ -87,7 +87,6 @@ MisCanales.set(
 //         ]
 //     }
 // );
-
 
 MisCanales.set(
     "TELEFE",
@@ -367,8 +366,6 @@ MisCanales.set(
     }
 );
 
-
-
 MisCanales.set(
     "A24",
     {
@@ -405,10 +402,9 @@ MisCanales.set(
             // "https://www.enlatele.tv/player/cv2.php?get=QW1lcmljYTI0",
         ]
     }
-),
+)
 
-
-    MisCanales.set(
+MisCanales.set(
         "CANAL 26",
         {
             pais: "Argentina",
@@ -440,7 +436,6 @@ MisCanales.set(
             ]
         }
     );
-
 
 MisCanales.set(
     "TV PÚBLICA",
@@ -633,7 +628,6 @@ MisCanales.set(
     }
 );
 
-
 MisCanales.set(
     "CANAL 7 MENDOZA",
     {
@@ -647,7 +641,6 @@ MisCanales.set(
         ]
     }
 );
-
 
 MisCanales.set(
     "CANAL NUEVE",
@@ -682,7 +675,6 @@ MisCanales.set(
         ]
     }
 );
-
 
 MisCanales.set(
     "CANAL DOCE",
@@ -910,8 +902,6 @@ MisCanales.set(
     }
 );
 
-
-
 MisCanales.set(
     "SUR TV",
     {
@@ -947,7 +937,6 @@ MisCanales.set(
         ]
     }
 );
-
 
 MisCanales.set(
     "El Once",
@@ -1136,8 +1125,6 @@ MisCanales.set(
     }
 );
 
-
-
 MisCanales.set(
     "EWTN",
     {
@@ -1213,8 +1200,7 @@ MisCanales.set(
     }
 );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "Cabletel Zarate Canal 4",
 //     {
 //         pais: "Argentina",
@@ -1224,7 +1210,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "CANAL 22",
 //     {
 //         pais: "Argentina",
@@ -1234,9 +1220,7 @@ MisCanales.set(
 //     }
 // );
 
-
-
-// MisCanales.set(
+MisCanales.set(
 //     "DSR Medios Carhué",
 //     {
 //         pais: "Argentina",
@@ -1246,7 +1230,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 3 Pinamar",
 //     {
 //         pais: "Argentina",
@@ -1256,7 +1240,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Power Pinamar",
 //     {
 //         pais: "Argentina",
@@ -1266,7 +1250,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Telpin Canal 2",
 //     {
 //         pais: "Argentina",
@@ -1299,7 +1283,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 11 La Costa",
 //     {
 //         pais: "Argentina",
@@ -1339,7 +1323,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 6 Mar del Plata",
 //     {
 //         pais: "Argentina",
@@ -1349,7 +1333,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 9 Litoral",
 //     {
 //         pais: "Argentina",
@@ -1360,7 +1344,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 8 Mar del Plata",
 //     {
 //         pais: "Argentina",
@@ -1372,7 +1356,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 9 Litoral",
 //     {
 //         pais: "Argentina",
@@ -1418,7 +1402,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Bahia Vision Color",
 //     {
 //         pais: "Argentina",
@@ -1441,7 +1425,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "MAD Multimedios",
 //     {
 //         pais: "Argentina",
@@ -1451,7 +1435,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Bragado TV",
 //     {
 //         pais: "Argentina",
@@ -1461,7 +1445,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Celta TV",
 //     {
 //         pais: "Argentina",
@@ -1471,7 +1455,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Agenda Necochense",
 //     {
 //         pais: "Argentina",
@@ -1481,7 +1465,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 6 Moreno",
 //     {
 //         pais: "Argentina",
@@ -1513,9 +1497,7 @@ MisCanales.set(
     }
 );
 
-
-
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 5 Santa Maria",
 // {
 //     pais: "Argentina",
@@ -1524,7 +1506,6 @@ MisCanales.set(
 //     ]
 // }
 // );
-
 
 MisCanales.set(
     "Caras TV",
@@ -1536,7 +1517,6 @@ MisCanales.set(
         ]
     }
 );
-
 
 MisCanales.set(
     "Orbe 21",
@@ -1597,7 +1577,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Urbana Teve",
 //     {
 //         pais: "Argentina",
@@ -1607,7 +1587,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Cinco TV Tigre",
 //     {
 //         pais: "Argentina",
@@ -1617,7 +1597,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "UNLP TV",
 //     {
 //         pais: "Argentina",
@@ -1627,7 +1607,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 7 Catamarca",
 //     {
 //         pais: "Argentina",
@@ -1637,7 +1617,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal Somos Uno Chaco",
 //     {
 //         pais: "Argentina",
@@ -1647,7 +1627,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Ciudad TV Chaco",
 //     {
 //         pais: "Argentina",
@@ -1657,7 +1637,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 4 Esquel Chubut",
 //     {
 //         pais: "Argentina",
@@ -1667,7 +1647,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 12 Chubut",
 //     {
 //         pais: "Argentina",
@@ -1687,7 +1667,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 9 Rio Cuarto",
 //     {
 //         pais: "Argentina",
@@ -1697,7 +1677,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Quatro Tv Cordoba",
 //     {
 //         pais: "Argentina",
@@ -1707,7 +1687,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV Coop Cordoba",
 //     {
 //         pais: "Argentina",
@@ -1717,7 +1697,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal Coop Cordoba",
 //     {
 //         pais: "Argentina",
@@ -1727,7 +1707,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 50 Cordoba",
 //     {
 //         pais: "Argentina",
@@ -1773,7 +1753,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Telenord Corrientes",
 //     {
 //         pais: "Argentina",
@@ -1783,7 +1763,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "13 MAX TV Corrientes",
 //     {
 //         pais: "Argentina",
@@ -1826,7 +1806,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 2 Entre Rios",
 //     {
 //         pais: "Argentina",
@@ -1835,8 +1815,6 @@ MisCanales.set(
 //         ]
 //     }
 // );
-
-
 
 MisCanales.set(
     "Lapacho Formosa",
@@ -1863,7 +1841,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 7 Jujuy",
 //     {
 //         pais: "Argentina",
@@ -1872,7 +1850,8 @@ MisCanales.set(
 //         ]
 //     }
 // );
-// MisCanales.set(
+
+MisCanales.set(
 //     "Canal 4 Jujuy",
 //     {
 //         pais: "Argentina",
@@ -1882,7 +1861,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV Publica Pampeana",
 //     {
 //         pais: "Argentina",
@@ -1892,7 +1871,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "CPE TV La Pampa",
 //     {
 //         pais: "Argentina",
@@ -1902,7 +1881,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 9 La Rioja",
 //     {
 //         pais: "Argentina",
@@ -1912,7 +1891,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 13 La Rioja",
 //     {
 //         pais: "Argentina",
@@ -1934,7 +1913,6 @@ MisCanales.set(
     }
 );
 
-
 MisCanales.set(
     "Canal 10 Junín",
     {
@@ -1950,8 +1928,7 @@ MisCanales.set(
     }
 );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "Neo TV",
 //     {
 //         pais: "Argentina",
@@ -1976,7 +1953,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Televida Mendoza",
 //     {
 //         pais: "Argentina",
@@ -2025,7 +2002,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 6 Posadas",
 //     {
 //         pais: "Argentina",
@@ -2062,7 +2039,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Misiones Cuatro",
 //     {
 //         pais: "Argentina",
@@ -2072,7 +2049,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 21 TV Misiones",
 //     {
 //         pais: "Argentina",
@@ -2082,7 +2059,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "RTN Neuquen",
 //     {
 //         pais: "Argentina",
@@ -2092,8 +2069,7 @@ MisCanales.set(
 //     }
 // );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "24-7 Noticias Neuquen",
 //     {
 //         pais: "Argentina",
@@ -2103,7 +2079,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Milenium TV Salta",
 //     {
 //         pais: "Argentina",
@@ -2113,7 +2089,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 7 Salta",
 //     {
 //         pais: "Argentina",
@@ -2122,7 +2098,6 @@ MisCanales.set(
 //         ]
 //     }
 // );
-
 
 MisCanales.set(
     "Multivision Salta",
@@ -2135,7 +2110,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 12 Salta",
 //     {
 //         pais: "Argentina",
@@ -2144,7 +2119,6 @@ MisCanales.set(
 //         ]
 //     }
 // );
-
 
 MisCanales.set(
     "OneTV San Juan",
@@ -2156,7 +2130,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal Blu San Juan",
 //     {
 //         pais: "Argentina",
@@ -2175,6 +2149,7 @@ MisCanales.set(
         ]
     }
 );
+
 MisCanales.set(
     "Canal 4 San Juan",
     {
@@ -2207,7 +2182,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 40 Caucete",
 //     {
 //         pais: "Argentina",
@@ -2217,6 +2192,7 @@ MisCanales.set(
 //         ]
 //     }
 // );
+
 MisCanales.set(
     "Canal 8 San Juan",
     {
@@ -2227,7 +2203,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Telesol San Juan",
 //     {
 //         pais: "Argentina",
@@ -2257,7 +2233,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Am 1020 San Juan",
 //     {
 //         pais: "Argentina",
@@ -2267,8 +2243,7 @@ MisCanales.set(
 //     }
 // );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "Zonda TV San Juan",
 //     {
 //         pais: "Argentina",
@@ -2278,7 +2253,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "San Luis CTV",
 //     {
 //         pais: "Argentina",
@@ -2288,7 +2263,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "San Luis Mas",
 //     {
 //         pais: "Argentina",
@@ -2456,7 +2431,6 @@ MisCanales.set(
     }
 );
 
-
 MisCanales.set(
     "TV Pública Fueguina",
     {
@@ -2487,7 +2461,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Telemix",
 //     {
 //         pais: "Argentina",
@@ -2497,7 +2471,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Sion TV",
 //     {
 //         pais: "Venezuela",
@@ -2507,7 +2481,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Venevisión",
 //     {
 //         pais: "Venezuela",
@@ -2518,7 +2492,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Tele Tuya",
 //     {
 //         pais: "Venezuela",
@@ -2528,7 +2502,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "EVTV",
 //     {
 //         pais: "Venezuela",
@@ -2538,7 +2512,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "VPI TV",
 //     {
 //         pais: "Venezuela",
@@ -2560,7 +2534,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal I",
 //     {
 //         pais: "Venezuela",
@@ -2580,7 +2554,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV Familia",
 //     {
 //         pais: "Venezuela",
@@ -2590,7 +2564,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "MDA TV",
 //     {
 //         pais: "Venezuela",
@@ -2600,7 +2574,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Esports Max",
 //     {
 //         pais: "Venezuela",
@@ -2610,7 +2584,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Esports Max 2",
 //     {
 //         pais: "Venezuela",
@@ -2620,7 +2594,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "ZUT",
 //     {
 //         pais: "Venezuela",
@@ -2630,7 +2604,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Plus TV",
 //     {
 //         pais: "Venezuela",
@@ -2640,7 +2614,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Sicardi TV",
 //     {
 //         pais: "Argentina",
@@ -2650,8 +2624,7 @@ MisCanales.set(
 //     }
 // );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 7 Santiago del Estero",
 //     {
 //         pais: "Argentina",
@@ -2661,9 +2634,7 @@ MisCanales.set(
 //     }
 // );
 
-
-
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 12 Metro TV Tucumán",
 //     {
 //         pais: "Argentina",
@@ -2673,7 +2644,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Panc TV HD Tucumán",
 //     {
 //         pais: "Argentina",
@@ -2683,7 +2654,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "RTVE",
 //     {
 //         pais: "España",
@@ -2860,7 +2831,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Squirrel",
 //     {
 //         pais: "España",
@@ -2869,8 +2840,6 @@ MisCanales.set(
 //         ]
 //     }
 // );
-
-
 
 MisCanales.set(
     "TVE Internacional",
@@ -2927,7 +2896,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Apunt",
 //     {
 //         pais: "España",
@@ -2937,7 +2906,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Laocho",
 //     {
 //         pais: "España",
@@ -2947,8 +2916,7 @@ MisCanales.set(
 //     }
 // );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "TVA",
 //     {
 //         pais: "España",
@@ -2968,7 +2936,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Teve 4",
 //     {
 //         pais: "España",
@@ -2978,7 +2946,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Burriana Teve",
 //     {
 //         pais: "España",
@@ -2988,7 +2956,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV Almassora",
 //     {
 //         pais: "España",
@@ -3018,7 +2986,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Cetelmon",
 //     {
 //         pais: "España",
@@ -3028,7 +2996,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Cuidades de Ocio",
 //     {
 //         pais: "España",
@@ -3038,7 +3006,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Activa TV",
 //     {
 //         pais: "España",
@@ -3048,7 +3016,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Onda Valencia",
 //     {
 //         pais: "España",
@@ -3058,7 +3026,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Onda 15",
 //     {
 //         pais: "España",
@@ -3068,7 +3036,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "33TV",
 //     {
 //         pais: "España",
@@ -3078,7 +3046,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Univers TV",
 //     {
 //         pais: "España",
@@ -3088,7 +3056,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 3 Biar",
 //     {
 //         pais: "España",
@@ -3098,7 +3066,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Pequeradio TV",
 //     {
 //         pais: "España",
@@ -3130,7 +3098,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 4 Madrid",
 //     {
 //         pais: "España",
@@ -3140,7 +3108,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Negocios TV",
 //     {
 //         pais: "España",
@@ -3180,7 +3148,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 33",
 //     {
 //         pais: "España",
@@ -3190,7 +3158,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "EsTuTele",
 //     {
 //         pais: "España",
@@ -3200,7 +3168,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TVL Teleganes",
 //     {
 //         pais: "España",
@@ -3210,7 +3178,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "La Urban TV",
 //     {
 //         pais: "España",
@@ -3220,7 +3188,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "ONE TV",
 //     {
 //         pais: "España",
@@ -3270,7 +3238,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "La 7 TV",
 //     {
 //         pais: "España",
@@ -3290,7 +3258,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV Melilla",
 //     {
 //         pais: "España",
@@ -3310,7 +3278,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "12TV",
 //     {
 //         pais: "España",
@@ -3320,7 +3288,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Extremadura",
 //     {
 //         pais: "España",
@@ -3330,7 +3298,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "7 TeleValencia",
 //     {
 //         pais: "España",
@@ -3340,7 +3308,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "101TV Sevilla",
 //     {
 //         pais: "España",
@@ -3365,7 +3333,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Constanza TV",
 //     {
 //         pais: "R. Dominicana",
@@ -3387,7 +3355,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "CDN",
 //     {
 //         pais: "R. Dominicana",
@@ -3397,7 +3365,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 21",
 //     {
 //         pais: "R. Dominicana",
@@ -3417,7 +3385,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Telemicro5",
 //     {
 //         pais: "R. Dominicana",
@@ -3427,7 +3395,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Acento TV",
 //     {
 //         pais: "R. Dominicana",
@@ -3437,7 +3405,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Cable Onda",
 //     {
 //         pais: "R. Dominicana",
@@ -3447,7 +3415,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Tele Impacto",
 //     {
 //         pais: "R. Dominicana",
@@ -3457,7 +3425,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "El Seis",
 //     {
 //         pais: "R. Dominicana",
@@ -3468,8 +3436,7 @@ MisCanales.set(
 //     }
 // );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "Gen TV",
 //     {
 //         pais: "Argentina",
@@ -3481,7 +3448,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Bayres TV",
 //     {
 //         pais: "Argentina",
@@ -3491,7 +3458,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "SPTV Digital",
 //     {
 //         pais: "Argentina",
@@ -3501,7 +3468,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "La Red",
 //     {
 //         pais: "Chile",
@@ -3512,7 +3479,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "HiperTV",
 //     {
 //         pais: "Chile",
@@ -3552,7 +3519,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "+ Cine",
 //     {
 //         pais: "Chile",
@@ -3562,7 +3529,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "+ Cine Classic",
 //     {
 //         pais: "Chile",
@@ -3572,7 +3539,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "FMH movies",
 //     {
 //         pais: "Chile",
@@ -3593,7 +3560,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV Terror",
 //     {
 //         pais: "Chile",
@@ -3603,7 +3570,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Vibra TV NETWORK",
 //     {
 //         pais: "Chile",
@@ -3613,7 +3580,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "FutGO",
 //     {
 //         pais: "Chile",
@@ -3633,7 +3600,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "D13",
 //     {
 //         pais: "Chile",
@@ -3683,7 +3650,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "The Weather Network",
 //     {
 //         pais: "Canadá",
@@ -3693,7 +3660,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "CBC News",
 //     {
 //         pais: "Canadá",
@@ -3703,7 +3670,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "ICI News",
 //     {
 //         pais: "Canadá",
@@ -3713,7 +3680,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Global National",
 //     {
 //         pais: "Canadá",
@@ -3723,7 +3690,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "ICI Televisíon",
 //     {
 //         pais: "Canadá",
@@ -3979,7 +3946,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal rtu",
 //     {
 //         pais: "Ecuador",
@@ -3989,7 +3956,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Telerama",
 //     {
 //         pais: "Ecuador",
@@ -4117,7 +4084,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Exitosa",
 //     {
 //         pais: "Perú",
@@ -4137,7 +4104,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "ATV Sur",
 //     {
 //         pais: "Perú",
@@ -4158,7 +4125,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Nativa TV",
 //     {
 //         pais: "Perú",
@@ -4178,7 +4145,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Tarapoto Digital",
 //     {
 //         pais: "Perú",
@@ -4208,7 +4175,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "X TV",
 //     {
 //         pais: "Perú",
@@ -4218,7 +4185,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "OZONO TV",
 //     {
 //         pais: "Perú",
@@ -4228,7 +4195,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TVPE",
 //     {
 //         pais: "Perú",
@@ -4288,8 +4255,6 @@ MisCanales.set(
         ]
     }
 );
-
-
 
 MisCanales.set(
     "Piura TV",
@@ -4351,7 +4316,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "VZ TV",
 //     {
 //         pais: "Perú",
@@ -4390,6 +4355,7 @@ MisCanales.set(
         ]
     }
 );
+
 MisCanales.set(
     "Via Altomayo",
     {
@@ -4409,8 +4375,6 @@ MisCanales.set(
         ]
     }
 );
-
-
 
 MisCanales.set(
     "NPY",
@@ -4436,6 +4400,7 @@ MisCanales.set(
         ]
     }
 );
+
 MisCanales.set(
     "5 DÍAS PY",
     {
@@ -4562,7 +4527,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "UNIÓN TV",
 //     {
 //         pais: "Paraguay",
@@ -4572,7 +4537,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "SOMOS DEL ESTE",
 //     {
 //         pais: "Paraguay",
@@ -4582,7 +4547,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "ALMAYA TV",
 //     {
 //         pais: "Paraguay",
@@ -4592,7 +4557,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "REGIONAL TV",
 //     {
 //         pais: "Paraguay",
@@ -4602,7 +4567,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "ESTACIÓN CRISTAL",
 //     {
 //         pais: "Paraguay",
@@ -4611,7 +4576,6 @@ MisCanales.set(
 //         ]
 //     }
 // );
-
 
 MisCanales.set(
     "Flow Sports 1",
@@ -4701,8 +4665,7 @@ MisCanales.set(
     }
 );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "TyC Sports Play",
 //     {
 //         pais: "Argentina",
@@ -4918,7 +4881,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canales Alemania",
 //     {
 //         pais: "Alemania",
@@ -4954,7 +4917,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canela Deportes",
 //     {
 //         pais: "México",
@@ -5056,7 +5019,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TNT Sports 2",
 //     {
 //         pais: "Argentina",
@@ -5761,7 +5724,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal Capital",
 //     {
 //         pais: "Colombia",
@@ -5782,7 +5745,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Eureka TV",
 //     {
 //         pais: "Colombia",
@@ -5815,7 +5778,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "CANAL 1 CO",
 //     {
 //         pais: "Colombia",
@@ -5846,7 +5809,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Zoom TV",
 //     {
 //         pais: "Colombia",
@@ -5879,7 +5842,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Cosmovision",
 //     {
 //         pais: "Colombia",
@@ -5889,7 +5852,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Telecafé",
 //     {
 //         pais: "Colombia",
@@ -5921,7 +5884,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Cinemaplus",
 //     {
 //         pais: "Colombia",
@@ -5931,7 +5894,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "WOW Movies",
 //     {
 //         pais: "Colombia",
@@ -5941,7 +5904,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TDI Colombia",
 //     {
 //         pais: "Colombia",
@@ -5961,7 +5924,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV PEÑOL COL",
 //     {
 //         pais: "Colombia",
@@ -5971,7 +5934,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Tele Bolibar",
 //     {
 //         pais: "Colombia",
@@ -5981,7 +5944,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal ATV CO",
 //     {
 //         pais: "Colombia",
@@ -6001,7 +5964,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal Institucional CO",
 //     {
 //         pais: "Colombia",
@@ -6012,7 +5975,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Bolivia Punto TV",
 //     {
 //         pais: "Bolivia",
@@ -6022,7 +5985,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV Ulive",
 //     {
 //         pais: "Bolivia",
@@ -6032,7 +5995,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Bolivia Tv",
 //     {
 //         pais: "Bolivia",
@@ -6042,7 +6005,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Bolivisión",
 //     {
 //         pais: "Bolivia",
@@ -6052,7 +6015,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "RTP",
 //     {
 //         pais: "Bolivia",
@@ -6063,7 +6026,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "UNITEL",
 //     {
 //         pais: "Bolivia",
@@ -6073,7 +6036,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "RED UNO",
 //     {
 //         pais: "Bolivia",
@@ -6083,7 +6046,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "PAT",
 //     {
 //         pais: "Bolivia",
@@ -6093,7 +6056,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "ATB",
 //     {
 //         pais: "Bolivia",
@@ -6103,7 +6066,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Sky Sports 1",
 //     {
 //         pais: "Reino Unido",
@@ -6129,7 +6092,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Sky Sports 2",
     //     {
     //         pais: "Reino Unido",
@@ -6155,7 +6118,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Sky Sports 3",
     //     {
     //         pais: "Reino Unido",
@@ -6181,7 +6144,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Sky Sports 4",
     //     {
     //         pais: "Reino Unido",
@@ -6207,7 +6170,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Sky Sports 5",
     //     {
     //         pais: "Reino Unido",
@@ -6233,7 +6196,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Sky Sports 6",
     // {
     //     pais: "Reino Unido",
@@ -6260,7 +6223,7 @@ MisCanales.set(
     // }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Sky Sports 7",
     // {
     //     pais: "Reino Unido",
@@ -6286,7 +6249,7 @@ MisCanales.set(
     // }
     // );
 
-    MisCanales.set(
+MisCanales.set(
         "Liga 1 MAX",
         {
             pais: "Perú",
@@ -6307,7 +6270,7 @@ MisCanales.set(
         }
     );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Caliente TV MX",
 //     {
 //         pais: "México",
@@ -6327,7 +6290,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "ForoTV",
     //     {
     //         pais: "México",
@@ -6339,8 +6302,7 @@ MisCanales.set(
     //     }
     // );
 
-
-    MisCanales.set(
+MisCanales.set(
         "Milenio",
         {
             pais: "México",
@@ -6350,7 +6312,7 @@ MisCanales.set(
         }
     );
 
-// MisCanales.set(
+MisCanales.set(
 //     "BitMe",
 //     {
 //         pais: "México",
@@ -6360,7 +6322,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 6 MX",
 //     {
 //         pais: "México",
@@ -6389,7 +6351,6 @@ MisCanales.set(
         ]
     }
 );
-
 
 MisCanales.set(
     "FreeTV Banda",
@@ -6470,6 +6431,7 @@ MisCanales.set(
         ]
     }
 );
+
 MisCanales.set(
     "FreeTV Hit",
     {
@@ -6479,6 +6441,7 @@ MisCanales.set(
         ]
     }
 );
+
 MisCanales.set(
     "FreeTV Saber Más",
     {
@@ -6488,7 +6451,6 @@ MisCanales.set(
         ]
     }
 );
-
 
 MisCanales.set(
     "Azteca 7",
@@ -6511,7 +6473,6 @@ MisCanales.set(
     }
 );
 
-
 MisCanales.set(
     "Azteca uno",
     {
@@ -6524,7 +6485,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Azteca Guate",
 //     {
 //         pais: "México",
@@ -6536,7 +6497,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Azteca A Más Guate",
 //     {
 //         pais: "México",
@@ -6599,8 +6560,6 @@ MisCanales.set(
     }
 );
 
-
-
 MisCanales.set(
     "Canal Once MX",
     {
@@ -6610,9 +6569,6 @@ MisCanales.set(
         ]
     }
 );
-
-
-
 
 MisCanales.set(
     "Canal 14 MX",
@@ -6634,7 +6590,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal44",
 //     {
 //         pais: "México",
@@ -6674,7 +6630,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Telemax MX",
 //     {
 //         pais: "México",
@@ -6684,7 +6640,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV más MX",
 //     {
 //         pais: "México",
@@ -6694,7 +6650,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TeleFórmula MX",
 //     {
 //         pais: "México",
@@ -6704,7 +6660,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TVPacifico Culiacan",
 //     {
 //         pais: "México",
@@ -6714,7 +6670,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TVPacifico Mochis",
 //     {
 //         pais: "México",
@@ -6724,7 +6680,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TVPacifico Obregon",
 //     {
 //         pais: "México",
@@ -6734,7 +6690,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TVPacifico Mazatlan",
 //     {
 //         pais: "México",
@@ -6744,7 +6700,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Estrella del Pilar",
 //     {
 //         pais: "México",
@@ -6754,7 +6710,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV4.1",
 //     {
 //         pais: "México",
@@ -6764,7 +6720,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV4.2",
 //     {
 //         pais: "México",
@@ -6774,7 +6730,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV4.3",
 //     {
 //         pais: "México",
@@ -6784,7 +6740,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV4.4",
 //     {
 //         pais: "México",
@@ -6794,7 +6750,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Teletica",
 //     {
 //         pais: "Costa Rica",
@@ -6805,7 +6761,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Trivisión",
 //     {
 //         pais: "Costa Rica",
@@ -6814,7 +6770,6 @@ MisCanales.set(
 //         ]
 //     }
 // );
-
 
 MisCanales.set(
     "USA NETWORK",
@@ -6936,7 +6891,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "SundanceTV",
 //     {
 //         pais: "España",
@@ -6966,7 +6921,6 @@ MisCanales.set(
         ]
     }
 );
-
 
 MisCanales.set(
     "GOLPERU",
@@ -7007,7 +6961,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Tigo SPORTS",
 //     {
 //         pais: "Uruguay",
@@ -7202,7 +7156,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "FOX DEPORTES USA",
 //     {
 //         pais: "Estados Unidos",
@@ -7221,7 +7175,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "FOX SPORTS 1 USA",
 //     {
 //         pais: "Estados Unidos",
@@ -7240,7 +7194,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "FOX SPORTS 2 USA",
 //     {
 //         pais: "Estados Unidos",
@@ -7440,7 +7394,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Sport TV1",
 //     {
 //         pais: "Brasil",
@@ -7460,7 +7414,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Sport TV2",
     //     {
     //         pais: "Brasil",
@@ -7479,7 +7433,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Sport TV3",
     //     {
     //         pais: "Brasil",
@@ -7498,7 +7452,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Arena Sport 1",
     //     {
     //         pais: "Balcanes",
@@ -7509,7 +7463,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Arena Sport 2",
     //     {
     //         pais: "Balcanes",
@@ -7520,7 +7474,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Arena Sport 3",
     //     {
     //         pais: "Balcanes",
@@ -7531,7 +7485,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Arena Sport 4",
     //     {
     //         pais: "Balcanes",
@@ -7542,7 +7496,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Arena Sport 5",
     //     {
     //         pais: "Balcanes",
@@ -7553,7 +7507,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Arena 1 Premium",
     // {
     //     pais: "Serbio",
@@ -7564,7 +7518,7 @@ MisCanales.set(
     // }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Arena 2 Premium",
     // {
     //     pais: "Serbio",
@@ -7575,7 +7529,7 @@ MisCanales.set(
     // }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Arena 3 Premium",
     // {
     //     pais: "Serbio",
@@ -7586,7 +7540,7 @@ MisCanales.set(
     // }
     // );
 
-    MisCanales.set(
+MisCanales.set(
         "ECDF",
         {
             pais: "Ecuador",
@@ -7697,6 +7651,7 @@ MisCanales.set(
         ]
     }
 );
+
 MisCanales.set(
     "RCN MÁS",
     {
@@ -7801,7 +7756,7 @@ MisCanales.set(
         }
     );
 
-    MisCanales.set(
+MisCanales.set(
         "Eurosport 2 ES",
         {
             pais: "España",
@@ -7821,7 +7776,7 @@ MisCanales.set(
         }
     );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "DAZN 1 ES",
     //     {
     //         pais: "España",
@@ -7853,7 +7808,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "DAZN 2 ES",
     //     {
     //         pais: "España",
@@ -7879,7 +7834,7 @@ MisCanales.set(
     //     }
     // );
 
-    MisCanales.set(
+MisCanales.set(
         "DAZN F1",
         {
             pais: "España",
@@ -7908,8 +7863,7 @@ MisCanales.set(
         }
     );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "DAZN LaLiga",
 //     {
 //         pais: "España",
@@ -7929,8 +7883,7 @@ MisCanales.set(
     //     }
     // );
 
-
-    // MisCanales.set(
+MisCanales.set(
     //     "CBS Sports",
     //     {
     //         pais: "Estados Unidos",
@@ -7946,7 +7899,7 @@ MisCanales.set(
     //     }
     // );
 
-    MisCanales.set(
+MisCanales.set(
         "Eurochannel",
         {
             pais: "Brasil",
@@ -7988,7 +7941,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV Meio",
 //     {
 //         pais: "Brasil",
@@ -7998,7 +7951,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Rede Brasil",
 //     {
 //         pais: "Brasil",
@@ -8112,7 +8065,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "NFL",
 //     {
 //         pais: "Estados Unidos",
@@ -8122,7 +8075,8 @@ MisCanales.set(
     //         ]
     //     }
     // );
-    // MisCanales.set(
+
+MisCanales.set(
     //     "NFL 2",
     //     {
     //         pais: "Estados Unidos",
@@ -8132,7 +8086,8 @@ MisCanales.set(
     //         ]
     //     }
     // );
-    // MisCanales.set(
+
+MisCanales.set(
     //     "NFL 3",
     //     {
     //         pais: "Estados Unidos",
@@ -8142,7 +8097,8 @@ MisCanales.set(
     //         ]
     //     }
     // );
-    // MisCanales.set(
+
+MisCanales.set(
     //     "NFL 4",
     //     {
     //         pais: "Estados Unidos",
@@ -8151,8 +8107,9 @@ MisCanales.set(
     // "https://streamx10.cloud/global1.php?channel=nfl04",
     //         ]
     //     }
-    // ); 
-    // MisCanales.set(
+    // );
+
+MisCanales.set(
     //     "NFL 5",
     //     {
     //         pais: "Estados Unidos",
@@ -8161,8 +8118,9 @@ MisCanales.set(
     // "https://streamx10.cloud/global1.php?channel=nfl05",
     //         ]
     //     }
-    // ); 
-    // MisCanales.set(
+    // );
+
+MisCanales.set(
     //     "NFL 6",
     //     {
     //         pais: "Estados Unidos",
@@ -8171,8 +8129,9 @@ MisCanales.set(
     // "https://streamx10.cloud/global1.php?channel=nfl06",
     //         ]
     //     }
-    // ); 
-    // MisCanales.set(
+    // );
+
+MisCanales.set(
     //     "NFL 7",
     //     {
     //         pais: "Estados Unidos",
@@ -8181,8 +8140,9 @@ MisCanales.set(
     // "https://streamx10.cloud/global1.php?channel=nfl07",
     //         ]
     //     }
-    // ); 
-    // MisCanales.set(
+    // );
+
+MisCanales.set(
     //     "NFL 8",
     //     {
     //         pais: "Estados Unidos",
@@ -8191,8 +8151,9 @@ MisCanales.set(
     // "https://streamx10.cloud/global1.php?channel=nfl08",
     //         ]
     //     }
-    // ); 
-    // MisCanales.set(
+    // );
+
+MisCanales.set(
     //     "NFL 9",
     //     {
     //         pais: "Estados Unidos",
@@ -8201,8 +8162,9 @@ MisCanales.set(
     // "https://streamx10.cloud/global1.php?channel=nfl09",
     //         ]
     //     }
-    // ); 
-    // MisCanales.set(
+    // );
+
+MisCanales.set(
     //     "NFL 10",
     //     {
     //         pais: "Estados Unidos",
@@ -8211,9 +8173,9 @@ MisCanales.set(
     // "https://streamx10.cloud/global1.php?channel=nfl010",
     //         ]
     //     }
-    // ); 
+    // );
 
-    MisCanales.set(
+MisCanales.set(
         "Star Channel",
         {
             pais: "Argentina",
@@ -9400,6 +9362,7 @@ MisCanales.set(
         ]
     }
 );
+
 MisCanales.set(
     "Sony Competencias",
     {
@@ -9525,8 +9488,7 @@ MisCanales.set(
     }
 );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "FMH Movies",
 //     {
 //         pais: "México",
@@ -9536,7 +9498,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "FMH Family",
 //     {
 //         pais: "México",
@@ -9546,7 +9508,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "FMH Kids",
 //     {
 //         pais: "México",
@@ -9556,7 +9518,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "FMH Animotion",
 //     {
 //         pais: "México",
@@ -9576,7 +9538,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Totovisión",
 //     {
 //         pais: "Guatemala",
@@ -9616,7 +9578,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 9 Ixchiguán",
 //     {
 //         pais: "Guatemala",
@@ -9626,7 +9588,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "SAS Tv",
 //     {
 //         pais: "Guatemala",
@@ -9666,7 +9628,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Buzzer Tv",
 //     {
 //         pais: "Guatemala",
@@ -9686,7 +9648,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal Nim",
 //     {
 //         pais: "Guatemala",
@@ -9706,7 +9668,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Full Channel",
 //     {
 //         pais: "Guatemala",
@@ -9736,7 +9698,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Jutiapa Visión Knal 9",
 //     {
 //         pais: "Guatemala",
@@ -9746,7 +9708,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TV Paisajes Solola",
 //     {
 //         pais: "Guatemala",
@@ -9816,7 +9778,6 @@ MisCanales.set(
     }
 );
 
-
 MisCanales.set(
     "Universo",
     {
@@ -9839,7 +9800,6 @@ MisCanales.set(
     }
 );
 
-
 MisCanales.set(
     "Pasiones",
     {
@@ -9855,8 +9815,7 @@ MisCanales.set(
     }
 );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "Distrito comedia",
 //     {
 //         pais: "México",
@@ -9897,7 +9856,6 @@ MisCanales.set(
         ]
     }
 );
-
 
 MisCanales.set(
     "DARK",
@@ -9959,7 +9917,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Canal 5 MX",
 //     {
 //         pais: "México",
@@ -9976,9 +9934,7 @@ MisCanales.set(
     //     }
     // );
 
-
-
-    MisCanales.set(
+MisCanales.set(
         "MEGA",
         {
             pais: "España",
@@ -10000,8 +9956,6 @@ MisCanales.set(
         ]
     }
 );
-
-
 
 MisCanales.set(
     "Telemundo",
@@ -10181,7 +10135,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "BBC Top Gearen",
 //     {
 //         pais: "Reino Unido",
@@ -10191,7 +10145,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Univision",
 //     {
 //         pais: "México",
@@ -10210,7 +10164,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Unimas",
     //     {
     //         pais: "Estados Unidos",
@@ -10231,7 +10185,7 @@ MisCanales.set(
     //     }
     // );
 
-    // MisCanales.set(
+MisCanales.set(
     //     "Unicable",
     // {
     //     pais: "México",
@@ -10242,7 +10196,7 @@ MisCanales.set(
     // }
     // );
 
-    MisCanales.set(
+MisCanales.set(
         "Kanal D Drama",
         {
             pais: "México",
@@ -10257,7 +10211,7 @@ MisCanales.set(
         }
     );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Más Chic",
 //     {
 //         pais: "Argentina",
@@ -10342,7 +10296,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "VTV",
 //     {
 //         pais: "Venezuela",
@@ -10370,7 +10324,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "VTV Plus",
 //     {
 //         pais: "Venezuela",
@@ -10434,7 +10388,6 @@ MisCanales.set(
         ]
     }
 );
-
 
 MisCanales.set(
     "SNT",
@@ -10990,7 +10943,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "MTV 90s",
 //     {
 //         pais: "Estados Unidos",
@@ -11000,7 +10953,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "MTV CLUB",
 //     {
 //         pais: "Estados Unidos",
@@ -11022,7 +10975,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Music TOP",
 //     {
 //         pais: "Estados Unidos",
@@ -11260,7 +11213,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Flow Music 2",
 //     {
 //         pais: "Argentina",
@@ -11282,7 +11235,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Flow Music 3",
 // {
 //     pais: "Argentina",
@@ -11610,7 +11563,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "TVN",
 //     {
 //         pais: "Panamá",
@@ -11620,7 +11573,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Medcom Telemetro",
 //     {
 //         pais: "Panamá",
@@ -11630,7 +11583,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Nex TV",
 //     {
 //         pais: "Panamá",
@@ -11640,7 +11593,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "La Poderosa TV",
 //     {
 //         pais: "Estados Unidos",
@@ -11796,7 +11749,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "WOBI",
 //     {
 //         pais: "Argentina",
@@ -11850,7 +11803,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "1000XHORA TV",
 //     {
 //         pais: "Paraguay",
@@ -11860,7 +11813,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "MOTORVISION TV",
 //     {
 //         pais: "Alemania",
@@ -11870,7 +11823,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "POWERNATION",
 //     {
 //         pais: "Estados Unidos",
@@ -12139,7 +12092,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "La Rosa de Guadalupe",
 // {
 //     pais: "Argentina",
@@ -12149,8 +12102,7 @@ MisCanales.set(
 // }
 // );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "WWE",
 //     {
 //         pais: "Estados Unidos",
@@ -12165,7 +12117,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Los Padrinos Magicos",
 // {
     //     pais: "Argentina",
@@ -12196,7 +12148,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Dragon Ball Super",
 // {
 //     pais: "Argentina",
@@ -12206,7 +12158,7 @@ MisCanales.set(
 // }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Bob Esponja",
 // {
 //     pais: "Argentina",
@@ -12216,9 +12168,7 @@ MisCanales.set(
 // }
 // );
 
-
-
-// MisCanales.set(
+MisCanales.set(
 //     "Galavision",
 // {
 //     pais: "Argentina",
@@ -12228,8 +12178,7 @@ MisCanales.set(
 // }
 // );
 
-
-// MisCanales.set(
+MisCanales.set(
 //     "Terror",
 // {
 //     pais: "Argentina",
@@ -12253,7 +12202,6 @@ MisCanales.set(
     }
 );
 
-
 MisCanales.set(
     "Futurama mania",
     {
@@ -12264,7 +12212,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Goku TV",
 //     {
 //         pais: "Varios",
@@ -12274,7 +12222,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Ganja TV",
 //     {
 //         pais: "Varios",
@@ -12324,7 +12272,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Peliculas mania",
 //     {
 //         pais: "Varios",
@@ -12334,7 +12282,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Peliculas mania 2",
 //     {
 //         pais: "Varios",
@@ -12354,7 +12302,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "XT BOT",
 //     {
 //         pais: "Varios",
@@ -12364,7 +12312,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Chincha TV",
 //     {
 //         pais: "Varios",
@@ -12374,7 +12322,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Solucion TV",
 //     {
 //         pais: "Varios",
@@ -12384,7 +12332,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Telecine",
 //     {
 //         pais: "Varios",
@@ -12404,7 +12352,7 @@ MisCanales.set(
     }
 );
 
-// MisCanales.set(
+MisCanales.set(
 //     "La Vaca y el Pollito",
 //     {
 //         pais: "Varios",
@@ -12414,7 +12362,7 @@ MisCanales.set(
 //     }
 // );
 
-// MisCanales.set(
+MisCanales.set(
 //     "Ed, Edd y Eddy",
 //     {
 //         pais: "Varios",
@@ -12496,7 +12444,6 @@ MisCanales.set(
         ]
     }
 );
-
 
 MisCanales.set(
     "Dragon Ball Z",
@@ -12598,7 +12545,6 @@ MisCanales.set(
     }
 );
 
-
 MisCanales.set(
     "BAHAR",
     {
@@ -12631,6 +12577,53 @@ MisCanales.set(
     }
 );
 
+MisCanales.set(
+        "Venus",
+        {
+            pais: "Argentina",
+            enlaces: [
+                // servidorCanalesOnline + "cvatt_pro.html?get=VmVudXM=",
+                servidorCanalesOnline + "cvatt.html?get=VmVudXM=",
+                servidorCanalesOnline + "cvatt2_ext.html?get=VmVudXM=",
+            ]
+        }
+    );
+
+MisCanales.set(
+        "Playboy",
+        {
+            pais: "Estados Unidos",
+            enlaces: [
+                // servidorCanalesOnline + "cvatt_pro.html?get=UGxheWJveQ",
+                servidorCanalesOnline + "cvatt.html?get=UGxheWJveQ",
+                servidorCanalesOnline + "cvatt2_ext.html?get=UGxheWJveQ",
+            ]
+        }
+    );
+
+MisCanales.set(
+        "Sextreme",
+        {
+            pais: "Argentina",
+            enlaces: [
+                // servidorCanalesOnline + "cvatt_pro.html?get=U2V4dHJlbWU",
+                servidorCanalesOnline + "cvatt.html?get=U2V4dHJlbWU",
+                servidorCanalesOnline + "cvatt2_ext.html?get=U2V4dHJlbWU",
+            ]
+        }
+    );
+
+MisCanales.set(
+        "CHATURBATE",
+        {
+            pais: "Argentina",
+            enlaces: [
+                // "https://pelisjuanita.com/tv/chbte.html",
+                servidorCanalesOnline + "chbte_chat.html",
+            ]
+        }
+    );
+// ---- FIN: CANALES AUTO-GENERADOS ----
 
 // dlhd_so();
 function dlhd_so() {
