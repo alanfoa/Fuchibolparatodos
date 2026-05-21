@@ -93,7 +93,7 @@ function CrearCanalesLote() {
                 // let canalinfo = MisCanales.get(canal);
                 // if (canalinfo.guide) {
                 //     console.log(
-                //         `"${canalinfo.guide}":"https://canalesonline.netlify.app/?stream=${encodeURIComponent(canal)}",`
+                //         `"${canalinfo.guide}":"https://fuchibolparatodos.netlify.app/?stream=${encodeURIComponent(canal)}",`
                 //     );
                 // }
             }
