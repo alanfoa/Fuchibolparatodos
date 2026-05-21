@@ -637,10 +637,7 @@
         };
 
         const PROXIES = [
-            "https://myproxy.senorgatorade123.workers.dev/?url=",
-            "https://myproxy.senorzapallo123.workers.dev/?url=",
-            "https://myproxy.huesosheffner2-0.workers.dev/?url=",
-            "https://myproxy.canalesonline24.workers.dev/?url=",
+            "https://api.codetabs.com/v1/proxy/?quest=",
         ];
         let currentProxyIndex = 0;
 
@@ -1371,7 +1368,7 @@
             console.log('Hora actual:', startHour + ':' + argTime.getMinutes());
 
             // Probar HOY
-            const urlToday = PROXY + `https://www.telered.com.ar/layout/grillaTVupd.php?prti=${startHour}&prtf=24&chlf=0&chlt=0&wn=0&pack=D`;
+            const urlToday = PROXIES[0] + `https://www.telered.com.ar/layout/grillaTVupd.php?prti=${startHour}&prtf=24&chlf=0&chlt=0&wn=0&pack=D`;
             console.log('URL HOY:', urlToday);
 
             const responseToday = await fetch(urlToday);
@@ -1398,7 +1395,7 @@
             });
 
             // Probar MAÑANA
-            const urlTomorrow = PROXY + `https://www.telered.com.ar/layout/grillaTVupd.php?prti=0&prtf=24&wn=1&pack=D`;
+            const urlTomorrow = PROXIES[0] + `https://www.telered.com.ar/layout/grillaTVupd.php?prti=0&prtf=24&wn=1&pack=D`;
             console.log('\nURL MAÑANA:', urlTomorrow);
 
             const responseTomorrow = await fetch(urlTomorrow);
