@@ -23,37 +23,29 @@
     <div id="snowflakes-container"></div>
 
     <!-- Navigation -->
-    <nav id="id_nav"
-        class="navbar navbar-expand navbar-dark bg-dark bg-gradient d-flex justify-content-between p-0 m-0 container-fluid">
-        <a class="navbar-brand p-0 m-0 ms-2" href="/" title="Fuchibolparatodos">
-            <img src="assets/logo-nav.png" alt="Fuchibolparatodos" height="36">
+    <nav id="id_nav" class="bg-dark bg-gradient p-0 container-fluid"
+        style="display:flex;align-items:center;justify-content:center;min-height:42px;position:relative;z-index:20">
+        <a href="/" title="Fuchibolparatodos"
+            style="position:absolute;left:8px;top:50%;transform:translateY(-50%);line-height:0">
+            <img src="assets/logo-nav.png" alt="Fuchibolparatodos" height="32">
         </a>
-        <ul class="navbar-nav btn-group dropdown-center">
-            <li class="nav-item"><a class='nav-link btn btn-secondary px-3 bi bi-tv-fill active' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/' id='Inicio' title='Canales de TV'> TV
-                    Online</a></li>
-            <li class="nav-item"><a class='nav-link btn btn-secondary px-3 bi bi-grid-fill' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/html/guia.html' title='Guía de Programación'></a></li>
-            <li class="nav-item"><a class='nav-link btn btn-secondary px-3 bi bi-film' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/html/cineplay.html' title='CinePlay'></a></li>
-            <li class="nav-item">
-                <a class='nav-link btn btn-secondary px-3 bi bi-rocket-takeoff-fill' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/html/proyectos.html' title='Explorar opciones'></a>
-            </li>
-
+        <ul class="list-unstyled d-flex align-items-center gap-1 mb-0" style="margin:0;padding:0">
+            <li><a class='btn btn-secondary px-3 bi bi-tv-fill active' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/' id='Inicio' title='Canales de TV'> TV Online</a></li>
+            <li><a class='btn btn-secondary px-3 bi bi-grid-fill' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/html/guia.html' title='Guía de Programación'></a></li>
+            <li><a class='btn btn-secondary px-3 bi bi-film' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/html/cineplay.html' title='CinePlay'></a></li>
+            <li><a class='btn btn-secondary px-3 bi bi-rocket-takeoff-fill' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/html/proyectos.html' title='Explorar opciones'></a></li>
         </ul>
-
-        <ul class="navbar-nav">
-            <li id="id_sapping" class="nav-item btn-group">
-                <a id="id_sapping-canal" class="btn btn-secondary nav-link" title="Reiniciar Canal"
-                    data-bs-toggle="tooltip" data-bs-placement="bottom" style="display: none;"></a>
-            </li>
-            <li class="nav-item btn-group dropdown-center">
-                <select id="id_optCanales" class="btn btn-outline-secondary border border-dark rounded text-light p-0"
-                    title="⚙️ Servidores" style="display: none;" data-bs-toggle="tooltip" data-bs-placement="bottom">
-                </select>
-                <a id="id_sapping-izquierda" class="nav-link btn btn-secondary bi bi-arrow-left-circle text-light px-3"
-                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Anterior (Alt+◄)"></a>
-                <a id="id_sapping-derecha" class="nav-link btn btn-secondary bi bi-arrow-right-circle text-light px-3"
-                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Siguiente (Alt+►)"></a>
-            </li>
-        </ul>
+        <div style="position:absolute;right:8px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:4px">
+            <a id="id_sapping-canal" class="btn btn-secondary" title="Reiniciar Canal"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" style="display:none;white-space:nowrap"></a>
+            <select id="id_optCanales" class="btn btn-outline-secondary border border-dark rounded text-light p-0"
+                title="⚙️ Servidores" style="display:none" data-bs-toggle="tooltip" data-bs-placement="bottom">
+            </select>
+            <a id="id_sapping-izquierda" class="btn btn-secondary bi bi-arrow-left-circle text-light px-3"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" title="Anterior (Alt+◄)"></a>
+            <a id="id_sapping-derecha" class="btn btn-secondary bi bi-arrow-right-circle text-light px-3"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" title="Siguiente (Alt+►)"></a>
+        </div>
     </nav>
 
     <!-- Main content -->

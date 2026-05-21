@@ -987,30 +987,6 @@ function redirigir(tipo) {
     else window.location.href = `/?channels=${tipo}`;
 }
 
-const donadores = [
-    { nombre: "Avila, Victor Manuel", monto: 11000 },
-    { nombre: "Gouiric, Alfonso Eduardo", monto: 7500 },
-    { nombre: "Mamani Carrasco, Florencia Daiana", monto: 6500 },
-    { nombre: "Paz, Lucio", monto: 5000 },
-    { nombre: "Deris, Jonatan Emanuel", monto: 4000 },
-    { nombre: "Llarull Zagurak, Santiago Agustín", monto: 2500 },
-    { nombre: "Ramirez, Benjamin Lucas", monto: 2500 },
-    { nombre: "De Los Santos, Patricia", monto: 2500 },
-    { nombre: "Córdova, Sergio", monto: 2500 },
-    { nombre: "Gerez, Lucas", monto: 2500 },
-];
-
-const cuerpoTabla = document.getElementById("donadores-body");
-donadores.forEach((donador, index) => {
-    const fila = document.createElement("tr");
-    fila.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${donador.nombre}</td>
-      <td>${donador.monto}</td>
-    `;
-    cuerpoTabla.appendChild(fila);
-});
-
 // ============================================================
 // SISTEMA DE FAVORITOS Y MENÚ CONTEXTUAL
 // ============================================================

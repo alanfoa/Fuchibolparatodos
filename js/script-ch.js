@@ -30,65 +30,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Gran Hermano",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "GranHermano.html?id=24h",
-//             servidorCanalesOnline + "GranHermano.html?id=cam1",
-//             servidorCanalesOnline + "GranHermano.html?id=cam2",
-//             servidorCanalesOnline + "GranHermano.html?id=cam3",
-//             servidorCanalesOnline + "GranHermano.html?id=multicam",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canelo vs Crawford",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//              "https://voodc.com/embed/85818b98a4889a8a847a85959f8a988a8680.html",
-//              "https://sportzonline.site/channels/hd/hd10.php",
-//              "https://glisco.link/ch?id=5",
-//              "https://vuen.link/ch?id=5",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "La Velada del Año 5",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "https://player.twitch.tv/?channel=ibai&parent=canalesonline.netlify.app",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Parence de manos",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "Parence_de_manos.html",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Inter Miami vs. Seattle Sounders",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=mls_1",
-//             servidorCanalesOnline + "m3u8.html?stream=mls_2",
-//             servidorCanalesOnline + "m3u8.html?stream=mls_3",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "TELEFE",
     {
         pais: "Argentina",
@@ -1201,66 +1142,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Cabletel Zarate Canal 4",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Cabletel_Zarate_Canal_4_BSAS",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "CANAL 22",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_22_CABA",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "DSR Medios Carhué",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=DSR_Medios_Carhué",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 3 Pinamar",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_3_Pinamar",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Power Pinamar",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Power_Pinamar",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Telpin Canal 2",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Telpin_Canal_2",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Canal 2 Ushuaia",
     {
         pais: "Argentina",
@@ -1282,16 +1163,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Canal 11 La Costa",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_11_La_Costa_BSAS",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Canal 79",
@@ -1322,52 +1193,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Canal 6 Mar del Plata",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_6_Mar_del_Plata",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 9 Litoral",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "edge.html?get=Canal_Nueve",
-//             // servidorCanalesOnline + "aneviapro.html?id=m3u8_canal9-litoral",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 8 Mar del Plata",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             // servidorCanalesOnline + "m3u8.html?stream=Canal_8_Mar_del_Plata",
-//             "https://arcast.com.ar/c8mdp/index.php",
-
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 9 Litoral",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOV9QYXJhbmE=",
-//             servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOV9QYXJhbmE=",
-//             servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOV9QYXJhbmE=",
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_9_Litoral",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Canal 10 Mar del Plata",
@@ -1403,16 +1228,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Bahia Vision Color",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Bahia_Vision_Color",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "EcoTV Tandil",
     {
         pais: "Argentina",
@@ -1424,56 +1239,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "MAD Multimedios",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=MAD_Multimedios",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Bragado TV",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Bragado_TV",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Celta TV",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Celta_TV_BSAS",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Agenda Necochense",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Agenda_Necochense",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 6 Moreno",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_6_Moreno",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "TVA San Rafael",
@@ -1496,16 +1261,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Canal 5 Santa Maria",
-// {
-//     pais: "Argentina",
-//     enlaces: [
-//         servidorCanalesOnline + "m3u8.html?stream=Canal_5_Santa_Maria",
-//     ]
-// }
-// );
 
 MisCanales.set(
     "Caras TV",
@@ -1578,86 +1333,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Urbana Teve",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Urbana_Teve",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Cinco TV Tigre",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Cinco_TV_Tigre",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "UNLP TV",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=UNLP_TV",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 7 Catamarca",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_7_Catamarca",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal Somos Uno Chaco",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_Somos_Uno_Chaco",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Ciudad TV Chaco",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Ciudad_TV_Resistencia_Chaco",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 4 Esquel Chubut",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_4_Esquel_Chubut",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 12 Chubut",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_12_Chubut",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "COONET TV",
     {
         pais: "Argentina",
@@ -1666,56 +1341,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Canal 9 Rio Cuarto",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_9_Rio_Cuarto_Cordoba",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Quatro Tv Cordoba",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Quatro_Tv_Rio_Cuarto_Cordoba",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TV Coop Cordoba",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=TV_Coop_Cordoba",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal Coop Cordoba",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_Coop_Cordoba",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 50 Cordoba",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_50_Morteros_Cordoba",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Canal 10 Cordoba",
@@ -1754,26 +1379,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Telenord Corrientes",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Telenord_Corrientes",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "13 MAX TV Corrientes",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=13_MAX_TV_Corrientes",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Canal 5 TV Corrientes",
     {
         pais: "Argentina",
@@ -1807,16 +1412,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Canal 2 Entre Rios",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_2_Gualeguay_Entre_Rios",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Lapacho Formosa",
     {
         pais: "Argentina",
@@ -1840,66 +1435,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Canal 7 Jujuy",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_7_Jujuy",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 4 Jujuy",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_4_Jujuy",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TV Publica Pampeana",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Television_Publica_Pampeana",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "CPE TV La Pampa",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=CPE_TV_La_Pampa",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 9 La Rioja",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_9_La_Rioja",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 13 La Rioja",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_13_La_Rioja",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Tele Junín",
@@ -1929,16 +1464,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Neo TV",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline +"m3u8.html?stream=Neo_TV",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Canal 10 Rio Negro",
     {
         pais: "Argentina",
@@ -1952,18 +1477,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Televida Mendoza",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=El_Nueve_Mendoza",
-//             servidorCanalesOnline + "extension.html?get=Televidaar",
-//             // "https://rudo.video/live/televidaar?enablejsapi=1",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Canal C",
@@ -2003,16 +1516,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Canal 6 Posadas",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_6_Posadas",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Canal Doce Posadas",
     {
         pais: "Argentina",
@@ -2040,66 +1543,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Misiones Cuatro",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Misiones_Cuatro_Misiones",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 21 TV Misiones",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_21_TV_Misiones",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "RTN Neuquen",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=RTN_Neuquen",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "24-7 Noticias Neuquen",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "m3u8.html?stream=24_7_Canal_de_Noticias_Neuquen",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Milenium TV Salta",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "m3u8.html?stream=Milenium_TV_Salta",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 7 Salta",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "m3u8.html?stream=Canal_7_Salta",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Multivision Salta",
     {
         pais: "Argentina",
@@ -2111,16 +1554,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Canal 12 Salta",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "m3u8.html?stream=Canal_12_Tartagal_Salta",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "OneTV San Juan",
     {
         pais: "Argentina",
@@ -2129,16 +1562,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Canal Blu San Juan",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_Blu_HD",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Xama HD San Juan",
@@ -2183,17 +1606,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Canal 40 Caucete",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_Cuarenta_Caucete_HD_San_Juan1",
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_Cuarenta_Caucete_HD_San_Juan2",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Canal 8 San Juan",
     {
         pais: "Argentina",
@@ -2202,16 +1614,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Telesol San Juan",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Telesol_San_Juan",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Solidaria TV",
@@ -2232,46 +1634,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Am 1020 San Juan",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=AM_1020_San_Juan",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Zonda TV San Juan",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Zonda_TV_San_Juan",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "San Luis CTV",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "m3u8.html?stream=San_Luis_CTV",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "San Luis Mas",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "m3u8.html?stream=San_Luis_Mas",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Ivision TV",
@@ -2462,67 +1824,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Telemix",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline +"m3u8.html?stream=Telemix",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Sion TV",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             "m3u8.html?stream=Sion_TV",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Venevisión",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             "https://snippet-stg.univtec.com/player-mobile.html?stream=https://venevision.akamaized.net/hls/live/2098814/VENEVISION/master.m3u8&autoplay=true",
-//             // "m3u8.html?stream=Venevision_Venez",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Tele Tuya",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             "https://geo.dailymotion.com/player/xhuur.html?video=k1Rx6Ji9YbPLoRAIFiC",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "EVTV",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             "m3u8.html?stream=EVTV_Vene",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "VPI TV",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=VPI_TV_Vene",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Novelisima",
     {
         pais: "Venezuela",
@@ -2535,16 +1836,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Canal I",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             "m3u8.html?stream=Canal_I_Vene",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Vale TV",
     {
         pais: "Venezuela",
@@ -2553,116 +1844,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "TV Familia",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             "m3u8.html?stream=TVFamilia_Vene",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "MDA TV",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             "m3u8.html?stream=MDA_TV_Vene",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Esports Max",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             "m3u8.html?stream=Esports_Max_Vene",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Esports Max 2",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             "m3u8.html?stream=Esports_Max2_Vene",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "ZUT",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             "m3u8.html?stream=Zut_Vene",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Plus TV",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             "m3u8.html?stream=Plus_TV_Vene",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Sicardi TV",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "m3u8.html?stream=Sicardi_TV",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 7 Santiago del Estero",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "m3u8.html?stream=Canal_7_Santiago_del_Estero",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 12 Metro TV Tucumán",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "m3u8.html?stream=Canal_12_Metro_TV_Tucuman",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Panc TV HD Tucumán",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "m3u8.html?stream=Panc_TV_HD_Tucuman",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "RTVE",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=RTVE",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "DW",
@@ -2832,16 +2013,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Squirrel",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Squirrel",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "TVE Internacional",
     {
         pais: "España",
@@ -2897,36 +2068,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Apunt",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=Apunt_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Laocho",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Laocho_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TVA",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "https://streaming007.gestec-video.com/redirect_tvadef.php",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Alacanti TV",
     {
         pais: "España",
@@ -2935,36 +2076,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Teve 4",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "https://valldeuxo.gestec-video.com/lavall.php",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Burriana Teve",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=Burriana_Teve_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TV Almassora",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=TV_Almassora_ES",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Elche 7TV",
@@ -2987,96 +2098,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Cetelmon",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "http://player.cetelmon.tv/index.html",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Cuidades de Ocio",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=Cuidades_de_Ocio_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Activa TV",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=Activa_TV_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Onda Valencia",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=Onda_Valencia_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Onda 15",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=Onda15_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "33TV",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=33tv_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Univers TV",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=UniversTV_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 3 Biar",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=Canal3Biar_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Pequeradio TV",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=Pequeradio_TV_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "TeleMadrid",
     {
         pais: "España",
@@ -3097,26 +2118,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Canal 4 Madrid",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=Canal4_Madrid_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Negocios TV",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "https://streaming013.gestec-video.com/negociostv.php",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Nesting TV",
@@ -3147,56 +2148,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Canal 33",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=Canal_33_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "EsTuTele",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=EsTuTele_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TVL Teleganes",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=TVL_Teleganes_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "La Urban TV",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=La_Urban_TV_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "ONE TV",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=ONE_TV_ES",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "El Toro TV",
@@ -3239,16 +2190,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "La 7 TV",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=La_7_TV_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Rakuten TV",
     {
         pais: "España",
@@ -3259,16 +2200,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "TV Melilla",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=TV_Melilla_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Runtime Cine",
     {
         pais: "España",
@@ -3277,46 +2208,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "12TV",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=12TV_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Extremadura",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=Extremadura_ES",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "7 TeleValencia",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=7_Tele_Valencia",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "101TV Sevilla",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             "m3u8.html?stream=ONE_TV_ES",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "RT en Español",
@@ -3334,18 +2225,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Constanza TV",
-//     {
-//         pais: "R. Dominicana",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Constanza_TV_REPDOM",
-//             // "https://ssh101.com/live/ctv8hd"
-//             // "https://constanzadigital.com/tv-envivo/"
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "GLD",
     {
         pais: "R. Dominicana",
@@ -3356,26 +2235,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "CDN",
-//     {
-//         pais: "R. Dominicana",
-//         enlaces: [
-//              servidorCanalesOnline + "m3u8.html?stream=CDN_REPDOM",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 21",
-//     {
-//         pais: "R. Dominicana",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=CANAL21_REPDOM",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Makao TV",
     {
         pais: "R. Dominicana",
@@ -3384,110 +2243,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Telemicro5",
-//     {
-//         pais: "R. Dominicana",
-//         enlaces: [
-//              servidorCanalesOnline + "m3u8.html?stream=Telemicro5_REPDOM",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Acento TV",
-//     {
-//         pais: "R. Dominicana",
-//         enlaces: [
-//             "https://acentotv01.streamprolive.com/i/cp/html5player.html",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Cable Onda",
-//     {
-//         pais: "R. Dominicana",
-//         enlaces: [
-//             "https://dominicanplayers.com/video-player/280/0/0",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Tele Impacto",
-//     {
-//         pais: "R. Dominicana",
-//         enlaces: [
-//             "https://vpss2003.streamprolive.com/i/cp/html5player.html",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "El Seis",
-//     {
-//         pais: "R. Dominicana",
-//         enlaces: [
-//             "https://cp.mojocp.com/player/1599?p=videojs",
-//             // "m3u8.html?stream=ElSeis_REPDOM",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Gen TV",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             // servidorCanalesOnline + "m3u8.html?stream=Gen_TV",
-//             // servidorCanalesOnline + "m3u8.html?stream=Gen_TV2",
-//             servidorCanalesOnline + "m3u8.html?stream=Gen_TV3",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Bayres TV",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Bayres_TV",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "SPTV Digital",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=SPTV_Digital_HD",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "La Red",
-//     {
-//         pais: "Chile",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=La_Red",
-//             servidorCanalesOnline + "m3u8.html?stream=La_Red2",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "HiperTV",
-//     {
-//         pais: "Chile",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Hiperconectados_CHILE",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "TV+ UCV",
@@ -3520,36 +2275,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "+ Cine",
-//     {
-//         pais: "Chile",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=mascine_CHILE",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "+ Cine Classic",
-//     {
-//         pais: "Chile",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=mascineclasico_CHILE",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "FMH movies",
-//     {
-//         pais: "Chile",
-//         enlaces: [
-//             servidorCanalesOnline + "extension.html?get=FMH_movies",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Moni TV",
     {
         pais: "Chile",
@@ -3561,36 +2286,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "TV Terror",
-//     {
-//         pais: "Chile",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=TV_Terror_CHILE",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Vibra TV NETWORK",
-//     {
-//         pais: "Chile",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=tvprimelive_CHILE",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "FutGO",
-//     {
-//         pais: "Chile",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=FutGO_CHILE",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "T13",
     {
         pais: "Chile",
@@ -3599,16 +2294,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "D13",
-//     {
-//         pais: "Chile",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=D13_CHILE",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "G Vision",
@@ -3649,56 +2334,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "The Weather Network",
-//     {
-//         pais: "Canadá",
-//         enlaces: [
-//             "m3u8.html?stream=Weather_Network_CANADA",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "CBC News",
-//     {
-//         pais: "Canadá",
-//         enlaces: [
-//             "m3u8.html?stream=Cbc_News_CANADA",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "ICI News",
-//     {
-//         pais: "Canadá",
-//         enlaces: [
-//             "m3u8.html?stream=Ici_News_CANADA",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Global National",
-//     {
-//         pais: "Canadá",
-//         enlaces: [
-//             "m3u8.html?stream=Global_National_CANADA",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "ICI Televisíon",
-//     {
-//         pais: "Canadá",
-//         enlaces: [
-//             "m3u8.html?stream=ICI_Television_CANADA",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Love ThePlanet",
@@ -3947,26 +2582,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Canal rtu",
-//     {
-//         pais: "Ecuador",
-//         enlaces: [
-//             "m3u8.html?stream=Canal_RTU_ECU",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Telerama",
-//     {
-//         pais: "Ecuador",
-//         enlaces: [
-//             "m3u8.html?stream=Telerama_ECU",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "America TV",
     {
         pais: "Perú",
@@ -4085,16 +2700,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Exitosa",
-//     {
-//         pais: "Perú",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Exitosa_PERU",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Bethel",
     {
         pais: "Perú",
@@ -4103,17 +2708,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "ATV Sur",
-//     {
-//         pais: "Perú",
-//         enlaces: [
-//             servidorCanalesOnline + "tvmia.html?stream=an_ATV",
-//             servidorCanalesOnline + "m3u8.html?stream=ATV_Sur_PERU",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Autentica TV",
@@ -4126,16 +2720,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Nativa TV",
-//     {
-//         pais: "Perú",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Nativa_PERU",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Yurimaguas TV",
     {
         pais: "Perú",
@@ -4144,16 +2728,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Tarapoto Digital",
-//     {
-//         pais: "Perú",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Tarapoto_Digital_PERU",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "TACALA TV",
@@ -4174,37 +2748,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "X TV",
-//     {
-//         pais: "Perú",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=X_TV_PERU",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "OZONO TV",
-//     {
-//         pais: "Perú",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=OZONO_TV_PERU",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TVPE",
-//     {
-//         pais: "Perú",
-//         enlaces: [
-//             servidorCanalesOnline + "tvmia.html?stream=an_TV_PE",
-//             servidorCanalesOnline + "m3u8.html?stream=TVPE_PERU",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Yurivision",
@@ -4315,16 +2858,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "VZ TV",
-//     {
-//         pais: "Perú",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=VZ_TV_PERU",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Rselva TV",
@@ -4528,56 +3061,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "UNIÓN TV",
-//     {
-//         pais: "Paraguay",
-//         enlaces: [
-//             "m3u8.html?stream=UNIÓN_TV_PARA",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "SOMOS DEL ESTE",
-//     {
-//         pais: "Paraguay",
-//         enlaces: [
-//             "m3u8.html?stream=SOMOS_DEL_ESTE_TV_PARA",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "ALMAYA TV",
-//     {
-//         pais: "Paraguay",
-//         enlaces: [
-//             "m3u8.html?stream=ALMAYA_TV_PARA",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "REGIONAL TV",
-//     {
-//         pais: "Paraguay",
-//         enlaces: [
-//             "m3u8.html?stream=REGIONAL_TV_PARA",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "ESTACIÓN CRISTAL",
-//     {
-//         pais: "Paraguay",
-//         enlaces: [
-//             "m3u8.html?stream=ESTACIÓN_CRISTAL_TV",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Flow Sports 1",
     {
         pais: "Argentina",
@@ -4664,26 +3147,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "TyC Sports Play",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "cobo.html?id=TYC_SPORTS_PLAY",
-//             servidorCanalesOnline + "cobo.html?id=TYC_SPORTS_PLAY_V2",
-//             servidorCanalesOnline + "cobo.html?id=TYC_SPORTS_PLAY_V3",
-//             servidorCanalesOnline + "cobo.html?id=TYC_SPORTS_PLAY_V4",
-//             servidorCanalesOnline + "cobo.html?id=TYC_SPORTS_PLAY_V5",
-//             servidorCanalesOnline + "cobo.html?id=TYC_SPORTS_PLAY_V6",
-//             servidorCanalesOnline + "cobo.html?id=TYC_SPORTS_PLAY_V7",
-//             servidorCanalesOnline + "cobo.html?id=TYC_SPORTS_PLAY_V9",
-//             servidorCanalesOnline + "cobo.html?id=TYC_SPORTS_PLAY_V10",
-//             servidorCanalesOnline + "cobo.html?id=TYC_SPORTS_PLAY_V11",
-//             servidorCanalesOnline + "cobo.html?id=TYC_SPORTS_PLAY_V12",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "TyC Sports Internacional",
@@ -4882,18 +3345,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Canales Alemania",
-//     {
-//         pais: "Alemania",
-//         enlaces: [
-//             "https://www.huhu.to/",
-//             "https://www.oha.to/",
-//             "https://vavoo.to/",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "GOLPLAY",
     {
         pais: "España",
@@ -4916,16 +3367,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Canela Deportes",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=CANELA_DEPORTES",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "AMÉRICA SPORTS",
@@ -5018,16 +3459,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "TNT Sports 2",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=TNT_Sports_2",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "TNT Sports Premium CL",
@@ -5725,17 +4156,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Canal Capital",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             servidorCanalesOnline + "tvmia.html?stream=bn_Canal_Capital_COL",
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_Capital_COL",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "BUGA TV",
     {
         pais: "Colombia",
@@ -5744,16 +4164,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Eureka TV",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=EurekaTV_COL",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Trece CO",
@@ -5779,16 +4189,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "CANAL 1 CO",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_1_COL",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "CANAL TRO",
     {
         pais: "Colombia",
@@ -5808,16 +4208,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Zoom TV",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             "m3u8.html?stream=ZOOM_TV_COL",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "CaliTV",
@@ -5843,26 +4233,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Cosmovision",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             "m3u8.html?stream=Cosmovision_COL",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Telecafé",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             "https://player.cdnmedia.tv/embed/efab977c/autoplay=true",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Telecaribe",
     {
         pais: "Colombia",
@@ -5885,36 +4255,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Cinemaplus",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Cinemaplus_COL",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "WOW Movies",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Wow_Channel_Movies_COL",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TDI Colombia",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             "m3u8.html?stream=TDIColombia_COL",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Mi Gente TV",
     {
         pais: "Colombia",
@@ -5925,36 +4265,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "TV PEÑOL COL",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=TV_PEÑOL_COL",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Tele Bolibar",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             "m3u8.html?stream=Tele_Bolibar_COL",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal ATV CO",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_ATV_COL",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Bum Televisión",
     {
         pais: "Colombia",
@@ -5963,291 +4273,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Canal Institucional CO",
-//     {
-//         pais: "Colombia",
-//         enlaces: [
-//             "m3u8.html?stream=Canal_Institucional_COL",
-//             "m3u8.html?stream=Canal_Institucional2_COL",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Bolivia Punto TV",
-//     {
-//         pais: "Bolivia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Bolivia_Punto_TV_Bol",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TV Ulive",
-//     {
-//         pais: "Bolivia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=TV_Ulive_Bol",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Bolivia Tv",
-//     {
-//         pais: "Bolivia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Bolivia_Tv_Bol",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Bolivisión",
-//     {
-//         pais: "Bolivia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Bolivision_Bol",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "RTP",
-//     {
-//         pais: "Bolivia",
-// guide: "RTP",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=RTP_Bol",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "UNITEL",
-//     {
-//         pais: "Bolivia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=UNITEL_Bol",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "RED UNO",
-//     {
-//         pais: "Bolivia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=RED_UNO_Bol",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "PAT",
-//     {
-//         pais: "Bolivia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=PAT_Bol",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "ATB",
-//     {
-//         pais: "Bolivia",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=ATB_Bol",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Sky Sports 1",
-//     {
-//         pais: "Reino Unido",
-//         enlaces: [
-// "https://streamx10.cloud/global2.php?channel=sky_sports1_mx",
-// "https://streamx10.cloud/global2.php?channel=sky_bundesliga1",
-//     "https://streamx10.cloud/global1.php?channel=sky_bundesliga1",
-    //             // "https://streamx10.cloud/global3.php?channel=sky_sports1_mx", //No funciona en la apk
-    // "https://streamx10.cloud/global2.php?channel=sky_sports1_mx",
-    //             // "https://la10hd.com/vivo/canal.php?stream=sky_sports1_mx",
-    //             // "https://la10hd.com/vivo/canales.php?stream=sky_sports1_mx",
-    //             // servidorCanalesOnline + "jjfutbol2pro.html?name=sky_sports1_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_sports1_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_sports1_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_sports1_mx",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=sky_bundesliga1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_bundesliga1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_bundesliga1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_bundesliga1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_bundesliga1",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_sports1_mx",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Sky Sports 2",
-    //     {
-    //         pais: "Reino Unido",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=sky_sports2_mx",
-    // "https://streamx10.cloud/global2.php?channel=sky_bundesliga2",
-    // "https://streamx10.cloud/global1.php?channel=sky_bundesliga2",
-    //             // "https://streamx10.cloud/global3.php?channel=sky_sports2_mx", //No funciona en la apk
-    // "https://streamx10.cloud/global2.php?channel=sky_sports2_mx",
-    //             // "https://la10hd.com/vivo/canal.php?stream=sky_sports2_mx",
-    //             // "https://la10hd.com/vivo/canales.php?stream=sky_sports2_mx",
-    //             // servidorCanalesOnline + "jjfutbol2pro.html?name=sky_sports2_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_sports2_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_sports2_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_sports2_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_sports2_mx",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=sky_bundesliga2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_bundesliga2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_bundesliga2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_bundesliga2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_bundesliga2",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Sky Sports 3",
-    //     {
-    //         pais: "Reino Unido",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=sky_sports3_mx",
-    // "https://streamx10.cloud/global2.php?channel=sky_bundesliga3",
-    // //             // "https://streamx10.cloud/global3.php?channel=sky_sports3_mx", //No funciona en la apk
-    // // "https://streamx10.cloud/global2.php?channel=sky_sports3_mx",
-    // "https://streamx10.cloud/global1.php?channel=sky_bundesliga3",
-    //             // "https://la10hd.com/vivo/canal.php?stream=sky_sports3_mx",
-    //             // "https://la10hd.com/vivo/canales.php?stream=sky_sports3_mx",
-    //             // servidorCanalesOnline + "jjfutbol2pro.html?name=sky_sports3_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_sports3_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_sports3_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_sports3_mx",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=sky_bundesliga3",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_bundesliga3",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_bundesliga3",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_bundesliga3",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_sports3_mx",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_bundesliga3",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Sky Sports 4",
-    //     {
-    //         pais: "Reino Unido",
-    //         enlaces: [
-    // // "https://streamx10.cloud/global2.php?channel=sky_sports4_mx",
-    // "https://streamx10.cloud/global2.php?channel=sky_bundesliga4",
-    // //             // "https://streamx10.cloud/global3.php?channel=sky_sports4_mx", //No funciona en la apk
-    // // "https://streamx10.cloud/global2.php?channel=sky_sports4_mx",
-    // "https://streamx10.cloud/global1.php?channel=sky_bundesliga4",
-    //             // "https://la10hd.com/vivo/canal.php?stream=sky_sports4_mx",
-    //             // "https://la10hd.com/vivo/canales.php?stream=sky_sports4_mx",
-    //             // servidorCanalesOnline + "jjfutbol2pro.html?name=sky_sports4_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_sports4_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_sports4_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_sports4_mx",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=sky_bundesliga4",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_bundesliga4",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_bundesliga4",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_bundesliga4",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_sports4_mx",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_bundesliga4",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Sky Sports 5",
-    //     {
-    //         pais: "Reino Unido",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=sky_sports5_mx",
-    // "https://streamx10.cloud/global2.php?channel=sky_bundesliga5",
-    // //             // "https://streamx10.cloud/global3.php?channel=sky_sports5_mx", //No funciona en la apk
-    // // "https://streamx10.cloud/global2.php?channel=sky_sports5_mx",
-    // "https://streamx10.cloud/global1.php?channel=sky_bundesliga5",
-    //             // "https://la10hd.com/vivo/canal.php?stream=sky_sports5_mx",
-    //             // "https://la10hd.com/vivo/canales.php?stream=sky_sports5_mx",
-    //             // servidorCanalesOnline + "jjfutbol2pro.html?name=sky_sports5_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_sports5_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_sports5_mx",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_sports5_mx",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=sky_bundesliga5",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_bundesliga5",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_bundesliga5",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_bundesliga5",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_sports5_mx",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_bundesliga5",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Sky Sports 6",
-    // {
-    //     pais: "Reino Unido",
-    //     enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=sky_sports6_mx",
-    // "https://streamx10.cloud/global1.php?channel=sky_bundesliga6",
-    // //          "https://streamx10.cloud/global3.php?channel=sky_sports6_mx", //No funciona en la apk
-    // "https://streamx10.cloud/global2.php?channel=sky_sports6_mx",
-    // "https://streamx10.cloud/global1.php?channel=sky_bundesliga6",
-    //          "https://la10hd.com/vivo/canal.php?stream=sky_sports6_mx",
-    //          "https://la10hd.com/vivo/canales.php?stream=sky_sports6_mx",
-    //          servidorCanalesOnline + "jjfutbol2pro.html?name=sky_sports6_mx",
-    //          servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_sports6_mx",
-    //          servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_sports6_mx",
-    //          servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_sports6_mx",
-    //          servidorCanalesOnline + "jjfutbol2pro.html?name=sky_bundesliga6",
-    //          servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_bundesliga6",
-    //          servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_bundesliga6",
-    //          servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_bundesliga6",
-    //          servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_sports6_mx",
-    //          servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_bundesliga6",
-
-    //     ]
-    // }
-    // );
-
-MisCanales.set(
-    //     "Sky Sports 7",
-    // {
-    //     pais: "Reino Unido",
-    //     enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=sky_sports7_mx",
-    // "https://streamx10.cloud/global1.php?channel=sky_bundesliga7",
-    // "https://streamx10.cloud/global3.php?channel=sky_sports7_mx", //No funciona en la apk
-    // "https://streamx10.cloud/global2.php?channel=sky_sports7_mx",
-    // "https://streamx10.cloud/global1.php?channel=sky_bundesliga7",
-    // "https://la10hd.com/vivo/canal.php?stream=sky_sports7_mx",
-    // "https://la10hd.com/vivo/canales.php?stream=sky_sports7_mx",
-    // servidorCanalesOnline + "jjfutbol2pro.html?name=sky_sports7_mx",
-    // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_sports7_mx",
-    // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_sports7_mx",
-    // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_sports7_mx",
-    // servidorCanalesOnline + "jjfutbol2pro.html?name=sky_bundesliga7",
-    // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sky_bundesliga7",
-    // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sky_bundesliga7",
-    // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sky_bundesliga7",
-    // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_sports7_mx",
-    // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sky_bundesliga7",
-    //     ]
-    // }
-    // );
 
 MisCanales.set(
         "Liga 1 MAX",
@@ -6271,38 +4296,6 @@ MisCanales.set(
     );
 
 MisCanales.set(
-//     "Caliente TV MX",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             // servidorCanalesOnline + "cobo.html?id=CALIENTE_TV_MX",
-// "https://streamx10.cloud/global2.php?channel=calientetvmx",
-//     "https://streamx10.cloud/global1.php?channel=calientetvmx",
-    //             // "https://streamx10.cloud/global3.php?channel=calientetvmx", //No funciona en la apk
-    //             // "https://la10hd.com/vivo/canal.php?stream=calientetv",
-    //             // "https://la10hd.com/vivo/canales.php?stream=calientetv",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=calientetv",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=calientetv",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=calientetv",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=calientetv",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=calientetv",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "ForoTV",
-    //     {
-    //         pais: "México",
-    //         enlaces: [
-    // "https://streams.lat/495014/iptv.php?ch=forotv",
-    // "https://streams.lat/495014/iptv.php?ch=nmas",
-    // "https://streams.lat/495014/iptv.php?ch=estrellas",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
         "Milenio",
         {
             pais: "México",
@@ -6311,26 +4304,6 @@ MisCanales.set(
             ]
         }
     );
-
-MisCanales.set(
-//     "BitMe",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Vall_BitMe_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Canal 6 MX",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=Canal6_MX",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Estrella TV",
@@ -6486,28 +4459,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Azteca Guate",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Azteca-Guate",
-//             servidorCanalesOnline + "m3u8.html?stream=Azteca_Guatemala_MX",
-//             servidorCanalesOnline + "cobo.html?id=AZTECA_GT",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Azteca A Más Guate",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Azteca_A_Mas_Guate_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Azteca Internacional",
     {
         pais: "México",
@@ -6591,16 +4542,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Canal44",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=Canal44_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Canal 44C",
     {
         pais: "México",
@@ -6629,147 +4570,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Telemax MX",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=Telemax_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TV más MX",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=TVmas_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TeleFórmula MX",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=TeleFormula_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TVPacifico Culiacan",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=TVPacifico_Culiacan_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TVPacifico Mochis",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=TVPacifico_Mochis_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TVPacifico Obregon",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=TVPacifico_Obregon_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TVPacifico Mazatlan",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=TVPacifico_Mazatlan_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Estrella del Pilar",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=Estrella_Del_Pilar_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TV4.1",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=TV4_1_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TV4.2",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=TV4_2_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TV4.3",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=TV4_3_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TV4.4",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             "m3u8.html?stream=TV4_4_MX",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Teletica",
-//     {
-//         pais: "Costa Rica",
-//         enlaces: [
-//             // "m3u8.html?stream=Teletica_CR",
-//             "https://bradmax.com/client/embed-player/c7c83ebb46fa89529a7383d933e2038729f8e4c9_13428?id=tv7&mediaUrl=https://cdn01.teletica.com/TeleticaLiveStream/Stream/playlist_dvr.m3u8&mediaUrl2=https://6zklxk9bdw9b-hls-live.5centscdn.com/TeleticaLiveStream/d072c3a8dde8622c607ecd258fd628e8.sdp/playlist_dvr.m3u8",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Trivisión",
-//     {
-//         pais: "Costa Rica",
-//         enlaces: [
-//             "https://player.cdnmedia.tv/embed/cbcf9e73/autoplay=true",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "USA NETWORK",
@@ -6892,16 +4692,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "SundanceTV",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             servidorCanalesOnline + "zapitv.html?id=sundancetv",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Canal cocina",
     {
         pais: "España",
@@ -6960,23 +4750,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Tigo SPORTS",
-//     {
-//         pais: "Uruguay",
-//         enlaces: [
-// "m3u8.html?stream=Tigo_Sport_URU",
-// "https://la10hd.com/vivo/canal.php?stream=tigosports",
-// "https://la10hd.com/vivo/canales.php?stream=tigosports",
-// servidorCanalesOnline + "jjfutbol2pro.html?name=tigosports",
-// servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=tigosports",
-// servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=tigosports",
-// servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=tigosports",
-// servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=tigosports",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "FOX SPORTS",
@@ -7155,63 +4928,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "FOX DEPORTES USA",
-//     {
-//         pais: "Estados Unidos",
-//         enlaces: [
-//             // "https://streamx10.cloud/global2.php?channel=fox_deportes_usa",
-//             // "https://streamx10.cloud/global1.php?channel=fox_deportes_usa",
-//             // "https://streamx10.cloud/global3.php?channel=fox_deportes_usa", //No funciona en la apk
-//             // "https://la10hd.com/vivo/canal.php?stream=foxdeportes",
-//             // "https://la10hd.com/vivo/canales.php?stream=foxdeportes",
-//             servidorCanalesOnline + "jjfutbol2pro.html?name=foxdeportes",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=foxdeportes",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=foxdeportes",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=foxdeportes",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=foxdeportes",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "FOX SPORTS 1 USA",
-//     {
-//         pais: "Estados Unidos",
-//         enlaces: [
-//             // "https://streamx10.cloud/global2.php?channel=fox_1_usa",
-//             // "https://streamx10.cloud/global1.php?channel=fox_1_usa",
-//             // "https://streamx10.cloud/global3.php?channel=fox_1_usa", //No funciona en la apk
-//             // "https://la10hd.com/vivo/canal.php?stream=foxsports1_usa",
-//             // "https://la10hd.com/vivo/canales.php?stream=foxsports1_usa",
-//             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsports1_usa",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=foxsports1_usa",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=foxsports1_usa",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=foxsports1_usa",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=foxsports1_usa",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "FOX SPORTS 2 USA",
-//     {
-//         pais: "Estados Unidos",
-//         enlaces: [
-//             // "https://streamx10.cloud/global2.php?channel=fox_2_usa",
-//             // "https://streamx10.cloud/global1.php?channel=fox_2_usa",
-//             // "https://streamx10.cloud/global3.php?channel=fox_2_usa", //No funciona en la apk
-//             // "https://la10hd.com/vivo/canal.php?stream=foxsports2_usa",
-//             // "https://la10hd.com/vivo/canales.php?stream=foxsports2_usa",
-//             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsports2_usa",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=foxsports2_usa",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=foxsports2_usa",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=foxsports2_usa",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=foxsports2_usa",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "GOLF TV AMÉRICA",
@@ -7393,152 +5109,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Sport TV1",
-//     {
-//         pais: "Brasil",
-//         enlaces: [
-//             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sportv",
-// "https://streamx10.cloud/global2.php?channel=sportv_1pt",
-//     "https://streamx10.cloud/global1.php?channel=sportv_1pt",
-    //             // "https://streamx10.cloud/global3.php?channel=sportv_1pt", //No funciona en la apk
-    //             // "https://la10hd.com/vivo/canal.php?stream=sporttv1",
-    //             // "https://la10hd.com/vivo/canales.php?stream=sporttv1",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=sporttv1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sporttv1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sporttv1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sporttv1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sporttv1",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Sport TV2",
-    //     {
-    //         pais: "Brasil",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=sportv_2pt",
-    // "https://streamx10.cloud/global1.php?channel=sportv_2pt",
-    //             // "https://streamx10.cloud/global3.php?channel=sportv_2pt", //No funciona en la apk
-    //             // "https://la10hd.com/vivo/canal.php?stream=sporttv2",
-    //             // "https://la10hd.com/vivo/canales.php?stream=sporttv2",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=sporttv2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sporttv2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sporttv2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sporttv2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sporttv2",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Sport TV3",
-    //     {
-    //         pais: "Brasil",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=sportv_3pt",
-    // "https://streamx10.cloud/global1.php?channel=sportv_3pt",
-    //             // "https://streamx10.cloud/global3.php?channel=sportv_3pt", //No funciona en la apk
-    //             // "https://la10hd.com/vivo/canal.php?stream=sporttv3",
-    //             // "https://la10hd.com/vivo/canales.php?stream=sporttv3",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=sporttv3",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sporttv3",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sporttv3",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sporttv3",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=sporttv3",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Arena Sport 1",
-    //     {
-    //         pais: "Balcanes",
-    //         enlaces: [
-    //             "cobo.html?id=arenasports1",
-    //             // "https://candler.beauty/cobo.html?id=arenasports1",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Arena Sport 2",
-    //     {
-    //         pais: "Balcanes",
-    //         enlaces: [
-    //             "cobo.html?id=arenasports2",
-    //             // "https://candler.beauty/cobo.html?id=arenasports2",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Arena Sport 3",
-    //     {
-    //         pais: "Balcanes",
-    //         enlaces: [
-    //             "cobo.html?id=arenasports3",
-    //             // "https://candler.beauty/cobo.html?id=arenasports3",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Arena Sport 4",
-    //     {
-    //         pais: "Balcanes",
-    //         enlaces: [
-    //             "cobo.html?id=arenasports4",
-    //             // "https://candler.beauty/cobo.html?id=arenasports4",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Arena Sport 5",
-    //     {
-    //         pais: "Balcanes",
-    //         enlaces: [
-    //             "cobo.html?id=arenasports5",
-    //             // "https://candler.beauty/cobo.html?id=arenasports5",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Arena 1 Premium",
-    // {
-    //     pais: "Serbio",
-    //     enlaces: [
-    //         "cobo.html?id=ARENA_SPORTSP_1_BH",
-    // "https://candler.beauty/cobo.html?id=ARENA_SPORTSP_1_BH",
-    //     ]
-    // }
-    // );
-
-MisCanales.set(
-    //     "Arena 2 Premium",
-    // {
-    //     pais: "Serbio",
-    //     enlaces: [
-    //         "cobo.html?id=ARENA_SPORTSP_2_BH",
-    // "https://candler.beauty/cobo.html?id=ARENA_SPORTSP_2_BH",
-    //     ]
-    // }
-    // );
-
-MisCanales.set(
-    //     "Arena 3 Premium",
-    // {
-    //     pais: "Serbio",
-    //     enlaces: [
-    //         "cobo.html?id=arenasports3p",
-    // "https://candler.beauty/cobo.html?id=arenasports3p",
-    //     ]
-    // }
-    // );
 
 MisCanales.set(
         "ECDF",
@@ -7777,64 +5347,6 @@ MisCanales.set(
     );
 
 MisCanales.set(
-    //     "DAZN 1 ES",
-    //     {
-    //         pais: "España",
-    //         enlaces: [
-    //             servidorCanalesOnline + "cobo.html?id=DAZN_1_ES",
-    // "https://streamx10.cloud/global2.php?channel=dazn1",
-    // "https://streamx10.cloud/global1.php?channel=dazn1",
-    //             // "https://streamx10.cloud/global3.php?channel=dazn1", //No funciona en la apk
-    //             // "https://la10hd.com/vivo/canal.php?stream=dazn1",
-    //             // "https://la10hd.com/vivo/canales.php?stream=dazn1",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=dazn1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dazn1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dazn1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dazn1",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=dazn1",
-
-    //             // servidorCanalesOnline + "jjfutbol2pro.html?name=eleven1_pt", ///Dazn Portugal
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=eleven1_pt", ///Dazn Portugal
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=eleven1_pt", ///Dazn Portugal
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=eleven1_pt", ///Dazn Portugal
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=eleven1_pt", ///Dazn Portugal
-
-    //             // servidorCanalesOnline + "jjfutbol2pro.html?name=dazn1_de",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dazn1_de",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dazn1_de",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dazn1_de",
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=dazn1_de",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "DAZN 2 ES",
-    //     {
-    //         pais: "España",
-    //         enlaces: [
-    //             servidorCanalesOnline + "cobo.html?id=DAZN_2_ES",
-    // "https://streamx10.cloud/global2.php?channel=dazn2",
-    // "https://streamx10.cloud/global1.php?channel=dazn2",
-    //             // "https://streamx10.cloud/global3.php?channel=dazn2", //No funciona en la apk
-    //             // "https://la10hd.com/vivo/canal.php?stream=dazn2",
-    //             // "https://la10hd.com/vivo/canales.php?stream=dazn2",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=dazn2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dazn2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dazn2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dazn2",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=dazn2",
-
-    //             // servidorCanalesOnline + "jjfutbol2pro.html?name=eleven2_pt", ///Dazn Portugal
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=eleven2_pt", ///Dazn Portugal
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=eleven2_pt", ///Dazn Portugal
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=eleven2_pt", ///Dazn Portugal
-    //             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=eleven2_pt", ///Dazn Portugal
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
         "DAZN F1",
         {
             pais: "España",
@@ -7862,42 +5374,6 @@ MisCanales.set(
             ]
         }
     );
-
-MisCanales.set(
-//     "DAZN LaLiga",
-//     {
-//         pais: "España",
-//         enlaces: [
-//             servidorCanalesOnline + "cobo.html?id=DAZN_LA_LIGA",
-// "https://streamx10.cloud/global2.php?channel=dazn_laliga",
-//     "https://streamx10.cloud/global1.php?channel=dazn_laliga",
-    //             // "https://streamx10.cloud/global3.php?channel=dazn_laliga", //No funciona en la apk
-    //             // "https://la10hd.com/vivo/canal.php?stream=dazn_laliga",
-    //             // "https://la10hd.com/vivo/canales.php?stream=dazn_laliga",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=dazn_laliga",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dazn_laliga",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dazn_laliga",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dazn_laliga",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=dazn_laliga",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "CBS Sports",
-    //     {
-    //         pais: "Estados Unidos",
-    //         enlaces: [
-    //             // "https://la10hd.com/vivo/canal.php?stream=cbs_sports_network",
-    //             // "https://la10hd.com/vivo/canales.php?stream=cbs_sports_network",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=cbs_sports_network",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=cbs_sports_network",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=cbs_sports_network",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=cbs_sports_network",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=cbs_sports_network",
-    //         ]
-    //     }
-    // );
 
 MisCanales.set(
         "Eurochannel",
@@ -7940,26 +5416,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "TV Meio",
-//     {
-//         pais: "Brasil",
-//         enlaces: [
-//             "m3u8.html?stream=TV_Meio_Norte_BR",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Rede Brasil",
-//     {
-//         pais: "Brasil",
-//         enlaces: [
-//             "m3u8.html?stream=Rede_Brasil_BR",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Euronews",
@@ -8064,116 +5520,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "NFL",
-//     {
-//         pais: "Estados Unidos",
-//         enlaces: [
-// "https://streamx10.cloud/global2.php?channel=nfl01",
-    // "https://streamx10.cloud/global1.php?channel=nfl01",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "NFL 2",
-    //     {
-    //         pais: "Estados Unidos",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=nfl02",
-    // "https://streamx10.cloud/global1.php?channel=nfl02",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "NFL 3",
-    //     {
-    //         pais: "Estados Unidos",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=nfl03",
-    // "https://streamx10.cloud/global1.php?channel=nfl03",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "NFL 4",
-    //     {
-    //         pais: "Estados Unidos",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=nfl04",
-    // "https://streamx10.cloud/global1.php?channel=nfl04",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "NFL 5",
-    //     {
-    //         pais: "Estados Unidos",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=nfl05",
-    // "https://streamx10.cloud/global1.php?channel=nfl05",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "NFL 6",
-    //     {
-    //         pais: "Estados Unidos",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=nfl06",
-    // "https://streamx10.cloud/global1.php?channel=nfl06",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "NFL 7",
-    //     {
-    //         pais: "Estados Unidos",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=nfl07",
-    // "https://streamx10.cloud/global1.php?channel=nfl07",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "NFL 8",
-    //     {
-    //         pais: "Estados Unidos",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=nfl08",
-    // "https://streamx10.cloud/global1.php?channel=nfl08",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "NFL 9",
-    //     {
-    //         pais: "Estados Unidos",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=nfl09",
-    // "https://streamx10.cloud/global1.php?channel=nfl09",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "NFL 10",
-    //     {
-    //         pais: "Estados Unidos",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=nfl010",
-    // "https://streamx10.cloud/global1.php?channel=nfl010",
-    //         ]
-    //     }
-    // );
 
 MisCanales.set(
         "Star Channel",
@@ -9489,46 +6835,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "FMH Movies",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             servidorCanalesOnline + "extension.html?get=FMH_Movies",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "FMH Family",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             servidorCanalesOnline + "extension.html?get=FMH_Family",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "FMH Kids",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             servidorCanalesOnline + "extension.html?get=FMH_Kids",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "FMH Animotion",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             servidorCanalesOnline + "extension.html?get=FMH_Animotion",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Canal GTV",
     {
         pais: "Guatemala",
@@ -9537,16 +6843,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Totovisión",
-//     {
-//         pais: "Guatemala",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Totovision",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "TV Florencia",
@@ -9579,26 +6875,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Canal 9 Ixchiguán",
-//     {
-//         pais: "Guatemala",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_9_Ixchiguán",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "SAS Tv",
-//     {
-//         pais: "Guatemala",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=SAS_Tv",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Aurora Media Films",
     {
         pais: "Guatemala",
@@ -9629,16 +6905,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Buzzer Tv",
-//     {
-//         pais: "Guatemala",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Buzzer_Tv",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Supercable",
     {
         pais: "Guatemala",
@@ -9649,16 +6915,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Canal Nim",
-//     {
-//         pais: "Guatemala",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Canal_Nim",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Sol Tv",
     {
         pais: "Guatemala",
@@ -9667,16 +6923,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Full Channel",
-//     {
-//         pais: "Guatemala",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Full_Channel",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Más Tv",
@@ -9697,27 +6943,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Jutiapa Visión Knal 9",
-//     {
-//         pais: "Guatemala",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Jutiapa_Vision_Knal_9",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "TV Paisajes Solola",
-//     {
-//         pais: "Guatemala",
-//         enlaces: [
-//             servidorCanalesOnline + "extension.html?get=TV_Paisaje_Guate",
-//             // "https://player.twitch.tv/?channel=tvpaisajesolola&parent=www.twitch.tv",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Comedy Central",
@@ -9816,17 +7041,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Distrito comedia",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             // "https://fullchannels.online/canales.php?id=distrito-comedia",
-// "https://embed.ksdjugfsddeports.com/embed2/distritocomedia.html",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Tlnovelas",
     {
         pais: "México",
@@ -9916,23 +7130,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Canal 5 MX",
-//     {
-//         pais: "México",
-//         enlaces: [
-// "https://streamx10.cloud/global2.php?channel=canal5mx",
-//     "https://streamx10.cloud/global1.php?channel=canal5mx",
-    //             // "https://fullchannels.online/canales.php?id=canal5-op2",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=canal5",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=canal5",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=canal5",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=canal5",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=canal5",
-    //         ]
-    //     }
-    // );
 
 MisCanales.set(
         "MEGA",
@@ -10136,67 +7333,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "BBC Top Gearen",
-//     {
-//         pais: "Reino Unido",
-//         enlaces: [
-//             "m3u8.html?stream=BBC_TopGearenEspanol",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Univision",
-//     {
-//         pais: "México",
-//         enlaces: [
-//             // "https://la10hd.com/vivo/canal.php?stream=univision",
-//             // "https://la10hd.com/vivo/canales.php?stream=univision",
-// "https://streamx10.cloud/global2.php?channel=univision_usa",
-//     "https://streamx10.cloud/global2.php?channel=univision_usa",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=univision",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=univision",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=univision",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=univision",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=univision",
-    //             // "https://thedaddy.to/embed/stream-132.php",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Unimas",
-    //     {
-    //         pais: "Estados Unidos",
-    //         enlaces: [
-    // "https://streamx10.cloud/global2.php?channel=unimas",
-    // "https://streamx10.cloud/global2.php?channel=unimas",
-    //             // "https://streamx10.cloud/global3.php?channel=unimas", //No funciona en la apk
-    //             // "https://la10hd.com/vivo/canal.php?stream=unimas",
-    //             // "https://la10hd.com/vivo/canales.php?stream=unimas",
-    //             servidorCanalesOnline + "jjfutbol2pro.html?name=unimas",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=unimas",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=unimas",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=unimas",
-    //             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=unimas",
-    //             // "https://thedaddy.to/embed/stream-133.php",
-    //             // "https://telefullenvivo.org/canales/unimas/",
-    //         ]
-    //     }
-    // );
-
-MisCanales.set(
-    //     "Unicable",
-    // {
-    //     pais: "México",
-    //     enlaces: [
-    // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=unicable",
-    // "https://tutlehd5.com//online.php?a=405",
-    //     ]
-    // }
-    // );
-
-MisCanales.set(
         "Kanal D Drama",
         {
             pais: "México",
@@ -10210,35 +7346,6 @@ MisCanales.set(
             ]
         }
     );
-
-MisCanales.set(
-//     "Más Chic",
-//     {
-//         pais: "Argentina",
-//         guide: "MAS CHIC",
-//         enlaces: [
-//             servidorCanalesOnline + "cvatt_pro.html?get=TWFzX0NoaWM=",
-//             servidorCanalesOnline + "cvatt.html?get=TWFzX0NoaWM=",
-//             // "server/cvatt.html?get=TWFzX0NoaWM=",
-//             // "https://sssshhh.xyz/cvatt.html?get=TWFzX0NoaWM=",
-//             // "https://a3.115tv.site/cvatt.html?get=TWFzX0NoaWM=",
-//             // "https://a3.115tv.site/cvatt2_ext.html?get=TWFzX0NoaWM=",
-//             servidorCanalesOnline + "cvatt2_ext.html?get=TWFzX0NoaWM=",
-//             servidorCanalesOnline + "gigared.html?id=Mas_Chic",
-//             servidorCanalesOnline + "gigared_ext.html?id=Mas_Chic",
-// "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=Mas_Chic",
-// servidorCanalesOnline + "sensa.html?id=MasChic",
-//             // servidorCanalesOnline + "sensa_ext.html?id=MasChic",
-//             // "server/cvatt2_ext.html?get=TWFzX0NoaWM=",
-//             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=TWFzX0NoaWM=",
-//             // "https://flowflowflow1.dombhei.com/cvatt.html?get=TWFzX0NoaWM=",
-//             // "https://cv.photocalltv.me/cv2.php?get=TWFzX0NoaWM=",
-//             // "https://tomyjerry.nebunexa.com/cvatt.php?get=TWFzX0NoaWM=",
-//             // "https://nebunexa.com/cvatt.php?get=TWFzX0NoaWM=",
-//             // "https://www.enlatele.tv/player/cv2.php?get=TWFzX0NoaWM=",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "VOLVER",
@@ -10295,71 +7402,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "VTV",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             servidorCanalesOnline + "cvatt_pro.html?get=VlRWX0hE",
-//             servidorCanalesOnline + "cvatt.html?get=VlRWX0hE",
-//             // "server/cvatt.html?get=VlRWX0hE",
-//             // "https://sssshhh.xyz/cvatt.html?get=VlRWX0hE",
-//             // "https://a3.115tv.site/cvatt.html?get=VlRWX0hE",
-//             // "https://a3.115tv.site/cvatt2_ext.html?get=VlRWX0hE",
-//             servidorCanalesOnline + "cvatt2_ext.html?get=VlRWX0hE",
-//             // "server/cvatt2_ext.html?get=VlRWX0hE",
-//             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=VlRWX0hE",
-//             // "https://flowflowflow1.dombhei.com/cvatt.html?get=VlRWX0hE",
-//             // "https://cv.photocalltv.me/cv2.php?get=VlRWX0hE",
-//             // "https://tomyjerry.nebunexa.com/cvatt.php?get=VlRWX0hE",
-//             // "https://nebunexa.com/cvatt.php?get=VlRWX0hE",
-//             // "https://www.enlatele.tv/player/cv2.php?get=VlRWX0hE",
-//             // "https://a3.115tv.site/cvattde.html?get=VlRWX0hE",
-//             // servidorCanalesOnline + "cvattde.html?get=VlRWX0hE",
-//             // "server/cvattde.html?get=VlRWX0hE",
-//             // "https://sssshhh.xyz/cvattde.html?get=VlRWX0hE",
-//             // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=vtv",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "VTV Plus",
-//     {
-//         pais: "Venezuela",
-//         enlaces: [
-//             servidorCanalesOnline + "cvatt_pro.html?get=VlRWX1BsdXNfSEQ",
-//             servidorCanalesOnline + "cvatt.html?get=VlRWX1BsdXNfSEQ",
-//             // "server/cvatt.html?get=VlRWX1BsdXNfSEQ",
-//             // "https://sssshhh.xyz/cvatt.html?get=VlRWX1BsdXNfSEQ",
-//             // "https://a3.115tv.site/cvatt.html?get=VlRWX1BsdXNfSEQ",
-//             // "https://a3.115tv.site/cvatt2_ext.html?get=VlRWX1BsdXNfSEQ",
-//             servidorCanalesOnline + "cvatt2_ext.html?get=VlRWX1BsdXNfSEQ",
-//             // "server/cvatt2_ext.html?get=VlRWX1BsdXNfSEQ",
-//             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=VlRWX1BsdXNfSEQ",
-//             // "https://flowflowflow1.dombhei.com/cvatt.html?get=VlRWX1BsdXNfSEQ",
-//             // "https://cv.photocalltv.me/cv2.php?get=VlRWX1BsdXNfSEQ",
-//             // "https://tomyjerry.nebunexa.com/cvatt.php?get=VlRWX1BsdXNfSEQ",
-//             // "https://nebunexa.com/cvatt.php?get=VlRWX1BsdXNfSEQ",
-//             // "https://www.enlatele.tv/player/cv2.php?get=VlRWX1BsdXNfSEQ",
-//             // "https://a3.115tv.site/cvattde.html?get=VlRWX1BsdXNfSEQ",
-//             // servidorCanalesOnline + "cvattde.html?get=VlRWX1BsdXNfSEQ",
-//             // "server/cvattde.html?get=VlRWX1BsdXNfSEQ",
-//             // "https://sssshhh.xyz/cvattde.html?get=VlRWX1BsdXNfSEQ",
-// "https://streamx10.cloud/global2.php?channel=vtvplus",
-//     "https://streamx10.cloud/global1.php?channel=vtvplus",
-//             // "https://streamx10.cloud/global3.php?channel=vtvplus", //No funciona en la apk
-//             // "https://la10hd.com/vivo/canal.php?stream=vtvplus",
-//             // "https://la10hd.com/vivo/canales.php?stream=vtvplus",
-//             servidorCanalesOnline + "jjfutbol2pro.html?name=vtvplus",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=vtvplus",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=vtvplus",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=vtvplus",
-//             servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=vtvplus",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "RAI",
@@ -10944,27 +7986,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "MTV 90s",
-//     {
-//         pais: "Estados Unidos",
-//         enlaces: [
-//             "cobo.html?id=MTV_90s",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "MTV CLUB",
-//     {
-//         pais: "Estados Unidos",
-//         guide: "Club MTV!",
-//         enlaces: [
-//             "cobo.html?id=MTV_CLUB",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "MTV LIVE",
     {
         pais: "Estados Unidos",
@@ -10974,16 +7995,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Music TOP",
-//     {
-//         pais: "Estados Unidos",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Musica_Top",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "TELEHIT",
@@ -11212,51 +8223,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Flow Music 2",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             "cvatt.html?get=Rmxvd19NdXNpY18y",
-//             // "server/cvatt.html?get=Rmxvd19NdXNpY18y",
-//             // "https://sssshhh.xyz/cvatt.html?get=Rmxvd19NdXNpY18y",
-//             // "https://a3.115tv.site/cvatt.html?get=Rmxvd19NdXNpY18y",
-//             // "https://a3.115tv.site/cvatt2_ext.html?get=Rmxvd19NdXNpY18y",
-//             "cvatt2_ext.html?get=Rmxvd19NdXNpY18y",
-//             // "server/cvatt2_ext.html?get=Rmxvd19NdXNpY18y",
-//             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=Rmxvd19NdXNpY18y",
-//             // "https://flowflowflow1.dombhei.com/cvatt.html?get=Rmxvd19NdXNpY18y",
-//             // "https://cv.photocalltv.me/cv2.php?get=Rmxvd19NdXNpY18y",
-//             // "https://tomyjerry.nebunexa.com/cvatt.php?get=Rmxvd19NdXNpY18y",
-//             // "https://nebunexa.com/cvatt.php?get=Rmxvd19NdXNpY18y",
-//             // "https://www.enlatele.tv/player/cv2.php?get=Rmxvd19NdXNpY18y",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Flow Music 3",
-// {
-//     pais: "Argentina",
-//     enlaces: [
-// "server/cvatt.html?get=Rmxvd19NdXNpY18z",   
-// "server/cvatt.html?get=Rmxvd19NdXNpY18z",
-// "https://sssshhh.xyz/cvatt.html?get=Rmxvd19NdXNpY18z",
-// "https://a3.115tv.site/cvatt.html?get=Rmxvd19NdXNpY18z",
-// "https://a3.115tv.site/cvatt2_ext.html?get=Rmxvd19NdXNpY18z",
-// "server/cvatt2_ext.html?get=Rmxvd19NdXNpY18z",
-// "server/cvatt2_ext.html?get=Rmxvd19NdXNpY18z",
-// "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=Rmxvd19NdXNpY18z",
-// "https://flowflowflow1.dombhei.com/cvatt.html?get=Rmxvd19NdXNpY18z",
-// "https://cv.photocalltv.me/cv2.php?get=Rmxvd19NdXNpY18z",
-// "https://tomyjerry.nebunexa.com/cvatt.php?get=Rmxvd19NdXNpY18z",
-// "https://nebunexa.com/cvatt.php?get=Rmxvd19NdXNpY18z",
-// "https://www.enlatele.tv/player/cv2.php?get=Rmxvd19NdXNpY18z",
-
-//     ]
-// }
-// );
 
 MisCanales.set(
     "Flow Eventos",
@@ -11564,46 +8530,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "TVN",
-//     {
-//         pais: "Panamá",
-//         enlaces: [
-//             "m3u8.html?stream=TVN_PANA"
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Medcom Telemetro",
-//     {
-//         pais: "Panamá",
-//         enlaces: [
-//             "m3u8.html?stream=Medcom_Telemetro_PANA"
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Nex TV",
-//     {
-//         pais: "Panamá",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=Nex_TV_PANA"
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "La Poderosa TV",
-//     {
-//         pais: "Estados Unidos",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=La_Poderosa_TV",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Animal Planet",
     {
         pais: "Estados Unidos",
@@ -11750,29 +8676,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "WOBI",
-//     {
-//         pais: "Argentina",
-//         enlaces: [
-//             servidorCanalesOnline + "cvatt_pro.html?get=V09CSQ==",
-//             servidorCanalesOnline + "cvatt.html?get=V09CSQ==",
-//             // "server/cvatt.html?get=V09CSQ==",
-//             // "https://sssshhh.xyz/cvatt.html?get=V09CSQ==",
-//             // "https://a3.115tv.site/cvatt.html?get=V09CSQ==",
-//             // "https://a3.115tv.site/cvatt2_ext.html?get=V09CSQ==",
-//             servidorCanalesOnline + "cvatt2_ext.html?get=V09CSQ==",
-//             // "server/cvatt2_ext.html?get=V09CSQ==",
-//             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=V09CSQ==",
-//             // "https://flowflowflow1.dombhei.com/cvatt.html?get=V09CSQ==",
-//             // "https://cv.photocalltv.me/cv2.php?get=V09CSQ==",
-//             // "https://tomyjerry.nebunexa.com/cvatt.php?get=V09CSQ==",
-//             // "https://nebunexa.com/cvatt.php?get=V09CSQ==",
-//             // "https://www.enlatele.tv/player/cv2.php?get=V09CSQ==",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Garage TV",
     {
         pais: "Argentina",
@@ -11802,36 +8705,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "1000XHORA TV",
-//     {
-//         pais: "Paraguay",
-//         enlaces: [
-//             servidorCanalesOnline + "m3u8.html?stream=1000XHORA_TV_PARA",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "MOTORVISION TV",
-//     {
-//         pais: "Alemania",
-//         enlaces: [
-//             "m3u8.html?stream=MOTORVISION_TV",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "POWERNATION",
-//     {
-//         pais: "Estados Unidos",
-//         enlaces: [
-//             "m3u8.html?stream=POWERNATION",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "Encuentro",
@@ -12093,41 +8966,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "La Rosa de Guadalupe",
-// {
-//     pais: "Argentina",
-//     enlaces: [
-//         "https://embed.ksdjugfsddeports.com/embed2/larosadeguadalupe.html",
-//     ]
-// }
-// );
-
-MisCanales.set(
-//     "WWE",
-//     {
-//         pais: "Estados Unidos",
-//         enlaces: [
-//             servidorCanalesOnline + "cobo.html?id=WWE",
-// "https://streamx10.cloud/global2.php?channel=wwe",
-// "https://streamx10.cloud/global1.php?channel=wwe",
-//             // "https://embed.ksdjugfsddeports.fun/embed/wwe.html",
-//             // "https://embed.ksdjugfsddeports.com/embed2/wwe.html",
-//             // "https://cookiewebplay.xyz/premiumtv/daddylive.php?id=376",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Los Padrinos Magicos",
-// {
-    //     pais: "Argentina",
-//     enlaces: [
-//         "https://embed.ksdjugfsddeports.com/embed2/padrinosmagicos.html",
-//     ]
-// }
-// );
-
-MisCanales.set(
     "Caso Cerrado",
     {
         pais: "Argentina",
@@ -12147,46 +8985,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Dragon Ball Super",
-// {
-//     pais: "Argentina",
-//     enlaces: [
-//         "https://embed.ksdjugfsddeports.com/embed2/dragonballsuper.html",
-//     ]
-// }
-// );
-
-MisCanales.set(
-//     "Bob Esponja",
-// {
-//     pais: "Argentina",
-//     enlaces: [
-//         "https://embed.ksdjugfsddeports.com/embed2/bobesponja.html",
-//     ]
-// }
-// );
-
-MisCanales.set(
-//     "Galavision",
-// {
-//     pais: "Argentina",
-//     enlaces: [
-//         "https://embed.ksdjugfsddeports.com/embed2/galavision.html",
-//     ]
-// }
-// );
-
-MisCanales.set(
-//     "Terror",
-// {
-//     pais: "Argentina",
-//     enlaces: [
-//         "https://embed.ksdjugfsddeports.com/embed2/terror.html",
-//     ]
-// }
-// );
 
 MisCanales.set(
     "Los Simpsons",
@@ -12211,26 +9009,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "Goku TV",
-//     {
-//         pais: "Varios",
-//         enlaces: [
-//             servidorCanalesOnline + "vaughnpro.html?stream=Goku_tv",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Ganja TV",
-//     {
-//         pais: "Varios",
-//         enlaces: [
-//             servidorCanalesOnline + "vaughnpro.html?stream=Ganja_tv",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "South Park",
@@ -12273,26 +9051,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "Peliculas mania",
-//     {
-//         pais: "Varios",
-//         enlaces: [
-//             servidorCanalesOnline + "vaughnpro.html?stream=Peliculas_mania",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Peliculas mania 2",
-//     {
-//         pais: "Varios",
-//         enlaces: [
-//             servidorCanalesOnline + "vaughnpro.html?stream=Mangondelicioso",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Fortuna TV",
     {
         pais: "Varios",
@@ -12303,46 +9061,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-//     "XT BOT",
-//     {
-//         pais: "Varios",
-//         enlaces: [
-//             servidorCanalesOnline + "vaughnpro.html?stream=Xt_bot",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Chincha TV",
-//     {
-//         pais: "Varios",
-//         enlaces: [
-//             servidorCanalesOnline + "vaughnpro.html?stream=Chinchatv",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Solucion TV",
-//     {
-//         pais: "Varios",
-//         enlaces: [
-//             servidorCanalesOnline + "vaughnpro.html?stream=Drmedia",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Telecine",
-//     {
-//         pais: "Varios",
-//         enlaces: [
-//             servidorCanalesOnline + "vaughnpro.html?stream=Telecine",
-//         ]
-//     }
-// );
-
-MisCanales.set(
     "Sintonia TV",
     {
         pais: "Varios",
@@ -12351,26 +9069,6 @@ MisCanales.set(
         ]
     }
 );
-
-MisCanales.set(
-//     "La Vaca y el Pollito",
-//     {
-//         pais: "Varios",
-//         enlaces: [
-//             servidorCanalesOnline + "http.html?id=La_Vaca_Y_El_Pollito",
-//         ]
-//     }
-// );
-
-MisCanales.set(
-//     "Ed, Edd y Eddy",
-//     {
-//         pais: "Varios",
-//         enlaces: [
-//             servidorCanalesOnline + "http.html?id=Ed_Edd_Eddy",
-//         ]
-//     }
-// );
 
 MisCanales.set(
     "El Chavo del Ocho",

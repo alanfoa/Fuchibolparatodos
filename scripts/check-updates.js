@@ -50,6 +50,14 @@ function extractChannelSets(content) {
         const start = content.indexOf('MisCanales.set(', searchFrom);
         if (start === -1) break;
 
+        // Saltar bloques comentados: // MisCanales.set(...)
+        const lineStart = content.lastIndexOf('\n', start - 1);
+        const linePrefix = content.slice(lineStart + 1, start).trim();
+        if (linePrefix.startsWith('//')) {
+            searchFrom = start + 16;
+            continue;
+        }
+
         // Encontrar el cierre: ) con depth=0
         let depth = 0;
         let pos = start;
@@ -57,7 +65,7 @@ function extractChannelSets(content) {
         while (pos < content.length) {
             const ch = content[pos];
             if (ch === '(') depth++;
-            else             if (ch === ')') {
+            else if (ch === ')') {
                 depth--;
                 if (depth === 0) {
                     // Incluir el ; si viene despues del )
@@ -177,7 +185,11 @@ async function main() {
     }
 }
 
-main().catch(e => {
-    console.error('Error:', e);
-    process.exit(1);
-});
+module.exports = { extractChannelSets };
+
+if (require.main === module) {
+    main().catch(e => {
+        console.error('Error:', e);
+        process.exit(1);
+    });
+}
