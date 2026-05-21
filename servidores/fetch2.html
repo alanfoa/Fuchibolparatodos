@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch 2</title>
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>
+        jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";
+    </script>
+    <style>
+        html,
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            background: #000;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+
+        /* ── PANTALLA DE CARGA ── */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #0d0d0d;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        #loader.oculto {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 4px solid rgba(81, 224, 192, 0.15);
+            border-top-color: var(--colorbarra);
+            border-right-color: var(--colorbarra);
+            animation: girar 0.9s linear infinite;
+        }
+
+        @keyframes girar {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-texto {
+            color: #aaa;
+            font-family: system-ui, sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .loader-texto span {
+            color: var(--colorbarra);
+        }
+
+        .barra-wrap {
+            width: 180px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .barra-inner {
+            height: 100%;
+            width: 45%;
+            background: var(--colorbarra);
+            border-radius: 99px;
+            animation: deslizar 1.4s ease-in-out infinite;
+        }
+
+        @keyframes deslizar {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(280%);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+
+    <!-- Pantalla de carga -->
+    <div id="loader">
+        <div class="spinner"></div>
+        <div class="loader-texto">Cargando <span>señal</span>...</div>
+        <div class="barra-wrap">
+            <div class="barra-inner"></div>
+        </div>
+    </div>
+
+    <div id="player"></div>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+
+        function ocultarLoader() {
+            const loader = document.getElementById('loader');
+            if (!loader) return;
+            loader.classList.add('oculto');
+            setTimeout(() => loader.remove(), 500);
+        }
+
+        async function cargarm3u8() {
+            let url = new URL(window.location.href);
+            const stream = url.searchParams.get('stream');
+
+            const streamUrls = {
+                "Telefe": "https://mdstrm.com/live-stream/69e0fb650d9e3eb5340cdd5c?player=69f8d6e334a190b16647b23b",
+                "Telefe_SantaFe": "https://santafe.mitelefe.com/telefe-santa-fe-en-vivo",
+                "Telefe_Rosario": "https://rosario.mitelefe.com/vivo/",
+                "Telefe_Cordoba": "https://cordoba.mitelefe.com/vivo/",
+                "Canal_8_Mar_Del_Plata": "https://repro.arcast.cloud/canal8mdp/index.php",
+                "Canal_7_Santiago_del_Estero": "https://arcast.com.ar/castv/",
+                "Canal_3_La_Pampa": "https://arcast.com.ar/c3lapampa/",
+                "Litus_TV": "https://arcast.com.ar/litustv/",
+                "Canal_7_Neuquen": "https://arcast.com.ar/c7nq/",
+                "Canal_7_Jujuy": "https://arcast.com.ar/canal7jujuy/",
+                "Canal_4_Jujuy": "https://canal4jujuy.elcuatro.com//player/index",
+                "Canal_7_Catamarca": "https://arcast.com.ar/canal7catamarca/",
+                "Canal_2_Dean_Funes": "https://arcast.com.ar/canal2deanfunes/",
+                "Canal_9_Santa_Cruz": "https://arcast.com.ar/c9santacruz/",
+                "Canal_4_Esquel": "https://arcast.com.ar/canal4esquel/",
+                "Canal_4_Eldorado": "https://arcast.com.ar/canal4eldorado/",
+                "Canal_5_Santa_Fe": "https://arcast.com.ar/c5sf/",
+                "Canal_10_Rio_Negro": "https://arcast.net/c10rionegro/index.php",
+                "El_Seis_REPDOM": "https://cp.mojocp.com/player/1599?p=videojs",
+                "City_TV_Bogota": "https://cdn.chatytvgratis.net/citytv01.php",
+                "CaliTV": "https://streaming.com.co/clientes/calitv/player.php",
+                "Televida": "https://rudo.video/live/televidaar?enablejsapi=1",
+                "Interconnect_TV_COL": "https://ssh101.com/live/conecttv",
+                "monitvhd_CHILE": "https://ssh101.com/live/monitvhd",
+                "watchssh101": "https://ssh101.com/viewlive.php?s=tvretropalm2020",
+                "trutv": "https://repro.arcast.cloud/trutv/",
+                "Telesol": "https://www.telesoldiario.com/en-vivo/",
+
+                ///tdtcloud
+                "winsportsplus": "https://cdn.tdtcloud.xyz/ws01.php",
+                "winsports": "https://cdn.tdtcloud.xyz/ws02.php",
+                "espn": "https://cdn.tdtcloud.xyz/ws04.php",
+                "espn2": "https://cdn.tdtcloud.xyz/ws05.php",
+                "espn3": "https://cdn.tdtcloud.xyz/ws06.php",
+                "espn4": "https://cdn.tdtcloud.xyz/ws10.php",
+                "espn5": "https://cdn.tdtcloud.xyz/ws11.php",
+                "espn6": "https://cdn.tdtcloud.xyz/ws12.php",
+                "espn7": "https://cdn.tdtcloud.xyz/ws13.php",
+                "dsports": "https://cdn.tdtcloud.xyz/ws07.php",
+                "dsports2": "https://cdn.tdtcloud.xyz/ws08.php",
+                "dsportsplus": "https://cdn.tdtcloud.xyz/ws09.php",
+                "tycsports": "https://cdn.tdtcloud.xyz/ws14.php",
+                "rcn": "https://cdn.tdtcloud.xyz/ws15.php",
+                "rcn2": "https://cdn.tdtcloud.xyz/ws16.php",
+                "foxsports1ar": "https://cdn.tdtcloud.xyz/ws17.php",
+                "foxsports2ar": "https://cdn.tdtcloud.xyz/ws18.php",
+                "foxsports3ar": "https://cdn.tdtcloud.xyz/ws19.php",
+                "tudnmx": "https://cdn.tdtcloud.xyz/ws20.php",
+                "universo": "https://cdn.tdtcloud.xyz/ws21.php",
+                "tntsports": "https://cdn.tdtcloud.xyz/ws22.php",
+                "beinsports": "https://cdn.tdtcloud.xyz/ws23.php",
+                "caracol": "https://cdn.tdtcloud.xyz/caracolhd201x.php",
+
+
+                "espn_latamvidz1": "https://latamvidz1.com/canals.php?stream=espn",
+
+            };
+
+            const getURL = streamUrls[stream];
+            if (!getURL) {
+                alert("Parámetro 'stream' vacío o erróneo");
+                ocultarLoader();
+                return null;
+            }
+
+            const proxies = [
+                // "https://sportsonline.ppvtv.top/proxy?url=" + getURL,
+                "https://corsproxy.io/?" + getURL,
+                "https://api.codetabs.com/v1/proxy/?quest=" + getURL,
+                "https://api.allorigins.win/raw?url=" + getURL,
+                "https://pelisjuanita.com/tv/corsproxy.php?url=" + getURL,
+                "https://myproxy.senorgatorade123.workers.dev/?url=" + getURL,
+                "https://cors-proxy.wangzhishi.net/" + getURL
+            ];
+
+            for (const proxyURL of proxies) {
+                try {
+                    const res = await fetch(proxyURL);
+                    const html = await res.text();
+                    const match = html.match(/(?:https?:)?\/\/[^"'\s]+\.m3u8(?:\?[^"'\s]*)?/g);
+                    if (match) {
+                        console.log("M3U8 encontrado:", match[0]);
+                        return { m3u8: match[0] };
+                    } else {
+                        console.warn(`No se encontró m3u8 en: ${proxyURL}`);
+                    }
+                } catch (err) {
+                    console.error(`Error con ${proxyURL}:`, err);
+                }
+            }
+
+            console.error("No se pudo obtener el enlace .m3u8 desde ningún proxy.");
+            return null;
+        }
+
+
+        cargarm3u8().then(result => {
+            if (result && result.m3u8) {
+                jwplayer("player").setup({
+                    file: result.m3u8,
+                    width: "100%",
+                    height: "100%",
+                    autostart: true,
+                    mute: false,
+                    cast: {},
+                    sharing: {},
+                    displaytitle: true,
+                    stretching: "uniform",
+                    preload: "auto",
+                    liveSyncDuration: 3,
+                });
+
+                // Se oculta cuando hay reproducción real
+                jwplayer("player").on("firstFrame", ocultarLoader);
+
+                jwplayer("player").on("time", function handler() {
+                    ocultarLoader();
+                    jwplayer("player").off("time", handler);
+                });
+
+            } else {
+                ocultarLoader();
+                alert("No se pudo obtener el stream.");
+            }
+        });
+
+    </script>
+</body>
+
+</html>

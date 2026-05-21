@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>anevia</title>
+    <style>
+        html,
+        body,
+        #player {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+
+        #loading-msg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #aaa;
+            font-family: monospace;
+            font-size: 13px;
+            z-index: 999;
+            text-align: center;
+            line-height: 1.8;
+            max-width: 80vw;
+            word-break: break-all;
+        }
+    </style>
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+    <div id="player"></div>
+    <div id="loading-msg">Cargando...</div>
+
+    <script>
+        // ============================================================
+        // URL DEL BLOG — se usa para extraer la base del CDN y el DRM
+        // ============================================================
+        var BLOG_URL_DRM = "https://canalesenvivodeargentina.blogspot.com/2024/05/telefe-amba-hd-en-vivo.html";
+
+        // Variantes del canal de referencia que puede aparecer en la URL del blog
+        var CANAL_REFERENCIA_BLOG = ["ESPN", "Espn", "espn", "Telefe", "telefe", "TELEFE"];
+
+        // ============================================================
+        // MAPEO UNIFICADO: id del canal → sufijo de ruta (sin el dominio base)
+        //
+        // El dominio base se extrae dinámicamente del blog:
+        //   https://trs.cdn.rcs.net.ar/
+        //
+        // Tipo A — anevia:   anevia/live/localdisk/CANAL/SA_DASH_ENCR/CANAL.mpd
+        // Tipo B — mnp:      mnp/SLUG/output.mpd
+        // ============================================================
+        var NombreEnCDN = {
+            // ── Canales abiertos ──────────────────────────────────────
+            "Telefe": "anevia/live/localdisk/Telefe/SA_DASH_ENCR/Telefe.mpd",
+            "El_Trece": "anevia/live/localdisk/El_Trece/SA_DASH_ENCR/El_Trece.mpd",
+            "America": "anevia/live/localdisk/America/SA_DASH_ENCR/America.mpd",
+            "A24": "anevia/live/localdisk/A24/SA_DASH_ENCR/A24.mpd",
+            "Tv_Publica": "anevia/live/localdisk/Tv_Publica/SA_DASH_ENCR/Tv_Publica.mpd",
+            "Cronica": "anevia/live/localdisk/Cronica/SA_DASH_ENCR/Cronica.mpd",
+            "El_Nueve": "anevia/live/localdisk/El_Nueve/SA_DASH_ENCR/El_Nueve.mpd",
+
+            // ── Noticias ─────────────────────────────────────────────
+            "TN": "anevia/live/localdisk/TN/SA_DASH_ENCR/TN.mpd",
+            "C5N": "anevia/live/localdisk/C5N/SA_DASH_ENCR/C5N.mpd",
+            "LN": "anevia/live/localdisk/LN/SA_DASH_ENCR/LN.mpd",
+            "IP_Noticias": "anevia/live/localdisk/IP_Noticias/SA_DASH_ENCR/IP_Noticias.mpd",
+
+            // ── Entretenimiento / Documentales ────────────────────────
+            "MTV": "anevia/live/localdisk/MTV/SA_DASH_ENCR/MTV.mpd",
+            "History_Channel": "anevia/live/localdisk/History_Channel/SA_DASH_ENCR/History_Channel.mpd",
+            "Animal_Planet": "anevia/live/localdisk/Animal_Planet/SA_DASH_ENCR/Animal_Planet.mpd",
+            "Discovery_Turbo": "anevia/live/localdisk/Discovery_Turbo/SA_DASH_ENCR/Discovery_Turbo.mpd",
+            "Discovery_ID": "anevia/live/localdisk/Discovery_ID/SA_DASH_ENCR/Discovery_ID.mpd",
+            "Discovery": "anevia/live/localdisk/Discovery/SA_DASH_ENCR/Discovery.mpd",
+            "Discovery_HGTV": "anevia/live/localdisk/Discovery_HGTV/SA_DASH_ENCR/Discovery_HGTV.mpd",
+            "El_Gourmet": "anevia/live/localdisk/El_Gourmet/SA_DASH_ENCR/El_Gourmet.mpd",
+
+            // ── Infantiles ────────────────────────────────────────────
+            "Disney_Channel": "anevia/live/localdisk/Disney_Channel/SA_DASH_ENCR/Disney_Channel.mpd",
+            "Discovery_Kids": "anevia/live/localdisk/Discovery_Kids/SA_DASH_ENCR/Discovery_Kids.mpd",
+            "Tooncast": "anevia/live/localdisk/Tooncast/SA_DASH_ENCR/Tooncast.mpd",
+            "Boomerang": "anevia/live/localdisk/Boomerang/SA_DASH_ENCR/Boomerang.mpd",
+            "Nick_Jr": "anevia/live/localdisk/Nick_Jr/SA_DASH_ENCR/Nick_Jr.mpd",
+            "Nick": "anevia/live/localdisk/Nick/SA_DASH_ENCR/Nick.mpd",
+            "Cartoon_Network": "anevia/live/localdisk/Cartoon_Network/SA_DASH_ENCR/Cartoon_Network.mpd",
+
+            // ── Series / Cine ─────────────────────────────────────────
+            "Studio_Universal": "anevia/live/localdisk/Studio_Universal/SA_DASH_ENCR/Studio_Universal.mpd",
+            "Sony": "anevia/live/localdisk/Sony/SA_DASH_ENCR/Sony.mpd",
+            "AMC": "anevia/live/localdisk/AMC/SA_DASH_ENCR/AMC.mpd",
+            "AXN": "anevia/live/localdisk/AXN/SA_DASH_ENCR/AXN.mpd",
+            "Warner": "anevia/live/localdisk/Warner/SA_DASH_ENCR/Warner.mpd",
+            "FX": "anevia/live/localdisk/FX/SA_DASH_ENCR/FX.mpd",
+            "Star_Channel": "anevia/live/localdisk/Star_Channel/SA_DASH_ENCR/Star_Channel.mpd",
+            "TNT": "anevia/live/localdisk/TNT/SA_DASH_ENCR/TNT.mpd",
+            "TNTSeries": "anevia/live/localdisk/TNTSeries/SA_DASH_ENCR/TNTSeries.mpd",
+            "Cinecanal": "anevia/live/localdisk/Cinecanal/SA_DASH_ENCR/Cinecanal.mpd",
+            "Space": "anevia/live/localdisk/Space/SA_DASH_ENCR/Space.mpd",
+            "CineAr": "anevia/live/localdisk/CineAr/SA_DASH_ENCR/CineAr.mpd",
+            "Universal": "anevia/live/localdisk/Universal/SA_DASH_ENCR/Universal.mpd",
+
+            // ── Deportes ──────────────────────────────────────────────
+            "FOX_Sports_HD": "anevia/live/localdisk/FOX_Sports_HD/SA_DASH_ENCR/FOX_Sports_HD.mpd",
+            "ESPN3": "anevia/live/localdisk/ESPN3/SA_DASH_ENCR/ESPN3.mpd",
+            "ESPN2": "anevia/live/localdisk/ESPN2/SA_DASH_ENCR/ESPN2.mpd",
+            "ESPN": "anevia/live/localdisk/ESPN/SA_DASH_ENCR/ESPN.mpd",
+            "TyC": "anevia/live/localdisk/TyC/SA_DASH_ENCR/TyC.mpd",
+
+            // ── HBO / Max (tipo mnp) ───────────────────────────────────
+            "HBO": "mnp/hbo/output.mpd",
+            "HBO2": "mnp/hbo2/output.mpd",
+            "HBO_Plus": "mnp/hboplus/output.mpd",
+            "HBO_Xtreme": "mnp/hboxtr/output.mpd",
+            "HBO_Family": "mnp/hbofam/output.mpd",
+            "HBO_Mundi": "mnp/hbomund/output.mpd",
+            "HBO_Pop": "mnp/hbopop/output.mpd",
+            "HBO_Signature": "mnp/hbosig/output.mpd",
+
+            "unife": "mnp/cn23/output.mpd",
+            "tecnopolis": "mnp/tecnopolis/output.mpd",
+            "telemundo": "mnp/telemundo/output.mpd",
+
+            "fox2ar": "mnp/whq00000275x8ol6uzpdl14b9mhb6loc/output.mpd",
+            "fox3ar": "mnp/hz6t5c9mz68wy00000276ouv9qqhfwbr/output.mpd",
+            "espn2ar": "mnp/sJDmPFpTWBNS2gZhzj8ydHU7tR9Y6uf4k/output.mpd",
+            "espn3ar": "mnp/QVsZxnupYwKdAtb5Dk3zvFXBMGqcWgmfR/output.mpd",
+            "espn4ar": "mnp/bPHSdXgELpUR4JkCe3Qu5mV6zn8qMwjTY/output.mpd",
+
+            "construiriptv": "mnp/construiriptv/output.mpd",
+            // "canal4SanJuan": "hub/canal4/dash/live.mpd",
+            "canal13SanJuan": "ixp-sanjuan/dash/c13/index.mpd",
+            "canal8SanJuan": "onpower/canal8_dash/canal8/index.mpd",
+
+            "tvpfueguina": "mnp/tvpfueguina/output.mpd",
+            "tvfcanal2": "mnp/tvfcanal2/output.mpd",
+            "tvfcanal3": "mnp/tvfcanal3/output.mpd",
+            "RT_Espanol": "mnp/iptvrt/output.mpd",
+            // "canal26": "mnp/canal26/output.mpd",
+            // "ch12cba": "iptelva/ch12cba_hls/playlist.m3u8",
+            // "eloncetv": "hub/eloncetv/output.mpd",
+
+
+
+            "davitel": "hub/davitel/hls/davitel.m3u8",
+            "dash": "support/dash/canalsupport/index.mpd",
+            "nhk": "mnp/nhk/output.mpd",
+            "c19lp": "inet/c19lp/playlist.m3u8",
+            "t5": "faster/t5/output.mpd",
+            "dreamworks": "mnp/dreamworks/output.mpd",
+            "dw": "mnp/dw/output.mpd",
+            "airestafe": "hub/airestafe/dash/livestream2.mpd",
+            "tve": "mnp/tve/output.mpd",
+            "tvchile": "mnp/tvchile/output.mpd",
+            "mnp": "inet/mnp/alientoVision/playlist.m3u8",
+            "telemundo": "mnp/telemundo/output.mpd",
+            "mnp": "inet/mnp/mariaVision/playlist.m3u8",
+            "canalluz": "mnp/canalluz/output.mpd",
+            "ewtn": "inet/ewtn/mono.m3u8",
+            "enlace": "mnp/enlace/output.mpd",
+            "rural": "mnp/rural/output.mpd",
+            "el13": "mnp/el13/output.mpd",
+            "htv": "mnp/htv/output.mpd",
+            "cmmusica": "mnp/cmmusica/output.mpd",
+            "history2": "mnp/history2/output.mpd",
+            "dsc_sci": "mnp/dsc_sci/output.mpd",
+            "disc_world": "mnp/disc_world/output.mpd",
+            "disc_theater": "mnp/disc_theater/output.mpd",
+            "natgeohd": "mnp/natgeohd/output.mpd",
+            "lifetime": "mnp/lifetime/output.mpd",
+            "disc_fn": "mnp/disc_fn/output.mpd",
+            "cestrellas": "mnp/cestrellas/output.mpd",
+            "cnn": "mnp/cnn/output.mpd",
+            "cnne": "mnp/cnne/output.mpd",
+            "babytv": "mnp/babytv/output.mpd",
+            "trutv": "mnp/trutv/output.mpd",
+            "filmsarts": "mnp/filmsarts/output.mpd",
+            "europa": "mnp/europa/output.mpd",
+            "tcm": "mnp/tcm/output.mpd",
+            "dhe": "mnp/dhe/output.mpd",
+            "comedy": "mnp/comedy/output.mpd",
+            "amcseries": "mnp/amcseries/output.mpd",
+            "cinemax": "mnp/cinemax/output.mpd",
+            "pshcanaldelaciudad": "hub/pshcanaldelaciudad/dash/canal_de_la_ciudad.mpd",
+            "arg_sat": "mnp/arg_sat/output.mpd",
+            "encuentro": "mnp/encuentro/output.mpd",
+            "cn23": "mnp/cn23/output.mpd",
+            "cm": "mnp/cm/output.mpd",
+            "canal26": "mnp/canal26/output.mpd",
+            "golf": "mnp/golf/output.mpd",
+
+            "canalstafe": "mnp/canalstafe/output.mpd",
+            "am1020": "hub/am1020/am1020.mpd",
+            "xama": "hub/xama/xama.mpd",
+            "sanjuan": "ixp-sanjuan/dash/c13/index.mpd",
+            "dash": "onpower/dash/telesol/index.mpd",
+            "c10rionegro": "hub/c10rionegro/dash/c10rionegro.mpd",
+            "cn247tv": "hub/cn247tv/dash/247.mpd",
+            "iptvrt": "mnp/iptvrt/output.mpd",
+            "telefenqn": "hub/telefenqn/dash/canal7neuquen.mpd",
+            "canal7jujuy": "hub/canal7jujuy/canal7jujuy.mpd",
+            "ertv": "faster/ertv/output.mpd",
+            "push": "mnp/push/dash/radiomariaargentina/index.mpd",
+            "ciudadtv": "hub/ciudadtv/dash/livenew.mpd",
+            "iptvrt": "mnp/iptvrt/output.mpd",
+            "telesurtda": "mnp/telesurtda/output.mpd",
+            "davitel": "hub/davitel/hls/davitel.m3u8",
+
+        };
+
+        // ============================================================
+        // PROXIES con fallback
+        // ============================================================
+        var PROXIES = [
+            function (u) { return "https://myproxy.senorzapallo123.workers.dev/?url=" + encodeURIComponent(u); },
+            function (u) { return "https://pelisjuanita.com/tv/corsproxy.php?url=" + encodeURIComponent(u); },
+            function (u) { return "https://api.codetabs.com/v1/proxy/?quest=" + encodeURIComponent(u); },
+            function (u) { return "https://api.allorigins.win/raw?url=" + encodeURIComponent(u); },
+            function (u) { return "https://corsproxy.io/?" + encodeURIComponent(u); },
+        ];
+
+        // ============================================================
+        // UTILIDADES
+        // ============================================================
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        function log(msg) {
+            console.log(msg);
+            document.getElementById('loading-msg').textContent = msg;
+        }
+
+        function mostrarError(msg) {
+            document.getElementById('loading-msg').style.display = 'none';
+            document.getElementById('player').innerHTML =
+                '<h2 style="text-align:center;margin-top:20vh;color:#aaa;font-family:sans-serif;">' + msg + '</h2>';
+        }
+
+        function fetchConTimeout(url, ms) {
+            ms = ms || 10000;
+            var controller = new AbortController();
+            var timer = setTimeout(function () { controller.abort(); }, ms);
+            return fetch(url, { signal: controller.signal })
+                .then(function (r) { clearTimeout(timer); if (!r.ok) throw new Error('HTTP ' + r.status); return r; })
+                .catch(function (e) { clearTimeout(timer); throw e; });
+        }
+
+        async function fetchConFallback(targetUrl) {
+            for (var i = 0; i < PROXIES.length; i++) {
+                log('Cargando...');
+                try {
+                    var res = await fetchConTimeout(PROXIES[i](targetUrl), 10000);
+                    var text = await res.text();
+                    if (text && text.length > 200) {
+                        console.log('Proxy ' + (i + 1) + ' OK, longitud:', text.length);
+                        return text;
+                    }
+                    throw new Error('Respuesta demasiado corta: ' + text.length);
+                } catch (e) { console.warn('Proxy ' + (i + 1) + ' falló:', e.message); }
+            }
+            throw new Error('Todos los proxies fallaron');
+        }
+
+        // ============================================================
+        // AES-GCM
+        // ============================================================
+        var AES_CLAVES = ["Antena", "antenna", "Canal", "canal", "Stream", "stream", "Player", "player", "Video", "video", "Media", "media"];
+
+        function b64urlToBytes(b64url) {
+            var b64 = b64url.replace(/-/g, '+').replace(/_/g, '/');
+            while (b64.length % 4) b64 += '=';
+            var binary = atob(b64);
+            var buf = new Uint8Array(binary.length);
+            for (var i = 0; i < binary.length; i++) buf[i] = binary.charCodeAt(i);
+            return buf;
+        }
+
+        async function aesDecrypt(ivB64, ctB64) {
+            var iv = b64urlToBytes(ivB64);
+            var ct = b64urlToBytes(ctB64);
+            for (var i = 0; i < AES_CLAVES.length; i++) {
+                try {
+                    var kb = new Uint8Array(32);
+                    var encoded = new TextEncoder().encode(AES_CLAVES[i]);
+                    kb.set(encoded.slice(0, 32));
+                    var key = await crypto.subtle.importKey('raw', kb, 'AES-GCM', false, ['decrypt']);
+                    var decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, ct);
+                    var texto = new TextDecoder().decode(decrypted);
+                    console.log('AES-GCM OK con clave:', AES_CLAVES[i]);
+                    return texto;
+                } catch (e) { /* siguiente clave */ }
+            }
+            return null;
+        }
+
+        async function expandirAESGCM(html) {
+            var reIVCT = /data-iv=["']([^"']+)["'][^>]*data-ct=["']([^"']+)["']/gi;
+            var reCTIV = /data-ct=["']([^"']+)["'][^>]*data-iv=["']([^"']+)["']/gi;
+            var bloques = [];
+            var seen = new Set();
+            var m;
+
+            reIVCT.lastIndex = 0;
+            while ((m = reIVCT.exec(html)) !== null) {
+                var k = m[1] + '|' + m[2];
+                if (!seen.has(k)) { seen.add(k); bloques.push({ iv: m[1], ct: m[2] }); }
+            }
+            reCTIV.lastIndex = 0;
+            while ((m = reCTIV.exec(html)) !== null) {
+                var k2 = m[2] + '|' + m[1];
+                if (!seen.has(k2)) { seen.add(k2); bloques.push({ iv: m[2], ct: m[1] }); }
+            }
+
+            if (bloques.length === 0) { return html; }
+
+            var extras = html;
+            for (var i = 0; i < bloques.length; i++) {
+                log('Desencriptando bloque ' + (i + 1) + '/' + bloques.length + '...');
+                var texto = await aesDecrypt(bloques[i].iv, bloques[i].ct);
+                if (texto) { extras += '\n' + texto; }
+                else { console.warn('Bloque ' + (i + 1) + ': ninguna clave funcionó'); }
+            }
+            return extras;
+        }
+
+        function desencriptarUnescape(html) {
+            var current = html;
+            for (var i = 0; i < 20; i++) {
+                var prev = current;
+                try { var d = decodeURIComponent(current); if (d !== current) { current = d; continue; } } catch (e) { }
+                var pat = /document\.write\s*\(\s*unescape\s*\(\s*["']([^"']+)["']\s*\)\s*\)/gi;
+                var m, temp = current, found = 0;
+                pat.lastIndex = 0;
+                while ((m = pat.exec(current)) !== null) {
+                    try { temp = temp.replace(m[0], unescape(m[1])); found++; } catch (e) { }
+                }
+                if (found > 0) { current = temp; continue; }
+                if (current === prev) break;
+            }
+            return current;
+        }
+
+        // ============================================================
+        // EXTRACTOR DRM
+        // ============================================================
+        function extraerDRM(html) {
+            var patrones = [
+                /(?:const|var|let)\s+DRM_LICENSE\s*=\s*["']([^"']{10,})["']/gi,
+                /drm[_\-]?[Ll]icense\s*[=:]\s*["']([^"']{10,})["']/gi,
+                /widevine\s*:\s*\{[^}]*?url\s*:\s*["']([^"']{10,})["']/gi,
+                /['"]com\.widevine\.alpha['"]\s*:\s*['"]([^'"]{10,})['"]/gi,
+                /license[_\-]?[Uu]rl\s*[=:]\s*["']([^"']{10,})["']/gi,
+                /(https?:\/\/[^\s"'<>]+drmToken=[^\s"'<>&]{10,})/gi,
+            ];
+            for (var i = 0; i < patrones.length; i++) {
+                patrones[i].lastIndex = 0;
+                var m = patrones[i].exec(html);
+                if (m && m[1] && m[1].startsWith('http')) return m[1].trim();
+            }
+            return null;
+        }
+
+        // ============================================================
+        // EXTRACTOR MPD — devuelve la URL completa de referencia
+        // ============================================================
+        function extraerMPD(html) {
+            var patrones = [
+                /(?:const|var|let)\s+manifestUri\s*=\s*["']([^"']+\.mpd[^"']*)["']/gi,
+                /(?:const|var|let)\s+manifest\s*=\s*["']([^"']+\.mpd[^"']*)["']/gi,
+                /['"](https?:\/\/[^"'\s]+\.mpd)['"]/gi,
+                /(https?:\/\/[^\s"'<>]+\.mpd)/gi,
+            ];
+            for (var i = 0; i < patrones.length; i++) {
+                patrones[i].lastIndex = 0;
+                var m;
+                while ((m = patrones[i].exec(html)) !== null) {
+                    var url = (m[1] || '').trim();
+                    if (url && url.startsWith('http') && !url.includes('backup')) {
+                        console.log('MPD referencia encontrado:', url);
+                        return url;
+                    }
+                }
+            }
+            return null;
+        }
+
+        // ============================================================
+        // EXTRAER BASE CDN  →  https://trs.cdn.rcs.net.ar/
+        //
+        // A partir del MPD de referencia del blog, recorta todo lo que
+        // viene después del dominio + primera barra.
+        // Resultado: "https://dominio.ejemplo.com/"
+        // ============================================================
+        function extraerBaseCDN(mpdReferencia) {
+            // Captura esquema + host + primer "/"
+            var m = mpdReferencia.match(/^(https?:\/\/[^\/]+\/)/);
+            if (m) {
+                console.log('Base CDN extraída:', m[1]);
+                return m[1];
+            }
+            // Fallback conocido
+            console.warn('No se pudo extraer la base CDN, usando fallback.');
+            return "https://trs.cdn.rcs.net.ar/";
+        }
+
+        // ============================================================
+        // CONSTRUIR MPD FINAL  =  base CDN  +  sufijo del canal
+        // ============================================================
+        function construirMPDCanal(mpdReferencia, sufijo) {
+            var base = extraerBaseCDN(mpdReferencia);
+            var url = base + sufijo;
+            console.log('MPD final construido:', url);
+            return url;
+        }
+
+        // ============================================================
+        // PROCESO COMPLETO — extrae DRM y MPD de referencia desde el blog
+        // ============================================================
+        async function obtenerDRMYMPD() {
+            log('Descargando blog...');
+            var html = await fetchConFallback(BLOG_URL_DRM);
+            console.log('HTML descargado, longitud:', html.length);
+
+            html = await expandirAESGCM(html);
+
+            log('Procesando contenido...');
+            html = desencriptarUnescape(html);
+
+            var drm = extraerDRM(html);
+            var mpdReferencia = extraerMPD(html);
+
+            if (drm) console.log('✅ DRM encontrado directamente');
+            if (mpdReferencia) console.log('✅ MPD referencia encontrado:', mpdReferencia);
+
+            // Si falta algo, seguir enlace intermedio
+            if (!drm || !mpdReferencia) {
+                var doc = new DOMParser().parseFromString(html, 'text/html');
+                var linkIntermedio = doc.querySelector('p a');
+                if (linkIntermedio) {
+                    var href = linkIntermedio.getAttribute('href');
+                    console.log('Enlace intermedio:', href);
+                    if (href && !href.includes('backup')) {
+                        log('Cargando player externo...');
+                        try {
+                            var subHtml = await fetchConFallback(href);
+                            subHtml = await expandirAESGCM(subHtml);
+                            subHtml = desencriptarUnescape(subHtml);
+                            var htmlTotal = html + '\n' + subHtml;
+                            if (!drm) drm = extraerDRM(htmlTotal);
+                            if (!mpdReferencia) mpdReferencia = extraerMPD(htmlTotal);
+                        } catch (e) { console.warn('Enlace intermedio falló:', e.message); }
+                    }
+                }
+            }
+
+            return { drm: drm, mpdReferencia: mpdReferencia };
+        }
+
+        // ============================================================
+        // PLAYER
+        // ============================================================
+        function iniciarPlayer(mpdUrl, drmUrl) {
+            document.getElementById('loading-msg').style.display = 'none';
+            jwplayer("player").setup({
+                playlist: [{ title: "", sources: [{ file: mpdUrl, drm: { widevine: { url: drmUrl } } }] }],
+                width: "100%", height: "100%",
+                autostart: true, mute: false,
+                cast: {}, sharing: {},
+                displaytitle: false, stretching: "uniform",
+                preload: "auto", liveSyncDuration: 3,
+            });
+            jwplayer().on('play', function () {
+                var tracks = jwplayer().getAudioTracks();
+                var idx = tracks.findIndex(function (t) {
+                    var n = (t.name || '').toLowerCase();
+                    return n.includes('spanish') || n.includes('spa') || n.includes('es');
+                });
+                jwplayer().setCurrentAudioTrack(idx !== -1 ? idx : 0);
+            });
+        }
+
+        // ============================================================
+        // INICIO
+        // ============================================================
+        var id = getParameterByName('id');
+        var sufijo = NombreEnCDN[id];
+
+        if (!sufijo) {
+            mostrarError('Canal inválido o no encontrado.');
+        } else {
+            obtenerDRMYMPD()
+                .then(function (resultado) {
+                    var drm = resultado.drm;
+                    var mpdReferencia = resultado.mpdReferencia;
+
+                    if (!drm) {
+                        mostrarError('No se pudo obtener la licencia DRM.');
+                        return;
+                    }
+
+                    var mpdFinal;
+
+                    if (mpdReferencia) {
+                        // ✅ Caso normal: base extraída del blog + sufijo del canal
+                        mpdFinal = construirMPDCanal(mpdReferencia, sufijo);
+                    } else {
+                        // ⚠️ Fallback: dominio hardcodeado (puede quedar desactualizado)
+                        console.warn('⚠️ MPD de referencia no disponible, usando dominio fallback.');
+                        mpdFinal = "https://trs.cdn.rcs.net.ar/" + sufijo;
+                    }
+
+                    console.log('▶️ MPD final:', mpdFinal);
+                    console.log('🔑 DRM URL:', drm);
+                    iniciarPlayer(mpdFinal, drm);
+                })
+                .catch(function (err) {
+                    console.error('Error:', err);
+                    mostrarError('Error: ' + err.message);
+                });
+        }
+    </script>
+    <script src="../js/script-config.js"></script>
+</body>
+
+</html>

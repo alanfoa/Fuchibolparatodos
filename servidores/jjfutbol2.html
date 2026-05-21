@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>jjfutbol2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
+    <style>
+        :root {
+            --bg: #05070a;
+            --primary: #00e5ff;
+            --live: #ff3c3c;
+            --text: #eef0f4;
+            --muted: #4a5568;
+            --card: #0d1117;
+            --border: #1a2030;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* ── FULLSCREEN LAYOUT ── */
+        .stage {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── TOP BAR ── */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+            height: 48px;
+            background: rgba(5, 7, 10, 0.9);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            letter-spacing: 2px;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        .live-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 60, 60, 0.12);
+            border: 1px solid rgba(255, 60, 60, 0.35);
+            color: var(--live);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 4px 10px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .live-badge.visible {
+            opacity: 1;
+        }
+
+        .live-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--live);
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(255, 60, 60, .5);
+            }
+
+            50% {
+                opacity: .4;
+                box-shadow: 0 0 0 4px rgba(255, 60, 60, 0);
+            }
+        }
+
+        .back-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all .15s;
+        }
+
+        .back-btn:hover {
+            color: var(--text);
+            border-color: var(--muted);
+        }
+
+        /* ── PLAYER AREA ── */
+        .player-wrap {
+            flex: 1;
+            position: relative;
+            background: #000;
+            overflow: hidden;
+        }
+
+        #jwplayer-container {
+            position: absolute;
+            inset: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* ── STATUS OVERLAY ── */
+        .status-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            background: #000;
+            z-index: 5;
+            transition: opacity .4s;
+        }
+
+        .status-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner-ring {
+            width: 44px;
+            height: 44px;
+            border: 3px solid rgba(0, 229, 255, 0.15);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin .75s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .status-msg {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: .5px;
+        }
+
+        .status-msg.error {
+            color: var(--live);
+        }
+
+        .retry-btn {
+            display: none;
+            background: rgba(255, 60, 60, 0.1);
+            border: 1px solid rgba(255, 60, 60, 0.3);
+            color: var(--live);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 8px 20px;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: all .15s;
+            text-transform: uppercase;
+        }
+
+        .retry-btn:hover {
+            background: rgba(255, 60, 60, 0.2);
+        }
+
+        .retry-btn.visible {
+            display: block;
+        }
+
+        /* ── NO PARAM STATE ── */
+        .no-param {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .no-param-icon {
+            font-size: 48px;
+            opacity: .3;
+        }
+
+        .no-param h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            letter-spacing: 3px;
+            color: var(--text);
+        }
+
+        .no-param p {
+            font-size: 12px;
+            color: var(--muted);
+            max-width: 320px;
+            line-height: 1.7;
+        }
+
+        .no-param code {
+            display: inline-block;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            font-size: 11px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-top: 6px;
+            font-family: monospace;
+            word-break: break-all;
+        }
+
+        /* ── BOTTOM INFO BAR ── */
+        .bottom-bar {
+            height: 36px;
+            background: rgba(5, 7, 10, 0.85);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            gap: 10px;
+            flex-shrink: 0;
+            backdrop-filter: blur(8px);
+        }
+
+        .stream-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .stream-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text);
+            font-family: monospace;
+            opacity: .6;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 340px;
+        }
+
+        .dot {
+            color: var(--border);
+        }
+    </style>
+    <script src="style-jw.css"></script>
+</head>
+
+<body>
+
+    <div class="stage">
+
+        <!-- PLAYER -->
+        <div class="player-wrap">
+            <div id="jwplayer-container"></div>
+
+            <div class="status-overlay" id="status-overlay">
+                <div class="spinner-ring" id="spinner"></div>
+                <div class="status-msg" id="status-msg">Obteniendo stream...</div>
+                <button class="retry-btn" id="retry-btn" onclick="retryLoad()">↻ Reintentar</button>
+            </div>
+
+            <!-- Sin parámetro -->
+            <div class="no-param" id="no-param" style="display:none">
+                <div class="no-param-icon">📺</div>
+                <h2>Sin canal</h2>
+                <p>Esta página necesita un parámetro <strong>?r=</strong> con el identificador del canal en base64.</p>
+                <code>?r=BASE64_AQUI &nbsp;·&nbsp; ?r=https://...</code>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const PROXY_BASE = 'https://api.codetabs.com/v1/proxy/?quest=';
+        const EVENTO_BASE = 'https://jjfutbol2.lat/evento.php';
+
+        // ── CAMBIO: ahora usa ?id= en lugar de ?r=
+        const params = new URLSearchParams(location.search);
+        const canalId = params.get('id');          // ← era: params.get('r')
+        let currentId = canalId;
+        let alreadyRetried = false;
+
+        function setStatus(msg, isError = false) {
+            const overlay = document.getElementById('status-overlay');
+            const msgEl = document.getElementById('status-msg');
+            const spinner = document.getElementById('spinner');
+            const retry = document.getElementById('retry-btn');
+
+            overlay.classList.remove('hidden');
+            msgEl.textContent = msg;
+            msgEl.className = 'status-msg' + (isError ? ' error' : '');
+            spinner.style.display = isError ? 'none' : 'block';
+            retry.classList.toggle('visible', isError);
+        }
+
+        function hideStatus() {
+            document.getElementById('status-overlay').classList.add('hidden');
+            document.getElementById('live-badge').classList.add('visible');
+        }
+
+        function destroyPlayer() {
+            try { jwplayer('jwplayer-container').remove(); } catch (e) { }
+            document.getElementById('jwplayer-container').innerHTML = '';
+        }
+
+        function initPlayer(streamUrl) {
+            destroyPlayer();
+
+            jwplayer('jwplayer-container').setup({
+                file: streamUrl,
+                type: "hls",
+                autostart: true,
+                hlsjsdefault: true,
+                width: "100%",
+                height: "100%",
+                mute: false,
+                cast: {},
+                sharing: {},
+                displaytitle: true,
+                stretching: "uniform",
+                preload: "auto",
+                liveSyncDuration: 3,
+            });
+
+            jwplayer().on('ready', () => {
+                alreadyRetried = false;  // resetea para la próxima vez
+                hideStatus();
+            });
+
+            jwplayer().on('error', () => {
+                if (alreadyRetried) return;  // ← corta el bucle, ignora disparos repetidos
+                alreadyRetried = true;
+                setStatus('Reintentando...');
+                setTimeout(() => fetchAndPlay(currentB64), 2500);
+            });
+        }
+
+        async function fetchAndPlay(id) {           // ← parámetro cambia de b64 a id
+            setStatus('Obteniendo stream...');
+            try {
+                // ── CAMBIO: consulta ?id= en lugar de ?r=
+                const targetUrl = `${EVENTO_BASE}?id=${id}`;
+                const proxied = `${PROXY_BASE}${encodeURIComponent(targetUrl)}`;
+
+                const res = await fetch(proxied);
+                const html = await res.text();
+
+                const match = html.match(/["'`](https?:[^"'`]*\.m3u8[^"'`]*)/);
+                if (!match) throw new Error('Stream no encontrado en la página');
+
+                const clean = match[1].replace(/\\\//g, '/');
+                const streamUrl = `${EVENTO_BASE}?proxy=${encodeURIComponent(clean)}`;
+                initPlayer(streamUrl);
+            } catch (err) {
+                setStatus('No se pudo cargar el stream. ' + err.message, true);
+            }
+        }
+
+        function retryLoad() {
+            alreadyRetried = false;
+            if (currentId) fetchAndPlay(currentId);  // ← era currentB64
+        }
+
+        // ── CAMBIO: valida ?id= en lugar de ?r=
+        if (!canalId) {
+            document.getElementById('status-overlay').classList.add('hidden');
+            document.getElementById('no-param').style.display = 'flex';
+        } else {
+            fetchAndPlay(canalId);
+        }
+
+        function retryLoad() {
+            alreadyRetried = false;  // permite un nuevo intento manual
+            if (currentB64) fetchAndPlay(currentB64);
+        }
+
+        // ── Iniciar ──
+        if (!urlB64) {
+            document.getElementById('status-overlay').classList.add('hidden');
+            document.getElementById('no-param').style.display = 'flex';
+        } else {
+            fetchAndPlay(urlB64);
+        }
+    </script>
+    <script src="../js/script-config.js"></script>
+</body>
+
+</html>

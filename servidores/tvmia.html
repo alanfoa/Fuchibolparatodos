@@ -1,0 +1,225 @@
+<head>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="black">
+    <title>tvmia</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+
+     
+
+    <script type="text/javascript">
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <style>
+        html,
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+<div id="player"></div>
+<script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+<script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+
+<!-- <script src="https://canalesonline.netlify.app/js/script-config.js"></script> -->
+<script src="../js/script-config.js"></script>
+<script>
+
+    let url = new URL(window.location.href); // Obtiene la URL actual
+    const stream = url.searchParams.get('stream'); // Intenta obtener el parámetro 'stream'
+    let getURL;
+
+    switch (stream) {
+        case "an_Paka_Paka": getURL = "https://val03.ride.com.ar/tvmia/an03/playlist.m3u8"; break;
+        case "an_TV_Publica": getURL = "https://val02.ride.com.ar/tvmia/an04/chunks.m3u8"; break;
+        case "an_Canal_El_Nueve": getURL = "https://val02.ride.com.ar/tvmia/an05/chunks.m3u8"; break;
+        case "an_C5N": getURL = "https://val02.ride.com.ar/tvmia/an06/chunks.m3u8"; break;
+        case "an_TN": getURL = "https://val03.ride.com.ar/tvmia/an07/playlist.m3u8"; break;
+        case "an_RPP": getURL = "https://val04.ride.com.ar/tvmia/an08/chunks.m3u8"; break;
+        case "an_DEPORTV": getURL = "https://val02.ride.com.ar/tvmia/an09/chunks.m3u8"; break;
+        case "an_Cronica": getURL = "https://val02.ride.com.ar/tvmia/an10/chunks.m3u8"; break;
+        case "an_Telefe": getURL = "https://val01.ride.com.ar/tvmia/an11/chunks.m3u8"; break;
+        case "an_Cuidad_Magazine": getURL = "https://val04.ride.com.ar/tvmia/an12/chunks.m3u8"; break;
+        case "an_Encuentro": getURL = "https://val02.ride.com.ar/tvmia/an13/chunks.m3u8"; break;
+        case "an_LN_mas": getURL = "https://val04.ride.com.ar/tvmia/an14/chunks.m3u8"; break;
+        case "an_Canal_26": getURL = "https://val04.ride.com.ar/tvmia/an15/chunks.m3u8"; break;
+        case "an_CineAR": getURL = "https://val03.ride.com.ar/tvmia/an16/playlist.m3u8"; break;
+        case "an_NET_TV": getURL = "https://val04.ride.com.ar/tvmia/an17/chunks.m3u8"; break;
+        case "an_VOLVER": getURL = "https://val02.ride.com.ar/tvmia/an18/chunks.m3u8"; break;
+        case "an_KZO_Entertainment": getURL = "https://val03.ride.com.ar/tvmia/an19/playlist.m3u8"; break;
+        case "an_ESPN": getURL = "https://val03.ride.com.ar/tvmia/an21/playlist.m3u8"; break;
+        case "an_FOX_SPORTS": getURL = "https://val03.ride.com.ar/tvmia/an23/playlist.m3u8"; break;
+        case "an_FOX_SPORTS2": getURL = "https://val03.ride.com.ar/tvmia/an24/playlist.m3u8"; break;
+        case "an_America": getURL = "https://val03.ride.com.ar/tvmia/an25/playlist.m3u8"; break;
+        case "an_ESPN3": getURL = "https://val02.ride.com.ar/tvmia/an26/chunks.m3u8"; break;
+        case "an_America_Peru": getURL = "https://val01.ride.com.ar/tvmia/an29/playlist.m3u8"; break;
+        case "an_ATV": getURL = "https://val04.ride.com.ar/tvmia/an30/chunks.m3u8"; break;
+        case "an_Latina_TV": getURL = "https://val03.ride.com.ar/tvmia/an31/playlist.m3u8"; break;
+        // case "an_TNT_SPORTS_PREMIUM": getURL = "https://val05.ride.com.ar/tvmia/an32/playlist.m3u8"; break;
+        case "an_PanamericanaTV_PERU": getURL = "https://val03.ride.com.ar/tvmia/an33/playlist.m3u8"; break;
+        case "an_Peru_Magico": getURL = "https://val03.ride.com.ar/tvmia/an34/playlist.m3u8"; break;
+        case "an_Gol_Peru": getURL = "https://val04.ride.com.ar/tvmia/an35/chunks.m3u8"; break;
+        case "an_TV_PE": getURL = "https://val03.ride.com.ar/tvmia/an36/playlist.m3u8"; break;
+        case "an_A24": getURL = "https://val02.ride.com.ar/tvmia/an37/chunks.m3u8"; break;
+        case "an_CANAL_N_PERU": getURL = "https://val03.ride.com.ar/tvmia/an38/playlist.m3u8"; break;
+        case "an_WOBI": getURL = "https://val04.ride.com.ar/tvmia/an40/chunks.m3u8"; break;
+        case "an_CANAL_DE_LA_CUIDAD": getURL = "https://val03.ride.com.ar/tvmia/an41/playlist.m3u8"; break;
+        case "an_BRAVO_TV": getURL = "https://val03.ride.com.ar/tvmia/an42/playlist.m3u8"; break;
+        case "an_METRO": getURL = "https://val02.ride.com.ar/tvmia/an43/chunks.m3u8"; break;
+        case "an_SOMOS": getURL = "https://val03.ride.com.ar/tvmia/an44/playlist.m3u8"; break;
+        case "an_GOLF_TV_AMÉRICA": getURL = "https://val02.ride.com.ar/tvmia/an45/chunks.m3u8"; break;
+        case "an_ECUAVISA": getURL = "https://val04.ride.com.ar/tvmia/an46/chunks.m3u8"; break;
+        case "an_TeleAmazonas": getURL = "https://val04.ride.com.ar/tvmia/an47/chunks.m3u8"; break;
+        case "an_RTS_Ecuador": getURL = "https://val04.ride.com.ar/tvmia/an48/chunks.m3u8"; break;
+        case "an_TVC": getURL = "https://val04.ride.com.ar/tvmia/an49/chunks.m3u8"; break;
+        case "an_ECUADOR_TV": getURL = "https://val04.ride.com.ar/tvmia/an50/chunks.m3u8"; break;
+        case "an_TC_ECUADOR": getURL = "https://val04.ride.com.ar/tvmia/an51/chunks.m3u8"; break;
+        case "an_educa": getURL = "https://val04.ride.com.ar/tvmia/an52/chunks.m3u8"; break;
+        case "an_ECDF": getURL = "https://val02.ride.com.ar/tvmia/an53/chunks.m3u8"; break;
+        case "an_IP_Noticias": getURL = "https://val04.ride.com.ar/tvmia/an54/chunks.m3u8"; break;
+        case "an_BUGA_TV": getURL = "https://val04.ride.com.ar/tvmia/an55/chunks.m3u8"; break;
+        case "an_TyC_Sports": getURL = "https://val03.ride.com.ar/tvmia/an60/playlist.m3u8"; break;
+        case "an_France24": getURL = "https://val01.ride.com.ar/tvmia/an63/chunks.m3u8"; break;
+        case "an_RCN": getURL = "https://val02.ride.com.ar/tvmia/an64/chunks.m3u8"; break;
+        case "an_ASPEN_102.3": getURL = "https://val04.ride.com.ar/tvmia/an67/chunks.m3u8"; break;
+
+        case "bn_Señal_Colombia": getURL = "https://val01.ride.com.ar/tvmia/bn01/chunks.m3u8"; break;
+        case "bn_El_Trece_AR": getURL = "https://val04.ride.com.ar/tvmia/bn02/chunks.m3u8"; break;
+        case "bn_Canal_Capital_COL": getURL = "https://val01.ride.com.ar/tvmia/bn03/chunks.m3u8"; break;
+        case "bn_NTN24_COL": getURL = "https://val01.ride.com.ar/tvmia/bn04/chunks.m3u8"; break;
+        case "bn_ESPN2": getURL = "https://val04.ride.com.ar/tvmia/bn06/chunks.m3u8"; break;
+        case "bn_Telepacifico": getURL = "https://val01.ride.com.ar/tvmia/bn07/chunks.m3u8"; break;
+        case "bn_CityTV_Bogota1": getURL = "https://val01.ride.com.ar/tvmia/bn11/chunks.m3u8"; break;
+        case "bn_CityTV_Bogota2": getURL = "https://val03.ride.com.ar/tvmia/bn12/playlist.m3u8"; break;
+        case "bn_Vida_Sana_COL": getURL = ""; break;
+        case "bn_Canal_1_COL": getURL = "https://val01.ride.com.ar/tvmia/bn14/chunks.m3u8"; break;
+        case "bn_Canal_10_URU": getURL = "https://val03.ride.com.ar/tvmia/bn15/playlist.m3u8"; break;
+        case "bn_VTV": getURL = "https://val03.ride.com.ar/tvmia/bn16/playlist.m3u8"; break;
+        case "bn_tele_URU": getURL = "https://val03.ride.com.ar/tvmia/bn17/playlist.m3u8"; break;
+        case "bn_UCL": getURL = "https://val04.ride.com.ar/tvmia/bn18/chunks.m3u8"; break;
+        case "bn_GOLTV": getURL = "https://val01.ride.com.ar/tvmia/bn19/chunks.m3u8"; break;
+        case "bn_Teleantioquia": getURL = "https://val04.ride.com.ar/tvmia/bn20/chunks.m3u8"; break;
+        case "bn_Telecaribe_COL": getURL = "https://val03.ride.com.ar/tvmia/bn21/playlist.m3u8"; break;
+        case "bn_WINPLUS": getURL = "https://val03.ride.com.ar/tvmia/bn22/playlist.m3u8"; break;
+        case "bn_Trece_COL": getURL = "https://val01.ride.com.ar/tvmia/bn27/chunks.m3u8"; break;
+        case "bn_No_Se_Que_Canal_Es_Peru": getURL = "https://val04.ride.com.ar/tvmia/bn32/chunks.m3u8"; break;
+
+        case "c_WILLAX": getURL = "https://val04.ride.com.ar/tvmia/c01/chunks.m3u8"; break;
+        case "c_GarajeTV": getURL = "https://val03.ride.com.ar/tvmia/c02/playlist.m3u8"; break;
+        case "c_TV_CUIDAD": getURL = "https://val04.ride.com.ar/tvmia/c05/chunks.m3u8"; break;
+        case "c_CANAL_4_URU": getURL = "https://val03.ride.com.ar/tvmia/c06/playlist.m3u8"; break;
+        case "c_ESPN_PREMIUM": getURL = "https://val03.ride.com.ar/tvmia/c07/playlist.m3u8"; break;
+        case "c_A3CINE": getURL = "https://val02.ride.com.ar/tvmia/c08/chunks.m3u8"; break;
+        case "c_PASIONES": getURL = "https://val04.ride.com.ar/tvmia/c09/chunks.m3u8"; break;
+
+        case "sn_TVE_1_ES": getURL = "https://val02.ride.com.ar/tvmia/sn01/chunks.m3u8"; break;
+        case "sn_TVE_2_ES": getURL = "https://val02.ride.com.ar/tvmia/sn02/chunks.m3u8"; break;
+        case "sn_HOLATV": getURL = "https://val04.ride.com.ar/tvmia/sn03/chunks.m3u8"; break;
+        case "sn_Canal_cuatro_ES": getURL = "https://val01.ride.com.ar/tvmia/sn04/chunks.m3u8"; break;
+        case "sn_Canal_5_ES": getURL = "https://val01.ride.com.ar/tvmia/sn05/chunks.m3u8"; break;
+        case "sn_Canal_6_ES": getURL = "https://val01.ride.com.ar/tvmia/sn06/chunks.m3u8"; break;
+        case "sn_JUWELO": getURL = "https://val01.ride.com.ar/tvmia/sn07/chunks.m3u8"; break;
+        case "sn_TELEMADRID": getURL = "https://val01.ride.com.ar/tvmia/sn08/chunks.m3u8"; break;
+        case "sn_24H": getURL = "https://val01.ride.com.ar/tvmia/sn09/chunks.m3u8"; break;
+        case "sn_FDF": getURL = "https://val01.ride.com.ar/tvmia/sn10/chunks.m3u8"; break;
+        case "sn_CLAN": getURL = "https://val02.ride.com.ar/tvmia/sn11/chunks.m3u8"; break;
+        case "sn_TDP": getURL = "https://val01.ride.com.ar/tvmia/sn12/chunks.m3u8"; break;
+        case "sn_A3S": getURL = "https://val03.ride.com.ar/tvmia/sn13/playlist.m3u8"; break;
+        case "sn_BE_MAD": getURL = "https://val02.ride.com.ar/tvmia/sn14/chunks.m3u8"; break;
+        case "sn_NEOX": getURL = "https://val01.ride.com.ar/tvmia/sn15/chunks.m3u8"; break;
+        case "sn_DMAX": getURL = "https://val01.ride.com.ar/tvmia/sn16/playlist.m3u8"; break;
+        case "sn_MEGA": getURL = "https://val01.ride.com.ar/tvmia/sn17/chunks.m3u8"; break;
+        case "sn_TEN": getURL = "https://val02.ride.com.ar/tvmia/sn18/chunks.m3u8"; break;
+        case "sn_Energy": getURL = "https://val02.ride.com.ar/tvmia/sn19/chunks.m3u8"; break;
+        case "sn_Paramount_Network": getURL = "https://val01.ride.com.ar/tvmia/sn20/chunks.m3u8"; break;
+        case "sn_DKISS": getURL = "https://val02.ride.com.ar/tvmia/sn21/chunks.m3u8"; break;
+        case "sn_Divinity": getURL = "https://val01.ride.com.ar/tvmia/sn22/chunks.m3u8"; break;
+        case "sn_NOVA": getURL = "https://val01.ride.com.ar/tvmia/sn23/chunks.m3u8"; break;
+        case "sn_Trece_ES": getURL = "https://val02.ride.com.ar/tvmia/sn24/chunks.m3u8"; break;
+        case "sn_BOM_CINE": getURL = "https://val02.ride.com.ar/tvmia/sn25/chunks.m3u8"; break;
+        case "sn_BOING": getURL = ""; break;
+        case "sn_DISNEY_CHANNEL": getURL = "https://val04.ride.com.ar/tvmia/sn27/chunks.m3u8"; break;
+        case "sn_HIT_TV": getURL = "https://val01.ride.com.ar/tvmia/sn28/chunks.m3u8"; break;
+        case "sn_GOL_PLAY": getURL = "https://val01.ride.com.ar/tvmia/sn29/chunks.m3u8"; break;
+        case "sn_NO_SE_QUE_CANAL_ES": getURL = "https://val01.ride.com.ar/tvmia/sn30/chunks.m3u8"; break;
+        case "sn_EUROSPORTS1": getURL = ""; break;
+        case "sn_ANTENA3": getURL = "https://val01.ride.com.ar/tvmia/sn33/chunks.m3u8"; break;
+
+    }
+
+    var sources = [];
+
+    sources.push({
+        file: getURL
+    });
+
+    // Configuración de JW Player
+    jwplayer("player").setup({
+        playlist: [{
+            title: "",
+            description: "canalesonline.netlify.app",
+            sources: sources
+        }],
+        width: "100%",
+        height: "100%",
+        autostart: true,
+        mute: false,
+        cast: {},
+        sharing: {},
+        // androidhls: true,
+        displaytitle: true,
+        stretching: "uniform",
+        preload: "auto",
+        liveSyncDuration: 3,
+    });
+
+    if (!/SmartTV|Tizen|Web0S|SmartHub|Chromecast/i.test(navigator.userAgent)) {
+        // Esperar a que el reproductor esté listo
+        jwplayer("player").on("ready", function () {
+            var videoElement = document.querySelector("#player video");
+            if (videoElement) {
+                var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                var source = audioContext.createMediaElementSource(videoElement);
+                var gainNode = audioContext.createGain();
+
+                gainNode.gain.value = 2;
+                source.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+            }
+        });
+    }
+
+</script>

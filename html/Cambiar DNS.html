@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>¿Cómo cambiar los DNS?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-dark text-light">
+    <div class="container py-4">
+        <h2 class="text-center mb-4">🔧 ¿Cómo cambiar los DNS?</h2>
+        <p class="text-center">
+            Seguí estos pasos según el dispositivo que estés usando para mejorar tu
+            conexión.
+        </p>
+
+        <div class="alert alert-secondary bg-dark bg-gradient text-center text-light mx-auto"
+            style="max-width: 600px; font-weight: 500" role="alert">
+            Para abrir la configuración de adaptadores de red en Windows, presioná <br>
+            <kbd>Win + R</kbd>, escribí <code>ncpa.cpl</code> y luego Enter.
+        </div>
+
+
+        <div class="accordion" id="dnsAccordion">
+            <!-- Aquí sigue el resto del contenido acordeón que ya tenías -->
+            <!-- Windows -->
+            <div class="accordion-item bg-secondary text-light">
+                <h2 class="accordion-header" id="headingWindows">
+                    <button class="accordion-button bg-dark text-light" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseWindows">
+                        💻 Windows (10 y 11)
+                    </button>
+                </h2>
+                <div id="collapseWindows" class="accordion-collapse collapse show" data-bs-parent="#dnsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>
+                                Hacé clic derecho en el ícono de red (abajo a la derecha) y
+                                elegí <b>"Configuración de red e Internet"</b>.
+                            </li>
+                            <li>Seleccioná <b>"Cambiar opciones del adaptador"</b>.</li>
+                            <li>
+                                Hacé clic derecho sobre tu conexión (Wi-Fi o Ethernet) y elegí
+                                <b>"Propiedades"</b>.
+                            </li>
+                            <li>
+                                Hacé doble clic en
+                                <b>"Protocolo de Internet versión 4 (TCP/IPv4)"</b>.
+                            </li>
+                            <li>
+                                Seleccioná <b>"Usar las siguientes direcciones de servidor DNS"</b>
+                                y escribí:
+                            </li>
+                            <ul>
+                                <li><b>Preferido:</b> 1.1.1.1</li>
+                                <li><b>Alternativo:</b> 8.8.8.8</li>
+                            </ul>
+                            <li>Hacé clic en Aceptar y cerrá todo.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- El resto de los dispositivos sigue igual -->
+            <!-- Android -->
+            <div class="accordion-item bg-secondary text-light">
+                <h2 class="accordion-header" id="headingAndroid">
+                    <button class="accordion-button collapsed bg-dark text-light" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseAndroid">
+                        📱 Android
+                    </button>
+                </h2>
+                <div id="collapseAndroid" class="accordion-collapse collapse" data-bs-parent="#dnsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>Ir a <b>Configuración</b> → <b>Red e Internet</b> → <b>Wi-Fi</b>.</li>
+                            <li>Tocá tu red Wi-Fi y elegí <b>"Editar" o "Modificar red"</b>.</li>
+                            <li>Seleccioná <b>Avanzado</b> y cambiá <b>IP de DHCP a Estática</b>.</li>
+                            <li>Abajo te va a dejar editar DNS:</li>
+                            <ul>
+                                <li><b>DNS 1:</b> 1.1.1.1</li>
+                                <li><b>DNS 2:</b> 8.8.8.8</li>
+                            </ul>
+                            <li>Guardá los cambios.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- iPhone -->
+            <div class="accordion-item bg-secondary text-light">
+                <h2 class="accordion-header" id="headingiPhone">
+                    <button class="accordion-button collapsed bg-dark text-light" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseiPhone">
+                        🍏 iPhone / iPad
+                    </button>
+                </h2>
+                <div id="collapseiPhone" class="accordion-collapse collapse" data-bs-parent="#dnsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>Ir a <b>Ajustes</b> → <b>Wi-Fi</b>.</li>
+                            <li>Tocá el ícono ℹ️ al lado de tu red conectada.</li>
+                            <li>Bajá hasta <b>Configurar DNS</b> y seleccioná <b>Manual</b>.</li>
+                            <li>Borrá los que están y agregá:</li>
+                            <ul>
+                                <li><b>1.1.1.1</b></li>
+                                <li><b>8.8.8.8</b></li>
+                            </ul>
+                            <li>Guardá.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MacOS -->
+            <div class="accordion-item bg-secondary text-light">
+                <h2 class="accordion-header" id="headingMac">
+                    <button class="accordion-button collapsed bg-dark text-light" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseMac">
+                        💻 macOS
+                    </button>
+                </h2>
+                <div id="collapseMac" class="accordion-collapse collapse" data-bs-parent="#dnsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>Ir a <b>Preferencias del sistema</b> → <b>Red</b>.</li>
+                            <li>Elegí tu conexión (Wi-Fi o Ethernet) y hacé clic en <b>Avanzado</b>.</li>
+                            <li>Entrá a la pestaña <b>DNS</b>.</li>
+                            <li>Con el botón + agregá:</li>
+                            <ul>
+                                <li><b>1.1.1.1</b></li>
+                                <li><b>8.8.8.8</b></li>
+                            </ul>
+                            <li>Hacé clic en <b>OK</b> y después en <b>Aplicar</b>.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <p>
+                🚀 Recomendado: <b>Cloudflare 1.1.1.1</b> como DNS principal y <b>Google 8.8.8.8</b> como alternativo.
+            </p>
+            <a class='btn btn-secondary mt-3' href='/'>Volver al Inicio</a>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

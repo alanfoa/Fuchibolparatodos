@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canales Online</title>
+
+    <meta name="robots" content="index, follow">
+    <meta name="description"
+        content="Canales Online es tu plataforma de entretenimiento. Disfruta de contenido televisivo, noticias, y películas sin interrupciones publicitarias. Acceso fácil y directo desde cualquier dispositivo.">
+    <meta name="keywords" content="TV online, películas gratis, noticias, entretenimiento sin publicidad">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/icono.webp" type="image/x-icon">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style-pro2.css">
+</head>
+
+<body id="contenido" class="">
+    <!-- Animated background particles -->
+    <div class="bg-particles"></div>
+
+    <!-- Snowflakes container -->
+    <div id="snowflakes-container"></div>
+
+    <!-- Navigation -->
+    <nav id="id_nav"
+        class="navbar navbar-expand navbar-dark bg-dark bg-gradient d-flex justify-content-between p-0 m-0 container-fluid">
+        <ul class="navbar-nav btn-group dropdown-center">
+            <li class="nav-item"><a class='nav-link btn btn-secondary px-3 bi bi-tv-fill active' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/' id='Inicio' title='Canales de TV'> TV
+                    Online</a></li>
+            <li class="nav-item"><a class='nav-link btn btn-secondary px-3 bi bi-grid-fill' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/html/guia' title='Guía de Programación'></a></li>
+            <li class="nav-item"><a class='nav-link btn btn-secondary px-3 bi bi-film' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/html/cineplay' title='CinePlay'></a></li>
+            <li class="nav-item">
+                <a class='nav-link btn btn-secondary px-3 bi bi-rocket-takeoff-fill' data-bs-placement='bottom' data-bs-toggle='tooltip' href='/html/proyectos' title='Explorar opciones'></a>
+            </li>
+            <li class="nav-item"><a class="nav-link btn btn-secondary px-3 bi bi-chat-dots-fill" data-bs-toggle="modal"
+                    data-bs-target="#chatModal" title="Chat general" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"></a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav">
+            <li id="id_sapping" class="nav-item btn-group">
+                <a id="id_sapping-canal" class="btn btn-secondary nav-link" title="Reiniciar Canal"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" style="display: none;"></a>
+            </li>
+            <li class="nav-item btn-group dropdown-center">
+                <select id="id_optCanales" class="btn btn-outline-secondary border border-dark rounded text-light p-0"
+                    title="⚙️ Servidores" style="display: none;" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                </select>
+                <a id="id_sapping-izquierda" class="nav-link btn btn-secondary bi bi-arrow-left-circle text-light px-3"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Anterior (Alt+◄)"></a>
+                <a id="id_sapping-derecha" class="nav-link btn btn-secondary bi bi-arrow-right-circle text-light px-3"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Siguiente (Alt+►)"></a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main content -->
+    <main id="menu_canales" class="col-12 text-center">
+        <!-- Video player -->
+        <iframe id="id_PantallaTV" class="col-12 mb-4 Class_PantallaTV" src="" title="" frameborder="0" scrolling="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true" marginheight="0" marginwidth="0"
+            webkitallowfullscreen="true" mozallowfullscreen="true" msExitFullscreen="true"></iframe>
+
+        <div id="infoEnVivo"></div>
+
+        <!-- Notification container -->
+        <div id="notification-container"></div>
+
+        <!-- Search section -->
+        <section id="id_barra_buscador" class="m-3 mt-0 pt-3 d-flex btn-group dropdown-center">
+            <input id="id_BuscardorCanales" class="form-control form-control-lg text-center"
+                title="Buscar canales (Alt + F)" type="search" placeholder="🔍 Buscar canales...">
+            <button id="id_categoria" type="button"
+                class="btn btn-outline-secondary border border-light text-light p-2 px-3 bg-dark bg-gradient bi bi-ui-checks-grid"
+                data-bs-toggle="modal" data-bs-target="#canalesModal" title="Filtrar por categoría"></button>
+            <select id="id_optPais"
+                class="btn btn-outline-secondary border border-light text-light p-0 bg-dark bg-gradient"
+                title="Filtrar por país"></select>
+        </section>
+
+        <!-- Loading message -->
+        <p id="id_mensaje" class="d-none text-center text-light fs-2 loading-pulse">⚡ Cargando canales mágicos...</p>
+
+        <!-- NoScript message -->
+        <noscript>
+            <div class="noscript-alert" role="alert" aria-live="polite">
+                <h5>⚠️ JavaScript está desactivado</h5>
+                <p>Esta página necesita JavaScript para funcionar correctamente. Por favor, actívalo en tu navegador.
+                </p>
+            </div>
+        </noscript>
+
+        <!-- Channels section -->
+        <section id="id_CanalesDisponibles" class="pt-3 mb-5 d-flex flex-wrap justify-content-evenly"></section>
+
+        <!-- Context menu -->
+        <ul class="submenu" id="submenu">
+            <li id="abrirOtraVentana">Abrir en nueva ventana</li>
+        </ul>
+    </main>
+
+    <!-- Chat Modal -->
+    <section class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">
+        <article class="modal-dialog modal-dialog-centered">
+            <section class="modal-content">
+                <header class="modal-header">
+                    <h5 class="modal-title" id="chatModalLabel">💬 Chat General</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </header>
+                <article class="modal-body text-center py-5">
+                    <p class="bi bi-chat-dots-fill" style="font-size:3rem;"></p>
+                    <p class="lead mb-0">Chat no disponible</p>
+                    <p class="text-muted small">El chat ha sido desactivado.</p>
+                </article>
+                <section class="text-center my-1">
+                    <a href="html/Cambiar DNS.html" target="_blank" class="btn btn-outline-secondary bg-gradient">
+                        ¿Problemas de conexión? Consultá la guía para cambiar DNS
+                    </a>
+                </section>
+            </section>
+        </article>
+    </section>
+
+    <!-- Categories Modal -->
+    <section class="modal fade" id="canalesModal" tabindex="-1" aria-labelledby="canalesModalLabel" aria-hidden="true">
+        <section class="modal-dialog">
+            <section class="modal-content bg-dark text-white">
+                <header class="modal-header">
+                    <h5 class="modal-title" id="canalesModalLabel">📺 Selecciona un tipo de canal</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </header>
+                <main class="modal-body">
+                    <section class="container text-center">
+                        <section id="botonesCategorias" class="row g-3"></section>
+                    </section>
+                </main>
+            </section>
+        </section>
+    </section>
+
+    <!-- Back to top button -->
+    <button id="backToTop">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer id="myfooter" class="text-center text-light w-100">
+        <section class="container-fluid bg-dark text-light py-4">
+            <section class="row justify-content-center">
+                <article class="col-12 col-md-4 mb-4">
+                    <h5>🎬 Sobre nosotros</h5>
+                    <p class="small">
+                        Canales Online es un proyecto independiente que brinda acceso a canales
+                        de televisión en vivo de forma sencilla y organizada.
+                        Gracias a las colaboraciones de los usuarios, podemos mantener el
+                        servicio activo y actualizado.
+                        Nuestro objetivo es ofrecer una experiencia estable y sin
+                        interrupciones, con enlaces verificados y en constante revisión.
+                    </p>
+                </article>
+                <article class="col-12 col-md-4 mb-4">
+                    <h5>🔗 Enlaces útiles</h5>
+                    <ul class="list-unstyled">
+                        <li><a class='text-light text-decoration-none' href='/html/acerca'>Acerca de</a>
+                        </li>
+                        <li><a class='text-light text-decoration-none' href='/html/politica-privacidad'>Política de
+                                privacidad</a></li>
+                        <li><a class='text-light text-decoration-none' href='/html/terminos-condiciones'>Términos y
+                                condiciones</a></li>
+                    </ul>
+                </article>
+                <article class="col-12 col-md-4 mb-4">
+                    <h5>📧 Contacto</h5>
+                    <address class="small">
+                        <strong>Email:</strong>
+                        <a href="mailto:canalesonline24@gmail.com"
+                            class="text-light text-decoration-none">canalesonline24@gmail.com</a>
+                    </address>
+                </article>
+            </section>
+
+            <section class="row justify-content-center mb-4">
+                <h5 class="mb-3">🌟 Síguenos en redes sociales</h5>
+                <ul class="list-unstyled d-flex justify-content-center w-100">
+                    <li class=""><a href="https://facebook.com" target="_blank" aria-label="Facebook" class="social-link"><i class="bi bi-facebook fs-4"></i></a></li>
+                    <li class=""><a href="https://x.com" target="_blank" aria-label="X" class="social-link"><i class="bi bi-twitter-x fs-4"></i></a></li>
+                    <li class=""><a href="https://instagram.com" target="_blank" aria-label="Instagram" class="social-link"><i class="bi bi-instagram fs-4"></i></a></li>
+                    <li class=""><a href="https://youtube.com" target="_blank" aria-label="YouTube" class="social-link"><i class="bi bi-youtube fs-4"></i></a></li>
+                    <li class=""><a href="https://www.tiktok.com/@canalesonline24?_t=ZM-8tI3G9gPVYL&_r=1" target="_blank" aria-label="TikTok" class="social-link"><i class="bi bi-tiktok fs-4"></i></a></li>
+                </ul>
+            </section>
+
+            <section class="row justify-content-center mb-4">
+                <section class="col-12 col-md-8 col-lg-6 text-center">
+                    <h5 class="mb-3">💝 ¡Tu apoyo es clave para seguir creciendo!</h5>
+                    <p class="small">
+                        Este proyecto es posible gracias a la pasión que le ponemos y, sobre
+                        todo, gracias a personas como tú que lo hacen posible. Cada día
+                        trabajamos para ofrecerte contenido valioso y mantener este sitio
+                        disponible de manera gratuita. Pero para continuar, ¡necesitamos tu
+                        ayuda!
+                    </p>
+                    <p class="small">
+                        <strong>Alias para donaciones:</strong> <span class="text-warning">canalesonline</span>
+                        (Argentina)
+                    </p>
+                    <p style="color: #ccc; font-size: 16px; font-style: italic;">
+                        Con tu donación, no solo estarás ayudándonos a seguir adelante, sino que
+                        serás parte fundamental de este proyecto. Cada contribución, por pequeña
+                        que sea, hace una gran diferencia y nos acerca a más metas. ¡Ayúdanos a
+                        seguir ofreciendo más y mejor contenido para todos!
+                    </p>
+
+                    <h5 id="tabla-donadores" class="mb-3">🏆 Ranking de los 10 Mayores Donadores</h5>
+                    <table class="table table-bordered table-striped bg-dark table-hover table-dark">
+                        <thead><tr><th>#</th><th>Donante</th><th>Monto Donado</th></tr></thead>
+                        <tbody id="donadores-body"></tbody>
+                    </table>
+                </section>
+            </section>
+
+            <section class="row text-center">
+                <p class="small mb-1 dynamic-year">© <span></span> Fuchibol para todos. Todos los derechos reservados.</p>
+            </section>
+        </section>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/script-ch.js"></script>
+    <script src="js/script-canalespro.js"></script>
+    <script src="js/script-config.js"></script>
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+</body>
+
+</html>

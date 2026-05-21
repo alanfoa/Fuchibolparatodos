@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- https://vaughn.live/browse/espanol -->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hls</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <!-- hls.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- <script src="https://canalesonline.netlify.app/js/script-config.js"></script> -->
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+
+     
+
+    <script src="../js/script-config.js"></script>
+
+    <style>
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: black;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        .player-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            /* object-fit: cover; */
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 1;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .controls.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        button,
+        input[type="range"] {
+            background: none;
+            border: none;
+            color: var(--coloriconos);
+            accent-color: var(--coloriconos);
+            cursor: pointer;
+        }
+
+        .play-btn:hover,
+        .volume-icon:hover,
+        .rewind-btn:hover,
+        .live-button:hover,
+        .fullscreen-btn:hover,
+        input[type="range"]:hover {
+            color: var(--colorbarra);
+            accent-color: var(--colorbarra);
+            /* accent-color: var(--colorbarra); */
+            /* border-color: var(--colorbarra); */
+        }
+
+        .play-btn,
+        .volume-icon,
+        .rewind-btn {
+            font-size: 30px;
+        }
+
+        .fullscreen-btn {
+            font-size: 20px;
+            position: absolute;
+            right: 10px;
+            /* top: 10px; */
+        }
+
+        #progress {
+            flex: 1;
+            height: 5px;
+            appearance: none;
+            background: #555;
+            border-radius: 5px;
+            opacity: 0;
+            display: none;
+        }
+
+        #progress::-webkit-slider-thumb {
+            appearance: none;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            background: var(--coloriconos);
+            cursor: pointer;
+        }
+
+        #volume {
+            width: 80px;
+        }
+
+        .live-button {
+            font-size: 13px;
+            font-weight: bold;
+            opacity: 0.85;
+            color: var(--coloriconos);
+        }
+
+        .live-button.delayed {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .volume-control {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* #volume {
+            width: 80px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .volume-control:hover #volume,
+        .volume-control:focus-within #volume {
+            opacity: 1;
+            pointer-events: auto;
+        } */
+
+        #volume {
+            width: 80px;
+            display: none;
+        }
+
+        .volume-control:hover #volume,
+        .volume-control:focus-within #volume {
+            display: inline-block;
+        }
+
+        .rewind-btn {
+            color: var(--coloriconos);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .rewind-btn:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="player-container">
+        <video id="hlsPlayer" autoplay></video>
+
+        <!-- Controles personalizados -->
+        <div class="controls btn-group" id="customControls">
+            <button id="playBtn" class="play-btn" title="Reproducir / Pausar"><i class="bi bi-pause-fill"></i></button>
+            <!-- <button id="rewindBtn" class="rewind-btn" title="Retroceder 10 segundos"><i class="bi bi-skip-backward-fill"></i></button> -->
+            <div class="volume-control" title="Control de volumen">
+                <button id="muteBtn" class="volume-icon" title="Silenciar / Activar sonido"><i
+                        class="bi bi-volume-up-fill"></i></button>
+                <input type="range" id="volume" min="0" max="1" step="0.01" title="Volumen" />
+            </div>
+            <button id="liveStatus" class="live-button" title="Estado de transmisión"><i class="bi bi-record-fill"></i>
+                EN VIVO</button>
+            <input type="range" id="progress" value="0" min="0" step="0.01" title="Barra de progreso" />
+            <button id="fullscreenBtn" class="fullscreen-btn" title="Pantalla completa"><i
+                    class="bi bi-fullscreen"></i></button>
+        </div>
+    </div>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        let url = new URL(window.location.href);
+        const stream = url.searchParams.get('stream');
+
+        // let mt = "prepublish.f.qaotic.net";
+        // let mt = "g1.mc-hor.transport.edge-access.net";
+        // let mt = "g2.vxral-hor.transport.edge-access.net";
+        // // let mt = "g3.mc-hor.transport";
+        // let mt = "g4.mc-hor.transport.edge-access.net";
+        const streamUrls = {
+            "clan": "https://d3nnqrdb77sy13.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-eimbp20cszixb/Clan_ES.m3u8",
+            "TN24": "https://live-01-01-tn.vodgc.net/TN24/index.m3u8",
+            // "TN24_2": "	https://livetrx02.vodgc.net/TN24_2/index.m3u8",
+            "eltrecetv": "https://live-01-02-eltrece.vodgc.net/eltrecetv/index.m3u8",
+            "ciudad": "https://live-01-07-ciudad.vodgc.net/live-01-07-ciudad.vodgc.net/index.m3u8",
+            // "mitre": "https://live-05-13-mitre.vodgc.net/live-05-13-mitre.vodgc.net/index.m3u8",
+            // "la100": "https://live-05-13-la100.vodgc.net/live-05-13-la100/index.m3u8",
+            
+            
+            
+            "canal7mendoza": "https://prepublish.f.qaotic.net/a01/ngrp:canal7mendoza-100056_all/canal7mendoza-100056_720p.m3u8",
+            "canal10mdq": "https://prepublish.f.qaotic.net/a12/ngrp:canal10mdq-100044_all/canal10mdq-100044_720p.m3u8",
+            "canal10junin": "https://g1.mc-hor.transport.edge-access.net/a10/ngrp:canal10junin-100056_all/canal10junin-100056_720p.m3u8",
+            "canal12posadas": "https://g4.mc-hor.transport.edge-access.net/a14/ngrp:c12_live01-100129_all/c12_live01-100129_720p.m3u8",
+            "canal_luz": "https://g2.vxral-hor.transport.edge-access.net/a11/ngrp:canal_luz01-100009_all/canal_luz01-100009_720p/index.m3u8",
+            "americahls": "https://prepublish.f.qaotic.net/a07/americahls-100056/playlist_720p.m3u8",
+            "tvpublicahls": "https://prepublish.f.qaotic.net/b16/ngrp:c7_vivo01_dai_source-20001_all/playlist.m3u8",
+            // "tvpublicahls": "https%3A%2F%2Fedgetvp.global.ssl.fastly.net%2Fb16%2Fngrp%3Ac7_vivo01_dai_source-20001_all%2Fc7_vivo01_dai_source-20001_1080p.m3u8",
+
+        };
+
+        // https://proxy-hls.canalesonline24.workers.dev/proxy?target=
+        const getURL = streamUrls[stream];
+
+        if (!getURL) alert("Parámetro 'stream' vacío o erróneo");
+
+
+        const video = document.getElementById("hlsPlayer");
+        const playBtn = document.getElementById("playBtn");
+        const progress = document.getElementById("progress");
+        const volume = document.getElementById("volume");
+        const fullscreenBtn = document.getElementById("fullscreenBtn");
+        const liveStatus = document.getElementById("liveStatus");
+        const controls = document.getElementById("customControls");
+        // const rewindBtn = document.getElementById("rewindBtn");
+
+        // rewindBtn.addEventListener("click", () => {
+        //     video.currentTime = Math.max(0, video.currentTime - 10);
+        // });
+
+        if (getURL.endsWith(".m3u8") && Hls.isSupported()) {
+            // Si el enlace es m3u8, usar hls.js para cargar y reproducir
+            const hls = new Hls();
+            hls.loadSource(getURL);
+            // hls.loadSource(getURL);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                video.play();
+            });
+        }
+        // Play / Pause
+        playBtn.addEventListener("click", () => {
+            if (video.paused) {
+                video.play();
+                playBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+            } else {
+                video.pause();
+                playBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+            }
+        });
+
+        // Hacer clic en el video pausa / reproduce
+        video.addEventListener("click", () => {
+            if (video.paused) {
+                video.play();
+                playBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+            } else {
+                video.pause();
+                playBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+            }
+        });
+
+        // Volumen
+        video.volume = 1;
+        volume.value = 1;
+        volume.addEventListener("input", () => {
+            video.volume = volume.value;
+        });
+
+        // Mute / Unmute al hacer clic en el ícono
+        const muteBtn = document.getElementById("muteBtn");
+
+        // Mute / Unmute
+        muteBtn.addEventListener("click", () => {
+            video.muted = !video.muted;
+            muteBtn.innerHTML = video.muted
+                ? '<i class="bi bi-volume-mute-fill"></i>'
+                : '<i class="bi bi-volume-up-fill"></i>';
+        });
+
+        // Actualiza el ícono si se cambia desde el slider también
+        volume.addEventListener("input", () => {
+            video.volume = volume.value;
+            if (video.volume == 0) {
+                video.muted = true;
+            } else {
+                video.muted = false;
+            }
+            muteBtn.innerHTML = video.muted
+                ? '<i class="bi bi-volume-mute-fill"></i>'
+                : '<i class="bi bi-volume-up-fill"></i>';
+        });
+
+
+        // Pantalla completa
+        fullscreenBtn.addEventListener("click", () => {
+            if (!document.fullscreenElement) {
+                video.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        // Barra de progreso
+        video.addEventListener("timeupdate", () => {
+            progress.max = video.duration || 1;
+            progress.value = video.currentTime;
+        });
+
+        progress.addEventListener("input", () => {
+            video.currentTime = progress.value;
+        });
+
+        // EN VIVO
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+        }
+
+        // function updateLiveStatus() {
+        //     const delay = hlsPlayer.buffered.end(0) - video.currentTime;
+        //     if (delay < 2) {
+        //         liveStatus.innerHTML = '<i class="bi bi-record-fill"></i> EN VIVO';
+        //         liveStatus.style.border = "0";
+        //         liveStatus.classList.remove("delayed");
+        //     } else {
+        //         liveStatus.innerHTML = `<i class="bi bi-record-fill"></i> DIRECTO -${formatTime(delay)}`;
+        //         liveStatus.style.border = "2px solid white";
+        //         liveStatus.classList.add("delayed");
+        //     }
+        // }
+
+        liveStatus.addEventListener("click", () => {
+            if (liveStatus.classList.contains("delayed")) {
+                video.currentTime = hlsPlayer.buffered.end(0) - 0.1;
+                video.play();
+                playBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+            }
+        });
+
+        // Ocultar controles si no se mueve el mouse
+        let hideTimeout;
+        function showControls() {
+            controls.classList.remove("hidden");
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                if (!video.paused) {
+                    controls.classList.add("hidden");
+                }
+            }, 3000);
+        }
+
+        document.addEventListener("mousemove", showControls);
+        document.addEventListener("touchstart", showControls);
+
+        document.getElementById('hlsPlayer').addEventListener('contextmenu', function (e) { e.preventDefault(); });
+        showControls();
+
+        // setInterval(updateLiveStatus, 1000);
+    </script>
+</body>
+
+</html>

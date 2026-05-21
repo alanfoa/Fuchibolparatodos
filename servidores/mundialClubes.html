@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Mundial de Clubes con stream dinámico</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        #streamIframe {
+            width: 70vw;
+            height: 100vh;
+            border: none;
+        }
+
+        #chatContainer {
+            width: 30vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        #partidosBox {
+            height: 100%;
+            background-color: #121212;
+            color: white;
+            padding: 5px 10px;
+            overflow-y: auto;
+            font-size: 12px;
+        }
+
+        /* #chatIframe {
+            height: 65%;
+            width: 100%;
+            border: none;
+        } */
+
+        #partidosBox h6 {
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .fechaBox {
+            margin-bottom: 12px;
+        }
+
+        .fechaBox h5 {
+            margin-bottom: 4px;
+            font-size: 13px;
+            color: #bbb;
+            font-weight: 600;
+        }
+
+        .partido {
+            padding: 6px;
+            margin-bottom: 4px;
+            border-radius: 4px;
+            background: #1e1e1e;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .partido strong {
+            font-weight: 700;
+            font-size: 13px;
+            display: block;
+        }
+
+        .estado {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 2px 5px;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .estado.pronto {
+            background-color: #6c757d;
+        }
+
+        .estado.jugando {
+            background-color: #198754;
+        }
+
+        .estado.terminado {
+            background-color: #dc3545;
+        }
+
+        .partido a.btn-ver,
+        .partido button.btn-ver {
+            font-size: 10px;
+            padding: 2px 5px;
+            background-color: #343434;
+            color: #ccc;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 2px 1px 0 0;
+            display: inline-block;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .partido a.btn-ver:hover,
+        .partido button.btn-ver:hover {
+            background-color: #555;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+
+            html,
+            body {
+                flex-direction: column;
+            }
+
+            /* #streamIframe,
+            #chatIframe {
+                width: 100vw !important;
+                height: 50vh !important;
+            }
+
+            #chatContainer {
+                width: 100vw !important;
+                height: 50vh !important;
+            } */
+
+            /* #partidosBox,
+            #colaborar {
+                display: none !important;
+            } */
+
+
+            #chatContainer {
+                width: 100vw !important;
+                height: 50vh !important;
+            }
+
+            #streamIframe,
+            #partidosBox {
+                width: 100vw !important;
+                height: 100vh !important;
+            }
+
+            /* #colaborar,
+            #chatIframe {
+                display: none !important;
+            } */
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <iframe id="streamIframe" src="telefeapi.html" allowfullscreen></iframe> -->
+    <iframe id="streamIframe" src="" allowfullscreen></iframe>
+
+    <div id="chatContainer">
+        <div id="partidosBox" class="p-2"></div>
+        <!-- <iframe id="chatIframe" src="chat_mundialClubes.html" allowtransparency="true"></iframe> -->
+        <div class="text-center bg-dark bg-gradient">
+            <a id="colaborar" href="https://mpago.la/1rbi7Qg" target="_blank"
+                class="btn btn-outline-secondary btn-sm fw-semibold shadow-sm d-block w-100 text-center border-0">
+                ¿Te sirvió la página? ☕ Apoya al creador aquí
+            </a>
+        </div>
+
+    </div>
+
+    <script src="mundialClubes.js"></script>
+</body>
+
+</html>

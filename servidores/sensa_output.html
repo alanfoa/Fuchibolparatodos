@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>sensa_output</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <!-- <script>(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://gounodogaptofok.net/tag.min.js',7669975,document.body||document.documentElement)</script> -->
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+
+     
+
+
+    <style>
+        html,
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+    <div id="player" class="ViostreamIframe"></div>
+
+    <!-- <script src="https://canalesonline.netlify.app/js/script-config.js"></script> -->
+    <script src="../js/script-config.js"></script>
+    <script>
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        var ConfiguracionCanales = {
+            "Billboard": {
+                url: "https://cdn.pontiscloud.com/output/SMT1/BLBD/output.mpd",
+                // url: "https://cdn.pontiscloud.com/output/SMT1/BLBD/output.m3u8",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Canal_3_Tacural": {
+                url: "https://cdn.pontiscloud.com/output/ARR2/TacuralD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Vive_TV": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/VIVED/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "PATVD": {
+                url: "https://cdn.pontiscloud.com/output/SMT2/CEPATVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "COONET_TV": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/BRKD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Canal_Doce_Posadas": {
+                url: "https://cdn.pontiscloud.com/output/COR/c12pos/playlist.m3u8"
+            },
+            "Telefe_SantaFe": {
+                url: "https://cdn.pontiscloud.com/output/COR/TSFH/playlist.m3u8",
+            },
+            "Telefe_Rosario": {
+                url: "https://cdn.pontiscloud.com/output/ARR2/TelefeRosarioH/playlist.m3u8",
+            },
+            "La_Popu": {
+                url: "https://cdn.pontiscloud.com/output/ET-01/popular/master.m3u8",
+            },
+            "Canal_2_Almafuerte": {
+                url: "https://cdn.pontiscloud.com/output/ARR/ALMD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Rio_Primero_TV": {
+                url: "https://cdn.pontiscloud.com/output/STAROSA/RIO1TVH/playlist.m3u8",
+            },
+            "Cadena_3": {
+                url: "https://cdn.pontiscloud.com/output/ET-01/Cadena3/master.m3u8",
+            },
+            "El_seis": {
+                url: "https://smt-usr-edge02.sensa.com.ar/output/SMT4/BC6H/playlist.m3u8",
+                // url: "https://cdn.pontiscloud.com/output/SMT4/BC6D/output.mpd",
+            },
+
+
+
+
+            "Radio_Viñas": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/RVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Radio_Joven": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/RJD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Radio_Uno": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/R1D/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "TCRD": {
+                url: "https://cdn.pontiscloud.com/output/LVR/TCRD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Canal_Monte_Buey": {
+                url: "https://cdn.pontiscloud.com/output/NDS/RTFD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Canal_2_Cooperativa_Elena": {
+                url: "https://cdn.pontiscloud.com/output/SMT7/C2CED/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "MC_General_Viamonte": {
+                url: "https://cdn.pontiscloud.com/output/SMT6/MCVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Cecsagal_TV": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/CECD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "C99MD": {
+                url: "https://cdn.pontiscloud.com/output/ARR2/C99MD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Canal19LPD": {
+                url: "https://cdn.pontiscloud.com/output/ARR2/Canal19LPD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "TacuralD": {
+                url: "https://cdn.pontiscloud.com/output/ARR2/TacuralD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "SADD": {
+                url: "https://cdn.pontiscloud.com/output/ARR3/SADD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Rio_GallegosD": {
+                url: "https://cdn.pontiscloud.com/output/ARR/Rio_GallegosD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Cecsagal_TV": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/CPTD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "TVCOD": {
+                url: "https://cdn.pontiscloud.com/output/ARR/TVCOD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "BVCd": {
+                url: "https://cdn.pontiscloud.com/output/SMT7/BVCd/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "TelecoUcachaD": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/TelecoUcachaD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "DehezaD": {
+                url: "https://cdn.pontiscloud.com/output/ARR/DehezaD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "vivenciasD": {
+                url: "https://cdn.pontiscloud.com/output/NDS/vivenciasD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "unidostvD": {
+                url: "https://cdn.pontiscloud.com/output/NDS/unidostvD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "HERD": {
+                url: "https://cdn.pontiscloud.com/output/ARR2/HERD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "ElSauceTVD": {
+                url: "https://cdn.pontiscloud.com/output/ARR3/ElSauceTVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "C3AD": {
+                url: "https://cdn.pontiscloud.com/output/ARR3/C3AD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CMDD": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/CMDD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "RTD": {
+                url: "https://cdn.pontiscloud.com/output/SMT3/RTD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "ALMD": {
+                url: "https://cdn.pontiscloud.com/output/ARR/ALMD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "GRD": {
+                url: "https://cdn.pontiscloud.com/output/SMT3/GRD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "OlivaD": {
+                url: "https://cdn.pontiscloud.com/output/NDS/OlivaD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "VHD": {
+                url: "https://cdn.pontiscloud.com/output/SMT2/VHD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "STV2D": {
+                url: "https://cdn.pontiscloud.com/output/LVR/STV2D/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CCAD": {
+                url: "https://cdn.pontiscloud.com/output/LVR/CCAD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "TEMPLETVD": {
+                url: "https://cdn.pontiscloud.com/output/STAROSA/TEMPLETVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "COVISARD": {
+                url: "https://cdn.pontiscloud.com/output/STAROSA/COVISARD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "LUQUETVD": {
+                url: "https://cdn.pontiscloud.com/output/STAROSA/LUQUETVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "RIO1TVD": {
+                url: "https://cdn.pontiscloud.com/output/STAROSA/RIO1TVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Canal5GIGD": {
+                url: "https://cdn.pontiscloud.com/output/ARR/Canal5GIGD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CMSD": {
+                url: "https://csc-axs-edge02.sensa.com.ar/output/ARR/CMSD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "PORD": {
+                url: "https://cdn.pontiscloud.com/output/SMT5/PORD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "PSJD": {
+                url: "https://cdn.pontiscloud.com/output/SMT2/PSJD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "FVD": {
+                url: "https://cdn.pontiscloud.com/output/SMT2/FVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "MariaJuanaD": {
+                url: "https://cdn.pontiscloud.com/output/SMT5/MariaJuanaD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "C4PD": {
+                url: "https://cdn.pontiscloud.com/output/SMT3/C4PD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CELTTVD": {
+                url: "https://cdn.pontiscloud.com/output/SMT3/CELTTVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "GolcableD": {
+                url: "https://cdn.pontiscloud.com/output/SMT5/GolcableD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CLYFERD": {
+                url: "https://cdn.pontiscloud.com/output/ARR/CLYFERD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "NTVD": {
+                url: "https://cdn.pontiscloud.com/output/SMT5/NTVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CCCD": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/CCCD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "C7SAAD": {
+                url: "https://cdn.pontiscloud.com/output/ARR2/C7SAAD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CEPATVD": {
+                url: "https://cdn.pontiscloud.com/output/SMT2/CEPATVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CIAd": {
+                url: "https://cdn.pontiscloud.com/output/SMT6/CIAd/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "BRKD": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/BRKD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "LPd": {
+                url: "https://cdn.pontiscloud.com/output/SMT7/LPd/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CRd": {
+                url: "https://cdn.pontiscloud.com/output/SMT7/CRd/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "C3d": {
+                url: "https://cdn.pontiscloud.com/output/SMT7/C3d/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "MARCHITVD": {
+                url: "https://cdn.pontiscloud.com/output/SMT2/MARCHITVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "RSD": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/RSD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "VTVd": {
+                url: "https://cdn.pontiscloud.com/output/ARR/VTVd/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CanalCoopD": {
+                url: "https://cdn.pontiscloud.com/output/COR/CanalCoopD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "FRYD": {
+                url: "https://cdn.pontiscloud.com/output/ARR3/FRYD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CEOSCAD": {
+                url: "https://cdn.pontiscloud.com/output/NDS/CEOSCAD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "TRUd": {
+                url: "https://cdn.pontiscloud.com/output/NDS/TRUd/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "SRLPD": {
+                url: "https://cdn.pontiscloud.com/output/ARR/SRLPD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "DayTVd": {
+                url: "https://cdn.pontiscloud.com/output/SMT7/DayTVd/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "BLBD": {
+                url: "https://cdn.pontiscloud.com/output/SMT1/BLBD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "FTRd": {
+                url: "https://cdn.pontiscloud.com/output/SMT6/FTRd/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "VIVED": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/VIVED/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "RTSd": {
+                url: "https://cdn.pontiscloud.com/output/SMT6/RTSd/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "TSFD": {
+                url: "https://cdn.pontiscloud.com/output/COR/TSFD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "C3RD": {
+                url: "https://cdn.pontiscloud.com/output/ARR2/C3RD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "TelefeRosarioD": {
+                url: "https://cdn.pontiscloud.com/output/ARR2/TelefeRosarioD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "C10RND": {
+                url: "https://cdn.pontiscloud.com/output/SMT2/C10RND/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "BC6D": {
+                url: "https://cdn.pontiscloud.com/output/SMT4/BC6D/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Canal3D": {
+                url: "https://cdn.pontiscloud.com/output/ARR3/Canal3D/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "C20D": {
+                url: "https://cdn.pontiscloud.com/output/SMT5/C20D/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "UniRioTVd": {
+                url: "https://cdn.pontiscloud.com/output/SMT6/UniRioTVd/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Canal12D": {
+                url: "https://cdn.pontiscloud.com/output/Canal12D/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Canal10D": {
+                url: "https://cdn.pontiscloud.com/output/Canal10D/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "Canal8D": {
+                url: "https://cdn.pontiscloud.com/output/Canal8D/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CHTVD": {
+                url: "https://cdn.pontiscloud.com/output/SMT3/CHTVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "C9BBD": {
+                url: "https://cdn.pontiscloud.com/output/SMT3/C9BBD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "C12TLD": {
+                url: "https://cdn.pontiscloud.com/output/SMT6/C12TLD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "BTVD": {
+                url: "https://cdn.pontiscloud.com/output/SMT6/BTVD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "C9BBD": {
+                url: "https://cdn.pontiscloud.com/output/SMT3/C9BBD/output.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+
+            "c12pos": { url: "https://cdn.pontiscloud.com/output/COR/c12pos/playlist.m3u8" },
+            "tvcoopjpH": { url: "https://cdn.pontiscloud.com/output/NDS/tvcoopjpH/playlist.m3u8" },
+        };
+
+        var id = getParameterByName('id');
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+            var sources = [];
+
+            if (config.url.includes('.m3u8') || (config.url.includes('.mpd') && config.k1 === "" && config.k2 === "")) {
+                sources.push({
+                    file: config.url
+                });
+            }
+
+            if (config.url.includes('.mpd') && config.k1 && config.k2) {
+                sources.push({
+                    file: config.url,
+                    drm: { "clearkey": { "keyId": config.k1, "key": config.k2 } }
+                });
+            }
+
+            // if (config.url.includes('.mpd') && config.k1==="" && config.k2 === "") {
+            //     sources.push({
+            //         file: config.url
+            //     });
+            // }
+
+            //JWWWWWW
+            jwplayer("player").setup({
+                playlist: [{
+                    title: "",
+                    description: "canalesonline.netlify.app",
+                    sources: sources
+                }],
+                width: "100%",
+                height: "100%",
+                autostart: true,
+                mute: false,
+                cast: {},
+                sharing: {},
+                // androidhls: true,
+                displaytitle: true,
+                stretching: "uniform",
+                preload: "auto",
+                liveSyncDuration: 3,
+            });
+
+            // if (!/SmartTV|Tizen|Web0S|SmartHub|Chromecast/i.test(navigator.userAgent)) {
+            //     // Esperar a que el reproductor esté listo
+            //     jwplayer("player").on("ready", function () {
+            //         var videoElement = document.querySelector("#player video");
+            //         if (videoElement) {
+            //             var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            //             var source = audioContext.createMediaElementSource(videoElement);
+            //             var gainNode = audioContext.createGain();
+
+            //             gainNode.gain.value = 2;
+            //             source.connect(gainNode);
+            //             gainNode.connect(audioContext.destination);
+            //         }
+            //     });
+            // }
+
+            // var lang = 1; // Por defecto en español
+            // jwplayer().on('play', function (e) {
+            //     jwplayer().setCurrentAudioTrack(lang);
+            // });
+        }
+    </script>
+</body>
+
+</html>

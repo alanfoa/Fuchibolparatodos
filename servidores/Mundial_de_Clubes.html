@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Mundial de Clubes con stream dinámico</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+
+   
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    iframe {
+      border: none;
+      height: 100vh;
+    }
+
+    #streamIframe {
+      width: 100vw;
+      /* width: 70vw;
+      border-right: 2px solid #ccc; */
+    }
+
+    /* #chatIframe {
+      width: 30vw;
+    } */
+
+    /* Media query para pantallas pequeñas */
+    @media (max-width: 768px) {
+
+      html,
+      body {
+        flex-direction: column;
+      }
+
+      /* #streamIframe,
+      #chatIframe {
+        width: 100vw !important;
+        height: 50vh !important;
+        border: none !important;
+      } */
+    }
+  </style>
+</head>
+
+<body>
+  <iframe id="streamIframe" allowfullscreen></iframe>
+  <!-- <iframe id="chatIframe" src="chat_mundialClubes.html" allowtransparency="true"></iframe> -->
+
+  <script src="../js/script-config.js"></script>
+  <script>
+    // Función para obtener parámetros de URL
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Obtener el valor de 'stream'
+    const streamUrl = getQueryParam('stream');
+
+    // Referencia al iframe del stream
+    const streamIframe = document.getElementById('streamIframe');
+
+    // Si el parámetro existe, cargarlo, sino cargar un fallback
+    if (streamUrl) {
+      streamIframe.src = streamUrl;
+    } else {
+      streamIframe.src = 'telefeapi.html';
+    }
+  </script>
+</body>
+
+</html>

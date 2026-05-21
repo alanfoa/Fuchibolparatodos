@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>jjfutbol2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
+    <style>
+        :root {
+            --bg: #05070a;
+            --primary: #00e5ff;
+            --live: #ff3c3c;
+            --text: #eef0f4;
+            --muted: #4a5568;
+            --card: #0d1117;
+            --border: #1a2030;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .stage {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── PLAYER ── */
+        .player-wrap {
+            flex: 1;
+            position: relative;
+            background: #000;
+            overflow: hidden;
+        }
+
+        #jwplayer-container {
+            position: absolute;
+            inset: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* ── STATUS OVERLAY ── */
+        .status-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            background: #000;
+            z-index: 5;
+            transition: opacity .4s;
+        }
+
+        .status-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner-ring {
+            width: 44px;
+            height: 44px;
+            border: 3px solid rgba(0, 229, 255, 0.15);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin .75s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .status-msg {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: .5px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .status-msg.error {
+            color: var(--live);
+        }
+
+        .retry-btn {
+            display: none;
+            background: rgba(255, 60, 60, 0.1);
+            border: 1px solid rgba(255, 60, 60, 0.3);
+            color: var(--live);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 8px 20px;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: all .15s;
+            text-transform: uppercase;
+        }
+
+        .retry-btn:hover {
+            background: rgba(255, 60, 60, 0.2);
+        }
+
+        .retry-btn.visible {
+            display: block;
+        }
+
+        /* ── NO PARAM ── */
+        .no-param {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .no-param-icon {
+            font-size: 48px;
+            opacity: .3;
+        }
+
+        .no-param h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            letter-spacing: 3px;
+            color: var(--text);
+        }
+
+        .no-param p {
+            font-size: 12px;
+            color: var(--muted);
+            max-width: 340px;
+            line-height: 1.7;
+        }
+
+        .no-param code {
+            display: inline-block;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            font-size: 11px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-top: 6px;
+            font-family: monospace;
+            word-break: break-all;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+
+</head>
+
+<body>
+    <div class="stage">
+        <div class="player-wrap">
+            <div id="jwplayer-container"></div>
+
+            <div class="status-overlay" id="status-overlay">
+                <div class="spinner-ring" id="spinner"></div>
+                <div class="status-msg" id="status-msg">Buscando canal...</div>
+                <button class="retry-btn" id="retry-btn" onclick="retryLoad()">↻ Reintentar</button>
+            </div>
+
+            <div class="no-param" id="no-param" style="display:none">
+                <div class="no-param-icon">📺</div>
+                <h2>Sin canal</h2>
+                <p>Esta página necesita el parámetro <strong>?name=</strong> con el nombre exacto del
+                    canal.<br>Opcionalmente <strong>&amp;index=</strong> si hay varios con el mismo nombre (empieza en
+                    0).</p>
+                <code>?name=ESPN MX</code>
+                <code>?name=ESPN MX&amp;index=1</code>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PROXY_BASE = 'https://api.codetabs.com/v1/proxy/?quest=';
+        const EVENTO_BASE = 'https://jjfutbol2.lat/evento.php';
+        const AGENDA_URL = 'https://jjfutbol2.lat/agenda_limpia.json';
+
+        const params = new URLSearchParams(location.search);
+        const targetName = params.get('name');           // nombre exacto del canal
+        const targetIdx = parseInt(params.get('index') || '0'); // cuál duplicado (default 0)
+
+        let resolvedId = null;
+        let alreadyRetried = false;
+
+        /* ── UI helpers ── */
+        function setStatus(msg, isError = false) {
+            document.getElementById('status-overlay').classList.remove('hidden');
+            const msgEl = document.getElementById('status-msg');
+            const spinner = document.getElementById('spinner');
+            const retry = document.getElementById('retry-btn');
+            msgEl.textContent = msg;
+            msgEl.className = 'status-msg' + (isError ? ' error' : '');
+            spinner.style.display = isError ? 'none' : 'block';
+            retry.classList.toggle('visible', isError);
+        }
+
+        function hideStatus() {
+            document.getElementById('status-overlay').classList.add('hidden');
+        }
+
+        function destroyPlayer() {
+            try { jwplayer('jwplayer-container').remove(); } catch (e) { }
+            document.getElementById('jwplayer-container').innerHTML = '';
+        }
+
+        function normalize(str) {
+            return str
+                .toLowerCase()
+                .replace(/\s+/g, '')        // quita todos los espacios
+                .replace(/[┃|]/g, '|')     // unifica separadores ┃ y |
+                .replace(/[+＋]/g, '+');   // por si acaso
+        }
+
+        /* ── Busca el canal_id en el JSON de la agenda ── */
+        async function resolveCanal(name, idx) {
+            const proxied = `${PROXY_BASE}${encodeURIComponent(AGENDA_URL)}`;
+            const res = await fetch(proxied);
+            if (!res.ok) throw new Error('No se pudo obtener la agenda');
+            const eventos = await res.json();
+
+            const normalName = normalize(name);
+            const matches = [];
+            for (const ev of eventos) {
+                for (const ch of (ev.canales || [])) {
+                    if (normalize(ch.canal) === normalName) {
+                        matches.push(ch);
+                    }
+                }
+            }
+
+            if (matches.length === 0) {
+                throw new Error(`Canal "${name}" no encontrado en la agenda`);
+            }
+
+            return matches.slice(idx).map(m => m.canal_id);
+
+        }
+
+        /* ── Obtiene el stream m3u8 usando el canal_id ── */
+        async function fetchM3U8(canalId) {
+            const targetUrl = `${EVENTO_BASE}?id=${canalId}`;
+            const proxied = `${PROXY_BASE}${encodeURIComponent(targetUrl)}`;
+            const res = await fetch(proxied);
+            const html = await res.text();
+            const match = html.match(/["'`](https?:[^"'`]*\.m3u8[^"'`]*)/);
+            if (!match) throw new Error('Stream m3u8 no encontrado');
+            const clean = match[1].replace(/\\\//g, '/');
+            return `${EVENTO_BASE}?proxy=${encodeURIComponent(clean)}`;
+        }
+
+        /* ── Player ── */
+        function initPlayer(streamUrl) {
+            console.log(streamUrl);
+            destroyPlayer();
+            jwplayer('jwplayer-container').setup({
+                file: streamUrl,
+                type: 'hls',
+                autostart: true,
+                hlsjsdefault: true,
+                width: '100%',
+                height: '100%',
+                mute: false,
+                cast: {},
+                sharing: {},
+                displaytitle: true,
+                stretching: 'uniform',
+                preload: 'auto',
+                liveSyncDuration: 3,
+            });
+
+            jwplayer().on('ready', () => {
+                alreadyRetried = false;
+                hideStatus();
+            });
+
+            jwplayer().on('error', () => {
+                if (alreadyRetried) return;
+                alreadyRetried = true;
+                setStatus('Reintentando...');
+                setTimeout(() => load(), 2500);
+            });
+        }
+
+        /* ── Flujo principal ── */
+        async function load() {
+            try {
+                setStatus('Buscando canal en la agenda...');
+                const ids = await resolveCanal(targetName, targetIdx);
+
+                if (ids.length === 0) throw new Error(`Canal "${targetName}" no encontrado en la agenda`);
+
+                let streamUrl = null;
+                let lastError = null;
+
+                for (let i = 0; i < ids.length; i++) {
+                    try {
+                        setStatus(`Obteniendo stream (intento ${i + 1}/${ids.length})...`);
+                        streamUrl = await fetchM3U8(ids[i]);
+                        break; // ✅ funcionó, salimos del loop
+                    } catch (err) {
+                        lastError = err;
+                        // sigue al siguiente index
+                    }
+                }
+
+                if (!streamUrl) throw lastError;
+
+                initPlayer(streamUrl);
+            } catch (err) {
+                setStatus(err.message, true);
+            }
+        }
+
+        function retryLoad() {
+            alreadyRetried = false;
+            load();
+        }
+
+        /* ── Iniciar ── */
+        if (!targetName) {
+            document.getElementById('status-overlay').classList.add('hidden');
+            document.getElementById('no-param').style.display = 'flex';
+        } else {
+            load();
+        }
+    </script>
+    <script src="../js/script-config.js"></script>
+</body>
+
+</html>

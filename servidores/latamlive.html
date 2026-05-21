@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>latamlive</title>
+    <style>
+        html,
+        body,
+        #player {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+
+    <!-- JW Player -->
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+</head>
+
+<body>
+    <div id="player" class="ViostreamIframe"></div>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        var ConfiguracionCanales = {
+            "TELEFE_AR_IP_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/TELEFE_AR_IP_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "CANAL_13_HD_IP_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/CANAL_13_HD_IP_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+
+            "TNTS_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/TNTS_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "TYC_SPORTS_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/TYC_SPORTS_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            
+            "ESPNPREMIUM_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/ESPNPREMIUM_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+
+            "ESPN1_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/ESPN1_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "ESPN2_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/ESPN2_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "ESPN3_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/ESPN3_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "ESPN4_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/ESPN4_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+
+            "FOX_SPORTS_HD_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/FOX_SPORTS_HD_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "FOX_SPORTS2_HD_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/FOX_SPORTS2_HD_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "FOX_SPORTS3_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/FOX_SPORTS3_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+
+
+            "HBO_HD_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/HBO_HD_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "HBO2_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/HBO2_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "HBO_PLUS_HD_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/HBO_PLUS_HD_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "HBO_FAMILY_HD_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/HBO_FAMILY_HD_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "HBO_SIGNATURE_AR_HD_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/HBO_SIGNATURE_AR_HD_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "HBO_POP_AR_HD_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/HBO_POP_AR_HD_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "HBO_XTREME_HD_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/HBO_XTREME_HD_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+            "HBO_MUNDI_HD_AR_ENC_LIVE": {
+                url: "https://latam-cache-sv2-cdn.latamlive.net/HBO_MUNDI_HD_AR_ENC_LIVE/index.m3u8",
+                k1: "eaecaad505a66fab4161959099767384",
+                k2: "ca66afd7ba0f3ce767b698b5e94c84e3"
+            },
+        }
+
+        var id = getParameterByName('id');
+        // var config = ConfiguracionCanales[id];
+
+        var config = ConfiguracionCanales[id] || {
+            url: "https://latam-cache-sv2-cdn.latamlive.net/" + id + "/index.m3u8",
+            k1: "eaecaad505a66fab4161959099767384",
+            k2: "ca66afd7ba0f3ce767b698b5e94c84e3",
+        };
+
+        if (config) {
+            var sources = [];
+
+            if (config.url.includes('.m3u8')) {
+                sources.push({
+                    file: config.url
+                });
+            }
+
+            if (config.url.includes('.mpd') && config.k1 && config.k2) {
+                sources.push({
+                    file: config.url,
+                    drm: { "clearkey": { "keyId": config.k1, "key": config.k2 } }
+                });
+            }
+
+            // JWWWWWW
+            jwplayer("player").setup({
+                playlist: [{
+                    title: "",
+                    description: "canalesonline.netlify.app",
+                    sources: sources
+                }],
+                width: "100%",
+                height: "100%",
+                autostart: true,
+                mute: false,
+                cast: {},
+                sharing: {},
+                // androidhls: true,
+                displaytitle: true,
+                stretching: "uniform",
+                preload: "auto",
+                liveSyncDuration: 3,
+            });
+        } else {
+            document.getElementById("player").innerHTML = '<h2 class="error-message">Canal inválido o no encontrado.</h2>';
+        }
+    </script>
+</body>
+
+</html>

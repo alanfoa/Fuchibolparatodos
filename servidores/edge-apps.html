@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>edge-apps</title>
+    <style>
+        html,
+        body,
+        #player {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+
+    <!-- JW Player -->
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+</head>
+
+<body>
+    <div id="player" class="ViostreamIframe"></div>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        var mt_red = ["prepublish.f.qaotic.net", 
+        "g1.mc-hor.transport.edge-access.net", 
+        "g2.vxral-hor.transport.edge-access.net", 
+        // "g1.mc-hor.transport.edge-access.net", 
+        "g4.mc-hor.transport.edge-access.net"];
+        let mt_gigared = mt_red[Math.floor(Math.random() * mt_red.length)];
+
+
+        var ConfiguracionCanales = {
+
+            "canal7mendoza": {
+                url: "https://prepublish.f.qaotic.net/a01/ngrp:canal7mendoza-100056_all/canal7mendoza-100056_720p.m3u8",
+            },
+            "canal10mdq": {
+                url: "https://prepublish.f.qaotic.net/a12/ngrp:canal10mdq-100044_all/canal10mdq-100044_720p.m3u8",
+            },
+            "canal10junin": {
+                url: "https://g1.mc-hor.transport.edge-access.net/a10/ngrp:canal10junin-100056_all/canal10junin-100056_720p.m3u8",
+            },
+            "canal12posadas": {
+                url: "https://g4.mc-hor.transport.edge-access.net/a14/ngrp:c12_live01-100129_all/c12_live01-100129_720p.m3u8",
+            },
+            "canal_luz": {
+                url: "https://g2.vxral-hor.transport.edge-access.net/a11/ngrp:canal_luz01-100009_all/canal_luz01-100009_720p/index.m3u8",
+            },
+            "america": {
+                url: "https://prepublish.f.qaotic.net/a07/americahls-100056/playlist_720p.m3u8",
+            },
+            "tvpublica": {
+                url: "https://prepublish.f.qaotic.net/b16/ngrp:c7_vivo01_dai_source-20001_all/playlist.m3u8",
+            },
+            // "tvpublicahls": {
+            //     url: "https%3A%2F%2Fedgetvp.global.ssl.fastly.net%2Fb16%2Fngrp%3Ac7_vivo01_dai_source-20001_all%2Fc7_vivo01_dai_source-20001_1080p.m3u8",
+            // },
+            "a24": {
+                url: "https://g5.mc-hor.transport.edge-access.net/a15/ngrp:a24-100056_all/Playlist.m3u8?sense=true",
+            },
+            // "TN": {
+            //     url: "https://live-01-01-tn.vodgc.net/TN24/index_TN24_1080.m3u8",
+            // },
+
+        };
+
+        var id = getParameterByName('id');
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+            var sources = [];
+
+            if (config.url.includes('.m3u8')) {
+                sources.push({
+                    // file: config.url
+                    file: "https://proxy-hls.canalesonline24.workers.dev/proxy?target="+config.url
+                });
+            }
+
+            if (config.url.includes('.mpd') && config.k1 && config.k2) {
+                sources.push({
+                    file: config.url,
+                    drm: { "clearkey": { "keyId": config.k1, "key": config.k2 } }
+                });
+            }
+
+            // JWWWWWW
+            jwplayer("player").setup({
+                playlist: [{
+                    title: "",
+                    description: "canalesonline.netlify.app",
+                    sources: sources
+                }],
+                width: "100%",
+                height: "100%",
+                autostart: true,
+                mute: false,
+
+                // --- AGREGÁ ESTO ---
+                qualityLabel: "Auto",
+                defaultBandwidthEstimate: 5000000, // Empieza asumiendo 5Mbps (alta calidad)
+                bandwidthEstimate: 5000000,
+                // --- FIN ---
+
+
+                cast: {},
+                sharing: {},
+                // androidhls: true,
+                displaytitle: true,
+                stretching: "uniform",
+                preload: "auto",
+                liveSyncDuration: 3,
+            });
+
+            var lang = 1; // Por defecto en español
+            jwplayer().on('play', function (e) {
+                jwplayer().setCurrentAudioTrack(lang);
+            });
+        }
+    </script>
+</body>
+
+</html>

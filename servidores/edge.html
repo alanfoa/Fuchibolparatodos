@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>edge</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+
+    <style>
+        html,
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+    <div id="player" class="ViostreamIframe"></div>
+    
+    <!-- <script src="https://canalesonline.netlify.app/js/script-config.js"></script> -->
+    <script src="../js/script-config.js"></script>
+    <script>
+        
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        // https://nx.pc-media.edge-apps.net/hls/
+        // https://ori1.relay.edge-apps.net/hls/hg35c-k15n6-nn351-lje0m.m3u8
+        // https://joy.nx-pc.edge-apps.net/hls/719b8-4446k-bgh4e-5pp8f.m3u8
+
+        // let mt_edge = "joy.nx-pc";
+        let mt_edge = "ori1.relay";
+        // let mt_edge = "ice3";
+        var ConfiguracionCanales = { 
+            // NOTICIAS
+            "TN": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/719b8-4446k-bgh4e-5pp8f_720p/index.m3u8",
+            },
+            "C5N": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/84aje-kf2n1-d1fjp-jd44i.m3u8",
+            },
+            "A24": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/eh9gc-bail8-o30pk-k1hih.m3u8",
+            },
+            "Cronica": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/50l1p-9en4e-g05p7-n6588.m3u8",
+            },
+            "LNmas": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/aembp-3e3j8-epcp7-9n39b.m3u8",
+            },
+            "Canal_26": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/l4bk3-m0kk9-e914k-dm053.m3u8",
+            },
+            "CNN_En_Esp": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/d0l95-h7jlf-ilii6-4e3g9.m3u8",
+            },
+            "DNews": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/cp9g2-5ok8b-g99na-o15il.m3u8",
+            },
+            "RT_En_Espanol": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/1pf1o-l8fhp-a55hc-1j09k.m3u8",
+            },
+            "Euronews": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/eo5mp-m89lb-e57f0-kpkkd.m3u8",
+            },
+            "DW": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/57gjj-j2867-pfa7f-d52jp.m3u8",
+            },
+            "24H": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/h7m22-llhbf-mkh78-f4eo6.m3u8",
+            },
+            "NETTV": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/lb0ol-ailc9-5k80-j4fj6.m3u8",
+            },
+
+            // CANALES ABIERTOS ARGENTINOS
+            "TV_Publica": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/m4lf3-ad2jd-672pb-a46k9.m3u8",
+            },
+            "Ar12": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/hlo1k-hpi35-b12io-9ik48.m3u8",
+            },
+            "Telefe_Santa_Fe": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/367dd-bmd9o-85ha8-f468n.m3u8",
+            },
+            "Canal_Nueve": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/c1l19-dm128-aophc-jlo6n.m3u8",
+            },
+            "Net_TV": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/lb0ol-ailc9-5k80-j4fj6.m3u8",
+            },
+            "Trece_Satelital": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/e5df7-k5p3m-2m2nf-jnd7m.m3u8",
+            },
+            "America_Interior": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/6d4cm-ihgob-f3k27-31j97.m3u8",
+            },
+            "Canal_A": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/k0eh2-j12j2-35nn-1dmde.m3u8",
+            },
+
+            // DEPORTES
+            "TyC_Sports": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/o5b6i-gacle-23i3p-oef1.m3u8",
+            },
+            "TNT_Sports": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/hg35c-k15n6-nn351-lje0m.m3u8",
+            },
+            "ESPN_Premium": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/56cl9-6dffj-hb9op-hik52.m3u8", 
+            },
+            "ESPN": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/k6e4b-2jhe5-76pae-1fham.m3u8",
+            },
+            "ESPN_2": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/io3a7-ob45b-2dnm5-ac8ak.m3u8",
+            },
+            "ESPN_3": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/io0j9-gb1bf-d0738-kkn17.m3u8",
+            },
+            "ESPN_4": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/ohcfd-666pp-pkifp-28l43.m3u8",
+            },
+            "Fox_Sports": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/e6m9n-cgl9e-o10kk-2o1bd.m3u8",
+            },
+            "Fox_Sports_2": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/km6lk-2io4c-7f9jm-peep.m3u8",
+            },
+            "Fox_Sports_3": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/nhpm-b5ank-dc0f8-23dl8.m3u8",
+            },
+            "Deportv": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/e1okh-afcc2-ejm6-h8gdj.m3u8",
+            },
+            "Claro_Sports": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/km95e-pj51p-m2ci4-5nj03.m3u8",
+            },
+            "Golf_Channel": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/3ng17-nl903-o8epk-9kaij.m3u8",
+            },
+
+            // PELÍCULAS Y CINE
+            "Cine_Premium": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/d4bhf-fflam-b5fon-7kcff.m3u8",
+            },
+            "Cine_Hispano": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/pf7b-4746p-o4dp5-5angp.m3u8",
+            },
+            "Cine_Familiar": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/14nj5-o3nib-lfdgo-ha1ib.m3u8",
+            },
+            "CineAR": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/m6l52-i7flc-5bii9-70gkm.m3u8",
+            },
+            "Cinemax": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/al2ac-boi6d-kl95l-3n20j.m3u8",
+            },
+            "Space": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/5l99a-88i70-g4mhk-k4ob4.m3u8",
+            },
+            "TNT": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/3cfmo-i74jf-j0b2a-bm53n.m3u8",
+            },
+            "Warner": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/f068d-i2ab-je8pf-3k75a.m3u8",
+            },
+            "Star_Channel": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/4o7n1-6ig88-demj0-46pkf.m3u8",
+            },
+            "TCM": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/61h62-gfdg8-5eb9c-c3og.m3u8",
+            },
+            "Golden": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/3ndhm-1aci9-g528l-oblaf.m3u8",
+            },
+            "Volver": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/9c3on-i089p-mnmkk-jpi5f.m3u8",
+            },
+            "MultiPremier": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/k9bpa-nd884-2a06l-640e1.m3u8",
+            },
+
+            // HBO
+            "HBO": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/89ak-8f1hh-275b9-3ejih.m3u8",
+            },
+            "HBO_2": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/gl2pf-fm42m-ik7ec-acg1b.m3u8",
+            },
+            "HBO_Plus": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/o4k9f-ola22-20be9-69jo9.m3u8",
+            },
+            "HBO_Family": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/mcl11-2ja70-fnhg5-coojh.m3u8",
+            },
+            "HBO_Xtreme": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/5o27b-5alop-lcagn-834c8.m3u8",
+            },
+            "HBO_Signature": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/89n4a-hpa03-mpaah-1jdi4.m3u8",
+            },
+            "HBO_POP": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/le3g2-kjc00-e7d3p-m3aoc.m3u8",
+            },
+
+            // SERIES Y ENTRETENIMIENTO
+            "TNT_Series": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/o7hff-5j8a5-kfh7n-focci.m3u8",
+            },
+            "FX": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/fag8a-om4eh-afl1m-78310.m3u8",
+            },
+            "AMC": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/bi2ih-e4ike-kb3hi-4fhf5.m3u8",
+            },
+            "AMC_Series": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/f9em3-fn7h4-a75fc-c056h.m3u8",
+            },
+            "Atreseries": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/e2f1o-66f4a-9m7dn-aphj2.m3u8",
+            },
+            "Atrescine": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/kpnai-5f8d4-1pmch-5h5oe.m3u8",
+            },
+
+            // NOVELAS
+            "TNT_Novelas": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/3g734-9lf8i-cda6m-pm6a2.m3u8",
+            },
+            "RCN_Novelas": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/d89mh-phk3-5cmmm-343i3.m3u8",
+            },
+            "Novelisima": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/jlg10-a783n-d578n-mo8ch.m3u8",
+            },
+            "Kanal_D_Drama": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/i37hj-60mnd-n2kjo-2bljm.m3u8",
+            },
+            "Las_Estrellas": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/7o81a-4egdo-2noga-l5o6k.m3u8",
+            },
+
+            // INFANTILES
+            "Disney_Channel": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/g0hl8-7cc8c-58lnc-8d80n.m3u8",
+            },
+            "Disney_Jr": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/5kd3c-o845m-1fce7-n8520.m3u8",
+            },
+            "Cartoon_Network": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/f33ci-2pl6j-7pki5-goboo.m3u8",
+            },
+            "Tooncast": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/9649e-56dn4-4b1g5-dilf.m3u8",
+            },
+            "Paka_Paka": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/fmk71-o60f6-lb4p-jbad9.m3u8",
+            },
+            "Plim_Plim": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/mb6hp-85n73-pedjc-o07ef.m3u8",
+            },
+            "Canal_Infantil": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/d45pa-2lfp1-e8p5j-3k22i.m3u8",
+            },
+            "Baby_TV": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/6onej-bja31-d1m6a-99and.m3u8",
+            },
+            "Zoomoo": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/gpn0p-h6fp8-7689p-kkcc6.m3u8",
+            },
+
+            // DOCUMENTALES Y NATURALEZA
+            "Discovery_TLC": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/feo4p-6m8di-39pf4-j1h25.m3u8",
+            },
+            "Discovery_HyH": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/5ea6f-88j6g-p7811-p312n.m3u8",
+            },
+            "Love_Nature": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/f2ljo-jb10f-fjjfe-622fg.m3u8",
+            },
+            "TravelXP": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/hp6dm-89cho-6n1l-5f64l.m3u8",
+            },
+            "Nat_Geo": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/o6mj8-i7n93-67ej8-712ao.m3u8",
+            },
+
+
+            // CULTURA Y VARIEDADES
+            "Film_Arts": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/9nf94-h29hf-eme9n-iga8e.m3u8",
+            },
+            "Europa_Europa": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/caon2-ko5ei-l3gpc-e772c.m3u8",
+            },
+            "Hola_TV": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/cl7lf-54530-2egee-p14da.m3u8",
+            },
+            "Caras_TV": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/na8aa-7l8ko-4gd7d-p3613.m3u8",
+            },
+            "Ciudad_Magazine": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/6i9pl-i9pbb-nlbod-db19m.m3u8",
+            },
+            "Gustos_TV": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/jp51l-235gf-a6d71-e522k.m3u8",
+            },
+
+            // REGIONALES
+            "VEO_Santa_Fe": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/96blm-4g2p9-jim16-3b26n.m3u8",
+            },
+            "VEO_Santo_Tome": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/dnob-bh2e8-ie61h-da129.m3u8",
+            },
+            "Canal_Nueve_Interior": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/nlpbp-d0k2m-gn1k-35cj1.m3u8",
+            },
+
+            // INTERNACIONALES
+            "TVE": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/bc91i-kj0of-4eh3g-hlfn1.m3u8",
+            },
+            "Star_TVE": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/k4jn-k8e9h-i267a-acckf.m3u8",
+            },
+            "RAI_Italia": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/pblci-34e1c-fgf30-h25ib.m3u8",
+            },
+            "RTS_Santa_Fe": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/8hdof-e4mmh-nbj00-biga5.m3u8",
+            },
+
+            // MÚSICA Y ENTRETENIMIENTO
+            "Urbana_Play": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/3dn0g-j9clp-hngk7-ki23g.m3u8",
+            },
+            "MC": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/dk7p1-42odm-8n3cb-cnc2l.m3u8",
+            },
+            "Sun_Channel": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/7oj3g-cdej2-kl131-b7hd8.m3u8",
+            },
+            "HTV": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/l4b0l-njg9j-4ic97-4c15b.m3u8",
+            },
+            "Quiero": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/3la6l-e802j-1ekem-6k9o6.m3u8",
+            },
+
+            // OTROS
+            "Canal_Rural": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/465a1-enb61-ad17j-55bp2.m3u8",
+            },
+            "CM": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/i7gnj-ipp8m-bc68e-ad3hd.m3u8",
+            },
+            "Cablevideo_Eventos": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/m8hok-nellb-e6mo6-n858e.m3u8",
+            },
+            "Gourmet": {
+                url: "https://"+mt_edge+".edge-apps.net/hls/hhdd2-k3ik5-m2ha3-1b8pb.m3u8",
+            },
+        };
+
+        var id = getParameterByName('get');
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+            var sources = [];
+
+            if (config.url.includes('.m3u8')) {
+                sources.push({
+                    file: config.url
+                });
+            }
+
+            if (config.url.includes('.mpd') && config.k1 && config.k2) {
+                sources.push({
+                    file: config.url,
+                    drm: { "clearkey": { "keyId": config.k1, "key": config.k2 } }
+                });
+            }
+
+            //JWWWWWW
+            jwplayer("player").setup({
+                playlist: [{
+                    title: "",
+                    description: "canalesonline.netlify.app",
+                    sources: sources
+                }],
+                width: "100%",
+                height: "100%",
+                autostart: true,
+                mute: false,
+                cast: {},
+                sharing: {},
+                // androidhls: true,
+                displaytitle: true,
+                stretching: "uniform",
+                preload: "auto",
+                liveSyncDuration: 3,
+            });
+
+        }
+    </script>
+</body>
+
+</html>

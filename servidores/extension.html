@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <script src="https://compo-enteesdewebb.glitch.me/adcash_lib.js"></script> -->
+    <!-- <meta name="referrer" content="no-referrer"> -->
+    <title>exten</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <!--   -->
+
+
+    <style>
+        :root {
+            --nav_pantalla: 80px;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #player {
+            /* position: relative; */
+            width: 100%;
+            /* padding-top: 56.25%; */
+            background: #000;
+        }
+
+        #player iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .alert-card {
+            background-color: #333;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+        }
+
+        .alert-card h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        .alert-card .boxicon {
+            font-size: 48px;
+            color: #ff0;
+        }
+
+        .alert-card p {
+            margin: 10px 0;
+            color: #ebebeb;
+        }
+
+        @media (max-width: 480px) {
+            .alert-card {
+                max-width: 90%;
+                padding: 5px;
+                /* margin-right: 50px; */
+            }
+
+            .alert-card h2 {
+                font-size: 20px;
+            }
+
+            .alert-card .boxicon {
+                font-size: 36px;
+            }
+
+            .alert-card p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .alert-card {
+                max-width: 80%;
+                padding: 25px;
+            }
+
+            .alert-card h2 {
+                font-size: 22px;
+            }
+
+            .alert-card .boxicon {
+                font-size: 42px;
+            }
+
+            .alert-card p {
+                font-size: 16px;
+            }
+        }
+
+        a {
+            color: #0f0 !important;
+            text-decoration: underline;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="player" class="hidden"></div>
+        <div id="alerta-extension" class="hidden alert-card text-center bg-dark bg-gradient">
+            <i class="bx bx-error-circle boxicon"></i>
+            <h2>Instalar Extensión VideoPlayer</h2>
+            <p>Para ver los canales, necesitas añadir la extensión VideoPlayer</p>
+            <p>Es un reproductor nativo para videos.</p>
+            <p>Una vez instalada la extensión en tu Navegador, recargar esta página.</p>
+            <p>Recuerda: estos canales estan disponibles en Argentina, Paraguay, Uruguay o con VPN de estos
+                Paises.</p>
+            <!-- <p>Una vez instalada la extensión, recarga la página.</p> -->
+            <a class="btn btn-secondary rounded"
+                href="https://chromewebstore.google.com/detail/reproductor-mpdm3u8m3uepg/opmeopcambhfimffbomjgemehjkbbmji"
+                target="_blank">Instalar ahora</a>
+        </div>
+    </div>
+
+
+    <!-- <script src="https://canalesonline.netlify.app/js/script-config.js"></script> -->
+    <script src="../js/script-config.js"></script>
+    <script type="text/javascript">
+
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        // Función para verificar si es Windows o Linux
+        function isWindowsPC() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return (/windows|linux/.test(userAgent)) && !(/mobile|tablet|iphone|ipod|android/.test(userAgent));
+        }
+
+        function isAndroid() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return /android/.test(userAgent) && !/android phone/.test(userAgent);
+        }
+
+        // Función para mostrar el mensaje de dispositivo no compatible
+        function showUnsupportedDeviceMessage() {
+            const unsupportedMessage = document.createElement('div');
+            unsupportedMessage.classList.add('alert-card', 'text-center', 'bg-dark', 'bg-gradient');
+            unsupportedMessage.innerHTML = `
+            <i class='bx bx-error-circle boxicon'></i>
+            <h2>Dispositivo no compatible</h2>
+            <p>Esta Opcion solo es compatible con PC con Windows. Por favor, usa un PC para acceder.</p>
+            `;
+            document.querySelector(".container").style.display = "none";
+            document.body.appendChild(unsupportedMessage);
+        }
+
+        let stream = getParameterByName('get');
+
+        // Verificar si es un dispositivo compatible antes de ejecutar el código principal
+        if (!isWindowsPC()) {
+            if (isAndroid()) {
+                window.location.href = "extension_movil.html?get=" + stream;
+            } else {
+                showUnsupportedDeviceMessage();
+            }
+        } else {
+
+            const links = [
+                // "https://elwood65-vadase.hf.space/proxy/hls/manifest.m3u8?api_password=shadow65&d=",
+                "https://simonphil-tvproxyhd.hf.space/proxy/hls/manifest.m3u8?api_password=pistols011&d="
+            ];
+            const linkAleatorio = links[Math.floor(Math.random() * links.length)];
+
+            var ConfiguracionCanales = {
+                "HBO": {
+                    url: "https://1140-tbx.vrioott.com/hbo/manifest.mpd",
+                    k1: "90462f6f4a355648808eb5547109d037",
+                    k2: "a2fa52eb8660b8ab5b605ff0ff6cd3a6"
+                },
+                "HBO2": {
+                    url: "https://1137-tbx.vrioott.com/hbo2la/manifest.mpd",
+                    k1: "97e3eead4a275f6488f6da95a1cc3037",
+                    k2: "e9be0998551ff741ff4990d7458fdb9b"
+                },
+                "HBO_FAMILY": {
+                    url: "https://1139-tbx.vrioott.com/hbofamilyla/manifest.mpd",
+                    k1: "54c3ffc3df2e512e8022ad7b26ddf89e",
+                    k2: "4b60948c3326b3a2b32f6e5e32211fb3"
+                },
+                "HBO_PLUS": {
+                    url: "https://1141-tbx.vrioott.com/hboplusla/manifest.mpd",
+                    k1: "048d7d9294dc579d834216029481b0be",
+                    k2: "68053790bdbc2a2f634dc7665ecd3224"
+                },
+                "HBO_MUNDI": { //Protegido
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/HBOMundi/live_dash_cld/HBOMundi.mpd",
+                    k1: "bea5da44f49a7e30d21a6e0a2fddc225",
+                    k2: "0185b209bf50e2a1b1cfd416db5177de"
+                },
+                "HBO_POP": { //Protegido
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/HBOPop/live_dash_cld/HBOPop.mpd",
+                    k1: "d5cf1ad9c7bc0a20051535aff63a5c04",
+                    k2: "019ea0de590a01385f50ae3fe090d19e"
+                },
+                "HBO_XTREME": {  //Protegido
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/HBOXtreme/live_dash_cld/HBOXtreme.mpd",
+                    k1: "33d4823ed2cae55c19fa0a7c20fa4235",
+                    k2: "a64c4d55edb20046802e76332c8aa75e"
+                },
+                "HBO_SIGNATURE": {
+                    url: "https://1143-tbx.vrioott.com/hbosignaturela/manifest.mpd",
+                    k1: "2d3f63f3a7ab5b938aa5e09b8113461f",
+                    k2: "37d7c3a659c48b4c3b33221cd13e3625"
+                },
+                "UNIVERSAL": {
+                    url: "https://1243-tbx.vrioott.com/universalchannelsouth/manifest.mpd",
+                    k1: "5f930acc5e255184812d5e9b8e9721be",
+                    k2: "0aefd7ac649fc1f21bec2a0594d8b0a7"
+                },
+                "UNIVERSAL_CINEMA": {
+                    url: "https://1253-tbx.vrioott.com/universalcinema/manifest.mpd",
+                    k1: "1d7102597e3650b382140e257fd56ffc",
+                    k2: "94866144a3c03e44825642087dcfe52f"
+                },
+                "UNIVERSAL_COMEDY": {
+                    url: "https://1252-tbx.vrioott.com/universalcomedy/manifest.mpd",
+                    k1: "8e3e1b7120e5522d8bb1b4620981478f",
+                    k2: "32681240431317925ba1e740396e19fb"
+                },
+                "UNIVERSAL_CRIME": {
+                    url: "https://1254-tbx.vrioott.com/universalcrimeeste/manifest.mpd",
+                    k1: "a2b0446cd3db572d85e1c256e563723b",
+                    k2: "e0fa8bcfcc37e45405cb41cab2f4adcc"
+                },
+                "UNIVERSAL_PREMIERE": {
+                    url: "https://1256-tbx.vrioott.com/universalpremiereeste/manifest.mpd",
+                    k1: "cb514eb614e8547882e90ae7e96f066d",
+                    k2: "f3c541f4052e5eba5a749b0dbd1f910f"
+                },
+                "UNIVERSAL_REALITY": {
+                    url: "https://1252-tbx.vrioott.com/universalreality/manifest.mpd",
+                    k1: "25e836b8ec695e3a8d0d0b1c50c54d31",
+                    k2: "48a7980e9000888ef52aca5377920e98"
+                },
+                "TNT": {
+                    url: "https://1227-tbx.vrioott.com/tnt/manifest.mpd",
+                    k1: "696ef7b0a18c5c728924a6e653c0b214",
+                    k2: "c94cb1dba40b7260e8bc565e40957085"
+                },
+                "TNT_SERIES": { //Protegido
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/TNTSeries/live_dash_cld/TNTSeries.mpd",
+                    k1: "2d15f2d2f8f81fbacd82391f5889aa3a",
+                    k2: "97c7a5029500a81d37f2b70d6276fc9a"
+                },
+                "TNT_NOVELAS": {
+                    url: "https://1212-tbx.vrioott.com/tntnovelas/manifest.mpd",
+                    k1: "e5a39dfb732f55858f94324c01c708da",
+                    k2: "97800a50f0a9d3682520abf9c557ef55"
+                },
+                "HGTV": {
+                    url: "https://1144-tbx.vrioott.com/hgtvlat/manifest.mpd",
+                    k1: "a7ad56ec523c5f2780084b23cfcb3ba9",
+                    k2: "388b3f1ddb676b9b9aa95335a1133dea"
+                },
+                "HISTORY": {
+                    url: "https://1148-tbx.vrioott.com/history/manifest.mpd",
+                    k1: "a3c437d913ba5594826873b1759143df",
+                    k2: "744b5c0c21a1b87e1a258be6c5efb4f8"
+                },
+                "HISTORY2": {
+                    url: "https://1147-tbx.vrioott.com/historychannel2/manifest.mpd",
+                    k1: "128b70962be15b6487813621e51ff690",
+                    k2: "7946f5243f3f3f3defd5374568953489"
+                },
+                "SPACE": { //Protegido
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/Space/live_dash_cld/Space.mpd",
+                    k1: "fd7516e74eafbf6f9664a9465149f179",
+                    k2: "6aa2935d17fd4e1e8963ecbef4edb82b"
+                },
+                "FX": { //Protegido
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/FX/live_dash_cld/FX.mpd",
+                    k1: "bbb8c81822a1628f4986c6379ca5406a",
+                    k2: "b661265baada5324eb826224a4f358bd"
+                },
+                "AXN": {
+                    url: "https://1019-tbx.vrioott.com/axn/manifest.mpd",
+                    k1: "09bd06aeee56585a8c168c4f67680ea6",
+                    k2: "27b3f3be683f6901ab6318a23e84808a"
+                },
+                "CINEMAX": { //Protegido
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/Cinemax/live_dash_cld/Cinemax.mpd",
+                    k1: "3b3d89f0e099f750bab4f8c2ebc4c7ec",
+                    k2: "114313f734e7a8e84b0ca6d16bd652cb"
+                },
+                "CINECANAL": {
+                    url: "https://1043-tbx.vrioott.com/cinecanalcolombia/manifest.mpd",
+                    k1: "cb20836018da53c180562a8e1b02721b",
+                    k2: "8283ac838de5028445bb7efbd7db3a28"
+                },
+                "ADULT_SWIM": {
+                    url: "https://1234-tbx.vrioott.com/adultswim/manifest.mpd",
+                    k1: "86492a45fb375df181e7afbeb7e62e7f",
+                    k2: "d28e2b8a4e64cf58e1c11f2cf5d9c16b"
+                },
+                "SONY": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/Sony/live_dash_cld/Sony.mpd",
+                    k1: "258b455eee76d6406f87dd02ddc735d9",
+                    k2: "dd8aad74c79fe839cc142d0ff6694473"
+                },
+                "STAR_CHANNEL": {
+                    url: "https://1196-tbx.vrioott.com/starchannelarg/manifest.mpd",
+                    k1: "88ed2898654f5bb184aa1279ef7921a3",
+                    k2: "ec2d4b3b1feb73dec2b27a20b5fdecb9"
+                },
+                "STUDIO_UNIVERSAL": {
+                    url: "https://1210-tbx.vrioott.com/studiouniversalla/manifest.mpd",
+                    k1: "de5255dd92e15aee8c74d68f33bee1c9",
+                    k2: "8a72719b28d1090ef38548053c9495ba"
+                },
+                "PARAMOUNT": {
+                    url: "https://1181-tbx.vrioott.com/paramountmex/manifest.mpd",
+                    k1: "1c85196f223158f988c54f60d8f27dd0",
+                    k2: "199c5562e6e1001723ffc972f05c2586"
+                },
+                "USA_NETWORK": {
+                    url: "https://1211-tbx.vrioott.com/usala/manifest.mpd",
+                    k1: "e4aca00f4e8958908d33289b6fb8ce8c",
+                    k2: "2265fa2972a2ecb9d379add736b7fe78"
+                },
+                "WARNER": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/Warner/live_dash_cld/Warner.mpd",
+                    k1: "0cd16f9eade5bddab41fd3d59f804bcb",
+                    k2: "885dc93b0692e2efe37449a4a56173ef"
+                },
+                "TV_Paisaje_Guate": {
+                    url: "https://use22-0.playlist.ttvnw.net/v1/playlist/CuMFQZ7BuMKAd05nZwAC-8uZgEcB0yqFd3QDctPWSdbTIFLbqpDR-CAPnznI_TnOqJX1fYaO8lhiwsGGHPkvoL4sJqju0n4hyKmdKXkj__60AzEJ_La41hP9PxuB8cKeXQrPu8QwhhRKJbvCpOZhcL6BSUVIqDl5Clpp6iwTGrcWzblOLTK5_OvY-rMomJ3LBSoengmryTvc1R4pLlKBacG1Blyyea7dBnDygICoF9Ab8W0w03MLiWX7Wga_OPrbFH0dxzmTVClMNnNH7A8xNNRW0Unl5NG0_Xs2836hWIjPM9WamwdaAP04f8sY7XBL0QP54wgW6Yd9_vCSuiihRvMpZmh4OWgP4_M5pw0kce0UJzsUCyBK9H7tm1rbMk_WspsUHDqOgPWDh93GrB6WvHUCD3UJPQ5d6VuFuOn1bwO5A3I-UHwcqOYQSjH9j0h-5-SC6qvLHzmr33JK4nftUT228IHsG9kBCys-NIB1F98PKu839YJwyB4X5Fepp60yGVThorQuT4oOCXk0FvYsohF2ZUijNZJeVcJefJQY_kbAOo3KXavnNljN2U_PBH7EvSPKJ-76pagc80rbzGE0pFFKxwTxemV0_0nl_bXtV8rvJRQ7iudwDVqMXqwGb-0ozsebri3CaQ0lhTZ8sZaVC87RMyTWMbRVfaVh-B0nmki9S_0ZeXSWj5yElZJDH6hLxg5VglypGbaVAUx-fIgbann_9Ds7muM3IFW8Y_NLHl4XXrnDHbzrJIPFCSfbC7IPNq1qpc4g4iAseIWipdKnmWtZL-zfhwDND9wqaZnvLLZ6jYiE2vZi5e5_LGxtfCso2qf4NzJ9zBb1aLhzZsLNrdmBvwoR0Z_t9N5uOCoKf_eoRWyW3GGM8NbSu_SfHJfHxUab2gSe6agigsxkgnCBBD7NfHyPAWckI8XFExqkCAiLN1xQHpPARuvGn-L2CXU4N5NY7Rl2CKz1syMmI8bH4oYOZlp2OxoM9enW97azbZsylYAGIAEqCXVzLWVhc3QtMjDyCw.m3u8https://use22-0.playlist.ttvnw.net/v1/playlist/CuMFQZ7BuMKAd05nZwAC-8uZgEcB0yqFd3QDctPWSdbTIFLbqpDR-CAPnznI_TnOqJX1fYaO8lhiwsGGHPkvoL4sJqju0n4hyKmdKXkj__60AzEJ_La41hP9PxuB8cKeXQrPu8QwhhRKJbvCpOZhcL6BSUVIqDl5Clpp6iwTGrcWzblOLTK5_OvY-rMomJ3LBSoengmryTvc1R4pLlKBacG1Blyyea7dBnDygICoF9Ab8W0w03MLiWX7Wga_OPrbFH0dxzmTVClMNnNH7A8xNNRW0Unl5NG0_Xs2836hWIjPM9WamwdaAP04f8sY7XBL0QP54wgW6Yd9_vCSuiihRvMpZmh4OWgP4_M5pw0kce0UJzsUCyBK9H7tm1rbMk_WspsUHDqOgPWDh93GrB6WvHUCD3UJPQ5d6VuFuOn1bwO5A3I-UHwcqOYQSjH9j0h-5-SC6qvLHzmr33JK4nftUT228IHsG9kBCys-NIB1F98PKu839YJwyB4X5Fepp60yGVThorQuT4oOCXk0FvYsohF2ZUijNZJeVcJefJQY_kbAOo3KXavnNljN2U_PBH7EvSPKJ-76pagc80rbzGE0pFFKxwTxemV0_0nl_bXtV8rvJRQ7iudwDVqMXqwGb-0ozsebri3CaQ0lhTZ8sZaVC87RMyTWMbRVfaVh-B0nmki9S_0ZeXSWj5yElZJDH6hLxg5VglypGbaVAUx-fIgbann_9Ds7muM3IFW8Y_NLHl4XXrnDHbzrJIPFCSfbC7IPNq1qpc4g4iAseIWipdKnmWtZL-zfhwDND9wqaZnvLLZ6jYiE2vZi5e5_LGxtfCso2qf4NzJ9zBb1aLhzZsLNrdmBvwoR0Z_t9N5uOCoKf_eoRWyW3GGM8NbSu_SfHJfHxUab2gSe6agigsxkgnCBBD7NfHyPAWckI8XFExqkCAiLN1xQHpPARuvGn-L2CXU4N5NY7Rl2CKz1syMmI8bH4oYOZlp2OxoM9enW97azbZsylYAGIAEqCXVzLWVhc3QtMjDyCw.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "Cinelatino": {
+                    // {"317ec876419f5ba380173da87301051b":"5c7332d22ebda967d3be94bbb48b6aa0","d9fa54005f23593b8a5ea3a610715285":"f976a85e90c20ed5c012d31d22d2f305","22d26ddea31851728e97e5d64aa45b3c":"8e0458acfb9e5bab38e36a83cf51ab7e","14c6468aad565259a32023577ac79a39":"51638a61bf83b2ba06253831d986762c"}
+                    url: "https://1045-tbx.vrioott.com/cinelatino/manifest.mpd?ck=eyIzMTdlYzg3NjQxOWY1YmEzODAxNzNkYTg3MzAxMDUxYiI6IjVjNzMzMmQyMmViZGE5NjdkM2JlOTRiYmI0OGI2YWEwIiwiZDlmYTU0MDA1ZjIzNTkzYjhhNWVhM2E2MTA3MTUyODUiOiJmOTc2YTg1ZTkwYzIwZWQ1YzAxMmQzMWQyMmQyZjMwNSIsIjIyZDI2ZGRlYTMxODUxNzI4ZTk3ZTVkNjRhYTQ1YjNjIjoiOGUwNDU4YWNmYjllNWJhYjM4ZTM2YTgzY2Y1MWFiN2UiLCIxNGM2NDY4YWFkNTY1MjU5YTMyMDIzNTc3YWM3OWEzOSI6IjUxNjM4YTYxYmY4M2IyYmEwNjI1MzgzMWQ5ODY3NjJjIn0=",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "Gourmet": {
+                    // https://1093-tbx.vrioott.com/gourmet/manifest.mpd?ck=eyJiY2Y5YzcyMmU1ZTk1OTlmODY3ZWM3MzAyOGQxMDQ5ZCI6IjE1ZWQ4ZTAzOTkyMDFmMTQ4MjFjZWI5MGJmMDZhY2RjIn0=&title=TeleGratuita
+                    url: "https://1093-tbx.vrioott.com/gourmet/manifest.mpd",
+                    k1: "bcf9c722e5e9599f867ec73028d1049d",
+                    k2: "15ed8e0399201f14821ceb90bf06acdc"
+                },
+                "FMH_movies": {
+                    url: "http://170.239.188.252:8000/play/a04b/index.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "DAZN_FORMULA1": {
+                    url: "https://hipaf6u2j3pwygg.nice-flower.store/v3/director/VE1OTQ5MWM3M2RmN2E0LTJhMmEtYTNjNC1mMmMyLWFlMjEyZmYz/master.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+
+                // "DSports_Plus": {
+                //     url: "https://1071-abc-da-mt.dtvott.com/dash_live_1071/manifest.mpd",
+                //     k1: "f19c3a8c638d52c2ab77b9566bcb2996",
+                //     k2: "7400a9f905f172d5d74d7dc440724c8e"
+                // },
+
+                "TELEFE": {
+                    url: "https://telefe.com/Api/Videos/GetSourceUrl/694564/0/HLS?.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "DSPORTS": {
+                    // url: "https://elwood65-vadase.hf.space/proxy/hls/manifest.m3u8?api_password=shadow65&d=https://otakon.bemtv.cn/STREAM/22645/playlist.m3u8",
+                    // url: "https://simonphil-tvproxyhd.hf.space/proxy/hls/manifest.m3u8?api_password=pistols011&d=https://otakon.bemtv.cn/STREAM/22645/playlist.m3u8",
+                    // url: linkAleatorio + "https://otakon.bemtv.cn/STREAM/22645/playlist.m3u8",
+                    url: "http://177.53.155.236:8000/play/a0co/index.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "DSPORTS2": {
+                    // url: "https://elwood65-vadase.hf.space/proxy/hls/manifest.m3u8?api_password=shadow65&d=https://otakon.bemtv.cn/STREAM/22647/playlist.m3u8",
+                    url: "https://otakon.bemtv.cn/STREAM/22647/playlist.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "natgeowild": {
+                    url: "http://185.189.225.150:85/natgeowild/index.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "ESPN_sensa": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/ESPN/live_dash_cld/ESPN.mpd?ck=eyI2ZDI0M2ViZDdhNTdiZWE0YjRiMDUyYWUxM2Y0YzA1MSI6IjVjMTkyNTg3OWRlODczZDQzYjdjMjU5MjU5MDI1MzliIn0=&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "ESPN2_sensa": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/ESPN2/live_dash_cld/ESPN2.mpd?ck=eyI2YThiZDY0OTZkMjQ0NDMwMWM5ZDRkMGZlY2E5ZDc1YiI6IjNmZDE5Njc3MDFiYTI4OTc3MjkxODdiNjAwOTRjMTU4In0=&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "ESPN3_sensa": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/ESPN3/live_dash_cld/ESPN3.mpd?ck=eyI4ODM2MjUyMDU5Yjc5M2E3OTE3MzgzOGRjMTE4NmZmMSI6ImFhMTZmOTBlNTFjZTU2NTJkYWI5MzgzNGU0MzRjYWE4In0=&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "ESPN4_sensa": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/ESPN4/live_dash_cld/ESPN4.mpd?ck=eyIwMzQ2NTNkMzQxM2YyM2U4NzI0OWQxZmI3ZTY4MzU5YSI6ImEwZDZiODQ5ZjE3YzQzMGU5Y2MwMmQwNzczOWE0ZTRhIn0=&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "ESPN5_sensa": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/ESPN5Bolivia/live_dash_cld/ESPN5Bolivia.mpd?ck=eyJhZmFkYzU2ZGI3ZTk2OTBlZmRhZGVkNWJiYTBlNmQ1ZCI6IjMzNjNhNTg4MDAxODgyMWJkZDg1NGRkY2RmODc5NzgwIn0=&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "ESPN6_sensa": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/bpk-tv/ESPN6Bolivia/default/index.mpd?ck=eyIyNjNiNDMzZmFlZDQwZDIyMWM4ZGU0Yjc3MTEzZWZjZSI6IjBjZTUwOTY4OWMwYTZhOWJlNTdkMzY2Y2U0MTI5NjUwIn0=&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "ESPN7_sensa": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/ESPN7Bolivia/live_dash_cld/ESPN7Bolivia.mpd?ck=eyIwNTViMjY4NzNkNzRiYzlhN2YxMGJkMTA5MDBmNDYxYyI6IjU1ZmYxZjY2ZGQ5NDI5MDQ3NjY3MmUwYzExNDNjMWEyIn0=&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "ESPNPremium_sensa": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/bpk-tv/ESPNPremium/default/index.mpd?ck=eyJmODk0M2QxMTRlMjUxNTFjOGFlNGY2MTIzNTFkNWE1ZiI6IjdmMzRjOWE3MGM4MzYwMjBjYmMzMjczYzQyN2ZmMjc3In0=&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "TYCSports_sensa": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/TYCSports/live_dash_cld/TYCSports.mpd?ck=eyI1M2QwY2Y2YzFkNDljMTZmNTE4MGY4NmUxODcwYjAwZiI6IjdlYjY3NDNiNWY0NGI1MmJhMjdjODgyMjljOGM3YWUyIn0=&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "tntsports_supercanal": {
+                    url: "https://supercanal-cdn2.tbxdrm.com/tntsports/manifest.mpd?ck=eyIzMmE2NzZlMjhhMzM1OTBiOTRhNmU0OThhZDgzYjQ4NiI6ImU3NGQzYTQ5MGU4MzAzNWJhNGZiNjJkOTBmNzhkMzBhIiwKIjZmYzQ2MTUyZjVmOTVmYmQ5YjVjZDg2Y2E3MGVjOGNjIjoiOTIxNWMzMTQ0ZWY4ODQxM2Y4NTgxOTZkOWI3OTE5OGYiLAoiMjA5NzdjMjIzN2UzNTExNzkzY2I3MzFjNDFmNTEzYWQiOiJlNmZhOGYyN2I1MTBiZWYxNmQwYzZjMGM0M2ViMTEyZSJ9&title=TeleGratuita&headers=eyJvcmlnaW4iOiJodHRwczovL3d3dy5taW8udHYiLCJyZWZlcmVyIjoiaHR0cHM6Ly93d3cubWlvLnR2LyJ9",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "CartoonNetwork_sensa": {
+                    url: "https://smt-usr-edge02.sensa.com.ar/live/eds/CartoonNetwork/live_dash_cld/CartoonNetwork.mpd?ck=eyJjN2VmZTYzYmJmNjgyYTQxMjRmYjM0YzAxZWI3YTBhNyI6IjQ4NjY3NTExYjg2NjhkZjk2ZmEzYWJhYTYyM2U0ZjY5In0=&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "Cartoonnetwork_vrioott": {
+                    url: "https://1037-tbx.vrioott.com/cartoonnetwork/manifest.mpd?ck=eyJkMjhhNWRiYTAyM2E1MjkzODFlZjcyY2RmODE2NmQ4MiI6IjdjNzdhNTFmNjAzY2I5NzczZjc4MzM0N2UxOTc0MTA1In0%3D",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "CH_AUNAR": {
+                    url: "https://apps.playme.com.ar/dash/CH_AUNAR/playlist.mpd",
+                    k1: "7e44a3243ee24ced8c4c2ac23fc21a46",
+                    k2: "9288c2bb80982ded2f76d72f3e7ad804"
+                },
+                "CH_UNIFE": {
+                    url: "https://apps.playme.com.ar/dash/CH_UNIFE/playlist.mpd",
+                    k1: "f9fe354492524a53bd3862f63835a65a",
+                    k2: "87a0f5c641b8d35761c7bc7ecbeddea0"
+                },
+                "Televidaar": {
+                    url: "https://unlimited1-saopaulo.dps.live/televidaar/televidaar.smil/playlist.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "canal6sanrafael": {
+                    url: "https://lilac01.pontiscloud.com/bpk-tv/canal6sanrafael/default/index.mpd",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "canal6sanrafael_2": {
+                    url: "https://cdn.sensa.com.ar/bpk-tv/canal6sanrafael/default/index.mpd?headers=eyJyZWZlcmVyIjoiaHR0cHM6Ly9wbGF5ZXIuc2Vuc2EuY29tLmFyLyZ3ZWJ0b2tlbj0xLjAifQ%3D%3D",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "tvasanrafael": {
+                    url: "https://cdn.sensa.com.ar/bpk-tv/tvasanrafael/default/index.mpd?headers=eyJyZWZlcmVyIjoiaHR0cHM6Ly9wbGF5ZXIuc2Vuc2EuY29tLmFyLyZ3ZWJ0b2tlbj0xLjAifQ%3D%3D",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "FMH_Movies": {
+                    url: "http://45.173.201.51:4000/play/a01a/index.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "FMH_Family": {
+                    url: "http://45.173.201.51:4000/play/a01b/index.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "FMH_Kids": {
+                    url: "http://45.173.201.51:4000/play/a01c/index.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "FMH_Animotion": {
+                    url: "http://45.173.201.51:4000/play/a01e/index.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "MX_Drama": {
+                    url: "http://190.108.83.142:8000/play/a002/index.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "MX_Classic": {
+                    url: "http://190.108.83.142:8000/play/a004/index.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "MX_Prime": {
+                    url: "http://190.108.83.142:8000/play/a005/index.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+                "GranHermano": {
+                    url: "https://vrio-cloud.canal6.eu.org/memfs/fd9d9a00-66c9-4189-8a10-82c4c31d4b6b.m3u8",
+                    k1: "vacio",
+                    k2: "vacio"
+                },
+            };
+
+
+            var config = ConfiguracionCanales[stream];
+
+            // Convertir keyId y key a una cadena JSON
+            if (config.k1 && config.k2) {
+                if (config.k1 != "vacio" && config.k2 != "vacio") {
+                    var keyString = `"${config.k1}":"${config.k2}"`;
+                    var base64Key = btoa(keyString);
+
+                    // Construir la URL con el key ofuscado en base64
+                    var extensionUrl = `chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#${config.url}?ck=${encodeURIComponent(base64Key)}&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9`;
+                    // var extensionUrl = `chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#${config.url}?ck=${encodeURIComponent(base64Key)}`;
+                } else {
+                    var extensionUrl = "chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#" + config.url;
+                }
+
+                // console.log("Extension:"+extensionUrl);
+                // Mostrar el reproductor o el mensaje de extensión según corresponda
+                const playerDiv = document.getElementById("player");
+                const alertaDiv = document.getElementById("alerta-extension");
+
+                isExtensionInstalled(
+                    () => {
+                        playerDiv.classList.remove("hidden");
+                        // jwplayer("player").setMute(false);
+                        playerDiv.innerHTML = `<iframe id="iframe" allow="encrypted-media" allowfullscreen src="${extensionUrl}"></iframe>`;
+                    },
+                    () => {
+                        alertaDiv.classList.remove("hidden");
+                    }
+                );
+            } else {
+                alert('KeyId o Key no definidos.');
+            }
+        }
+
+        // Función para verificar si la extensión está instalada
+        function isExtensionInstalled(installedCallback, notInstalledCallback) {
+            const img = document.createElement('img');
+            img.onload = installedCallback;
+            img.onerror = notInstalledCallback;
+            img.src = 'chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/play-on.png';
+        }
+    </script>
+</body>
+
+</html>
