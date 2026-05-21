@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+    <title>Grilla Canales Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            padding: 12px 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 110;
+        }
+
+        .header h1 {
+            margin-bottom: 5px;
+            font-size: 1.4em;
+        }
+
+        .current-time-display {
+            font-size: 1em;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.1em;
+            }
+
+            .current-time-display {
+                font-size: 0.85em;
+            }
+        }
+
+        .controls {
+            margin-top: 10px;
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .controls button {
+            padding: 6px 12px;
+            margin: 0;
+            border: none;
+            border-radius: 8px;
+            background: white;
+            color: #1e40af;
+            font-weight: 600;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .controls button {
+                padding: 5px 10px;
+                font-size: 0.75em;
+            }
+        }
+
+        .controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+
+        .timeline-container {
+            position: relative;
+            overflow-x: auto;
+            overflow-y: visible;
+        }
+
+        .timeline-header {
+            position: sticky;
+            top: 0;
+            background: #000000;
+            z-index: 50;
+            padding: 8px 0;
+            border-bottom: 2px solid #3b82f6;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .time-labels {
+            display: flex;
+            position: relative;
+            height: 30px;
+            margin-left: 150px;
+        }
+
+        @media (max-width: 768px) {
+            .time-labels {
+                margin-left: 100px;
+                height: 25px;
+            }
+        }
+
+        .time-label {
+            position: absolute;
+            text-align: center;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: #9ca3af;
+            white-space: nowrap;
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .time-label {
+                font-size: 0.7em;
+            }
+        }
+
+        .time-label.major {
+            color: #3b82f6;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            .time-label.major {
+                font-size: 0.8em;
+            }
+        }
+
+        .channels-container {
+            position: relative;
+            margin-left: 0;
+            /* padding: 20px 0; */
+        }
+
+        .channel-row {
+            display: flex;
+            align-items: stretch;
+            border-bottom: 1px solid #1f2937;
+            min-height: 50px;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .channel-row {
+                min-height: 45px;
+            }
+        }
+
+        .channel-name {
+            width: 150px;
+            padding: 8px 10px;
+            background: #1f2937;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: sticky;
+            left: 0;
+            z-index: 15;
+            border-right: 2px solid #374151;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .channel-name:hover {
+            background: #2d3748;
+        }
+
+        .channel-name.has-link:hover {
+            background: #1e40af;
+        }
+
+        @media (max-width: 768px) {
+            .channel-name {
+                width: 130px;
+                padding: 6px 8px;
+            }
+        }
+
+        .channel-name-text {
+            font-weight: 700;
+            font-size: 0.85em;
+            margin-bottom: 2px;
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .channel-name-text {
+                font-size: 0.75em;
+            }
+        }
+
+        .channel-number-text {
+            font-size: 0.7em;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .channel-number-text {
+                font-size: 0.65em;
+            }
+        }
+
+        /* .programs-timeline {
+            flex: 1;
+            position: relative;
+            display: flex;
+        }
+
+        .program-block {
+            position: absolute;
+            height: 40px;
+            top: 5px;
+            background: linear-gradient(135deg, #4b5563, #374151);
+            border-radius: 6px;
+            padding: 5px 8px;
+            border: 1px solid #6b7280;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        } */
+
+        .programs-timeline {
+            flex: 1;
+            position: relative;
+            display: flex;
+            margin-left: 0;
+            overflow: visible;
+        }
+
+        .program-block {
+            position: absolute;
+            height: 40px;
+            /* top: 5px; */
+            background: linear-gradient(135deg, #4b5563, #374151);
+            border-radius: 6px;
+            padding: 5px 8px;
+            border: 1px solid #6b7280;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 0;
+        }
+
+        .program-block.live {
+            /* position: sticky !important;
+            left: 0 !important;
+            transform: none !important; */
+            z-index: 0;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-color: #60a5fa;
+            animation: liveGlow 2s infinite;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .program-block {
+                height: 35px;
+                padding: 4px 6px;
+            }
+        }
+
+        .program-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
+            z-index: 5;
+            background: linear-gradient(135deg, #5b6573, #475569);
+        }
+
+        @keyframes liveGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+            }
+
+            50% {
+                box-shadow: 0 0 25px rgba(59, 130, 246, 0.9);
+            }
+        }
+
+        .program-title {
+            font-weight: 600;
+            font-size: 0.8em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @media (max-width: 768px) {
+            .program-title {
+                font-size: 0.7em;
+            }
+        }
+
+        .program-time-range {
+            font-size: 0.65em;
+            color: rgba(255, 255, 255, 0.7);
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .program-time-range {
+                font-size: 0.6em;
+            }
+        }
+
+        .live-indicator {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            /* background: #3b82f6; */
+            background: red;
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+        }
+
+        .live-indicator::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #3b82f6;
+        }
+
+        .live-time-label {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3b82f6;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: 0 2px 10px rgba(59, 130, 246, 0.5);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            font-size: 1.2em;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error {
+            background: #ff6b6b;
+            color: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .grid-lines {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 150px;
+            right: 0;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .grid-lines {
+                left: 100px;
+            }
+        }
+
+        .grid-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .grid-line.major {
+            background: rgba(59, 130, 246, 0.2);
+            width: 2px;
+        }
+
+        .filter-bar {
+            background: #1f2937;
+            padding: 10px 15px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            border-bottom: 1px solid #374151;
+        }
+
+        @media (max-width: 768px) {
+            .filter-bar {
+                padding: 8px 10px;
+                gap: 6px;
+            }
+        }
+
+        .filter-bar input,
+        .filter-bar select {
+            padding: 7px 12px;
+            border: 2px solid #374151;
+            border-radius: 8px;
+            background: #111827;
+            color: white;
+            font-size: 0.85em;
+        }
+
+        @media (max-width: 768px) {
+
+            .filter-bar input,
+            .filter-bar select {
+                padding: 6px 10px;
+                font-size: 0.75em;
+            }
+        }
+
+        .filter-bar input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .filter-bar input {
+                min-width: 150px;
+            }
+        }
+
+        .filter-bar input:focus,
+        .filter-bar select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .program-block.past {
+            opacity: 0.3;
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header" style="display: none;">
+        <h1>📺 Grilla TV Argentina - Vista Timeline (24hs)</h1>
+        <div class="current-time-display" id="currentTimeDisplay"></div>
+        <div class="controls">
+            <button onclick="loadSchedule()" id="loadBtn">🔄 Cargar Programación</button>
+            <button onclick="scrollToNow()">⏰ Ir a Ahora</button>
+            <button onclick="changeTimeRange(-1)">← 1h Atrás</button>
+            <button onclick="changeTimeRange(1)">1h Adelante →</button>
+        </div>
+    </div>
+
+    <div class="filter-bar">
+        <input type="text" id="searchInput" placeholder="🔍 Buscar canal o programa..." oninput="filterChannels()">
+        <select id="channelFilter" onchange="filterChannels()">
+            <option value="all">Todos los canales</option>
+            <option value="news">Noticias</option>
+            <option value="sports">Deportes</option>
+            <option value="movies">Películas y Series</option>
+            <option value="kids">Infantiles</option>
+            <option value="entertainment">Entretenimiento</option>
+        </select>
+    </div>
+
+    <div id="content"></div>
+
+    <script>
+        // === CONFIGURACIÓN DE CANALES CON LINKS ===
+        const CHANNEL_LINKS = {
+            "TELEFE HD": "https://canalesonline.netlify.app/?stream=TELEFE",
+            "El Trece HD": "https://canalesonline.netlify.app/?stream=EL%20TRECE",
+            "AMERICA HD": "https://canalesonline.netlify.app/?stream=AM%C3%89RICA",
+            "A24 HD": "https://canalesonline.netlify.app/?stream=A24",
+            "Canal 26": "https://canalesonline.netlify.app/?stream=CANAL%2026",
+            "TV PÚBLICA HD": "https://canalesonline.netlify.app/?stream=TV%20P%C3%9ABLICA",
+            "Crónica TV HD": "https://canalesonline.netlify.app/?stream=CR%C3%93NICA",
+            "TN HD": "https://canalesonline.netlify.app/?stream=TN",
+            "C5N HD": "https://canalesonline.netlify.app/?stream=C5N",
+            "LN+": "https://canalesonline.netlify.app/?stream=LN%2B",
+            "El Nueve HD": "https://canalesonline.netlify.app/?stream=CANAL%20NUEVE",
+            "CANAL A": "https://canalesonline.netlify.app/?stream=CANAL%20%C3%81",
+            "Net TV": "https://canalesonline.netlify.app/?stream=NETTV",
+            "IP HD": "https://canalesonline.netlify.app/?stream=Ar12",
+            "Telesur": "https://canalesonline.netlify.app/?stream=TeleSur",
+            "CNN": "https://canalesonline.netlify.app/?stream=CNN",
+            "EWTN": "https://canalesonline.netlify.app/?stream=EWTN",
+            "Orbe 21": "https://canalesonline.netlify.app/?stream=Orbe%2021",
+            "CONSTRUIR": "https://canalesonline.netlify.app/?stream=Construir%20TV",
+            "DW": "https://canalesonline.netlify.app/?stream=DW",
+            "tve HD": "https://canalesonline.netlify.app/?stream=TVE%20Internacional",
+            "TV GALICIA": "https://canalesonline.netlify.app/?stream=TV%20GALICIA",
+            "RT": "https://canalesonline.netlify.app/?stream=RT%20en%20Espa%C3%B1ol",
+            "TV CHILE": "https://canalesonline.netlify.app/?stream=TV%20Chile",
+            "TYC SPORTS HD": "https://canalesonline.netlify.app/?stream=TyC%20Sports",
+            "DEPORTV HD": "https://canalesonline.netlify.app/?stream=DeporTV",
+            "TNT Sport Premium HD": "https://canalesonline.netlify.app/?stream=TNT%20Sports",
+            "ESPN HD": "https://canalesonline.netlify.app/?stream=ESPN",
+            "ESPN 2 HD": "https://canalesonline.netlify.app/?stream=ESPN%202",
+            "ESPN 3 HD": "https://canalesonline.netlify.app/?stream=ESPN%203",
+            "ESPN EXTRA HD": "https://canalesonline.netlify.app/?stream=ESPN%20Extra",
+            "ESPN Premium HD": "https://canalesonline.netlify.app/?stream=ESPN%20Premium",
+            "FOX SPORTS HD": "https://canalesonline.netlify.app/?stream=FOX%20SPORTS",
+            "FOX SPORTS 2 HD": "https://canalesonline.netlify.app/?stream=FOX%20SPORTS%202",
+            "FOX Sports 3 HD": "https://canalesonline.netlify.app/?stream=FOX%20SPORTS%203",
+            "Golf Channel HD": "https://canalesonline.netlify.app/?stream=GOLF%20TV%20AM%C3%89RICA",
+            "EUROCHANNEL": "https://canalesonline.netlify.app/?stream=Eurochannel",
+            "FRANCE 24": "https://canalesonline.netlify.app/?stream=France%2024%20Espa%C3%B1ol",
+            "Europa Europa": "https://canalesonline.netlify.app/?stream=Europa%20Europa",
+            "STAR CHANNEL HD": "https://canalesonline.netlify.app/?stream=Star%20Channel",
+            "TNT HD": "https://canalesonline.netlify.app/?stream=TNT%20HD",
+            "tnt novelas": "https://canalesonline.netlify.app/?stream=TNT%20Novelas",
+            "TNT Series HD": "https://canalesonline.netlify.app/?stream=TNT%20Series",
+            "HBO HD": "https://canalesonline.netlify.app/?stream=HBO",
+            "HBO 2 HD": "https://canalesonline.netlify.app/?stream=HBO%202",
+            "HBO plus HD": "https://canalesonline.netlify.app/?stream=HBO%20Plus",
+            "HBO family HD": "https://canalesonline.netlify.app/?stream=HBO%20Family",
+            "HBO XTREME HD": "https://canalesonline.netlify.app/?stream=HBO%20Xtreme",
+            "HBO MUNDI HD": "https://canalesonline.netlify.app/?stream=HBO%20Mundi",
+            "HBO POP HD": "https://canalesonline.netlify.app/?stream=HBO%20POP",
+            "HBO Signature HD": "https://canalesonline.netlify.app/?stream=HBO%20Signature",
+            "HGTV": "https://canalesonline.netlify.app/?stream=HGTV",
+            "SPACE HD": "https://canalesonline.netlify.app/?stream=Space",
+            "A&E HD": "https://canalesonline.netlify.app/?stream=A%26E",
+            "CINECANAL HD": "https://canalesonline.netlify.app/?stream=Cinecanal",
+            "Cinemax HD": "https://canalesonline.netlify.app/?stream=Cinemax",
+            "CINE.AR": "https://canalesonline.netlify.app/?stream=Cine%20AR",
+            "AMC HD": "https://canalesonline.netlify.app/?stream=AMC",
+            "AXN HD": "https://canalesonline.netlify.app/?stream=AXN",
+            "FX HD": "https://canalesonline.netlify.app/?stream=FXHD",
+            "Film & Arts": "https://canalesonline.netlify.app/?stream=Film%20Arts",
+            "TV5MONDE": "https://canalesonline.netlify.app/?stream=TV5%20MONDE",
+            "Warner HD": "https://canalesonline.netlify.app/?stream=Warner",
+            "SONY HD": "https://canalesonline.netlify.app/?stream=Sony%20Channel",
+            "SONY MOVIES HD": "https://canalesonline.netlify.app/?stream=Sony%20Movies",
+            "TCM": "https://canalesonline.netlify.app/?stream=TCM",
+            "GOLDEN HD": "https://canalesonline.netlify.app/?stream=GOLDEN",
+            "Comedy Central HD": "https://canalesonline.netlify.app/?stream=Comedy%20Central",
+            "Magazine": "https://canalesonline.netlify.app/?stream=Ciudad%20Magazine",
+            "LIFETIME HD": "https://canalesonline.netlify.app/?stream=Lifetime",
+            "ESTRELLAS HD": "https://canalesonline.netlify.app/?stream=Las%20Estrellas",
+            "FOX news": "https://canalesonline.netlify.app/?stream=Fox%20News",
+            "VOLVER": "https://canalesonline.netlify.app/?stream=VOLVER",
+            "Paraguay TV": "https://canalesonline.netlify.app/?stream=PYTV",
+            "Rai HD": "https://canalesonline.netlify.app/?stream=RAI",
+            "CARTOONITO": "https://canalesonline.netlify.app/?stream=Cartoonito",
+            "CARTOON NETWORK HD": "https://canalesonline.netlify.app/?stream=Cartoon%20Network",
+            "Disney channel HD": "https://canalesonline.netlify.app/?stream=Disney%20Channel",
+            "Disney Junior HD": "https://canalesonline.netlify.app/?stream=Disney%20JR",
+            "Discovery Kids HD": "https://canalesonline.netlify.app/?stream=Discovery%20Kids",
+            "Nickelodeon HD": "https://canalesonline.netlify.app/?stream=NICK",
+            "Nick Jr HD": "https://canalesonline.netlify.app/?stream=NICK%20JR",
+            "Teen Nick": "https://canalesonline.netlify.app/?stream=TEEN%20NICK",
+            "NickMusic": "https://canalesonline.netlify.app/?stream=NICK%20MUSIC",
+            "Baby TV": "https://canalesonline.netlify.app/?stream=BABY%20TV",
+            "TOONCAST": "https://canalesonline.netlify.app/?stream=Tooncast",
+            "adult swim": "https://canalesonline.netlify.app/?stream=Adult%20Swim",
+            "PAKA PAKA": "https://canalesonline.netlify.app/?stream=PAKA%20PAKA",
+            "MTV HD": "https://canalesonline.netlify.app/?stream=MTV",
+            "MTV HITS": "https://canalesonline.netlify.app/?stream=MTV%20hits",
+            "MTV 00s": "https://canalesonline.netlify.app/?stream=MTV%2000S",
+            "TELEHIT HD": "https://canalesonline.netlify.app/?stream=TELEHIT",
+            "CM HD": "https://canalesonline.netlify.app/?stream=CM",
+            "hTV": "https://canalesonline.netlify.app/?stream=HTV",
+            "QUIERO": "https://canalesonline.netlify.app/?stream=Quiero",
+            "Discovery Channel HD": "https://canalesonline.netlify.app/?stream=Discovery%20Channel",
+            "Discovery World HD": "https://canalesonline.netlify.app/?stream=Discovery%20World",
+            "Discovery Theater HD": "https://canalesonline.netlify.app/?stream=Discovery%20Theater",
+            "Discovery Science HD": "https://canalesonline.netlify.app/?stream=Discovery%20Science",
+            "TLC HD": "https://canalesonline.netlify.app/?stream=Discovery%20TLC",
+            "TURBO": "https://canalesonline.netlify.app/?stream=Discovery%20Turbo",
+            "Home & Health": "https://canalesonline.netlify.app/?stream=Discovery%20H%26H",
+            "ID": "https://canalesonline.netlify.app/?stream=Discovery%20ID",
+            "SUN Channel HD": "https://canalesonline.netlify.app/?stream=SUN",
+            "Animal Planet HD": "https://canalesonline.netlify.app/?stream=Animal%20Planet",
+            "NATIONAL GEOGRAPHIC HD": "https://canalesonline.netlify.app/?stream=National%20Geographic",
+            "History Channel HD": "https://canalesonline.netlify.app/?stream=History",
+            "HISTORY 2": "https://canalesonline.netlify.app/?stream=History%202",
+            "El Garage": "https://canalesonline.netlify.app/?stream=Garage%20TV",
+            "Encuentro": "https://canalesonline.netlify.app/?stream=Encuentro",
+            "E!": "https://canalesonline.netlify.app/?stream=E%20Entertaiment",
+            "Diputados": "https://canalesonline.netlify.app/?stream=Diputados%20TV",
+            "FOOD NETWORK HD": "https://canalesonline.netlify.app/?stream=FOOD%20Network",
+            "el Gourmet HD": "https://canalesonline.netlify.app/?stream=El%20Gourmet",
+            "METRO": "https://canalesonline.netlify.app/?stream=Metro",
+            "RURAL": "https://canalesonline.netlify.app/?stream=Canal%20Rural",
+        };
+
+        const PROXIES = [
+            "https://myproxy.senorgatorade123.workers.dev/?url=",
+            "https://myproxy.senorzapallo123.workers.dev/?url=",
+            "https://myproxy.huesosheffner2-0.workers.dev/?url=",
+            "https://myproxy.canalesonline24.workers.dev/?url=",
+        ];
+        let currentProxyIndex = 0;
+
+        async function fetchWithFallback(url) {
+            for (let i = currentProxyIndex; i < PROXIES.length; i++) {
+                try {
+                    const response = await fetch(PROXIES[i] + encodeURIComponent(url), {
+                        cache: 'no-store',
+                        headers: { 'Cache-Control': 'no-cache' }
+                    });
+                    if (response.ok) {
+                        currentProxyIndex = i; // guardar el que funcionó
+                        return response;
+                    }
+                } catch (e) {
+                    console.warn("Proxy " + i + " falló, probando siguiente...", e);
+                }
+            }
+            throw new Error("Todos los proxies fallaron");
+        }
+
+        // === FUNCIONES DE CANAL ===
+        function getChannelLink(channelName) {
+            if (CHANNEL_LINKS[channelName]) {
+                return CHANNEL_LINKS[channelName];
+            }
+
+            const lowerName = channelName.toLowerCase();
+            for (const [key, value] of Object.entries(CHANNEL_LINKS)) {
+                if (lowerName.includes(key.toLowerCase()) || key.toLowerCase().includes(lowerName)) {
+                    return value;
+                }
+            }
+
+            return null;
+        }
+
+        function openChannel(channelName) {
+            const link = getChannelLink(channelName);
+            if (link) {
+                window.open(link, '_blank');
+            }
+        }
+
+        // === VARIABLES GLOBALES ===
+        let allChannels = [];
+        let timelineStartHour = 0;
+        let pixelsPerMinute = 5;
+        const hoursToShow = 48; // Mostrar 24 horas completas
+
+        const channelsToHide = [
+            'Canal Provincial',
+            'TRT WORLD',
+            "CNN internacional",
+            "RTP",
+            "AMÉRICA",
+            "MAS CHIC",
+            "Arirang",
+            "Canal Vasco",
+            "Club MTV!",
+            "señal santa maría",
+            "TeleRed",
+        ];
+
+        function shouldHideChannel(channelName) {
+            const lowerName = channelName.toLowerCase().trim();
+            return channelsToHide.some(hideName =>
+                lowerName === hideName.toLowerCase().trim() ||
+                lowerName.includes(hideName.toLowerCase().trim())
+            );
+        }
+
+        function removeDuplicateChannels(channels) {
+            const seen = new Map();
+
+            channels.forEach(channel => {
+                const baseName = channel.name
+                    .replace(/\s*HD\s*/gi, '')
+                    .replace(/\s+/g, ' ')
+                    .trim()
+                    .toLowerCase();
+
+                const isHD = /HD/i.test(channel.name);
+
+                if (!seen.has(baseName)) {
+                    seen.set(baseName, channel);
+                } else {
+                    const existing = seen.get(baseName);
+                    const existingIsHD = /HD/i.test(existing.name);
+
+                    if (isHD && !existingIsHD) {
+                        seen.set(baseName, channel);
+                    }
+                }
+            });
+
+            return Array.from(seen.values());
+        }
+
+        function updateCurrentTime() {
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'America/Argentina/Buenos_Aires'
+            };
+            const timeString = now.toLocaleString('es-AR', options);
+            document.getElementById('currentTimeDisplay').textContent = timeString;
+        }
+
+        function parseTime(timeStr) {
+            const match = timeStr.match(/(\d+):(\d+)/);
+            if (!match) return null;
+            return { hours: parseInt(match[1]), minutes: parseInt(match[2]) };
+        }
+
+        function timeToMinutes(timeObj) {
+            if (!timeObj) return 0;
+            return timeObj.hours * 60 + timeObj.minutes;
+        }
+
+        function minutesToPixels(minutes, isNextDay = false) {
+            const timelineStartMinutes = timelineStartHour * 60;
+
+            // Si el programa es del día siguiente, sumar 24 horas
+            let adjustedMinutes = minutes;
+            if (isNextDay) {
+                adjustedMinutes = minutes + (24 * 60);
+            }
+
+            return (adjustedMinutes - timelineStartMinutes) * pixelsPerMinute;
+        }
+
+        function getCurrentTimeInMinutes() {
+            const now = new Date();
+            const argTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires' }));
+            return argTime.getHours() * 60 + argTime.getMinutes();
+        }
+
+        function isNowPlaying(startMinutes, endMinutes, isNextDay = false) {
+            const currentMinutes = getCurrentTimeInMinutes();
+
+            // **IMPORTANTE: Los programas del día siguiente NUNCA están en vivo**
+            if (isNextDay) {
+                return false;
+            }
+
+            if (endMinutes > startMinutes) {
+                return currentMinutes >= startMinutes && currentMinutes < endMinutes;
+            }
+
+            return currentMinutes >= startMinutes || currentMinutes < endMinutes;
+        }
+
+        function calculateTimelineStart() {
+            // Empezar desde la hora actual para no mostrar programas pasados
+            const now = new Date();
+            const argTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires' }));
+            timelineStartHour = argTime.getHours();
+        }
+
+        function renderTimeline() {
+            const content = document.getElementById('content');
+
+            if (allChannels.length === 0) {
+                content.innerHTML = '<div class="loading"><div class="spinner"></div><p>Cargando...</p></div>';
+                return;
+            }
+
+            calculateTimelineStart();
+            const timelineWidth = hoursToShow * 60 * pixelsPerMinute;
+
+            let html = '<div class="timeline-container">';
+
+            html += '<div class="timeline-header">';
+            html += '<div class="time-labels" style="width: ' + timelineWidth + 'px">';
+
+            for (let i = 0; i <= hoursToShow; i++) {
+                const hour = (timelineStartHour + i) % 24;
+                const position = i * 60 * pixelsPerMinute;
+                const isMajor = i % 3 === 0;
+                html += `<div class="time-label ${isMajor ? 'major' : ''}" style="left: ${position}px">${hour.toString().padStart(2, '0')}:00</div>`;
+            }
+
+            html += '</div></div>';
+
+            html += '<div class="channels-container">';
+
+            html += '<div class="grid-lines" style="width: ' + timelineWidth + 'px">';
+            for (let i = 0; i <= hoursToShow; i++) {
+                const position = i * 60 * pixelsPerMinute;
+                const isMajor = i % 1 === 0;
+                html += `<div class="grid-line ${isMajor ? 'major' : ''}" style="left: ${position}px"></div>`;
+            }
+            html += '</div>';
+
+            allChannels.forEach(channel => {
+                if (shouldHideChannel(channel.name)) {
+                    return;
+                }
+                // console.log(`"${channel.name}":"https://canalesonline.netlify.app/?stream=",`)
+                html += '<div class="channel-row">';
+
+                const channelLink = getChannelLink(channel.name);
+                const hasLinkClass = channelLink ? 'has-link' : '';
+                const titleAttr = channelLink ? 'title="Click para ver en vivo"' : '';
+
+                const logoHtml = channel.logo
+                    ? `<img src="${channel.logo}" alt="${channel.name}" style="width: 30px; height: 30px; object-fit: contain; margin-right: 8px; border-radius: 4px;">`
+                    : '';
+
+                html += `<div class="channel-name ${hasLinkClass}" onclick="openChannel('${channel.name.replace(/'/g, "\\'")}');" ${titleAttr}>
+                            <div style="display: flex; align-items: center;">
+                                ${logoHtml}
+                                <div>
+                                    <div class="channel-name-text">${channel.name}</div>
+                                </div>
+                            </div>
+                        </div>`;
+
+                html += `<div class="programs-timeline" style="width: ${timelineWidth}px">`;
+
+                channel.programs.forEach((program, index) => {
+                    const startTime = parseTime(program.time);
+                    if (!startTime) return;
+
+                    let startMinutes = timeToMinutes(startTime);
+
+                    // **IMPORTANTE: Calcular posición considerando si es del día siguiente**
+                    let left = minutesToPixels(startMinutes, program.isNextDay);
+
+                    let endMinutes;
+                    if (program.endTime) {
+                        const endTime = parseTime(program.endTime);
+                        endMinutes = timeToMinutes(endTime);
+
+                        // **CRÍTICO: Si el endTime es menor que startMinutes, cruza medianoche**
+                        if (endMinutes < startMinutes) {
+                            endMinutes += 24 * 60;
+                        }
+
+                        // **NUEVO: Si el programa NO es del día siguiente pero su endTime sí**
+                        if (!program.isNextDay && endMinutes > 24 * 60) {
+                            // Esto es normal para programas que cruzan medianoche
+                        }
+                    } else {
+                        // Estimar 2 horas si no hay endTime
+                        endMinutes = startMinutes + 120;
+                    }
+
+                    // Calcular duración
+                    let duration = endMinutes - startMinutes;
+                    let width = duration * pixelsPerMinute;
+
+                    // Ancho mínimo
+                    width = Math.max(width, 80);
+
+                    // Verificar si el programa es visible en la ventana actual
+                    const timelineStartMinutes = timelineStartHour * 60;
+                    const timelineEndMinutes = timelineStartMinutes + (hoursToShow * 60);
+
+                    let programStart = startMinutes;
+                    let programEnd = endMinutes;
+
+                    // Ajustar para programas del día siguiente
+                    if (program.isNextDay) {
+                        programStart += (24 * 60);
+                        programEnd += (24 * 60);
+                    }
+
+                    // Verificar visibilidad
+                    const isVisible = programEnd > timelineStartMinutes && programStart < timelineEndMinutes;
+
+                    if (isVisible) {
+                        // Ajustar si el programa empieza antes de la ventana visible
+                        if (programStart < timelineStartMinutes) {
+                            const hiddenMinutes = timelineStartMinutes - programStart;
+                            left = 0;
+                            width = (duration - hiddenMinutes) * pixelsPerMinute;
+                        }
+
+                        const isLive = isNowPlaying(startMinutes, endMinutes, program.isNextDay);
+                        const currentMinutes = getCurrentTimeInMinutes();
+                        const isPast = endMinutes < currentMinutes && !program.isNextDay;
+
+                        const liveClass = isLive ? 'live' : '';
+                        const pastClass = isPast ? 'past' : '';
+
+                        const endHourDisplay = Math.floor(endMinutes / 60) % 24;
+                        const endMinDisplay = endMinutes % 60;
+
+                        html += `<div class="program-block ${liveClass} ${pastClass}" style="left: ${left}px; width: ${width}px" title="${program.title}">
+                                    <div class="program-title">${program.title}</div>
+                                    <div class="program-time-range">${program.time} - ${endHourDisplay.toString().padStart(2, '0')}:${endMinDisplay.toString().padStart(2, '0')}</div>
+                                </div>`;
+                    }
+                });
+
+                html += '</div></div>';
+            });
+
+            html += '</div>';
+
+            const currentMinutes = getCurrentTimeInMinutes();
+            const currentPosition = minutesToPixels(currentMinutes);
+
+            if (currentPosition >= 0 && currentPosition <= timelineWidth) {
+                const now = new Date();
+                const argTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires' }));
+                const timeLabel = argTime.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
+
+                const channelColumnWidth = window.innerWidth <= 768 ? 100 : 150;
+
+                html += `<div class="live-indicator" style="left: ${currentPosition + channelColumnWidth}px">
+                    <div class="live-time-label">${timeLabel}</div>
+                </div>`;
+            }
+
+            html += '</div>';
+            content.innerHTML = html;
+        }
+
+        function scrollToNow() {
+            const currentMinutes = getCurrentTimeInMinutes();
+            const currentPosition = minutesToPixels(currentMinutes);
+            const container = document.querySelector('.timeline-container');
+            if (container) {
+                container.scrollLeft = Math.max(0, currentPosition - 200);
+            }
+        }
+
+        function changeTimeRange(hours) {
+            const container = document.querySelector('.timeline-container');
+            if (container) {
+                const currentScroll = container.scrollLeft;
+                container.scrollLeft = currentScroll + (hours * 60 * pixelsPerMinute);
+            }
+        }
+
+        async function loadSchedule() {
+            const content = document.getElementById('content');
+            content.innerHTML = '<div class="loading"><div class="spinner"></div><p>Cargando grilla completa (48hs)...</p></div>';
+
+            const loadBtn = document.getElementById('loadBtn');
+            loadBtn.disabled = true;
+
+            try {
+                const now = new Date();
+                const argTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires' }));
+                let startHour = argTime.getHours() - 1;
+
+                if (startHour < 0) {
+                    startHour = 0;
+                }
+
+                const cacheBuster = Date.now();
+
+                const baseUrlToday = `https://www.telered.com.ar/layout/grillaTVupd.php?prti=${startHour}&prtf=24&wn=0&pack=D&_t=${cacheBuster}`;
+                const baseUrlTomorrow = `https://www.telered.com.ar/layout/grillaTVupd.php?wn=1&_t=${cacheBuster}`;
+
+                console.log('Hora inicio:', startHour);
+                console.log('URL HOY:', baseUrlToday);
+                console.log('URL MAÑANA:', baseUrlTomorrow);
+
+                const [responseToday, responseTomorrow] = await Promise.all([
+                    fetchWithFallback(baseUrlToday),
+                    fetchWithFallback(baseUrlTomorrow)
+                ]);
+
+                const htmlToday = await responseToday.text();
+                const htmlTomorrow = await responseTomorrow.text();
+
+                parseAndCombineSchedule(htmlToday, htmlTomorrow);
+
+            } catch (error) {
+                console.error('Error:', error);
+                content.innerHTML = `<div class="error"><h3>⚠️ Error: ${error.message}</h3><p>Intenta nuevamente</p></div>`;
+            } finally {
+                loadBtn.disabled = false;
+            }
+        }
+
+        function parseChannelsFromDoc(doc) {
+            const channels = [];
+            const channelBlocks = doc.querySelectorAll('li.chrow');
+
+            channelBlocks.forEach(block => {
+                const channelNumEl = block.querySelector('.chnumheader');
+                const channelNameEl = block.querySelector('.chname');
+
+                if (!channelNumEl || !channelNameEl) return;
+
+                const channelNumber = channelNumEl.textContent.trim();
+                const channelName = channelNameEl.textContent.trim();
+
+                // Extraer el logo del canal
+                let channelLogo = null;
+                const logoWrapper = block.querySelector('.logowrapper');
+                if (logoWrapper) {
+                    const bgImage = logoWrapper.style.backgroundImage;
+                    if (bgImage) {
+                        const match = bgImage.match(/url\(['"]?([^'"]+)['"]?\)/);
+                        if (match && match[1]) {
+                            channelLogo = match[1].startsWith('http')
+                                ? match[1]
+                                : 'https://www.telered.com.ar/' + match[1];
+                        }
+                    }
+                }
+
+                const programs = [];
+                const programElements = block.querySelectorAll('li.program.bloque');
+
+                programElements.forEach((progEl, index) => {
+                    const titleEl = progEl.querySelector('.programtitle');
+                    const timeEl = progEl.querySelector('.programtime');
+
+                    if (titleEl && timeEl) {
+                        const title = titleEl.textContent.trim();
+                        const time = timeEl.textContent.trim();
+
+                        const nextProgEl = programElements[index + 1];
+                        let endTime = null;
+
+                        if (nextProgEl) {
+                            const nextTimeEl = nextProgEl.querySelector('.programtime');
+                            if (nextTimeEl) {
+                                endTime = nextTimeEl.textContent.trim();
+                            }
+                        }
+
+                        if (!endTime) {
+                            const startTime = parseTime(time);
+                            if (startTime) {
+                                if (startTime.hours >= 20) {
+                                    endTime = "00:00";
+                                } else {
+                                    const endHours = (startTime.hours + 2) % 24;
+                                    endTime = `${endHours.toString().padStart(2, '0')}:${startTime.minutes.toString().padStart(2, '0')}`;
+                                }
+                            }
+                        }
+
+                        programs.push({ title, time, endTime });
+                    }
+                });
+
+                if (programs.length > 0) {
+                    channels.push({
+                        number: channelNumber,
+                        name: channelName,
+                        logo: channelLogo,
+                        programs: programs
+                    });
+                }
+            });
+
+            return channels;
+        }
+
+        function parseAndCombineSchedule(htmlToday, htmlTomorrow) {
+            const parser = new DOMParser();
+
+            // Parsear HOY
+            const docToday = parser.parseFromString(htmlToday, 'text/html');
+            const channelsToday = parseChannelsFromDoc(docToday);
+
+            // Parsear MAÑANA
+            const docTomorrow = parser.parseFromString(htmlTomorrow, 'text/html');
+            const channelsTomorrow = parseChannelsFromDoc(docTomorrow);
+
+            // **Obtener la hora actual**
+            const now = new Date();
+            const argTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires' }));
+            const currentHour = argTime.getHours();
+            const currentMinutes = argTime.getMinutes();
+            const currentTotalMinutes = currentHour * 60 + currentMinutes;
+
+            // Combinar programaciones
+            allChannels = [];
+
+            channelsToday.forEach(channelToday => {
+                // Buscar el mismo canal en la programación de mañana
+                const channelTomorrow = channelsTomorrow.find(ch =>
+                    ch.name.toLowerCase().trim() === channelToday.name.toLowerCase().trim()
+                );
+
+                let finalPrograms = [];
+
+                // **PASO 1: Agregar todos los programas de HOY (sin filtrar todavía)**
+                channelToday.programs.forEach((prog, index) => {
+                    const startTime = parseTime(prog.time);
+                    if (!startTime) return;
+
+                    const startMinutes = startTime.hours * 60 + startTime.minutes;
+
+                    // Calcular fin del programa
+                    let endMinutes;
+                    let calculatedEndTime = null;
+
+                    if (prog.endTime) {
+                        const endTime = parseTime(prog.endTime);
+                        if (endTime) {
+                            endMinutes = endTime.hours * 60 + endTime.minutes;
+                            calculatedEndTime = prog.endTime;
+                            if (endMinutes < startMinutes) {
+                                endMinutes += 24 * 60;
+                            }
+                        }
+                    } else if (index < channelToday.programs.length - 1) {
+                        // Hay un siguiente programa HOY
+                        const nextTime = parseTime(channelToday.programs[index + 1].time);
+                        if (nextTime) {
+                            endMinutes = nextTime.hours * 60 + nextTime.minutes;
+                            calculatedEndTime = channelToday.programs[index + 1].time;
+                            if (endMinutes < startMinutes) {
+                                endMinutes += 24 * 60;
+                            }
+                        }
+                    } else {
+                        // Es el último programa, dejar sin endTime por ahora
+                        endMinutes = startMinutes + 120;
+                    }
+
+                    // **Mostrar solo programas que NO hayan terminado completamente**
+                    const programEnded = endMinutes < currentTotalMinutes && startMinutes < currentTotalMinutes;
+
+                    if (!programEnded) {
+                        finalPrograms.push({
+                            title: prog.title,
+                            time: prog.time,
+                            endTime: calculatedEndTime || prog.endTime,
+                            isNextDay: false
+                        });
+                    }
+                });
+
+                // **PASO 2: AHORA verificar si el último cruza medianoche**
+                if (channelTomorrow && finalPrograms.length > 0) {
+                    const lastProgramToday = finalPrograms[finalPrograms.length - 1];
+                    const firstProgramTomorrow = channelTomorrow.programs[0];
+
+                    // Verificar si es el mismo programa (cruza medianoche)
+                    if (firstProgramTomorrow &&
+                        lastProgramToday.title.toLowerCase().trim() === firstProgramTomorrow.title.toLowerCase().trim()) {
+
+                        console.log(`🔗 PROGRAMA QUE CRUZA MEDIANOCHE: ${lastProgramToday.title} en ${channelToday.name}`);
+
+                        // El programa cruza medianoche, actualizar su endTime
+                        if (channelTomorrow.programs.length > 1) {
+                            // El endTime es cuando empieza el SEGUNDO programa de mañana
+                            lastProgramToday.endTime = channelTomorrow.programs[1].time;
+                            console.log(`   Fin actualizado a: ${channelTomorrow.programs[1].time}`);
+                        }
+
+                        // Agregar el resto de programas de mañana (desde el índice 1, saltando el duplicado)
+                        for (let i = 1; i < channelTomorrow.programs.length; i++) {
+                            const prog = channelTomorrow.programs[i];
+                            finalPrograms.push({
+                                title: prog.title,
+                                time: prog.time,
+                                endTime: prog.endTime,
+                                isNextDay: true
+                            });
+                        }
+                    } else {
+                        // No hay duplicado, agregar TODOS los programas de mañana
+                        channelTomorrow.programs.forEach(prog => {
+                            finalPrograms.push({
+                                title: prog.title,
+                                time: prog.time,
+                                endTime: prog.endTime,
+                                isNextDay: true
+                            });
+                        });
+                    }
+                }
+
+                allChannels.push({
+                    number: channelToday.number,
+                    name: channelToday.name,
+                    logo: channelToday.logo,
+                    programs: finalPrograms
+                });
+            });
+
+            // Agregar canales que solo existen en mañana
+            channelsTomorrow.forEach(channelTomorrow => {
+                const exists = allChannels.find(ch =>
+                    ch.name.toLowerCase().trim() === channelTomorrow.name.toLowerCase().trim()
+                );
+
+                if (!exists) {
+                    const programs = channelTomorrow.programs.map(prog => ({
+                        ...prog,
+                        isNextDay: true
+                    }));
+
+                    allChannels.push({
+                        ...channelTomorrow,
+                        programs: programs
+                    });
+                }
+            });
+
+            allChannels = removeDuplicateChannels(allChannels);
+            allChannels = sortChannelsByCategory(allChannels);
+
+            window.originalChannels = [...allChannels];
+
+            renderTimeline();
+            scrollToNow();
+        }
+
+        function categorizeChannel(name) {
+            const lowerName = name.toLowerCase();
+
+            if (lowerName.includes('tn hd') || lowerName.includes('c5n') ||
+                lowerName.includes('a24') || lowerName.includes('ln+') ||
+                lowerName.includes('crónica') || lowerName.includes('cronica') ||
+                lowerName.includes('cnn') || lowerName.includes('el trece hd') ||
+                lowerName.includes('america hd') || lowerName.includes('el trece hd') ||
+                lowerName.includes('tv pública hd') || lowerName.includes('canal provincial') ||
+                lowerName.includes('canal 26') || lowerName.includes('c26') || lowerName.includes('telefe')) {
+                return 'news';
+            }
+
+            if (lowerName.includes('espn') || lowerName.includes('fox sports') ||
+                lowerName.includes('tyc') || lowerName.includes('deportv') ||
+                lowerName.includes('golf') || lowerName.includes('deporte')) {
+                return 'sports';
+            }
+
+            if (lowerName.includes('hbo') || lowerName.includes('cinemax') ||
+                lowerName.includes('tnt') || lowerName.includes('space') ||
+                lowerName.includes('axn') || lowerName.includes('fox') ||
+                lowerName.includes('sony') || lowerName.includes('warner') ||
+                lowerName.includes('fx') || lowerName.includes('paramount') ||
+                lowerName.includes('universal') || lowerName.includes('studio')) {
+                return 'movies';
+            }
+
+            if (lowerName.includes('nick') || lowerName.includes('disney') ||
+                lowerName.includes('cartoon') || lowerName.includes('discovery kids') ||
+                lowerName.includes('baby') || lowerName.includes('pakapaka')) {
+                return 'kids';
+            }
+
+            return 'entertainment';
+        }
+
+        function getCategoryOrder(category) {
+            const order = {
+                'news': 1,
+                'sports': 2,
+                'movies': 3,
+                'kids': 4,
+                'entertainment': 5
+            };
+            return order[category] || 999;
+        }
+
+        // function sortChannelsByCategory(channels) {
+        //     return channels.sort((a, b) => {
+        //         const catA = categorizeChannel(a.name);
+        //         const catB = categorizeChannel(b.name);
+        //         const orderA = getCategoryOrder(catA);
+        //         const orderB = getCategoryOrder(catB);
+
+        //         if (orderA !== orderB) {
+        //             return orderA - orderB;
+        //         }
+
+        //         return a.name.localeCompare(b.name);
+        //     });
+        // }
+
+        function sortChannelsByCategory(channels) {
+            // Obtener el orden de CHANNEL_LINKS
+            const channelLinksOrder = Object.keys(CHANNEL_LINKS);
+
+            return channels.sort((a, b) => {
+                // Buscar el índice en CHANNEL_LINKS
+                const indexA = channelLinksOrder.findIndex(key =>
+                    key.toLowerCase() === a.name.toLowerCase() ||
+                    a.name.toLowerCase().includes(key.toLowerCase()) ||
+                    key.toLowerCase().includes(a.name.toLowerCase())
+                );
+
+                const indexB = channelLinksOrder.findIndex(key =>
+                    key.toLowerCase() === b.name.toLowerCase() ||
+                    b.name.toLowerCase().includes(key.toLowerCase()) ||
+                    key.toLowerCase().includes(b.name.toLowerCase())
+                );
+
+                // Si ambos están en CHANNEL_LINKS, ordenar por su posición
+                if (indexA !== -1 && indexB !== -1) {
+                    return indexA - indexB;
+                }
+
+                // Si solo A está en CHANNEL_LINKS, A va primero
+                if (indexA !== -1 && indexB === -1) {
+                    return -1;
+                }
+
+                // Si solo B está en CHANNEL_LINKS, B va primero
+                if (indexA === -1 && indexB !== -1) {
+                    return 1;
+                }
+
+                // Si ninguno está en CHANNEL_LINKS, ordenar alfabéticamente
+                return a.name.localeCompare(b.name);
+            });
+        }
+
+
+        async function debugAPI() {
+            const now = new Date();
+            const argTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires' }));
+            let startHour = argTime.getHours();
+
+            console.log('=== DEBUG API ===');
+            console.log('Hora actual:', startHour + ':' + argTime.getMinutes());
+
+            // Probar HOY
+            const urlToday = PROXY + `https://www.telered.com.ar/layout/grillaTVupd.php?prti=${startHour}&prtf=24&chlf=0&chlt=0&wn=0&pack=D`;
+            console.log('URL HOY:', urlToday);
+
+            const responseToday = await fetch(urlToday);
+            const htmlToday = await responseToday.text();
+
+            const parser = new DOMParser();
+            const docToday = parser.parseFromString(htmlToday, 'text/html');
+
+            // Buscar HBO HD
+            const channelBlocks = docToday.querySelectorAll('li.chrow');
+            channelBlocks.forEach(block => {
+                const channelNameEl = block.querySelector('.chname');
+                if (channelNameEl && channelNameEl.textContent.includes('HBO HD')) {
+                    console.log('\n=== HBO HD - PROGRAMACIÓN HOY ===');
+                    const programElements = block.querySelectorAll('li.program.bloque');
+                    programElements.forEach(progEl => {
+                        const titleEl = progEl.querySelector('.programtitle');
+                        const timeEl = progEl.querySelector('.programtime');
+                        if (titleEl && timeEl) {
+                            console.log(`${timeEl.textContent.trim()} - ${titleEl.textContent.trim()}`);
+                        }
+                    });
+                }
+            });
+
+            // Probar MAÑANA
+            const urlTomorrow = PROXY + `https://www.telered.com.ar/layout/grillaTVupd.php?prti=0&prtf=24&wn=1&pack=D`;
+            console.log('\nURL MAÑANA:', urlTomorrow);
+
+            const responseTomorrow = await fetch(urlTomorrow);
+            const htmlTomorrow = await responseTomorrow.text();
+
+            const docTomorrow = parser.parseFromString(htmlTomorrow, 'text/html');
+
+            const channelBlocksTomorrow = docTomorrow.querySelectorAll('li.chrow');
+            channelBlocksTomorrow.forEach(block => {
+                const channelNameEl = block.querySelector('.chname');
+                if (channelNameEl && channelNameEl.textContent.includes('HBO HD')) {
+                    console.log('\n=== HBO HD - PROGRAMACIÓN MAÑANA ===');
+                    const programElements = block.querySelectorAll('li.program.bloque');
+                    programElements.forEach(progEl => {
+                        const titleEl = progEl.querySelector('.programtitle');
+                        const timeEl = progEl.querySelector('.programtime');
+                        if (titleEl && timeEl) {
+                            console.log(`${timeEl.textContent.trim()} - ${titleEl.textContent.trim()}`);
+                        }
+                    });
+                }
+            });
+        }
+
+        // Llamar al debug
+        debugAPI();
+
+        function filterChannels() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const channelFilter = document.getElementById('channelFilter').value;
+
+            if (!window.originalChannels) {
+                window.originalChannels = [...allChannels];
+            }
+
+            allChannels = [...window.originalChannels];
+
+            allChannels = allChannels.filter(channel => {
+                if (shouldHideChannel(channel.name)) {
+                    return false;
+                }
+
+                const matchesSearch = channel.name.toLowerCase().includes(searchTerm) ||
+                    channel.programs.some(p => p.title.toLowerCase().includes(searchTerm));
+                const matchesCategory = channelFilter === 'all' || categorizeChannel(channel.name) === channelFilter;
+                return matchesSearch && matchesCategory;
+            });
+
+            allChannels = sortChannelsByCategory(allChannels);
+
+            renderTimeline();
+        }
+
+        setInterval(() => {
+            updateCurrentTime();
+            renderTimeline();
+        }, 60000);
+
+        updateCurrentTime();
+        renderTimeline();
+        setInterval(updateCurrentTime, 1000);
+
+        loadSchedule();
+
+
+        function ajustarAltura() {
+            const altura =
+                document.documentElement.scrollHeight ||
+                document.body.scrollHeight;
+
+            window.parent.postMessage(
+                { tipo: 'ajustar-iframe', altura },
+                '*'
+            );
+        }
+
+        window.addEventListener('load', ajustarAltura);
+        window.addEventListener('resize', ajustarAltura);
+
+        // Si el contenido cambia dinámicamente
+        const observer = new MutationObserver(ajustarAltura);
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>

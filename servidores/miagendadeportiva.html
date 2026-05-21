@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Agenda Deportiva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
+    <link rel="stylesheet" href="../servidores/style-jw.css">
+    <style>
+        :root {
+            --bg: #080a0d;
+            --card: #0f1218;
+            --card2: #141820;
+            --primary: #00e5ff;
+            --accent: #e8ff3c;
+            --live: #ff3c3c;
+            --border: #1e2430;
+            --border2: #252d3a;
+            --text: #eef0f4;
+            --muted: #5a6478;
+            --font-head: 'Bebas Neue', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            min-height: 100vh;
+        }
+
+        /* ── HEADER ── */
+        .top-bar {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            padding: 0 20px;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-size: 22px;
+            letter-spacing: 2px;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .stats-bar {
+            font-size: 11px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        /* Toggle */
+        .toggle-wrap {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .toggle-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            cursor: pointer;
+        }
+
+        .toggle-label.on {
+            color: var(--primary);
+        }
+
+        .toggle {
+            position: relative;
+            width: 34px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .toggle input {
+            display: none;
+        }
+
+        .toggle-track {
+            position: absolute;
+            inset: 0;
+            background: var(--card2);
+            border: 1px solid var(--border2);
+            border-radius: 9px;
+            transition: all .2s;
+        }
+
+        .toggle input:checked+.toggle-track {
+            background: #0a2a30;
+            border-color: var(--primary);
+        }
+
+        .toggle-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--muted);
+            transition: all .2s;
+        }
+
+        .toggle input:checked~.toggle-thumb {
+            left: 19px;
+            background: var(--primary);
+        }
+
+        /* ── SEARCH + FILTER BAR ── */
+        .search-wrap {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            padding: 9px 20px;
+            position: sticky;
+            top: 54px;
+            z-index: 98;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .search-inner {
+            position: relative;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--card2);
+            border: 1px solid var(--border2);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 13px;
+            padding: 7px 32px 7px 34px;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color .15s;
+        }
+
+        .search-input::placeholder {
+            color: var(--muted);
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 13px;
+            display: none;
+        }
+
+        .search-clear.visible {
+            display: block;
+        }
+
+        /* ── FILTER SELECT ── */
+        .filter-select {
+            background: var(--card2);
+            border: 1px solid var(--border2);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            padding: 7px 28px 7px 12px;
+            border-radius: 8px;
+            outline: none;
+            cursor: pointer;
+            transition: border-color .15s;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%235a6478'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .filter-select:focus,
+        .filter-select:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-select option {
+            background: var(--card2);
+            color: var(--text);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* ── MAIN CONTAINER ── */
+        .main {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 20px 14px 60px;
+        }
+
+        /* ── DAY HEADER ── */
+        .day-header {
+            text-align: center;
+            margin-bottom: 22px;
+            padding: 18px 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .day-title {
+            font-family: var(--font-head);
+            font-size: 28px;
+            letter-spacing: 3px;
+            color: var(--text);
+            text-transform: uppercase;
+        }
+
+        /* ── TIME GROUP ── */
+        .time-group {
+            margin-bottom: 22px;
+        }
+
+        .time-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .time-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── LIVE BADGE ── */
+        .live-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 60, 60, .1);
+            border: 1px solid rgba(255, 60, 60, .3);
+            color: var(--live);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 2px 7px;
+            border-radius: 4px;
+        }
+
+        .live-dot::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--live);
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1 }
+            50% { opacity: .25 }
+        }
+
+        /* ── EVENT LIST ── */
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .event-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color .2s, transform .1s;
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            border-color: rgba(0, 229, 255, .3);
+            transform: translateX(3px);
+        }
+
+        .event-card:active {
+            transform: translateX(1px) scale(0.995);
+        }
+
+        .event-card.is-live {
+            border-color: rgba(255, 60, 60, .22);
+        }
+
+        .event-card.is-loading .card-header {
+            opacity: 0.6;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            user-select: none;
+        }
+
+        .time-badge {
+            background: rgba(0, 229, 255, .08);
+            border: 1px solid rgba(0, 229, 255, .2);
+            color: var(--primary);
+            font-family: var(--font-head);
+            font-size: 18px;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 7px;
+            min-width: 68px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .time-badge.live-time {
+            background: rgba(255, 60, 60, .08);
+            border-color: rgba(255, 60, 60, .25);
+            color: var(--live);
+        }
+
+        .card-logo {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .06);
+            padding: 3px;
+            flex-shrink: 0;
+        }
+
+        .card-logo-placeholder {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--card2);
+            border: 1px solid var(--border2);
+            flex-shrink: 0;
+        }
+
+        .card-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .card-cat {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text);
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-title mark {
+            background: rgba(232, 255, 60, .18);
+            color: var(--accent);
+            border-radius: 2px;
+            padding: 0 1px;
+        }
+
+        .card-play {
+            color: var(--muted);
+            font-size: 18px;
+            flex-shrink: 0;
+            transition: color .15s, transform .15s;
+        }
+
+        .event-card:hover .card-play {
+            color: var(--primary);
+            transform: translateX(2px);
+        }
+
+        .card-spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border2);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            flex-shrink: 0;
+        }
+
+        .event-card.is-loading .card-spinner { display: block; }
+        .event-card.is-loading .card-play { display: none; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── NO EVENTS ── */
+        .no-events {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* ── PLAYER MODAL ── */
+        .player-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .94);
+            z-index: 200;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+        }
+
+        .player-overlay.open { display: flex; }
+
+        .player-box {
+            background: var(--card);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 880px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .player-header {
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            background: var(--card2);
+        }
+
+        .player-title {
+            font-size: 14px;
+            font-weight: 700;
+            flex: 1;
+            margin-right: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .player-frame-wrap {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+
+        .player-frame-wrap #jwplayer-container {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .player-status {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 13px;
+            background: #000;
+        }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border2);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+        }
+
+        .player-error {
+            color: var(--live);
+            font-size: 12px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 1;
+            transition: color .12s;
+        }
+
+        .close-btn:hover { color: var(--text); }
+
+        /* ── CHANNEL ROW ── */
+        .player-ch-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            padding: 10px 14px;
+            background: var(--card2);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .player-ch-select {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border2);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 8px 32px 8px 12px;
+            border-radius: 8px;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%235a6478'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            transition: border-color .15s;
+        }
+
+        .player-ch-select:focus,
+        .player-ch-select:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .player-ch-select option {
+            background: var(--card2);
+            color: var(--text);
+        }
+
+        .retry-btn {
+            background: var(--bg);
+            border: 1px solid var(--border2);
+            color: var(--muted);
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all .15s;
+            flex-shrink: 0;
+        }
+
+        .retry-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .retry-btn:disabled {
+            opacity: .4;
+            cursor: wait;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width: 600px) {
+            .top-bar { padding: 0 12px; }
+            .stats-bar, .toggle-label { display: none; }
+            .day-title { font-size: 22px; }
+            .card-title { font-size: 14px; }
+            .filter-select { font-size: 10px; padding: 7px 22px 7px 8px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="top-bar">
+        <div class="logo">Agenda <span>Deportiva</span></div>
+        <div class="header-right">
+            <div class="toggle-wrap">
+                <label class="toggle" for="tgl">
+                    <input type="checkbox" id="tgl" checked onchange="toggleVigentes(this)">
+                    <div class="toggle-track"></div>
+                    <div class="toggle-thumb"></div>
+                </label>
+                <span class="toggle-label on" id="tgl-lbl">Solo vigentes</span>
+            </div>
+            <div class="stats-bar" id="stats-bar">Cargando...</div>
+        </div>
+    </div>
+
+    <!-- SEARCH + FILTER -->
+    <div class="search-wrap">
+        <div class="search-row">
+            <div class="search-inner">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="search-input"
+                    placeholder="Buscar evento, equipo, competencia..." oninput="onSearch(this.value)"
+                    autocomplete="off">
+                <button class="search-clear" id="search-clear" onclick="clearSearch()">✕</button>
+            </div>
+            <select class="filter-select" id="filter-select" onchange="setFilter(this.value)">
+                <option value="TODOS">Todos</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main" id="main">
+        <div class="no-events">Cargando eventos...</div>
+    </div>
+
+    <!-- PLAYER MODAL -->
+    <div class="player-overlay" id="overlay">
+        <div class="player-box">
+            <div class="player-header">
+                <div class="player-title" id="player-title"></div>
+                <button class="close-btn" onclick="closePlayer()">✕</button>
+            </div>
+            <div class="player-ch-row" id="player-channels"></div>
+            <div class="player-frame-wrap">
+                <div id="jwplayer-container"></div>
+                <div class="player-status" id="player-status">
+                    <div class="spinner"></div>
+                    <span id="status-msg">Cargando stream...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PROXY_BASE    = 'https://api.codetabs.com/v1/proxy/?quest=';
+        const EVENTO_BASE   = 'https://jjfutbol2.lat/evento.php';
+        const CDN_BASE      = 'https://cdn.pltvhd.com';
+        const EVENT_DURATION_MIN = 120;
+        const TIME_OFFSET_MIN    = 120;
+
+        let allEvents      = [];
+        let activeFilter   = 'TODOS';
+        let searchQuery    = '';
+        let showOnlyActive = true;
+
+        /* ── Helpers ── */
+        function parseHora(h) {
+            const [hh, mm] = h.split(':').map(Number);
+            return hh * 60 + mm;
+        }
+        function adjustedMin(h)  { return parseHora(h) + TIME_OFFSET_MIN; }
+        function minToHora(totalMin) {
+            const m = ((totalMin % 1440) + 1440) % 1440;
+            return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+        }
+        function nowMin() { const n = new Date(); return n.getHours() * 60 + n.getMinutes(); }
+        function isActive(hora) { return nowMin() < adjustedMin(hora) + EVENT_DURATION_MIN; }
+        function isLive(hora)   { const s = adjustedMin(hora), n = nowMin(); return n >= s && n < s + EVENT_DURATION_MIN; }
+        function logoUrl(l)     { if (!l) return ''; if (l.startsWith('http')) return l; return CDN_BASE + l; }
+        function esc(s) {
+            return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+        function hl(text, q) {
+            if (!q) return esc(text);
+            return esc(text).replace(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'), '<mark>$1</mark>');
+        }
+
+        /* ── Filtering ── */
+        function getFiltered() {
+            let ev = allEvents;
+            if (showOnlyActive) ev = ev.filter(e => isActive(e.hora));
+            if (activeFilter !== 'TODOS') ev = ev.filter(e => (e.categoria || 'OTRO') === activeFilter);
+            if (searchQuery) {
+                const q = searchQuery.toLowerCase();
+                ev = ev.filter(e =>
+                    e.titulo.toLowerCase().includes(q) ||
+                    (e.categoria || '').toLowerCase().includes(q) ||
+                    (e.canales || []).some(c => c.canal.toLowerCase().includes(q))
+                );
+            }
+            return ev;
+        }
+
+        function getCategories() {
+            let base = allEvents;
+            if (showOnlyActive) base = base.filter(e => isActive(e.hora));
+            const cats = new Set(base.map(e => e.categoria || 'OTRO'));
+            return ['TODOS', ...Array.from(cats).sort()];
+        }
+
+        function renderFilters() {
+            const cats = getCategories();
+            if (activeFilter !== 'TODOS' && !cats.includes(activeFilter)) activeFilter = 'TODOS';
+            const sel = document.getElementById('filter-select');
+            sel.innerHTML = cats.map(c =>
+                `<option value="${esc(c)}"${c === activeFilter ? ' selected' : ''}>${c}</option>`
+            ).join('');
+        }
+
+        /* Deduplicar canales por canal_id */
+        function uniqueChannels(canales) {
+            const seen = new Set();
+            return canales.filter(c => {
+                const k = c.canal_id;
+                if (seen.has(k)) return false;
+                seen.add(k);
+                return true;
+            });
+        }
+
+        /* ── Render ── */
+        function renderEvents() {
+            const filtered = getFiltered();
+            const main = document.getElementById('main');
+
+            if (!filtered.length) {
+                main.innerHTML = `
+                    <div class="day-header">
+                        <div class="day-title">${getTodayTitle()}</div>
+                    </div>
+                    <div class="no-events">${searchQuery
+                        ? 'Sin resultados para "' + esc(searchQuery) + '"'
+                        : 'No hay eventos para esta categoría.'
+                    }</div>`;
+                return;
+            }
+
+            const groups = {};
+            filtered.forEach(ev => {
+                const h = minToHora(adjustedMin(ev.hora));
+                if (!groups[h]) groups[h] = [];
+                groups[h].push(ev);
+            });
+            const times = Object.keys(groups).sort();
+
+            let html = `<div class="day-header"><div class="day-title">${getTodayTitle()}</div></div>`;
+
+            times.forEach(time => {
+                const livePeriod = isLiveTime(time);
+                html += `<div class="time-group">
+                    <div class="time-label">${time} hs${livePeriod ? ' <span class="live-dot">EN VIVO</span>' : ''}</div>
+                    <div class="events-list">`;
+
+                groups[time].forEach(ev => {
+                    const channels  = uniqueChannels(ev.canales || []);
+                    const live2     = isLive(ev.hora);
+                    const imgUrl    = logoUrl(ev.logo);
+                    const imgEl     = imgUrl
+                        ? `<img class="card-logo" src="${imgUrl}" alt="" onerror="this.style.display='none'">`
+                        : `<div class="card-logo-placeholder"></div>`;
+
+                    const channelsData = JSON.stringify(channels);
+
+                    html += `<div class="event-card${live2 ? ' is-live' : ''}"
+                            data-title="${esc(ev.titulo)}"
+                            data-channels="${esc(channelsData)}"
+                            onclick="onCardClick(this)">
+                        <div class="card-header">
+                            <div class="time-badge${live2 ? ' live-time' : ''}">${time}</div>
+                            ${imgEl}
+                            <div class="card-info">
+                                <div class="card-cat">
+                                    ${esc(ev.categoria || '')}
+                                    ${live2 ? '<span class="live-dot">EN VIVO</span>' : ''}
+                                </div>
+                                <div class="card-title">${hl(ev.titulo.trim().replace(/\n/g, ' '), searchQuery)}</div>
+                            </div>
+                            <div class="card-spinner"></div>
+                            <span class="card-play">▶</span>
+                        </div>
+                    </div>`;
+                });
+
+                html += `</div></div>`;
+            });
+
+            main.innerHTML = html;
+        }
+
+        function isLiveTime(adjustedHoraStr) {
+            const s = parseHora(adjustedHoraStr), n = nowMin();
+            return n >= s && n < s + EVENT_DURATION_MIN;
+        }
+
+        function getTodayTitle() {
+            return new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })
+                .replace(/^\w/, c => c.toUpperCase());
+        }
+
+        function updateStats() {
+            const f     = getFiltered();
+            const total = showOnlyActive ? allEvents.filter(e => isActive(e.hora)).length : allEvents.length;
+            document.getElementById('stats-bar').textContent =
+                f.length === total ? `${total} eventos` : `${f.length} de ${total} eventos`;
+        }
+
+        function setFilter(cat)   { activeFilter = cat; renderFilters(); renderEvents(); updateStats(); }
+
+        function toggleVigentes(el) {
+            showOnlyActive = el.checked;
+            const lbl = document.getElementById('tgl-lbl');
+            lbl.textContent = showOnlyActive ? 'Solo vigentes' : 'Todos';
+            lbl.classList.toggle('on', showOnlyActive);
+            activeFilter = 'TODOS';
+            renderFilters(); renderEvents(); updateStats();
+        }
+
+        function onSearch(val) {
+            searchQuery = val.trim();
+            document.getElementById('search-clear').classList.toggle('visible', searchQuery.length > 0);
+            renderEvents(); updateStats();
+        }
+        function clearSearch() { document.getElementById('search-input').value = ''; onSearch(''); }
+
+        /* ── Card click ── */
+        async function onCardClick(card) {
+            if (card.classList.contains('is-loading')) return;
+            const title    = card.dataset.title;
+            const channels = JSON.parse(card.dataset.channels);
+            if (!channels || channels.length === 0) return;
+
+            card.classList.add('is-loading');
+            try {
+                await openPlayer(title, channels, 0);
+            } finally {
+                card.classList.remove('is-loading');
+            }
+        }
+
+        /* ── Stream fetch: ahora usa canal_id ── */
+        async function fetchM3U8(canal_id) {
+            const targetUrl  = `${EVENTO_BASE}?id=${canal_id}`;
+            const proxiedUrl = `${PROXY_BASE}${encodeURIComponent(targetUrl)}`;
+            const res  = await fetch(proxiedUrl);
+            const html = await res.text();
+            const match = html.match(/["'`](https?:[^"'`]*\.m3u8[^"'`]*)/);
+            console.log('fetchM3U8 match:', match);
+            if (!match) throw new Error('No se encontró el stream m3u8');
+            const cleanUrl = match[1].replace(/\\\//g, '/');
+            return `${EVENTO_BASE}?proxy=${encodeURIComponent(cleanUrl)}`;
+        }
+
+        /* ── Player helpers ── */
+        function showStatus(msg, isError) {
+            const st = document.getElementById('player-status');
+            const sm = document.getElementById('status-msg');
+            st.style.display = 'flex';
+            sm.textContent   = msg;
+            sm.className     = isError ? 'player-error' : '';
+            const sp = st.querySelector('.spinner');
+            if (sp) sp.style.display = isError ? 'none' : 'block';
+        }
+        function hideStatus() { document.getElementById('player-status').style.display = 'none'; }
+
+        function destroyPlayer() {
+            const el = document.getElementById('jwplayer-container');
+            if (el) el.innerHTML = '';
+        }
+
+        function initHLSPlayer(streamUrl) {
+            destroyPlayer();
+            jwplayer('jwplayer-container').setup({
+                file:            streamUrl,
+                type:            'hls',
+                autostart:       true,
+                hlsjsdefault:    true,
+                width:           '100%',
+                height:          '100%',
+                mute:            false,
+                cast:            {},
+                sharing:         {},
+                displaytitle:    true,
+                stretching:      'uniform',
+                preload:         'auto',
+                liveSyncDuration: 3,
+            });
+            jwplayer().on('ready', () => hideStatus());
+            jwplayer().on('error', () => showStatus('Error al cargar el stream. Probá otro canal.', true));
+        }
+
+        /* ── Carga un canal por canal_id ── */
+        async function loadChannel(canal_id) {
+            const retryBtn = document.getElementById('retry-btn');
+            if (retryBtn) retryBtn.disabled = true;
+
+            showStatus('Obteniendo stream...', false);
+
+            const attempt = async () => {
+                const streamUrl = await fetchM3U8(canal_id);
+                console.log('stream url:', streamUrl);
+                initHLSPlayer(streamUrl);
+            };
+
+            try {
+                await attempt();
+            } catch (err) {
+                showStatus('Reintentando...', false);
+                await new Promise(r => setTimeout(r, 1500));
+                try {
+                    await attempt();
+                } catch (err2) {
+                    showStatus('No se pudo obtener el stream. Probá otro servidor.', true);
+                }
+            } finally {
+                if (retryBtn) retryBtn.disabled = false;
+            }
+        }
+
+        async function openPlayer(title, channels, idx) {
+            document.getElementById('player-title').textContent = title.trim().replace(/\n/g, ' ');
+
+            const chEl = document.getElementById('player-channels');
+            chEl.dataset.channels = JSON.stringify(channels);
+            chEl.innerHTML = `
+                <select class="player-ch-select" id="ch-select" onchange="onSelectChannel(this)">
+                    ${channels.map((c, i) =>
+                        `<option value="${i}">${esc(c.canal)}</option>`
+                    ).join('')}
+                </select>
+                <button class="retry-btn" id="retry-btn" onclick="retryChannel()">↺ Reintentar</button>`;
+
+            document.getElementById('overlay').classList.add('open');
+
+            /* Usar canal_id del canal seleccionado */
+            await loadChannel(channels[idx].canal_id);
+        }
+
+        async function onSelectChannel(sel) {
+            const idx      = parseInt(sel.value);
+            const channels = JSON.parse(document.getElementById('player-channels').dataset.channels);
+            await loadChannel(channels[idx].canal_id);
+        }
+
+        function retryChannel() {
+            const sel = document.getElementById('ch-select');
+            if (sel) onSelectChannel(sel);
+        }
+
+        function closePlayer() {
+            document.getElementById('overlay').classList.remove('open');
+            destroyPlayer();
+            showStatus('Cargando stream...', false);
+        }
+
+        document.getElementById('overlay').addEventListener('click', function(e) {
+            if (e.target === this) closePlayer();
+        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closePlayer(); });
+
+        /* ── Load data ── */
+        async function loadData() {
+            try {
+                const res = await fetch(PROXY_BASE + 'https://jjfutbol2.lat/agenda_limpia.json');
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                allEvents = await res.json();
+            } catch (e) {
+                console.warn('Error cargando datos:', e.message);
+                allEvents = [];
+            }
+            renderFilters(); renderEvents(); updateStats();
+        }
+
+        loadData();
+        setInterval(() => { renderFilters(); renderEvents(); updateStats(); }, 60000);
+    </script>
+    <script src="../js/script-config.js"></script>
+</body>
+
+</html>
