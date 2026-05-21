@@ -8992,8 +8992,8 @@ MisCanales.set(
         pais: "Varios",
         enlaces: [
             servidorCanalesOnline + "vaughnpro.html",
-            servidorCanalesOnline + "giatv.html?id=los_simpson",
-            servidorCanalesOnline + "giatv.html?id=los_simpson2",
+            // servidorCanalesOnline + "giatv.html?id=los_simpson",
+            // servidorCanalesOnline + "giatv.html?id=los_simpson2",
             // servidorCanalesOnline + "http.html?id=Los_Simpson",
             // servidorCanalesOnline + "http.html?id=Los_Simpson2",
         ]
