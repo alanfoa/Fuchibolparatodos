@@ -473,7 +473,7 @@ MisCanales.set(
         pais: "Argentina",
         guide: "TN HD",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=VG9kb19Ob3RpY2lhc180Sw==",
+            // servidorCanalesOnline + "cvatt_pro.html?get=VG9kb19Ob3RpY2lhc180Sw==",
             // servidorCanalesOnline + "cvatt.html?get=VG9kb19Ob3RpY2lhc180Sw==",
             // servidorCanalesOnline + "cvatt2_ext.html?get=VG9kb19Ob3RpY2lhc180Sw==",
             servidorCanalesOnline + "cvatt_pro.html?get=VG9kb05vdGljaWFz",
@@ -3220,6 +3220,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19VWQ==",
+            servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19VWQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19VWQ==",
             servidorCanalesOnline + "fly.html?id=dsports",
             servidorCanalesOnline + "fly-hls.html?id=dsports",
             servidorCanalesOnline + "tdtcloud.html?stream=dsports",
@@ -3261,6 +3264,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0czJfVVk=",
+            servidorCanalesOnline + "cvatt.html?get=RHNwb3J0czJfVVk=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0czJfVVk=",
             servidorCanalesOnline + "fly.html?id=dsports2",
             servidorCanalesOnline + "fly-hls.html?id=dsports2",
             servidorCanalesOnline + "tdtcloud.html?stream=dsports2",
