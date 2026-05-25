@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>el4live1 ext</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <!-- <script>(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://gounodogaptofok.net/tag.min.js',7669975,document.body||document.documentElement)</script> -->
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+
+     
+
+
+    <style>
+        :root {
+            --nav_pantalla: 80px;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #player {
+            /* position: relative; */
+            width: 100%;
+            /* padding-top: 56.25%; */
+            background: #000;
+        }
+
+        #player iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .alert-card {
+            background-color: #333;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+        }
+
+        .alert-card h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        .alert-card .boxicon {
+            font-size: 48px;
+            color: #ff0;
+        }
+
+        .alert-card p {
+            margin: 10px 0;
+            color: #ebebeb;
+        }
+
+        @media (max-width: 480px) {
+            .alert-card {
+                max-width: 90%;
+                padding: 5px;
+                /* margin-right: 50px; */
+            }
+
+            .alert-card h2 {
+                font-size: 20px;
+            }
+
+            .alert-card .boxicon {
+                font-size: 36px;
+            }
+
+            .alert-card p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .alert-card {
+                max-width: 80%;
+                padding: 25px;
+            }
+
+            .alert-card h2 {
+                font-size: 22px;
+            }
+
+            .alert-card .boxicon {
+                font-size: 42px;
+            }
+
+            .alert-card p {
+                font-size: 16px;
+            }
+        }
+
+        a {
+            color: #0f0 !important;
+            text-decoration: underline;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="player" class="hidden"></div>
+        <div id="alerta-extension" class="hidden alert-card text-center bg-dark bg-gradient">
+        </div>
+    </div>
+
+    <!-- <script src="https://canalesonline.netlify.app/js/script-config.js"></script> -->
+    <script src="../js/script-config.js"></script>
+    <script>
+
+        // Función para verificar si es Windows o Linux
+        function isWindowsPC() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return (/windows|linux/.test(userAgent)) && !(/mobile|tablet|iphone|ipod|android/.test(userAgent));
+        }
+
+        function isAndroid() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return /android/.test(userAgent) && !/android phone/.test(userAgent);
+        }
+
+        // Función para mostrar el mensaje de dispositivo no compatible
+        function showUnsupportedDeviceMessage() {
+            const unsupportedMessage = document.createElement('div');
+            unsupportedMessage.classList.add('alert-card', 'text-center', 'bg-dark', 'bg-gradient');
+            unsupportedMessage.innerHTML = `
+        <i class='bx bx-error-circle boxicon'></i>
+       <h2>Dispositivo no compatible</h2>
+     <p>Esta Opcion solo es compatible con PC con Windows. Por favor, usa un PC para acceder.</p>
+    `;
+            document.querySelector(".container").style.display = "none";
+            document.body.appendChild(unsupportedMessage);
+        }
+
+        function showUnsupportedDeviceMessageMovil() {
+            const unsupportedMessage = document.createElement('div');
+            unsupportedMessage.classList.add('alert-card', 'text-center', 'bg-dark', 'bg-gradient');
+            unsupportedMessage.innerHTML = `
+                <i class='bx bx-error-circle boxicon'></i>
+                <h2>Dispositivo no compatible</h2>
+                <p>Esta opcion solo es compatible en SmartPhone con sistema Android. Por favor, usa un Celular y sigue las instrucciones para ver el contenido.</p>`;
+
+            document.querySelector(".container").style.display = "none";
+            document.body.appendChild(unsupportedMessage);
+        }
+
+        function showUnsupportedDeviceMessageGeneral() {
+            const unsupportedMessage = document.createElement('div');
+            unsupportedMessage.classList.add('alert-card', 'text-center', 'bg-dark', 'bg-gradient');
+            unsupportedMessage.innerHTML = `
+                <i class='bx bx-error-circle boxicon'></i>
+                <h2>Dispositivo no compatible</h2>
+                <p>Esta opción solo es compatible con PC con Windows o celulares con Android. Por favor, usá uno de estos dispositivos y seguí las instrucciones para ver el contenido.</p>
+            `;
+
+
+            document.querySelector(".container").style.display = "none";
+            document.body.appendChild(unsupportedMessage);
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const alertaDiv = document.getElementById("alerta-extension");
+
+            if (isWindowsPC()) {
+                alertaDiv.innerHTML = `
+          <i class="bx bx-error-circle boxicon"></i>
+          <h2>Instalar Extensión VideoPlayer</h2>
+          <p>Para ver los canales, necesitas añadir la extensión VideoPlayer</p>
+          <p>Es un reproductor nativo para videos.</p>
+          <p>Una vez instalada la extensión en tu Navegador, recargar esta página.</p>
+          <p>Recuerda: estos canales están disponibles en Argentina, Paraguay, Uruguay o con VPN de estos países.</p>
+          <a class="btn btn-secondary rounded"
+             href="https://chromewebstore.google.com/detail/reproductor-mpdm3u8m3uepg/opmeopcambhfimffbomjgemehjkbbmji"
+             target="_blank">Instalar ahora</a>
+        `;
+            } else if (isAndroid()) {
+                alertaDiv.innerHTML = `
+          <i class="bx bx-error-circle boxicon"></i>
+          <p>Instala el navegador <a target="_blank"
+            href="https://play.google.com/store/apps/details?id=com.kiwibrowser.browser&hl=es_PE">Kiwi Browser</a> en tu Celular</p>
+          <p>Luego instala la extensión <a target="_blank"
+            href="https://chromewebstore.google.com/detail/reproductor-mpdm3u8m3uepg/opmeopcambhfimffbomjgemehjkbbmji">Reproductor M3U8 - HLS + DASH Player</a> en dicho navegador.</p>
+          <p>Una vez instalada la extensión recarga la opción y disfruta del canal.</p>
+        `;
+            } else if (!isAndroid() && !isWindowsPC()) showUnsupportedDeviceMessageGeneral();
+            
+        });
+
+        var ConfiguracionCanales = {
+            "CLUB_MTV": {
+                url: "https://el4live1.boldmss.com/CLUB_MTV/CLUB_MTV_EL4.isml/CLUB_MTV.mpd",
+                k1: "9f3f3f461d2545c59507a8741662fe52",
+                k2: "922f1d3f007bdb1e27490a3c7c6c67bb"
+            },
+            "BOLIVIA_TV": {
+                url: "https://el4live1.boldmss.com/BOLIVIA_TV/BOLIVIA_TV_EL4.isml/BOLIVIA_TV.mpd",
+                k1: "39d2be99630b407eab45a38be42265e1 ",
+                k2: "854ec0dbcc28e28b077e13f408ef121e"
+            },
+            "ELCUATRO": {
+                url: "https://el4live1.boldmss.com/ELCUATRO/ELCUATRO_EL4.isml/ELCUATRO.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "DREAMWORKS": {
+                url: "https://el4live1.boldmss.com/DREAMWORKS/DREAMWORKS_EL4.isml/DREAMWORKS.mpd",
+                k1: "f74db1fea74c4a468781a062214e3c71",
+                k2: "1f04a5bcf2bff02af13913fcad443b30"
+            },
+            "TELEMUNDO": {
+                url: "https://el4live1.boldmss.com/TELEMUNDO/TELEMUNDO_EL4.isml/TELEMUNDO.mpd",
+                k1: "934dfe5fa8514d468d57658d024f1f38",
+                k2: "fba24c56ffc6534cd2b684faeaa70706"
+            },
+            "CANAL_9_HD": {
+                url: "https://el4live1.boldmss.com/CANAL_9_HD/CANAL_9_HD_EL4.isml/CANAL_9_HD.mpd",
+                k1: "5da49c1eea4d48ea842932db47214632",
+                k2: "97c6ca592d545a278d91fbf0e0acc2f6"
+            },
+            "AMTV": {
+                url: "https://el4live1.boldmss.com/AMTV/AMTV_EL4.isml/AMTV.mpd",
+                k1: "6c8889b33e99477baaf08d63ca313851",
+                k2: "7a146f6d6e16778db1b1927225e5ad6b"
+            },
+            "C13": {
+                url: "https://el4live1.boldmss.com/C13/C13_EL4.isml/C13_EL4.mpd",
+                k1: "91a8cceadd644f7fbe30d459f409186e",
+                k2: "e2d231880d3a8f7eb01e5897aca83971"
+            },
+            // "CH_TELEFE": {
+            //     url: "https://apps.playme.com.ar/dash/CH_TELEFE/playlist.mpd",
+            //     k1: "b7188713fc9245c1862eb95c7ee6b0d3",
+            //     k2: "39da548204061a60743365e453ed4e1f"
+            // },
+            "CLUB_MTV": {
+                url: "https://el4live1.boldmss.com/CLUB_MTV/CLUB_MTV_EL4.isml/CLUB_MTV.mpd",
+                k1: "9f3f3f461d2545c59507a8741662fe52",
+                k2: "922f1d3f007bdb1e27490a3c7c6c67bb"
+            },
+            "MTV": {
+                url: "https://el4live1.boldmss.com/MTV/MTV_EL4.isml/MTV_EL4.mpd",
+                k1: "958882207abd41ac87ec7e25f31dbaf2",
+                k2: "05b69e24747f33cdf816448f96a21f0f"
+            },
+            "HISTORY_2": {
+                url: "https://el4live1.boldmss.com/HISTORY_2/HISTORY_2_EL4.isml/HISTORY_2.mpd",
+                k1: "9fa6b73329c54e05bc34d28d73a68110",
+                k2: "d39db5cac6b16904c0ca8ff84904250e"
+            },
+            "HISTORY": {
+                url: "https://el4live1.boldmss.com/HISTORY/HISTORY_EL4.isml/HISTORY.mpd",
+                k1: "4fa4eb7b64e1498e8d307dcbf4d8bf5e",
+                k2: "9d35656eca360597e10d3d1fc0ece08c"
+            },
+            "ANIMAL_PLANET": {
+                url: "https://el4live1.boldmss.com/ANIMAL_PLANET/ANIMAL_PLANET_EL4.isml/ANIMAL_PLANET.mpd",
+                k1: "ce04f2d9feb644d1ad01b8dbcdabefd7",
+                k2: "a63f71767da4452b36be87290355536d"
+            },
+            "DISCOVERY_TURBO": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_TURBO/DISCOVERY_TURBO_EL4.isml/DISCOVERY_TURBO.mpd",
+                k1: "fffe276851b14471abda2bc679801bc5",
+                k2: "4d717691fe6d8733e908131f2aeafee4"
+            },
+            "DISCOVERY_SCIENCE": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_SCIENCE/DISCOVERY_SCIENCE_EL4.isml/DISCOVERY_SCIENCE_EL4.mpd",
+                k1: "b662fa2508414b12ae0434666bd5ca90",
+                k2: "27a6f7e522fb6cf937436ad92bacb6ff"
+            },
+            "DISCOVERY_WORLD": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_WORLD/DISCOVERY_WORLD_EL4.isml/DISCOVERY_WORLD.mpd",
+                k1: "d43f244ebfc6459a917c13dbd683efe2",
+                k2: "634a0fc60c0ecc268f03a5938f4ca901"
+            },
+            "DISCOVERY_ID": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_ID/DISCOVERY_ID_EL4.isml/DISCOVERY_ID.mpd",
+                k1: "1f17859ca82944df9b1c9e2df82ec234",
+                k2: "aeea0988206436322bc71a0534e0ed86"
+            },
+            "DISCOVERY_HD": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_HD/DISCOVERY_HD_EL4.isml/DISCOVERY_HD_EL4.mpd",
+                k1: "11ade1c92800461682fde20cacc1c5f8",
+                k2: "8864db70ff70beb68bc12aeaedae2f6f"
+            },
+            "DISCOVERY_THEATER": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_THEATER/DISCOVERY_THEATER_EL4.isml/DISCOVERY_THEATER_EL4.mpd",
+                k1: "b4465470ee0f4139a835c7716e7a4b44",
+                k2: "972959c931135aadc82714fa31b28215"
+            },
+            "NGEO": {
+                url: "https://el4live1.boldmss.com/NGEO/NGEO_EL4.isml/NGEO_EL4.mpd",
+                k1: "aba46368babb4b85b5022e66d7da7985",
+                k2: "5a61f4349b55df3d07db47c59ae9629c"
+            },
+            "ENTERTAINMENT": {
+                url: "https://el4live1.boldmss.com/ENTERTAINMENT/ENTERTAINMENT_EL4.isml/ENTERTAINMENT.mpd",
+                k1: "ae476ea0cc7c4d0b90bd963ba2173c15",
+                k2: "33711131c2399e5065a58faebaefb0d8"
+            },
+            "TLC": {
+                url: "https://el4live1.boldmss.com/TLC/TLC_EL4.isml/TLC.mpd",
+                k1: "4dd5bf6edbd34203868cd0372dd866e1",
+                k2: "2e84c17361baf8fe35ec652b63f42315"
+            },
+            "LIFETIME": {
+                url: "https://el4live1.boldmss.com/LIFETIME/LIFETIME_EL4.isml/LIFETIME_EL4.mpd",
+                k1: "decf9d08f51a4f9cb0b1ae58430a27a8",
+                k2: "88f75b9621953b1953825b02e0aafde2"
+            },
+            "DISCOVERY_HGTV": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_HGTV/DISCOVERY_HGTV_EL4.isml/DISCOVERY_HGTV.mpd",
+                k1: "92de0b7df8684dec88b76398da8d3a83",
+                k2: "ccb7cf806eca867879019a23a570467b"
+            },
+            "DISCOVERY_HOME_HEALT": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_HOME_HEALT/DISCOVERY_HOME_HEALT_EL4.isml/DISCOVERY_HOME_HEALT.mpd",
+                k1: "a0cba8f8bffc47c5a77cc2ec5dba32e0",
+                k2: "1c4d55946fea8978518753217f04d234"
+            },
+            "MAS_CHIC": {
+                url: "https://el4live1.boldmss.com/MAS_CHIC/MAS_CHIC_EL4.isml/MAS_CHIC_EL4.mpd",
+                k1: "52543b0b1da040a98821aea1b4d91788",
+                k2: "e1c76934ba0fa9e5a9ebcdd2a33413a0"
+            },
+            "FOOD_NETWORK": {
+                url: "https://el4live1.boldmss.com/FOOD_NETWORK/FOOD_NETWORK_EL4.isml/FOOD_NETWORK_EL4.mpd",
+                k1: "b55740b8b0914a28b14786efe0d9db72",
+                k2: "32491cadd4cfc837ffc5328142e09e43"
+            },
+            "GOURMET": {
+                url: "https://el4live1.boldmss.com/GOURMET/GOURMET_EL4.isml/GOURMET_EL4.mpd",
+                k1: "ce5dfb3d62a34962baeb2eee94dde799",
+                k2: "195f41b287b557f7d063aa51683481ee"
+            },
+            "CDLE": {
+                url: "https://el4live1.boldmss.com/CDLE/CDLE_EL4.isml/CDLE_EL4.mpd",
+                k1: "df3c437953ac4b50a963b4004cff068f",
+                k2: "0c67ac36041abc6fce4d1a93b02518f0"
+            },
+            "TNT_NOVELAS": {
+                url: "https://el4live1.boldmss.com/TNT_NOVELAS/TNT_NOVELAS_EL4.isml/TNT_NOVELAS.mpd",
+                k1: "bbaa5225aa1a4cf488d501f4652133e3",
+                k2: "399a47f0bc7e0d8fbb81a518b7560c71"
+            },
+            "CARTOONITO": {
+                url: "https://el4live1.boldmss.com/CARTOONITO/CARTOONITO_EL4.isml/CARTOONITO_EL4.mpd",
+                k1: "3b7c3e11c66643ef8bdfc3ae8037884d",
+                k2: "6631cbe5390e60ff02de2f0d6f5ce272"
+            },
+            "NICK_JR": {
+                url: "https://el4live1.boldmss.com/NICK_JR/NICK_JR_EL4.isml/NICK_JR_EL4.mpd",
+                k1: "42b5ea2e59cf41cd972ec77c7cd0cc21",
+                k2: "071afee0662a8374f24e7ddf68216975"
+            },
+            "DJUNIOR": {
+                url: "https://el4live1.boldmss.com/DJUNIOR/DJUNIOR.isml/DJUNIOR.mpd",
+                k1: "8913dddc7f301085c95e19bb94c005a8",
+                k2: "ff60fbb41c2148e40c110237554ba652"
+            },
+            "DISNEY_CHANNEL": {
+                url: "https://el4live1.boldmss.com/DISNEY_CHANNEL/DISNEY_CHANNEL_EL4.isml/DISNEY_CHANNEL_EL4.mpd",
+                k1: "4bbebdf84a4442f18e9c08bc99a81672",
+                k2: "8581b56ccfef0714c34b271fe2e0e8ec"
+            },
+            "DKIDS": {
+                url: "https://el4live1.boldmss.com/DKIDS/DKIDS_EL4.isml/DKIDS_EL4.mpd",
+                k1: "740a4fbd840c4520b523cb4af27dc046",
+                k2: "2c8eb8e3445af87a5fad34351f7fa9b1"
+            },
+            "NICKELODEON": {
+                url: "https://el4live1.boldmss.com/NICKELODEON/NICKELODEON_EL4.isml/NICKELODEON.mpd",
+                k1: "e54055d21fe84e148c6272a258f6a9dd",
+                k2: "dc6e7fbd3fb9f0bbaa2e8cd1fb6f7d9c"
+            },
+            "CARTOON_NETWORK": {
+                url: "https://el4live1.boldmss.com/CARTOON_NETWORK/CARTOON_NETWORK_EL4.isml/CARTOON_NETWORK_EL4.mpd",
+                k1: "38132b98e4f24d5da980c13c677e64e2",
+                k2: "72800b5493c275719120e6889baf221c"
+            },
+            "EUROPA_EUROPA": {
+                url: "https://el4live1.boldmss.com/EUROPA_EUROPA/EUROPA_EUROPA_EL4.isml/EUROPA_EUROPA.mpd",
+                k1: "f21c9e9189954da1a57d3e6aecf6ab49",
+                k2: "6959288cb940afa3e4d15b8b593ef00b"
+            },
+            "FILM_AND_ARTS": {
+                url: "https://el4live1.boldmss.com/FILM_AND_ARTS/FILM_AND_ARTS_EL4.isml/FILM_AND_ARTS_EL4.mpd",
+                k1: "1255e1f4fb9e482683f0ea5df0205d66",
+                k2: "979d2aabf7095f9cb270deb844385f71"
+            },
+            "TCM": {
+                url: "https://el4live1.boldmss.com/TCM/TCM_EL4.isml/TCM.mpd",
+                k1: "dc85d4a348db4d65aea605cd9d0cad2a",
+                k2: "14fa0c190a2ff130ab2bfea4f32958bb"
+            },
+            "STUDIO_UNIVERSAL": {
+                url: "https://el4live1.boldmss.com/STUDIO_UNIVERSAL/STUDIO_UNIVERSAL_EL4.isml/STUDIO_UNIVERSAL.mpd",
+                k1: "e1cf5bc828d84bfb9254d9d0c621ae2f",
+                k2: "b4e653486e61829e298ec0efaad66a2f"
+            },
+            "SONY": {
+                url: "https://el4live1.boldmss.com/SONY/SONY_EL4.isml/SONY_EL4.mpd",
+                k1: "b1a3d1d0b8624d33a21857787d6e84ff",
+                k2: "8ce14cbace57507f873e77bca6893166"
+            },
+            "AMC": {
+                url: "https://el4live1.boldmss.com/AMC/AMC_EL4.isml/AMC.mpd",
+                k1: "82fa86624981485f87b28fd1324dc666",
+                k2: "d35663b3d8708ef2182acec158ef35bb"
+            },
+            "AXN": {
+                url: "https://el4live1.boldmss.com/AXN/AXN_EL4.isml/AXN.mpd",
+                k1: "136f16e277524945b890fe746dd1166e",
+                k2: "3009222c2083acf132bb7eebc76c79b0"
+            },
+            "AYE": {
+                url: "https://el4live1.boldmss.com/AYE/AYE_EL4.isml/AYE.mpd",
+                k1: "0c4942192aa14d8aaad0e5af8819023c",
+                k2: "4ba85232f7a24b8daa7a0e7271419f99"
+            },
+            "TNT_SERIES": {
+                url: "https://el4live1.boldmss.com/TNT_SERIES/TNT_SERIES_EL4.isml/TNT_SERIES.mpd",
+                k1: "059c53991ebf4d439e696a6e82c2cfdc",
+                k2: "eae64832d7b9d1f7e9452669966b119e"
+            },
+            "FX": {
+                url: "https://el4live1.boldmss.com/FX/FX_EL4.isml/FX.mpd",
+                k1: "ce954ae8019e43ee87505f348d1c1ec9",
+                k2: "0f2a47c96b790a1fd92e2559af6eb55b"
+            },
+            "STAR_CHANNEL": {
+                url: "https://el4live1.boldmss.com/STAR_CHANNEL/STAR_CHANNEL_EL4.isml/STAR_CHANNEL_EL4.mpd",
+                k1: "60f6deeb66c740b4b6dc5f870457fc00",
+                k2: "c80b22603f1b810d9d5b336d3cf765ad"
+            },
+            "CINECANAL": {
+                url: "https://el4live1.boldmss.com/CINECANAL/CINECANAL_EL4.isml/CINECANAL_EL4.mpd",
+                k1: "e31cb805bac04311a19c74ed4224edd0",
+                k2: "5d722685102d84043dc1cc5b210cc36e"
+            },
+            "CINEMAX": {
+                url: "https://el4live1.boldmss.com/CINEMAX/CINEMAX_EL4.isml/CINEMAX.mpd",
+                k1: "3c35dd0a505e426285378697206f389f",
+                k2: "fb3892bc39963e7f5ab91dfbed897316"
+            },
+            "SPACE": {
+                url: "https://el4live1.boldmss.com/SPACE/SPACE_EL4.isml/SPACE_EL4.mpd",
+                k1: "9e8866b575f44074887c13e4bcb5c093",
+                k2: "4d3afa9ba9f5adc2a6397578d72d7730"
+            },
+            "LNPLUS": {
+                url: "https://el4live1.boldmss.com/LNPLUS/LNPLUS_EL4.isml/LNPLUS.mpd",
+                k1: "580f1e3df60344c49b5c6869a641a7a0",
+                k2: "6d1ee897f9746ff240cd3acd03605f24"
+            },
+            "TN": {
+                url: "https://el4live1.boldmss.com/TN/TN_EL4.isml/TN_EL4.mpd",
+                k1: "581addabfe554c95892e078cb7f9d228",
+                k2: "131062544cbc86361952b8bb4b6faf44"
+            },
+            "MAGAZINE": {
+                url: "https://el4live1.boldmss.com/MAGAZINE/MAGAZINE_EL4.isml/MAGAZINE.mpd",
+                k1: "23a377708b764c43a934f414b6211c11",
+                k2: "a98d19f750ec3ef5838ab83166e783a2"
+            },
+            "CRONICA": {
+                url: "https://el4live1.boldmss.com/CRONICA/CRONICA_EL4.isml/CRONICA.mpd",
+                k1: "4113590c70ac41cc8b8badb7e92c3b47",
+                k2: "70190fe918548eb4d0bb2c154efcf1b6"
+            },
+            "C5N": {
+                url: "https://el4live1.boldmss.com/C5N/C5N_EL4.isml/C5N.mpd",
+                k1: "396b499ebaf64f318ba966110f9994e2",
+                k2: "8056b97da518da1380ab142235f9de79"
+            },
+            "AM24": {
+                url: "https://el4live1.boldmss.com/AM24/AM24_EL4.isml/AM24.mpd",
+                k1: "bfbd16ff845e47cf8926aa228c6acf3f",
+                k2: "6234ff5accd06fd973d6762e83abcc52"
+            },
+            "FS3": {
+                url: "https://el4live1.boldmss.com/FS3/FS3_EL4.isml/FS3_EL4.mpd",
+                k1: "b90ca85b7cfb400cb07384127be81bb3",
+                k2: "b5784a71860611aea6e445e337896987"
+            },
+            "FS2": {
+                url: "https://el4live1.boldmss.com/FS2/FS2_EL4.isml/FS2.mpd",
+                k1: "65511f8f16904666aea61181daec7dd0",
+                k2: "e85288b831ef753d2b46dcf6501f117c"
+            },
+            "FS": {
+                url: "https://el4live1.boldmss.com/FS/FS_EL4.isml/FS.mpd",
+                k1: "ed1c7f413bb540e592ad45bef4da9bcc",
+                k2: "f3f2000113b29a6912caa37329093531"
+            },
+            "ESPN4": {
+                url: "https://el4live1.boldmss.com/ESPN_4/ESPN_4_EL4.isml/ESPN_4.mpd",
+                k1: "d84f8725413546aabe922f4b5bd20841",
+                k2: "3b45a54f48496dae4c48957635241905"
+            },
+            "ESPN3": {
+                url: "https://el4live1.boldmss.com/ESPN3/ESPN3_EL4.isml/ESPN3.mpd",
+                k1: "4733f140c4094ff1bb0b17f313b02a8e",
+                k2: "898808d7b882d862a8cf246da5c0ded6"
+            },
+            "TYC_SPORTS_2": {
+                url: "https://el4live1.boldmss.com/TYC_SPORTS_2/TYC_SPORTS_2_EL4.isml/TYC_SPORTS_2.mpd",
+                k1: "3eb6b11f4e9a4e749e95b9e6ae25e205",
+                k2: "d5f083bbf168b5dda39cd30ec8a83bbf"
+            },
+            "IP": {
+                url: "https://el4live1.boldmss.com/IP/IP_EL4.isml/IP.mpd",
+                k1: "dd97f4f409eb4702833de5fe264850eb",
+                k2: "eae64832d7b9d1f7e9452669966b119e"
+            },
+            "CANAL_7_JUJUY": {
+                url: "https://el4live1.boldmss.com/CANAL_7_JUJUY/CANAL_7_JUJUY_EL4.isml/CANAL_7_JUJUY.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CANAL_26": {
+                url: "https://el4live1.boldmss.com/CANAL_26/CANAL_26_EL4.isml/CANAL_26.mpd",
+                k1: "8abe94bbd02a491f919208dfb2d4883f",
+                k2: "20380fdfdefc0bea2c77347eb14ba0ff"
+            },
+            "TVP": {
+                url: "https://el4live1.boldmss.com/TVP/TVP_EL4.isml/TVP.mpd",
+                k1: "37a4584d31fa4906935bb610e0734615",
+                k2: "b8859fe969f4d62e1387312be1159be4"
+            },
+            "CNN": {
+                url: "https://el4live2.boldmss.com/CNN/CNN_EL4.isml/CNN.mpd",
+                k1: "47dd73a36872483eabad7932a6ff8abd",
+                k2: "80754eb2677c4fbe968a6303e2fe0954"
+            },
+            "PAKA_PAKA_Origen": {
+                url: "https://el4live2.boldmss.com/PAKA_PAKA_Origen/PAKA_PAKA_Origen_EL4.isml/PAKA_PAKA_Origen.mpd",
+                k1: "994bb1fcb16c48d1b17e1f8fc7420e4b",
+                k2: "670ea3824ca901a4ebe3ee0b5ea71915"
+            },
+            "TOONCAST": {
+                url: "https://el4live2.boldmss.com/TOONCAST/TOONCAST_EL4.isml/TOONCAST.mpd",
+                k1: "ded56fec96c04db9b89959b81ddad365",
+                k2: "2328b16d0ed4e12267782d030034ac51"
+            },
+            "TYC_BAK": {
+                url: "https://el4live2.boldmss.com/TYC_BAK/TYC_BAK_EL4.isml/TYC_BAK.mpd",
+                k1: "b3ca13856ea040548909112e39c2139a",
+                k2: "6891abc882c92f0ef3aa797c31ccdc36"
+            },
+            "PARAMOUNT": {
+                url: "https://el4live2.boldmss.com/PARAMOUNT/PARAMOUNT_EL4.isml/PARAMOUNT.mpd",
+                k1: "0d990ffc0986477d9576cb6ee2008cf7",
+                k2: "0b7836a532e37b93a335cba8adb6cf4c"
+            },
+            "SONY_MOVIES": {
+                url: "https://el4live2.boldmss.com/SONY_MOVIES/SONY_MOVIES_EL4.isml/SONY_MOVIES.mpd",
+                k1: "2a0dbe373ec4482eb6b41058de4af3d7",
+                k2: "a36be132b821b8cd77e6a2724fe2a05c"
+            },
+            "TNT": {
+                url: "https://el4live2.boldmss.com/TNT/TNT_EL4.isml/TNT.mpd",
+                k1: "36c0325459994238ada1f31237dc481d",
+                k2: "c920bbcb8ef1e9d18ce3b462abbbec8d"
+            },
+            "TLNOVELAS_LSP_2": {
+                url: "https://el4live2.boldmss.com/TLNOVELAS_LSP_2/TLNOVELAS_LSP_2_EL4.isml/TLNOVELAS_LSP_2.mpd",
+                k1: "33c3fb7197e842a7ab9c258a8d619efe",
+                k2: "1614acd76200268768cc62ec82a34310"
+            },
+            "GOLDEN": {
+                url: "https://el4live2.boldmss.com/GOLDEN/GOLDEN_EL4.isml/GOLDEN.mpd",
+                k1: "de46bcb384fb4c8bb13d4c36765790f2",
+                k2: "c33c7c954504775c3e2cac36b427da55"
+            },
+            "COMEDY_CENTRAL": {
+                url: "https://el4live2.boldmss.com/COMEDY_CENTRAL/COMEDY_CENTRAL_EL4.isml/COMEDY_CENTRAL.mpd",
+                k1: "a7dfa8faaa3940d2b90a35bd25d98b3f",
+                k2: "a87c2857ce04e1bea2e3861f4c61aab7"
+            },
+            "ENCUENTRO_Orig": {
+                url: "https://el4live2.boldmss.com/ENCUENTRO_Orig/ENCUENTRO_Orig_EL4.isml/ENCUENTRO_Orig.mpd",
+                k1: "d3ac3948d64f4f1ca8932bbff78b3964",
+                k2: "1e3fb94123668239458938e278f3e2e3"
+            },
+            "BOLIVISION": {
+                url: "https://el4live2.boldmss.com/BOLIVISION/BOLIVISION_EL4.isml/BOLIVISION.mpd",
+                k1: "e6b16601734349eab878d52d00f583ab",
+                k2: "03f5b7fbc1cbfb5d612dc3b735dfb184"
+            },
+            "TVE": {
+                url: "https://el4live2.boldmss.com/TVE/TVE_EL4.isml/TVE.mpd",
+                k1: "e578417404a44e6b944e4d46abd18bdd",
+                k2: "24428e80970a21172bf3860215601b69"
+            },
+            "CONSTRUIR_TV": {
+                url: "https://bvclive1.boldmss.com/CONSTRUIR_TV/CONSTRUIR_TV_BVC.isml/CONSTRUIR_TV.mpd",
+                k1: "3184a62584b247baa350308639a9bdf6",
+                k2: "7bb92afd72a80341aaacbe15069fdad1"
+            },
+            "UNIFE": {
+                url: "https://bvclive1.boldmss.com/UNIFE/UNIFE_BVC.isml/UNIFE.mpd",
+                k1: "1e8153f705f64b0499449ff403ed5b32",
+                k2: "e63a5314ccb236a127665f3d95f8c183"
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+
+
+        };
+
+        var id = getParameterByName('get');
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+
+            function isExtensionInstalled(installedCallback, notInstalledCallback) {
+                const img = document.createElement('img');
+                img.onload = installedCallback;
+                img.onerror = notInstalledCallback;
+                img.src = 'chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/play-on.png';
+            }
+
+
+            if (config.k1 && config.k2) {
+                var keyString = `"${config.k1}":"${config.k2}"`;
+                // Codificar en base64
+                var base64Key = btoa(keyString);
+
+                var extensionUrl = `chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#${config.url}?ck=${encodeURIComponent(base64Key)}`;
+
+                const playerDiv = document.getElementById("player");
+                const alertaDiv = document.getElementById("alerta-extension");
+
+                isExtensionInstalled(
+                    () => {
+                        playerDiv.classList.remove("hidden");
+                        playerDiv.innerHTML = `<iframe id="iframe" allow="encrypted-media" allowfullscreen src="${extensionUrl}"></iframe>`;
+                    },
+                    () => {
+                        alertaDiv.classList.remove("hidden");
+                    }
+                );
+            } else {
+                alert('KeyId o Key no definidos.');
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

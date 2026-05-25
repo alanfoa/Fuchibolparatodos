@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+
+    <!-- Anti-Caché Meta Tags -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <title>Reproductor Vaughn</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/flv.js@1.5.0/dist/flv.min.js"></script>
+    <style>
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: black;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .player-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .loading {
+            position: absolute;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            z-index: 5;
+        }
+
+        .loading-spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 16px;
+            text-align: center;
+            padding: 20px;
+            max-width: 500px;
+            z-index: 5;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 1;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .controls.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        button {
+            background: none;
+            border: none;
+            color: var(--coloriconos);
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.2s;
+        }
+
+        button:hover {
+            color: var(--colorbarra);
+        }
+
+        .play-btn,
+        .volume-icon {
+            font-size: 30px;
+        }
+
+        .fullscreen-btn {
+            font-size: 20px;
+            margin-left: auto;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #volume {
+            width: 80px;
+            accent-color: var(--coloriconos);
+            display: none;
+        }
+
+        .volume-control:hover #volume {
+            display: inline-block;
+        }
+
+        #volume:hover {
+            accent-color: var(--colorbarra);
+        }
+
+        .live-button {
+            font-size: 13px;
+            font-weight: bold;
+            color: white;
+            background: rgba(255, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="player-container">
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <div>Obteniendo transmisión...</div>
+        </div>
+        <div class="error" id="error" style="display: none;"></div>
+
+        <video id="flvPlayer" autoplay></video>
+
+        <div class="controls" id="customControls">
+            <button id="playBtn" class="play-btn" title="Reproducir / Pausar">
+                <i class="bi bi-pause-fill"></i>
+            </button>
+
+            <div class="volume-control">
+                <button id="muteBtn" class="volume-icon" title="Silenciar / Activar sonido">
+                    <i class="bi bi-volume-up-fill"></i>
+                </button>
+                <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+            </div>
+
+            <div id="liveStatus" class="live-button" title="Transmisión en vivo">
+                <i class="bi bi-record-fill"></i> EN VIVO
+            </div>
+
+            <button id="fullscreenBtn" class="fullscreen-btn" title="Pantalla completa">
+                <i class="bi bi-fullscreen"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        const video = document.getElementById("flvPlayer");
+        const playBtn = document.getElementById("playBtn");
+        const muteBtn = document.getElementById("muteBtn");
+        const volume = document.getElementById("volume");
+        const fullscreenBtn = document.getElementById("fullscreenBtn");
+        const controls = document.getElementById("customControls");
+        const loading = document.getElementById("loading");
+        const errorDiv = document.getElementById("error");
+
+        let flvPlayer = null;
+        let retryCount = 0;
+        const MAX_RETRIES = 3;
+
+        const streamMapping = {
+            "Los_Simpson": "simpson_maniahd193",
+            "Simpson": "simpson_maniahd193",
+            "Los_Simpson_media": "simpson_media",
+            "Netflix": "a_neflix01",
+            "Neflix": "a_neflix01",
+            "Terror_mania": "terror_mania",
+            "Terror": "terror_mania",
+            "Peliculas_Mania": "peliculas_mania",
+            "Peliculas": "peliculas_mania",
+            "Telefe": "11telemundial",
+            "Futurama": "futurama_mania_",
+            "Futurama_mania": "futurama_mania_",
+            "Goku_tv": "goku_tv_oficial",
+            "Goku": "goku_tv_oficial",
+            "Chincha_TV": "chinchatv",
+            "Chincha": "chinchatv",
+            "Cienciaficcion": "cienciaficcion01",
+            "Ciencia_Ficcion": "cienciaficcion01",
+            "Angeline": "angeline",
+            "Tufortuna": "tufortunatv",
+            "Tufortuna_TV": "tufortunatv",
+            "Drmedia": "drmedia",
+            "Mango": "mangondelicioso",
+            "Telecine": "telecine",
+            "Sintonia": "sintonia",
+            "Celemundo": "celemundo",
+            "Cienciaficcion1": "cienciaficcion01",
+            "Ganja_tv": "ganja_tv",
+            "Tufortunatv": "tufortunatv",
+            "Chinchatv": "chinchatv",
+            "Mangondelicioso": "mangondelicioso",
+            "Cinemundo_sagas": "cinemundo_sagas",
+            "Exported": "exported",
+            "Ashtonless": "ashtonless",
+            "Hank_and_jim": "hank_and_jim",
+            "Shay_saheed": "shay_saheed"
+        };
+
+        // Obtener parámetro de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const streamParam = urlParams.get('stream');
+
+        // Determinar el stream a cargar
+        let currentStream = "simpson_maniahd193"; // Default
+
+        if (streamParam) {
+            const mappedStream = streamMapping[streamParam];
+            if (mappedStream) {
+                currentStream = mappedStream;
+                console.log(`Stream "${streamParam}" mapeado a "${currentStream}"`);
+            } else {
+                currentStream = streamParam;
+                console.log(`Usando nombre técnico directamente: "${currentStream}"`);
+            }
+        }
+
+        function showError(message) {
+            loading.style.display = 'none';
+            errorDiv.innerHTML = message;
+            errorDiv.style.display = 'block';
+            console.error(message);
+        }
+
+        function showLoading(message) {
+            errorDiv.style.display = 'none';
+            loading.querySelector('div:last-child').textContent = message;
+            loading.style.display = 'block';
+        }
+
+        // Función mejorada para limpiar completamente el player
+        function destroyPlayer() {
+            if (flvPlayer) {
+                try {
+                    flvPlayer.pause();
+                    flvPlayer.unload();
+                    flvPlayer.detachMediaElement();
+                    flvPlayer.destroy();
+                } catch (e) {
+                    console.log('Error destruyendo player:', e);
+                }
+                flvPlayer = null;
+            }
+
+            // Limpiar completamente el elemento video
+            video.removeAttribute('src');
+            video.load();
+        }
+
+        async function initPlayer(streamName) {
+            if (!flvjs.isSupported()) {
+                showError('Tu navegador no soporta la reproducción FLV.<br>Prueba con Chrome, Edge o Firefox.');
+                return;
+            }
+
+            try {
+                // Destruir player anterior completamente
+                destroyPlayer();
+
+                showLoading('Iniciando reproductor...');
+
+                // Cache busting: agregar timestamp único a la URL
+                const timestamp = new Date().getTime();
+                const streamUrl = `https://stream-cdn-iad3.vaughnsoft.net/play/live_${streamName}.flv?t=${timestamp}`;
+
+                console.log('=== CONECTANDO ===');
+                console.log('Stream:', streamName);
+                console.log('URL:', streamUrl);
+                console.log('Timestamp:', timestamp);
+                console.log('Intento:', retryCount + 1);
+                console.log('==================');
+
+                flvPlayer = flvjs.createPlayer({
+                    type: 'flv',
+                    url: streamUrl,
+                    isLive: true,
+                    cors: true,
+                    enableWorker: true,
+                    enableStashBuffer: false,
+                    stashInitialSize: 128,
+                    autoCleanupSourceBuffer: true
+                }, {
+                    enableWorker: true,
+                    autoCleanupSourceBuffer: true,
+                    lazyLoad: false
+                });
+
+                flvPlayer.attachMediaElement(video);
+
+                flvPlayer.on(flvjs.Events.ERROR, (errorType, errorDetail, errorInfo) => {
+                    console.error('Error FLV:', { errorType, errorDetail, errorInfo });
+
+                    if (retryCount < MAX_RETRIES) {
+                        retryCount++;
+                        showLoading(`Reintentando conexión... (${retryCount}/${MAX_RETRIES})`);
+                        setTimeout(() => initPlayer(streamName), 2000);
+                    } else {
+                        let errorMessage = 'Error de reproducción.<br>';
+                        if (errorType === flvjs.ErrorTypes.NETWORK_ERROR) {
+                            errorMessage += 'No se pudo conectar a la transmisión.<br>';
+                            errorMessage += 'Posibles causas:<br>';
+                            errorMessage += '• La transmisión está offline<br>';
+                            errorMessage += '• El canal no existe<br>';
+                            errorMessage += '• Problemas de red o CORS';
+                        } else if (errorType === flvjs.ErrorTypes.MEDIA_ERROR) {
+                            errorMessage += 'Error al decodificar el video.';
+                        }
+                        showError(errorMessage);
+                    }
+                });
+
+                flvPlayer.on(flvjs.Events.MEDIA_INFO, (mediaInfo) => {
+                    console.log('✓ Stream conectado:', mediaInfo);
+                    retryCount = 0; // Reiniciar contador en caso de éxito
+                });
+
+                flvPlayer.on(flvjs.Events.STATISTICS_INFO, (stats) => {
+                    if (loading.style.display !== 'none') {
+                        loading.style.display = 'none';
+                    }
+                });
+
+                flvPlayer.load();
+
+                const playPromise = video.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        loading.style.display = 'none';
+                        console.log('✓ Reproducción iniciada correctamente');
+                    }).catch(error => {
+                        console.log('⚠ Necesita interacción del usuario:', error);
+                        loading.querySelector('div:last-child').textContent = 'Haz clic para reproducir';
+
+                        const playOnClick = () => {
+                            video.play().then(() => {
+                                loading.style.display = 'none';
+                            });
+                            video.removeEventListener('click', playOnClick);
+                        };
+
+                        video.addEventListener('click', playOnClick);
+                    });
+                }
+
+            } catch (error) {
+                console.error('Error fatal:', error);
+                if (retryCount < MAX_RETRIES) {
+                    retryCount++;
+                    showLoading(`Reintentando... (${retryCount}/${MAX_RETRIES})`);
+                    setTimeout(() => initPlayer(streamName), 2000);
+                } else {
+                    showError('Error al cargar la transmisión:<br>' + error.message);
+                }
+            }
+        }
+
+        // Controles de reproducción
+        playBtn.addEventListener("click", () => {
+            if (video.paused) {
+                video.play();
+                playBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+            } else {
+                video.pause();
+                playBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+            }
+        });
+
+        video.addEventListener("click", () => {
+            if (video.paused) {
+                video.play();
+                playBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+            } else {
+                video.pause();
+                playBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+            }
+        });
+
+        // Control de volumen
+        volume.value = 1;
+        video.volume = 1;
+
+        volume.addEventListener("input", () => {
+            video.volume = volume.value;
+            video.muted = video.volume === 0;
+            updateVolumeIcon();
+        });
+
+        muteBtn.addEventListener("click", () => {
+            video.muted = !video.muted;
+            updateVolumeIcon();
+        });
+
+        function updateVolumeIcon() {
+            muteBtn.innerHTML = video.muted || video.volume === 0
+                ? '<i class="bi bi-volume-mute-fill"></i>'
+                : '<i class="bi bi-volume-up-fill"></i>';
+        }
+
+        // Pantalla completa
+        fullscreenBtn.addEventListener("click", () => {
+            if (!document.fullscreenElement) {
+                video.parentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        // Ocultar controles automáticamente
+        let hideTimeout;
+        function showControls() {
+            controls.classList.remove("hidden");
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                if (!video.paused) {
+                    controls.classList.add("hidden");
+                }
+            }, 3000);
+        }
+
+        document.addEventListener("mousemove", showControls);
+        document.addEventListener("touchstart", showControls);
+        video.addEventListener("play", showControls);
+        video.addEventListener("pause", () => controls.classList.remove("hidden"));
+
+        // Prevenir menú contextual
+        video.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Limpiar al salir de la página
+        window.addEventListener('beforeunload', () => {
+            destroyPlayer();
+        });
+
+        // Iniciar reproductor
+        console.log('=== REPRODUCTOR VAUGHN (OPTIMIZADO) ===');
+        console.log('Parámetro recibido:', streamParam || '(ninguno)');
+        console.log('Stream a reproducir:', currentStream);
+        console.log('Anti-caché: ACTIVADO');
+        console.log('=======================================');
+
+        initPlayer(currentStream);
+    </script>
+</body>
+
+</html>

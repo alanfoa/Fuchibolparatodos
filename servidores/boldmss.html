@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>el4live1</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <!-- <script>(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://gounodogaptofok.net/tag.min.js',7669975,document.body||document.documentElement)</script> -->
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+
+    <style>
+        html,
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+    <div id="player" class="ViostreamIframe"></div>
+
+    <!-- <script src="https://canalesonline.netlify.app/js/script-config.js"></script> -->
+    <script src="../js/script-config.js"></script>
+    <script>
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        // mcgo1
+        // bvclive1
+        // el4live2
+        var ConfiguracionCanales = {
+            "DISCOVERY_SCIENCE": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_SCIENCE/DISCOVERY_SCIENCE_EL4.isml/DISCOVERY_SCIENCE_EL4.mpd",
+                k1: "b662fa2508414b12ae0434666bd5ca90",
+                k2: "27a6f7e522fb6cf937436ad92bacb6ff"
+            },
+            "DISCOVERY_WORLD": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_WORLD/DISCOVERY_WORLD_EL4.isml/DISCOVERY_WORLD.mpd",
+                k1: "d43f244ebfc6459a917c13dbd683efe2",
+                k2: "634a0fc60c0ecc268f03a5938f4ca901"
+            },
+            "DISCOVERY_ID": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_ID/DISCOVERY_ID_EL4.isml/DISCOVERY_ID.mpd",
+                k1: "1f17859ca82944df9b1c9e2df82ec234",
+                k2: "aeea0988206436322bc71a0534e0ed86"
+            },
+            "DISCOVERY_HD": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_HD/DISCOVERY_HD_EL4.isml/DISCOVERY_HD_EL4.mpd",
+                k1: "11ade1c92800461682fde20cacc1c5f8",
+                k2: "8864db70ff70beb68bc12aeaedae2f6f"
+            },
+            "DISCOVERY_THEATER": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_THEATER/DISCOVERY_THEATER_EL4.isml/DISCOVERY_THEATER_EL4.mpd",
+                k1: "b4465470ee0f4139a835c7716e7a4b44",
+                k2: "972959c931135aadc82714fa31b28215"
+            },
+            "NGEO": {
+                url: "https://el4live1.boldmss.com/NGEO/NGEO_EL4.isml/NGEO_EL4.mpd",
+                k1: "aba46368babb4b85b5022e66d7da7985",
+                k2: "5a61f4349b55df3d07db47c59ae9629c"
+            },
+            "ENTERTAINMENT": {
+                url: "https://el4live1.boldmss.com/ENTERTAINMENT/ENTERTAINMENT_EL4.isml/ENTERTAINMENT.mpd",
+                k1: "ae476ea0cc7c4d0b90bd963ba2173c15",
+                k2: "33711131c2399e5065a58faebaefb0d8"
+            },
+            "TLC": {
+                url: "https://el4live1.boldmss.com/TLC/TLC_EL4.isml/TLC.mpd",
+                k1: "4dd5bf6edbd34203868cd0372dd866e1",
+                k2: "2e84c17361baf8fe35ec652b63f42315"
+            },
+            "LIFETIME": {
+                url: "https://el4live1.boldmss.com/LIFETIME/LIFETIME_EL4.isml/LIFETIME_EL4.mpd",
+                k1: "decf9d08f51a4f9cb0b1ae58430a27a8",
+                k2: "88f75b9621953b1953825b02e0aafde2"
+            },
+            "DISCOVERY_HGTV": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_HGTV/DISCOVERY_HGTV_EL4.isml/DISCOVERY_HGTV.mpd",
+                k1: "92de0b7df8684dec88b76398da8d3a83",
+                k2: "ccb7cf806eca867879019a23a570467b"
+            },
+            "DISCOVERY_HOME_HEALT": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_HOME_HEALT/DISCOVERY_HOME_HEALT_EL4.isml/DISCOVERY_HOME_HEALT.mpd",
+                k1: "a0cba8f8bffc47c5a77cc2ec5dba32e0",
+                k2: "1c4d55946fea8978518753217f04d234"
+            },
+            "MAS_CHIC": {
+                url: "https://el4live1.boldmss.com/MAS_CHIC/MAS_CHIC_EL4.isml/MAS_CHIC_EL4.mpd",
+                k1: "52543b0b1da040a98821aea1b4d91788",
+                k2: "e1c76934ba0fa9e5a9ebcdd2a33413a0"
+            },
+            "FOOD_NETWORK": {
+                url: "https://el4live1.boldmss.com/FOOD_NETWORK/FOOD_NETWORK_EL4.isml/FOOD_NETWORK_EL4.mpd",
+                k1: "b55740b8b0914a28b14786efe0d9db72",
+                k2: "32491cadd4cfc837ffc5328142e09e43"
+            },
+            "GOURMET": {
+                url: "https://el4live1.boldmss.com/GOURMET/GOURMET_EL4.isml/GOURMET_EL4.mpd",
+                k1: "ce5dfb3d62a34962baeb2eee94dde799",
+                k2: "195f41b287b557f7d063aa51683481ee"
+            },
+            "CDLE": {
+                url: "https://el4live1.boldmss.com/CDLE/CDLE_EL4.isml/CDLE_EL4.mpd",
+                k1: "df3c437953ac4b50a963b4004cff068f",
+                k2: "0c67ac36041abc6fce4d1a93b02518f0"
+            },
+            "TNT_NOVELAS": {
+                url: "https://el4live1.boldmss.com/TNT_NOVELAS/TNT_NOVELAS_EL4.isml/TNT_NOVELAS.mpd",
+                k1: "bbaa5225aa1a4cf488d501f4652133e3",
+                k2: "399a47f0bc7e0d8fbb81a518b7560c71"
+            },
+            "CARTOONITO": {
+                url: "https://el4live1.boldmss.com/CARTOONITO/CARTOONITO_EL4.isml/CARTOONITO_EL4.mpd",
+                k1: "3b7c3e11c66643ef8bdfc3ae8037884d",
+                k2: "6631cbe5390e60ff02de2f0d6f5ce272"
+            },
+            "NICK_JR": {
+                url: "https://el4live1.boldmss.com/NICK_JR/NICK_JR_EL4.isml/NICK_JR_EL4.mpd",
+                k1: "42b5ea2e59cf41cd972ec77c7cd0cc21",
+                k2: "071afee0662a8374f24e7ddf68216975"
+            },
+            "DJUNIOR": {
+                url: "https://el4live1.boldmss.com/DJUNIOR/DJUNIOR.isml/DJUNIOR.mpd",
+                k1: "8913dddc7f301085c95e19bb94c005a8",
+                k2: "ff60fbb41c2148e40c110237554ba652"
+            },
+            "DISNEY_CHANNEL": {
+                url: "https://el4live1.boldmss.com/DISNEY_CHANNEL/DISNEY_CHANNEL_EL4.isml/DISNEY_CHANNEL_EL4.mpd",
+                k1: "4bbebdf84a4442f18e9c08bc99a81672",
+                k2: "8581b56ccfef0714c34b271fe2e0e8ec"
+            },
+            "DKIDS": {
+                url: "https://el4live1.boldmss.com/DKIDS/DKIDS_EL4.isml/DKIDS_EL4.mpd",
+                k1: "740a4fbd840c4520b523cb4af27dc046",
+                k2: "2c8eb8e3445af87a5fad34351f7fa9b1"
+            },
+            "NICKELODEON": {
+                url: "https://el4live1.boldmss.com/NICKELODEON/NICKELODEON_EL4.isml/NICKELODEON.mpd",
+                k1: "e54055d21fe84e148c6272a258f6a9dd",
+                k2: "dc6e7fbd3fb9f0bbaa2e8cd1fb6f7d9c"
+            },
+            "CARTOON_NETWORK": {
+                url: "https://el4live1.boldmss.com/CARTOON_NETWORK/CARTOON_NETWORK_EL4.isml/CARTOON_NETWORK_EL4.mpd",
+                k1: "38132b98e4f24d5da980c13c677e64e2",
+                k2: "72800b5493c275719120e6889baf221c"
+            },
+            "EUROPA_EUROPA": {
+                url: "https://el4live1.boldmss.com/EUROPA_EUROPA/EUROPA_EUROPA_EL4.isml/EUROPA_EUROPA.mpd",
+                k1: "f21c9e9189954da1a57d3e6aecf6ab49",
+                k2: "6959288cb940afa3e4d15b8b593ef00b"
+            },
+            "FILM_AND_ARTS": {
+                url: "https://el4live1.boldmss.com/FILM_AND_ARTS/FILM_AND_ARTS_EL4.isml/FILM_AND_ARTS_EL4.mpd",
+                k1: "1255e1f4fb9e482683f0ea5df0205d66",
+                k2: "979d2aabf7095f9cb270deb844385f71"
+            },
+            "TCM": {
+                url: "https://el4live1.boldmss.com/TCM/TCM_EL4.isml/TCM.mpd",
+                k1: "dc85d4a348db4d65aea605cd9d0cad2a",
+                k2: "14fa0c190a2ff130ab2bfea4f32958bb"
+            },
+            "STUDIO_UNIVERSAL": {
+                url: "https://el4live1.boldmss.com/STUDIO_UNIVERSAL/STUDIO_UNIVERSAL_EL4.isml/STUDIO_UNIVERSAL.mpd",
+                k1: "e1cf5bc828d84bfb9254d9d0c621ae2f",
+                k2: "b4e653486e61829e298ec0efaad66a2f"
+            },
+            "SONY": {
+                url: "https://el4live1.boldmss.com/SONY/SONY_EL4.isml/SONY_EL4.mpd",
+                k1: "b1a3d1d0b8624d33a21857787d6e84ff",
+                k2: "8ce14cbace57507f873e77bca6893166"
+            },
+            "AMC": {
+                url: "https://el4live1.boldmss.com/AMC/AMC_EL4.isml/AMC.mpd",
+                k1: "82fa86624981485f87b28fd1324dc666",
+                k2: "d35663b3d8708ef2182acec158ef35bb"
+            },
+            "AXN": {
+                url: "https://el4live1.boldmss.com/AXN/AXN_EL4.isml/AXN.mpd",
+                k1: "136f16e277524945b890fe746dd1166e",
+                k2: "3009222c2083acf132bb7eebc76c79b0"
+            },
+            "AYE": {
+                url: "https://el4live1.boldmss.com/AYE/AYE_EL4.isml/AYE.mpd",
+                k1: "0c4942192aa14d8aaad0e5af8819023c",
+                k2: "4ba85232f7a24b8daa7a0e7271419f99"
+            },
+            "TNT_SERIES": {
+                url: "https://el4live1.boldmss.com/TNT_SERIES/TNT_SERIES_EL4.isml/TNT_SERIES.mpd",
+                k1: "059c53991ebf4d439e696a6e82c2cfdc",
+                k2: "eae64832d7b9d1f7e9452669966b119e"
+            },
+            "FX": {
+                url: "https://el4live1.boldmss.com/FX/FX_EL4.isml/FX.mpd",
+                k1: "ce954ae8019e43ee87505f348d1c1ec9",
+                k2: "0f2a47c96b790a1fd92e2559af6eb55b"
+            },
+            "STAR_CHANNEL": {
+                url: "https://el4live1.boldmss.com/STAR_CHANNEL/STAR_CHANNEL_EL4.isml/STAR_CHANNEL_EL4.mpd",
+                k1: "60f6deeb66c740b4b6dc5f870457fc00",
+                k2: "c80b22603f1b810d9d5b336d3cf765ad"
+            },
+            "CINECANAL": {
+                url: "https://el4live1.boldmss.com/CINECANAL/CINECANAL_EL4.isml/CINECANAL_EL4.mpd",
+                k1: "e31cb805bac04311a19c74ed4224edd0",
+                k2: "5d722685102d84043dc1cc5b210cc36e"
+            },
+            "CINEMAX": {
+                url: "https://el4live1.boldmss.com/CINEMAX/CINEMAX_EL4.isml/CINEMAX.mpd",
+                k1: "3c35dd0a505e426285378697206f389f",
+                k2: "fb3892bc39963e7f5ab91dfbed897316"
+            },
+            "SPACE": {
+                url: "https://el4live1.boldmss.com/SPACE/SPACE_EL4.isml/SPACE_EL4.mpd",
+                k1: "9e8866b575f44074887c13e4bcb5c093",
+                k2: "4d3afa9ba9f5adc2a6397578d72d7730"
+            },
+            "LNPLUS": {
+                url: "https://el4live1.boldmss.com/LNPLUS/LNPLUS_EL4.isml/LNPLUS.mpd",
+                k1: "580f1e3df60344c49b5c6869a641a7a0",
+                k2: "6d1ee897f9746ff240cd3acd03605f24"
+            },
+            "TN": {
+                url: "https://el4live1.boldmss.com/TN/TN_EL4.isml/TN_EL4.mpd",
+                k1: "581addabfe554c95892e078cb7f9d228",
+                k2: "131062544cbc86361952b8bb4b6faf44"
+            },
+            "MAGAZINE": {
+                url: "https://el4live1.boldmss.com/MAGAZINE/MAGAZINE_EL4.isml/MAGAZINE.mpd",
+                k1: "23a377708b764c43a934f414b6211c11",
+                k2: "a98d19f750ec3ef5838ab83166e783a2"
+            },
+            "CRONICA": {
+                url: "https://el4live1.boldmss.com/CRONICA/CRONICA_EL4.isml/CRONICA.mpd",
+                k1: "4113590c70ac41cc8b8badb7e92c3b47",
+                k2: "70190fe918548eb4d0bb2c154efcf1b6"
+            },
+            "C5N": {
+                url: "https://el4live1.boldmss.com/C5N/C5N_EL4.isml/C5N.mpd",
+                k1: "396b499ebaf64f318ba966110f9994e2",
+                k2: "8056b97da518da1380ab142235f9de79"
+            },
+            "AM24": {
+                url: "https://el4live1.boldmss.com/AM24/AM24_EL4.isml/AM24.mpd",
+                k1: "bfbd16ff845e47cf8926aa228c6acf3f",
+                k2: "6234ff5accd06fd973d6762e83abcc52"
+            },
+            "FS3": {
+                url: "https://el4live1.boldmss.com/FS3/FS3_EL4.isml/FS3_EL4.mpd",
+                k1: "b90ca85b7cfb400cb07384127be81bb3",
+                k2: "b5784a71860611aea6e445e337896987"
+            },
+            "FS2": {
+                url: "https://el4live1.boldmss.com/FS2/FS2_EL4.isml/FS2.mpd",
+                k1: "65511f8f16904666aea61181daec7dd0",
+                k2: "e85288b831ef753d2b46dcf6501f117c"
+            },
+            "FS": {
+                url: "https://el4live1.boldmss.com/FS/FS_EL4.isml/FS.mpd",
+                k1: "ed1c7f413bb540e592ad45bef4da9bcc",
+                k2: "f3f2000113b29a6912caa37329093531"
+            },
+            "ESPN4": {
+                url: "https://el4live1.boldmss.com/ESPN_4/ESPN_4_EL4.isml/ESPN_4.mpd",
+                k1: "d84f8725413546aabe922f4b5bd20841",
+                k2: "3b45a54f48496dae4c48957635241905"
+            },
+            "ESPN3": {
+                url: "https://el4live1.boldmss.com/ESPN3/ESPN3_EL4.isml/ESPN3.mpd",
+                k1: "4733f140c4094ff1bb0b17f313b02a8e",
+                k2: "898808d7b882d862a8cf246da5c0ded6"
+            },
+            "TYC_SPORTS_2": {
+                url: "https://el4live1.boldmss.com/TYC_SPORTS_2/TYC_SPORTS_2_EL4.isml/TYC_SPORTS_2.mpd",
+                k1: "3eb6b11f4e9a4e749e95b9e6ae25e205",
+                k2: "d5f083bbf168b5dda39cd30ec8a83bbf"
+            },
+            "IP": {
+                url: "https://el4live1.boldmss.com/IP/IP_EL4.isml/IP.mpd",
+                k1: "dd97f4f409eb4702833de5fe264850eb",
+                k2: "eae64832d7b9d1f7e9452669966b119e"
+            },
+            "CANAL_7_JUJUY": {
+                url: "https://el4live1.boldmss.com/CANAL_7_JUJUY/CANAL_7_JUJUY_EL4.isml/CANAL_7_JUJUY.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CANAL_26": {
+                url: "https://el4live1.boldmss.com/CANAL_26/CANAL_26_EL4.isml/CANAL_26.mpd",
+                k1: "8abe94bbd02a491f919208dfb2d4883f",
+                k2: "20380fdfdefc0bea2c77347eb14ba0ff"
+            },
+            "TVP": {
+                url: "https://el4live1.boldmss.com/TVP/TVP_EL4.isml/TVP.mpd",
+                k1: "37a4584d31fa4906935bb610e0734615",
+                k2: "b8859fe969f4d62e1387312be1159be4"
+            },
+            "CNN": {
+                url: "https://el4live2.boldmss.com/CNN/CNN_EL4.isml/CNN.mpd",
+                k1: "47dd73a36872483eabad7932a6ff8abd",
+                k2: "80754eb2677c4fbe968a6303e2fe0954"
+            },
+            "PAKA_PAKA_Origen": {
+                url: "https://el4live2.boldmss.com/PAKA_PAKA_Origen/PAKA_PAKA_Origen_EL4.isml/PAKA_PAKA_Origen.mpd",
+                k1: "994bb1fcb16c48d1b17e1f8fc7420e4b",
+                k2: "670ea3824ca901a4ebe3ee0b5ea71915"
+            },
+            "TOONCAST": {
+                url: "https://el4live2.boldmss.com/TOONCAST/TOONCAST_EL4.isml/TOONCAST.mpd",
+                k1: "ded56fec96c04db9b89959b81ddad365",
+                k2: "2328b16d0ed4e12267782d030034ac51"
+            },
+            "TYC_BAK": {
+                url: "https://el4live2.boldmss.com/TYC_BAK/TYC_BAK_EL4.isml/TYC_BAK.mpd",
+                k1: "b3ca13856ea040548909112e39c2139a",
+                k2: "6891abc882c92f0ef3aa797c31ccdc36"
+            },
+            "PARAMOUNT": {
+                url: "https://el4live2.boldmss.com/PARAMOUNT/PARAMOUNT_EL4.isml/PARAMOUNT.mpd",
+                k1: "0d990ffc0986477d9576cb6ee2008cf7",
+                k2: "0b7836a532e37b93a335cba8adb6cf4c"
+            },
+
+            "TNT": {
+                url: "https://el4live2.boldmss.com/TNT/TNT_EL4.isml/TNT.mpd",
+                k1: "36c0325459994238ada1f31237dc481d",
+                k2: "c920bbcb8ef1e9d18ce3b462abbbec8d"
+            },
+            "TLNOVELAS_LSP_2": {
+                url: "https://el4live2.boldmss.com/TLNOVELAS_LSP_2/TLNOVELAS_LSP_2_EL4.isml/TLNOVELAS_LSP_2.mpd",
+                k1: "33c3fb7197e842a7ab9c258a8d619efe",
+                k2: "1614acd76200268768cc62ec82a34310"
+            },
+            "GOLDEN": {
+                url: "https://el4live2.boldmss.com/GOLDEN/GOLDEN_EL4.isml/GOLDEN.mpd",
+                k1: "de46bcb384fb4c8bb13d4c36765790f2",
+                k2: "c33c7c954504775c3e2cac36b427da55"
+            },
+            "COMEDY_CENTRAL": {
+                url: "https://el4live2.boldmss.com/COMEDY_CENTRAL/COMEDY_CENTRAL_EL4.isml/COMEDY_CENTRAL.mpd",
+                k1: "a7dfa8faaa3940d2b90a35bd25d98b3f",
+                k2: "a87c2857ce04e1bea2e3861f4c61aab7"
+            },
+            "ENCUENTRO_Orig": {
+                url: "https://el4live2.boldmss.com/ENCUENTRO_Orig/ENCUENTRO_Orig_EL4.isml/ENCUENTRO_Orig.mpd",
+                k1: "d3ac3948d64f4f1ca8932bbff78b3964",
+                k2: "1e3fb94123668239458938e278f3e2e3"
+            },
+            "BOLIVISION": {
+                url: "https://el4live2.boldmss.com/BOLIVISION/BOLIVISION_EL4.isml/BOLIVISION.mpd",
+                k1: "e6b16601734349eab878d52d00f583ab",
+                k2: "03f5b7fbc1cbfb5d612dc3b735dfb184"
+            },
+            "TVE_EL4": {
+                url: "https://el4live2.boldmss.com/TVE/TVE_EL4.isml/TVE.mpd",
+                k1: "e578417404a44e6b944e4d46abd18bdd",
+                k2: "24428e80970a21172bf3860215601b69"
+            },
+            "TVE_BVC": {
+                url: "https://bvclive1.boldmss.com/TVE/TVE_BVC.isml/TVE.mpd",
+                k1: "d43478a1eb5c45c79cfc54c63c73d385",
+                k2: "f68176bd4d98aa06434b5e89714f61f7"
+            },
+            "CONSTRUIR_TV": {
+                url: "https://bvclive1.boldmss.com/CONSTRUIR_TV/CONSTRUIR_TV_BVC.isml/CONSTRUIR_TV.mpd",
+                k1: "3184a62584b247baa350308639a9bdf6",
+                k2: "7bb92afd72a80341aaacbe15069fdad1"
+            },
+            "UNIFE": {
+                url: "https://bvclive1.boldmss.com/UNIFE/UNIFE_BVC.isml/UNIFE.mpd",
+                k1: "1e8153f705f64b0499449ff403ed5b32",
+                k2: "e63a5314ccb236a127665f3d95f8c183"
+            },
+            "TIERRAMIATV": {
+                url: "https://bvclive1.boldmss.com/TIERRAMIATV/TIERRAMIATV.isml/TIERRAMIATV.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "CANAL_INFORMACION": {
+                url: "https://bvclive1.boldmss.com/CANAL_INFORMACION/CANAL_INFORMACION.isml/CANAL_INFORMACION.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "BVC_HD": {
+                url: "https://bvclive1.boldmss.com/BVC_HD/BVC_HD.isml/BVC_HD.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "SONY_MOVIES_EL4": {
+                url: "https://el4live2.boldmss.com/SONY_MOVIES/SONY_MOVIES_EL4.isml/SONY_MOVIES.mpd",
+                k1: "2a0dbe373ec4482eb6b41058de4af3d7",
+                k2: "a36be132b821b8cd77e6a2724fe2a05c"
+            },
+            "SONY_MOVIES_BVC": {
+                url: "https://bvclive1.boldmss.com/SONY_MOVIES/SONY_MOVIES_BVC.isml/SONY_MOVIES.mpd",
+                k1: "218cbbe49f134316a949f79e458d37d4",
+                k2: "b51e664f694c646a40afcc29250d4025"
+            },
+            "TV5_MONDE": {
+                url: "https://bvclive1.boldmss.com/TV5_MONDE/TV5_MONDE_BVC.isml/TV5_MONDE.mpd",
+                k1: "b574dbfb78f9456cbe4b12ca0e2c35bc",
+                k2: "fe8c780b0520b3d71a1d165d4ad6e903"
+            },
+            "LATINA_TV": {
+                url: "https://bvclive1.boldmss.com/LATINA_TV/LATINA_TV.isml/LATINA_TV.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "DEUTSCHE_WELLE_BVC": {
+                url: "https://bvclive1.boldmss.com/DEUTSCHE_WELLE/DEUTSCHE_WELLE_BVC.isml/DEUTSCHE_WELLE.mpd",
+                k1: "02ae0dec13234088bdf79ce5a31f2fac",
+                k2: "b77aeb4cf514f4e5e7aa273ea3a89d34"
+            },
+            "RAI_BVC": {
+                url: "https://bvclive1.boldmss.com/RAI/RAI_BVC.isml/RAI.mpd",
+                k1: "9b87a9e2e81643349f17b8105ee76074",
+                k2: "ded1190b2eb74ec9c1a8f21bd3df933e"
+            },
+            "TV_CHILE_BVC": {
+                url: "https://bvclive1.boldmss.com/TV_CHILE/TV_CHILE_BVC.isml/TV_CHILE.mpd",
+                k1: "40d6ff6ffc04493686f9bb0dd6ebc727",
+                k2: "64de9e64994aecf4b341c531fc51f63f"
+            },
+            "TELEMUNDO_EL4": {
+                url: "https://el4live1.boldmss.com/TELEMUNDO/TELEMUNDO_EL4.isml/TELEMUNDO.mpd",
+                k1: "934dfe5fa8514d468d57658d024f1f38",
+                k2: "fba24c56ffc6534cd2b684faeaa70706"
+            },
+            "TELEMUNDO_BVC": {
+                url: "https://bvclive1.boldmss.com/TELEMUNDO/TELEMUNDO_BVC.isml/TELEMUNDO.mpd",
+                k1: "e3a47e17dc254921af8e94f731c500f2",
+                k2: "52b8a0b2f61aee5915f0df417e1a5efa"
+            },
+            "CANAL_LUZ_BVC": {
+                url: "https://bvclive1.boldmss.com/CANAL_LUZ/CANAL_LUZ_BVC.isml/CANAL_LUZ.mpd",
+                k1: "87fb4970fc3b48e69aca9576c753c4e5",
+                k2: "a34d7528c831583cbefd1ae11aa34e4c"
+            },
+            "ENLACE_BVC": {
+                url: "https://bvclive1.boldmss.com/ENLACE/ENLACE_BVC.isml/ENLACE.mpd",
+                k1: "fc613c3646714eb89797888a4d9da9eb",
+                k2: "7cf1afc17303304ea0325c0fb6aa2831"
+            },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            "CLUB_MTV_EL4": {
+                url: "https://el4live1.boldmss.com/CLUB_MTV/CLUB_MTV_EL4.isml/CLUB_MTV.mpd",
+                k1: "9f3f3f461d2545c59507a8741662fe52",
+                k2: "922f1d3f007bdb1e27490a3c7c6c67bb"
+            },
+
+            "BOLIVIA_TV_EL4": {
+                url: "https://el4live1.boldmss.com/BOLIVIA_TV/BOLIVIA_TV_EL4.isml/BOLIVIA_TV.mpd",
+                k1: "39d2be99630b407eab45a38be42265e1",
+                k2: "854ec0dbcc28e28b077e13f408ef121e"
+            },
+            "BOLIVISION_EL4": {
+                url: "https://el4live2.boldmss.com/BOLIVISION/BOLIVISION_EL4.isml/BOLIVISION.mpd",
+                k1: "e6b16601734349eab878d52d00f583ab",
+                k2: "03f5b7fbc1cbfb5d612dc3b735dfb184"
+            },
+            "CANAL_21_MC": {
+                url: "https://mcgo1.boldmss.com/CANAL_21/CANAL_21_MC.isml/CANAL_21_MC.mpd",
+                k1: "c926dba1fe354d529601ee6e38fe0a4b",
+                k2: "41c5da6d1608e6377ff86c0ded7d042a"
+            },
+            "CANAL_INFORMACION": {
+                url: "https://bvclive1.boldmss.com/CANAL_INFORMACION/CANAL_INFORMACION.isml/CANAL_INFORMACION.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "ELCUATRO_EL4": {
+                url: "https://el4live1.boldmss.com/ELCUATRO/ELCUATRO_EL4.isml/ELCUATRO.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "BVC_HD": {
+                url: "https://bvclive1.boldmss.com/BVC_HD/BVC_HD.isml/BVC_HD.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "SONY_MOVIES_BVC": {
+                url: "https://bvclive1.boldmss.com/SONY_MOVIES/SONY_MOVIES_BVC.isml/SONY_MOVIES.mpd",
+                k1: "218cbbe49f134316a949f79e458d37d4",
+                k2: "b51e664f694c646a40afcc29250d4025"
+            },
+            "SONY_MOVIES_EL4": {
+                url: "https://el4live2.boldmss.com/SONY_MOVIES/SONY_MOVIES_EL4.isml/SONY_MOVIES.mpd",
+                k1: "2a0dbe373ec4482eb6b41058de4af3d7",
+                k2: "a36be132b821b8cd77e6a2724fe2a05c"
+            },
+            "TV5_MONDE_BVC": {
+                url: "https://bvclive1.boldmss.com/TV5_MONDE/TV5_MONDE_BVC.isml/TV5_MONDE.mpd",
+                k1: "b574dbfb78f9456cbe4b12ca0e2c35bc",
+                k2: "fe8c780b0520b3d71a1d165d4ad6e903"
+            },
+            "DREAMWORKS_BVC": {
+                url: "https://bvclive1.boldmss.com/DREAMWORKS/DREAMWORKS_BVC.isml/DREAMWORKS.mpd",
+                k1: "b1eaa8930bef4a678c7ab2a978c17a1e",
+                k2: "6eab23060c6ff0e698c9aed8038ef60c"
+            },
+            "DREAMWORKS_EL4": {
+                url: "https://el4live1.boldmss.com/DREAMWORKS/DREAMWORKS_EL4.isml/DREAMWORKS.mpd",
+                k1: "f74db1fea74c4a468781a062214e3c71",
+                k2: "1f04a5bcf2bff02af13913fcad443b30"
+            },
+            "LATINA_TV": {
+                url: "https://bvclive1.boldmss.com/LATINA_TV/LATINA_TV.isml/LATINA_TV.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "DEUTSCHE_WELLE_BVC": {
+                url: "https://bvclive1.boldmss.com/DEUTSCHE_WELLE/DEUTSCHE_WELLE_BVC.isml/DEUTSCHE_WELLE.mpd",
+                k1: "02ae0dec13234088bdf79ce5a31f2fac",
+                k2: "b77aeb4cf514f4e5e7aa273ea3a89d34"
+            },
+            "RAI_BVC": {
+                url: "https://bvclive1.boldmss.com/RAI/RAI_BVC.isml/RAI.mpd",
+                k1: "9b87a9e2e81643349f17b8105ee76074",
+                k2: "ded1190b2eb74ec9c1a8f21bd3df933e"
+            },
+            "TVE_BVC": {
+                url: "https://bvclive1.boldmss.com/TVE/TVE_BVC.isml/TVE.mpd",
+                k1: "d43478a1eb5c45c79cfc54c63c73d385",
+                k2: "f68176bd4d98aa06434b5e89714f61f7"
+            },
+            "TVE_EL4": {
+                url: "https://el4live2.boldmss.com/TVE/TVE_EL4.isml/TVE.mpd",
+                k1: "e578417404a44e6b944e4d46abd18bdd",
+                k2: "24428e80970a21172bf3860215601b69"
+            },
+            "TV_CHILE_BVC": {
+                url: "https://bvclive1.boldmss.com/TV_CHILE/TV_CHILE_BVC.isml/TV_CHILE.mpd",
+                k1: "40d6ff6ffc04493686f9bb0dd6ebc727",
+                k2: "64de9e64994aecf4b341c531fc51f63f"
+            },
+            "TELEMUNDO_BVC": {
+                url: "https://bvclive1.boldmss.com/TELEMUNDO/TELEMUNDO_BVC.isml/TELEMUNDO.mpd",
+                k1: "e3a47e17dc254921af8e94f731c500f2",
+                k2: "52b8a0b2f61aee5915f0df417e1a5efa"
+            },
+            "TELEMUNDO_EL4": {
+                url: "https://el4live1.boldmss.com/TELEMUNDO/TELEMUNDO_EL4.isml/TELEMUNDO.mpd",
+                k1: "934dfe5fa8514d468d57658d024f1f38",
+                k2: "fba24c56ffc6534cd2b684faeaa70706"
+            },
+            "CANAL_LUZ_BVC": {
+                url: "https://bvclive1.boldmss.com/CANAL_LUZ/CANAL_LUZ_BVC.isml/CANAL_LUZ.mpd",
+                k1: "87fb4970fc3b48e69aca9576c753c4e5",
+                k2: "a34d7528c831583cbefd1ae11aa34e4c"
+            },
+            "ENLACE_BVC": {
+                url: "https://bvclive1.boldmss.com/ENLACE/ENLACE_BVC.isml/ENLACE.mpd",
+                k1: "fc613c3646714eb89797888a4d9da9eb",
+                k2: "7cf1afc17303304ea0325c0fb6aa2831"
+            },
+            "EWTN_EL4": {
+                url: "https://el4live2.boldmss.com/EWTN/EWTN_EL4.isml/EWTN.mpd",
+                k1: "55022d64309e4814a897ec4c4658816a",
+                k2: "1898939a0d6b27024f5014be5fdf81f2"
+            },
+            "EWTN_EL4": {
+                url: "https://el4live2.boldmss.com/EWTN/EWTN_EL4.isml/EWTN.mpd",
+                k1: "55022d64309e4814a897ec4c4658816a",
+                k2: "1898939a0d6b27024f5014be5fdf81f2"
+            },
+            "RURAL_BVC": {
+                url: "https://bvclive1.boldmss.com/RURAL/RURAL_BVC.isml/RURAL.mpd",
+                k1: "159e3b6c0a29440cbff46451e1515cec",
+                k2: "5bcc120e57a17033f8441705649119f9"
+            },
+            "CANAL_9_BS_AS_BVC": {
+                url: "https://bvclive1.boldmss.com/CANAL_9_BS_AS/CANAL_9_BS_AS_BVC.isml/CANAL_9_BS_AS.mpd",
+                k1: "d13f163e1c824951a54becae88891bbd",
+                k2: "c0ad487ec61758ff055a275d7763a083"
+            },
+            "CANAL_9_HD_EL4": {
+                url: "https://el4live1.boldmss.com/CANAL_9_HD/CANAL_9_HD_EL4.isml/CANAL_9_HD.mpd",
+                k1: "5da49c1eea4d48ea842932db47214632",
+                k2: "97c6ca592d545a278d91fbf0e0acc2f6"
+            },
+            "AMERICA_BVC": {
+                url: "https://bvclive1.boldmss.com/AMERICA/AMERICA_BVC.isml/AMERICA.mpd",
+                k1: "7cee7620b80b4965b2558502f2c696c6",
+                k2: "eec3de24ddc895d1333ff7f33516f9f1"
+            },
+            "AMTV_EL4": {
+                url: "https://el4live1.boldmss.com/AMTV/AMTV_EL4.isml/AMTV.mpd",
+                k1: "6c8889b33e99477baaf08d63ca313851",
+                k2: "7a146f6d6e16778db1b1927225e5ad6b"
+            },
+            "C13_EL4": {
+                url: "https://el4live1.boldmss.com/C13/C13_EL4.isml/C13_EL4.mpd",
+                k1: "91a8cceadd644f7fbe30d459f409186e",
+                k2: "e2d231880d3a8f7eb01e5897aca83971"
+            },
+            "TIERRAMIATV": {
+                url: "https://bvclive1.boldmss.com/TIERRAMIATV/TIERRAMIATV.isml/TIERRAMIATV.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "MUSICTOPS": {
+                url: "https://bvclive1.boldmss.com/MUSICTOPS/MUSICTOPS.isml/MUSICTOPS.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "CM_BVC": {
+                url: "https://bvclive1.boldmss.com/CM/CM_BVC.isml/CM.mpd",
+                k1: "8dd50818cfe84f6e9e33c5d2e34b9d0a",
+                k2: "ecdc6dd1b95dea7e3e7ca7a574077c40"
+            },
+            "HTV_BVC": {
+                url: "https://bvclive1.boldmss.com/HTV/HTV_BVC.isml/HTV.mpd",
+                k1: "1a24c293762d4828ae9e816a2b987812",
+                k2: "336a24e531c12b33454b4e9ebe965657"
+            },
+            "MTV_BVC": {
+                url: "https://bvclive1.boldmss.com/MTV/MTV_BVC.isml/MTV.mpd",
+                k1: "9968f68bd9754d148baa30accb63a3ce",
+                k2: "02c9f9701feeb5c513feafaa12f9fe3f"
+            },
+            "MTV_EL4": {
+                url: "https://el4live1.boldmss.com/MTV/MTV_EL4.isml/MTV_EL4.mpd",
+                k1: "958882207abd41ac87ec7e25f31dbaf2",
+                k2: "05b69e24747f33cdf816448f96a21f0f"
+            },
+            "HISTORY_2_BVC": {
+                url: "https://bvclive1.boldmss.com/HISTORY_2/HISTORY_2_BVC.isml/HISTORY_2.mpd",
+                k1: "9b4406585f6842379221e1c58c6cf277",
+                k2: "8a8a871029880fb17354c8a2b3831a0b"
+            },
+            "HISTORY_2_EL4": {
+                url: "https://el4live1.boldmss.com/HISTORY_2/HISTORY_2_EL4.isml/HISTORY_2.mpd",
+                k1: "9fa6b73329c54e05bc34d28d73a68110",
+                k2: "d39db5cac6b16904c0ca8ff84904250e"
+            },
+            "HISTORY_BVC": {
+                url: "https://bvclive1.boldmss.com/HISTORY/HISTORY_BVC.isml/HISTORY.mpd",
+                k1: "35954173ba104e1dbc6e0e5cac78adf3",
+                k2: "1ff2ddd96e09b98dfdf68d867527f69a"
+            },
+            "HISTORY_EL4": {
+                url: "https://el4live1.boldmss.com/HISTORY/HISTORY_EL4.isml/HISTORY.mpd",
+                k1: "4fa4eb7b64e1498e8d307dcbf4d8bf5e",
+                k2: "9d35656eca360597e10d3d1fc0ece08c"
+            },
+            "ANIMAL_PLANET_BVC": {
+                url: "https://bvclive1.boldmss.com/ANIMAL_PLANET/ANIMAL_PLANET_BVC.isml/ANIMAL_PLANET.mpd",
+                k1: "3469f8b9478d4b9a98dee7eca1c380d9",
+                k2: "0d5bb9cdca9e7dd9b5c13216c38e99c4"
+            },
+            "ANIMAL_PLANET_EL4": {
+                url: "https://el4live1.boldmss.com/ANIMAL_PLANET/ANIMAL_PLANET_EL4.isml/ANIMAL_PLANET.mpd",
+                k1: "ce04f2d9feb644d1ad01b8dbcdabefd7",
+                k2: "a63f71767da4452b36be87290355536d"
+            },
+            "DISCOVERY_TURBO_BVC": {
+                url: "https://bvclive1.boldmss.com/DISCOVERY_TURBO/DISCOVERY_TURBO_BVC.isml/DISCOVERY_TURBO.mpd",
+                k1: "2e77e804c5024a90a7ae7198b1767ef9",
+                k2: "176259f80447b54da8864df799fef561"
+            },
+            "DISCOVERY_TURBO_EL4": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_TURBO/DISCOVERY_TURBO_EL4.isml/DISCOVERY_TURBO.mpd",
+                k1: "fffe276851b14471abda2bc679801bc5",
+                k2: "4d717691fe6d8733e908131f2aeafee4"
+            },
+            "DISCOVERY_SCIENCE_BVC": {
+                url: "https://bvclive1.boldmss.com/DISCOVERY_SCIENCE/DISCOVERY_SCIENCE_BVC.isml/DISCOVERY_SCIENCE.mpd",
+                k1: "09ed6fb286914000986b26ea12cf66cd",
+                k2: "1aeeacab76542e7b628e4d83adaa4b8a"
+            },
+            "DISCOVERY_SCIENCE_EL4": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_SCIENCE/DISCOVERY_SCIENCE_EL4.isml/DISCOVERY_SCIENCE_EL4.mpd",
+                k1: "b662fa2508414b12ae0434666bd5ca90",
+                k2: "27a6f7e522fb6cf937436ad92bacb6ff"
+            },
+            "DISCOVERY_WORLD_EL4": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_WORLD/DISCOVERY_WORLD_EL4.isml/DISCOVERY_WORLD.mpd",
+                k1: "d43f244ebfc6459a917c13dbd683efe2",
+                k2: "634a0fc60c0ecc268f03a5938f4ca901"
+            },
+            "DISCOVERY_WORLD_EL4": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_WORLD/DISCOVERY_WORLD_EL4.isml/DISCOVERY_WORLD.mpd",
+                k1: "d43f244ebfc6459a917c13dbd683efe2",
+                k2: "634a0fc60c0ecc268f03a5938f4ca901"
+            },
+            "INVESTIGATION_DISCOVERY_BVC": {
+                url: "https://bvclive1.boldmss.com/INVESTIGATION_DISCOVERY/INVESTIGATION_DISCOVERY_BVC.isml/INVESTIGATION_DISCOVERY.mpd",
+                k1: "5115a121e596440ba91bb1d58a73f205",
+                k2: "091546c53905f042e473255064554e85"
+            },
+            "DISCOVERY_ID_EL4": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_ID/DISCOVERY_ID_EL4.isml/DISCOVERY_ID.mpd",
+                k1: "1f17859ca82944df9b1c9e2df82ec234",
+                k2: "aeea0988206436322bc71a0534e0ed86"
+            },
+            "DISCOVERY_THEATER_EL4": {
+                url: "https://el4live2.boldmss.com/DISCOVERY_THEATER/DISCOVERY_THEATER_EL4.isml/DISCOVERY_THEATER.mpd",
+                k1: "b4465470ee0f4139a835c7716e7a4b44",
+                k2: "972959c931135aadc82714fa31b28215"
+            },
+            "DISCOVERY_THEATER_EL4": {
+                url: "https://el4live2.boldmss.com/DISCOVERY_THEATER/DISCOVERY_THEATER_EL4.isml/DISCOVERY_THEATER.mpd",
+                k1: "b4465470ee0f4139a835c7716e7a4b44",
+                k2: "972959c931135aadc82714fa31b28215"
+            },
+            "DISCOVERY_BVC": {
+                url: "https://bvclive1.boldmss.com/DISCOVERY/DISCOVERY_BVC.isml/DISCOVERY.mpd",
+                k1: "8ec746b26b754ba983294dd671db4b97",
+                k2: "cb5e29e52071f6fa03bf156db17a97d5"
+            },
+            "DISCOVERY_HD_EL4": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_HD/DISCOVERY_HD_EL4.isml/DISCOVERY_HD_EL4.mpd",
+                k1: "11ade1c92800461682fde20cacc1c5f8",
+                k2: "8864db70ff70beb68bc12aeaedae2f6f"
+            },
+            "NATGEO_BVC": {
+                url: "https://bvclive1.boldmss.com/NATGEO/NATGEO_BVC.isml/NATGEO.mpd",
+                k1: "942079a2b26b4439ab168e99e601925b",
+                k2: "2ddefd06b7cf03006bd6d0222cffe3b9"
+            },
+            "NGEO_EL4": {
+                url: "https://el4live1.boldmss.com/NGEO/NGEO_EL4.isml/NGEO_EL4.mpd",
+                k1: "aba46368babb4b85b5022e66d7da7985",
+                k2: "5a61f4349b55df3d07db47c59ae9629c"
+            },
+            "ENTERTAINMENT_EL4": {
+                url: "https://el4live1.boldmss.com/ENTERTAINMENT/ENTERTAINMENT_EL4.isml/ENTERTAINMENT.mpd",
+                k1: "ae476ea0cc7c4d0b90bd963ba2173c15",
+                k2: "33711131c2399e5065a58faebaefb0d8"
+            },
+            "ENTERTAINMENT_EL4": {
+                url: "https://el4live1.boldmss.com/ENTERTAINMENT/ENTERTAINMENT_EL4.isml/ENTERTAINMENT.mpd",
+                k1: "ae476ea0cc7c4d0b90bd963ba2173c15",
+                k2: "33711131c2399e5065a58faebaefb0d8"
+            },
+            "TLC_BVC": {
+                url: "https://bvclive1.boldmss.com/TLC/TLC_BVC.isml/TLC.mpd",
+                k1: "2e440edf2c28421d99a5112ecc15cf6a",
+                k2: "bd56877876ee0dee9f1fcde6a7d96fc2"
+            },
+            "TLC_EL4": {
+                url: "https://el4live1.boldmss.com/TLC/TLC_EL4.isml/TLC.mpd",
+                k1: "4dd5bf6edbd34203868cd0372dd866e1",
+                k2: "2e84c17361baf8fe35ec652b63f42315"
+            },
+            "LIFETIME_BVC": {
+                url: "https://bvclive1.boldmss.com/LIFETIME/LIFETIME_BVC.isml/LIFETIME.mpd",
+                k1: "a14d506f27f94713abecf346a4ee5506",
+                k2: "e821165354625d3d0bba0dc286c6691a"
+            },
+            "LIFETIME_EL4": {
+                url: "https://el4live1.boldmss.com/LIFETIME/LIFETIME_EL4.isml/LIFETIME_EL4.mpd",
+                k1: "decf9d08f51a4f9cb0b1ae58430a27a8",
+                k2: "88f75b9621953b1953825b02e0aafde2"
+            },
+            "DISCOVERY_HOME_AND_GARDEN_BVC": {
+                url: "https://bvclive1.boldmss.com/DISCOVERY_HOME_AND_GARDEN/DISCOVERY_HOME_AND_GARDEN_BVC.isml/DISCOVERY_HOME_AND_GARDEN.mpd",
+                k1: "33bbde35e4e04e378725b66571eef044",
+                k2: "40bc982ee3f54527bc9d4b66c91d4f64"
+            },
+            "DISCOVERY_HGTV_EL4": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_HGTV/DISCOVERY_HGTV_EL4.isml/DISCOVERY_HGTV.mpd",
+                k1: "92de0b7df8684dec88b76398da8d3a83",
+                k2: "ccb7cf806eca867879019a23a570467b"
+            },
+            "HOME_AND_HEALTH_BVC": {
+                url: "https://bvclive1.boldmss.com/HOME_AND_HEALTH/HOME_AND_HEALTH_BVC.isml/HOME_AND_HEALTH.mpd",
+                k1: "3e63227cf6064e5e8d0cab035f34df97",
+                k2: "1f288e212fcb9ffe016217df2e70a2bc"
+            },
+            "DISCOVERY_HOME_HEALT_EL4": {
+                url: "https://el4live1.boldmss.com/DISCOVERY_HOME_HEALT/DISCOVERY_HOME_HEALT_EL4.isml/DISCOVERY_HOME_HEALT.mpd",
+                k1: "a0cba8f8bffc47c5a77cc2ec5dba32e0",
+                k2: "1c4d55946fea8978518753217f04d234"
+            },
+            "AMC_SERIES_BVC": {
+                url: "https://bvclive1.boldmss.com/AMC_SERIES/AMC_SERIES_BVC.isml/AMC_SERIES.mpd",
+                k1: "da69b5fbe28f4608a55065ebf51ca0e5",
+                k2: "6ae93feb028e2b4aed82f3a7fa4924f3"
+            },
+            "MAS_CHIC_EL4": {
+                url: "https://el4live1.boldmss.com/MAS_CHIC/MAS_CHIC_EL4.isml/MAS_CHIC_EL4.mpd",
+                k1: "52543b0b1da040a98821aea1b4d91788",
+                k2: "e1c76934ba0fa9e5a9ebcdd2a33413a0"
+            },
+            "FOOD_NETWORK_EL4": {
+                url: "https://el4live1.boldmss.com/FOOD_NETWORK/FOOD_NETWORK_EL4.isml/FOOD_NETWORK_EL4.mpd",
+                k1: "b55740b8b0914a28b14786efe0d9db72",
+                k2: "32491cadd4cfc837ffc5328142e09e43"
+            },
+            "FOOD_NETWORK_EL4": {
+                url: "https://el4live1.boldmss.com/FOOD_NETWORK/FOOD_NETWORK_EL4.isml/FOOD_NETWORK_EL4.mpd",
+                k1: "b55740b8b0914a28b14786efe0d9db72",
+                k2: "32491cadd4cfc837ffc5328142e09e43"
+            },
+            "EL_GOURMET_BVC": {
+                url: "https://bvclive1.boldmss.com/EL_GOURMET/EL_GOURMET_BVC.isml/EL_GOURMET.mpd",
+                k1: "825b03ac8d694a2599689c5f09a82fea",
+                k2: "1a3982a68296b378e873f3c406291c0d"
+            },
+            "GOURMET_EL4": {
+                url: "https://el4live1.boldmss.com/GOURMET/GOURMET_EL4.isml/GOURMET_EL4.mpd",
+                k1: "ce5dfb3d62a34962baeb2eee94dde799",
+                k2: "195f41b287b557f7d063aa51683481ee"
+            },
+            "ESTRELLAS_BVC": {
+                url: "https://bvclive1.boldmss.com/ESTRELLAS/ESTRELLAS_BVC.isml/ESTRELLAS.mpd",
+                k1: "abb764b5156949c7a6d16648955b6b62",
+                k2: "e7a5dd49f8ef4f6f5c50ea2499a6b720"
+            },
+            "CDLE_EL4": {
+                url: "https://el4live1.boldmss.com/CDLE/CDLE_EL4.isml/CDLE_EL4.mpd",
+                k1: "df3c437953ac4b50a963b4004cff068f",
+                k2: "0c67ac36041abc6fce4d1a93b02518f0"
+            },
+            "VE_PLUS_EL4": {
+                url: "https://el4live2.boldmss.com/VE_PLUS/VE_PLUS_EL4.isml/VE_PLUS.mpd",
+                k1: "0777f023d88746a7a17cb8267d2a1bb9",
+                k2: "faf5939f5dc5a1556cd257731e5ca7db"
+            },
+            "TLNOVELAS_LSP_2_EL4": {
+                url: "https://el4live2.boldmss.com/TLNOVELAS_LSP_2/TLNOVELAS_LSP_2_EL4.isml/TLNOVELAS_LSP_2.mpd",
+                k1: "33c3fb7197e842a7ab9c258a8d619efe",
+                k2: "1614acd76200268768cc62ec82a34310"
+            },
+            "TLNOVELAS_LSP_2_EL4": {
+                url: "https://el4live2.boldmss.com/TLNOVELAS_LSP_2/TLNOVELAS_LSP_2_EL4.isml/TLNOVELAS_LSP_2.mpd",
+                k1: "33c3fb7197e842a7ab9c258a8d619efe",
+                k2: "1614acd76200268768cc62ec82a34310"
+            },
+            "TNT_NOVELAS_BVC": {
+                url: "https://bvclive1.boldmss.com/TNT_NOVELAS/TNT_NOVELAS_BVC.isml/TNT_NOVELAS.mpd",
+                k1: "e762abc3b22549d2a557f5914adefddb",
+                k2: "7a0dc20924d2ab51cb4e5a9b5156d5c2"
+            },
+            "TNT_NOVELAS_EL4": {
+                url: "https://el4live1.boldmss.com/TNT_NOVELAS/TNT_NOVELAS_EL4.isml/TNT_NOVELAS.mpd",
+                k1: "bbaa5225aa1a4cf488d501f4652133e3",
+                k2: "399a47f0bc7e0d8fbb81a518b7560c71"
+            },
+            "ETB_BASQUE": {
+                url: "https://bvclive1.boldmss.com/ETB_BASQUE/ETB_BASQUE.isml/ETB_BASQUE.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "CNN_INTERNACIONAL_BVC": {
+                url: "https://bvclive1.boldmss.com/CNN_INTERNACIONAL/CNN_INTERNACIONAL_BVC.isml/CNN_INTERNACIONAL.mpd",
+                k1: "d5a09d0d89d443a6abd2b9b990f282b3",
+                k2: "44189034fdba1192fd6e17c39e2914f8"
+            },
+            "CNN_BVC": {
+                url: "https://bvclive1.boldmss.com/CNN/CNN_BVC.isml/CNN.mpd",
+                k1: "a982d32f6ffe49a89003678b3f8714d3",
+                k2: "b0770d4de2430d66b4e8c3d812d1aff8"
+            },
+            "CNN_EL4": {
+                url: "https://el4live2.boldmss.com/CNN/CNN_EL4.isml/CNN.mpd",
+                k1: "47dd73a36872483eabad7932a6ff8abd",
+                k2: "80754eb2677c4fbe968a6303e2fe0954"
+            },
+            "BABY_TV_BVC": {
+                url: "https://bvclive1.boldmss.com/BABY_TV/BABY_TV_BVC.isml/BABY_TV.mpd",
+                k1: "55c5f79af37e4612ab94076345dd7da1",
+                k2: "6ac56711d6509b8e8c33b3ec651388c3"
+            },
+            "PAKA_PAKA_BVC": {
+                url: "https://bvclive1.boldmss.com/PAKA_PAKA/PAKA_PAKA_BVC.isml/PAKA_PAKA.mpd",
+                k1: "011346a4d397448ba30edd820c2526ad",
+                k2: "c7d83b293986638673a4584db9b925cb"
+            },
+            "PAKA_PAKA_Origen_EL4": {
+                url: "https://el4live2.boldmss.com/PAKA_PAKA_Origen/PAKA_PAKA_Origen_EL4.isml/PAKA_PAKA_Origen.mpd",
+                k1: "994bb1fcb16c48d1b17e1f8fc7420e4b",
+                k2: "670ea3824ca901a4ebe3ee0b5ea71915"
+            },
+            "TOONCAST_EL4": {
+                url: "https://el4live2.boldmss.com/TOONCAST/TOONCAST_EL4.isml/TOONCAST.mpd",
+                k1: "ded56fec96c04db9b89959b81ddad365",
+                k2: "2328b16d0ed4e12267782d030034ac51"
+            },
+            "TOONCAST_EL4": {
+                url: "https://el4live2.boldmss.com/TOONCAST/TOONCAST_EL4.isml/TOONCAST.mpd",
+                k1: "ded56fec96c04db9b89959b81ddad365",
+                k2: "2328b16d0ed4e12267782d030034ac51"
+            },
+            "NICK_JR_BVC": {
+                url: "https://bvclive1.boldmss.com/NICK_JR/NICK_JR_BVC.isml/NICK_JR.mpd",
+                k1: "57416414d31f413dacdaae14297dc79b",
+                k2: "86782ffbc91b455c02739b9c1e223b01"
+            },
+            "NICK_JR_EL4": {
+                url: "https://el4live1.boldmss.com/NICK_JR/NICK_JR_EL4.isml/NICK_JR_EL4.mpd",
+                k1: "42b5ea2e59cf41cd972ec77c7cd0cc21",
+                k2: "071afee0662a8374f24e7ddf68216975"
+            },
+            "CARTOONITO_EL4": {
+                url: "https://el4live1.boldmss.com/CARTOONITO/CARTOONITO_EL4.isml/CARTOONITO_EL4.mpd",
+                k1: "3b7c3e11c66643ef8bdfc3ae8037884d",
+                k2: "6631cbe5390e60ff02de2f0d6f5ce272"
+            },
+            "CARTOONITO_EL4": {
+                url: "https://el4live1.boldmss.com/CARTOONITO/CARTOONITO_EL4.isml/CARTOONITO_EL4.mpd",
+                k1: "3b7c3e11c66643ef8bdfc3ae8037884d",
+                k2: "6631cbe5390e60ff02de2f0d6f5ce272"
+            },
+            "DISNEY_JUNIOR_BVC": {
+                url: "https://bvclive1.boldmss.com/DISNEY_JUNIOR/DISNEY_JUNIOR_BVC.isml/DISNEY_JUNIOR.mpd",
+                k1: "fa82b8ac591841a1a6f972adaa91eeb5",
+                k2: "bbb1eb2cc55ae107e29e437e9f1e8996"
+            },
+            "DJUNIOR": {
+                url: "https://el4live1.boldmss.com/DJUNIOR/DJUNIOR.isml/DJUNIOR.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "DISNEY_BVC": {
+                url: "https://bvclive1.boldmss.com/DISNEY/DISNEY_BVC.isml/DISNEY.mpd",
+                k1: "82801543e89945cd849d5b6d76965aaa",
+                k2: "64edfadac8d093d89ce53abecb0e7336"
+            },
+            "DISNEY_CHANNEL_EL4": {
+                url: "https://el4live1.boldmss.com/DISNEY_CHANNEL/DISNEY_CHANNEL_EL4.isml/DISNEY_CHANNEL_EL4.mpd",
+                k1: "4bbebdf84a4442f18e9c08bc99a81672",
+                k2: "8581b56ccfef0714c34b271fe2e0e8ec"
+            },
+            "DISCOVERY_KIDS_BVC": {
+                url: "https://bvclive1.boldmss.com/DISCOVERY_KIDS/DISCOVERY_KIDS_BVC.isml/DISCOVERY_KIDS.mpd",
+                k1: "6e197029649f4a9087b0177cd12dc2d5",
+                k2: "0a4a2728a902a8b0967f22b9b6414c46"
+            },
+            "DKIDS_EL4": {
+                url: "https://el4live1.boldmss.com/DKIDS/DKIDS_EL4.isml/DKIDS_EL4.mpd",
+                k1: "740a4fbd840c4520b523cb4af27dc046",
+                k2: "2c8eb8e3445af87a5fad34351f7fa9b1"
+            },
+            "NICKELODEON_BVC": {
+                url: "https://bvclive1.boldmss.com/NICKELODEON/NICKELODEON_BVC.isml/NICKELODEON.mpd",
+                k1: "7d3af5d7a96046a79837bdefdb394c44",
+                k2: "4ce5dd1dac2aa203540f019debf0579c"
+            },
+            "NICKELODEON_EL4": {
+                url: "https://el4live1.boldmss.com/NICKELODEON/NICKELODEON_EL4.isml/NICKELODEON.mpd",
+                k1: "e54055d21fe84e148c6272a258f6a9dd",
+                k2: "dc6e7fbd3fb9f0bbaa2e8cd1fb6f7d9c"
+            },
+            "CARTOON_NETWORK_BVC": {
+                url: "https://bvclive1.boldmss.com/CARTOON_NETWORK/CARTOON_NETWORK_BVC.isml/CARTOON_NETWORK.mpd",
+                k1: "7d16dd6289d04b88944c660d1634f6d4",
+                k2: "0efa8c31d8b436e252e344fef31cc71f"
+            },
+            "CARTOON_NETWORK_EL4": {
+                url: "https://el4live1.boldmss.com/CARTOON_NETWORK/CARTOON_NETWORK_EL4.isml/CARTOON_NETWORK_EL4.mpd",
+                k1: "38132b98e4f24d5da980c13c677e64e2",
+                k2: "72800b5493c275719120e6889baf221c"
+            },
+            "ECHANNEL_BVC": {
+                url: "https://bvclive1.boldmss.com/ECHANNEL/ECHANNEL_BVC.isml/ECHANNEL.mpd",
+                k1: "8cb5e62e79854074835b07ad7a09bcdb",
+                k2: "cd07384551d95f8abf5d6b3ad0dcb39e"
+            },
+            "FILM_AND_ARTS_BVC": {
+                url: "https://bvclive1.boldmss.com/FILM_AND_ARTS/FILM_AND_ARTS_BVC.isml/FILM_AND_ARTS.mpd",
+                k1: "03fae67250364dc4aa584bbeeed11b7a",
+                k2: "ad41ee39f7a32b0a4e177497428ed984"
+            },
+            "FILM_AND_ARTS_EL4": {
+                url: "https://el4live1.boldmss.com/FILM_AND_ARTS/FILM_AND_ARTS_EL4.isml/FILM_AND_ARTS_EL4.mpd",
+                k1: "1255e1f4fb9e482683f0ea5df0205d66",
+                k2: "979d2aabf7095f9cb270deb844385f71"
+            },
+            "EUROPA_BVC": {
+                url: "https://bvclive1.boldmss.com/EUROPA/EUROPA_BVC.isml/EUROPA.mpd",
+                k1: "6996ad7fe6d64ac8a1ce08f11cb142e2",
+                k2: "19f3248e314433154289f08d14077b92"
+            },
+            "EUROPA_EUROPA_EL4": {
+                url: "https://el4live1.boldmss.com/EUROPA_EUROPA/EUROPA_EUROPA_EL4.isml/EUROPA_EUROPA.mpd",
+                k1: "f21c9e9189954da1a57d3e6aecf6ab49",
+                k2: "6959288cb940afa3e4d15b8b593ef00b"
+            },
+            "TCM_BVC": {
+                url: "https://bvclive1.boldmss.com/TCM/TCM_BVC.isml/TCM.mpd",
+                k1: "f31f3d9b3aed4a598da16458ee8db093",
+                k2: "ac5417ce50d51209fcc233112c1c4d62"
+            },
+            "TCM_EL4": {
+                url: "https://el4live1.boldmss.com/TCM/TCM_EL4.isml/TCM.mpd",
+                k1: "dc85d4a348db4d65aea605cd9d0cad2a",
+                k2: "14fa0c190a2ff130ab2bfea4f32958bb"
+            },
+            "GOLDEN_PLUS_BVC": {
+                url: "https://bvclive1.boldmss.com/GOLDEN_PLUS/GOLDEN_PLUS_BVC.isml/GOLDEN_PLUS.mpd",
+                k1: "3cdc2b82b64f460eacc1bccac82e12eb",
+                k2: "6f423de0aaf453d6226656a78ce7afbd"
+            },
+            "VOLVER_EL4": {
+                url: "https://el4live2.boldmss.com/VOLVER/VOLVER_EL4.isml/VOLVER.mpd",
+                k1: "37fb0109efdd4904960d17b3b90b7af9",
+                k2: "020f269f985e9bdc5d9430f13126e614"
+            },
+            "VOLVER_EL4": {
+                url: "https://el4live2.boldmss.com/VOLVER/VOLVER_EL4.isml/VOLVER.mpd",
+                k1: "37fb0109efdd4904960d17b3b90b7af9",
+                k2: "020f269f985e9bdc5d9430f13126e614"
+            },
+            "GOLDEN_BVC": {
+                url: "https://bvclive1.boldmss.com/GOLDEN/GOLDEN_BVC.isml/GOLDEN.mpd",
+                k1: "8b7e87c24c104f3d9850549c89987f19",
+                k2: "1c0f9a95d9ae6ee0733f2da34a18cf35"
+            },
+            "GOLDEN_EL4": {
+                url: "https://el4live2.boldmss.com/GOLDEN/GOLDEN_EL4.isml/GOLDEN.mpd",
+                k1: "de46bcb384fb4c8bb13d4c36765790f2",
+                k2: "c33c7c954504775c3e2cac36b427da55"
+            },
+            "DHE_EL4": {
+                url: "https://el4live2.boldmss.com/DHE/DHE_EL4.isml/DHE.mpd",
+                k1: "f3338656563348d5a4d48d870235822f",
+                k2: "a4a3b4b701b3cd9cc9718c5dfc085bce"
+            },
+            "DHE_EL4": {
+                url: "https://el4live2.boldmss.com/DHE/DHE_EL4.isml/DHE.mpd",
+                k1: "f3338656563348d5a4d48d870235822f",
+                k2: "a4a3b4b701b3cd9cc9718c5dfc085bce"
+            },
+            "PARAMOUNT_BVC": {
+                url: "https://bvclive1.boldmss.com/PARAMOUNT/PARAMOUNT_BVC.isml/PARAMOUNT.mpd",
+                k1: "4865bfab97534751b874d56b6c0ec58d",
+                k2: "6e28fc826a0aabd3e5f1bc1c6cc97b2e"
+            },
+            "PARAMOUNT_EL4": {
+                url: "https://el4live2.boldmss.com/PARAMOUNT/PARAMOUNT_EL4.isml/PARAMOUNT.mpd",
+                k1: "0d990ffc0986477d9576cb6ee2008cf7",
+                k2: "0b7836a532e37b93a335cba8adb6cf4c"
+            },
+            "STUDIO_UNIVERSAL_BVC": {
+                url: "https://bvclive1.boldmss.com/STUDIO_UNIVERSAL/STUDIO_UNIVERSAL_BVC.isml/STUDIO_UNIVERSAL.mpd",
+                k1: "5a385dbcac4847e39e2f2ed0b4df41e4",
+                k2: "69b35326e834f8b70dd2538e4b02be20"
+            },
+            "STUDIO_UNIVERSAL_EL4": {
+                url: "https://el4live1.boldmss.com/STUDIO_UNIVERSAL/STUDIO_UNIVERSAL_EL4.isml/STUDIO_UNIVERSAL.mpd",
+                k1: "e1cf5bc828d84bfb9254d9d0c621ae2f",
+                k2: "b4e653486e61829e298ec0efaad66a2f"
+            },
+            "USA_BVC": {
+                url: "https://bvclive1.boldmss.com/USA/USA_BVC.isml/USA.mpd",
+                k1: "b9d393f3e459401da9618943aabb19f8",
+                k2: "36e4d8e3ff5ae5a90f68a399c4f2cf4d"
+            },
+            "USA_NETWORK_EL4": {
+                url: "https://el4live2.boldmss.com/USA_NETWORK/USA_NETWORK_EL4.isml/USA_NETWORK.mpd",
+                k1: "8550359b89524274abb0a244a0fe73eb",
+                k2: "ecdb015891bade078dd5a280e6dfacb3"
+            },
+            "SONY_BVC": {
+                url: "https://bvclive1.boldmss.com/SONY/SONY_BVC.isml/SONY.mpd",
+                k1: "67df71fb8bb343e3a38598e819c3f329",
+                k2: "0a7ae00f69c65c66ac469b53f5ef763b"
+            },
+            "SONY_EL4": {
+                url: "https://el4live1.boldmss.com/SONY/SONY_EL4.isml/SONY_EL4.mpd",
+                k1: "b1a3d1d0b8624d33a21857787d6e84ff",
+                k2: "8ce14cbace57507f873e77bca6893166"
+            },
+            "AMC_BVC": {
+                url: "https://bvclive1.boldmss.com/AMC/AMC_BVC.isml/AMC.mpd",
+                k1: "cb155eb88ca642c58bddc925da7e348b",
+                k2: "081052f62b87e848794495967d6a56ba"
+            },
+            "AMC_EL4": {
+                url: "https://el4live1.boldmss.com/AMC/AMC_EL4.isml/AMC.mpd",
+                k1: "82fa86624981485f87b28fd1324dc666",
+                k2: "d35663b3d8708ef2182acec158ef35bb"
+            },
+            "AXN_BVC": {
+                url: "https://bvclive1.boldmss.com/AXN/AXN_BVC.isml/AXN.mpd",
+                k1: "a040aed12ee94e0dba125c7ef6204491",
+                k2: "dee1e34982e3d378f1cf69362e0175e7"
+            },
+            "AXN_EL4": {
+                url: "https://el4live1.boldmss.com/AXN/AXN_EL4.isml/AXN.mpd",
+                k1: "136f16e277524945b890fe746dd1166e",
+                k2: "3009222c2083acf132bb7eebc76c79b0"
+            },
+            "WARNER_BVC": {
+                url: "https://bvclive1.boldmss.com/WARNER/WARNER_BVC.isml/WARNER.mpd",
+                k1: "8bb90f9a36ac4d3e8634ac4825be0f94",
+                k2: "b7a83fb78154aea848a82cf98d38dd97"
+            },
+            "COMEDY_CENTRAL_BVC": {
+                url: "https://bvclive1.boldmss.com/COMEDY_CENTRAL/COMEDY_CENTRAL_BVC.isml/COMEDY_CENTRAL.mpd",
+                k1: "53814b744a854a11821e2516c40ba7b4",
+                k2: "abb1a9c8bd2be11677349731cff86daf"
+            },
+            "AE_BVC": {
+                url: "https://bvclive1.boldmss.com/AE/AE_BVC.isml/AE.mpd",
+                k1: "8fe5ef222ac74745893d5b6b159d8009",
+                k2: "aa261fafaf384d9866f118a65b2aaff7"
+            },
+            "AYE_EL4": {
+                url: "https://el4live1.boldmss.com/AYE/AYE_EL4.isml/AYE.mpd",
+                k1: "0c4942192aa14d8aaad0e5af8819023c",
+                k2: "4ba85232f7a24b8daa7a0e7271419f99"
+            },
+            "TNT_SERIES_BVC": {
+                url: "https://bvclive1.boldmss.com/TNT_SERIES/TNT_SERIES_BVC.isml/TNT_SERIES.mpd",
+                k1: "09b2d46ca19e48b195773e1254f34da5",
+                k2: "e0d750a64263145fd94fd3ff896603e2"
+            },
+            "TNT_SERIES_EL4": {
+                url: "https://el4live1.boldmss.com/TNT_SERIES/TNT_SERIES_EL4.isml/TNT_SERIES.mpd",
+                k1: "059c53991ebf4d439e696a6e82c2cfdc",
+                k2: "1dc4919d781098ab068c0fa28bfc6697"
+            },
+            "FX_BVC": {
+                url: "https://bvclive1.boldmss.com/FX/FX_BVC.isml/FX.mpd",
+                k1: "d3df53fe034e4dca95434b15a11a1933",
+                k2: "c4b63eaee3e1aefb464fc32d64756585"
+            },
+            "FX_EL4": {
+                url: "https://el4live1.boldmss.com/FX/FX_EL4.isml/FX.mpd",
+                k1: "ce954ae8019e43ee87505f348d1c1ec9",
+                k2: "0f2a47c96b790a1fd92e2559af6eb55b"
+            },
+            "STAR_BVC": {
+                url: "https://bvclive1.boldmss.com/STAR/STAR_BVC.isml/STAR.mpd",
+                k1: "0b3a9f93ad1048299aa5ade24ab3dedd",
+                k2: "eb007c39b228f74e29186514d696f483"
+            },
+            "STAR_CHANNEL_EL4": {
+                url: "https://el4live1.boldmss.com/STAR_CHANNEL/STAR_CHANNEL_EL4.isml/STAR_CHANNEL_EL4.mpd",
+                k1: "60f6deeb66c740b4b6dc5f870457fc00",
+                k2: "c80b22603f1b810d9d5b336d3cf765ad"
+            },
+            "TNT_BVC": {
+                url: "https://bvclive1.boldmss.com/TNT/TNT_BVC.isml/TNT.mpd",
+                k1: "5842aa73fbf248ddb58e5ae78d609af5",
+                k2: "6530a0126b8639bf4ee07a460595b6ea"
+            },
+            "TNT_EL4": {
+                url: "https://el4live2.boldmss.com/TNT/TNT_EL4.isml/TNT.mpd",
+                k1: "36c0325459994238ada1f31237dc481d",
+                k2: "c920bbcb8ef1e9d18ce3b462abbbec8d"
+            },
+            "CINEMAX_BVC": {
+                url: "https://bvclive1.boldmss.com/CINEMAX/CINEMAX_BVC.isml/CINEMAX.mpd",
+                k1: "18a5aac3facb464ba16f821920d51cf4",
+                k2: "379a47ca1b2aca579976514fc2e217ec"
+            },
+            "CINEMAX_EL4": {
+                url: "https://el4live1.boldmss.com/CINEMAX/CINEMAX_EL4.isml/CINEMAX.mpd",
+                k1: "3c35dd0a505e426285378697206f389f",
+                k2: "fb3892bc39963e7f5ab91dfbed897316"
+            },
+            "CINECANAL_BVC": {
+                url: "https://bvclive1.boldmss.com/CINECANAL/CINECANAL_BVC.isml/CINECANAL.mpd",
+                k1: "3c8a5d040234420692639ebfd313d9d8",
+                k2: "025ab8fc3d21bd6d2b763ed6d3a37b01"
+            },
+            "CINECANAL_EL4": {
+                url: "https://el4live1.boldmss.com/CINECANAL/CINECANAL_EL4.isml/CINECANAL_EL4.mpd",
+                k1: "e31cb805bac04311a19c74ed4224edd0",
+                k2: "5d722685102d84043dc1cc5b210cc36e"
+            },
+            "SPACE_BVC": {
+                url: "https://bvclive1.boldmss.com/SPACE/SPACE_BVC.isml/SPACE.mpd",
+                k1: "d02dc31c52a44a52b5f84e715e5cc91a",
+                k2: "1d6c05c1664aadd375954a7e8105cc08"
+            },
+            "SPACE_EL4": {
+                url: "https://el4live1.boldmss.com/SPACE/SPACE_EL4.isml/SPACE_EL4.mpd",
+                k1: "9e8866b575f44074887c13e4bcb5c093",
+                k2: "4d3afa9ba9f5adc2a6397578d72d7730"
+            },
+            "CINEAR_BVC": {
+                url: "https://bvclive1.boldmss.com/CINEAR/CINEAR_BVC.isml/CINEAR.mpd",
+                k1: "b191a098ba80461fa20524b9da7df5cf",
+                k2: "2c46f973ac96d88937760f2fb0e71285"
+            },
+            "UNIVERSAL_BVC": {
+                url: "https://bvclive1.boldmss.com/UNIVERSAL/UNIVERSAL_BVC.isml/UNIVERSAL.mpd",
+                k1: "d93b4a44e78746a39ea392971d047ca7",
+                k2: "a5b397668da716034e8ff9e808322cc7"
+            },
+            "UNIVERSAL_EL4": {
+                url: "https://el4live2.boldmss.com/UNIVERSAL/UNIVERSAL_EL4.isml/UNIVERSAL.mpd",
+                k1: "0ad66bb916364438890cc661b8abe56a",
+                k2: "abb0df88673d431e7b06d93c7e11ad77"
+            },
+            "ARGENTINISIMA_SATELITAL_BVC": {
+                url: "https://bvclive1.boldmss.com/ARGENTINISIMA_SATELITAL/ARGENTINISIMA_SATELITAL_BVC.isml/ARGENTINISIMA_SATELITAL.mpd",
+                k1: "84897c5e56ab4e79b5dbf966c133fb20",
+                k2: "bf39dcd7566f4a772fe18d7b52e2336f"
+            },
+            "LN_MAS_BVC": {
+                url: "https://bvclive1.boldmss.com/LN_MAS/LN_MAS_BVC.isml/LN_MAS.mpd",
+                k1: "fe293077debe4a0fade37236ce206985",
+                k2: "5e0bd293419aef9e467b33ec3a48208f"
+            },
+            "LNPLUS_EL4": {
+                url: "https://el4live1.boldmss.com/LNPLUS/LNPLUS_EL4.isml/LNPLUS.mpd",
+                k1: "580f1e3df60344c49b5c6869a641a7a0",
+                k2: "6d1ee897f9746ff240cd3acd03605f24"
+            },
+            "ENCUENTRO_BVC": {
+                url: "https://bvclive1.boldmss.com/ENCUENTRO/ENCUENTRO_BVC.isml/ENCUENTRO.mpd",
+                k1: "3c26c319ba334f72bb1690686a5cbca2",
+                k2: "225f7e55ce96165007e6a7d495f264a6"
+            },
+            "ENCUENTRO_Orig_EL4": {
+                url: "https://el4live2.boldmss.com/ENCUENTRO_Orig/ENCUENTRO_Orig_EL4.isml/ENCUENTRO_Orig.mpd",
+                k1: "d3ac3948d64f4f1ca8932bbff78b3964",
+                k2: "1e3fb94123668239458938e278f3e2e3"
+            },
+            "CANAL_A_EL4": {
+                url: "https://el4live2.boldmss.com/CANAL_A/CANAL_A_EL4.isml/CANAL_A.mpd",
+                k1: "282e446965374fd5bfdd98a8fbf7754e",
+                k2: "3294e10a48f5bb250132ca4ec2e504f0"
+            },
+            "CANAL_A_EL4": {
+                url: "https://el4live2.boldmss.com/CANAL_A/CANAL_A_EL4.isml/CANAL_A.mpd",
+                k1: "282e446965374fd5bfdd98a8fbf7754e",
+                k2: "3294e10a48f5bb250132ca4ec2e504f0"
+            },
+            "UNIFE_BVC": {
+                url: "https://bvclive1.boldmss.com/UNIFE/UNIFE_BVC.isml/UNIFE.mpd",
+                k1: "1e8153f705f64b0499449ff403ed5b32",
+                k2: "e63a5314ccb236a127665f3d95f8c183"
+            },
+            "TN_BVC": {
+                url: "https://bvclive1.boldmss.com/TN/TN_BVC.isml/TN.mpd",
+                k1: "e2ff4f665fe9491ea914f5f8f0df0031",
+                k2: "a5be72ad37f75ccc739ed951a3360958"
+            },
+            "CRONICA_TV_BVC": {
+                url: "https://bvclive1.boldmss.com/CRONICA_TV/CRONICA_TV_BVC.isml/CRONICA_TV.mpd",
+                k1: "eafc0a6924d1469486c538ce8cac7048",
+                k2: "c56b8f4f1591ac79ff8f2f73072bb2cf"
+            },
+            "CRONICA_EL4": {
+                url: "https://el4live1.boldmss.com/CRONICA/CRONICA_EL4.isml/CRONICA.mpd",
+                k1: "4113590c70ac41cc8b8badb7e92c3b47",
+                k2: "70190fe918548eb4d0bb2c154efcf1b6"
+            },
+            "C5N_BVC": {
+                url: "https://bvclive1.boldmss.com/C5N/C5N_BVC.isml/C5N.mpd",
+                k1: "9664f194571646379fee20a080ecce4b",
+                k2: "b2870d1257acfc9da74057d2b286e68e"
+            },
+            "MAGAZINE_EL4": {
+                url: "https://el4live1.boldmss.com/MAGAZINE/MAGAZINE_EL4.isml/MAGAZINE.mpd",
+                k1: "23a377708b764c43a934f414b6211c11",
+                k2: "a98d19f750ec3ef5838ab83166e783a2"
+            },
+            "MAGAZINE_EL4": {
+                url: "https://el4live1.boldmss.com/MAGAZINE/MAGAZINE_EL4.isml/MAGAZINE.mpd",
+                k1: "23a377708b764c43a934f414b6211c11",
+                k2: "a98d19f750ec3ef5838ab83166e783a2"
+            },
+            "A24_BVC": {
+                url: "https://bvclive1.boldmss.com/A24/A24_BVC.isml/A24.mpd",
+                k1: "b566d46e6bc340dbabb14761b721f718",
+                k2: "dc16d14e8b45781e120f54279c5f6a93"
+            },
+            "AM24_EL4": {
+                url: "https://el4live1.boldmss.com/AM24/AM24_EL4.isml/AM24.mpd",
+                k1: "bfbd16ff845e47cf8926aa228c6acf3f",
+                k2: "6234ff5accd06fd973d6762e83abcc52"
+            },
+            "EL_GARAGE_BVC": {
+                url: "https://bvclive1.boldmss.com/EL_GARAGE/EL_GARAGE_BVC.isml/EL_GARAGE.mpd",
+                k1: "edad37f156dd4c1a8fe93a1442eba870",
+                k2: "0d8bbc1bfddeb5a60bdd2f89def518ad"
+            },
+            "AMERICA_SPORTS_BVC": {
+                url: "https://bvclive1.boldmss.com/AMERICA_SPORTS/AMERICA_SPORTS_BVC.isml/AMERICA_SPORTS.mpd",
+                k1: "c88a6496dbb44f7ea1a125d60fda9640",
+                k2: "03f8047de759deb035dc3875b280bbb6"
+            },
+            "AM_SPORTS_EL4": {
+                url: "https://el4live2.boldmss.com/AM_SPORTS/AM_SPORTS_EL4.isml/AM_SPORTS.mpd",
+                k1: "84e562a74cac4ca6b4ffd662244f98ae",
+                k2: "52d4f78f418b7fa03f19e0a3e3d18150"
+            },
+            "DEPORTV_BVC": {
+                url: "https://bvclive1.boldmss.com/DEPORTV/DEPORTV_BVC.isml/DEPORTV.mpd",
+                k1: "71caa2583d2e40c7ac58ea4ce753c920",
+                k2: "a4ece08fcdcbc107fed35a56052c6b03"
+            },
+            "FOX_SPORTS_3_BVC": {
+                url: "https://bvclive1.boldmss.com/FOX_SPORTS_3/FOX_SPORTS_3_BVC.isml/FOX_SPORTS_3.mpd",
+                k1: "690723060cb04c34932a5a3d8ef23d86",
+                k2: "745b11ae7e764ad46b058548e4dfe234"
+            },
+            "FS3_EL4": {
+                url: "https://el4live1.boldmss.com/FS3/FS3_EL4.isml/FS3_EL4.mpd",
+                k1: "b90ca85b7cfb400cb07384127be81bb3",
+                k2: "b5784a71860611aea6e445e337896987"
+            },
+            "FOX_SPORTS_2_BVC": {
+                url: "https://bvclive1.boldmss.com/FOX_SPORTS_2/FOX_SPORTS_2_BVC.isml/FOX_SPORTS_2.mpd",
+                k1: "6ae10ae5ce614113bab224f38f24e81f",
+                k2: "0ac6ad6ca5dd20f204e79f7fc6d744c3"
+            },
+            "FS2_EL4": {
+                url: "https://el4live1.boldmss.com/FS2/FS2_EL4.isml/FS2.mpd",
+                k1: "65511f8f16904666aea61181daec7dd0",
+                k2: "e85288b831ef753d2b46dcf6501f117c"
+            },
+            "FOX_SPORTS_BVC": {
+                url: "https://bvclive1.boldmss.com/FOX_SPORTS/FOX_SPORTS_BVC.isml/FOX_SPORTS.mpd",
+                k1: "a5f7d1ed0c244ecfb2d7d85a1d78c7c8",
+                k2: "1ab45030c16086ccd5e942c478836926"
+            },
+            "FS_EL4": {
+                url: "https://el4live1.boldmss.com/FS/FS_EL4.isml/FS.mpd",
+                k1: "ed1c7f413bb540e592ad45bef4da9bcc",
+                k2: "f3f2000113b29a6912caa37329093531"
+            },
+            "ESPN_4_EL4": {
+                url: "https://el4live1.boldmss.com/ESPN_4/ESPN_4_EL4.isml/ESPN_4.mpd",
+                k1: "d84f8725413546aabe922f4b5bd20841",
+                k2: "3b45a54f48496dae4c48957635241905"
+            },
+            "ESPN_4_EL4": {
+                url: "https://el4live1.boldmss.com/ESPN_4/ESPN_4_EL4.isml/ESPN_4.mpd",
+                k1: "d84f8725413546aabe922f4b5bd20841",
+                k2: "3b45a54f48496dae4c48957635241905"
+            },
+            "ESPN_3_BVC": {
+                url: "https://bvclive1.boldmss.com/ESPN_3/ESPN_3_BVC.isml/ESPN_3.mpd",
+                k1: "c3646c79dcff4a0e93c519541bac9830",
+                k2: "0fdbf788cb1a393a5f1f3bc43254eae9"
+            },
+            "ESPN3_EL4": {
+                url: "https://el4live1.boldmss.com/ESPN3/ESPN3_EL4.isml/ESPN3.mpd",
+                k1: "4733f140c4094ff1bb0b17f313b02a8e",
+                k2: "898808d7b882d862a8cf246da5c0ded6"
+            },
+            "ESPN_2_BVC": {
+                url: "https://bvclive1.boldmss.com/ESPN_2/ESPN_2_BVC.isml/ESPN_2.mpd",
+                k1: "de55d232455b445aaddb4ef73d82145f",
+                k2: "e570e15beb1a447a5e3f91fedfd01c73"
+            },
+            "ESPN2_EL4": {
+                url: "https://el4live2.boldmss.com/ESPN2/ESPN2_EL4.isml/ESPN2.mpd",
+                k1: "e72ebbecffd842ac91ee595bc9459255",
+                k2: "53fafd30378494b1f099d7f5bb9abc1d"
+            },
+            "ESPN_BVC": {
+                url: "https://bvclive1.boldmss.com/ESPN/ESPN_BVC.isml/ESPN.mpd",
+                k1: "31bd1c2d7ec744919f9438b166f575d3",
+                k2: "08a8df7583e02f9eba7b0cf77207340b"
+            },
+            "ESPN_EL4": {
+                url: "https://el4live2.boldmss.com/ESPN/ESPN_EL4.isml/ESPN.mpd",
+                k1: "47a6e9b59097490bbd2a42ad184f0b54",
+                k2: "1471a7df704172904aa6126a2b35341e"
+            },
+            "TYC_SPORTS_2_BVC": {
+                url: "https://bvclive1.boldmss.com/TYC_SPORTS_2/TYC_SPORTS_2_BVC.isml/TYC_SPORTS_2.mpd",
+                k1: "090604e982684762a8f8bf752c110b61",
+                k2: "bd39fbeeb70aae5322fc163831cc2f8a"
+            },
+            "TYC_SPORTS_BVC": {
+                url: "https://bvclive1.boldmss.com/TYC_SPORTS/TYC_SPORTS_BVC.isml/TYC_SPORTS.mpd",
+                k1: "590d41f273cd4a2a87634e2248570974",
+                k2: "071b942bfdb44a396f40d7a6ab9c6b75"
+            },
+            "TYC_BAK_EL4": {
+                url: "https://el4live2.boldmss.com/TYC_BAK/TYC_BAK_EL4.isml/TYC_BAK.mpd",
+                k1: "b3ca13856ea040548909112e39c2139a",
+                k2: "6891abc882c92f0ef3aa797c31ccdc36"
+            },
+            "AR12_BVC": {
+                url: "https://bvclive1.boldmss.com/AR12/AR12_BVC.isml/AR12.mpd",
+                k1: "e3feecb729a34e7cb0123c25dd890362",
+                k2: "a0ce3b8a17ccfb82f7eef4d65710d0f0"
+            },
+            "IP_EL4": {
+                url: "https://el4live1.boldmss.com/IP/IP_EL4.isml/IP.mpd",
+                k1: "dd97f4f409eb4702833de5fe264850eb",
+                k2: "eae64832d7b9d1f7e9452669966b119e"
+            },
+            "CANAL_7_JUJUY_EL4": {
+                url: "https://el4live1.boldmss.com/CANAL_7_JUJUY/CANAL_7_JUJUY_EL4.isml/CANAL_7_JUJUY.mpd",
+                k1: "e8c8e48bc6254f249218fd348aa5c587",
+                k2: "6cfbb561f854be342c6aac28166b21f2"
+            },
+            "CANAL_7": {
+                url: "https://bvclive1.boldmss.com/CANAL_7/CANAL_7.isml/CANAL_7.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "EL_NUEVE": {
+                url: "https://bvclive1.boldmss.com/EL_NUEVE/EL_NUEVE.isml/EL_NUEVE.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "CONSTRUIR_TV_BVC": {
+                url: "https://bvclive1.boldmss.com/CONSTRUIR_TV/CONSTRUIR_TV_BVC.isml/CONSTRUIR_TV.mpd",
+                k1: "3184a62584b247baa350308639a9bdf6",
+                k2: "7bb92afd72a80341aaacbe15069fdad1"
+            },
+            "TELESUR_BVC": {
+                url: "https://bvclive1.boldmss.com/TELESUR/TELESUR_BVC.isml/TELESUR.mpd",
+                k1: "30c20c27a7ec418eaa10704a5476ba33",
+                k2: "0ff9c617dc4fff0b006a80fcf6b23116"
+            },
+            "TELEMAX": {
+                url: "https://bvclive1.boldmss.com/TELEMAX/TELEMAX.isml/TELEMAX.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "CANAL26": {
+                url: "https://bvclive1.boldmss.com/CANAL26/CANAL26.isml/CANAL26.mpd",
+                k1: "ed6e9faec04aa78f261171d1ace48957",
+                k2: "2995fa69fa1158e82547d5d5a22b4e98"
+            },
+            "CANAL_26_EL4": {
+                url: "https://el4live1.boldmss.com/CANAL_26/CANAL_26_EL4.isml/CANAL_26.mpd",
+                k1: "8abe94bbd02a491f919208dfb2d4883f",
+                k2: "20380fdfdefc0bea2c77347eb14ba0ff"
+            },
+            "TV_PUBLICA_BVC": {
+                url: "https://bvclive1.boldmss.com/TV_PUBLICA/TV_PUBLICA_BVC.isml/TV_PUBLICA.mpd",
+                k1: "cc5eaf2dacee49c6b6b3299bfd7a3c55",
+                k2: "59caf6a8acb148785de028994efd69f7"
+            },
+            "TVP_EL4": {
+                url: "https://el4live1.boldmss.com/TVP/TVP_EL4.isml/TVP.mpd",
+                k1: "37a4584d31fa4906935bb610e0734615",
+                k2: "b8859fe969f4d62e1387312be1159be4"
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+            "": {
+                url: "",
+                k1: "",
+                k2: ""
+            },
+
+
+        };
+
+        var id = getParameterByName('get');
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+            var sources = [];
+
+            if (config.url.includes('.m3u8')) {
+                sources.push({
+                    file: config.url
+                });
+            }
+
+            if (config.url.includes('.mpd') && config.k1 && config.k2) {
+                sources.push({
+                    file: config.url,
+                    drm: { "clearkey": { "keyId": config.k1, "key": config.k2 } }
+                });
+            }
+
+            //JWWWWWW
+            jwplayer("player").setup({
+                playlist: [{
+                    title: "",
+                    description: "canalesonline.netlify.app",
+                    sources: sources
+                }],
+                width: "100%",
+                height: "100%",
+                autostart: true,
+                mute: false,
+                cast: {},
+                sharing: {},
+                // androidhls: true,
+                displaytitle: true,
+                stretching: "uniform",
+                preload: "auto",
+                liveSyncDuration: 3,
+            });
+
+        }
+    </script>
+</body>
+
+</html>

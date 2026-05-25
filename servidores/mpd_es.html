@@ -1,0 +1,347 @@
+<html lang="es">
+
+<head>
+    <style>
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+    <meta name="robots" content="noindex" />
+    <title>mpd_es</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+    <script src="//cdn.jsdelivr.net/npm/@clappr/player@0.4.0/dist/clappr.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mux.js@5.6.7/dist/mux.min.js"></script>
+    <script src='//cdn.jsdelivr.net/npm/level-selector@latest/dist/level-selector.min.js'></script>
+    <script src='//cdn.jsdelivr.net/npm/clappr-pip@latest/dist/clappr-pip.min.js'></script>
+    <script
+        src='//cdn.jsdelivr.net/npm/clappr-playback-rate-plugin@latest/dist/clappr-playback-rate-plugin.min.js'></script>
+    <script src="//cdn.jsdelivr.net/npm/shaka-player@2.5.10/dist/shaka-player.compiled.min.js"></script>
+    <script
+        src="//cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.external.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/cdnbye-shaka@latest"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+     
+
+    <style>
+        .player-poster[data-poster] {
+            background-size: cover;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <main id="player"></main>
+
+    <section id="geo-block-message" class="d-none d-flex justify-content-center align-items-center vh-100">
+        <section class="d-flex flex-column justify-content-center align-items-center text-center p-4"
+            style="background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(6px); border-radius: 1rem; box-shadow: 0 0 20px rgba(255,255,255,0.1); max-width: 600px;">
+
+            <h2 class="text-danger mb-4" style="text-shadow: 0 0 5px rgba(255,0,0,0.5);">
+                Acceso restringido por ubicación
+            </h2>
+
+            <p class="fs-5 mb-3 text-light" style="text-shadow: 0 0 3px rgba(255,255,255,0.2);">
+                Para ver los canales de <strong>España</strong>, necesitás usar una <strong>VPN</strong> conectada a
+                ese
+                país. Recomendamos la extensión gratuita <strong>Urban VPN</strong> para Google Chrome.
+            </p>
+
+            <a href="https://chromewebstore.google.com/detail/urban-vpn-proxy/eppiocemhmnlbhjplcgkofciiegomcon"
+                target="_blank" class="btn btn-outline-light mb-3">
+                Instalar Urban VPN
+            </a>
+
+            <button id="retry-button" class="btn btn-success">
+                Ya tengo VPN de España, reintentar
+            </button>
+
+        </section>
+    </section>
+
+
+
+
+    <!-- <script src="https://canalesonline.netlify.app/js/script-config.js"></script> -->
+    <script src="../js/script-config.js"></script>
+    <script>
+
+        function checkCountry() {
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Tu IP:', data.ip);
+                    console.log('Tu país:', data.country_name);
+
+                    if (data.country === 'ES') {
+                        // Mostrar reproductor, ocultar mensaje
+                        document.getElementById('player').style.display = 'block';
+                        document.getElementById('geo-block-message').classList.add('d-none');
+                    } else {
+                        // Ocultar reproductor, mostrar mensaje
+                        document.getElementById('player').style.display = 'none';
+                        document.getElementById('geo-block-message').classList.remove('d-none');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al detectar IP:', error);
+                });
+        }
+
+        // Ejecutar una vez al cargar
+        checkCountry();
+
+        // Al hacer clic en el botón "Ya instalé la extensión"
+        document.getElementById('retry-button').addEventListener('click', () => location.reload());
+
+
+
+        function getUrlParameter(name) {
+            var result = null;
+            var regex = new RegExp('[?&]' + name + '=([^&#]*)', 'i');
+            var match = window.location.search.match(regex);
+            if (match) {
+                result = decodeURIComponent(match[1]);
+            }
+            return result;
+        }
+
+        var id = getUrlParameter('id');
+
+        var source = '';
+        var clearKeys = {};
+
+        let mt = "live.tvup.edge2befaster.io";
+        // let mt = "tvup-live.akamaized.net";
+        // let mt = "tvup01.edge.milloh-cs.com";
+        // let mt = "tvup-ccs-live.akamaized.net";
+        // let mt = "24vod-adaptive.akamaized.net";
+        // let mt = "13vod-adaptive.akamaized.net";
+
+        if (id === 'HISTORIA') {
+            source = 'https://' + mt + '/historia/historia.mpd';
+            clearKeys = {
+                '4905a9d7757b5c1e9e54ac4114acb192': 'fc4803368d2fed4e4f0eba14f7e5fe05',
+                '490b528a29d85807b81e5a40adac38c1': 'e947c65e0ec3f5bcc020f41a552b9993',
+                'e7007b60625e54bf9794b2bcdcaac24e': 'f242a6fbfaa73dfbdec97ca37ccafe09'
+            };
+        } else if (id === 'LA1') {
+            source = 'https://' + mt + '/la1-neutral/la1-neutral.mpd';
+            clearKeys = {
+                '562f81a1d0c3508a92272bb2d1a1ff68': '689317e107f46e168c72a495203eefec',
+                '282ada04f991565d9eea39e675d843ef': 'fdeb35eaa846c3b4ecacb86547045c25',
+                'e080cf6f71365721a531637e02231a7a': '461cf77fac8985df81510ab8dbf5f81e'
+            };
+        } else if (id === 'LA2') {
+            source = 'https://' + mt + '/la2l/la2l.mpd';
+            clearKeys = {
+                '2a65a80955e550039651caae1b32ee9a': '91532fd3f963cfca61d2753af1b84136',
+                '3a217613ab4c5d8399434d679bb43ca5': 'd1d41a48e85ed378cfc7de72f19edd1f',
+                '6293f906b9f65e7783125513d313a3f9': 'cbdd50a59a9eea3ecd1b3b95c56940c0'
+            };
+        } else if (id === 'ANTENA3') {
+            source = 'https://' + mt + '/antena3hd/antena3hd.mpd';
+            clearKeys = {
+                '173bcb78d33a5ae7ba7357ad94723f28': '1e69f953c8974cacf85e9c29c6a0f2cc',
+                'b5aefe37a38c5642876e992ab484e1fa': '9740dbf62ae7811d17d87d3a8ef0c442',
+                'c648943f6c405d9189a1b4bc518838b0': '6b495ac32285d600d3334dd9bed52d59',
+            };
+        } else if (id === 'CUATRO') {
+            source = 'https://' + mt + '/cuatro/cuatro.mpd';
+            clearKeys = {
+                '78fecad5e0145b71916e132f1bc293b2': '24f2ca53927a5134fb702e6121f1aea3',
+                '8708aa66d18858fbb0a9876bf0cc7878': '9148f9a909f41429e7f3070913e8fa8d',
+                '38483b5bc206535c94dbd29d73a2a90b': 'c7024c92716b0a7ea853a0881ce01315'
+            };
+        } else if (id === 'TELECINCO') {
+            source = 'https://' + mt + '/telecincohd/telecincohd.mpd';
+            clearKeys = {
+                'def5769eed6152d2b32aa1c75a624764': 'ed06df900e0b84549a834c49997dc8ad',
+                '7ca93b77733454d3830c60996ad8929b': '8ab9809fc799015a41c39b8b9d6ab9a5',
+                'faebbb9b817459d2965625708666a114': '9a1aa94adb0b15b523836c6f41843726'
+            };
+        } else if (id === 'LASEXTA') {
+            source = 'https://' + mt + '/lasexta/lasexta.mpd';
+            clearKeys = {
+                '8a56a25be1ed5c6a946edc8493d42d1d': '0332ad7b0a05c7ff5854cfb0cf8737fe',
+                '1179fa165d8354a58a02377eb9e9ad52': '05d8d60b479a1bbf2b9b21765dfe63e6',
+                '3a192ebf13e05c528459dc66031e2da2': '8179c86be8e1f3ad9053aa8ccd977408'
+            };
+        } else if (id === 'FDF') {
+            source = 'https://' + mt + '/fdf6/fdf6.mpd';
+            clearKeys = {
+                'cd29dff05b3a50e7964a3dc153984880': '8a5186df6124e85e160a48a59ced2e06',
+                'f89d7fb2549c536fafd46c944c5c2f87': '524cff6d515fc2a22c1e1fab671cd169',
+                'd65bcc9802fb5895b44b51ea1aeb2b6a': '2eec14ec3bd8e238715e34c93e2dde22'
+            };
+        } else if (id === 'AMC_BREAK') {
+            source = 'https://' + mt + '/blaze/blaze.mpd';
+            clearKeys = {
+                '790ef859a5545d77b5fb4d4631c8c811': 'e18fa14c4817d83d61d1962a147bb145',
+                '742b819922635e62812ff5a880079f08': '25ad4c5e94e395d97a5271445dc6c863',
+                '6b842f99d4df516faff13e24c7e3697a': '2c66629a3381c2cb55d3652eaf0d8e3b'
+            };
+        } else if (id === 'AMC_CRIME') {
+            source = 'https://' + mt + '/crimen-investigacion/crimen-investigacion.mpd';
+            clearKeys = {
+                '6dd8b9a451095af4b8f8266bd1cef434': '14dca8bf7a9157dba18581988159e107',
+                'ebac7cae5b225e789f4d1202fffe0287': '5324bca8535de52ca8bc3db349d94dea',
+                'c330fafc810a5d1daaf48900f96eadf3': '88cd31a30a5f050548cb365c6b1f456c'
+            };
+        } else if (id === 'DARK') {
+            source = 'https://' + mt + '/darksolo/darksolo.mpd';
+            clearKeys = {
+                'c37d1c406f2f542f8c135756102baf5f': '680777fb2e2ea13fa18815ccd96b6211',
+                'ceb0eb7410295254a511202420fcf3cd': '0f9ac2adec53fd180d309bf8ea97d5f3',
+                '6c23993bdfe15c79bb8b0fdfd02d8f10': '884bd3f29c6277bdd92d928ff91c317d'
+            };
+        } else if (id === 'D_KISS') {
+            source = 'https://' + mt + '/dkiss/dkiss.mpd';
+            clearKeys = {
+                '1aad8fd29b135292b17aa447b6d7404b': 'dae98355ea683fc3bef5666b979f1706',
+                '8250cd7831de5590bf1861e30c430532': 'cb22262cf79565fad60839e4a98e24e6',
+                'bc7d91d0dc10545385791d1877118825': '06f49a982f2e6bfc26116b130de894ba'
+            };
+        } else if (id === 'ODISEA') {
+            source = 'https://' + mt + '/odisea/odisea.mpd';
+            clearKeys = {
+                '44198d2ef41d56f08ab661f923c1d457': 'f3f7c33d774d0b050e0724f1afa8576a',
+                '2e255d04642653a69eed70b6a0e389cb': '2b545bab6bd6d58d4c38620c365d2743',
+                'e30f7b63ca36594784e896e5592ea07d': '82539a2fded8fd343364846eba15c1e3'
+            };
+        } else if (id === 'B_MAD') {
+            source = 'https://' + mt + '/bemad/bemad.mpd';
+            clearKeys = {
+                '89444443774f5e4583d2a88150966839': '87881f7e2f17cc1f96347bbadc34866e',
+                '79f5a725945552ba817ecb9e62427370': '1f797fb910c4264d34e0b3045cd4366f',
+                '561f7439ca455c57af84705ea001042f': '265ac468fc6ccdef137a1bc92ee63ded'
+            };
+        } else if (id === 'MEGA') {
+            source = 'https://' + mt + '/mega6/mega6.mpd';
+            clearKeys = {
+                '17c96fff5b3656e3973b2431d54740e3': '4ea5aa764f7806b1bc9d5d70dc30f953',
+                'd7929e94a9035f8eb174edcd585e33da': '843ae6087cb1c7897107ed477f12ad07',
+                'a5bcd9e88a9f56c198ffbdd1057a701d': 'bdffe57e1abd9ce12c400da3b2e5d3ae'
+            };
+        } else if (id === 'NOVA') {
+            source = 'https://' + mt + '/nova6/nova6.mpd';
+            clearKeys = {
+                '47bcabb0e4025a44a431cdbc00844f96': 'b356d11fa6710b0684eaeac647a1a7fd',
+                '64df8ec288975380819eca889f10e016': '5cbafb507c657279b68c588eaaaf25c3',
+                '4e057f58d5a55c3f9a16123f43a7d6a9': '4e6b43312e25851a0aa4e269fad4b6da'
+            };
+        } else if (id === 'NEOX') {
+            source = 'https://' + mt + '/neox6/neox6.mpd';
+            clearKeys = {
+                '798d3815a60a509d89495eef009b126e': '17b8ada6c772a46cc1f1616e6d0c7c4c',
+                '18294916daec56feb674a8334acd293b': '2fe6916666d48de1e0a02650004d3baf',
+                '197322327da85f35843d6401ac974cb9': '4ae12f869b559d94c3dd570ae5b49e30'
+            };
+        } else if (id === 'AXN') {
+            source = 'https://' + mt + '/axn-hd/axn-hd.mpd';
+            clearKeys = {
+                "c0fc7ec7a47e504b852d5860eef575cc": "eb4c01e07dc846b5184cd84f328a3172",
+                "8cbc1c7354f559be8f57b6bf8ed063cc": "ce004e09fc58f73923dda5679d1ce75d",
+                "09d200ee496b5d438c0c1da9229139df": "b623c3c77fe6e8e54156a64d50fe26b6"
+            };
+        } else if (id === 'AXN_MOVIE') {
+            source = 'https://' + mt + '/axnwhite6/axnwhite6.mpd';
+            clearKeys = {
+                '19abdbc1fb6d56d09d69e4ccbf20dc78': '9884f71800eca963c1d43e3a68da2139',
+                'e781d5d3848158e29e4f0398576c1dd8': 'c3bc96015999925fd6660eee3f18d7b0',
+                'cf8521901f3d51f9ab4509b180b5d65a': 'c554b3bd4c1ae26b1c250345c71642e3'
+            };
+        } else if (id === 'DMAX') { //No anda
+            source = 'https://' + mt + '/dmax6/dmax6.mpd';
+            clearKeys = {
+                '8f6274cbc36a52f7a9104f5fab9f1918': '27060c527a69d604b42cbf2982127238',
+                'a23af59626f25a87bb7a92632047de16': '53c3ca7308ad2b9ee0a33d4c0b266931',
+                '31202201d2055ddfb0e567d6fe222b09': 'fd5d557ea82bf155bc9b06c8cb000159'
+            };
+        } else if (id === 'BOING') {
+            source = 'https://' + mt + '/boing/boing.mpd';
+            clearKeys = {
+                '9247e483162b5f70ba4ed226db7534b2': '573a7aef0f06f3342081f372136a2d91',
+                '657664aa81065e3c9a26cfd5d7c006ff': 'f8113868e2adc5796ebfa1d4763e4cf2',
+                '5b86b74a2c9c50d68ccc053c9897a342': 'ffda99720dc6edc1e334f7d2de0a7b51'
+            };
+        } else if (id === 'DIRECTV_SPORTSPAN') {
+            source = 'https://' + mt + '/directvsportpan/directvsportpan.mpd';
+            clearKeys = {
+                '1563586185955731899c517fca4229a8': '5e987516e20522093d5ffee9a84d71b0',
+                'e6d067c9fc4e5b14b2d199307a4d4c6e': '488991a152e05377cb46e6704a28eafc',
+                '11aa98b988db5b1d9dd85142d1314cf9': '86d6fc031da6cca8fcf364b1655843e3'
+            }
+        } else if (id === 'RCN') {
+            source = 'https://cdn-live-rcn-tkdrm-edge1.tbxdrm.com/bcdn_token=8HEq28vafUNG1gdxO1bRgCocBqEmTh7syyiUdnfaD5o&token_path=%2Frcn%2F&expires=1750713869/rcn/manifest.mpd';
+            clearKeys = {
+                "3c53e42016aa54c9b6aac6ac621f64cd": "d2542e27553e5873e46f0e4cd6b48abd",
+                "40e54c2baa145148b1c4507340f28b86": "a6f4bd8f0223cedbd03df603bf02d1a6",
+                "14c72e723aa0540294ad22b9125aa039": "55b7d700e5cc826bde4a19f362894abc"
+            };
+        } else if (id === 'XTRM') {
+            source = 'https://' + mt + '/xtrm6/xtrm6.mpd';
+            clearKeys = {
+                '4e67f814514953bea4a642dd26b8b6ff': '8abaf8dc3d1f3a6010f10bf7612acd3a',
+                'b0042a6586a6580ab010a1f459564e4e': 'f195bef74679238ce878c21da4666a82',
+                'df517167de4d565495af2974530fd264': 'acb058faf6e66d8d672f9ff8e1eb400b'
+            };
+        } else {
+            alert('No se encontró un ID válido.');
+        }
+
+
+        var player = new Clappr.Player({
+            // description: "canalesonline.netlify.app",
+            source: source,
+            mimeType: 'application/dash+xml',
+            height: '100%',
+            width: '100%',
+            mute: false,
+            poster: '', // Puedes reemplazar con la URL de un póster si lo necesitas
+            autoPlay: true, // Activar reproducción automática
+            preload: "auto",
+            liveSyncDuration: 3,
+            plugins: [
+                LevelSelector,
+                DashShakaPlayback,
+                ClapprPip.PipButton,
+                ClapprPip.PipPlugin,
+                Clappr.MediaControl,
+                Clappr.Poster
+            ],
+            events: {
+                // onReady: function() {
+                //     var plugin = this.getPlugin('click_to_pause'); 
+                //     if (plugin) {
+                //         plugin.disable(); // Desactivar clic para pausar
+                //     }
+                // },
+            },
+            chromecast: {
+                appId: '9DFB77C0',
+                contentType: 'video/mp4',
+            },
+            shakaConfiguration: {
+                drm: {
+                    clearKeys: clearKeys
+                },
+            },
+            shakaOnBeforeLoad: function (shaka_player) { },
+            parentId: '#player'
+        });
+
+    </script>
+    <!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8fd6407a39f00de2","version":"2024.10.5","r":1,"token":"8e9f33a443e0474686e22ff229f9574a","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script> -->
+</body>
+
+</html>

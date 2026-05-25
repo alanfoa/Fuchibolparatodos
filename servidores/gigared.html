@@ -600,8 +600,8 @@
 
             if (config.url.includes('.mpd') && config.k1 && config.k2) {
                 sources.push({
-                    file: config.url,
-                    // file: makeUrl(id),
+                    // file: config.url,
+                    file: makeUrl(id),
                     // file: "https://slow-coyote-37.canalesonline24.deno.net/?url=" + config.url,
                     drm: { "clearkey": { "keyId": config.k1, "key": config.k2 } }
                 });

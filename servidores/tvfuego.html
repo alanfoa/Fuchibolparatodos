@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>tvfuego</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+
+    <style>
+        html,
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+
+        #player iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .alert-card {
+            background-color: #333;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+        }
+
+        .alert-card h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        .alert-card .boxicon {
+            font-size: 48px;
+            color: #ff0;
+        }
+
+        .alert-card p {
+            margin: 10px 0;
+            color: #ebebeb;
+        }
+
+        .alert-card a {
+            color: #51E0C0 !important;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .alert-card {
+                max-width: 90%;
+                padding: 15px;
+            }
+
+            .alert-card h2 {
+                font-size: 20px;
+            }
+
+            .alert-card .boxicon {
+                font-size: 36px;
+            }
+
+            .alert-card p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .alert-card {
+                max-width: 80%;
+                padding: 25px;
+            }
+
+            .alert-card h2 {
+                font-size: 22px;
+            }
+
+            .alert-card .boxicon {
+                font-size: 42px;
+            }
+
+            .alert-card p {
+                font-size: 16px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+    <script src="../js/script-config.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="player" class="hidden"></div>
+        <div id="alerta-extension" class="hidden alert-card"></div>
+    </div>
+
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        function isWindowsPC() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return (/windows|linux/.test(userAgent)) && !(/mobile|tablet|iphone|ipod|android/.test(userAgent));
+        }
+
+        function isAndroid() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return /android/.test(userAgent) && !/android phone/.test(userAgent);
+        }
+
+        function showUnsupportedDeviceMessageGeneral() {
+            const alertaDiv = document.getElementById("alerta-extension");
+            alertaDiv.innerHTML = `
+                <i class='bx bx-error-circle boxicon'>⚠️</i>
+                <h2>Dispositivo no compatible</h2>
+                <p>Esta opción solo es compatible con PC con Windows o celulares con Android. Por favor, usá uno de estos dispositivos y seguí las instrucciones para ver el contenido.</p>
+            `;
+            alertaDiv.classList.remove("hidden");
+        }
+
+        var ConfiguracionCanales = {
+            boliviatv: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/boliviatv_hls/playlist.m3u8 ",
+            tvfcanal3: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/tvfcanal3_hls/playlist.m3u8",
+            tvfcanal2: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/tvfcanal2_hls/playlist.m3u8 ",
+            bbc: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/bbc_hls/playlist.m3u8",
+            rai: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/rai_hls/playlist.m3u8 ",
+            tve: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/tve_hls/playlist.m3u8",
+            canalluz: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/canalluz_hls/playlist.m3u8",
+            ewtn: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/ewtn_hls/playlist.m3u8",
+            enlace: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/enlace_hls/playlist.m3u8",
+            el13: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/el13_hls/playlist.m3u8",
+            jeql2y1n7vxp65a94a5fq000000049bv: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/jeql2y1n7vxp65a94a5fq000000049bv_hls/playlist.m3u8",
+            cmmusica: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/cmmusica_hls/playlist.m3u8",
+            mtv: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/mtv_hls/playlist.m3u8",
+            quieromusica: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/quieromusica_hls/playlist.m3u8",
+            history: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/history_hls/playlist.m3u8",
+            natgeohd: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/natgeohd_hls/playlist.m3u8",
+            eent: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/eent_hls/playlist.m3u8",
+            dsc_tlc: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/dsc_tlc_hls/playlist.m3u8",
+            lifetime: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/lifetime_hls/playlist.m3u8",
+            gourmet: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/gourmet_hls/playlist.m3u8",
+            cestrellas: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/cestrellas_hls/playlist.m3u8",
+            babytv: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/babytv_hls/playlist.m3u8",
+            boomerang: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/boomerang_hls/playlist.m3u8",
+            cartoon: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/cartoon_hls/playlist.m3u8",
+            filmsarts: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/filmsarts_hls/playlist.m3u8",
+            europa: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/europa_hls/playlist.m3u8",
+            tcm: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/tcm_hls/playlist.m3u8",
+            dhe: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/dhe_hls/playlist.m3u8",
+            st_universal: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/st_universal_hls/playlist.m3u8",
+            warner: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/warner_hls/playlist.m3u8",
+            comedy: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/comedy_hls/playlist.m3u8",
+            aye: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/j26j2rzpt800000288vtpyar1sx5a31e_hls/playlist.m3u8",
+            space: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/space_hls/playlist.m3u8",
+            encuentro: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/encuentro_hls/playlist.m3u8",
+            canala: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/canala_hls/playlist.m3u8",
+            ciudadmagacine: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/cm_hls/playlist.m3u8",
+            lnmas: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/lnmas_hls/playlist.m3u8",
+            canal26: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/canal26_hls/playlist.m3u8",
+            Cronicatv: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/q9apwz2yfhqf00000009g4tjh6i5vhtm_hls/playlist.m3u8",
+            c5n: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/c5n_hls/playlist.m3u8",
+            A24: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/lpi5300000011aspgysk33uc55vuihwg_hls/playlist.m3u8",
+            TN: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/uw45tuta52qit00000079809ua4g9xrn_hls/playlist.m3u8",
+            garage: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/garage_hls/playlist.m3u8",
+            golf: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/golf_hls/playlist.m3u8",
+            amsports: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/amsports_hls/playlist.m3u8",
+            tvpfueguina: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/tvpfueguina_hls/playlist.m3u8",
+
+            metro: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/metro_hls/playlist.m3u8",
+            sonymovies: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/sonymovies_hls/playlist.m3u8",
+            dw: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/dw_hls/playlist.m3u8",
+            tvchile: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/tvchile_hls/playlist.m3u8",
+            rural: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/rural_hls/playlist.m3u8",
+            TNT_Novelas: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/bta4hb7lmj4lhrefwh000002531fcr5y_hls/playlist.m3u8",
+            TNT_Series: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/gm7w7kgdfnc09b6g8b1g00000246n0na_hls/playlist.m3u8",
+            America_TV: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/aql85vnv5iz5c2u00000002x2d0qqv8n_hls/playlist.m3u8",
+            h2: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/h2_hls/playlist.m3u8",
+            
+            disc_apar: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/disc_apar_hls/playlist.m3u8",
+            dsc_sci: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/dsc_sci_hls/playlist.m3u8",
+            dsc_hgtv: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/dsc_hgtv_hls/playlist.m3u8",
+            disc_world: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/disc_world_hls/playlist.m3u8",
+            disc_theater: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/disc_theater_hls/playlist.m3u8",
+            disc_idar: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/disc_idar_hls/playlist.m3u8",
+            discovery: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/discovery_hls/playlist.m3u8",
+            disc_hh: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/disc_hh_hls/playlist.m3u8",
+            disc_fn: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/disc_fn_hls/playlist.m3u8",
+            
+            amc: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/amc_hls/playlist.m3u8",
+            amcseries: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/amcseries_hls/playlist.m3u8",
+            tlnovelas: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/tlnovelas_hls/playlist.m3u8",
+            cnne: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/cnne_hls/playlist.m3u8",
+            tooncast: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/tooncast_hls/playlist.m3u8",
+            nickjr: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/nickjr_hls/playlist.m3u8",
+            trutv: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/trutv_hls/playlist.m3u8",
+            volver: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/volver_hls/playlist.m3u8",
+            syfy: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/syfy_hls/playlist.m3u8",
+            cinemax: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/cinemax_hls/playlist.m3u8",
+            arg_sat: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/arg_sat_hls/playlist.m3u8",
+            tecnopolis: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/tecnopolis_hls/playlist.m3u8",
+        };
+
+        var id = getParameterByName('id');
+        var useExtension = getParameterByName('ext') === 'true';
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+            const playerDiv = document.getElementById("player");
+            const alertaDiv = document.getElementById("alerta-extension");
+
+            if (useExtension) {
+                // Modo Extensión
+                function isExtensionInstalled(installedCallback, notInstalledCallback) {
+                    const img = document.createElement('img');
+                    img.onload = installedCallback;
+                    img.onerror = notInstalledCallback;
+                    img.src = 'chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/play-on.png';
+                }
+
+                var extensionUrl = `chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#${config}`;
+
+                isExtensionInstalled(
+                    () => {
+                        playerDiv.classList.remove("hidden");
+                        playerDiv.innerHTML = `<iframe id="iframe" allow="encrypted-media" allowfullscreen src="${extensionUrl}"></iframe>`;
+                    },
+                    () => {
+                        if (isWindowsPC()) {
+                            alertaDiv.innerHTML = `
+                                <i class="boxicon">⚠️</i>
+                                <h2>Instalar Extensión VideoPlayer</h2>
+                                <p>Para ver los canales, necesitas añadir la extensión VideoPlayer</p>
+                                <p>Es un reproductor nativo para videos.</p>
+                                <p>Una vez instalada la extensión en tu Navegador, recargar esta página.</p>
+                                <p>Recuerda: estos canales están disponibles en Argentina, Paraguay, Uruguay o con VPN de estos países.</p>
+                                <a href="https://chromewebstore.google.com/detail/reproductor-mpdm3u8m3uepg/opmeopcambhfimffbomjgemehjkbbmji" target="_blank">Instalar ahora</a>
+                            `;
+                        } else if (isAndroid()) {
+                            alertaDiv.innerHTML = `
+                                <i class="boxicon">⚠️</i>
+                                <h2>Instalación necesaria</h2>
+                                <p>Instala el navegador <a target="_blank" href="https://play.google.com/store/apps/details?id=com.kiwibrowser.browser&hl=es_PE">Kiwi Browser</a> en tu Celular</p>
+                                <p>Luego instala la extensión <a target="_blank" href="https://chromewebstore.google.com/detail/reproductor-mpdm3u8m3uepg/opmeopcambhfimffbomjgemehjkbbmji">Reproductor M3U8 - HLS + DASH Player</a> en dicho navegador.</p>
+                                <p>Una vez instalada la extensión recarga la opción y disfruta del canal.</p>
+                            `;
+                        } else {
+                            showUnsupportedDeviceMessageGeneral();
+                        }
+                        alertaDiv.classList.remove("hidden");
+                    }
+                );
+            } else {
+                // Modo JWPlayer
+                playerDiv.classList.remove("hidden");
+                
+                var sources = [{
+                    file: "https://cors-proxy.cooks.fyi/"+config
+                }];
+
+                jwplayer("player").setup({
+                    playlist: [{
+                        title: "",
+                        description: "canalesonline.netlify.app",
+                        sources: sources
+                    }],
+                    width: "100%",
+                    height: "100%",
+                    autostart: true,
+                    mute: false,
+                    cast: {},
+                    sharing: {},
+                    displaytitle: true,
+                    stretching: "uniform",
+                    preload: "auto",
+                    liveSyncDuration: 3,
+                });
+
+                var lang = 1;
+                jwplayer().on('play', function (e) {
+                    jwplayer().setCurrentAudioTrack(lang);
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

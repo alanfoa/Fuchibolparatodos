@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Player</title>
+
+  <!-- JWPlayer -->
+  <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+  <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+
+    :root {
+      --accent: #51E0C0;
+      --icons:  #f0f0f0;
+    }
+
+    /* JWPlayer color overrides */
+    .jw-button-container .jw-icon       { color: var(--icons) !important; }
+    .jw-slider-container .jw-progress   { background-color: var(--accent) !important; }
+    .jw-icon:hover                      { color: var(--accent) !important; }
+    .jw-featured, .jw-rightclick        { display: none !important; }
+
+    /* ── LOADER ── */
+    #loader {
+      position: fixed;
+      inset: 0; z-index: 9999;
+      background: #0d0d0d;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      transition: opacity .5s ease;
+    }
+    #loader.oculto { opacity: 0; pointer-events: none; }
+
+    .spinner {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 4px solid rgba(81,224,192,.12);
+      border-top-color:  var(--accent);
+      border-right-color: var(--accent);
+      animation: spin .9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loader-txt {
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+    .loader-txt span { color: var(--accent); font-weight: 600; }
+
+    .bar-wrap {
+      width: 170px; height: 3px;
+      background: rgba(255,255,255,.07);
+      border-radius: 99px; overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; width: 40%;
+      background: var(--accent);
+      border-radius: 99px;
+      animation: slide 1.4s ease-in-out infinite;
+    }
+    @keyframes slide {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(300%); }
+    }
+
+    /* ── ERROR ── */
+    #error-screen {
+      display: none;
+      position: fixed;
+      inset: 0; z-index: 9998;
+      background: #0d0d0d;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-family: system-ui, sans-serif;
+      color: rgba(255,255,255,.4);
+      font-size: 13px;
+      text-align: center;
+      padding: 32px;
+    }
+    #error-screen.visible { display: flex; }
+    #error-screen strong { color: var(--accent); font-size: 15px; }
+    #error-screen code {
+      font-size: 10px;
+      background: rgba(255,255,255,.04);
+      padding: 6px 14px; border-radius: 4px;
+      word-break: break-all; max-width: 380px;
+      color: rgba(255,255,255,.25);
+    }
+    .btn-retry {
+      margin-top: 6px;
+      padding: 9px 24px;
+      background: var(--accent);
+      color: #000; border: none;
+      border-radius: 4px;
+      font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: opacity .2s;
+    }
+    .btn-retry:hover { opacity: .8; }
+
+    /* ── PLAYER ── */
+    #player { width: 100%; height: 100%; }
+  </style>
+  <link rel="stylesheet" href="style-jw.css">
+</head>
+<body>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+    <div class="loader-txt">Cargando <span>señal</span>...</div>
+    <div class="bar-wrap"><div class="bar-fill"></div></div>
+  </div>
+
+  <!-- Error -->
+  <div id="error-screen">
+    <strong>No se pudo cargar el canal</strong>
+    <span id="err-detail">Error desconocido.</span>
+    <code id="err-url"></code>
+    <button class="btn-retry" onclick="location.reload()">Reintentar</button>
+  </div>
+
+  <!-- JWPlayer target -->
+  <div id="player"></div>
+
+<script>
+  /* ════════════════════════════════════════════════════════
+   * CONFIGURACIÓN
+   * ════════════════════════════════════════════════════════ */
+
+  // URL del Worker en Cloudflare
+  const WORKER_URL = "https://proxytdtcloud.canalesonline24.workers.dev";
+
+  /* Streams disponibles — deben coincidir con los del Worker */
+  const STREAMS = [
+    "winsportsplus","winsports","espn","espn2","espn3","espn4","espn5",
+    "espn6","espn7","dsports","dsports2","dsportsplus","tycsports",
+    "rcn","rcn2","foxsports1ar","foxsports2ar","foxsports3ar",
+    "tudnmx","universo","tntsports","beinsports","caracol"
+  ];
+
+  /* ════════════════════════════════════════════════════════
+   * UI helpers
+   * ════════════════════════════════════════════════════════ */
+  const loaderEl  = document.getElementById("loader");
+  const errScreen = document.getElementById("error-screen");
+  const errDetail = document.getElementById("err-detail");
+  const errURL    = document.getElementById("err-url");
+
+  function ocultarLoader() {
+    loaderEl.classList.add("oculto");
+    setTimeout(() => loaderEl.remove(), 550);
+  }
+
+  function mostrarError(msg, url) {
+    ocultarLoader();
+    errDetail.textContent = msg;
+    errURL.textContent    = url || "";
+    errScreen.classList.add("visible");
+  }
+
+  /* ════════════════════════════════════════════════════════
+   * Iniciar — el Worker resuelve todo desde su propia IP
+   * (token atado a la IP del Worker, no a la del browser)
+   * ════════════════════════════════════════════════════════ */
+  const params   = new URLSearchParams(location.search);
+  const stream   = params.get("stream");
+  const urlParam = params.get("url");
+
+  if (!stream && !urlParam) {
+    mostrarError("Falta parámetro ?stream= o ?url= en la URL.");
+  } else {
+    iniciar();
+  }
+
+  function iniciar() {
+    let streamURL;
+
+    if (stream) {
+      if (!STREAMS.includes(stream)) {
+        mostrarError(`Stream desconocido: "${stream}". Verificá el nombre.`);
+        return;
+      }
+      // El Worker hace fetch del PHP, extrae el m3u8 y reescribe los
+      // segmentos — todo desde la misma IP → token válido
+      streamURL = `${WORKER_URL}/?stream=${encodeURIComponent(stream)}`;
+    } else {
+      // Modo url= directo: proxear una URL de m3u8 ya conocida
+      streamURL = `${WORKER_URL}/?url=${encodeURIComponent(urlParam)}`;
+    }
+
+    console.log("▶ Stream via Worker:", streamURL);
+
+    jwplayer("player").setup({
+      file:             streamURL,
+      type:             "hls",
+      width:            "100%",
+      height:           "100%",
+      autostart:        true,
+      mute:             false,
+      cast:             {},
+      sharing:          {},
+      stretching:       "uniform",
+      preload:          "auto",
+      liveSyncDuration: 3,
+    });
+
+    jwplayer("player").on("firstFrame", ocultarLoader);
+
+    jwplayer("player").on("time", function handler() {
+      ocultarLoader();
+      jwplayer("player").off("time", handler);
+    });
+
+    jwplayer("player").on("error", function(e) {
+      console.error("JWPlayer error:", e);
+      mostrarError(
+        `Error del reproductor: ${e.message || "sin detalles"}`,
+        streamURL
+      );
+    });
+  }
+</script>
+
+</body>
+</html>

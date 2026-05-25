@@ -34,14 +34,14 @@
 <meta charset="utf-8">
 <title>cvatt</title>
 <!-- Favicon -->
-<link rel="shortcut icon" href="../assets/favicon.png" type="image/png">
+<link rel="shortcut icon" href="../img/icono.webp" type="image/x-icon">
 <meta name="referrer" content="no-referrer">
 
 <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
 <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
 
 
-<!-- <script src="https://fuchibolparatodos.netlify.app/js/script-config.js"></script> -->
+<!-- <script src="https://canalesonline.netlify.app/js/script-config.js"></script> -->
 <script src="../js/script-config.js"></script>
 <script type="text/javascript">
 
@@ -56,18 +56,7 @@
         var getIMG = getParameterByName('img');
         var getKEY = getParameterByName('key');
         var getKEY2 = getParameterByName('key2');
-        if (getURL == "") {
-            console.warn("cvatt_pro - getURL vacio, intentando desde sessionStorage");
-            var stored = sessionStorage.getItem("cvatt_channel") || "";
-            var match = stored.match(/[?&]get=([^&]+)/);
-            if (match) {
-                getURL = decodeURIComponent(match[1]);
-                // console.log("cvatt_pro - getURL recuperado de sessionStorage:", getURL);
-            } else {
-                console.error("cvatt_pro ERROR - getURL vacio y sin fallback");
-                alert('Vuelve a la pagina anterior');
-            }
-        }
+        if (getURL == "") { alert('Vuelve a la pagina anterior'); }
 </script>
 
 
@@ -122,7 +111,7 @@
         var random;
         function initializePlayer(autoplay) {
                 random = Math.floor(Math.random() * mt.length);
-                // console.log("Selected mt:", mt[random]);
+                console.log("Selected mt:", mt[random]);
 
 
                 // var mpd = "//" + mt[random] + ".cvattv.com.ar/live/c" + number + "eds/" + atob(getURL) + "/SA_Live_dash_enc/" + atob(getURL) + ".mpd";
@@ -137,7 +126,7 @@
                 playerInstance.setup({
                         playlist: [{
                                 title: "CANALES EN VIVO",
-                                description: "fuchibolparatodos.netlify.app",
+                                description: "canalesonline.netlify.app",
                                 "sources": [
                                         {
                                                 "default": false,
@@ -213,28 +202,29 @@
         tryInitialize();
 
         if (typeof getURL !== 'undefined' && getURL !== null) {
-                // var errorCount = sessionStorage.getItem('errorCount');
-                // if (!errorCount) {
-                //         errorCount = 0;
-                // } else {
-                //         errorCount = parseInt(errorCount);
-                // }
+                var errorCount = sessionStorage.getItem('errorCount');
+                if (!errorCount) {
+                        errorCount = 0;
+                } else {
+                        errorCount = parseInt(errorCount);
+                }
 
-                // playerInstance.on("error", function () {
-                //         errorCount++;
-                //         // alert("Falla: "+mt[random])
-                //         // var redirectUrl = 'cvatt.html?get=' + getURL;
-                //         // var redirectUrl = 'cvatt2_ext.html?get=' + getURL;
+                playerInstance.on("error", function () {
+                        errorCount++;
+                        // alert("Falla: "+mt[random])
+                        // var redirectUrl = 'cvatt.html?get=' + getURL;
+                        // var redirectUrl = 'cvatt2_ext.html?get=' + getURL;
+                        // var redirectUrl = 'canalesparatodos.html?get=' + getURL;
 
 
-                //         if (getLang) {
-                //                 redirectUrl += '&lang=' + getLang;
-                //         }
+                        // if (getLang) {
+                        //         redirectUrl += '&lang=' + getLang;
+                        // }
 
-                //         redirectUrl += '&start=true';
-                //         sessionStorage.setItem('errorCount', errorCount);
-                //         // window.location = redirectUrl;
-                // });
+                        // redirectUrl += '&start=true';
+                        // sessionStorage.setItem('errorCount', errorCount);
+                        // window.location = redirectUrl;
+                });
         }
 
         var selectedLanguage = getLang || 1;

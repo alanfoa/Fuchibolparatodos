@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>giatv</title>
+    <style>
+        html,
+        body,
+        #player {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+
+    <!-- JW Player -->
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+</head>
+
+<body>
+    <div id="player" class="ViostreamIframe"></div>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // var mt_red = ["cdn02", "cdn03", "cdnlb"];
+        var mt_red = ["cdnlb", "cdn02", "cdn03"];
+        let mt_gigared = mt_red[Math.floor(Math.random() * mt_red.length)];
+
+        console.log(mt_gigared);
+
+        var ConfiguracionCanales = {
+
+            "elchavo": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-208870/playlist.m3u8",
+            },
+            "nosequees": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-208963/playlist.m3u8"
+            },
+            "Laika_Channel_Galego": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209474/playlist.m3u8",
+            },
+            "SPIDERMAN": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-210702/playlist.m3u8",
+            },
+            "X_MEN": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-210703/playlist.m3u8",
+            },
+            "Tom_y_Jerry": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-208314/playlist.m3u8",
+            },
+            "Canal6": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209235/playlist.m3u8",
+            },
+            "nosequees": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209259/playlist.m3u8",
+            },
+            "tenis": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209295/playlist.m3u8",
+            },
+            "mux_world": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209297/playlist.m3u8",
+            },
+            "mux_news": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209306/playlist.m3u8",
+            },
+            "mux_juan": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209323/playlist.m3u8",
+            },
+            "mux_dos": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209333/playlist.m3u8",
+            },
+            "mux_sports": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209395/playlist.m3u8",
+            },
+            "mux_movies": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209395/playlist.m3u8",
+            },
+            "tocando_musica_mexicana": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209361/playlist.m3u8",
+            },
+            "nosequees_musica": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209366/playlist.m3u8",
+            },
+            "tv_miura": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209397/playlist.m3u8",
+            },
+            "peliculas_espania": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209595/playlist.m3u8",
+            },
+            "dibujitos_animados": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209599/playlist.m3u8",
+            },
+            "dibujitos_animados": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209611/playlist.m3u8",
+            },
+            "dibujitos_animados": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209703/playlist.m3u8",
+            },
+            "peliculas": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-209612/playlist.m3u8",
+            },
+            "los_simpson": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-210022/playlist.m3u8",
+            },
+            "peliculas_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-210370/playlist.m3u8",
+            },
+            "musica_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-210566/playlist.m3u8",
+            },
+            "los_simpson2": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-210578/playlist.m3u8",
+            },
+            "dibujitos_animados_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-210858/playlist.m3u8",
+            },
+            "peliculas_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-210876/playlist.m3u8",
+            },
+            "nosequees_musica": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211365/playlist.m3u8",
+            },
+            "nosequees_musica": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211366/playlist.m3u8",
+            },
+            "dragon_ball": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211372/playlist.m3u8",
+            },
+            "nosequees_musica": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211393/playlist.m3u8",
+            },
+            "MTV": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211419/playlist.m3u8",
+            },
+            "dibujitos_animados_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211447/playlist.m3u8",
+            },
+            "dragon_ball_z": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211464/playlist.m3u8",
+            },
+            "dibujitos_animados_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211479/playlist.m3u8",
+            },
+            "ataquedetitanes": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211488/playlist.m3u8",
+            },
+            "sakura": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211515/playlist.m3u8",
+            },
+            "Kim_Possible": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211536/playlist.m3u8",
+            },
+            "txxx": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211563/playlist.m3u8",
+            },
+            "peliculas_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211614/playlist.m3u8",
+            },
+            "musica_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211654/playlist.m3u8",
+            },
+            "peliculas_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211660/playlist.m3u8",
+            },
+            "music_00s": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211679/playlist.m3u8",
+            },
+            "music_club": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-211682/playlist.m3u8",
+            },
+            "asdasdasd": {
+                url: "",
+            },
+            "peliculas_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-208744/playlist.m3u8",
+            },
+            "peliculas_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-208729/playlist.m3u8",
+            },
+            "peliculas_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-208727/playlist.m3u8",
+            },
+            "musica_latino": {
+                // url: "https://live20.bozztv.com/giatvplayout7/giatv-208351/playlist.m3u8",
+            },
+            "dibujitos_animados_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-208343/playlist.m3u8",
+            },
+            "peliculas_latino": {
+                url: "https://live20.bozztv.com/giatvplayout7/giatv-208189/playlist.m3u8",
+            },
+            "asdasdasd": {
+                url: "",
+            },
+            "asdasdasd": {
+                url: "",
+            },
+            "asdasdasd": {
+                url: "",
+            },
+            "asdasdasd": {
+                url: "",
+            },
+            "asdasdasd": {
+                url: "",
+            },
+            "asdasdasd": {
+                url: "",
+            },
+        };
+
+        var id = getParameterByName('id');
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+            var sources = [];
+
+            if (config.url.includes('.m3u8')) {
+                sources.push({
+                    file: config.url
+                });
+            }
+
+            if (config.url.includes('.mpd') && config.k1 && config.k2) {
+                sources.push({
+                    file: config.url,
+                    drm: { "clearkey": { "keyId": config.k1, "key": config.k2 } }
+                });
+            }
+
+            // JWWWWWW
+            jwplayer("player").setup({
+                playlist: [{
+                    title: "",
+                    description: "canalesonline.netlify.app",
+                    sources: sources
+                }],
+                width: "100%",
+                height: "100%",
+                autostart: true,
+                mute: false,
+
+                // --- AGREGÁ ESTO ---
+                qualityLabel: "Auto",
+                defaultBandwidthEstimate: 5000000, // Empieza asumiendo 5Mbps (alta calidad)
+                bandwidthEstimate: 5000000,
+                // --- FIN ---
+
+
+                cast: {},
+                sharing: {},
+                // androidhls: true,
+                displaytitle: true,
+                stretching: "uniform",
+                preload: "auto",
+                liveSyncDuration: 3,
+            });
+
+            var lang = 1; // Por defecto en español
+            jwplayer().on('play', function (e) {
+                jwplayer().setCurrentAudioTrack(lang);
+            });
+        } else {
+            document.getElementById("player").innerHTML = '<h2 class="error-message">Canal inválido o no encontrado.</h2>';
+        }
+    </script>
+</body>
+
+</html>

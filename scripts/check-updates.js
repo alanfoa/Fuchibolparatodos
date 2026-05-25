@@ -22,6 +22,13 @@ const FILES = [
     }
 ];
 
+// Archivos auxiliares que se sincronizan completos por hash
+const AUX_FILES = [
+    { remote: '/css/style-pro.css', local: 'css/style-pro.css', label: 'style-pro.css' },
+    { remote: '/css/style-pro2.css', local: 'css/style-pro2.css', label: 'style-pro2.css' },
+    { remote: '/servidores/style-jw.css', local: 'servidores/style-jw.css', label: 'style-jw.css' },
+];
+
 function fetch(url) {
     return new Promise((resolve, reject) => {
         https.get(url, (res) => {
@@ -41,7 +48,6 @@ function sha256(buf) {
 }
 
 // Extrae todos los MisCanales.set(...) del contenido remoto
-// Maneja tanto ); como \n)\n; etc.
 function extractChannelSets(content) {
     const blocks = [];
     let searchFrom = 0;
@@ -50,7 +56,6 @@ function extractChannelSets(content) {
         const start = content.indexOf('MisCanales.set(', searchFrom);
         if (start === -1) break;
 
-        // Saltar bloques comentados: // MisCanales.set(...)
         const lineStart = content.lastIndexOf('\n', start - 1);
         const linePrefix = content.slice(lineStart + 1, start).trim();
         if (linePrefix.startsWith('//')) {
@@ -58,7 +63,6 @@ function extractChannelSets(content) {
             continue;
         }
 
-        // Encontrar el cierre: ) con depth=0
         let depth = 0;
         let pos = start;
         let found = false;
@@ -68,7 +72,6 @@ function extractChannelSets(content) {
             else if (ch === ')') {
                 depth--;
                 if (depth === 0) {
-                    // Incluir el ; si viene despues del )
                     let end = pos + 1;
                     if (end < content.length && content[end] === ';') {
                         end++;
@@ -86,11 +89,63 @@ function extractChannelSets(content) {
     return blocks;
 }
 
+// Extrae nombres de archivo de servidor referenciados en script-ch.js
+function extractServerFilenames(content) {
+    const files = new Set();
+    const regex = /servidorCanalesOnline\s*\+\s*"([^"]+)"/g;
+    let match;
+    while ((match = regex.exec(content)) !== null) {
+        const pathStr = match[1];
+        const fileMatch = pathStr.match(/^([^/?]+)/);
+        if (fileMatch) {
+            const name = fileMatch[1];
+            if (name.endsWith('.html') || name.endsWith('.js')) {
+                files.add(name);
+            }
+        }
+    }
+    return [...files];
+}
+
+// Descarga un archivo remoto y lo actualiza localmente si cambió
+async function syncFile(remotePath, localPath, label) {
+    const remoteUrl = BASE_URL + remotePath;
+    console.log(`\n  Descargando: ${remoteUrl}`);
+
+    let remoteBuf;
+    try {
+        remoteBuf = await fetch(remoteUrl);
+    } catch (e) {
+        console.log(`  ERROR: No se pudo descargar: ${e.message}`);
+        return { changed: false, error: e.message };
+    }
+
+    const localExists = fs.existsSync(localPath);
+    const remoteHash = sha256(remoteBuf);
+    const localHash = localExists ? sha256(fs.readFileSync(localPath)) : 'no existe';
+
+    console.log(`  Hash remote: ${remoteHash}`);
+    console.log(`  Hash local:  ${localHash}`);
+
+    if (!localExists || remoteHash !== localHash) {
+        fs.mkdirSync(path.dirname(localPath), { recursive: true });
+        fs.writeFileSync(localPath, remoteBuf);
+        const action = localExists ? 'ACTUALIZADO' : 'CREADO (nuevo)';
+        console.log(`  >>> ${action}`);
+        return { changed: true };
+    }
+
+    console.log(`  Sin cambios`);
+    return { changed: false };
+}
+
 async function main() {
     const repoRoot = path.resolve(__dirname, '..');
     let hasChanges = false;
     let warnings = [];
+    let remoteScriptChContent = null;
 
+    // --- PASO 1: Procesar archivos principales (asd.js y script-ch.js) ---
     for (const file of FILES) {
         const localPath = path.join(repoRoot, file.local);
         const remoteUrl = BASE_URL + file.remote;
@@ -108,7 +163,6 @@ async function main() {
         }
 
         if (file.mode === 'replace') {
-            // --- MODO REPLACE: reemplazar archivo completo ---
             const localHash = fs.existsSync(localPath)
                 ? sha256(fs.readFileSync(localPath))
                 : 'no existe';
@@ -125,8 +179,8 @@ async function main() {
                 console.log(`  Sin cambios`);
             }
         } else if (file.mode === 'markers') {
-            // --- MODO MARKERS: extraer solo los MisCanales.set() del remoto y reemplazar la seccion entre marcadores ---
             const remoteContent = remoteBuf.toString('utf8');
+            remoteScriptChContent = remoteContent; // Guardar para extraer servidores
             const localContent = fs.readFileSync(localPath, 'utf8');
 
             const channelBlocks = extractChannelSets(remoteContent);
@@ -137,11 +191,8 @@ async function main() {
             }
 
             const newChannels = channelBlocks.join('\n\n') + '\n';
-
-            // Calcular hash de los canales para comparar
             const remoteChannelsHash = sha256(Buffer.from(newChannels));
 
-            // Extraer la seccion actual entre marcadores
             const startIdx = localContent.indexOf(MARKER_START);
             const endIdx = localContent.indexOf(MARKER_END);
 
@@ -171,6 +222,42 @@ async function main() {
         }
     }
 
+    // --- PASO 2: Extraer servidores del script-ch.js remoto y sincronizar ---
+    if (remoteScriptChContent) {
+        const serverFiles = extractServerFilenames(remoteScriptChContent);
+        console.log(`\n========================================`);
+        console.log(`[servidores HTML desde script-ch.js]`);
+        console.log(`  Archivos encontrados: ${serverFiles.length}`);
+        console.log(`========================================`);
+
+        for (const filename of serverFiles) {
+            const remotePath = `/servidores/${filename}`;
+            const localPath = path.join(repoRoot, 'servidores', filename);
+            console.log(`\n[servidor: ${filename}]`);
+            const result = await syncFile(remotePath, localPath, filename);
+            if (result.changed) hasChanges = true;
+            if (result.error) warnings.push(`servidores/${filename}: ${result.error}`);
+        }
+    } else {
+        console.log(`\n[servidores HTML]`);
+        console.log(`  ERROR: No hay contenido de script-ch.js para extraer servidores`);
+        warnings.push(`servidores HTML: no se pudo extraer lista (script-ch.js no disponible)`);
+    }
+
+    // --- PASO 3: Sincronizar archivos auxiliares (CSS, JS) ---
+    console.log(`\n========================================`);
+    console.log(`[Archivos auxiliares]`);
+    console.log(`========================================`);
+
+    for (const aux of AUX_FILES) {
+        console.log(`\n[${aux.label}]`);
+        const localPath = path.join(repoRoot, aux.local);
+        const result = await syncFile(aux.remote, localPath, aux.label);
+        if (result.changed) hasChanges = true;
+        if (result.error) warnings.push(`${aux.local}: ${result.error}`);
+    }
+
+    // --- PASO 4: Resumen ---
     console.log('\n---');
     if (hasChanges) {
         console.log('Resumen: Se actualizaron archivos automaticamente.');
@@ -185,7 +272,7 @@ async function main() {
     }
 }
 
-module.exports = { extractChannelSets };
+module.exports = { extractChannelSets, extractServerFilenames };
 
 if (require.main === module) {
     main().catch(e => {

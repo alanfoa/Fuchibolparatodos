@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Canales</title>
+
+    <!-- JW Player -->
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body,
+        #player {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+
+        /* Overlay futurista */
+        .player-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .corner-frame {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .corner-frame.top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-frame.top-right {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-frame.bottom-left {
+            bottom: 80px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-frame.bottom-right {
+            bottom: 80px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.5;
+                box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            }
+
+            50% {
+                opacity: 1;
+                box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+            }
+        }
+
+        /* Canal info */
+        .channel-info {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 150, 255, 0.1));
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+            animation: slideDown 0.5s ease-out;
+            z-index: 20;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .channel-name {
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #00ffff, #0099ff);
+            /* -webkit-background-clip: text; */
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Status indicator */
+        .status-indicator {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00ff00;
+            box-shadow: 0 0 15px #00ff00;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .status-text {
+            font-size: 14px;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Scan line effect */
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.5), transparent);
+            animation: scan 3s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Grid background effect */
+        /* .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        } */
+
+        /* Error screen */
+        .error-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #1a0000 0%, #330000 50%, #1a0a0a 100%);
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .error-icon {
+            font-size: 80px;
+            color: #ff4444;
+            text-shadow: 0 0 30px rgba(255, 68, 68, 0.5);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        .error-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff4444;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .error-details {
+            font-size: 18px;
+            color: #ffaaaa;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+    <div class="grid-bg"></div>
+
+    <div id="player"></div>
+
+    <!-- <div class="player-overlay">
+        <div class="corner-frame top-left"></div>
+        <div class="corner-frame top-right"></div>
+        <div class="corner-frame bottom-left"></div>
+        <div class="corner-frame bottom-right"></div>
+        <div class="scanline"></div>
+    </div> -->
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+
+        var ConfiguracionCanales = {
+            "Vix_Premium": {
+                url: "/proxy/278349_.m3u8"
+            },
+            "Tele": {
+                url: "/proxy/278793_.m3u8"
+            },
+            "24hs": {
+                url: "/proxy/278810_.m3u8"
+            },
+            "A3Series": {
+                url: "/proxy/278860_.m3u8"
+            },
+            "LiveU": {
+                url: "/proxy/278880_.m3u8"
+            },
+            "Canal11": {
+                url: "/proxy/278881_.m3u8"
+            },
+            "Tiva": {
+                url: "/proxy/278883_.m3u8"
+            },
+            "Wapa": {
+                url: "/proxy/278884_.m3u8"
+            },
+            "Canal_PuertoRIco": {
+                url: "/proxy/278886_.m3u8"
+            },
+
+
+
+
+
+
+
+
+            "Solidaria_TV": {
+                url: "/proxy/279002_.m3u8"
+            },
+            "Enlace": {
+                url: "/proxy/279003_.m3u8"
+            },
+            "EWTN": {
+                url: "/proxy/279004_.m3u8"
+            },
+            "La_Vaca_Y_El_Pollito": {
+                url: "/proxy/279005_.m3u8"
+            },
+            "Ed_Edd_Eddy": {
+                url: "/proxy/279006_.m3u8"
+            },
+            "El_Chavo_Del_Ocho": {
+                url: "/proxy/279007_.m3u8"
+            },
+            "Futurama": {
+                url: "/proxy/279008_.m3u8"
+            },
+            "Billy_y_Mandy": {
+                url: "/proxy/279009_.m3u8"
+            },
+            "Los_Chicos_Del_Barrio": {
+                url: "/proxy/279010_.m3u8"
+            },
+            "Tomy_y_Jerry": {
+                url: "/proxy/279012_.m3u8"
+            },
+            "Chip_y_Dale": {
+                url: "/proxy/279014_.m3u8"
+            },
+            "Johnny_Bravo": {
+                url: "/proxy/279015_.m3u8"
+            },
+            "Bob_Esponja": {
+                url: "/proxy/279017_.m3u8"
+            },
+            "Bob_Esponja2": {
+                url: "/proxy/279018_.m3u8"
+            },
+            "Los_Simpson": {
+                url: "/proxy/279041_.m3u8"
+            },
+            "Dinosaurios": {
+                url: "/proxy/279019_.m3u8"
+            },
+            "No_Se_Cual_Es": {
+                url: "/proxy/279021_.m3u8"
+            },
+            "Dragon_Ball_Z": {
+                url: "/proxy/279024_.m3u8"
+            },
+            "Dragon_Ball_Super": {
+                url: "/proxy/279025_.m3u8"
+            },
+            "Dragon_Ball_Super2": {
+                url: "/proxy/279026_.m3u8"
+            },
+            "Darwin": {
+                url: "/proxy/279028_.m3u8"
+            },
+            "Dexter": {
+                url: "/proxy/279029_.m3u8"
+            },
+            "Garfield": {
+                url: "/proxy/279034_.m3u8"
+            },
+            "Grizzy": {
+                url: "/proxy/279035_.m3u8"
+            },
+            "Los_3_Chiflados": {
+                url: "/proxy/279037_.m3u8"
+            },
+            "Los_Simpson2": {
+                url: "/proxy/279041_.m3u8"
+            },
+            "Maycol": {
+                url: "/proxy/279046_.m3u8"
+            },
+            "Mansion_Foster": {
+                url: "/proxy/279048_.m3u8"
+            },
+            "Tio_Grandpa": {
+                url: "/proxy/279050_.m3u8"
+            },
+            "Tom_Y_Jerry2": {
+                url: "/proxy/279051_.m3u8"
+            },
+
+
+
+            "Caracol": {
+                url: "/proxy/279388_.m3u8"
+            },
+            "Bein_sports": {
+                url: "/proxy/279415_.m3u8"
+            },
+            "Bein_sports2": {
+                url: "/proxy/279416_.m3u8"
+            },
+
+            "Espn_2_Ingles": {
+                url: "/proxy/279425_.m3u8"
+            },
+            "Espn_Deportes": {
+                url: "/proxy/279426_.m3u8"
+            },
+            "Espn_U": {
+                url: "/proxy/279427_.m3u8"
+            },
+            "Universo": {
+                url: "/proxy/279440_.m3u8"
+            },
+            "Spectrum_Sportsnet": {
+                url: "/proxy/279448_.m3u8"
+            },
+            "Accn_Espn": {
+                url: "/proxy/279459_.m3u8"
+            },
+            "Fanduel_TV": {
+                url: "/proxy/279482_.m3u8"
+            },
+            "GolTV_Premiere": {
+                url: "/proxy/279491_.m3u8"
+            },
+            "MSG": {
+                url: "/proxy/279494_.m3u8"
+            },
+            "MSGSN": {
+                url: "/proxy/279495_.m3u8"
+            },
+            "MSG2": {
+                url: "/proxy/279496_.m3u8"
+            },
+            "CHSN": {
+                url: "/proxy/279500_.m3u8"
+            },
+            "CHSN2": {
+                url: "/proxy/279501_.m3u8"
+            },
+            "ESPN_Network": {
+                url: "/proxy/279507_.m3u8"
+            },
+            "Spectrum_Sportsnet2": {
+                url: "/proxy/279508_.m3u8"
+            },
+            "Fanduel_TV2": {
+                url: "/proxy/279509_.m3u8"
+            },
+            "CBS_Sports": {
+                url: "/proxy/279514_.m3u8"
+            },
+
+
+            "Nat_Geo_Mundo": {
+                url: "/proxy/279518_.m3u8"
+            },
+            "Nat_Geo_Mundo2": {
+                url: "/proxy/279519_.m3u8"
+            },
+            "Nat_Geo_Wild": {
+                url: "/proxy/279524_.m3u8"
+            },
+            "Canal_de_Pelicula": {
+                url: "/proxy/279525_.m3u8"
+            },
+            "Sony_Movie": {
+                url: "/proxy/279536_.m3u8"
+            },
+            "Canal_de_Pelicula2": {
+                url: "/proxy/279569_.m3u8"
+            },
+
+
+            "WWE": {
+                url: "/proxy/279583_.m3u8"
+            },
+            "WWE2": {
+                url: "/proxy/279584_.m3u8"
+            },
+            "WWE3": {
+                url: "/proxy/279585_.m3u8"
+            },
+            "WWE4": {
+                url: "/proxy/279586_.m3u8"
+            },
+            "WWE5": {
+                url: "/proxy/279587_.m3u8"
+            },
+            "WWE6": {
+                url: "/proxy/279598_.m3u8"
+            },
+
+
+            "Win_Plus": {
+                url: "/proxy/280018_.m3u8"
+            },
+        };
+
+
+        var id = getParameterByName('id');
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+            // // Mostrar info del canal
+            // var channelInfo = document.createElement('div');
+            // channelInfo.className = 'channel-info';
+            // channelInfo.innerHTML = '<div class="channel-name">' + id.replace(/_/g, ' ') + '</div>';
+            // document.body.appendChild(channelInfo);
+
+            // var statusIndicator = document.createElement('div');
+            // statusIndicator.className = 'status-indicator';
+            // statusIndicator.innerHTML = '<div class="status-dot"></div><div class="status-text">En vivo</div>';
+            // document.body.appendChild(statusIndicator);
+
+            // Configurar JW Player
+            jwplayer("player").setup({
+                playlist: [{
+                    sources: [{
+                        file: "https://canalesonline.netlify.app/" + config.url
+                    }]
+                }],
+                width: "100%",
+                height: "100%",
+                autostart: true,
+                mute: false,
+                cast: {},
+                stretching: "uniform",
+                preload: "auto",
+                liveSyncDuration: 3,
+            });
+
+        } else {
+            document.body.innerHTML += `
+                <div class="error-message">
+                    <div class="error-icon">🔍</div>
+                    <div class="error-title">Canal No Encontrado</div>
+                    <div class="error-details">
+                        El canal "<strong>${id || 'sin especificar'}</strong>" no existe.<br><br>
+                        Usa el parámetro correcto: <code>?id=El_Chavo_Del_Ocho</code>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>

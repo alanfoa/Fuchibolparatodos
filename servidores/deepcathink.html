@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live</title>
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Overlays */
+        .ov {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            background: #000;
+            z-index: 9999;
+        }
+
+        .ov.hide {
+            display: none;
+        }
+
+        .spinner {
+            width: 38px;
+            height: 38px;
+            border: 2px solid #222;
+            border-top-color: #00d46a;
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .ov p {
+            font: 500 .75rem/1 monospace;
+            letter-spacing: .1em;
+            color: #444;
+            text-transform: uppercase;
+        }
+
+        /* Error */
+        #errOv h3 {
+            font: 700 1rem/1 sans-serif;
+            color: #e55;
+            text-transform: uppercase;
+        }
+
+        #errOv span {
+            font: .72rem/1.5 monospace;
+            color: #444;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        #errOv button {
+            background: transparent;
+            border: 1px solid #00d46a;
+            color: #00d46a;
+            font: 600 .8rem/1 sans-serif;
+            letter-spacing: .1em;
+            padding: 7px 20px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        #errOv button:hover {
+            background: #00d46a;
+            color: #000;
+        }
+
+        /* Reconectando */
+        #recOv h4 {
+            font: 600 .9rem/1 sans-serif;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        #recOv .ring {
+            width: 44px;
+            height: 44px;
+            border: 2px solid #1c2128;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font: 700 1.3rem/1 sans-serif;
+            color: #00d46a;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+
+    <div id="player"></div>
+
+    <!-- Cargando -->
+    <div class="ov" id="loadOv">
+        <div class="spinner"></div>
+        <p>Conectando…</p>
+    </div>
+
+    <!-- Error -->
+    <div class="ov hide" id="errOv">
+        <h3>⚠ Sin señal</h3>
+        <span id="errMsg"></span>
+        <button onclick="load()">↺ Reintentar</button>
+    </div>
+
+    <!-- Reconectando -->
+    <div class="ov hide" id="recOv">
+        <h4>⚡ Reconectando…</h4>
+        <div class="ring"><span id="countNum">10</span></div>
+    </div>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        const WORKER = 'https://proxy-deepcathink.canalesonline24.workers.dev';
+
+        // Leer ?feed= de la URL
+        const feed = new URLSearchParams(location.search).get('feed') || '94';
+
+        let jw = null;
+        let retryTimer = null;
+        let retries = 0;
+        const MAX = 5;
+
+        const $load = document.getElementById('loadOv');
+        const $err = document.getElementById('errOv');
+        const $errM = document.getElementById('errMsg');
+        const $rec = document.getElementById('recOv');
+        const $count = document.getElementById('countNum');
+
+        const show = el => el.classList.remove('hide');
+        const hide = el => el.classList.add('hide');
+
+        async function load() {
+            hide($err); hide($rec); show($load);
+            try {
+                const res = await fetch(`${WORKER}/token?feed=${feed}`);
+                if (!res.ok) throw new Error(`Worker ${res.status}`);
+                const data = await res.json();
+                if (data.error) throw new Error(data.error);
+                if (!data.url) throw new Error('Sin URL');
+                play(data.url);
+            } catch (e) {
+                hide($load);
+                $errM.textContent = e.message;
+                show($err);
+            }
+        }
+
+        function play(url) {
+            if (jw) { try { jw.remove(); } catch (e) { } jw = null; }
+
+            jw = jwplayer('player').setup({
+                file: url,
+                type: 'hls',
+                controls: true,
+                primary: 'html5',
+                width: "100%",
+                height: "100%",
+                autostart: true,
+                mute: false,
+                cast: {},
+                sharing: {},
+                // androidhls: true,
+                displaytitle: true,
+                stretching: "uniform",
+                preload: "auto",
+                liveSyncDuration: 3,
+            });
+
+            jw.on('play', () => { hide($load); hide($rec); retries = 0; });
+            jw.on('error', () => reconnect());
+            jw.on('setupError', (e) => { hide($load); $errM.textContent = e.message; show($err); });
+
+            setTimeout(() => hide($load), 15000);
+        }
+
+        function reconnect() {
+            if (retryTimer) return;
+            retries++;
+            $count.textContent = 10;
+            hide($load); show($rec);
+
+            retryTimer = setInterval(() => {
+                const n = parseInt($count.textContent);
+                if (n > 1) {
+                    $count.textContent = n - 1;
+                } else {
+                    clearInterval(retryTimer);
+                    retryTimer = null;
+                    hide($rec);
+
+                    if (retries < MAX) {
+                        // mismo stream, solo volver a play
+                        try { jw && jw.play(); } catch (e) { load(); }
+                    } else {
+                        // pedir URL fresca
+                        retries = 0;
+                        load();
+                    }
+                }
+            }, 1000);
+        }
+
+        load();
+    </script>
+</body>
+
+</html>

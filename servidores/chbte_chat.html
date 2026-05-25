@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Chaturbate Room Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            color: #ff6b6b;
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        .main-container {
+            display: flex;
+            height: 100vh;
+            position: relative;
+        }
+
+        .iframe-panel {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 0;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.98);
+            border-left: 2px solid rgba(255, 107, 107, 0.3);
+            z-index: 1000;
+            transition: width 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .iframe-panel.active {
+            width: 50%;
+        }
+
+        .iframe-panel.maximized {
+            width: 100vw;
+        }
+
+        @media (max-width: 768px) {
+            .iframe-panel.active {
+                width: 100vw !important;
+            }
+        }
+
+        .iframe-header {
+            padding: 15px;
+            background: rgba(255, 107, 107, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            min-height: 60px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .iframe-header:hover {
+            background: rgba(255, 107, 107, 0.3);
+        }
+
+        .iframe-header:active {
+            background: rgba(255, 107, 107, 0.4);
+        }
+
+        .iframe-header h3 {
+            font-size: 16px;
+            color: #fff;
+            flex: 1;
+        }
+
+        .close-btn {
+            background: rgba(255, 107, 107, 0.3);
+            border: 1px solid rgba(255, 107, 107, 0.5);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 107, 107, 0.5);
+        }
+
+        .close-btn:active {
+            transform: scale(0.95);
+        }
+
+        .iframe-content {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .iframe-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-right: 0;
+        }
+
+        .content-wrapper.shifted {
+            margin-right: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper.shifted {
+                margin-right: 0;
+                display: none;
+            }
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .grid-item {
+            background: linear-gradient(145deg, #2a2a3e, #1f1f2e);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .grid-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .grid-item:hover::before {
+            opacity: 1;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(255, 107, 107, 0.3);
+        }
+
+        .grid-item:active {
+            transform: scale(0.98);
+        }
+
+        .img-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75%;
+            overflow: hidden;
+            background-color: #1a1a2e;
+        }
+
+        .img-thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover .img-thumbnail {
+            transform: scale(1.05);
+        }
+
+        .gender-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .gender-male {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .gender-female {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .gender-couple {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .room-info {
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .room-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 5px;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .room-details {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #b0b0b0;
+        }
+
+        .age-badge {
+            background: rgba(255, 107, 107, 0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            color: #ff6b6b;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 40px 20px;
+            flex-wrap: wrap;
+            padding-bottom: 20px;
+        }
+
+        .pagination-container a,
+        .pagination-container span {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination-container a:hover {
+            background: rgba(255, 107, 107, 0.3);
+            border-color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .pagination-container a:active {
+            transform: scale(0.95);
+        }
+
+        .pagination-container .current {
+            background: linear-gradient(135deg, #ff6b6b, #ff5252);
+            border-color: #ff6b6b;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+        }
+
+        .pagination-container span {
+            background: transparent;
+            border: none;
+            color: #666;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 18px;
+            color: #ff6b6b;
+        }
+
+        @media (min-width: 1200px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 25px;
+                padding: 30px;
+            }
+
+            .iframe-panel.active {
+                width: 60%;
+            }
+
+            .content-wrapper.shifted {
+                margin-right: 60%;
+            }
+        }
+
+        @media (max-width: 1024px) and (orientation: landscape) {
+            .iframe-panel.active {
+                width: 100vw !important;
+            }
+
+            .content-wrapper.shifted {
+                margin-right: 0;
+                display: none;
+            }
+
+            .grid-container {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 6px;
+                padding: 6px;
+            }
+
+            .grid-item {
+                border-radius: 6px;
+                min-width: 0;
+            }
+
+            .room-info {
+                padding: 4px 6px;
+            }
+
+            .room-name {
+                font-size: 10px;
+                margin-bottom: 2px;
+            }
+
+            .room-details {
+                font-size: 9px;
+            }
+
+            .age-badge {
+                padding: 1px 4px;
+                font-size: 8px;
+            }
+
+            .gender-badge {
+                width: 20px;
+                height: 20px;
+                font-size: 11px;
+                top: 6px;
+                right: 6px;
+            }
+
+            .pagination-container {
+                gap: 4px;
+                margin: 15px 6px;
+                padding-bottom: 10px;
+            }
+
+            .pagination-container a,
+            .pagination-container span {
+                padding: 6px 10px;
+                font-size: 11px;
+                min-width: 32px;
+                min-height: 32px;
+            }
+
+            .iframe-header {
+                padding: 8px;
+                min-height: 48px;
+            }
+
+            .iframe-header h3 {
+                font-size: 12px;
+            }
+
+            .close-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 768px) and (orientation: portrait) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .grid-item {
+                border-radius: 8px;
+            }
+
+            .gender-badge {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+                top: 8px;
+                right: 8px;
+            }
+
+            .room-info {
+                padding: 8px;
+            }
+
+            .room-name {
+                font-size: 13px;
+                margin-bottom: 4px;
+            }
+
+            .room-details {
+                font-size: 11px;
+            }
+
+            .age-badge {
+                padding: 2px 6px;
+                font-size: 10px;
+            }
+
+            .pagination-container {
+                gap: 6px;
+                margin: 20px 10px;
+                padding-bottom: 15px;
+            }
+
+            .pagination-container a,
+            .pagination-container span {
+                padding: 10px 12px;
+                font-size: 13px;
+                min-width: 40px;
+                min-height: 40px;
+            }
+
+            .loading {
+                padding: 30px 20px;
+                font-size: 16px;
+            }
+
+            .no-results {
+                padding: 40px 20px;
+                font-size: 16px;
+            }
+
+            .iframe-header {
+                padding: 12px;
+                min-height: 56px;
+            }
+
+            .iframe-header h3 {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 8px;
+                padding: 8px;
+            }
+
+            .pagination-container a,
+            .pagination-container span {
+                padding: 8px 10px;
+                font-size: 12px;
+                min-width: 36px;
+                min-height: 36px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .grid-item {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        body.iframe-open-mobile {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="iframe-panel" id="iframePanel">
+            <div class="iframe-header" id="iframeHeader">
+                <h3 id="iframeTitle">Click para maximizar</h3>
+                <button class="close-btn" id="closeBtn">✕ Cerrar</button>
+            </div>
+            <div class="iframe-content">
+                <iframe id="videoIframe" src="" allowfullscreen allow="autoplay"></iframe>
+            </div>
+        </div>
+
+        <div class="content-wrapper" id="contentWrapper">
+            <div class="loading" id="loadingIndicator">Cargando salas</div>
+            <div class="grid-container" id="gridContainer"></div>
+            <div class="pagination-container" id="paginationContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://pelisjuanita.com/tv/corsproxy.php?url=';
+        const ITEMS_PER_PAGE = 90;
+        let currentPage = 1;
+        let isMaximized = false;
+
+        // ── NUEVO: mapa username → elemento <img> ──────────────────────────
+        const imgMap = new Map();
+        // URL base de cada imagen (sin el ?t=...) guardada por username
+        const imgBaseUrl = new Map();
+        let imgRefreshInterval = null;
+        // ──────────────────────────────────────────────────────────────────
+
+        const iframePanel = document.getElementById('iframePanel');
+        const contentWrapper = document.getElementById('contentWrapper');
+        const videoIframe = document.getElementById('videoIframe');
+        const iframeTitle = document.getElementById('iframeTitle');
+        const iframeHeader = document.getElementById('iframeHeader');
+        const closeBtn = document.getElementById('closeBtn');
+
+        function isMobile() {
+            return window.innerWidth <= 768 ||
+                   (window.innerWidth <= 1024 && window.innerHeight < window.innerWidth);
+        }
+
+        function isMobilePortrait() {
+            return window.innerWidth <= 768 && window.innerHeight > window.innerWidth;
+        }
+
+        function isMobileLandscape() {
+            return window.innerWidth <= 1024 && window.innerHeight < window.innerWidth;
+        }
+
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeIframe();
+        });
+
+        function closeIframe() {
+            iframePanel.classList.remove('active', 'maximized');
+            contentWrapper.classList.remove('shifted');
+            document.body.classList.remove('iframe-open-mobile');
+
+            videoIframe.src = 'about:blank';
+            setTimeout(() => {
+                videoIframe.src = '';
+            }, 100);
+
+            isMaximized = false;
+            iframeTitle.textContent = 'Click para maximizar';
+        }
+
+        iframeHeader.addEventListener('click', (e) => {
+            if (e.target === closeBtn || e.target.closest('.close-btn')) return;
+            if (isMobile()) return;
+
+            isMaximized = !isMaximized;
+
+            if (isMaximized) {
+                iframePanel.classList.add('maximized');
+                contentWrapper.classList.remove('shifted');
+                iframeTitle.textContent = 'Click para restaurar';
+            } else {
+                iframePanel.classList.remove('maximized');
+                contentWrapper.classList.add('shifted');
+                iframeTitle.textContent = 'Click para maximizar';
+            }
+        });
+
+        function openIframe(url, username) {
+            videoIframe.src = url;
+            iframeTitle.textContent = username.toUpperCase();
+
+            if (!iframePanel.classList.contains('active')) {
+                iframePanel.classList.add('active');
+                window.history.pushState({ videoOpen: true }, '');
+            }
+
+            if (isMobile()) {
+                document.body.classList.add('iframe-open-mobile');
+                contentWrapper.classList.remove('shifted');
+            } else {
+                contentWrapper.classList.add('shifted');
+            }
+        }
+
+        function getGenderInfo(gender) {
+            const genderMap = {
+                'm': { class: 'gender-male', symbol: '♂', bg: 'img/m2.png' },
+                'f': { class: 'gender-female', symbol: '♀', bg: 'img/f2.png' },
+                'c': { class: 'gender-couple', symbol: '⚥', bg: 'img/c2.png' }
+            };
+            return genderMap[gender] || genderMap['c'];
+        }
+
+        function createRoomCard(room) {
+            const genderInfo = getGenderInfo(room.gender);
+
+            const card = document.createElement('div');
+            card.className = 'grid-item';
+
+            const ageDisplay = room.display_age && room.display_age < 99
+                ? `<span class="age-badge">${room.display_age} años</span>`
+                : '';
+
+            card.innerHTML = `
+                <div class="img-container">
+                    <img src="${room.img}" class="img-thumbnail" alt="${room.username}" loading="lazy" data-username="${room.username}">
+                    <div class="gender-badge ${genderInfo.class}">${genderInfo.symbol}</div>
+                </div>
+                <div class="room-info">
+                    <div class="room-name">${room.username.toUpperCase()}</div>
+                    <div class="room-details">
+                        ${ageDisplay}
+                    </div>
+                </div>
+            `;
+
+            // ── NUEVO: registrar el <img> y su URL base en los mapas ───────
+            const imgEl = card.querySelector('.img-thumbnail');
+            imgMap.set(room.username, imgEl);
+
+            // Guardar la URL limpia (sin query string previo)
+            const cleanUrl = room.img.split('?')[0];
+            imgBaseUrl.set(room.username, cleanUrl);
+            // ────────────────────────────────────────────────────────────────
+
+            card.addEventListener('click', () => handleRoomClick(room.username));
+
+            return card;
+        }
+
+        // ── NUEVO: actualizar solo los src de las imágenes visibles ──────────
+        function refreshImages() {
+            const t = Date.now();
+            imgMap.forEach((imgEl, username) => {
+                // Solo refrescar si el elemento sigue en el DOM
+                if (!document.body.contains(imgEl)) return;
+                const base = imgBaseUrl.get(username) || imgEl.src.split('?')[0];
+                imgEl.src = `${base}?t=${t}`;
+            });
+        }
+
+        function startImageRefresh() {
+            stopImageRefresh();
+            imgRefreshInterval = setInterval(refreshImages, 1000);
+        }
+
+        function stopImageRefresh() {
+            if (imgRefreshInterval !== null) {
+                clearInterval(imgRefreshInterval);
+                imgRefreshInterval = null;
+            }
+        }
+        // ─────────────────────────────────────────────────────────────────────
+
+        function createGrid(data) {
+            const container = document.getElementById('gridContainer');
+            const loading = document.getElementById('loadingIndicator');
+
+            // Limpiar mapas e intervalo antes de redibujar
+            stopImageRefresh();
+            imgMap.clear();
+            imgBaseUrl.clear();
+
+            container.innerHTML = '';
+            loading.style.display = 'none';
+
+            if (!data.rooms || Object.keys(data.rooms).length === 0) {
+                container.innerHTML = '<div class="no-results">No se encontraron salas</div>';
+                return;
+            }
+
+            Object.values(data.rooms).forEach((room, index) => {
+                const card = createRoomCard(room);
+                card.style.animationDelay = `${index * 0.03}s`;
+                container.appendChild(card);
+            });
+
+            // Iniciar el refresco periódico una vez que la grilla está lista
+            startImageRefresh();
+        }
+
+        async function handleRoomClick(username) {
+            try {
+                const url = `${API_BASE}${btoa('https://chaturbate.com/' + username + '/')}`;
+                const response = await fetch(url);
+                const html = await response.text();
+
+                const regex = /window\.initialRoomDossier = (.*?);/;
+                const match = regex.exec(html);
+
+                if (match) {
+                    const jsonText = match[1].replace(/\\u([\d\w]{4})/gi, (match, grp) => {
+                        return String.fromCharCode(parseInt(grp, 16));
+                    });
+
+                    const hlsRegex = /"hls_source"\s*:\s*"([^"]+)"/;
+                    const hlsMatch = hlsRegex.exec(jsonText);
+
+                    if (hlsMatch) {
+                        const hlsSource = hlsMatch[1];
+                        const iframeUrl = `chbte_chat_jwplayer.html?get=${btoa(hlsSource)}`;
+                        openIframe(iframeUrl, username);
+                    } else {
+                        console.error('No se encontró hls_source');
+                        alert('No se pudo cargar el stream');
+                    }
+                } else {
+                    console.error('No se encontró initialRoomDossier');
+                    alert('No se pudo cargar la información de la sala');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al cargar la sala');
+            }
+        }
+
+        function generatePagination(currentPage, totalPages) {
+            const container = document.getElementById('paginationContainer');
+            container.innerHTML = '';
+
+            if (totalPages < 1) {
+                container.innerHTML = '<div class="no-results">Sin resultados</div>';
+                return;
+            }
+
+            const links = [];
+
+            if (currentPage > 1) {
+                links.push(`<a href="javascript:void(0)" data-page="${currentPage - 1}">←</a>`);
+            }
+
+            links.push(`<a href="javascript:void(0)" data-page="1">1</a>`);
+
+            if (currentPage > 3) {
+                links.push(`<span>...</span>`);
+            }
+
+            for (let i = Math.max(2, currentPage - 1); i <= Math.min(currentPage + 1, totalPages - 1); i++) {
+                links.push(`<a href="javascript:void(0)" data-page="${i}">${i}</a>`);
+            }
+
+            if (currentPage < totalPages - 2) {
+                links.push(`<span>...</span>`);
+            }
+
+            if (totalPages > 1) {
+                links.push(`<a href="javascript:void(0)" data-page="${totalPages}">${totalPages}</a>`);
+            }
+
+            if (currentPage < totalPages) {
+                links.push(`<a href="javascript:void(0)" data-page="${currentPage + 1}">→</a>`);
+            }
+
+            container.innerHTML = links.join('');
+
+            const currentLink = container.querySelector(`a[data-page="${currentPage}"]`);
+            if (currentLink) {
+                currentLink.classList.add('current');
+            }
+
+            container.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = parseInt(link.getAttribute('data-page'));
+                    loadPage(page);
+                });
+            });
+        }
+
+        async function loadPage(page) {
+            currentPage = page;
+            const loading = document.getElementById('loadingIndicator');
+            loading.style.display = 'block';
+
+            try {
+                const offset = (page - 1) * ITEMS_PER_PAGE;
+                const url = `${API_BASE}${btoa(`https://chaturbate.com/api/ts/roomlist/room-list/?enable_recommendations=false&limit=${ITEMS_PER_PAGE}&offset=${offset}`)}`;
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                createGrid(data);
+                generatePagination(page, Math.ceil(data.total_count / ITEMS_PER_PAGE));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                console.error('Error al cargar:', error);
+                document.getElementById('gridContainer').innerHTML =
+                    '<div class="no-results">Error al cargar las salas. Intenta nuevamente.</div>';
+                loading.style.display = 'none';
+            }
+        }
+
+        // Prevenir zoom en doble tap en iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (event) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        window.addEventListener('popstate', (event) => {
+            if (iframePanel.classList.contains('active')) {
+                closeIframe();
+                window.history.pushState('video-open', '');
+            }
+        });
+
+        window.addEventListener('orientationchange', () => {
+            if (iframePanel.classList.contains('active')) {
+                setTimeout(() => {
+                    if (isMobile()) {
+                        document.body.classList.add('iframe-open-mobile');
+                        contentWrapper.classList.remove('shifted');
+                        contentWrapper.style.display = 'none';
+                    } else {
+                        document.body.classList.remove('iframe-open-mobile');
+                        contentWrapper.style.display = '';
+                        if (!isMaximized) {
+                            contentWrapper.classList.add('shifted');
+                        }
+                    }
+                }, 100);
+            }
+        });
+
+        window.history.replaceState('initial', '');
+        loadPage(1);
+    </script>
+</body>
+
+</html>

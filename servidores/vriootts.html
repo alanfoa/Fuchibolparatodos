@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>vrioott</title>
+    <style>
+        html,
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+
+    <!-- JW Player -->
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+    <!-- <script src="../js/script-config.js"></script> -->
+</head>
+
+<body>
+    <div id="player"></div>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        var ConfiguracionCanales = {
+
+            "UNIVERSAL": {
+                url: "https://1243-tbx.vrioott.com/universalchannelsouth/manifest.mpd",
+                k1: "5f930acc5e255184812d5e9b8e9721be",
+                k2: "0aefd7ac649fc1f21bec2a0594d8b0a7"
+            },
+            "UNIVERSAL_CINEMA": {
+                url: "https://1253-tbx.vrioott.com/universalcinema/manifest.mpd",
+                k1: "1d7102597e3650b382140e257fd56ffc",
+                k2: "94866144a3c03e44825642087dcfe52f"
+            },
+            "UNIVERSAL_COMEDY": {
+                url: "https://1252-tbx.vrioott.com/universalcomedy/manifest.mpd",
+                k1: "8e3e1b7120e5522d8bb1b4620981478f",
+                k2: "32681240431317925ba1e740396e19fb"
+            },
+            "UNIVERSAL_CRIME": {
+                url: "https://1254-tbx.vrioott.com/universalcrimeeste/manifest.mpd",
+                k1: "a2b0446cd3db572d85e1c256e563723b",
+                k2: "e0fa8bcfcc37e45405cb41cab2f4adcc"
+            },
+            "UNIVERSAL_PREMIERE": {
+                url: "https://1256-tbx.vrioott.com/universalpremiereeste/manifest.mpd",
+                k1: "cb514eb614e8547882e90ae7e96f066d",
+                k2: "f3c541f4052e5eba5a749b0dbd1f910f"
+            },
+            "UNIVERSAL_REALITY": {
+                url: "https://1252-tbx.vrioott.com/universalreality/manifest.mpd",
+                k1: "25e836b8ec695e3a8d0d0b1c50c54d31",
+                k2: "48a7980e9000888ef52aca5377920e98"
+            },
+            "hbo": {
+                url: "https://1140-tbx.vrioott.com/hbo/manifest.mpd",
+                k1: "90462f6f4a355648808eb5547109d037",
+                k2: "a2fa52eb8660b8ab5b605ff0ff6cd3a6"
+            },
+            "hbo2": {
+                url: "https://1137-tbx.vrioott.com/hbo2la/manifest.mpd",
+                k1: "97e3eead4a275f6488f6da95a1cc3037",
+                k2: "e9be0998551ff741ff4990d7458fdb9b"
+            },
+            "hboplus": {
+                url: "https://1141-tbx.vrioott.com/hboplusla/manifest.mpd",
+                k1: "048d7d9294dc579d834216029481b0be",
+                k2: "68053790bdbc2a2f634dc7665ecd3224"
+            },
+            "hbofamily": {
+                url: "https://1139-tbx.vrioott.com/hbofamilyla/manifest.mpd",
+                k1: "54c3ffc3df2e512e8022ad7b26ddf89e",
+                k2: "4b60948c3326b3a2b32f6e5e32211fb3"
+            },
+            "hbosignature": {
+                url: "https://1143-tbx.vrioott.com/hbosignaturela/manifest.mpd",
+                k1: "2d3f63f3a7ab5b938aa5e09b8113461f",
+                k2: "37d7c3a659c48b4c3b33221cd13e3625"
+            },
+            "amc": {
+                url: "https://1007-tbx.vrioott.com/amcla/manifest.mpd",
+                k1: "9748e210f3d750608404db8110a7053a",
+                k2: "7aa491d2cbac9dd50b57e80401c6dd57"
+            },
+            "dkids": {
+                url: "https://1079-tbx.vrioott.com/discoverykids/manifest.mpd",
+                k1: "ff8b748231a053d88240b44ce44a896f",
+                k2: "c84cc0a365b68978b583334ac8e470a4"
+            },
+            "babytv": {
+                url: "https://1024-tbx.vrioott.com/babytv/manifest.mpd",
+                k1: "7a7cde192eed566d8646a626bc412435",
+                k2: "7a6f0ce51909db86e59d15eeff6b3729"
+            },
+            "vtvplus": {
+                url: "https://1246-tbx.vrioott.com/vtvplus/manifest.mpd",
+                k1: "7c05e1555d1952d489b16c7dccc6133a",
+                k2: "817bb1a20174b0ac9a212c6e3a38aec9"
+            },
+            "history": {
+                url: "https://1148-tbx.vrioott.com/history/manifest.mpd",
+                k1: "a3c437d913ba5594826873b1759143df",
+                k2: "744b5c0c21a1b87e1a258be6c5efb4f8"
+            },
+            "historychannel2": {
+                url: "https://1147-tbx.vrioott.com/historychannel2/manifest.mpd",
+                k1: "128b70962be15b6487813621e51ff690",
+                k2: "7946f5243f3f3f3defd5374568953489"
+            },
+            "cinelatino": {
+                url: "https://1045-tbx.vrioott.com/cinelatino/manifest.mpd",
+                k1: "d9fa54005f23593b8a5ea3a610715285",
+                k2: "f976a85e90c20ed5c012d31d22d2f305"
+            },
+            "paramountmex": {
+                url: "https://1181-tbx.vrioott.com/paramountmex/manifest.mpd",
+                k1: "1c85196f223158f988c54f60d8f27dd0",
+                k2: "199c5562e6e1001723ffc972f05c2586"
+            },
+            "usanetwork": {
+                url: "https://1211-tbx.vrioott.com/usala/manifest.mpd",
+                k1: "e4aca00f4e8958908d33289b6fb8ce8c",
+                k2: "2265fa2972a2ecb9d379add736b7fe78"
+            },
+            "hgtv": {
+                url: "https://1144-tbx.vrioott.com/hgtvlat/manifest.mpd",
+                k1: "a7ad56ec523c5f2780084b23cfcb3ba9",
+                k2: "388b3f1ddb676b9b9aa95335a1133dea"
+            },
+
+            // "TNT": {
+            //     url: "https://1227-tbx.vrioott.com/tnt/manifest.mpd",
+            //     k1: "696ef7b0a18c5c728924a6e653c0b214",
+            //     k2: "c94cb1dba40b7260e8bc565e40957085"
+            // },
+            "tntnovelas": {
+                url: "https://1212-tbx.vrioott.com/tntnovelas/manifest.mpd",
+                k1: "e5a39dfb732f55858f94324c01c708da",
+                k2: "97800a50f0a9d3682520abf9c557ef55"
+            },
+            "Gourmet": {
+                url: "https://1093-tbx.vrioott.com/gourmet/manifest.mpd",
+                k1: "bcf9c722e5e9599f867ec73028d1049d",
+                k2: "15ed8e0399201f14821ceb90bf06acdc"
+            },
+            "Cartoonnetwork": {
+                url: "https://1037-tbx.vrioott.com/cartoonnetwork/manifest.mpd",
+                k1: "d28a5dba023a529381ef72cdf8166d82",
+                k2: "7c77a51f603cb9773f783347e1974105"
+            },
+            
+            // https://1282-aws-da-mt.vrioott.com/v1/dash/dffceb859a31f14d0ed059ef6b4e2e4d850e60b1/live_1282/1282_GRAN_HERMANO_24HRS_DASH/manifest.mpd
+
+
+            // "cartoonitola": {
+            //     url: "//1026-tbx.vrioott.com/cartoonitola/manifest.mpd",
+            //     k1: "89479d49f32854808ad5996ea666fdfb",
+            //     k2: "757b4fb1790acd2360adc6d6dd4c2c61"
+            // },
+            // "axn": {
+            //     url: "https://1019-tbx.vrioott.com/axn/manifest.mpd",
+            //     k1: "09bd06aeee56585a8c168c4f67680ea6",
+            //     k2: "27b3f3be683f6901ab6318a23e84808a"
+            // },
+            // "telefearg": {
+            //     url: "https://1216-tbx.vrioott.com/telefearg/manifest.mpd",
+            //     k1: "d83e2e0cb9735bea9fc9f0b90cea1e14",
+            //     k2: "4125e40800a08bbc66cf27756a5ab283"
+            // },
+            // "nickelodeon": {
+            //     url: "//1175-tbx.vrioott.com/nickelodeon/manifest.mpd",
+            //     k1: "b2b99223605d5fa38319d5ce6462fc61",
+            //     k2: "fce849012f5316cc553844910bedead8"
+            // },
+            // "nickjrla": {
+            //     url: "//1173-tbx.vrioott.com/nickjrla/manifest.mpd",
+            //     k1: "06f56bd7dc2d5333846a15c55b40eedd",
+            //     k2: "d0f80aa4f6a8d68b84dbd4e0cdec1dbe"
+            // },
+            // "maschic": {
+            //     url: "//1161-tbx.vrioott.com/maschic/manifest.mpd",
+            //     k1: "dfc77b4e965f5a638e76e0203782e41b",
+            //     k2: "fc942e3d37ce67a81979a7277e81d61d"
+            // },
+            // "lifetimeads": {
+            //     url: "//1159-tbx.vrioott.com/lifetimeads/manifest.mpd",
+            //     k1: "9eacfb73f5ea5e7483b3ca5818b9be6a",
+            //     k2: "c3831a79f2ea0f00f5af98dd35bad9eb"
+            // },
+            // "aztecacinema": {
+            //     url: "//1022-tbx.vrioott.com/aztecacinema/manifest.mpd",
+            //     k1: "ba033d0c20725e1c83bec787a0fd745a",
+            //     k2: "b481258a611819dde26ffb9fd4b99025"
+            // },
+            // "foodnetwork": {
+            //     url: "//1113-tbx.vrioott.com/foodnetwork/manifest.mpd",
+            //     k1: "02c9c383575d56ce812d8d1d75fad2c3",
+            //     k2: "ca3e6e49542e0f38a5d910f484fcf1be"
+            // },
+            // "mtvls": {
+            //     url: "//1165-tbx.vrioott.com/mtvls/manifest.mpd",
+            //     k1: "9eef20d377c95dce821a4a4f180b4dda",
+            //     k2: "0b3fe225a88f39590a3229478dcc4e6a"
+            // },
+
+        };
+
+        var id = getParameterByName('id');
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+            var sources = [];
+
+            if (config.url.includes('.m3u8')) {
+                sources.push({
+                    file: config.url
+                });
+            }
+
+            if (config.url.includes('.mpd') && config.k1 && config.k2) {
+                sources.push({
+                    file: "https://holy-dew-10ad.jet-1968.workers.dev/" + config.url,
+                    // file: "https://hidden-smoke-f51a.jet-1968.workers.dev/" + config.url,
+                    // file: "https://cors-proxy.wangzhishi.net/" + config.url,
+                    // file: config.url,
+                    drm: { "clearkey": { "keyId": config.k1, "key": config.k2 } }
+                });
+            }
+
+            // JWWWWWW
+            jwplayer("player").setup({
+                playlist: [{
+                    title: "",
+                    description: "",
+                    sources: sources
+                }],
+                width: "100%",
+                height: "100%",
+                autostart: true,
+                mute: false,
+                cast: {},
+                sharing: {},
+                // androidhls: true,
+                displaytitle: true,
+                stretching: "uniform",
+                preload: "auto",
+                liveSyncDuration: 3,
+            });
+        } else {
+            document.getElementById("player").innerHTML = '<h2 class="error-message">Canal inválido o no encontrado.</h2>';
+        }
+    </script>
+</body>
+
+</html>
