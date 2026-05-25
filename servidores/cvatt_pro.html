@@ -199,6 +199,28 @@
                 xhr.send();
         }
 
+        function redirectToWorkingServer() {
+                var yaRedirigido = sessionStorage.getItem("cvatt_drm_fallback");
+                if (yaRedirigido) return;
+                sessionStorage.setItem("cvatt_drm_fallback", "true");
+
+                var stored = sessionStorage.getItem("cvatt_enlaces");
+                if (!stored) return;
+                try {
+                        var enlaces = JSON.parse(stored);
+                        var working = enlaces.find(function (e) {
+                                return e.includes('edge.html') || e.includes('gigared.html') || e.includes('telefe.html') || e.includes('sensa_output.html');
+                        });
+                        if (working) {
+                                var parts = working.replace(/\.html(?=[\?&]|$)/, '').split('/');
+                                var filename = parts[parts.length - 1];
+                                if (!location.href.includes(filename.split('?')[0])) {
+                                        window.location.href = filename;
+                                }
+                        }
+                } catch (e) {}
+        }
+
         tryInitialize();
 
         if (typeof getURL !== 'undefined' && getURL !== null) {
@@ -209,21 +231,11 @@
                         errorCount = parseInt(errorCount);
                 }
 
-                playerInstance.on("error", function () {
+                playerInstance.on("error", function (e) {
                         errorCount++;
-                        // alert("Falla: "+mt[random])
-                        // var redirectUrl = 'cvatt.html?get=' + getURL;
-                        // var redirectUrl = 'cvatt2_ext.html?get=' + getURL;
-                        // var redirectUrl = 'canalesparatodos.html?get=' + getURL;
-
-
-                        // if (getLang) {
-                        //         redirectUrl += '&lang=' + getLang;
-                        // }
-
-                        // redirectUrl += '&start=true';
-                        // sessionStorage.setItem('errorCount', errorCount);
-                        // window.location = redirectUrl;
+                        if (e.code === 241403 || e.code === 241401) {
+                                setTimeout(redirectToWorkingServer, 500);
+                        }
                 });
         }
 

@@ -275,7 +275,22 @@ function getCanal() {
                 enlace.includes("telefeapi.html")) servidor = "Transmitir";
         }
         if (servidor == "Sin nombre") {
-            servidor = "Servidor " + (index + 1);
+            if (enlace.includes("gigared.html")) servidor = "Gigared";
+            else if (enlace.includes("gigared_ext.html")) servidor = "Gigared Ext";
+            else if (enlace.includes("cvatt_pro.html")) servidor = "Principal";
+            else if (enlace.includes("cvatt.html")) servidor = "Alternativo";
+            else if (enlace.includes("cvatt2_ext.html")) servidor = "Alternativo Ext";
+            else if (enlace.includes("sensa.html")) servidor = "Sensa";
+            else if (enlace.includes("sensa_output.html")) servidor = "Sensa Out";
+            else if (enlace.includes("sensa_ext.html")) servidor = "Sensa Ext";
+            else if (enlace.includes("fetch.html") || enlace.includes("fetch2.html")) servidor = "Fetch";
+            else if (enlace.includes("jjfutbol2pro.html")) servidor = "JJFutbol Pro";
+            else if (enlace.includes("jjfutbol2.html")) servidor = "JJFutbol";
+            else if (enlace.includes("telefe.html")) servidor = "Telefe";
+            else if (enlace.includes("cobo.html")) servidor = "Cobo";
+            else if (enlace.includes("playme.html")) servidor = "Playme";
+            else if (enlace.includes("trimi.html")) servidor = "Trimi";
+            else servidor = "Servidor " + (index + 1);
         }
         zonaEnlaces.innerHTML += `<option class="dropdown-item" ${selected} value="${index + 1}">${servidor}</option>`;
     });
@@ -537,12 +552,21 @@ function Cambio_Canal() {
     document.getElementById("id_sapping-canal").style.display = "flex";
     document.getElementById("id_optCanales").style.display = "flex";
     document.getElementById("id_BuscardorCanales").value = "";
+    sessionStorage.removeItem("cvatt_drm_fallback");
+
     var canalUrl = getCanal();
     if (canalUrl) {
         canalUrl = canalUrl.replace(/\.html(?=[\?&]|$)/, '');
         sessionStorage.setItem("cvatt_channel", canalUrl);
         tele.src = canalUrl;
     }
+
+    var canalData = MisCanales.get(canal);
+    if (canalData) {
+        sessionStorage.setItem("cvatt_enlaces", JSON.stringify(canalData.enlaces));
+        sessionStorage.setItem("cvatt_canal_nombre", canal);
+    }
+
     tele.style.display = "block";
 
     // ✨ AGREGAR ESTA LÍNEA AQUÍ:
