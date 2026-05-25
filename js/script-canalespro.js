@@ -557,14 +557,17 @@ function Cambio_Canal() {
     var canalUrl = getCanal();
     if (canalUrl) {
         canalUrl = canalUrl.replace(/\.html(?=[\?&]|$)/, '');
-        sessionStorage.setItem("cvatt_channel", canalUrl);
-        tele.src = canalUrl;
     }
 
     var canalData = MisCanales.get(canal);
     if (canalData) {
         sessionStorage.setItem("cvatt_enlaces", JSON.stringify(canalData.enlaces));
         sessionStorage.setItem("cvatt_canal_nombre", canal);
+    }
+
+    if (canalUrl) {
+        sessionStorage.setItem("cvatt_channel", canalUrl);
+        tele.src = canalUrl;
     }
 
     tele.style.display = "block";
