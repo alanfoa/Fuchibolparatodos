@@ -868,31 +868,6 @@
                 liveSyncDuration: 3,
             });
 
-            jwplayer("player").on('error', function (e) {
-                if (e.code === 241403 || e.code === 241401) {
-                    var yaRedirigido = sessionStorage.getItem("cvatt_drm_fallback");
-                    if (!yaRedirigido) {
-                        sessionStorage.setItem("cvatt_drm_fallback", "true");
-                        var stored = sessionStorage.getItem("cvatt_enlaces");
-                        if (stored) {
-                            try {
-                                var enlaces = JSON.parse(stored);
-                                var working = enlaces.find(function (el) {
-                                    return el.includes('edge.html') || el.includes('gigared.html') || el.includes('telefe.html') || el.includes('sensa_output.html');
-                                });
-                                if (working) {
-                                    var parts = working.replace(/\.html(?=[\?&]|$)/, '').split('/');
-                                    var filename = parts[parts.length - 1];
-                                    if (!location.href.includes(filename.split('?')[0])) {
-                                        window.location.href = filename;
-                                    }
-                                }
-                            } catch (ex) {}
-                        }
-                    }
-                }
-            });
-
             // if (!/SmartTV|Tizen|Web0S|SmartHub|Chromecast/i.test(navigator.userAgent)) {
             //     // Esperar a que el reproductor esté listo
             //     jwplayer("player").on("ready", function () {
