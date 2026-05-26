@@ -167,46 +167,65 @@
         });
 
 
-        function redirectToWorkingServer() {
-                var yaRedirigido = sessionStorage.getItem("cvatt_drm_fallback");
-                if (yaRedirigido) return;
-                sessionStorage.setItem("cvatt_drm_fallback", "true");
-
-                var stored = sessionStorage.getItem("cvatt_enlaces");
-                if (!stored) return;
-                try {
-                        var enlaces = JSON.parse(stored);
-                        var working = enlaces.find(function (e) {
-                                return e.includes('edge.html') || e.includes('gigared.html') || e.includes('telefe.html') || e.includes('sensa_output.html');
-                        });
-                        if (working) {
-                                var parts = working.replace(/\.html(?=[\?&]|$)/, '').split('/');
-                                var filename = parts[parts.length - 1];
-                                if (!location.href.includes(filename.split('?')[0])) {
-                                        window.location.href = filename;
-                                }
+        function tryInitialize() {
+                initializePlayer(false);
+                playerInstance.on('error', function (e) {
+                        if (e.code === 241401 || e.code === 241403) {
+                                setTimeout(tryInitialize, 1000);
                         }
-                } catch (ex) {}
+                });
         }
 
-        var _retryCount = 0;
-        var _redirectAttempted = false;
-
-        playerInstance.on('error', function (e) {
-                if (e.code === 241401 || e.code === 241403) {
-                        _retryCount++;
-                        if (_retryCount >= 3 && !_redirectAttempted) {
-                                _redirectAttempted = true;
-                                redirectToWorkingServer();
+        function checkAndInitialize() {
+                random = Math.floor(Math.random() * mt.length);
+                var mtUrl = "//" + mt[random] + ".cvattv.com.ar";
+                checkMtStatus(mtUrl, function (status) {
+                        if (status === 200) {
+                                initializePlayer(true);
                         } else {
-                                setTimeout(function () {
-                                        initializePlayer(false);
-                                }, 1000);
+                                setTimeout(checkAndInitialize, 1000);
                         }
-                }
-        });
+                });
+        }
 
-        initializePlayer(false);
+        function checkMtStatus(mtUrl, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                                callback(xhr.status);
+                        }
+                };
+                xhr.open('HEAD', mtUrl, true);
+                xhr.send();
+        }
+
+        tryInitialize();
+
+        if (typeof getURL !== 'undefined' && getURL !== null) {
+                var errorCount = sessionStorage.getItem('errorCount');
+                if (!errorCount) {
+                        errorCount = 0;
+                } else {
+                        errorCount = parseInt(errorCount);
+                }
+
+                playerInstance.on("error", function () {
+                        errorCount++;
+                        // alert("Falla: "+mt[random])
+                        // var redirectUrl = 'cvatt.html?get=' + getURL;
+                        // var redirectUrl = 'cvatt2_ext.html?get=' + getURL;
+                        // var redirectUrl = 'canalesparatodos.html?get=' + getURL;
+
+
+                        // if (getLang) {
+                        //         redirectUrl += '&lang=' + getLang;
+                        // }
+
+                        // redirectUrl += '&start=true';
+                        // sessionStorage.setItem('errorCount', errorCount);
+                        // window.location = redirectUrl;
+                });
+        }
 
         var selectedLanguage = getLang || 1;
         var languageChangedDuringPlay = false;
