@@ -46,16 +46,22 @@ function getChannelKeys(getURL) {
         "": { keyId: "", key: "" }, //
         "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs": { keyId: "09833bbfc87acd3a509a57e75b4d37ef", key: "13906c6849c0c81de495ddd9539765fe" }, //TV_Publica_Internacional
         
+
+        //Caidos
         "Q2FuYWwzX1NhbnRhX1Jvc2E=": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //Canal3_Santa_Rosa
         "Q2FuYWxfOV9NZW5kb3ph": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //Canal_9_Mendoza
-        "VG9kb19Ob3RpY2lhc180Sw==": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //Todo_Noticias_4K
-        // "VG9kb19Ob3RpY2lhc180Sw==": { keyId: "2959bf95e218a7ec8a9ea434430b45e7", key: "9727d27dc22ad3a63d94338f92b7a55a" }, //Todo_Noticias_4K
         "VFNOX05lY29jaGVh": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //TSN_Necochea
         "Q2FuYWw5X0xhX1Jpb2ph": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //Canal9_La_Rioja
-        "RGF5c3Rhcg==": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //Daystar
-        "TWV0cm8": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //Metro
+        // "RGF5c3Rhcg==": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //Daystar
+        // "RGF5c3Rhcg==": { keyId: "c48d578949a3d595c87232a17430e375", key: "6ef34a3ae28d31ddb9e3741fe15e36f8" }, //Daystar
         "Q0hfN19KdWp1eQ==": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //CH_7_Jujuy
         
+        //Anda solo con SA_Live_dash_widevine
+        "VG9kb19Ob3RpY2lhc180Sw==": { keyId: "2959bf95e218a7ec8a9ea434430b45e7", key: "9727d27dc22ad3a63d94338f92b7a55a" }, //Todo_Noticias_4K
+        // "VG9kb19Ob3RpY2lhc180Sw==": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //Todo_Noticias_4K
+        
+
+        "TWV0cm8": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //Metro
         "": { keyId: "", key: "" }, //
         "Q2FuYWxfOTA=": { keyId: "ca50103f3285421e8be7da8c0c0e7a54", key: "3608e92a6feddf228c1f035ebb764426" }, //Canal_90
         "Q2FuYWxfMTFfRm9ybW9zYQ==": { keyId: "78cbce875d90e04f3f2b2e26261d5255", key: "d6c6a3c3ec898483608ff39e086cad66" }, //Canal_11_Formosa
