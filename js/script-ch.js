@@ -229,6 +229,11 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfM19Sb3Nhcmlv",
             servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfM19Sb3Nhcmlv",
 
+            //Canal 10 Tucumán
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2gxMF9UdWN1bWFu",
+            servidorCanalesOnline + "cvatt.html?get=Q2gxMF9UdWN1bWFu",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2gxMF9UdWN1bWFu",
+
             //Canal 7 Bahia Blanca
             servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWw3X0JhaGlhX0JsYW5jYQ==",
             servidorCanalesOnline + "cvatt.html?get=Q2FuYWw3X0JhaGlhX0JsYW5jYQ==",
@@ -1295,18 +1300,6 @@ MisCanales.set(
         pais: "Argentina",
         enlaces: [
             servidorCanalesOnline + "m3u8.html?stream=Canal_5_Tucuman",
-        ]
-    }
-);
-
-MisCanales.set(
-    "Canal 10 Tucumán",
-    {
-        pais: "Argentina",
-        enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Q2gxMF9UdWN1bWFu",
-            servidorCanalesOnline + "cvatt.html?get=Q2gxMF9UdWN1bWFu",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Q2gxMF9UdWN1bWFu",
         ]
     }
 );
