@@ -10,16 +10,6 @@ let MisCanales = new Map();
 
 // ---- INICIO: CANALES AUTO-GENERADOS ----
 MisCanales.set(
-    "Agenda Deportiva",
-    {
-        pais: "Argentina",
-        enlaces: [
-            servidorCanalesOnline + "miagendadeportiva.html",
-        ]
-    }
-);
-
-MisCanales.set(
     "LPF PLAY",
     {
         pais: "Argentina",
@@ -5352,6 +5342,7 @@ MisCanales.set(
         {
             pais: "España",
             enlaces: [
+                servidorCanalesOnline + "m3u8.html?stream=DAZN_Formula1",
                 "https://embed.ksdjugfsddeports.com/embed2/daznf1.html",
                 "https://embed.ksdjugfsddeports.com/embed/daznf1.html",
                 "https://deportelibres.shop/total/stream-537.php",
@@ -5365,7 +5356,6 @@ MisCanales.set(
                 // "https://enz.gdplayertv.to/live-tv/dazn-f1/?alt=0&embed=1",
                 // "https://enz.gdplayertv.to/live-tv/dazn-f1/?embed=1",
                 // "https://antenaplanet.store/daznf1.php",
-                // servidorCanalesOnline + "m3u8.html?stream=DAZN_Formula1",
                 // "https://deporte-libre.link/en-vivo-online/dazn-formula-1-es/embed.php",
                 // servidorCanalesOnline + "cobo.html?id=FORMULA_1",
                 // "https://www.vidembed.re/stream/5ce1773e-7859-4e5b-b22f-d1abfd161f6a",
