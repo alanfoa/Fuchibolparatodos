@@ -3205,6 +3205,12 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
+            ///Argentina
+            servidorCanalesOnline + "cvatt_pro.html?get=RFNwb3J0c18x",
+            servidorCanalesOnline + "cvatt.html?get=RFNwb3J0c18x",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RFNwb3J0c18x",
+
+            ///Uruguay
             servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19VWQ==",
             servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19VWQ==",
             servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19VWQ==",
@@ -3249,6 +3255,12 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
+            ///Argentina
+            servidorCanalesOnline + "cvatt_pro.html?get=RFNwb3J0c18y",
+            servidorCanalesOnline + "cvatt.html?get=RFNwb3J0c18y",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RFNwb3J0c18y",
+
+            ///Uruguay
             servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0czJfVVk=",
             servidorCanalesOnline + "cvatt.html?get=RHNwb3J0czJfVVk=",
             servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0czJfVVk=",
@@ -5342,7 +5354,7 @@ MisCanales.set(
         {
             pais: "España",
             enlaces: [
-                servidorCanalesOnline + "m3u8.html?stream=DAZN_Formula1",
+                // servidorCanalesOnline + "m3u8.html?stream=DAZN_Formula1",
                 "https://embed.ksdjugfsddeports.com/embed2/daznf1.html",
                 "https://embed.ksdjugfsddeports.com/embed/daznf1.html",
                 "https://deportelibres.shop/total/stream-537.php",
@@ -9298,6 +9310,18 @@ MisCanales.set(
                 // servidorCanalesOnline + "cvatt_pro.html?get=U2V4dHJlbWU",
                 servidorCanalesOnline + "cvatt.html?get=U2V4dHJlbWU",
                 servidorCanalesOnline + "cvatt2_ext.html?get=U2V4dHJlbWU",
+            ]
+        }
+    );
+
+MisCanales.set(
+        "Hustler",
+        {
+            pais: "Argentina",
+            enlaces: [
+                // servidorCanalesOnline + "cvatt_pro.html?get=SHVzdGxlcg==",
+                servidorCanalesOnline + "cvatt.html?get=SHVzdGxlcg==",
+                servidorCanalesOnline + "cvatt2_ext.html?get=SHVzdGxlcg==",
             ]
         }
     );
