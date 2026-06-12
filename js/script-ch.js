@@ -29,10 +29,13 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt.html?get=VGVsZWZlSEQ=",
             servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZWZlSEQ=",
             servidorCanalesOnline + "telefe.html",
+            servidorCanalesOnline + "telefe_mundial.html?id=Telefe_Mundial",
+            servidorCanalesOnline + "telefe_mundial.html?id=Telefe_Stream",
+            // "https://stream-xhd.com/live1.php?stream=telefe",
             // servidorCanalesOnline + "fetch.html?stream=Telefe",
             // servidorCanalesOnline + "fetch2.html?stream=Telefe",
             servidorCanalesOnline + "latamlive.html?id=TELEFE_AR_IP_ENC_LIVE",
-            servidorCanalesOnline + "cvatt_v1.html?id=TELEFE",
+            // servidorCanalesOnline + "cvatt_v1.html?id=TELEFE",
             servidorCanalesOnline + "aneviapro.html?id=Telefe",
             // servidorCanalesOnline + "proxym3u8/?id=TELEFE",
             // "server/cvatt.html?get=VGVsZWZlSEQ=",
@@ -69,10 +72,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=telefe",
             // "https://la10hd.com/vivo/canales.php?stream=telefe",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=telefe",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=telefe",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=telefe",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=telefe",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=telefe",
             // "https://can14-11-2024wplayerfloprinci.github.io/canvarispaises-1.html?id=caaatelefecapital",
             // "https://cantodos19-11-2024op2.github.io/todsloscan-2.html?id=caaatelefecapital",
             // "https://deportesfutgol.com/vivo/canal.php?stream=telefe",
@@ -415,10 +414,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=tvpublica",
             // "https://la10hd.com/vivo/canales.php?stream=tvpublica",
             servidorCanalesOnline + "jjfutbol2pro.html?name=tvpublica",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=tvpublica",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=tvpublica",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=tvpublica",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=tvpublica",
 
             //TV Publica Internacional
             servidorCanalesOnline + "cvatt_pro.html?get=VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs",
@@ -477,7 +472,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=VG9kb05vdGljaWFz",
             servidorCanalesOnline + "vodgc.html?id=TN",
             servidorCanalesOnline + "aneviapro.html?id=TN",
-            servidorCanalesOnline + "cvatt_v1.html?id=TN",
+            // servidorCanalesOnline + "cvatt_v1.html?id=TN",
             // "server/cvatt.html?get=VG9kb05vdGljaWFz",
             // "https://sssshhh.xyz/cvatt.html?get=VG9kb05vdGljaWFz",
             // "https://a3.115tv.site/cvatt.html?get=VG9kb05vdGljaWFz",
@@ -515,7 +510,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=QzVO",
             servidorCanalesOnline + "cvatt2_ext.html?get=QzVO",
             servidorCanalesOnline + "aneviapro.html?id=C5N",
-            servidorCanalesOnline + "cvatt_v1.html?id=C5N",
+            // servidorCanalesOnline + "cvatt_v1.html?id=C5N",
             servidorCanalesOnline + "edge.html?get=C5N",
             servidorCanalesOnline + "tvmia.html?stream=an_C5N",
             servidorCanalesOnline + "sensa.html?id=C5N",
@@ -2585,7 +2580,6 @@ MisCanales.set(
         enlaces: [
             // servidorCanalesOnline + "m3u8.html?stream=Willax_TV_PERU",
             servidorCanalesOnline + "tvmia.html?stream=c_WILLAX",
-            // "https://embed.ksdjugfsddeports.com/embed2/willaxtv.html",
         ]
     }
 );
@@ -3124,10 +3118,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=tycsports",
             // "https://la10hd.com/vivo/canales.php?stream=tycsports",
             servidorCanalesOnline + "jjfutbol2pro.html?name=tycsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=tycsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=tycsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=tycsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=tycsports",
             // "https://can-teestremaa-sd-depopp.glitch.me/teeyceeargsdd.html",
         ]
     }
@@ -3161,10 +3151,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global2.php?channel=tycinternacional",
             // "https://streamx10.cloud/global1.php?channel=tycinternacional",
             servidorCanalesOnline + "jjfutbol2pro.html?name=tycinternacional",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=tycinternacional",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=tycinternacional",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=tycinternacional",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=tycinternacional",
         ]
     }
 );
@@ -3209,24 +3195,27 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt_pro.html?get=RFNwb3J0c18x",
             servidorCanalesOnline + "cvatt.html?get=RFNwb3J0c18x",
             servidorCanalesOnline + "cvatt2_ext.html?get=RFNwb3J0c18x",
+            servidorCanalesOnline + "dsports.html?id=DSports_cbsivideo",
 
             ///Uruguay
             servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19VWQ==",
             servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19VWQ==",
             servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19VWQ==",
+
+
+
+
             servidorCanalesOnline + "fly.html?id=dsports",
             servidorCanalesOnline + "fly-hls.html?id=dsports",
             servidorCanalesOnline + "tdtcloud.html?stream=dsports",
             servidorCanalesOnline + "deepcathink.html?feed=94",
             "https://cdn.tdtcloud.xyz/ws07.php",
-            "https://embed.ksdjugfsddeports.com/embed2/directvsports.html",
-            "https://streamtp-abc.net/premier.php?stream=dsports",
+            "https://https://skylivefu.com/live.php?stream=dsports",
             // servidorCanalesOnline + "proxym3u8/?id=DSPORTS_AR",
             // "https://199m3u8.netlify.app/?id=DSports",
             // servidorCanalesOnline + "m3u8.html?stream=DSportsArg_2",
             // "https://superiorcrop.net/embed/ehf5qe1r",
             // "https://live.vkvideo.ru/app/embed/fanfut3",
-            // "https://embed.ksdjugfsddeports.com/embed2/directvsports.html",
             // servidorCanalesOnline + "extension.html?get=DSPORTS",
             // "https://elcanaldeportivo.com/dsports-sharecast.php",
             // "https://welivesports.shop/goal/directvarg.php",
@@ -3241,10 +3230,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=dsports",
             // "https://la10hd.com/vivo/canales.php?stream=dsports",
             servidorCanalesOnline + "jjfutbol2pro.html?name=dsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=dsports",
             // "https://fullchannels.online/canales.php?id=directv",
         ]
     }
@@ -3259,11 +3244,13 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt_pro.html?get=RFNwb3J0c18y",
             servidorCanalesOnline + "cvatt.html?get=RFNwb3J0c18y",
             servidorCanalesOnline + "cvatt2_ext.html?get=RFNwb3J0c18y",
+            servidorCanalesOnline + "dsports.html?id=DSports2_cbsivideo",
 
             ///Uruguay
             servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0czJfVVk=",
             servidorCanalesOnline + "cvatt.html?get=RHNwb3J0czJfVVk=",
             servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0czJfVVk=",
+            
             servidorCanalesOnline + "fly.html?id=dsports2",
             servidorCanalesOnline + "fly-hls.html?id=dsports2",
             servidorCanalesOnline + "tdtcloud.html?stream=dsports2",
@@ -3272,7 +3259,6 @@ MisCanales.set(
             // servidorCanalesOnline + "proxym3u8/?id=DSPORTS2_AR",
             // "https://172m3u8.netlify.app/?id=Dsports2",
             // servidorCanalesOnline + "m3u8.html?stream=DSports2Arg",
-            // "https://embed.ksdjugfsddeports.com/embed2/directvsports2.html",
             // "https://welivesport.shop/embed/directv2arg.php",
             // "https://lal0hd.com/sw.html?get=https://lal0hd.com/repro/eventos.html",
             // "https://rereyano.ru/player/3/95",
@@ -3286,10 +3272,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=dsports2",
             // "https://la10hd.com/vivo/canales.php?stream=dsports2",
             servidorCanalesOnline + "jjfutbol2pro.html?name=dsports2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dsports2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dsports2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dsports2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=dsports2",
             // "https://fullchannels.online/canales.php?id=directv2-op2",
         ]
     }
@@ -3300,6 +3282,7 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
+            servidorCanalesOnline + "dsports.html?id=DSportsPlus_cbsivideo",
             servidorCanalesOnline + "fly.html?id=dsportsplus",
             servidorCanalesOnline + "fly-hls.html?id=dsportsplus",
             servidorCanalesOnline + "tdtcloud.html?stream=dsportsplus",
@@ -3315,10 +3298,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=dsportsplus",
             // "https://la10hd.com/vivo/canales.php?stream=dsportsplus",
             servidorCanalesOnline + "jjfutbol2pro.html?name=dsports+",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dsportsplus",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dsportsplus",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dsportsplus",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=dsportsplus",
             // "https://fullchannels.online/canales.php?id=directvplus-op2",
             // "https://zonahack-2aeb7.web.app/tvonline.html?url=https://cansd-teleetreee-maemb.glitch.me/detee3.html",
         ]
@@ -3337,10 +3316,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=beinsportes",
             // "https://la10hd.com/vivo/canales.php?stream=beinsportes",
             servidorCanalesOnline + "jjfutbol2pro.html?name=beinsportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=beinsportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=beinsportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=beinsportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=beinsportes",
             // "https://fullchannels.online/canales.php?id=bein-op3",
 
         ]
@@ -3448,17 +3423,12 @@ MisCanales.set(
             // "https://rereyano.ru/player/4/75",
             // "https://cartelive.club/player/4/75",
             // "https://bolaloca.my/player/4/75",
-            // "https://embed.ksdjugfsddeports.com/embed2/tntsports.html",
             // "https://streamx10.cloud/global2.php?channel=tntsports",
             // "https://streamx10.cloud/global1.php?channel=tntsports",
             // "https://streamx10.cloud/global3.php?channel=tntsports_argentina", //No funciona en la apk
             // "https://la10hd.com/vivo/canal.php?stream=tntsports",
             // "https://la10hd.com/vivo/canales.php?stream=tntsports",
             servidorCanalesOnline + "jjfutbol2pro.html?name=tntsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=tntsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=tntsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=tntsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=tntsports",
         ]
     }
 );
@@ -3469,8 +3439,6 @@ MisCanales.set(
         pais: "Chile",
         enlaces: [
             servidorCanalesOnline + "deepcathink.html?feed=83",
-            // "https://embed.ksdjugfsddeports.com/embed2/tntsportschile.html",
-            "https://embed.ksdjugfsddeports.com/embed/tntsportschile.html",
             // servidorCanalesOnline + "tvmia.html?stream=an_TNT_SPORTS_PREMIUM",
             // "https://streamx10.cloud/global2.php?channel=tntsportschile",
             // "https://streamx10.cloud/global1.php?channel=tntsportschile",
@@ -3480,10 +3448,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=tntsportschile",
             // "https://la10hd.com/vivo/canales.php?stream=tntsportschile",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=tntsportschile",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=tntsportschile",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=tntsportschile",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=tntsportschile",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=tntsportschile",
             // "https://fullchannels.online/canales.php?id=tntchile",
         ]
     }
@@ -3500,10 +3464,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global3.php?channel=futv", //No funciona en la apk
             // "https://la10hd.com/vivo/canales.php?stream=futv",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=futv",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=futv",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=futv",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=futv",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=futv",
         ]
     }
 );
@@ -3520,10 +3480,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canales.php?stream=espnmx",
             servidorCanalesOnline + "izzigo.html?id=ESPN",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espnmx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espnmx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espnmx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espnmx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espnmx",
         ]
     }
 );
@@ -3538,10 +3494,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=espn2mx",
             // "https://la10hd.com/vivo/canales.php?stream=espn2mx",
             servidorCanalesOnline + "izzigo.html?id=ESPN_2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espn2mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espn2mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espn2mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espn2mx",
         ]
     }
 );
@@ -3557,10 +3509,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canales.php?stream=espn3mx",
             servidorCanalesOnline + "izzigo.html?id=ESPN_3",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espn3mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espn3mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espn3mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espn3mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espn3mx",
         ]
     }
 );
@@ -3576,10 +3524,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canales.php?stream=espn4mx",
             servidorCanalesOnline + "izzigo.html?id=ESPN_4",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espn4mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espn4mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espn4mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espn4mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espn4mx",
         ]
     }
 );
@@ -3589,55 +3533,54 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=starplus01",
-            // "https://streamtp-abc.net/premier.php?stream=starplus01",
-            // "https://streamtp-abc.net/premier.php?stream=starplus02",
-            // "https://streamtp-abc.net/premier.php?stream=starplus03",
-            // "https://streamtp-abc.net/premier.php?stream=starplus04",
-            // "https://streamtp-abc.net/premier.php?stream=starplus05",
-            // "https://streamtp-abc.net/premier.php?stream=starplus06",
-            // "https://streamtp-abc.net/premier.php?stream=starplus07",
-            // "https://streamtp-abc.net/premier.php?stream=starplus08",
-            // "https://streamtp-abc.net/premier.php?stream=starplus09",
-            // "https://streamtp-abc.net/premier.php?stream=starplus10",
-            // "https://streamtp-abc.net/premier.php?stream=starplus11",
-            // "https://streamtp-abc.net/premier.php?stream=starplus12",
-            // "https://streamtp-abc.net/premier.php?stream=starplus13",
-            // "https://streamtp-abc.net/premier.php?stream=starplus14",
-            // "https://streamtp-abc.net/premier.php?stream=starplus15",
-            // "https://streamtp-abc.net/premier.php?stream=starplus16",
+            // "https://https://skylivefu.com/live.php?stream=starplus01",
+            // "https://https://skylivefu.com/live.php?stream=starplus02",
+            // "https://https://skylivefu.com/live.php?stream=starplus03",
+            // "https://https://skylivefu.com/live.php?stream=starplus04",
+            // "https://https://skylivefu.com/live.php?stream=starplus05",
+            // "https://https://skylivefu.com/live.php?stream=starplus06",
+            // "https://https://skylivefu.com/live.php?stream=starplus07",
+            // "https://https://skylivefu.com/live.php?stream=starplus08",
+            // "https://https://skylivefu.com/live.php?stream=starplus09",
+            // "https://https://skylivefu.com/live.php?stream=starplus10",
+            // "https://https://skylivefu.com/live.php?stream=starplus11",
+            // "https://https://skylivefu.com/live.php?stream=starplus12",
+            // "https://https://skylivefu.com/live.php?stream=starplus13",
+            // "https://https://skylivefu.com/live.php?stream=starplus14",
+            // "https://https://skylivefu.com/live.php?stream=starplus15",
+            // "https://https://skylivefu.com/live.php?stream=starplus16",
 
 
-            "https://streamtp-abc.net/premier.php?stream=espnplus1", //17
-            "https://streamtp-abc.net/premier.php?stream=espnplus2", //18
-            "https://streamtp-abc.net/premier.php?stream=espnplus3", //19
-            "https://streamtp-abc.net/premier.php?stream=espnplus4", //20
-            "https://streamtp-abc.net/premier.php?stream=espnplus5", //21
-            "https://streamtp-abc.net/premier.php?stream=espnplus6", //22
-            "https://streamtp-abc.net/premier.php?stream=espnplus7", //23
-            "https://streamtp-abc.net/premier.php?stream=espnplus8", //24
-            "https://streamtp-abc.net/premier.php?stream=espnplus9", //25
+            "https://https://skylivefu.com/live.php?stream=espnplus1", //17
+            "https://https://skylivefu.com/live.php?stream=espnplus2", //18
+            "https://https://skylivefu.com/live.php?stream=espnplus3", //19
+            "https://https://skylivefu.com/live.php?stream=espnplus4", //20
+            "https://https://skylivefu.com/live.php?stream=espnplus5", //21
+            "https://https://skylivefu.com/live.php?stream=espnplus6", //22
+            "https://https://skylivefu.com/live.php?stream=espnplus7", //23
+            "https://https://skylivefu.com/live.php?stream=espnplus8", //24
+            "https://https://skylivefu.com/live.php?stream=espnplus9", //25
 
-            "https://streamtp-abc.net/premier.php?stream=disney1",  //26
-            "https://streamtp-abc.net/premier.php?stream=disney2",  //27
-            "https://streamtp-abc.net/premier.php?stream=disney3",  //28
-            "https://streamtp-abc.net/premier.php?stream=disney4",  //29
-            "https://streamtp-abc.net/premier.php?stream=disney5",  //30
-            "https://streamtp-abc.net/premier.php?stream=disney6",  //31
-            "https://streamtp-abc.net/premier.php?stream=disney7",  //32
-            "https://streamtp-abc.net/premier.php?stream=disney8",  //33
-            "https://streamtp-abc.net/premier.php?stream=disney9",  //34
-            "https://streamtp-abc.net/premier.php?stream=disney10", //35
-            "https://streamtp-abc.net/premier.php?stream=disney11", //36
-            "https://streamtp-abc.net/premier.php?stream=disney12", //37
-            "https://streamtp-abc.net/premier.php?stream=disney13", //38
-            "https://streamtp-abc.net/premier.php?stream=disney14", //39
-            "https://streamtp-abc.net/premier.php?stream=disney15", //40
-            "https://streamtp-abc.net/premier.php?stream=disney16", //41
-            "https://streamtp-abc.net/premier.php?stream=disney17", //42
-            "https://streamtp-abc.net/premier.php?stream=disney18", //43
-            "https://streamtp-abc.net/premier.php?stream=disney19", //44
-            "https://streamtp-abc.net/premier.php?stream=disney20", //45    
+            "https://https://skylivefu.com/live.php?stream=disney1",  //26
+            "https://https://skylivefu.com/live.php?stream=disney2",  //27
+            "https://https://skylivefu.com/live.php?stream=disney3",  //28
+            "https://https://skylivefu.com/live.php?stream=disney4",  //29
+            "https://https://skylivefu.com/live.php?stream=disney5",  //30
+            "https://https://skylivefu.com/live.php?stream=disney6",  //31
+            "https://https://skylivefu.com/live.php?stream=disney7",  //32
+            "https://https://skylivefu.com/live.php?stream=disney8",  //33
+            "https://https://skylivefu.com/live.php?stream=disney9",  //34
+            "https://https://skylivefu.com/live.php?stream=disney10", //35
+            "https://https://skylivefu.com/live.php?stream=disney11", //36
+            "https://https://skylivefu.com/live.php?stream=disney12", //37
+            "https://https://skylivefu.com/live.php?stream=disney13", //38
+            "https://https://skylivefu.com/live.php?stream=disney14", //39
+            "https://https://skylivefu.com/live.php?stream=disney15", //40
+            "https://https://skylivefu.com/live.php?stream=disney16", //41
+            "https://https://skylivefu.com/live.php?stream=disney17", //42
+            "https://https://skylivefu.com/live.php?stream=disney18", //43
+            "https://https://skylivefu.com/live.php?stream=disney19", //44
+            "https://https://skylivefu.com/live.php?stream=disney20", //45    
         ]
     }
 );
@@ -3685,10 +3628,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=espn",
             // "https://la10hd.com/vivo/canales.php?stream=espn",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espn",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espn",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espn",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espn",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espn",
             // "https://deportesfutgol.com/vivo/canal.php?stream=espn",
         ]
     }
@@ -3737,10 +3676,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=espn2",
             // "https://la10hd.com/vivo/canales.php?stream=espn2",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espn2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espn2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espn2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espn2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espn2",
             // "https://deportesfutgol.com/vivo/canal.php?stream=espn2",
         ]
     }
@@ -3789,10 +3724,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=espn3",
             // "https://la10hd.com/vivo/canales.php?stream=espn3",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espn3",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espn3",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espn3",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espn3",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espn3",
         ]
     }
 );
@@ -3837,10 +3768,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=espn4",
             // "https://la10hd.com/vivo/canales.php?stream=espn4",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espn4",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espn4",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espn4",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espn4",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espn4",
         ]
     }
 );
@@ -3877,10 +3804,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=espn5",
             // "https://la10hd.com/vivo/canales.php?stream=espn5",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espn5",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espn5",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espn5",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espn5",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espn5",
         ]
     }
 );
@@ -3917,10 +3840,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=espn6",
             // "https://la10hd.com/vivo/canales.php?stream=espn6",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espn6",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espn6",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espn6",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espn6",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espn6",
         ]
     }
 );
@@ -3957,10 +3876,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=espn7",
             // "https://la10hd.com/vivo/canales.php?stream=espn7",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espn7",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espn7",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espn7",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espn7",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espn7",
         ]
     }
 );
@@ -3990,9 +3905,6 @@ MisCanales.set(
             // "server/cvattde.html?get=RXZlbnRvczFIRA",
             // "https://sssshhh.xyz/cvattde.html?get=RXZlbnRvczFIRA",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=espnpremium",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espnpremium",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espnpremium",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espnpremium",
         ]
     }
 );
@@ -4012,10 +3924,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=espndeportes",
             // "https://la10hd.com/vivo/canales.php?stream=espndeportes",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espndeportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espndeportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espndeportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espndeportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espndeportes",
         ]
     }
 );
@@ -4060,17 +3968,12 @@ MisCanales.set(
             // "https://rereyano.ru/player/4/76",
             // "https://cartelive.club/player/4/76",
             // "https://bolaloca.my/player/4/76",
-            // "https://embed.ksdjugfsddeports.com/embed2/espnpremiumargentina.html",
             // "https://streamx10.cloud/global2.php?channel=espnpremium",
             // "https://streamx10.cloud/global1.php?channel=espnpremium",
             // "https://streamx10.cloud/global3.php?channel=espn_premium", //No funciona en la apk
             // "https://la10hd.com/vivo/canal.php?stream=espnpremium",
             // "https://la10hd.com/vivo/canales.php?stream=espnpremium",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espnpremium",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=espnpremium",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=espnpremium",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=espnpremium",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=espnpremium",
             // "https://fullchannels.online/canales.php?id=espnpremium-op3",
         ]
     }
@@ -4093,10 +3996,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=caracol",
             // "https://la10hd.com/vivo/canales.php?stream=caracol",
             servidorCanalesOnline + "jjfutbol2pro.html?name=caracol",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=caracol",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=caracol",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=caracol",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=caracol",
         ]
     }
 );
@@ -4289,10 +4188,6 @@ MisCanales.set(
                 // "https://la10hd.com/vivo/canal.php?stream=liga1max",
                 // "https://la10hd.com/vivo/canales.php?stream=liga1max",
                 // servidorCanalesOnline + "jjfutbol2pro.html?name=liga1max",
-                servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=liga1max",
-                servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=liga1max",
-                servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=liga1max",
-                servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=liga1max",
                 // "https://fullchannels.online/canales.php?id=liga1max",
             ]
         }
@@ -4440,10 +4335,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=azteca7",
             // "https://la10hd.com/vivo/canales.php?stream=azteca7",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=azteca7",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=azteca7",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=azteca7",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=azteca7",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=azteca7",
             // "https://fullchannels.online/canales.php?id=azteca7-op2",
         ]
     }
@@ -4456,7 +4347,6 @@ MisCanales.set(
         enlaces: [
             servidorCanalesOnline + "m3u8.html?stream=Azteca_Uno_Menos_MX",
             // "https://fullchannels.online/canales.php?id=azteca",
-            // "https://embed.ksdjugfsddeports.com/embed2/aztecauno.html",
         ]
     }
 );
@@ -4506,10 +4396,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=azteca_deportes",
             // "https://la10hd.com/vivo/canales.php?stream=azteca_deportes",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=azteca_deportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=azteca_deportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=azteca_deportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=azteca_deportes",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=azteca_deportes",
         ]
     }
 );
@@ -4596,7 +4482,6 @@ MisCanales.set(
         pais: "Estados Unidos",
         enlaces: [
             servidorCanalesOnline + "zapitv.html?id=syfy",
-            // "https://embed.ksdjugfsddeports.com/embed2/syfy.html",
         ]
     }
 );
@@ -4728,10 +4613,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=golperu",
             // "https://la10hd.com/vivo/canales.php?stream=golperu",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=golperu",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=golperu",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=golperu",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=golperu",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=golperu",
         ]
     }
 );
@@ -4746,10 +4627,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global2.php?channel=goltv",
             // "https://streamx10.cloud/global1.php?channel=goltv",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=goltv",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=goltv",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=goltv",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=goltv",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=goltv",
         ]
     }
 );
@@ -4797,10 +4674,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=foxsports",
             // "https://la10hd.com/vivo/canales.php?stream=foxsports",
             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=foxsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=foxsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=foxsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=foxsports",
             // "https://fullchannels.online/canales.php?id=foxsports-op3",
         ]
     }
@@ -4849,10 +4722,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=foxsports2",
             // "https://la10hd.com/vivo/canales.php?stream=foxsports2",
             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsports2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=foxsports2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=foxsports2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=foxsports2",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=foxsports2",
             // "https://fullchannels.online/canales.php?id=foxsports2-op3",
         ]
     }
@@ -4900,10 +4769,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=foxsports3",
             // "https://la10hd.com/vivo/canales.php?stream=foxsports3",
             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsports3",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=foxsports3",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=foxsports3",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=foxsports3",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=foxsports3",
             // "https://fullchannels.online/canales.php?id=foxsports3-op3",
         ]
     }
@@ -4922,10 +4787,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canales.php?stream=foxsportspremium",
             servidorCanalesOnline + "fly.html?id=foxpremiumx",
             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsportspremium",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=foxsportspremium",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=foxsportspremium",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=foxsportspremium",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=foxsportspremium",
             // "https://fullchannels.online/canales.php?id=foxpremium",
             // "https://thedaddy.to/embed/stream-830.php",
         ]
@@ -4960,10 +4821,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canales.php?stream=foxsportsmx",
             servidorCanalesOnline + "fly.html?id=fox1mx",
             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsportsmx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=foxsportsmx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=foxsportsmx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=foxsportsmx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=foxsportsmx",
         ]
     }
 );
@@ -4977,10 +4834,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global1.php?channel=foxsports2mx",
             servidorCanalesOnline + "fly.html?id=fox2mx",
             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsports2mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=foxsports2mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=foxsports2mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=foxsports2mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=foxsports2mx",
         ]
     }
 );
@@ -4994,10 +4847,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global1.php?channel=foxsports3mx",
             servidorCanalesOnline + "fly.html?id=fox3mx",
             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsports3mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=foxsports3mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=foxsports3mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=foxsports3mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=foxsports3mx",
         ]
     }
 );
@@ -5027,10 +4876,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=movistar",
             // "https://la10hd.com/vivo/canales.php?stream=movistar",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=movistar",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=movistar",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=movistar",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=movistar",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=movistar",
         ]
     }
 );
@@ -5044,10 +4889,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global1.php?channel=movistarlaliga",
             // "https://streamx10.cloud/global3.php?channel=movistarlaliga", //No funciona en la apk
             // servidorCanalesOnline + "jjfutbol2pro.html?name=movistarlaliga",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=movistarlaliga",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=movistarlaliga",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=movistarlaliga",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=movistarlaliga",
         ]
     }
 );
@@ -5060,7 +4901,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global2.php?channel=movistarligadecampeones",
             // "https://streamx10.cloud/global1.php?channel=movistarligadecampeones",
             // "https://streamx10.cloud/global3.php?channel=movistarligadecampeones", //No funciona en la apk
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=movistar_ligadecampeones",
         ]
     }
 );
@@ -5073,7 +4913,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global2.php?channel=movistarligadecampeones2",
             // "https://streamx10.cloud/global3.php?channel=movistarligadecampeones2", //No funciona en la apk
             // "https://streamx10.cloud/global1.php?channel=movistarligadecampeones2",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=movistar_ligadecampeones2",
         ]
     }
 );
@@ -5086,7 +4925,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global2.php?channel=movistarligadecampeones3",
             // "https://streamx10.cloud/global3.php?channel=movistarligadecampeones3", //No funciona en la apk
             // "https://streamx10.cloud/global1.php?channel=movistarligadecampeones3",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=movistar_ligadecampeones3",
         ]
     }
 );
@@ -5125,10 +4963,6 @@ MisCanales.set(
                 // "https://la10hd.com/vivo/canal.php?stream=ecdf",
                 // "https://la10hd.com/vivo/canales.php?stream=ecdf",
                 servidorCanalesOnline + "jjfutbol2pro.html?name=ecdf",
-                servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=ecdf",
-                servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=ecdf",
-                servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=ecdf",
-                servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=ecdf",
             ]
         }
     );
@@ -5144,10 +4978,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=ecdf_ligapro",
             // "https://la10hd.com/vivo/canales.php?stream=ecdf_ligapro",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=ecdf_ligapro",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=ecdf_ligapro",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=ecdf_ligapro",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=ecdf_ligapro",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=ecdf_ligapro",
         ]
     }
 );
@@ -5160,24 +4990,14 @@ MisCanales.set(
             servidorCanalesOnline + "fly.html?id=tudnmx",
             servidorCanalesOnline + "tdtcloud.html?stream=tudnmx",
             "https://cdn.tdtcloud.xyz/ws20.php",
-            // "https://embed.ksdjugfsddeports.com/embed2/tudn.html",
-            "https://embed.ksdjugfsddeports.com/embed/tudn.html",
             // "https://streamx10.cloud/global2.php?channel=tudn_usa",
             // "https://streamx10.cloud/global1.php?channel=tudn_usa",
             // "https://streamx10.cloud/global3.php?channel=tudn_usa", //No funciona en la apk
             // "https://la10hd.com/vivo/canal.php?stream=tudn",
             // "https://la10hd.com/vivo/canales.php?stream=tudn",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=tudn",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=tudn",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=tudn",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=tudn",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=tudn",
             // "https://la10hd.com/vivo/canal.php?stream=tudn_mx",
             servidorCanalesOnline + "jjfutbol2pro.html?name=tudn_mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=tudn_mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=tudn_mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=tudn_mx",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=tudn_mx",
             // "https://thedaddy.to/embed/stream-66.php",
         ]
     }
@@ -5192,10 +5012,6 @@ MisCanales.set(
             //  "https://la10hd.com/vivo/canal.php?stream=atv",
             //  "https://la10hd.com/vivo/canales.php?stream=atv",
             //  servidorCanalesOnline + "jjfutbol2pro.html?name=atv",
-            //  servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=atv",
-            //  servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=atv",
-            //  servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=atv",
-            //  servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=atv",
         ]
     }
 );
@@ -5216,11 +5032,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global3.php?channel=rcnco", //No funciona en la apk
             // "https://la10hd.com/vivo/canales.php?stream=eventos",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=eventos",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=eventos",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=eventos",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=eventos",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=eventos",
-            // "https://embed.ksdjugfsddeports.com/embed2/rcn.html",
         ]
     }
 );
@@ -5261,10 +5072,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=winsports",
             // "https://la10hd.com/vivo/canales.php?stream=winsports",
             servidorCanalesOnline + "jjfutbol2pro.html?name=winsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=winsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=winsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=winsports",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=winsports",
             // "https://fullchannels.online/canales.php?id=winsports",
         ]
     }
@@ -5290,10 +5097,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=winsportsplus",
             // "https://la10hd.com/vivo/canales.php?stream=winsportsplus",
             servidorCanalesOnline + "jjfutbol2pro.html?name=winsportsplus",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=winsportsplus",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=winsportsplus",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=winsportsplus",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=winsportsplus",
         ]
     }
 );
@@ -5321,10 +5124,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=eurosports1_es",
             // "https://la10hd.com/vivo/canales.php?stream=eurosports1_es",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=eurosports1_es",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=eurosports1_es",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=eurosports1_es",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=eurosports1_es",
-            // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=eurosports1_es",
             ]
         }
     );
@@ -5341,10 +5140,6 @@ MisCanales.set(
                 // "https://la10hd.com/vivo/canal.php?stream=eurosports2_es",
                 // "https://la10hd.com/vivo/canales.php?stream=eurosports2_es",
                 // servidorCanalesOnline + "jjfutbol2pro.html?name=eurosports2_es",
-                // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=eurosports2_es",
-                // servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=eurosports2_es",
-                // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=eurosports2_es",
-                // servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=eurosports2_es",
             ]
         }
     );
@@ -5354,12 +5149,11 @@ MisCanales.set(
         {
             pais: "España",
             enlaces: [
-                // servidorCanalesOnline + "m3u8.html?stream=DAZN_Formula1",
-                "https://embed.ksdjugfsddeports.com/embed2/daznf1.html",
-                "https://embed.ksdjugfsddeports.com/embed/daznf1.html",
-                "https://deportelibres.shop/total/stream-537.php",
+                servidorCanalesOnline + "deepcathink.html?feed=60",
+                // servidorCanalesOnline + "vodgc.html?id=dazn_f1",
+                // servidorCanalesOnline + "hls.html?stream=dazn_f1",
+                // "https://deportelibres.shop/total/stream-537.php",
                 // servidorCanalesOnline + "extension.html?get=DAZN_FORMULA1",
-                // "https://embed.ksdjugfsddeports.com/embed2/daznf1.html",
                 // "https://199m3u8.netlify.app/?id=Dazn_F1",
                 // "https://miztv.top/total/stream-537.php",
                 // "https://rereyano.ru/player/2/60",
@@ -6327,7 +6121,6 @@ MisCanales.set(
             // servidorCanalesOnline + "sensa_ext.html?id=Universal",
             servidorCanalesOnline + "vriootts.html?id=UNIVERSAL",
             servidorCanalesOnline + "extension.html?get=UNIVERSAL",
-            // "https://embed.ksdjugfsddeports.com/embed2/universalchannel.html",
             // "server/cvatt2_ext.html?get=VW5pdmVyc2FsX0NoYW5uZWxfSEQ=",
             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=VW5pdmVyc2FsX0NoYW5uZWxfSEQ=",
             // "https://flowflowflow1.dombhei.com/cvatt.html?get=VW5pdmVyc2FsX0NoYW5uZWxfSEQ=",
@@ -6769,7 +6562,6 @@ MisCanales.set(
             // "https://fullchannels.online/canales/golden/",
             // "https://telefullenvivo.org/canales/golden/",
             // "https://zzcointv.xyz/canales/golden/",
-            // "https://embed.ksdjugfsddeports.com/embed2/golden.html",
         ]
     }
 );
@@ -6779,13 +6571,11 @@ MisCanales.set(
     {
         pais: "México",
         enlaces: [
-            // "https://embed.ksdjugfsddeports.com/embed2/goldenpremier2.html",
             // "https://telegratuita.com/repro/?r=L3YxeC9wbGF5ZXIucGhwP2lkPWFkc3R4VjI2cWd5SmFHNVo=",
             // servidorCanalesOnline + "m3u8.html?stream=Vall_GOLDEN_PREMIER",
             // "https://fullchannels.online/canales/golden-premier/",
             // "https://telefullenvivo.org/canales/golden-premier/",
             // "https://zzcointv.xyz/canales/golden-premier/",
-            // "https://embed.ksdjugfsddeports.com/embed2/goldenpremier.html",
         ]
     }
 );
@@ -6797,12 +6587,10 @@ MisCanales.set(
         enlaces: [
             servidorCanalesOnline + "gigared.html?id=Golden_Plus",
             servidorCanalesOnline + "gigared_ext.html?id=Golden_Plus",
-            // "https://embed.ksdjugfsddeports.com/embed2/goldenplus.html",
             // "https://telegratuita.com/repro/?r=L3YxeC9wbGF5ZXIucGhwP2lkPWFkc3RaTFE5YVBMTGEwcFc=",
             // "https://fullchannels.online/canales.php?id=golden-plus",
             // "https://telefullenvivo.org/canales/golden-plus/"},
             // "https://zzcointv.xyz/canales/golden-plus/",
-            // "https://embed.ksdjugfsddeports.com/embed2/goldenplus.html",
         ]
     }
 );
@@ -6814,13 +6602,11 @@ MisCanales.set(
         enlaces: [
             servidorCanalesOnline + "gigared.html?id=Golden_Edge",
             servidorCanalesOnline + "gigared_ext.html?id=Golden_Edge",
-            // "https://embed.ksdjugfsddeports.com/embed2/goldenedge.html",
             servidorCanalesOnline + "sensa.html?id=GoldenEdge",
             // "https://telegratuita.com/repro/?r=L3YxeC9wbGF5ZXIucGhwP2lkPWFkc3RrbHg3cW15QnE0QnA=",
             // servidorCanalesOnline + "sensa_ext.html?id=GoldenEdge",
             // "https://fullchannels.online/canales/golden-edge/",
             // "https://zzcointv.xyz/canales/golden-edge/",
-            // "https://embed.ksdjugfsddeports.com/embed2/goldenedge.html",
         ]
     }
 );
@@ -6832,7 +6618,6 @@ MisCanales.set(
         enlaces: [
             servidorCanalesOnline + "edge.html?get=MultiPremier",
             // servidorCanalesOnline + "m3u8.html?stream=Vall_GOLDEN_MULTIPREMIER"
-            // "https://embed.ksdjugfsddeports.com/embed2/multipremier.html",
         ]
     }
 );
@@ -7017,10 +6802,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global2.php?channel=universo_usa",
             // "https://streamx10.cloud/global1.php?channel=universo_usa",
             servidorCanalesOnline + "jjfutbol2pro.html?name=universo",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=universo",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=universo",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=universo",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=universo",
             // "https://streamx10.cloud/global3.php?channel=universo_usa", //No funciona en la apk
             // "https://forlessmake.store/cobo.html?id=NBC_USA", ///Universo
             // "https://candler.beauty/mpdk.html?get=aHR0cHM6Ly9mc2x5LnN0cmVhbS5wZWFjb2NrdHYuY29tL0NvbnRlbnQvQ01BRl9PTDEtQ1RSLTRzL0xpdmUvY2hhbm5lbCh1bml2ZXJzby1lYXN0KS9tYXN0ZXIubXBk&key=MjMyZDcxYmIwMTNkMzlmZmI5MmVlOGM1NzZmYjdlOGU=&key2=MDg3NDA4YTQ4YmU4ZDU3MDQ2YzM4NjhiMzdlYTkwYmE=",
@@ -7057,7 +6838,6 @@ MisCanales.set(
             servidorCanalesOnline + "sensa.html?id=Tlnovelas",
             // servidorCanalesOnline + "sensa_ext.html?id=Tlnovelas",
             // "https://fullchannels.online/canales.php?id=tlenovelas",
-            // "https://embed.ksdjugfsddeports.com/embed2/tlnovelas.html",
         ]
     }
 );
@@ -7183,11 +6963,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=telemundo",
             // "https://la10hd.com/vivo/canales.php?stream=telemundo",
             servidorCanalesOnline + "jjfutbol2pro.html?name=telemundo",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=telemundo",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=telemundo",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=telemundo",
-            servidorCanalesOnline + "jjfutbol2.html?r=https://la14hd.com/vivo/canales.php?stream=telemundo",
-            // "https://embed.ksdjugfsddeports.com/embed2/telemundo51.html",
             // "https://tutlehd5.com//online.php?a=413",
             // "https://candler.beauty/mpdk.html?get=aHR0cHM6Ly9mc2x5LnN0cmVhbS5wZWFjb2NrdHYuY29tL0NvbnRlbnQvQ01BRl9PTDEtQ1RSLTRzL0xpdmUvY2hhbm5lbChrdmVhKS9tYXN0ZXIubXBk&key=ZGZiNTkxNDJjZTUyM2E2YzkwMDc1OGQ1ZWU0Yzc5OTc=&key2=YmQyZDY4NGU1OTA4MTUxOTBlZGEwNTZhNmQ5NjE4YmM=",
             // "https://thedaddy.to/embed/stream-131.php",
@@ -7729,7 +7504,6 @@ MisCanales.set(
         pais: "Argentina",
         guide: "Baby TV",
         enlaces: [
-            // "https://embed.ksdjugfsddeports.com/embed2/tooncast.html",
             servidorCanalesOnline + "cvatt_pro.html?get=QmFieVRW",
             servidorCanalesOnline + "cvatt.html?get=QmFieVRW",
             servidorCanalesOnline + "cvatt2_ext.html?get=QmFieVRW",
@@ -7757,7 +7531,6 @@ MisCanales.set(
         pais: "Argentina",
         guide: "TOONCAST",
         enlaces: [
-            // "https://embed.ksdjugfsddeports.com/embed2/tooncast.html",
             servidorCanalesOnline + "cvatt_pro.html?get=VG9vbmNhc3Q=",
             servidorCanalesOnline + "cvatt.html?get=VG9vbmNhc3Q=",
             servidorCanalesOnline + "cvatt2_ext.html?get=VG9vbmNhc3Q=",
@@ -8984,7 +8757,6 @@ MisCanales.set(
         pais: "Argentina",
         enlaces: [
             servidorCanalesOnline + "m3u8.html?stream=LosPitufos",
-//         "https://embed.ksdjugfsddeports.com/embed2/pitufos.html",
         ]
     }
 );
@@ -9242,26 +9014,6 @@ MisCanales.set(
         pais: "Varios",
         enlaces: [
             servidorCanalesOnline + "m3u8.html?stream=Monster_Jam",
-        ]
-    }
-);
-
-MisCanales.set(
-    "BAHAR",
-    {
-        pais: "Varios",
-        enlaces: [
-            servidorCanalesOnline + "telefe.html?programa=https://mitelefe.com/bahar/capitulos-completos",
-        ]
-    }
-);
-
-MisCanales.set(
-    "TODAS LAS FLORES",
-    {
-        pais: "Varios",
-        enlaces: [
-            servidorCanalesOnline + "telefe.html?programa=https://mitelefe.com/todas-las-flores/capitulos-completos",
         ]
     }
 );

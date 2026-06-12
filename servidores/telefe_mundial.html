@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telefe Mundial</title>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #player {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #player iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        #loading {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            background: #000;
+            z-index: 9999;
+        }
+
+        #error {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #ff4444;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            background: #000;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loading">Cargando transmisión...</div>
+    <div id="error"></div>
+    <div id="player"></div>
+
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+
+        const LAMBDA_URL =
+            "https://57j4mtvcjjf7siqnnvkixb5d3i0uvjei.lambda-url.us-east-1.on.aws/";
+
+        var ConfiguracionCanales = {
+            "Telefe_Mundial": {
+                id: "6a024684fd4ca6a938f3a118",
+            },
+            "Telefe_Stream": {
+                id: "69e0fb650d9e3eb5340cdd5c",
+            },
+        }
+
+        var id = getParameterByName('id');
+        var STREAM_ID = ConfiguracionCanales[id].id;
+
+
+        async function cargarStream() {
+            try {
+                const response = await fetch(
+                    "https://sportsonline.ppvtv.top/proxy?url=" +
+                    encodeURIComponent(
+                        LAMBDA_URL + "?stream_id=" + STREAM_ID
+                    )
+                );
+
+                if (!response.ok) {
+                    throw new Error("HTTP " + response.status);
+                }
+
+                const data = await response.json();
+
+                if (!data.access_token) {
+                    throw new Error("No se recibió access_token");
+                }
+
+                const src =
+                    "https://mdstrm.com/live-stream/" +
+                    data.stream_id +
+                    "?player=" +
+                    data.player_id +
+                    "&access_token=" +
+                    data.access_token;
+
+                document.getElementById("player").innerHTML =
+                    `<iframe
+                src="${src}"
+                allow="autoplay; fullscreen; encrypted-media"
+                allowfullscreen>
+            </iframe>`;
+
+                document.getElementById("loading").style.display = "none";
+
+            } catch (err) {
+                document.getElementById("loading").style.display = "none";
+
+                const error = document.getElementById("error");
+                error.style.display = "flex";
+                error.textContent = "Error al cargar la transmisión: " + err.message;
+            }
+        }
+
+        window.addEventListener("load", cargarStream);
+    </script>
+
+</body>
+
+</html>

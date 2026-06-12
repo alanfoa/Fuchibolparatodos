@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>dsports</title>
+    <style>
+        html,
+        body,
+        #player {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        :root {
+            --colorbarra: #51E0C0;
+            --coloriconos: #f0f0f0;
+        }
+
+        .jw-button-container .jw-icon {
+            color: var(--coloriconos) !important;
+        }
+
+        .jw-slider-container .jw-progress {
+            background-color: var(--colorbarra) !important;
+        }
+
+        .jw-icon:hover {
+            color: var(--colorbarra) !important;
+        }
+
+        .jw-featured,
+        .jw-rightclick {
+            display: none !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+
+    <!-- JW Player -->
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+</head>
+
+<body>
+    <div id="player" class="ViostreamIframe"></div>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        var ConfiguracionCanales = {
+            // ---------------------------------
+            "DSports_cbsivideo": {
+                url: "https://prope66bd35h.airspace-cdn.cbsivideo.com/out/v1/eb04c8bf15a94f14ad1d952659d422b7/manifest.mpd",
+                k1: '9afc53e82bb24c20a5835a84138f6c13',
+                k2: 'abdd52917474f2342ff04f0d4722123a',
+            },
+            "DSports2_cbsivideo": {
+                url: "https://prope79d3g55.airspace-cdn.cbsivideo.com/out/v1/faa5cf8cb19e4de99417df05a463f9d5/manifest.mpd",
+                k1: '010b4fa338184f52a712121ad62ae9b4',
+                k2: 'e310bad2a570b60f7799e2aa0fb33a71',
+            },
+            "DSportsPlus_cbsivideo": {
+                url: "https://prope9660ag6.airspace-cdn.cbsivideo.com/out/v1/a634dbd5b8474f38b38a8ce37dd77b50/manifest.mpd",
+                k1: '41121cea7a3d49a78c9496d1b0d919e4',
+                k2: 'de048d4c2870b8d53961aaeac1804947',
+            },
+
+
+            "DSports_fly": {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash-sd/enc/hubonmgf5k/out/v1/10560d92577e4917973aa4624124ecd6/cenc-sd.mpd",
+                // url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/hubonmgf5k/out/v1/10560d92577e4917973aa4624124ecd6/cenc-sd.mpd",
+                k1: '45bbd582f220f438f896450d8306a3f2',
+                k2: '582c6ba7f64bbc0f2d91c6b0c265760c',
+            },
+            "DSports2_fly": {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash-sd/enc/hufm7lgnhx/out/v1/5045630288d44123ba85427b2c36f29f/cenc-sd.mpd",
+                k1: '18044a84b7e6c1bbf852591797e53a2c',
+                k2: '38b3b6f8810917d89636927bddb79294',
+            },
+            "DSportsPlus_fly": {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash-sd/enc/kp7qfx2tly/out/v1/bbfb730b45b74d4ea875d75786ea3f13/cenc-sd.mpd",
+                k1: '8afa490e1640be969729fb459182e4ec',
+                k2: '6f129820cdd5b6978a98c604c72cf05b',
+            },
+
+
+            "DSports_bia": {
+                url: "https://ablklrzaaaaaaaamjp7szxdgfshgz.ta.bia-cf.live.pv-cdn.net/gru-nitro/live/clients/dash/enc/3gg2jnixjn/out/v1/e1840e01f3f14563b66bbb944d5cc54c/cenc.mpd",
+                k1: 'f8b207c10f3f76aeba32a360ec52b9e4',
+                k2: 'afad49d20eb39670e93e371c1d669921',
+            },
+            "DSports2_bia": {
+                url: "https://ablklrzaaaaaaaamjkudxoh6taw35.ta.bia-cf.live.pv-cdn.net/gru-nitro/live/clients/dash/enc/nzl2d4ffbw/out/v1/d094dc6ba8354f3e88b7efa32f80cc33/cenc.mpd",
+                k1: '0db71325e4256f5f16b348b3b1b7832a',
+                k2: 'c664b811a97edc555da47c1d22482542',
+            },
+            "DSportsPlus_bia": {
+                url: "https://ablklrzaaaaaaaamisf6uy7d6mtud.ta.bia-cf.live.pv-cdn.net/gru-nitro/live/clients/dash/enc/hoo4ddqavw/out/v1/dadfb43b8a714e4f9288026b5c3351a0/cenc.mpd",
+                k1: 'da81f7165f73c884fc1dcf0bf3bd4bb5',
+                k2: '3f8d519997196db76631dd4b427f53f6',
+            },
+
+
+
+            "asdasdasd": {
+                url: "",
+                k1: '',
+                k2: '',
+            },
+            "asdasdasd": {
+                url: "",
+                k1: '',
+                k2: '',
+            },
+            "asdasdasd": {
+                url: "",
+                k1: '',
+                k2: '',
+            },
+            "asdasdasd": {
+                url: "",
+                k1: '',
+                k2: '',
+            },
+            "asdasdasd": {
+                url: "",
+                k1: '',
+                k2: '',
+            },
+        };
+
+        var id = getParameterByName('id');
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+            var sources = [];
+
+            if (config.url.includes('.m3u8')) {
+                sources.push({
+                    file: config.url
+                });
+            }
+
+            if (config.url.includes('.mpd') && config.k1 && config.k2) {
+                sources.push({
+                    // file: "https://cors-proxy.wangzhishi.net/"+config.url,
+                    // file: "https://holy-dew-10ad.jet-1968.workers.dev/"+config.url,
+                    // file: "https://proxygigared.canalesonline24.workers.dev/?url="+config.url,
+                    file: config.url,
+                    drm: { "clearkey": { "keyId": config.k1, "key": config.k2 } }
+                });
+            }
+
+            // JWWWWWW
+            jwplayer("player").setup({
+                playlist: [{
+                    title: "",
+                    description: "canalesonline.netlify.app",
+                    sources: sources
+                }],
+                width: "100%",
+                height: "100%",
+                autostart: true,
+                mute: false,
+                cast: {},
+                sharing: {},
+                // androidhls: true,
+                displaytitle: true,
+                stretching: "uniform",
+                preload: "auto",
+                liveSyncDuration: 3,
+            });
+
+            var lang = 1; // Por defecto en español
+            jwplayer().on('play', function (e) {
+                jwplayer().setCurrentAudioTrack(lang);
+            });
+        } else {
+            document.getElementById("player").innerHTML = '<h2 class="error-message">Canal inválido o no encontrado.</h2>';
+        }
+    </script>
+</body>
+
+</html>
