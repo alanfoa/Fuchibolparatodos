@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Telefe Vivo</title>
+    <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0e0e0e;
+            --surface: #1a1a1a;
+            --surface2: #242424;
+            --accent: #e8002d;
+            --text: #f0f0f0;
+            --muted: #888;
+            --radius: 10px;
+            --shimmer: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+        }
+
+        body.modo-player {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        body.modo-player #player-directo {
+            width: 100%;
+            height: 100vh;
+            display: block;
+        }
+
+        body.modo-grilla {
+            overflow-y: auto;
+        }
+
+        #grilla-header {
+            display: none;
+            padding: 32px 28px 20px;
+            border-bottom: 1px solid #222;
+        }
+
+        body.modo-grilla #grilla-header {
+            display: block;
+        }
+
+        #grilla-header h1 {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        #grilla-header h1 span {
+            color: var(--accent);
+        }
+
+        #grilla-header p {
+            color: var(--muted);
+            font-size: .85rem;
+            margin-top: 4px;
+        }
+
+        #grilla-wrap {
+            display: none;
+            padding: 24px 28px 48px;
+        }
+
+        body.modo-grilla #grilla-wrap {
+            display: block;
+        }
+
+        #grilla {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -600px 0;
+            }
+
+            100% {
+                background-position: 600px 0;
+            }
+        }
+
+        .skeleton-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--surface);
+        }
+
+        .skeleton-img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-size: 600px 100%;
+            background-image: var(--shimmer);
+            animation: shimmer 1.4s infinite linear;
+        }
+
+        .skeleton-body {
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .skeleton-line {
+            height: 13px;
+            border-radius: 6px;
+            background-size: 600px 100%;
+            background-image: var(--shimmer);
+            animation: shimmer 1.4s infinite linear;
+        }
+
+        .skeleton-line.w80 {
+            width: 80%;
+        }
+
+        .skeleton-line.w50 {
+            width: 50%;
+        }
+
+        .capitulo-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--surface);
+            cursor: pointer;
+            transition: transform .18s ease, box-shadow .18s ease;
+            position: relative;
+        }
+
+        .capitulo-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, .5);
+        }
+
+        .capitulo-card:hover .card-play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .capitulo-card img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            display: block;
+            background: #111;
+        }
+
+        .card-img-wrap {
+            position: relative;
+        }
+
+        .card-play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(.8);
+            width: 48px;
+            height: 48px;
+            background: rgba(232, 0, 45, .9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity .18s ease, transform .18s ease;
+            pointer-events: none;
+        }
+
+        .card-play-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+            margin-left: 3px;
+        }
+
+        .card-body {
+            padding: 12px 14px;
+        }
+
+        .card-titulo {
+            font-size: .92rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .card-fecha {
+            font-size: .75rem;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        #player-loading {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            background: var(--bg);
+            z-index: 500;
+            transition: opacity .3s ease;
+        }
+
+        #player-loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #player-loading .spinner-label {
+            font-size: .82rem;
+            color: var(--muted);
+            letter-spacing: .5px;
+        }
+
+        #player-loading .logo-accent {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        #modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, .85);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn .2s ease;
+        }
+
+        #modal-overlay.open {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #modal-box {
+            position: relative;
+            width: min(900px, 96vw);
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 32px 80px rgba(0, 0, 0, .8);
+            animation: slideUp .25s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(24px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        #modal-info {
+            padding: 14px 18px;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        #modal-titulo {
+            font-size: .95rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        #modal-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            border-radius: 6px;
+            transition: color .15s, background .15s;
+            flex-shrink: 0;
+        }
+
+        #modal-close:hover {
+            color: #fff;
+            background: #333;
+        }
+
+        #modal-close svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        #modal-player-wrap {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            position: relative;
+        }
+
+        #modal-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            background: #000;
+            z-index: 10;
+        }
+
+        #modal-loading.hidden {
+            display: none;
+        }
+
+        #modal-loading p {
+            font-size: .82rem;
+            color: var(--muted);
+            letter-spacing: .5px;
+        }
+
+        .spinner {
+            width: 44px;
+            height: 44px;
+            border: 3px solid #222;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #player-directo {
+            display: none;
+        }
+
+        /* Video nativo (fallback HLS.js) */
+        #video-hlsjs {
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            display: block;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+
+    <div id="player-loading">
+        <div class="logo-accent">TELEFE</div>
+        <div class="spinner"></div>
+        <span class="spinner-label">Cargando transmisión...</span>
+    </div>
+
+    <div id="player-directo"></div>
+
+    <div id="grilla-header">
+        <h1 id="grilla-titulo">Capítulos</h1>
+        <p id="grilla-subtitulo"></p>
+    </div>
+    <div id="grilla-wrap">
+        <div id="grilla"></div>
+    </div>
+
+    <div id="modal-overlay">
+        <div id="modal-box">
+            <div id="modal-info">
+                <span id="modal-titulo">Cargando...</span>
+                <button id="modal-close" title="Cerrar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div id="modal-player-wrap">
+                <div id="modal-loading">
+                    <div class="spinner"></div>
+                    <p>Obteniendo video...</p>
+                </div>
+                <div id="modal-player"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+
+        // ── CONFIGURACIÓN ────────────────────────────────────────────────────────
+        const PROXIES = [
+            'https://proxytelefe.canalesonline24.workers.dev/?url=',
+        ];
+
+        // Fallback mdstrm
+        const PROXY_AR = "https://sportsonline.ppvtv.top/proxy?url=";
+        const LAMBDA_URL = "https://57j4mtvcjjf7siqnnvkixb5d3i0uvjei.lambda-url.us-east-1.on.aws/";
+        const CANALES_MDSTRM = {
+            "telefe": "6a024684fd4ca6a938f3a118",
+        };
+
+        let proxyActual = 0;
+        function getProxyBase() { return PROXIES[proxyActual]; }
+
+        // ── Canales mitelefe ─────────────────────────────────────────────────────
+        const CHANNELS = {
+            telefe: { tokenizeUrl: 'https://www.mitelefe.com/vidya/tokenize', pageUrl: 'https://www.mitelefe.com/telefe-en-vivo' },
+            telefe_rosario: { tokenizeUrl: 'https://rosario.mitelefe.com/vidya/tokenize', pageUrl: 'https://rosario.mitelefe.com/telefe-rosario-en-vivo' },
+            telefe_santafe: { tokenizeUrl: 'https://santafe.mitelefe.com/vidya/tokenize', pageUrl: 'https://santafe.mitelefe.com/telefe-santa-fe-en-vivo' },
+            telefe_cordoba: { tokenizeUrl: 'https://cordoba.mitelefe.com/vidya/tokenize', pageUrl: 'https://cordoba.mitelefe.com/telefe-cordoba-en-vivo' },
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const capituloURL = params.get('capitulo');
+        const programaURL = params.get('programa');
+        const channel = params.get('channel') || 'telefe';
+
+        // ── Utilidades mitelefe ──────────────────────────────────────────────────
+        async function tokenize(tokenizeUrl, url) {
+            try {
+                const res = await fetch(getProxyBase() + encodeURIComponent(tokenizeUrl), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url }),
+                });
+                const data = await res.json();
+                return data.url;
+            } catch (e) { return url; }
+        }
+
+        async function getM3u8(pageUrl) {
+            const res = await fetch(getProxyBase() + encodeURIComponent(pageUrl));
+            const htmlText = await res.text();
+            const match = htmlText.match(/(https?:\/\/[^\s"'<>]+\.m3u8[^\s"'<>]*)/i);
+            return match ? match[1] : null;
+        }
+
+        function setupJW(elementId, finalUrl, isLive = false) {
+            const inst = jwplayer(elementId);
+            inst.setup({
+                playlist: [{ sources: [{ default: true, type: 'hls', file: finalUrl, label: '0' }] }],
+                width: '100%', height: '100%', autostart: true, mute: false,
+                stretching: 'uniform', preload: 'auto',
+                ...(isLive ? { liveSyncDuration: 3 } : {}),
+            });
+            return inst;
+        }
+
+        function ocultarPlayerLoading() {
+            const el = document.getElementById('player-loading');
+            if (!el) return;
+            el.classList.add('hidden');
+            setTimeout(() => el.remove(), 350);
+        }
+
+        // ── Fallback mdstrm con HLS.js ───────────────────────────────────────────
+        async function iniciarPlayerMdstrm() {
+            const stream_id = CANALES_MDSTRM[channel] || CANALES_MDSTRM['telefe'];
+            if (!stream_id) throw new Error("Canal no disponible en mdstrm");
+
+            console.log("[mdstrm] Iniciando fallback para canal:", channel);
+
+            // Token
+            const lambdaRes = await fetch(PROXY_AR + encodeURIComponent(LAMBDA_URL + "?stream_id=" + stream_id));
+            if (!lambdaRes.ok) throw new Error("Lambda error " + lambdaRes.status);
+            const { access_token } = await lambdaRes.json();
+            if (!access_token) throw new Error("Sin access_token");
+
+            // Bajar master m3u8 (no-referrer ya está en el meta)
+            const masterUrl = `https://mdstrm.com/live-stream-playlist/${stream_id}.m3u8?m3u8&access_token=${access_token}`;
+            const masterRes = await fetch(masterUrl);
+            if (!masterRes.ok) throw new Error("m3u8 error " + masterRes.status);
+            const masterText = await masterRes.text();
+            const masterBase = masterUrl.substring(0, masterUrl.lastIndexOf("/") + 1);
+
+            // Reescribir URLs relativas → absolutas (sin proxy, HLS.js las pide directo)
+            const newLines = masterText.split("\n").map(line => {
+                const t = line.trim();
+                if (!t || t.startsWith("#")) return line;
+                return t.startsWith("http") ? t : masterBase + t;
+            });
+
+            const masterBlob = new Blob([newLines.join("\n")], { type: "application/vnd.apple.mpegurl" });
+            const finalBlobUrl = URL.createObjectURL(masterBlob);
+
+            // Montar video nativo con HLS.js en #player-directo
+            const container = document.getElementById('player-directo');
+            container.innerHTML = '';
+            const video = document.createElement('video');
+            video.id = "video-hlsjs";
+            video.controls = true;
+            video.autoplay = true;
+            video.playsinline = true;
+            container.appendChild(video);
+
+            if (Hls.isSupported()) {
+                const hls = new Hls({ manifestLoadingMaxRetry: 5, levelLoadingMaxRetry: 5, fragLoadingMaxRetry: 5 });
+                hls.loadSource(finalBlobUrl);
+                hls.attachMedia(video);
+                const player = new Plyr(video, { controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'] });
+                hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    ocultarPlayerLoading();
+                    video.play().catch(() => { });
+                });
+                hls.on(Hls.Events.ERROR, (e, data) => {
+                    if (data.fatal) {
+                        if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
+                        else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) hls.recoverMediaError();
+                        else { console.error("[HLS]", data.details); }
+                    }
+                });
+            } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+                video.src = finalBlobUrl;
+                video.addEventListener('loadedmetadata', () => {
+                    ocultarPlayerLoading();
+                    video.play().catch(() => { });
+                });
+            } else {
+                throw new Error("Browser no soporta HLS");
+            }
+        }
+
+        // ════════════════════════════════════════════════════════════════════════
+        // MODO PROGRAMA → grilla + modal
+        // ════════════════════════════════════════════════════════════════════════
+        if (programaURL) {
+            document.body.classList.add('modo-grilla');
+            ocultarPlayerLoading();
+            cargarGrilla(programaURL);
+        }
+
+        // ════════════════════════════════════════════════════════════════════════
+        // MODO CANAL / CAPÍTULO → player directo
+        // ════════════════════════════════════════════════════════════════════════
+        else {
+            document.body.classList.add('modo-player');
+            const config = capituloURL
+                ? { tokenizeUrl: 'https://mitelefe.com/vidya/tokenize', pageUrl: capituloURL }
+                : (CHANNELS[channel] || CHANNELS['telefe']);
+
+            iniciarPlayerDirecto(config);
+        }
+
+        async function iniciarPlayerDirecto(config) {
+            // 1. Intentar con mitelefe
+            for (let i = 0; i < PROXIES.length; i++) {
+                proxyActual = i;
+                try {
+                    console.log(`[mitelefe] Intentando proxy ${i + 1}: ${PROXIES[i]}`);
+                    const raw = await getM3u8(config.pageUrl);
+                    if (!raw) throw new Error('No m3u8');
+                    const final = await tokenize(config.tokenizeUrl, raw);
+
+                    ocultarPlayerLoading();
+                    const inst = setupJW('player-directo', final, !capituloURL);
+                    inst.on('firstFrame', ocultarPlayerLoading);
+                    console.log("[mitelefe] OK ✅");
+                    return;
+
+                } catch (e) {
+                    console.warn(`[mitelefe] Proxy ${i + 1} falló:`, e.message);
+                }
+            }
+
+            // 2. Todos los proxies mitelefe fallaron → fallback mdstrm
+            console.warn("[mitelefe] Todos fallaron → intentando mdstrm...");
+            try {
+                await iniciarPlayerMdstrm();
+                console.log("[mdstrm] OK ✅");
+            } catch (e) {
+                console.error("[mdstrm] También falló:", e.message);
+                document.getElementById('player-loading').innerHTML =
+                    `<div class="logo-accent">TELEFE</div>
+           <p style="color:var(--accent);font-size:.9rem">Error al cargar la transmisión.</p>`;
+            }
+        }
+
+        // ── Grilla ───────────────────────────────────────────────────────────────
+        function crearSkeletons(n = 12) {
+            const grilla = document.getElementById('grilla');
+            for (let i = 0; i < n; i++) {
+                grilla.innerHTML += `
+          <div class="skeleton-card">
+            <div class="skeleton-img"></div>
+            <div class="skeleton-body">
+              <div class="skeleton-line w80"></div>
+              <div class="skeleton-line w50"></div>
+            </div>
+          </div>`;
+            }
+        }
+
+        async function intentarCargarGrilla(programaUrl, proxyIndex) {
+            proxyActual = proxyIndex;
+            const res = await fetch(getProxyBase() + encodeURIComponent(programaUrl));
+            const htmlText = await res.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlText, 'text/html');
+
+            const main = doc.querySelector('main');
+            const h1 = main ? main.querySelector('h1') : doc.querySelector('h1');
+            const h2 = main ? main.querySelector('h2') : doc.querySelector('h2');
+            if (h1) document.getElementById('grilla-titulo').textContent = h1.textContent.trim();
+            if (h2) document.getElementById('grilla-subtitulo').textContent = h2.textContent.trim();
+
+            const cards = [];
+            [...doc.querySelectorAll('article')].forEach(article => {
+                const a = article.querySelector('a[href]');
+                if (!a) return;
+                const href = a.getAttribute('href').trim();
+                if (!/capitulo-\d+/i.test(href)) return;
+                const img = article.querySelector('img');
+                const imgSrc = img ? (img.getAttribute('src') || '') : '';
+                const titulo = article.querySelector('h3')?.textContent.trim() || '';
+                const emitido = article.querySelector('span.d-block')?.textContent.trim() || '';
+                cards.push({ href, imgSrc, titulo, emitido });
+            });
+
+            return cards;
+        }
+
+        async function cargarGrilla(programaUrl) {
+            crearSkeletons(12);
+            let cards = [], exitoso = false;
+
+            for (let i = 0; i < PROXIES.length; i++) {
+                try {
+                    cards = await intentarCargarGrilla(programaUrl, i);
+                    if (cards.length > 0) { exitoso = true; break; }
+                } catch (err) {
+                    console.warn(`Grilla: proxy ${i + 1} dio error:`, err);
+                }
+            }
+
+            document.getElementById('grilla').innerHTML = '';
+            if (!exitoso || cards.length === 0) {
+                document.getElementById('grilla').innerHTML =
+                    '<p style="color:var(--muted);grid-column:1/-1;padding:40px 0;text-align:center">No se encontraron capítulos.</p>';
+                return;
+            }
+
+            cards.forEach(({ href, imgSrc, titulo, emitido }) => {
+                const card = document.createElement('div');
+                card.className = 'capitulo-card';
+                card.innerHTML = `
+          <div class="card-img-wrap">
+            ${imgSrc
+                        ? `<img src="${imgSrc}" loading="lazy" alt="${titulo}" onerror="this.style.display='none'">`
+                        : `<div style="aspect-ratio:16/9;background:#111"></div>`}
+            <div class="card-play-icon">
+              <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-titulo">${titulo}</div>
+            ${emitido ? `<div class="card-fecha">${emitido}</div>` : ''}
+          </div>`;
+                card.addEventListener('click', () => abrirModal(href, titulo));
+                document.getElementById('grilla').appendChild(card);
+            });
+        }
+
+        // ── Modal ─────────────────────────────────────────────────────────────────
+        let modalPlayerInst = null;
+
+        async function abrirModal(href, titulo) {
+            const overlay = document.getElementById('modal-overlay');
+            const loading = document.getElementById('modal-loading');
+
+            document.getElementById('modal-titulo').textContent = titulo;
+            document.getElementById('modal-player').innerHTML = '';
+            loading.classList.remove('hidden');
+            if (modalPlayerInst) { try { modalPlayerInst.remove(); } catch (e) { } modalPlayerInst = null; }
+
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+
+            for (let i = 0; i < PROXIES.length; i++) {
+                proxyActual = i;
+                try {
+                    const raw = await getM3u8(href);
+                    if (!raw) throw new Error('No m3u8');
+                    const final = await tokenize('https://mitelefe.com/vidya/tokenize', raw);
+                    loading.classList.add('hidden');
+                    modalPlayerInst = setupJW('modal-player', final, false);
+                    return;
+                } catch (e) {
+                    console.warn(`Modal: proxy ${i + 1} falló:`, e);
+                    if (i === PROXIES.length - 1) {
+                        loading.innerHTML = `<p style="color:var(--accent)">Error al cargar el video.</p>`;
+                    }
+                }
+            }
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+            if (modalPlayerInst) {
+                try { modalPlayerInst.stop(); modalPlayerInst.remove(); } catch (e) { }
+                modalPlayerInst = null;
+            }
+            document.getElementById('modal-player').innerHTML = '';
+            document.getElementById('modal-loading').classList.remove('hidden');
+        }
+
+        document.getElementById('modal-close').addEventListener('click', cerrarModal);
+        document.getElementById('modal-overlay').addEventListener('click', e => {
+            if (e.target === document.getElementById('modal-overlay')) cerrarModal();
+        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
+    </script>
+    <script src="../js/script-config.js"></script>
+</body>
+
+</html>
