@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>fly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        #player {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #status {
+            color: white;
+            text-align: center;
+            margin-top: 20%;
+            font-size: 1.2em;
+        }
+
+        /* Color de la barra de progreso de Bitmovin */
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition-marker,
+        .bmpui-ui-volumeslider .bmpui-seekbar-playbackposition {
+            background-color: #51E0C0 !important;
+        }
+    </style>
+
+    <!-- Bitmovin Player -->
+    <script src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+</head>
+
+<body>
+    <div id="player">
+        <div id="status">Cargando...</div>
+    </div>
+
+    <script>
+        // ── Lista de canales ───────────────────────────────────────────
+        const canais = {
+            canal5mx: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/ffwkol9rr3/out/v1/c5f712f414b64736ba9cb11e9d3cd554/cenc-sd.mpd",
+                ck_keyid: "c630b9d02c9eee970976e33e9d98ca16",
+                ck_key: "6517788f3f04875bc83f34710b1d87e4"
+            },
+            Canal9mx: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/dash-sd/enc/pz4dlw4rjn/out/v1/2c1c080f26834fc9b7a6c2459f92e031/cenc-sd.mpd",
+                ck_keyid: "eb3707eac345108dc497b896567ac39c",
+                ck_key: "79885a869e49426149b117afe8a1b887"
+            },
+            aztecauno: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/dsdqojpjj3/out/v1/51dceb8ee35b4f25b1dd88860937d08e/cenc-sd.mpd",
+                ck_keyid: "9d26b8806a230aedca4a03072aa38508",
+                ck_key: "36b07a92bbfaa8580ad031f05352f2e3"
+            },
+            telehitmusica: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/jljlf0vz3r/out/v1/326e2ac9ca874738b45909d3424ee7d8/cenc-sd.mpd",
+                ck_keyid: "1d59facc4ae743450fc6dbf03808064c",
+                ck_key: "6e82dd27846bcf0addfab73b85ad86e2"
+            },
+            unicable: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/39koeufifb/out/v1/01636fc199594512a2a15edbe0844c6f/cenc-sd.mpd",
+                ck_keyid: "671592786df6ca7e7a1334b55a6c2758",
+                ck_key: "352e85a7b1cdbbdacd9fbf28137f6563"
+            },
+            distritocomedia: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/0sejrj1ipd/out/v1/f87c139bde754f44ab36e193d1430e86/cenc-sd.mpd",
+                ck_keyid: "ecf73546bb0a453afd0c4740185fe130",
+                ck_key: "b415fc03bcc5e21e43d803f9fb440c0b"
+            },
+            tudnmx: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/1a5vdd4i8j/out/v1/db14823b937045ac8b2b0effbcdded45/cenc-sd.mpd",
+                ck_keyid: "5f096c1f9e243b31ddc3bf4f5d88fc5f",
+                ck_key: "27334536d6077737b321c64663ebf59d"
+            },
+            tudnmx2: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/8u9cregwlt/out/v1/687f6b2a559943549be271504a948ffd/cenc.mpd",
+                ck_keyid: "1710ac2bbfcd3032d0f6533850968f47",
+                ck_key: "d2548dacc8efcd1cd0af0373060c82dc"
+            },
+            foxdeportes: {
+                url: "https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/vkpoljjpkj/out/v1/502bcf68b3514cd28a220e6f0a43816f/cenc.mpd",
+                ck_keyid: "d1a163914db8ffad2c3e94f979896a0d",
+                ck_key: "9728800a3959aafdd5b0bcfbf3768811"
+            },
+            fox1mx: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/oboxe53wyo/out/v1/f7892a9d706d419a846d738fa22ea33e/cenc.mpd",
+                ck_keyid: "2fbdaa3bea0d0323ae011b318d1db716",
+                ck_key: "8726ef7eaf5b9dce15fb6aa9f80bd53f"
+            },
+            fox2mx: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/tepjqej1ys/out/v1/c9c9159baee749a19612b1598495859a/cenc.mpd",
+                ck_keyid: "8836fb04d62dc64c9f8a39ef8640d5eb",
+                ck_key: "d4f05ce56c5231b7cdf53455bea58621"
+            },
+            fox3mx: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/wybgz0orr8/out/v1/2f6d1612abd44f5883917f8a585b955f/cenc.mpd",
+                ck_keyid: "11c8c1c2ef0385cf1e64d44bb9c3a395",
+                ck_key: "5769730ffbdc4b2fd8945929d9ace063"
+            },
+            foxpremiumx: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/fdx74zqzhu/out/v1/7d7a8c6981a842b98a683e9fbfe51d17/cenc.mpd",
+                ck_keyid: "9f327d24c66fbd84e15ab5c9ead7c7a4",
+                ck_key: "83837185529c0c4048f81386c2d36426"
+            },
+            tmplus: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/tbynhkao4z/out/v1/d184cde5592341b3be503c04db3fcb56/cenc-sd.mpd",
+                ck_keyid: "b7a1c706285f1078b1344309158cd6a1",
+                ck_key: "4c8f0fcb652fde516041e02d099af299"
+            },
+            ucinema: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/byvanrruxe/out/v1/33a96ef35b0b42789bb6ebd104900bae/cenc-sd.mpd",
+                ck_keyid: "62c4befbcf6779ca84bc9d86ef5dce78",
+                ck_key: "a460b8f668709993a8dd76fbcce360be"
+            },
+            ucomedy: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/7997jjtvoa/out/v1/29bcd1f10f2b491cbc91cb1b624a655e/cenc-sd.mpd",
+                ck_keyid: "1c8b46ea8e6390267c1d16c588a4c4c0",
+                ck_key: "5272e03689b890b677f42dc1ead8794b"
+            },
+            ucrime: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/goiznoiicv/out/v1/b76595a406d24861b49b6871786d4661/cenc-sd.mpd",
+                ck_keyid: "04a58d27b7bfaf4763362edf05da265e",
+                ck_key: "b6421cee1c6224913783e474079e7a72"
+            },
+            ureality: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/pedfya71dz/out/v1/38ed60f9665245ab9182a5b34b41f769/cenc-sd.mpd",
+                ck_keyid: "578cb3e21bd530e72decf4546aab7abb",
+                ck_key: "cab3146dc7ef25ef60412a6c7f05f575"
+            },
+            upremiere: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/dash-sd/enc/xerdmaskki/out/v1/787fdc37902c41eda2fb8a3098dbd50d/cenc-sd.mpd",
+                ck_keyid: "79368a1a8de04576303bd1750e43ab63",
+                ck_key: "ff356a80dd60bac9dba49e141160fd03"
+            },
+            golden: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/taxkqu28zg/out/v1/e3e2a1b75df5401783b27939805d33c2/cenc-sd.mpd",
+                ck_keyid: "b56db6f8bf583df8f6b9d0bb4cd63a7b",
+                ck_key: "501c5afa5a6ca014ee798c7713454715"
+            },
+            bitme: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/jnn66otuvo/out/v1/c35e1d95879d4de5a3b8ead30830ecaf/cenc-sd.mpd",
+                ck_keyid: "d1ee410be96d200301ca31230e217fa3",
+                ck_key: "4362b9affc67462f28da0b7927f63dfc"
+            },
+            tlnovelas: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/arvbyvomao/out/v1/c9c515dc66fd451da12c9a3a6b07de8f/cenc-sd.mpd",
+                ck_keyid: "ad3902dc7b7cb3370df1f6ae130f6e3c",
+                ck_key: "366439bd6f23eab61fd2a83dfae892f1"
+            },
+            edge: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash-sd/enc/hqpwskclwy/out/v1/b852d8a3e9ed46a2880124dbbda383d4/cenc-sd.mpd",
+                ck_keyid: "b4b46f73f8b72c198b5dd8d7413b5a39",
+                ck_key: "706b902ddb29aed7f241185ba8b58b37"
+            },
+            dsports: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash-sd/enc/hubonmgf5k/out/v1/10560d92577e4917973aa4624124ecd6/cenc-sd.mpd",
+                ck_keyid: "45bbd582f220f438f896450d8306a3f2",
+                ck_key: "582c6ba7f64bbc0f2d91c6b0c265760c"
+            },
+            dsports2: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash-sd/enc/hufm7lgnhx/out/v1/5045630288d44123ba85427b2c36f29f/cenc-sd.mpd",
+                ck_keyid: "18044a84b7e6c1bbf852591797e53a2c",
+                ck_key: "38b3b6f8810917d89636927bddb79294"
+            },
+            dsportsplus: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash-sd/enc/kp7qfx2tly/out/v1/bbfb730b45b74d4ea875d75786ea3f13/cenc-sd.mpd",
+                ck_keyid: "8afa490e1640be969729fb459182e4ec",
+                ck_key: "6f129820cdd5b6978a98c604c72cf05b"
+            },
+            tnt_sports_1_uk: {
+                url: "https://a12aivottepl-a.akamaihd.net/gru-nitro/live/dash/enc/cllekigzzn/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd",
+                ck_keyid: "294b5761cefc22d0c6312939e13d8278",
+                ck_key: "52148f1042d238849f0a7813f1da8a7b"
+            },
+            tnt_sports_2_uk: {
+                url: "https://a12aivottepl-a.akamaihd.net/gru-nitro/live/dash/enc/fb6jy4pxts/out/v1/f8fa17f087564f51aa4d5c700be43ec4/cenc.mpd",
+                ck_keyid: "f288380ca4cef9ad3f27a92a08e9bb8b",
+                ck_key: "9f18d26291d9230833501f7f822f6875"
+            },
+            tnt_sports_3_uk: {
+                url: "https://a12aivottepl-a.akamaihd.net/gru-nitro/live/dash/enc/5sxuux529k/out/v1/bb548a3626cd4708afbb94a58d71dce9/cenc.mpd",
+                ck_keyid: "1d96ab366bbe6451edf7407b58e2fa16",
+                ck_key: "0116201f4a63ac5bf5787d2c610c41a7"
+            },
+            cza_dsports: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash/enc/ubehitlwzo/out/v1/8e09c381a51f4366a19e979418112e8f/cenc.mpd",
+                ck_keyid: "a7d11d37a1f7611ee88d4db880171f32",
+                ck_key: "68f96d618b0b956b008c445896a25a79"
+            },
+            tvla1es: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/62qdkefv9f/out/v1/f7d5b356e048494a8325563e8916d50b/cenc.mpd",
+                ck_keyid: "fd86dde0ae3e14ff51c8fc8f248a50db",
+                ck_key: "d106ae78b0893da2e4393ece99420baa"
+            },
+            sportv1: {
+                url: "https://otte.live.fly.ww.aiv-cdn.net/gru-nitro/live/clients/dash/enc/m7duvnk2bu/out/v1/d1ad69118b5647309b1eb7213affdb3d/cenc.mpd",
+                ck_keyid: "4bbcff3289d457b4dd5dbdd21221de9a",
+                ck_key: "c4906b9a9f8dda3c0725bddb8c497733"
+            },
+            sprotdigital: {
+                url: "https://svc45.main.sl.t-online.de/bpk-tv/KID01037_FUSSBALLTV1_hd/DASH/index.mpd",
+                ck_keyid: "1cb20afcd9d979c833cfd208c7d3eeb2",
+                ck_key: "fef0c15b4a523370892edd5e4133c269"
+            },
+        };
+
+        // ── Leer parámetro de la URL ───────────────────────────────────
+        function getParam(name) {
+            return new URL(window.location.href).searchParams.get(name);
+        }
+
+        const id = getParam('id');
+        const config = canais[id];
+
+        if (!config) {
+            document.getElementById('status').innerHTML =
+                '<h2>Canal inválido o no encontrado.</h2>';
+        } else {
+            // Exponer variables como las espera el bloque de inicialización
+            var url = config.url;
+            var ck_keyid = config.ck_keyid;
+            var ck_key = config.ck_key;
+
+            // ── Protección básica ──────────────────────────────────────
+            (function () {
+                document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'F12' ||
+                        (e.ctrlKey && e.shiftKey && ['I', 'C', 'J'].indexOf(e.key) > -1)) {
+                        e.preventDefault();
+                    }
+                });
+            })();
+
+            var statusEl = document.getElementById('status');
+            function showPlayer() { statusEl.style.display = 'none'; }
+
+            // ── Interceptar licencia Bitmovin ──────────────────────────
+            (function () {
+                var GRANT = 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+                function override(u) {
+                    var wm = document.querySelector('button.bmpui-ui-watermark');
+                    if (wm) wm.setAttribute('disabled', 'disabled');
+                    if (u.indexOf('licensing.bitmovin.com/licensing') > -1) return GRANT;
+                    if (u.indexOf('licensing.bitmovin.com/impression') > -1) return GRANT;
+                    return u;
+                }
+                var _open = XMLHttpRequest.prototype.open;
+                XMLHttpRequest.prototype.open = function () {
+                    arguments[1] = override(arguments[1]);
+                    return _open.apply(this, arguments);
+                };
+            })();
+
+            // ── Inicializar Bitmovin ───────────────────────────────────
+            document.addEventListener('DOMContentLoaded', function () {
+                var player = new bitmovin.player.Player(document.getElementById('player'), {
+                    key: '11d3698c-efdf-42f1-8769-54663995de2b',
+                    analytics: false,
+                    cast: { enable: true },
+                    playback: { autoplay: true, muted: false },
+                    // style: { width: '100%', height: '100%' }
+                });
+
+                var source = { dash: url };
+                if (ck_keyid && ck_key) {
+                    source.drm = { clearkey: [{ keyId: ck_keyid, key: ck_key }] };
+                }
+
+                player.load(source).then(showPlayer).catch(function (err) {
+                    console.error('Bitmovin error:', err);
+                });
+            });
+        }
+    </script>
+    <script src="../js/script-config.js"></script>
+</body>
+
+</html>

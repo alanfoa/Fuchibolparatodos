@@ -435,6 +435,7 @@
 
         // ── CONFIGURACIÓN ────────────────────────────────────────────────────────
         const PROXIES = [
+            'https://proxytelefe.aproyecto100.workers.dev/?url=',
             'https://proxytelefe.canalesonline24.workers.dev/?url=',
         ];
 
@@ -504,22 +505,29 @@
             const stream_id = CANALES_MDSTRM[channel] || CANALES_MDSTRM['telefe'];
             if (!stream_id) throw new Error("Canal no disponible en mdstrm");
 
-            console.log("[mdstrm] Iniciando fallback para canal:", channel);
+            // Usar el endpoint que usa mitelefe directamente
+            const timestamp = Date.now();
+            const accessUrl = `https://mdstrm.com/api/live-stream/${stream_id}/access?_=${timestamp}&G=https%3A%2F%2Fwww.mitelefe.com%2F`;
 
-            // Token
-            const lambdaRes = await fetch(PROXY_AR + encodeURIComponent(LAMBDA_URL + "?stream_id=" + stream_id));
-            if (!lambdaRes.ok) throw new Error("Lambda error " + lambdaRes.status);
-            const { access_token } = await lambdaRes.json();
-            if (!access_token) throw new Error("Sin access_token");
+            const accessRes = await fetch(accessUrl, {
+                headers: {
+                    "Referer": `https://mdstrm.com/live-stream/${stream_id}?player=69f8d6e334a190b16647b23b`,
+                    "X-Requested-With": "XMLHttpRequest",
+                }
+            });
 
-            // Bajar master m3u8 (no-referrer ya está en el meta)
-            const masterUrl = `https://mdstrm.com/live-stream-playlist/${stream_id}.m3u8?m3u8&access_token=${access_token}`;
-            const masterRes = await fetch(masterUrl);
+            if (!accessRes.ok) throw new Error("access error " + accessRes.status);
+            const accessData = await accessRes.json();
+
+            if (accessData.status !== "OK") throw new Error("Stream no disponible: " + JSON.stringify(accessData));
+
+            // Con la cookie MDSTRMFPT ya seteada, pedir el m3u8
+            const masterUrl = `https://mdstrm.com/live-stream-playlist/${stream_id}.m3u8?m3u8`;
+            const masterRes = await fetch(masterUrl, { referrerPolicy: "no-referrer" });
             if (!masterRes.ok) throw new Error("m3u8 error " + masterRes.status);
             const masterText = await masterRes.text();
             const masterBase = masterUrl.substring(0, masterUrl.lastIndexOf("/") + 1);
 
-            // Reescribir URLs relativas → absolutas (sin proxy, HLS.js las pide directo)
             const newLines = masterText.split("\n").map(line => {
                 const t = line.trim();
                 if (!t || t.startsWith("#")) return line;
@@ -529,7 +537,6 @@
             const masterBlob = new Blob([newLines.join("\n")], { type: "application/vnd.apple.mpegurl" });
             const finalBlobUrl = URL.createObjectURL(masterBlob);
 
-            // Montar video nativo con HLS.js en #player-directo
             const container = document.getElementById('player-directo');
             container.innerHTML = '';
             const video = document.createElement('video');
@@ -543,7 +550,6 @@
                 const hls = new Hls({ manifestLoadingMaxRetry: 5, levelLoadingMaxRetry: 5, fragLoadingMaxRetry: 5 });
                 hls.loadSource(finalBlobUrl);
                 hls.attachMedia(video);
-                const player = new Plyr(video, { controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'] });
                 hls.on(Hls.Events.MANIFEST_PARSED, () => {
                     ocultarPlayerLoading();
                     video.play().catch(() => { });
@@ -552,17 +558,11 @@
                     if (data.fatal) {
                         if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
                         else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) hls.recoverMediaError();
-                        else { console.error("[HLS]", data.details); }
                     }
                 });
             } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
                 video.src = finalBlobUrl;
-                video.addEventListener('loadedmetadata', () => {
-                    ocultarPlayerLoading();
-                    video.play().catch(() => { });
-                });
-            } else {
-                throw new Error("Browser no soporta HLS");
+                video.addEventListener('loadedmetadata', () => { ocultarPlayerLoading(); video.play().catch(() => { }); });
             }
         }
 

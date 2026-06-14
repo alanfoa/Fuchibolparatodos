@@ -3206,7 +3206,7 @@ MisCanales.set(
 
 
 
-            servidorCanalesOnline + "fly.html?id=dsports",
+            servidorCanalesOnline + "flypro.html?id=dsports",
             servidorCanalesOnline + "fly-hls.html?id=dsports",
             servidorCanalesOnline + "tdtcloud.html?stream=dsports",
             servidorCanalesOnline + "deepcathink.html?feed=94",
@@ -3252,7 +3252,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt.html?get=RHNwb3J0czJfVVk=",
             servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0czJfVVk=",
             
-            servidorCanalesOnline + "fly.html?id=dsports2",
+            servidorCanalesOnline + "flypro.html?id=dsports2",
             servidorCanalesOnline + "fly-hls.html?id=dsports2",
             servidorCanalesOnline + "tdtcloud.html?stream=dsports2",
             servidorCanalesOnline + "deepcathink.html?feed=95",
@@ -3284,7 +3284,7 @@ MisCanales.set(
         pais: "Argentina",
         enlaces: [
             servidorCanalesOnline + "dsports.html?id=DSportsPlus_cbsivideo",
-            servidorCanalesOnline + "fly.html?id=dsportsplus",
+            servidorCanalesOnline + "flypro.html?id=dsportsplus",
             servidorCanalesOnline + "fly-hls.html?id=dsportsplus",
             servidorCanalesOnline + "tdtcloud.html?stream=dsportsplus",
             servidorCanalesOnline + "deepcathink.html?feed=96",
@@ -4786,7 +4786,7 @@ MisCanales.set(
             // "https://streamx10.cloud/global3.php?channel=foxsportspremium", //No funciona en la apk
             // "https://la10hd.com/vivo/canal.php?stream=foxsportspremium",
             // "https://la10hd.com/vivo/canales.php?stream=foxsportspremium",
-            servidorCanalesOnline + "fly.html?id=foxpremiumx",
+            servidorCanalesOnline + "flypro.html?id=foxpremiumx",
             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsportspremium",
             // "https://fullchannels.online/canales.php?id=foxpremium",
             // "https://thedaddy.to/embed/stream-830.php",
@@ -4820,7 +4820,7 @@ MisCanales.set(
             // "https://streamx10.cloud/global3.php?channel=foxsportsmx", //No funciona en la apk
             // "https://la10hd.com/vivo/canal.php?stream=foxsportsmx",
             // "https://la10hd.com/vivo/canales.php?stream=foxsportsmx",
-            servidorCanalesOnline + "fly.html?id=fox1mx",
+            servidorCanalesOnline + "flypro.html?id=fox1mx",
             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsportsmx",
         ]
     }
@@ -4833,7 +4833,7 @@ MisCanales.set(
         enlaces: [
             // "https://streamx10.cloud/global2.php?channel=foxsports2mx",
             // "https://streamx10.cloud/global1.php?channel=foxsports2mx",
-            servidorCanalesOnline + "fly.html?id=fox2mx",
+            servidorCanalesOnline + "flypro.html?id=fox2mx",
             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsports2mx",
         ]
     }
@@ -4846,7 +4846,7 @@ MisCanales.set(
         enlaces: [
             // "https://streamx10.cloud/global2.php?channel=foxsports3mx",
             // "https://streamx10.cloud/global1.php?channel=foxsports3mx",
-            servidorCanalesOnline + "fly.html?id=fox3mx",
+            servidorCanalesOnline + "flypro.html?id=fox3mx",
             servidorCanalesOnline + "jjfutbol2pro.html?name=foxsports3mx",
         ]
     }
@@ -4988,7 +4988,7 @@ MisCanales.set(
     {
         pais: "México",
         enlaces: [
-            servidorCanalesOnline + "fly.html?id=tudnmx",
+            servidorCanalesOnline + "flypro.html?id=tudnmx",
             servidorCanalesOnline + "tdtcloud.html?stream=tudnmx",
             "https://cdn.tdtcloud.xyz/ws20.php",
             // "https://streamx10.cloud/global2.php?channel=tudn_usa",

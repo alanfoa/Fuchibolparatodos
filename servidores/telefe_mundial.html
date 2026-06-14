@@ -111,13 +111,11 @@
                     throw new Error("No se recibió access_token");
                 }
 
-                const src =
-                    "https://mdstrm.com/live-stream/" +
+                const src = "https://mdstrm.com/live-stream/" +
                     data.stream_id +
-                    "?player=" +
-                    data.player_id +
-                    "&access_token=" +
-                    data.access_token;
+                    "?player=" + data.player_id +
+                    "&access_token=" + data.access_token +
+                    "&ref=" + encodeURIComponent("https://www.mitelefe.com/");  // ← agregar esto
 
                 document.getElementById("player").innerHTML =
                     `<iframe
