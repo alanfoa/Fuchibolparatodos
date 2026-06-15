@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>ZapiTv</title>
+
+    <!-- Bitmovin Player -->
+    <script src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+
+    <style>
+        html,
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Color de la barra de progreso de Bitmovin */
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition-marker,
+        .bmpui-ui-volumeslider .bmpui-seekbar-playbackposition {
+            background-color: #51E0C0 !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+    <div id="player"></div>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        /* ════════════════════════════════════════════════════════
+         * Interceptar licencia Bitmovin
+         * ════════════════════════════════════════════════════════ */
+        (function () {
+            var GRANT = 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+            function override(u) {
+                var wm = document.querySelector('button.bmpui-ui-watermark');
+                if (wm) wm.setAttribute('disabled', 'disabled');
+                if (u.indexOf('licensing.bitmovin.com/licensing') > -1) return GRANT;
+                if (u.indexOf('licensing.bitmovin.com/impression') > -1) return GRANT;
+                return u;
+            }
+            var _open = XMLHttpRequest.prototype.open;
+            XMLHttpRequest.prototype.open = function () {
+                arguments[1] = override(arguments[1]);
+                return _open.apply(this, arguments);
+            };
+        })();
+
+        /* ════════════════════════════════════════════════════════
+         * Helpers
+         * ════════════════════════════════════════════════════════ */
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        /* ════════════════════════════════════════════════════════
+         * Configuración de canales
+         * ════════════════════════════════════════════════════════ */
+        var ConfiguracionCanales = {
+            dmax: {
+                url: "https://cache07.zapitv.com/live/eds_c2/dmax/dash_live_ez/dmax.mpd",
+                clearkey: { 'd2e2e464abaf44259abca6f7055fed52': '2edcd9e9c03f400ca0058598d3a75a5b' }
+            },
+            historia: {
+                url: "https://cache07.zapitv.com/live/eds_c2/historia_hd/dash_live_ez/historia_hd.mpd",
+                clearkey: { 'f1c3ba240a4f408182db1c034129f970': '3a4a0aaf2688401165fb25e4f7b4ea13' }
+            },
+            amcrime: {
+                url: "https://cache07.zapitv.com/live/eds_c2/crimen/dash_live_ez/crimen.mpd",
+                clearkey: { '9f71d55c4b0e4c57871180bd06ce832a': '55faa0cb0117cb7060972dfd4f87d537' }
+            },
+            amcbreak: {
+                url: "https://cache07.zapitv.com/live/eds_c2/blaze/dash_live_ez/blaze.mpd",
+                clearkey: { 'bf849c4337464c4682ec95f76b3af9fc': 'e2d1e53b9c63394e9db0090e2782a87f' }
+            },
+            dark: {
+                url: "https://cache07.zapitv.com/live/eds_c2/DARK_HD/dash_live_ez/DARK_HD.mpd",
+                clearkey: { 'de5b378612314027afe31860c97e413e': '7a94d3e1261a3f0556ce6726c5679a38' }
+            },
+            dkiss: {
+                url: "https://cache07.zapitv.com/live/eds_c2/dkiss_tv/dash_live_ez/dkiss_tv.mpd",
+                clearkey: { '29d6b10da4aa427f9999f18d7bab8a79': '66a8e1e396c40c8a5ba51bbfe020902b' }
+            },
+            bemad: {
+                url: "https://cache07.zapitv.com/live/eds_c2/bemad_hd/dash_live_ez/bemad_hd.mpd",
+                clearkey: { '101ae4e5db4f48b1ab2e3e7e51f2b879': 'fc243b64966d05458f20195bd1f892db' }
+            },
+            divinity: {
+                url: "https://cache07.zapitv.com/live/eds_c2/divinity/dash_live_ez/divinity.mpd",
+                clearkey: { 'ff72f557517743659f9bc369078030d0': '2b69480bd2fba3fbbcb61cc2f58d5ee6' }
+            },
+            energy: {
+                url: "https://cache07.zapitv.com/live/eds_c2/energy/dash_live_ez/energy.mpd",
+                clearkey: { '16ec4efb8a104ab1988e7ac01641dd99': 'b85140691173bc5bd4221aae4e45ed79' }
+            },
+            fdf: {
+                url: "https://cache07.zapitv.com/live/eds_c2/fdf/dash_live_ez/fdf.mpd",
+                clearkey: { 'c751ca45643b438ead85d9fabb3482e1': '52097c7e31b2d69034720eab836c5668' }
+            },
+            neox: {
+                url: "https://cache07.zapitv.com/live/eds_c2/neox/dash_live_ez/neox.mpd",
+                clearkey: { '7bf41667beb443aba1438863de5c10e3': '90c3b72a3567dae15b1a96186a9061c3' }
+            },
+            nova: {
+                url: "https://cache07.zapitv.com/live/eds_c2/nova/dash_live_ez/nova.mpd",
+                clearkey: { '1d14804bdf314c65a03609e7c729978b': '263766334096bb7afc0f3c5726e3d4b2' }
+            },
+            canalhollywood: {
+                url: "https://cache07.zapitv.com/live/eds_c2/hollywood_hd/dash_live_ez/hollywood_hd.mpd",
+                clearkey: { 'a4774c7986534082915872011ee53254': '02df9bdd2b14598cdc7a356e459948d9' }
+            },
+            calle13: {
+                url: "https://cache07.zapitv.com/live/eds_c2/calle_13/dash_live_ez/calle_13.mpd",
+                clearkey: { '29e88896154e4a7092acfcfdb4a0b094': '8d306e5637e8bc48c105a3ad3f7e313d' }
+            },
+            mega: {
+                url: "https://cache07.zapitv.com/live/eds_c2/mega/dash_live_ez/mega.mpd",
+                clearkey: { 'a0d6ecbc39474c73a855faf57b021d5b': '46184ee5a6d38e265f5f439f5cb386ed' }
+            },
+            axnmovies: {
+                url: "https://cache07.zapitv.com/live/eds_c2/axn_white/dash_live_ez/axn_white.mpd",
+                clearkey: { '0cff80d5449a48e9a11865ef1532cecf': 'cd64df4904f900d2b513ecc7aa019b32' }
+            },
+            canalcocina: {
+                url: "https://cache07.zapitv.com/live/eds_c2/cocina_hd/dash_live_ez/cocina_hd.mpd",
+                clearkey: { 'b895f8398b3b44518d8621a398955f92': '52de81ee55dffe8d0dd1a25d9ebf4460' }
+            },
+            xtrm: {
+                url: "https://cache07.zapitv.com/live/eds_c2/xtrm_hd/dash_live_ez/xtrm_hd.mpd",
+                clearkey: { '8cc0d8d9ee1b41e8b1cb1fa5fc7f904c': '8155299e616ffecbda6cfcf462f845de' }
+            },
+            sundancetv: {
+                url: "https://cache07.zapitv.com/live/eds_c2/sundance_hd/dash_live_ez/sundance_hd.mpd",
+                clearkey: { '5b38b7dfd39b4d98b3cbf0f9650ee5d3': '0eaac3e51c6b714f178556941e01e6ce' }
+            },
+            antena3: {
+                url: "https://cache07.zapitv.com/live/eds_c2/test/dash_live_ez/test.mpd",
+                clearkey: { '4b0df13e55ea4ea196c2da379ef34be5': '336eacb3a4ec3c35dca11c848b1630ea' }
+            },
+            cuatro: {
+                url: "https://cache07.zapitv.com/live/eds_c2/cuatro/dash_live_ez/cuatro.mpd",
+                clearkey: { '7d3e3f1b8198490ba7bfff0e123a619c': '6c55ac488ea2ea16826d02a2838b8ba6' }
+            },
+            telecinco: {
+                url: "https://cache07.zapitv.com/live/eds_c2/telecinco/dash_live_ez/telecinco.mpd",
+                clearkey: { '25d236b2fd8a47a3b1e6eeca2e288a35': '4d18515ab83ebde113fe16eb885b9a85' }
+            },
+            lasexta: {
+                url: "https://cache07.zapitv.com/live/eds_c2/la_sexta/dash_live_ez/la_sexta.mpd",
+                clearkey: { 'b18078e2d24a43c2bef2acf0ecf92962': '2fe3632c7074c7bbe49611ccc750a571' }
+            },
+            boing: {
+                url: "https://cache07.zapitv.com/live/eds_c2/boing/dash_live_ez/boing.mpd",
+                clearkey: { 'd67836bb61bc468292412db53f3e193d': '865826b7df4a6ce1493cde232531374e' }
+            },
+            eurosport_1_hd: {
+                url: "https://cache07.zapitv.com/live/eds_c2/eurosport_1_hd/dash_live_ez/eurosport_1_hd.mpd",
+                clearkey: { '0f4751abc997473d9138d17b5944be04': 'a0aefedd2376a54b8b50f9b7c2d50ac7' }
+            },
+            eurosport_2_hd: {
+                url: "https://cache07.zapitv.com/live/eds_c2/eurosport_2_hd/dash_live_ez/eurosport_2_hd.mpd",
+                clearkey: { 'e369d9ab101d4b60ba13c0384f503528': '041e35e31381521b3398af5c6dd99414' }
+            },
+            syfy: {
+                url: "https://cache07.zapitv.com/live/eds_c2/syfy/dash_live_ez/syfy.mpd",
+                clearkey: { 'a753e0a4a5084b61ba93ae058c38b1ba': '16257ff813b1dbeaf5573871f540ad70' }
+            },
+            warner_es: {
+                url: "https://cache07.zapitv.com/live/eds_c2/tnt/dash_live_ez/tnt.mpd",
+                clearkey: { '719b1a9aa5004db9af1ed19172410823': '765adb29aef6255ea44533b3babbe2e3' }
+            },
+            odisea: {
+                url: "//ablygwdaaaaaaaammfcckbohdcm6b.bia-cf.live.pv-cdn.net/dub-nitro/live/clients/dash/enc/ztloctzksa/out/v1/3d23cae1f2b44d37af5a793c225bee90/cenc.mpd",
+                clearkey: { 'd60ce2e5dedd56c8cf708f41468fd974': '38b207c8cb479f3beb1b7629a0e5c1b1' }
+            },
+            la1spain: {
+                url: "//otte.live.fly.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/62qdkefv9f/out/v1/f7d5b356e048494a8325563e8916d50b/cenc.mpd",
+                clearkey: { 'fd86dde0ae3e14ff51c8fc8f248a50db': 'd106ae78b0893da2e4393ece99420baa' }
+            },
+            la2spain: {
+                url: "//otte.live.fly.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/arv0kf9ndp/out/v1/aa299e8d19994d78b35977495064e64c/cenc.mpd",
+                clearkey: { '92eb4fb693ddc7b72909828ad62cdff5': '0b6f7e58c4566ca418447332b228d488' }
+            },
+        };
+
+        /* ════════════════════════════════════════════════════════
+         * Inicializar
+         * ════════════════════════════════════════════════════════ */
+        var id = getParameterByName('id');
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+            var player = new bitmovin.player.Player(document.getElementById('player'), {
+                key: '11d3698c-efdf-42f1-8769-54663995de2b',
+                analytics: false,
+                cast: { enable: true },
+                playback: { autoplay: true, muted: false },
+                style: { width: '100%', height: '100%' }
+            });
+
+            // Armar source
+            var source = {};
+
+            if (config.url.includes('.m3u8')) {
+                source.hls = config.url;
+            } else {
+                // DASH (todos los canales ZapiTv usan .mpd)
+                source.dash = config.url;
+            }
+
+            // ClearKey DRM
+            if (config.clearkey) {
+                var keyId = Object.keys(config.clearkey)[0];
+                var key = config.clearkey[keyId];
+                source.drm = {
+                    clearkey: [{ keyId: keyId, key: key }]
+                };
+            }
+
+            // Seleccionar pista de audio en español al reproducir
+            player.on(bitmovin.player.PlayerEvent.Play, function () {
+                var tracks = player.getAvailableAudio();
+                if (!tracks || tracks.length === 0) return;
+
+                var spanishTrack = tracks.find(function (t) {
+                    var name = (t.label || t.lang || '').toLowerCase();
+                    return name.includes('spanish') || name.includes('spa') || name.includes('es');
+                });
+
+                if (spanishTrack) {
+                    player.setAudio(spanishTrack.id);
+                } else {
+                    player.setAudio(tracks[0].id);
+                }
+            });
+
+            player.load(source).catch(function (err) {
+                console.error('Bitmovin load error:', err);
+            });
+        }
+    </script>
+</body>
+
+</html>

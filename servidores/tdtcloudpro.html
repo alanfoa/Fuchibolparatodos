@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Player</title>
+
+  <!-- Bitmovin Player -->
+  <script src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+
+    :root {
+      --accent: #51E0C0;
+      --icons: #f0f0f0;
+    }
+
+    /* ── LOADER ── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #0d0d0d;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      transition: opacity .5s ease;
+    }
+
+    #loader.oculto {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 4px solid rgba(81, 224, 192, .12);
+      border-top-color: var(--accent);
+      border-right-color: var(--accent);
+      animation: spin .9s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loader-txt {
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .4);
+    }
+
+    .loader-txt span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .bar-wrap {
+      width: 170px;
+      height: 3px;
+      background: rgba(255, 255, 255, .07);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 40%;
+      background: var(--accent);
+      border-radius: 99px;
+      animation: slide 1.4s ease-in-out infinite;
+    }
+
+    @keyframes slide {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(300%);
+      }
+    }
+
+    /* ── ERROR ── */
+    #error-screen {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: #0d0d0d;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-family: system-ui, sans-serif;
+      color: rgba(255, 255, 255, .4);
+      font-size: 13px;
+      text-align: center;
+      padding: 32px;
+    }
+
+    #error-screen.visible {
+      display: flex;
+    }
+
+    #error-screen strong {
+      color: var(--accent);
+      font-size: 15px;
+    }
+
+    #error-screen code {
+      font-size: 10px;
+      background: rgba(255, 255, 255, .04);
+      padding: 6px 14px;
+      border-radius: 4px;
+      word-break: break-all;
+      max-width: 380px;
+      color: rgba(255, 255, 255, .25);
+    }
+
+    .btn-retry {
+      margin-top: 6px;
+      padding: 9px 24px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+
+    .btn-retry:hover {
+      opacity: .8;
+    }
+
+    /* ── PLAYER ── */
+    #player {
+      width: 100%;
+      height: 100%;
+    }
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    #player {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #status {
+      color: white;
+      text-align: center;
+      margin-top: 20%;
+      font-size: 1.2em;
+    }
+
+    /* Color de la barra de progreso de Bitmovin */
+    .bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
+    .bmpui-ui-seekbar .bmpui-seekbar-playbackposition-marker,
+    .bmpui-ui-volumeslider .bmpui-seekbar-playbackposition {
+      background-color: #51E0C0 !important;
+    }
+  </style>
+  <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+    <div class="loader-txt">Cargando <span>señal</span>...</div>
+    <div class="bar-wrap">
+      <div class="bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div id="error-screen">
+    <strong>No se pudo cargar el canal</strong>
+    <span id="err-detail">Error desconocido.</span>
+    <code id="err-url"></code>
+    <button class="btn-retry" onclick="location.reload()">Reintentar</button>
+  </div>
+
+  <!-- Bitmovin target -->
+  <div id="player"></div>
+
+  <script>
+    /* ════════════════════════════════════════════════════════
+     * CONFIGURACIÓN
+     * ════════════════════════════════════════════════════════ */
+
+    const WORKER_URL = "https://proxytdtcloud.canalesonline24.workers.dev";
+
+    const STREAMS = [
+      "winsportsplus", "winsports", "espn", "espn2", "espn3", "espn4", "espn5",
+      "espn6", "espn7", "dsports", "dsports2", "dsportsplus", "tycsports",
+      "rcn", "rcn2", "foxsports1ar", "foxsports2ar", "foxsports3ar",
+      "tudnmx", "universo", "tntsports", "beinsports", "caracol"
+    ];
+
+    /* ════════════════════════════════════════════════════════
+     * UI helpers
+     * ════════════════════════════════════════════════════════ */
+    const loaderEl = document.getElementById("loader");
+    const errScreen = document.getElementById("error-screen");
+    const errDetail = document.getElementById("err-detail");
+    const errURL = document.getElementById("err-url");
+
+    function ocultarLoader() {
+      loaderEl.classList.add("oculto");
+      setTimeout(() => loaderEl.remove(), 550);
+    }
+
+    function mostrarError(msg, url) {
+      ocultarLoader();
+      errDetail.textContent = msg;
+      errURL.textContent = url || "";
+      errScreen.classList.add("visible");
+    }
+
+    /* ════════════════════════════════════════════════════════
+     * Interceptar licencia Bitmovin
+     * ════════════════════════════════════════════════════════ */
+    (function () {
+      var GRANT = 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+      function override(u) {
+        var wm = document.querySelector('button.bmpui-ui-watermark');
+        if (wm) wm.setAttribute('disabled', 'disabled');
+        if (u.indexOf('licensing.bitmovin.com/licensing') > -1) return GRANT;
+        if (u.indexOf('licensing.bitmovin.com/impression') > -1) return GRANT;
+        return u;
+      }
+      var _open = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function () {
+        arguments[1] = override(arguments[1]);
+        return _open.apply(this, arguments);
+      };
+    })();
+
+    /* ════════════════════════════════════════════════════════
+     * Protección básica
+     * ════════════════════════════════════════════════════════ */
+    (function () {
+      document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'F12' ||
+          (e.ctrlKey && e.shiftKey && ['I', 'C', 'J'].indexOf(e.key) > -1)) {
+          e.preventDefault();
+        }
+      });
+    })();
+
+    /* ════════════════════════════════════════════════════════
+     * Iniciar
+     * ════════════════════════════════════════════════════════ */
+    const params = new URLSearchParams(location.search);
+    const stream = params.get("stream");
+    const urlParam = params.get("url");
+
+    if (!stream && !urlParam) {
+      mostrarError("Falta parámetro ?stream= o ?url= en la URL.");
+    } else {
+      iniciar();
+    }
+
+    function iniciar() {
+      let streamURL;
+
+      if (stream) {
+        if (!STREAMS.includes(stream)) {
+          mostrarError(`Stream desconocido: "${stream}". Verificá el nombre.`);
+          return;
+        }
+        streamURL = `${WORKER_URL}/?stream=${encodeURIComponent(stream)}`;
+      } else {
+        streamURL = `${WORKER_URL}/?url=${encodeURIComponent(urlParam)}`;
+      }
+
+      console.log("▶ Stream via Worker:", streamURL);
+
+      var player = new bitmovin.player.Player(document.getElementById('player'), {
+        key: '11d3698c-efdf-42f1-8769-54663995de2b',
+        analytics: false,
+        cast: { enable: true },
+        playback: { autoplay: true, muted: false },
+        style: { width: '100%', height: '100%' }
+      });
+
+      // Armar source: DASH si la URL lo indica, HLS por defecto
+      var source = {};
+      if (streamURL.indexOf('.mpd') > -1 || streamURL.indexOf('dash') > -1) {
+        source.dash = streamURL;
+      } else {
+        source.hls = streamURL;
+      }
+
+      player.on(bitmovin.player.PlayerEvent.Play, function () {
+        ocultarLoader();
+      });
+
+      player.on(bitmovin.player.PlayerEvent.Error, function (e) {
+        console.error("Bitmovin error:", e);
+        mostrarError(
+          `Error del reproductor: ${e.message || "sin detalles"}`,
+          streamURL
+        );
+      });
+
+      player.load(source).catch(function (err) {
+        console.error("Bitmovin load error:", err);
+        mostrarError(
+          `No se pudo cargar el stream: ${err.message || "sin detalles"}`,
+          streamURL
+        );
+      });
+    }
+  </script>
+
+</body>
+
+</html>

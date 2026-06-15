@@ -1851,7 +1851,7 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=la1spain",
+            servidorCanalesOnline + "zapitvpro.html?id=la1spain",
             // "https://172m3u8.netlify.app/?id=TVE_1_ES",
             // "cobo.html?id=TV_LA_1_ES",
             // servidorCanalesOnline + "tvmia.html?stream=sn_TVE_1_ES",
@@ -1865,7 +1865,7 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=la2spain",
+            servidorCanalesOnline + "zapitvpro.html?id=la2spain",
             // "https://172m3u8.netlify.app/?id=TVE_2_ES",
             // "cobo.html?id=TV_LA_2_ES",
             // servidorCanalesOnline + "tvmia.html?stream=sn_TVE_2_ES",
@@ -1886,7 +1886,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=QW50ZW5hXzM=",
             // "https://a3.115tv.site/cvatt2_ext.html?get=QW50ZW5hXzM=",
             servidorCanalesOnline + "cvatt2_ext.html?get=QW50ZW5hXzM=",
-            servidorCanalesOnline + "zapitv.html?id=antena3",
+            servidorCanalesOnline + "zapitvpro.html?id=antena3",
             // servidorCanalesOnline + "tvmia.html?stream=sn_ANTENA3",
             // "https://172m3u8.netlify.app/?id=Antena_3",
             servidorCanalesOnline + "mpd_es.html?id=ANTENA3",
@@ -1910,7 +1910,7 @@ MisCanales.set(
         pais: "España",
         enlaces: [
             // "https://172m3u8.netlify.app/?id=Cuatro",
-            servidorCanalesOnline + "zapitv.html?id=cuatro",
+            servidorCanalesOnline + "zapitvpro.html?id=cuatro",
             // servidorCanalesOnline + "tvmia.html?stream=sn_Canal_cuatro_ES",
             servidorCanalesOnline + "mpd_es.html?id=CUATRO",
         ]
@@ -1923,7 +1923,7 @@ MisCanales.set(
         pais: "España",
         enlaces: [
             // "https://172m3u8.netlify.app/?id=Canal_5_Esp",
-            servidorCanalesOnline + "zapitv.html?id=telecinco",
+            servidorCanalesOnline + "zapitvpro.html?id=telecinco",
             // servidorCanalesOnline + "tvmia.html?stream=sn_Canal_5_ES",
             servidorCanalesOnline + "mpd_es.html?id=TELECINCO",
         ]
@@ -1936,7 +1936,7 @@ MisCanales.set(
         pais: "España",
         enlaces: [
             // "https://172m3u8.netlify.app/?id=Atresmedia",
-            servidorCanalesOnline + "zapitv.html?id=lasexta",
+            servidorCanalesOnline + "zapitvpro.html?id=lasexta",
             // servidorCanalesOnline + "tvmia.html?stream=sn_Canal_6_ES",
             servidorCanalesOnline + "mpd_es.html?id=LASEXTA",
         ]
@@ -1948,7 +1948,7 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=divinity",
+            servidorCanalesOnline + "zapitvpro.html?id=divinity",
         ]
     }
 );
@@ -3089,9 +3089,9 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=VHlDU3BvcnQ",
             // "https://a3.115tv.site/cvatt2_ext.html?get=VHlDU3BvcnQ",
             servidorCanalesOnline + "cvatt2_ext.html?get=VHlDU3BvcnQ",
-            servidorCanalesOnline + "deepcathink.html?feed=77",
+            servidorCanalesOnline + "deepcathinkpro.html?feed=77",
             servidorCanalesOnline + "latamlive.html?id=TYC_SPORTS_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloud.html?stream=tycsports",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=tycsports",
             "https://cdn.tdtcloud.xyz/ws14.php",
             servidorCanalesOnline + "aneviapro.html?id=TyC",
             servidorCanalesOnline + "edge.html?get=TyC_Sports",
@@ -3208,10 +3208,10 @@ MisCanales.set(
 
             servidorCanalesOnline + "flypro.html?id=dsports",
             servidorCanalesOnline + "fly-hls.html?id=dsports",
-            servidorCanalesOnline + "tdtcloud.html?stream=dsports",
-            servidorCanalesOnline + "deepcathink.html?feed=94",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=dsports",
+            servidorCanalesOnline + "deepcathinkpro.html?feed=94",
             "https://cdn.tdtcloud.xyz/ws07.php",
-            "https://https://skylivefu.com/live.php?stream=dsports",
+            "https://skylivefu.com/live.php?stream=dsports",
             // servidorCanalesOnline + "proxym3u8/?id=DSPORTS_AR",
             // "https://199m3u8.netlify.app/?id=DSports",
             // servidorCanalesOnline + "m3u8.html?stream=DSportsArg_2",
@@ -3254,8 +3254,8 @@ MisCanales.set(
             
             servidorCanalesOnline + "flypro.html?id=dsports2",
             servidorCanalesOnline + "fly-hls.html?id=dsports2",
-            servidorCanalesOnline + "tdtcloud.html?stream=dsports2",
-            servidorCanalesOnline + "deepcathink.html?feed=95",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=dsports2",
+            servidorCanalesOnline + "deepcathinkpro.html?feed=95",
             "https://cdn.tdtcloud.xyz/ws08.php",
             // servidorCanalesOnline + "proxym3u8/?id=DSPORTS2_AR",
             // "https://172m3u8.netlify.app/?id=Dsports2",
@@ -3286,8 +3286,8 @@ MisCanales.set(
             servidorCanalesOnline + "dsports.html?id=DSportsPlus_cbsivideo",
             servidorCanalesOnline + "flypro.html?id=dsportsplus",
             servidorCanalesOnline + "fly-hls.html?id=dsportsplus",
-            servidorCanalesOnline + "tdtcloud.html?stream=dsportsplus",
-            servidorCanalesOnline + "deepcathink.html?feed=96",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=dsportsplus",
+            servidorCanalesOnline + "deepcathinkpro.html?feed=96",
             "https://cdn.tdtcloud.xyz/ws09.php",
             // "https://rereyano.ru/player/3/96",
             // "https://cartelive.club/player/3/96",
@@ -3310,7 +3310,7 @@ MisCanales.set(
     {
         pais: "Estados Unidos",
         enlaces: [
-            servidorCanalesOnline + "tdtcloud.html?stream=beinsports",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=beinsports",
             "https://cdn.tdtcloud.xyz/ws23.php",
             // servidorCanalesOnline + "cobo.html?id=BEIN_XTRA_N_ES",
             // "https://forlessmake.store/cobo.html?id=BEIN_XTRA_N_ES",
@@ -3401,9 +3401,9 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=VE5UX1Nwb3J0c19IRA",
             // "https://a3.115tv.site/cvatt2_ext.html?get=VE5UX1Nwb3J0c19IRA",
             servidorCanalesOnline + "cvatt2_ext.html?get=VE5UX1Nwb3J0c19IRA",
-            servidorCanalesOnline + "deepcathink.html?feed=75",
+            servidorCanalesOnline + "deepcathinkpro.html?feed=75",
             servidorCanalesOnline + "latamlive.html?id=TNTS_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloud.html?stream=tntsports",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=tntsports",
             "https://cdn.tdtcloud.xyz/ws22.php",
             servidorCanalesOnline + "edge.html?get=TNT_Sports",
             "https://aux.canalesonline24.workers.dev/trimi.html?id=TNT_SPORTS",
@@ -3439,7 +3439,7 @@ MisCanales.set(
     {
         pais: "Chile",
         enlaces: [
-            servidorCanalesOnline + "deepcathink.html?feed=83",
+            servidorCanalesOnline + "deepcathinkpro.html?feed=83",
             // servidorCanalesOnline + "tvmia.html?stream=an_TNT_SPORTS_PREMIUM",
             // "https://streamx10.cloud/global2.php?channel=tntsportschile",
             // "https://streamx10.cloud/global1.php?channel=tntsportschile",
@@ -3534,54 +3534,54 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            // "https://https://skylivefu.com/live.php?stream=starplus01",
-            // "https://https://skylivefu.com/live.php?stream=starplus02",
-            // "https://https://skylivefu.com/live.php?stream=starplus03",
-            // "https://https://skylivefu.com/live.php?stream=starplus04",
-            // "https://https://skylivefu.com/live.php?stream=starplus05",
-            // "https://https://skylivefu.com/live.php?stream=starplus06",
-            // "https://https://skylivefu.com/live.php?stream=starplus07",
-            // "https://https://skylivefu.com/live.php?stream=starplus08",
-            // "https://https://skylivefu.com/live.php?stream=starplus09",
-            // "https://https://skylivefu.com/live.php?stream=starplus10",
-            // "https://https://skylivefu.com/live.php?stream=starplus11",
-            // "https://https://skylivefu.com/live.php?stream=starplus12",
-            // "https://https://skylivefu.com/live.php?stream=starplus13",
-            // "https://https://skylivefu.com/live.php?stream=starplus14",
-            // "https://https://skylivefu.com/live.php?stream=starplus15",
-            // "https://https://skylivefu.com/live.php?stream=starplus16",
+            // "https://skylivefu.com/live.php?stream=starplus01",
+            // "https://skylivefu.com/live.php?stream=starplus02",
+            // "https://skylivefu.com/live.php?stream=starplus03",
+            // "https://skylivefu.com/live.php?stream=starplus04",
+            // "https://skylivefu.com/live.php?stream=starplus05",
+            // "https://skylivefu.com/live.php?stream=starplus06",
+            // "https://skylivefu.com/live.php?stream=starplus07",
+            // "https://skylivefu.com/live.php?stream=starplus08",
+            // "https://skylivefu.com/live.php?stream=starplus09",
+            // "https://skylivefu.com/live.php?stream=starplus10",
+            // "https://skylivefu.com/live.php?stream=starplus11",
+            // "https://skylivefu.com/live.php?stream=starplus12",
+            // "https://skylivefu.com/live.php?stream=starplus13",
+            // "https://skylivefu.com/live.php?stream=starplus14",
+            // "https://skylivefu.com/live.php?stream=starplus15",
+            // "https://skylivefu.com/live.php?stream=starplus16",
 
 
-            "https://https://skylivefu.com/live.php?stream=espnplus1", //17
-            "https://https://skylivefu.com/live.php?stream=espnplus2", //18
-            "https://https://skylivefu.com/live.php?stream=espnplus3", //19
-            "https://https://skylivefu.com/live.php?stream=espnplus4", //20
-            "https://https://skylivefu.com/live.php?stream=espnplus5", //21
-            "https://https://skylivefu.com/live.php?stream=espnplus6", //22
-            "https://https://skylivefu.com/live.php?stream=espnplus7", //23
-            "https://https://skylivefu.com/live.php?stream=espnplus8", //24
-            "https://https://skylivefu.com/live.php?stream=espnplus9", //25
+            "https://skylivefu.com/live.php?stream=espnplus1", //17
+            "https://skylivefu.com/live.php?stream=espnplus2", //18
+            "https://skylivefu.com/live.php?stream=espnplus3", //19
+            "https://skylivefu.com/live.php?stream=espnplus4", //20
+            "https://skylivefu.com/live.php?stream=espnplus5", //21
+            "https://skylivefu.com/live.php?stream=espnplus6", //22
+            "https://skylivefu.com/live.php?stream=espnplus7", //23
+            "https://skylivefu.com/live.php?stream=espnplus8", //24
+            "https://skylivefu.com/live.php?stream=espnplus9", //25
 
-            "https://https://skylivefu.com/live.php?stream=disney1",  //26
-            "https://https://skylivefu.com/live.php?stream=disney2",  //27
-            "https://https://skylivefu.com/live.php?stream=disney3",  //28
-            "https://https://skylivefu.com/live.php?stream=disney4",  //29
-            "https://https://skylivefu.com/live.php?stream=disney5",  //30
-            "https://https://skylivefu.com/live.php?stream=disney6",  //31
-            "https://https://skylivefu.com/live.php?stream=disney7",  //32
-            "https://https://skylivefu.com/live.php?stream=disney8",  //33
-            "https://https://skylivefu.com/live.php?stream=disney9",  //34
-            "https://https://skylivefu.com/live.php?stream=disney10", //35
-            "https://https://skylivefu.com/live.php?stream=disney11", //36
-            "https://https://skylivefu.com/live.php?stream=disney12", //37
-            "https://https://skylivefu.com/live.php?stream=disney13", //38
-            "https://https://skylivefu.com/live.php?stream=disney14", //39
-            "https://https://skylivefu.com/live.php?stream=disney15", //40
-            "https://https://skylivefu.com/live.php?stream=disney16", //41
-            "https://https://skylivefu.com/live.php?stream=disney17", //42
-            "https://https://skylivefu.com/live.php?stream=disney18", //43
-            "https://https://skylivefu.com/live.php?stream=disney19", //44
-            "https://https://skylivefu.com/live.php?stream=disney20", //45    
+            "https://skylivefu.com/live.php?stream=disney1",  //26
+            "https://skylivefu.com/live.php?stream=disney2",  //27
+            "https://skylivefu.com/live.php?stream=disney3",  //28
+            "https://skylivefu.com/live.php?stream=disney4",  //29
+            "https://skylivefu.com/live.php?stream=disney5",  //30
+            "https://skylivefu.com/live.php?stream=disney6",  //31
+            "https://skylivefu.com/live.php?stream=disney7",  //32
+            "https://skylivefu.com/live.php?stream=disney8",  //33
+            "https://skylivefu.com/live.php?stream=disney9",  //34
+            "https://skylivefu.com/live.php?stream=disney10", //35
+            "https://skylivefu.com/live.php?stream=disney11", //36
+            "https://skylivefu.com/live.php?stream=disney12", //37
+            "https://skylivefu.com/live.php?stream=disney13", //38
+            "https://skylivefu.com/live.php?stream=disney14", //39
+            "https://skylivefu.com/live.php?stream=disney15", //40
+            "https://skylivefu.com/live.php?stream=disney16", //41
+            "https://skylivefu.com/live.php?stream=disney17", //42
+            "https://skylivefu.com/live.php?stream=disney18", //43
+            "https://skylivefu.com/live.php?stream=disney19", //44
+            "https://skylivefu.com/live.php?stream=disney20", //45    
         ]
     }
 );
@@ -3600,7 +3600,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjJIRA",
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjJIRA",
             servidorCanalesOnline + "latamlive.html?id=ESPN1_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloud.html?stream=espn",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=espn",
             "https://cdn.tdtcloud.xyz/ws04.php",
             servidorCanalesOnline + "aneviapro.html?id=ESPN",
             servidorCanalesOnline + "edge.html?get=ESPN",
@@ -3648,7 +3648,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjJfQXJn",
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjJfQXJn",
             servidorCanalesOnline + "latamlive.html?id=ESPN2_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloud.html?stream=espn2",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=espn2",
             "https://cdn.tdtcloud.xyz/ws05.php",
             servidorCanalesOnline + "aneviapro.html?id=ESPN2",
             servidorCanalesOnline + "edge.html?get=ESPN_2",
@@ -3696,7 +3696,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjM",
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjM",
             servidorCanalesOnline + "latamlive.html?id=ESPN3_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloud.html?stream=espn3",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=espn3",
             "https://cdn.tdtcloud.xyz/ws06.php",
             servidorCanalesOnline + "aneviapro.html?id=ESPN3",
             servidorCanalesOnline + "edge.html?get=ESPN_3",
@@ -3742,7 +3742,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTkhE",
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTkhE",
             servidorCanalesOnline + "latamlive.html?id=ESPN4_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloud.html?stream=espn4",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=espn4",
             "https://cdn.tdtcloud.xyz/ws10.php",
             servidorCanalesOnline + "edge.html?get=ESPN_4",
             servidorCanalesOnline + "sensa.html?id=ESPN4",
@@ -3785,7 +3785,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=RVNQTjQ=",
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjQ=",
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjQ=",
-            servidorCanalesOnline + "tdtcloud.html?stream=espn5",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=espn5",
             "https://cdn.tdtcloud.xyz/ws11.php",
             // "server/cvatt2_ext.html?get=RVNQTjQ=",
             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=RVNQTjQ=",
@@ -3821,7 +3821,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=Rm94U3BvcnRzM19VWQ==",
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
-            servidorCanalesOnline + "tdtcloud.html?stream=espn6",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=espn6",
             "https://cdn.tdtcloud.xyz/ws12.php",
             // "server/cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=Rm94U3BvcnRzM19VWQ==",
@@ -3857,7 +3857,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=Rm94U3BvcnRzMl9VWQ==",
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
-            servidorCanalesOnline + "tdtcloud.html?stream=espn7",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=espn7",
             "https://cdn.tdtcloud.xyz/ws13.php",
             // "server/cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=Rm94U3BvcnRzMl9VWQ==",
@@ -3942,7 +3942,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE",
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE",
-            servidorCanalesOnline + "deepcathink.html?feed=76",
+            servidorCanalesOnline + "deepcathinkpro.html?feed=76",
             servidorCanalesOnline + "latamlive.html?id=ESPNPREMIUM_ENC_LIVE",
             servidorCanalesOnline + "edge.html?get=ESPN_Premium",
             // servidorCanalesOnline + "tvmia.html?stream=c_ESPN_PREMIUM",
@@ -3985,7 +3985,7 @@ MisCanales.set(
     {
         pais: "Colombia",
         enlaces: [
-            servidorCanalesOnline + "tdtcloud.html?stream=caracol",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=caracol",
             "https://cdn.tdtcloud.xyz/caracolhd201x.php",
             // "https://172m3u8.netlify.app/?id=Caracol",
             // "https://172m3u8.netlify.app/?id=Caracol2",
@@ -4482,7 +4482,7 @@ MisCanales.set(
     {
         pais: "Estados Unidos",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=syfy",
+            servidorCanalesOnline + "zapitvpro.html?id=syfy",
         ]
     }
 );
@@ -4493,7 +4493,7 @@ MisCanales.set(
         pais: "España",
         enlaces: [
             // "https://172m3u8.netlify.app/?id=Neox",
-            servidorCanalesOnline + "zapitv.html?id=neox",
+            servidorCanalesOnline + "zapitvpro.html?id=neox",
             // servidorCanalesOnline + "tvmia.html?stream=sn_NEOX",
             servidorCanalesOnline + "mpd_es.html?id=NEOX",
         ]
@@ -4506,7 +4506,7 @@ MisCanales.set(
         pais: "España",
         enlaces: [
             // "https://172m3u8.netlify.app/?id=NOVA",
-            servidorCanalesOnline + "zapitv.html?id=nova",
+            servidorCanalesOnline + "zapitvpro.html?id=nova",
             // servidorCanalesOnline + "tvmia.html?stream=sn_NOVA",
             servidorCanalesOnline + "mpd_es.html?id=NOVA",
         ]
@@ -4518,7 +4518,7 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=odisea",
+            servidorCanalesOnline + "zapitvpro.html?id=odisea",
             // "https://172m3u8.netlify.app/?id=ODISEA",
             servidorCanalesOnline + "mpd_es.html?id=ODISEA",
         ]
@@ -4531,7 +4531,7 @@ MisCanales.set(
         pais: "España",
         enlaces: [
             // "https://172m3u8.netlify.app/?id=FDF",
-            servidorCanalesOnline + "zapitv.html?id=fdf",
+            servidorCanalesOnline + "zapitvpro.html?id=fdf",
             servidorCanalesOnline + "tvmia.html?stream=sn_FDF",
             servidorCanalesOnline + "mpd_es.html?id=FDF",
         ]
@@ -4544,7 +4544,7 @@ MisCanales.set(
         pais: "España",
         enlaces: [
             // "https://172m3u8.netlify.app/?id=Energy",
-            servidorCanalesOnline + "zapitv.html?id=energy",
+            servidorCanalesOnline + "zapitvpro.html?id=energy",
             // servidorCanalesOnline + "tvmia.html?stream=sn_Energy",
         ]
     }
@@ -4555,7 +4555,7 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=canalhollywood",
+            servidorCanalesOnline + "zapitvpro.html?id=canalhollywood",
         ]
     }
 );
@@ -4565,7 +4565,7 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=calle13",
+            servidorCanalesOnline + "zapitvpro.html?id=calle13",
         ]
     }
 );
@@ -4575,7 +4575,17 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=xtrm",
+            servidorCanalesOnline + "zapitvpro.html?id=xtrm",
+        ]
+    }
+);
+
+MisCanales.set(
+    "SundanceTV",
+    {
+        pais: "España",
+        enlaces: [
+            servidorCanalesOnline + "zapitvpro.html?id=sundancetv",
         ]
     }
 );
@@ -4585,7 +4595,7 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=canalcocina",
+            servidorCanalesOnline + "zapitvpro.html?id=canalcocina",
         ]
     }
 );
@@ -4646,7 +4656,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRz",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRz",
             servidorCanalesOnline + "latamlive.html?id=FOX_SPORTS_HD_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloud.html?stream=foxsports1ar",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports1ar",
             "https://cdn.tdtcloud.xyz/ws17.php",
             servidorCanalesOnline + "aneviapro.html?id=FOX_Sports_HD",
             servidorCanalesOnline + "edge.html?get=Fox_Sports",
@@ -4694,7 +4704,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzMkhE",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzMkhE",
             servidorCanalesOnline + "latamlive.html?id=FOX_SPORTS2_HD_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloud.html?stream=foxsports2ar",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports2ar",
             "https://cdn.tdtcloud.xyz/ws18.php",
             servidorCanalesOnline + "edge.html?get=Fox_Sports_2",
             // servidorCanalesOnline + "tvmia.html?stream=an_FOX_SPORTS2",
@@ -4742,7 +4752,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzM0hE",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzM0hE",
             servidorCanalesOnline + "latamlive.html?id=FOX_SPORTS3_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloud.html?stream=foxsports3ar",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports3ar",
             "https://cdn.tdtcloud.xyz/ws19.php",
             servidorCanalesOnline + "edge.html?get=Fox_Sports_3",
             servidorCanalesOnline + "sensa.html?id=FoxSports3",
@@ -4989,7 +4999,7 @@ MisCanales.set(
         pais: "México",
         enlaces: [
             servidorCanalesOnline + "flypro.html?id=tudnmx",
-            servidorCanalesOnline + "tdtcloud.html?stream=tudnmx",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=tudnmx",
             "https://cdn.tdtcloud.xyz/ws20.php",
             // "https://streamx10.cloud/global2.php?channel=tudn_usa",
             // "https://streamx10.cloud/global1.php?channel=tudn_usa",
@@ -5024,7 +5034,7 @@ MisCanales.set(
         enlaces: [
             // servidorCanalesOnline + "fetch.html?stream=rcn",
             // servidorCanalesOnline + "fetch2.html?stream=rcn",
-            servidorCanalesOnline + "tdtcloud.html?stream=rcn2",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=rcn2",
             "https://cdn.tdtcloud.xyz/ws16.php",
             // "m3u8.html?stream=RCN_COL",
             servidorCanalesOnline + "tvmia.html?stream=an_RCN",
@@ -5063,7 +5073,7 @@ MisCanales.set(
     {
         pais: "Colombia",
         enlaces: [
-            servidorCanalesOnline + "tdtcloud.html?stream=winsports",            
+            servidorCanalesOnline + "tdtcloudpro.html?stream=winsports",            
             "https://cdn.tdtcloud.xyz/ws02.php",
             // "https://172m3u8.netlify.app/?id=Win_Sports",
             // "https://172m3u8.netlify.app/?id=Win_Sports_2",
@@ -5083,7 +5093,7 @@ MisCanales.set(
     {
         pais: "Colombia",
         enlaces: [
-            servidorCanalesOnline + "tdtcloud.html?stream=winsportsplus",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=winsportsplus",
             "https://cdn.tdtcloud.xyz/ws01.php",
             // servidorCanalesOnline + "tvmia.html?stream=bn_WINPLUS",
             // "https://streamx10.cloud/global2.php?channel=winsportsplus",
@@ -5117,7 +5127,7 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=eurosport_1_hd",
+            servidorCanalesOnline + "zapitvpro.html?id=eurosport_1_hd",
             // servidorCanalesOnline + "tvmia.html?stream=sn_EUROSPORTS1",
             // "https://streamx10.cloud/global2.php?channel=eurosports1_es",
             // "https://streamx10.cloud/global1.php?channel=eurosports1_es",
@@ -5134,7 +5144,7 @@ MisCanales.set(
         {
             pais: "España",
             enlaces: [
-                servidorCanalesOnline + "zapitv.html?id=eurosport_2_hd",
+                servidorCanalesOnline + "zapitvpro.html?id=eurosport_2_hd",
                 // "https://streamx10.cloud/global2.php?channel=eurosports2_es",
                 // "https://streamx10.cloud/global1.php?channel=eurosports2_es",
                 // "https://streamx10.cloud/global3.php?channel=eurosports2_es", //No funciona en la apk
@@ -5150,7 +5160,7 @@ MisCanales.set(
         {
             pais: "España",
             enlaces: [
-                servidorCanalesOnline + "deepcathink.html?feed=60",
+                servidorCanalesOnline + "deepcathinkpro.html?feed=60",
                 // servidorCanalesOnline + "vodgc.html?id=dazn_f1",
                 // servidorCanalesOnline + "hls.html?stream=dazn_f1",
                 // "https://deportelibres.shop/total/stream-537.php",
@@ -6056,7 +6066,7 @@ MisCanales.set(
         pais: "Estados Unidos",
         enlaces: [
             // "https://172m3u8.netlify.app/?id=Axn_Movies",
-            servidorCanalesOnline + "zapitv.html?id=axnmovies",
+            servidorCanalesOnline + "zapitvpro.html?id=axnmovies",
             servidorCanalesOnline + "mpd_es.html?id=AXN_MOVIE",
         ]
     }
@@ -6797,7 +6807,7 @@ MisCanales.set(
     {
         pais: "Estados Unidos",
         enlaces: [
-            servidorCanalesOnline + "tdtcloud.html?stream=universo",
+            servidorCanalesOnline + "tdtcloudpro.html?stream=universo",
             "https://cdn.tdtcloud.xyz/ws21.php",
             // "cobo.html?id=UNIVERSO", ///Universo
             // "https://streamx10.cloud/global2.php?channel=universo_usa",
@@ -6861,7 +6871,7 @@ MisCanales.set(
         pais: "España",
         enlaces: [
             // "https://172m3u8.netlify.app/?id=DARK",
-            servidorCanalesOnline + "zapitv.html?id=dark",
+            servidorCanalesOnline + "zapitvpro.html?id=dark",
             servidorCanalesOnline + "mpd_es.html?id=DARK",
         ]
     }
@@ -6872,7 +6882,7 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=amcbreak",
+            servidorCanalesOnline + "zapitvpro.html?id=amcbreak",
             servidorCanalesOnline + "mpd_es.html?id=AMC_BREAK",
         ]
     }
@@ -6884,7 +6894,7 @@ MisCanales.set(
         pais: "España",
         enlaces: [
             // "https://172m3u8.netlify.app/?id=CRIME",
-            servidorCanalesOnline + "zapitv.html?id=amcrime",
+            servidorCanalesOnline + "zapitvpro.html?id=amcrime",
             servidorCanalesOnline + "mpd_es.html?id=AMC_CRIME",
         ]
     }
@@ -6896,7 +6906,7 @@ MisCanales.set(
         pais: "España",
         enlaces: [
             // servidorCanalesOnline + "tvmia.html?stream=sn_DKISS",
-            servidorCanalesOnline + "zapitv.html?id=dkiss",
+            servidorCanalesOnline + "zapitvpro.html?id=dkiss",
             servidorCanalesOnline + "mpd_es.html?id=D_KISS",
         ]
     }
@@ -6909,7 +6919,7 @@ MisCanales.set(
         enlaces: [
             // servidorCanalesOnline + "tvmia.html?stream=sn_BE_MAD",
             // "https://172m3u8.netlify.app/?id=BE_MAD",
-            servidorCanalesOnline + "zapitv.html?id=bemad",
+            servidorCanalesOnline + "zapitvpro.html?id=bemad",
             servidorCanalesOnline + "mpd_es.html?id=B_MAD",
         ]
     }
@@ -6921,7 +6931,7 @@ MisCanales.set(
             pais: "España",
             enlaces: [
                 // "https://172m3u8.netlify.app/?id=MEGA",
-                servidorCanalesOnline + "zapitv.html?id=mega",
+                servidorCanalesOnline + "zapitvpro.html?id=mega",
                 // servidorCanalesOnline + "tvmia.html?stream=sn_MEGA",
                 servidorCanalesOnline + "mpd_es.html?id=MEGA",
             ]
@@ -7550,7 +7560,7 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=boing",
+            servidorCanalesOnline + "zapitvpro.html?id=boing",
             // "https://172m3u8.netlify.app/?id=Boing",
             // servidorCanalesOnline + "tvmia.html?stream=sn_BOING",
             servidorCanalesOnline + "mpd_es.html?id=BOING",
@@ -8272,7 +8282,7 @@ MisCanales.set(
         pais: "España",
         enlaces: [
             // "https://172m3u8.netlify.app/?id=DMAX",
-            servidorCanalesOnline + "zapitv.html?id=dmax",
+            servidorCanalesOnline + "zapitvpro.html?id=dmax",
             // servidorCanalesOnline + "tvmia.html?stream=sn_DMAX",
         ]
     }
@@ -8383,7 +8393,7 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "zapitv.html?id=historia",
+            servidorCanalesOnline + "zapitvpro.html?id=historia",
             servidorCanalesOnline + "mpd_es.html?id=HISTORIA",
         ]
     }
@@ -8877,7 +8887,7 @@ MisCanales.set(
 );
 
 MisCanales.set(
-    "Tomy y Jerry",
+    "Tom y Jerry",
     {
         pais: "Varios",
         enlaces: [

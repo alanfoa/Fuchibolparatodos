@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live</title>
+
+    <!-- Bitmovin Player -->
+    <script src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Overlays */
+        .ov {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            background: #000;
+            z-index: 9999;
+        }
+
+        .ov.hide {
+            display: none;
+        }
+
+        .spinner {
+            width: 38px;
+            height: 38px;
+            border: 2px solid #222;
+            border-top-color: #51E0C0;
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .ov p {
+            font: 500 .75rem/1 monospace;
+            letter-spacing: .1em;
+            color: #444;
+            text-transform: uppercase;
+        }
+
+        /* Error */
+        #errOv h3 {
+            font: 700 1rem/1 sans-serif;
+            color: #e55;
+            text-transform: uppercase;
+        }
+
+        #errOv span {
+            font: .72rem/1.5 monospace;
+            color: #444;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        #errOv button {
+            background: transparent;
+            border: 1px solid #51E0C0;
+            color: #51E0C0;
+            font: 600 .8rem/1 sans-serif;
+            letter-spacing: .1em;
+            padding: 7px 20px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        #errOv button:hover {
+            background: #51E0C0;
+            color: #000;
+        }
+
+        /* Reconectando */
+        #recOv h4 {
+            font: 600 .9rem/1 sans-serif;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        #recOv .ring {
+            width: 44px;
+            height: 44px;
+            border: 2px solid #1c2128;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font: 700 1.3rem/1 sans-serif;
+            color: #51E0C0;
+        }
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        #player {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #status {
+            color: white;
+            text-align: center;
+            margin-top: 20%;
+            font-size: 1.2em;
+        }
+
+        /* Color de la barra de progreso de Bitmovin */
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition-marker,
+        .bmpui-ui-volumeslider .bmpui-seekbar-playbackposition {
+            background-color: #51E0C0 !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+
+    <div id="player"></div>
+
+    <!-- Cargando -->
+    <div class="ov" id="loadOv">
+        <div class="spinner"></div>
+        <p>Conectando…</p>
+    </div>
+
+    <!-- Error -->
+    <div class="ov hide" id="errOv">
+        <h3>⚠ Sin señal</h3>
+        <span id="errMsg"></span>
+        <button onclick="load()">↺ Reintentar</button>
+    </div>
+
+    <!-- Reconectando -->
+    <div class="ov hide" id="recOv">
+        <h4>⚡ Reconectando…</h4>
+        <div class="ring"><span id="countNum">10</span></div>
+    </div>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        const WORKER = 'https://proxy-deepcathink.canalesonline24.workers.dev';
+
+        // Leer ?feed= de la URL
+        const feed = new URLSearchParams(location.search).get('feed') || '94';
+
+        let player = null;
+        let retryTimer = null;
+        let retries = 0;
+        const MAX = 5;
+        let currentUrl = null;
+
+        const $load = document.getElementById('loadOv');
+        const $err = document.getElementById('errOv');
+        const $errM = document.getElementById('errMsg');
+        const $rec = document.getElementById('recOv');
+        const $count = document.getElementById('countNum');
+
+        const show = el => el.classList.remove('hide');
+        const hide = el => el.classList.add('hide');
+
+        // ── Interceptar licencia Bitmovin ──────────────────────────
+        (function () {
+            var GRANT = 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+            function override(u) {
+                var wm = document.querySelector('button.bmpui-ui-watermark');
+                if (wm) wm.setAttribute('disabled', 'disabled');
+                if (u.indexOf('licensing.bitmovin.com/licensing') > -1) return GRANT;
+                if (u.indexOf('licensing.bitmovin.com/impression') > -1) return GRANT;
+                return u;
+            }
+            var _open = XMLHttpRequest.prototype.open;
+            XMLHttpRequest.prototype.open = function () {
+                arguments[1] = override(arguments[1]);
+                return _open.apply(this, arguments);
+            };
+        })();
+
+        // ── Protección básica ──────────────────────────────────────
+        (function () {
+            document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'F12' ||
+                    (e.ctrlKey && e.shiftKey && ['I', 'C', 'J'].indexOf(e.key) > -1)) {
+                    e.preventDefault();
+                }
+            });
+        })();
+
+        async function load() {
+            hide($err); hide($rec); show($load);
+            try {
+                const res = await fetch(`${WORKER}/token?feed=${feed}`);
+                if (!res.ok) throw new Error(`Worker ${res.status}`);
+                const data = await res.json();
+                if (data.error) throw new Error(data.error);
+                if (!data.url) throw new Error('Sin URL');
+
+                currentUrl = data.url;
+
+                // Leer config expuesta por script-config.js si existe
+                const ck_keyid = (typeof config !== 'undefined' && config.ck_keyid) ? config.ck_keyid : null;
+                const ck_key = (typeof config !== 'undefined' && config.ck_key) ? config.ck_key : null;
+
+                play(currentUrl, ck_keyid, ck_key);
+            } catch (e) {
+                hide($load);
+                $errM.textContent = e.message;
+                show($err);
+            }
+        }
+
+        function play(url, ck_keyid, ck_key) {
+            // Destruir instancia previa
+            if (player) {
+                try { player.destroy(); } catch (e) { }
+                player = null;
+            }
+
+            player = new bitmovin.player.Player(document.getElementById('player'), {
+                key: '11d3698c-efdf-42f1-8769-54663995de2b',
+                analytics: false,
+                cast: { enable: true },
+                playback: { autoplay: true, muted: false },
+                style: { width: '100%', height: '100%' }
+            });
+
+            // Determinar tipo de stream y armar source
+            var source = {};
+            if (url.indexOf('.mpd') > -1 || url.indexOf('dash') > -1) {
+                source.dash = url;
+            } else {
+                // HLS / M3U8 por defecto
+                source.hls = url;
+            }
+
+            if (ck_keyid && ck_key) {
+                source.drm = { clearkey: [{ keyId: ck_keyid, key: ck_key }] };
+            }
+
+            // Eventos
+            player.on(bitmovin.player.PlayerEvent.Play, function () {
+                hide($load); hide($rec); retries = 0;
+            });
+
+            player.on(bitmovin.player.PlayerEvent.Error, function (e) {
+                console.error('Bitmovin error:', e);
+                reconnect();
+            });
+
+            // Fallback: ocultar loader tras 15 s por si no dispara Play
+            setTimeout(() => hide($load), 15000);
+
+            player.load(source).catch(function (err) {
+                hide($load);
+                $errM.textContent = err.message || 'Error al cargar el stream';
+                show($err);
+            });
+        }
+
+        function reconnect() {
+            if (retryTimer) return;
+            retries++;
+            $count.textContent = 10;
+            hide($load); show($rec);
+
+            retryTimer = setInterval(() => {
+                const n = parseInt($count.textContent);
+                if (n > 1) {
+                    $count.textContent = n - 1;
+                } else {
+                    clearInterval(retryTimer);
+                    retryTimer = null;
+                    hide($rec);
+
+                    if (retries < MAX) {
+                        // Intentar reanudar sin nueva URL
+                        try {
+                            if (player) {
+                                player.play().catch(() => load());
+                            } else {
+                                load();
+                            }
+                        } catch (e) { load(); }
+                    } else {
+                        // Pedir URL fresca
+                        retries = 0;
+                        load();
+                    }
+                }
+            }, 1000);
+        }
+
+        load();
+    </script>
+</body>
+
+</html>
