@@ -36,7 +36,7 @@ MisCanales.set(
             // servidorCanalesOnline + "fetch.html?stream=Telefe",
             // servidorCanalesOnline + "fetch2.html?stream=Telefe",
             servidorCanalesOnline + "latamlive.html?id=TELEFE_AR_IP_ENC_LIVE",
-            // servidorCanalesOnline + "cvatt_v1.html?id=TELEFE",
+            // servidorCanalesOnline + "    ",
             servidorCanalesOnline + "aneviapro.html?id=Telefe",
             // servidorCanalesOnline + "proxym3u8/?id=TELEFE",
             // "server/cvatt.html?get=VGVsZWZlSEQ=",
