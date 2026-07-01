@@ -3594,13 +3594,23 @@ MisCanales.set(
         pais: "Argentina",
         guide: "ESPN HD",
         enlaces: [
+            ///Argentina
             servidorCanalesOnline + "cvatt_pro.html?get=RVNQTjJIRA",
             servidorCanalesOnline + "cvatt.html?get=RVNQTjJIRA",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjJIRA",
+            ///Uruguay
+            servidorCanalesOnline + "cvatt_pro.html?get=RVNQTl9VWQ==",
+            servidorCanalesOnline + "cvatt.html?get=RVNQTl9VWQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTl9VWQ==",
+            ///Paraguay
+            servidorCanalesOnline + "cvatt_pro.html?get=RVNQTjJfUFk=",
+            servidorCanalesOnline + "cvatt.html?get=RVNQTjJfUFk=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjJfUFk=",
+            
             // "server/cvatt.html?get=RVNQTjJIRA",
             // "https://sssshhh.xyz/cvatt.html?get=RVNQTjJIRA",
             // "https://a3.115tv.site/cvatt.html?get=RVNQTjJIRA",
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjJIRA",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjJIRA",
             servidorCanalesOnline + "latamlive.html?id=ESPN1_AR_ENC_LIVE",
             servidorCanalesOnline + "tdtcloudpro.html?stream=espn",
             "https://cdn.tdtcloud.xyz/ws04.php",
@@ -3642,13 +3652,22 @@ MisCanales.set(
         pais: "Argentina",
         guide: "ESPN 2 HD",
         enlaces: [
+            ///Argentina
             servidorCanalesOnline + "cvatt_pro.html?get=RVNQTjJfQXJn",
             servidorCanalesOnline + "cvatt.html?get=RVNQTjJfQXJn",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjJfQXJn",
+            ///Uruguay
+            servidorCanalesOnline + "cvatt_pro.html?get=RVNQTjJfVVk=",
+            servidorCanalesOnline + "cvatt.html?get=RVNQTjJfVVk=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjJfVVk=",
+            ///Paraguay
+            servidorCanalesOnline + "cvatt_pro.html?get=RVNQTl9QWQ==",
+            servidorCanalesOnline + "cvatt.html?get=RVNQTl9QWQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTl9QWQ==",
             // "server/cvatt.html?get=RVNQTjJfQXJn",
             // "https://sssshhh.xyz/cvatt.html?get=RVNQTjJfQXJn",
             // "https://a3.115tv.site/cvatt.html?get=RVNQTjJfQXJn",
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjJfQXJn",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjJfQXJn",
             servidorCanalesOnline + "latamlive.html?id=ESPN2_AR_ENC_LIVE",
             servidorCanalesOnline + "tdtcloudpro.html?stream=espn2",
             "https://cdn.tdtcloud.xyz/ws05.php",
@@ -3690,13 +3709,22 @@ MisCanales.set(
         pais: "Argentina",
         guide: "ESPN 3 HD",
         enlaces: [
+            ///Argentina
             servidorCanalesOnline + "cvatt_pro.html?get=RVNQTjM",
             servidorCanalesOnline + "cvatt.html?get=RVNQTjM",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjM",
+            ///Uruguay
+            servidorCanalesOnline + "cvatt_pro.html?get=RVNQTjNfVXktUHk=",
+            servidorCanalesOnline + "cvatt.html?get=RVNQTjNfVXktUHk=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjNfVXktUHk=",
+            ///Paraguay
+            // servidorCanalesOnline + "cvatt_pro.html?get=RVNQTjNfVXktUHk",
+            // servidorCanalesOnline + "cvatt.html?get=RVNQTjNfVXktUHk",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjNfVXktUHk",
             // "server/cvatt.html?get=RVNQTjM",
             // "https://sssshhh.xyz/cvatt.html?get=RVNQTjM",
             // "https://a3.115tv.site/cvatt.html?get=RVNQTjM",
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjM",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjM",
             servidorCanalesOnline + "latamlive.html?id=ESPN3_AR_ENC_LIVE",
             servidorCanalesOnline + "tdtcloudpro.html?stream=espn3",
             "https://cdn.tdtcloud.xyz/ws06.php",
@@ -5955,34 +5983,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-    "Paramount Network",
-    {
-        pais: "Estados Unidos",
-        enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=UGFyYW1vdW50",
-            servidorCanalesOnline + "cvatt.html?get=UGFyYW1vdW50",
-            // "server/cvatt.html?get=UGFyYW1vdW50",
-            // "https://sssshhh.xyz/cvatt.html?get=UGFyYW1vdW50",
-            // "https://a3.115tv.site/cvatt.html?get=UGFyYW1vdW50",
-            // "https://a3.115tv.site/cvatt2_ext.html?get=UGFyYW1vdW50",
-            servidorCanalesOnline + "cvatt2_ext.html?get=UGFyYW1vdW50",
-            servidorCanalesOnline + "sensa.html?id=Paramount",
-            // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=Paramount_HD",
-            // "https://aux.canalesonline24.workers.dev/trimi.html?id=PARAMOUNT",
-            servidorCanalesOnline + "extension.html?get=PARAMOUNT",
-            // servidorCanalesOnline + "sensa_ext.html?id=Paramount",
-            // "server/cvatt2_ext.html?get=UGFyYW1vdW50",
-            // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=UGFyYW1vdW50",
-            // "https://flowflowflow1.dombhei.com/cvatt.html?get=UGFyYW1vdW50",
-            // "https://cv.photocalltv.me/cv2.php?get=UGFyYW1vdW50",
-            // "https://tomyjerry.nebunexa.com/cvatt.php?get=UGFyYW1vdW50",
-            // "https://nebunexa.com/cvatt.php?get=UGFyYW1vdW50",
-            // "https://www.enlatele.tv/player/cv2.php?get=UGFyYW1vdW50",
-        ]
-    }
-);
-
-MisCanales.set(
     "AMC",
     {
         pais: "Estados Unidos",
@@ -7709,57 +7709,6 @@ MisCanales.set(
             // "https://tomyjerry.nebunexa.com/cvatt.php?get=TVRWX0hE",
             // "https://nebunexa.com/cvatt.php?get=TVRWX0hE",
             // "https://www.enlatele.tv/player/cv2.php?get=TVRWX0hE",
-        ]
-    }
-);
-
-MisCanales.set(
-    "MTV hits",
-    {
-        pais: "Estados Unidos",
-        guide: "MTV HITS",
-        enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=TVRWX0hpdHM=",
-            servidorCanalesOnline + "cvatt.html?get=TVRWX0hpdHM=",
-            // "server/cvatt.html?get=TVRWX0hpdHM=",
-            // "https://sssshhh.xyz/cvatt.html?get=TVRWX0hpdHM=",
-            // "https://a3.115tv.site/cvatt.html?get=TVRWX0hpdHM=",
-            // "https://a3.115tv.site/cvatt2_ext.html?get=TVRWX0hpdHM=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=TVRWX0hpdHM=",
-            // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=MTV_Hits",
-            // "server/cvatt2_ext.html?get=TVRWX0hpdHM=",
-            // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=TVRWX0hpdHM=",
-            // "https://flowflowflow1.dombhei.com/cvatt.html?get=TVRWX0hpdHM=",
-            // "https://cv.photocalltv.me/cv2.php?get=TVRWX0hpdHM=",
-            // "https://tomyjerry.nebunexa.com/cvatt.php?get=TVRWX0hpdHM=",
-            // "https://nebunexa.com/cvatt.php?get=TVRWX0hpdHM=",
-            // "https://www.enlatele.tv/player/cv2.php?get=TVRWX0hpdHM=",
-        ]
-    }
-);
-
-MisCanales.set(
-    "MTV 00S",
-    {
-        pais: "Estados Unidos",
-        guide: "MTV 00s",
-        enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=TVRWMDA=",
-            servidorCanalesOnline + "cvatt.html?get=TVRWMDA=",
-            // "server/cvatt.html?get=TVRWMDA=",
-            // "https://sssshhh.xyz/cvatt.html?get=TVRWMDA=",
-            // "https://a3.115tv.site/cvatt.html?get=TVRWMDA=",
-            // "https://a3.115tv.site/cvatt2_ext.html?get=TVRWMDA=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=TVRWMDA=",
-            // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=MTV_00s",
-            // "https://aux.canalesonline24.workers.dev/trimi.html?id=MTV_00s",
-            // "server/cvatt2_ext.html?get=TVRWMDA=",
-            // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=TVRWMDA=",
-            // "https://flowflowflow1.dombhei.com/cvatt.html?get=TVRWMDA=",
-            // "https://cv.photocalltv.me/cv2.php?get=TVRWMDA=",
-            // "https://tomyjerry.nebunexa.com/cvatt.php?get=TVRWMDA=",
-            // "https://nebunexa.com/cvatt.php?get=TVRWMDA=",
-            // "https://www.enlatele.tv/player/cv2.php?get=TVRWMDA=",
         ]
     }
 );
