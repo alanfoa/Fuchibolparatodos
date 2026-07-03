@@ -214,8 +214,8 @@
         const MAX_RETRIES = 3;
 
         const streamMapping = {
-            "Los_Simpson": "simpson_maniahd193",
-            "Simpson": "simpson_maniahd193",
+            "Los_Simpson": "simpson_media",
+            "Simpson": "simpson_media",
             "Los_Simpson_media": "simpson_media",
             "Netflix": "a_neflix01",
             "Neflix": "a_neflix01",
@@ -257,7 +257,7 @@
         const streamParam = urlParams.get('stream');
 
         // Determinar el stream a cargar
-        let currentStream = "simpson_maniahd193"; // Default
+        let currentStream = "simpson_media"; // Default
 
         if (streamParam) {
             const mappedStream = streamMapping[streamParam];
