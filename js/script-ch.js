@@ -569,7 +569,7 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "edgectc.html?id=CANAL7_MZA",
+            // servidorCanalesOnline + "edgectc.html?id=CANAL7_MZA",
             "https://vmf.edge-apps.net/embed/live.php?streamname=canal7mendoza-100056&autoplay=true",
             servidorCanalesOnline + "edge-apps.html?id=canal7mendoza",
             // "https://vmf.edge-apps.net/embed/live.php?streamname=canal7mendoza-100056&autoplay=false"
@@ -3285,6 +3285,11 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
+            ///Uruguay
+            servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19QbHVzX1VZ",
+            servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19QbHVzX1VZ",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19QbHVzX1VZ",
+            
             servidorCanalesOnline + "dsports.html?id=DSportsPlus_cbsivideo",
             servidorCanalesOnline + "flypro.html?id=dsportsplus",
             servidorCanalesOnline + "fly-hls.html?id=dsportsplus",
@@ -3303,6 +3308,18 @@ MisCanales.set(
             servidorCanalesOnline + "jjfutbol2pro.html?name=dsports+",
             // "https://fullchannels.online/canales.php?id=directvplus-op2",
             // "https://zonahack-2aeb7.web.app/tvonline.html?url=https://cansd-teleetreee-maemb.glitch.me/detee3.html",
+        ]
+    }
+);
+
+MisCanales.set(
+    "VS Sports",
+    {
+        pais: "Estados Unidos",
+        enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=Tmlja211c2lj",
+            servidorCanalesOnline + "cvatt.html?get=Tmlja211c2lj",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Tmlja211c2lj",
         ]
     }
 );
@@ -7466,19 +7483,6 @@ MisCanales.set(
         guide: "Teen Nick",
         enlaces: [
             // "https://aux.canalesonline24.workers.dev/trimi.html?id=TEEN_NICK",
-        ]
-    }
-);
-
-MisCanales.set(
-    "NICK MUSIC",
-    {
-        pais: "Estados Unidos",
-        guide: "NickMusic",
-        enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Tmlja211c2lj",
-            servidorCanalesOnline + "cvatt.html?get=Tmlja211c2lj",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Tmlja211c2lj",
         ]
     }
 );
