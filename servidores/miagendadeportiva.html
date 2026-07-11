@@ -726,7 +726,7 @@
     <script>
         // const PROXY_BASE    = 'https://api.codetabs.com/v1/proxy/?quest=';
         const PROXY_BASE    = 'https://sportsonline.ppvtv.top/proxy?url=';
-        const EVENTO_BASE   = 'https://jjfutbol2.lat/evento.php';
+        const EVENTO_BASE   = 'https://jjfutbol3.lat/evento.php';
         const CDN_BASE      = 'https://cdn.pltvhd.com';
         const EVENT_DURATION_MIN = 120;
         const TIME_OFFSET_MIN    = 120;
@@ -1043,8 +1043,8 @@
         /* ── Load data ── */
         async function loadData() {
             try {
-                const res = await fetch(PROXY_BASE + 'https://jjfutbol2.lat/agenda_limpia.json');
-                // const res = await fetch('https://proxy-jjfutbol2.canalesonline24.workers.dev/?target=json');
+                const res = await fetch(PROXY_BASE + 'https://jjfutbol3.lat/agenda_limpia.json');
+                // const res = await fetch('https://proxy-jjfutbol3.canalesonline24.workers.dev/?target=json');
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 allEvents = await res.json();
             } catch (e) {

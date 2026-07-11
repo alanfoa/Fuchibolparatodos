@@ -3093,8 +3093,8 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=VHlDU3BvcnQ",
             servidorCanalesOnline + "deepcathinkpro.html?feed=77",
             servidorCanalesOnline + "latamlive.html?id=TYC_SPORTS_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=tycsports",
-            "https://cdn.tdtcloud.xyz/ws14.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=tycsports",
+            // "https://cdn.tdtcloud.xyz/ws14.php",
             servidorCanalesOnline + "aneviapro.html?id=TyC",
             servidorCanalesOnline + "edge.html?get=TyC_Sports",
             // servidorCanalesOnline + "tvmia.html?stream=an_TyC_Sports",
@@ -3210,10 +3210,10 @@ MisCanales.set(
 
             servidorCanalesOnline + "flypro.html?id=dsports",
             servidorCanalesOnline + "fly-hls.html?id=dsports",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=dsports",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=dsports",
             servidorCanalesOnline + "deepcathinkpro.html?feed=94",
-            "https://cdn.tdtcloud.xyz/ws07.php",
-            "https://skylivefu.com/live.php?stream=dsports",
+            // "https://cdn.tdtcloud.xyz/ws07.php",
+            "https://streamx-hd.com/live1.php?stream=dsports",
             // servidorCanalesOnline + "proxym3u8/?id=DSPORTS_AR",
             // "https://199m3u8.netlify.app/?id=DSports",
             // servidorCanalesOnline + "m3u8.html?stream=DSportsArg_2",
@@ -3256,9 +3256,9 @@ MisCanales.set(
             
             servidorCanalesOnline + "flypro.html?id=dsports2",
             servidorCanalesOnline + "fly-hls.html?id=dsports2",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=dsports2",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=dsports2",
             servidorCanalesOnline + "deepcathinkpro.html?feed=95",
-            "https://cdn.tdtcloud.xyz/ws08.php",
+            // "https://cdn.tdtcloud.xyz/ws08.php",
             // servidorCanalesOnline + "proxym3u8/?id=DSPORTS2_AR",
             // "https://172m3u8.netlify.app/?id=Dsports2",
             // servidorCanalesOnline + "m3u8.html?stream=DSports2Arg",
@@ -3293,9 +3293,9 @@ MisCanales.set(
             servidorCanalesOnline + "dsports.html?id=DSportsPlus_cbsivideo",
             servidorCanalesOnline + "flypro.html?id=dsportsplus",
             servidorCanalesOnline + "fly-hls.html?id=dsportsplus",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=dsportsplus",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=dsportsplus",
             servidorCanalesOnline + "deepcathinkpro.html?feed=96",
-            "https://cdn.tdtcloud.xyz/ws09.php",
+            // "https://cdn.tdtcloud.xyz/ws09.php",
             // "https://rereyano.ru/player/3/96",
             // "https://cartelive.club/player/3/96",
             // "https://bolaloca.my/player/3/96",
@@ -3329,8 +3329,8 @@ MisCanales.set(
     {
         pais: "Estados Unidos",
         enlaces: [
-            servidorCanalesOnline + "tdtcloudpro.html?stream=beinsports",
-            "https://cdn.tdtcloud.xyz/ws23.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=beinsports",
+            // "https://cdn.tdtcloud.xyz/ws23.php",
             // servidorCanalesOnline + "cobo.html?id=BEIN_XTRA_N_ES",
             // "https://forlessmake.store/cobo.html?id=BEIN_XTRA_N_ES",
             // "https://la10hd.com/vivo/canal.php?stream=beinsportes",
@@ -3422,8 +3422,8 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=VE5UX1Nwb3J0c19IRA",
             servidorCanalesOnline + "deepcathinkpro.html?feed=75",
             servidorCanalesOnline + "latamlive.html?id=TNTS_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=tntsports",
-            "https://cdn.tdtcloud.xyz/ws22.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=tntsports",
+            // "https://cdn.tdtcloud.xyz/ws22.php",
             servidorCanalesOnline + "edge.html?get=TNT_Sports",
             "https://aux.canalesonline24.workers.dev/trimi.html?id=TNT_SPORTS",
             servidorCanalesOnline + "gigared.html?id=TNT_Sports_Premium",
@@ -3553,54 +3553,54 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            // "https://skylivefu.com/live.php?stream=starplus01",
-            // "https://skylivefu.com/live.php?stream=starplus02",
-            // "https://skylivefu.com/live.php?stream=starplus03",
-            // "https://skylivefu.com/live.php?stream=starplus04",
-            // "https://skylivefu.com/live.php?stream=starplus05",
-            // "https://skylivefu.com/live.php?stream=starplus06",
-            // "https://skylivefu.com/live.php?stream=starplus07",
-            // "https://skylivefu.com/live.php?stream=starplus08",
-            // "https://skylivefu.com/live.php?stream=starplus09",
-            // "https://skylivefu.com/live.php?stream=starplus10",
-            // "https://skylivefu.com/live.php?stream=starplus11",
-            // "https://skylivefu.com/live.php?stream=starplus12",
-            // "https://skylivefu.com/live.php?stream=starplus13",
-            // "https://skylivefu.com/live.php?stream=starplus14",
-            // "https://skylivefu.com/live.php?stream=starplus15",
-            // "https://skylivefu.com/live.php?stream=starplus16",
+            // "https://streamx-hd.com/live1.php?stream=starplus01",
+            // "https://streamx-hd.com/live1.php?stream=starplus02",
+            // "https://streamx-hd.com/live1.php?stream=starplus03",
+            // "https://streamx-hd.com/live1.php?stream=starplus04",
+            // "https://streamx-hd.com/live1.php?stream=starplus05",
+            // "https://streamx-hd.com/live1.php?stream=starplus06",
+            // "https://streamx-hd.com/live1.php?stream=starplus07",
+            // "https://streamx-hd.com/live1.php?stream=starplus08",
+            // "https://streamx-hd.com/live1.php?stream=starplus09",
+            // "https://streamx-hd.com/live1.php?stream=starplus10",
+            // "https://streamx-hd.com/live1.php?stream=starplus11",
+            // "https://streamx-hd.com/live1.php?stream=starplus12",
+            // "https://streamx-hd.com/live1.php?stream=starplus13",
+            // "https://streamx-hd.com/live1.php?stream=starplus14",
+            // "https://streamx-hd.com/live1.php?stream=starplus15",
+            // "https://streamx-hd.com/live1.php?stream=starplus16",
 
 
-            "https://skylivefu.com/live.php?stream=espnplus1", //17
-            "https://skylivefu.com/live.php?stream=espnplus2", //18
-            "https://skylivefu.com/live.php?stream=espnplus3", //19
-            "https://skylivefu.com/live.php?stream=espnplus4", //20
-            "https://skylivefu.com/live.php?stream=espnplus5", //21
-            "https://skylivefu.com/live.php?stream=espnplus6", //22
-            "https://skylivefu.com/live.php?stream=espnplus7", //23
-            "https://skylivefu.com/live.php?stream=espnplus8", //24
-            "https://skylivefu.com/live.php?stream=espnplus9", //25
+            "https://streamx-hd.com/live1.php?stream=espnplus1", //17
+            "https://streamx-hd.com/live1.php?stream=espnplus2", //18
+            "https://streamx-hd.com/live1.php?stream=espnplus3", //19
+            "https://streamx-hd.com/live1.php?stream=espnplus4", //20
+            "https://streamx-hd.com/live1.php?stream=espnplus5", //21
+            "https://streamx-hd.com/live1.php?stream=espnplus6", //22
+            "https://streamx-hd.com/live1.php?stream=espnplus7", //23
+            "https://streamx-hd.com/live1.php?stream=espnplus8", //24
+            "https://streamx-hd.com/live1.php?stream=espnplus9", //25
 
-            "https://skylivefu.com/live.php?stream=disney1",  //26
-            "https://skylivefu.com/live.php?stream=disney2",  //27
-            "https://skylivefu.com/live.php?stream=disney3",  //28
-            "https://skylivefu.com/live.php?stream=disney4",  //29
-            "https://skylivefu.com/live.php?stream=disney5",  //30
-            "https://skylivefu.com/live.php?stream=disney6",  //31
-            "https://skylivefu.com/live.php?stream=disney7",  //32
-            "https://skylivefu.com/live.php?stream=disney8",  //33
-            "https://skylivefu.com/live.php?stream=disney9",  //34
-            "https://skylivefu.com/live.php?stream=disney10", //35
-            "https://skylivefu.com/live.php?stream=disney11", //36
-            "https://skylivefu.com/live.php?stream=disney12", //37
-            "https://skylivefu.com/live.php?stream=disney13", //38
-            "https://skylivefu.com/live.php?stream=disney14", //39
-            "https://skylivefu.com/live.php?stream=disney15", //40
-            "https://skylivefu.com/live.php?stream=disney16", //41
-            "https://skylivefu.com/live.php?stream=disney17", //42
-            "https://skylivefu.com/live.php?stream=disney18", //43
-            "https://skylivefu.com/live.php?stream=disney19", //44
-            "https://skylivefu.com/live.php?stream=disney20", //45    
+            "https://streamx-hd.com/live1.php?stream=disney1",  //26
+            "https://streamx-hd.com/live1.php?stream=disney2",  //27
+            "https://streamx-hd.com/live1.php?stream=disney3",  //28
+            "https://streamx-hd.com/live1.php?stream=disney4",  //29
+            "https://streamx-hd.com/live1.php?stream=disney5",  //30
+            "https://streamx-hd.com/live1.php?stream=disney6",  //31
+            "https://streamx-hd.com/live1.php?stream=disney7",  //32
+            "https://streamx-hd.com/live1.php?stream=disney8",  //33
+            "https://streamx-hd.com/live1.php?stream=disney9",  //34
+            "https://streamx-hd.com/live1.php?stream=disney10", //35
+            "https://streamx-hd.com/live1.php?stream=disney11", //36
+            "https://streamx-hd.com/live1.php?stream=disney12", //37
+            "https://streamx-hd.com/live1.php?stream=disney13", //38
+            "https://streamx-hd.com/live1.php?stream=disney14", //39
+            "https://streamx-hd.com/live1.php?stream=disney15", //40
+            "https://streamx-hd.com/live1.php?stream=disney16", //41
+            "https://streamx-hd.com/live1.php?stream=disney17", //42
+            "https://streamx-hd.com/live1.php?stream=disney18", //43
+            "https://streamx-hd.com/live1.php?stream=disney19", //44
+            "https://streamx-hd.com/live1.php?stream=disney20", //45    
         ]
     }
 );
@@ -3629,8 +3629,8 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=RVNQTjJIRA",
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjJIRA",
             servidorCanalesOnline + "latamlive.html?id=ESPN1_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=espn",
-            "https://cdn.tdtcloud.xyz/ws04.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=espn",
+            // "https://cdn.tdtcloud.xyz/ws04.php",
             servidorCanalesOnline + "aneviapro.html?id=ESPN",
             servidorCanalesOnline + "edge.html?get=ESPN",
             // servidorCanalesOnline + "tvmia.html?stream=an_ESPN",
@@ -3686,8 +3686,8 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=RVNQTjJfQXJn",
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjJfQXJn",
             servidorCanalesOnline + "latamlive.html?id=ESPN2_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=espn2",
-            "https://cdn.tdtcloud.xyz/ws05.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=espn2",
+            // "https://cdn.tdtcloud.xyz/ws05.php",
             servidorCanalesOnline + "aneviapro.html?id=ESPN2",
             servidorCanalesOnline + "edge.html?get=ESPN_2",
             // servidorCanalesOnline + "tvmia.html?stream=bn_ESPN2",
@@ -3743,8 +3743,8 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=RVNQTjM",
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjM",
             servidorCanalesOnline + "latamlive.html?id=ESPN3_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=espn3",
-            "https://cdn.tdtcloud.xyz/ws06.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=espn3",
+            // "https://cdn.tdtcloud.xyz/ws06.php",
             servidorCanalesOnline + "aneviapro.html?id=ESPN3",
             servidorCanalesOnline + "edge.html?get=ESPN_3",
             // servidorCanalesOnline + "tvmia.html?stream=an_ESPN3",
@@ -3789,8 +3789,8 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTkhE",
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTkhE",
             servidorCanalesOnline + "latamlive.html?id=ESPN4_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=espn4",
-            "https://cdn.tdtcloud.xyz/ws10.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=espn4",
+            // "https://cdn.tdtcloud.xyz/ws10.php",
             servidorCanalesOnline + "edge.html?get=ESPN_4",
             servidorCanalesOnline + "sensa.html?id=ESPN4",
             servidorCanalesOnline + "gigared.html?id=ESPN4",
@@ -3832,8 +3832,8 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=RVNQTjQ=",
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjQ=",
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjQ=",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=espn5",
-            "https://cdn.tdtcloud.xyz/ws11.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=espn5",
+            // "https://cdn.tdtcloud.xyz/ws11.php",
             // "server/cvatt2_ext.html?get=RVNQTjQ=",
             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=RVNQTjQ=",
             // "https://flowflowflow1.dombhei.com/cvatt.html?get=RVNQTjQ=",
@@ -3868,8 +3868,8 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=Rm94U3BvcnRzM19VWQ==",
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=espn6",
-            "https://cdn.tdtcloud.xyz/ws12.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=espn6",
+            // "https://cdn.tdtcloud.xyz/ws12.php",
             // "server/cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=Rm94U3BvcnRzM19VWQ==",
             // "https://flowflowflow1.dombhei.com/cvatt.html?get=Rm94U3BvcnRzM19VWQ==",
@@ -3904,8 +3904,8 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=Rm94U3BvcnRzMl9VWQ==",
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=espn7",
-            "https://cdn.tdtcloud.xyz/ws13.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=espn7",
+            // "https://cdn.tdtcloud.xyz/ws13.php",
             // "server/cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=Rm94U3BvcnRzMl9VWQ==",
             // "https://flowflowflow1.dombhei.com/cvatt.html?get=Rm94U3BvcnRzMl9VWQ==",
@@ -4032,8 +4032,8 @@ MisCanales.set(
     {
         pais: "Colombia",
         enlaces: [
-            servidorCanalesOnline + "tdtcloudpro.html?stream=caracol",
-            "https://cdn.tdtcloud.xyz/caracolhd201x.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=caracol",
+            // "https://cdn.tdtcloud.xyz/caracolhd201x.php",
             // "https://172m3u8.netlify.app/?id=Caracol",
             // "https://172m3u8.netlify.app/?id=Caracol2",
             // servidorCanalesOnline + "cobo.html?id=CaracolTVHD",
@@ -4703,8 +4703,8 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRz",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRz",
             servidorCanalesOnline + "latamlive.html?id=FOX_SPORTS_HD_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports1ar",
-            "https://cdn.tdtcloud.xyz/ws17.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports1ar",
+            // "https://cdn.tdtcloud.xyz/ws17.php",
             servidorCanalesOnline + "aneviapro.html?id=FOX_Sports_HD",
             servidorCanalesOnline + "edge.html?get=Fox_Sports",
             // servidorCanalesOnline + "tvmia.html?stream=an_FOX_SPORTS",
@@ -4751,8 +4751,8 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzMkhE",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzMkhE",
             servidorCanalesOnline + "latamlive.html?id=FOX_SPORTS2_HD_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports2ar",
-            "https://cdn.tdtcloud.xyz/ws18.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports2ar",
+            // "https://cdn.tdtcloud.xyz/ws18.php",
             servidorCanalesOnline + "edge.html?get=Fox_Sports_2",
             // servidorCanalesOnline + "tvmia.html?stream=an_FOX_SPORTS2",
             servidorCanalesOnline + "sensa.html?id=FoxSports2",
@@ -4799,8 +4799,8 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzM0hE",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzM0hE",
             servidorCanalesOnline + "latamlive.html?id=FOX_SPORTS3_AR_ENC_LIVE",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports3ar",
-            "https://cdn.tdtcloud.xyz/ws19.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports3ar",
+            // "https://cdn.tdtcloud.xyz/ws19.php",
             servidorCanalesOnline + "edge.html?get=Fox_Sports_3",
             servidorCanalesOnline + "sensa.html?id=FoxSports3",
             servidorCanalesOnline + "aneviapro.html?id=fox3ar",
@@ -5046,8 +5046,8 @@ MisCanales.set(
         pais: "México",
         enlaces: [
             servidorCanalesOnline + "flypro.html?id=tudnmx",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=tudnmx",
-            "https://cdn.tdtcloud.xyz/ws20.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=tudnmx",
+            // "https://cdn.tdtcloud.xyz/ws20.php",
             // "https://streamx10.cloud/global2.php?channel=tudn_usa",
             // "https://streamx10.cloud/global1.php?channel=tudn_usa",
             // "https://streamx10.cloud/global3.php?channel=tudn_usa", //No funciona en la apk
@@ -5081,8 +5081,8 @@ MisCanales.set(
         enlaces: [
             // servidorCanalesOnline + "fetch.html?stream=rcn",
             // servidorCanalesOnline + "fetch2.html?stream=rcn",
-            servidorCanalesOnline + "tdtcloudpro.html?stream=rcn2",
-            "https://cdn.tdtcloud.xyz/ws16.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=rcn2",
+            // "https://cdn.tdtcloud.xyz/ws16.php",
             // "m3u8.html?stream=RCN_COL",
             servidorCanalesOnline + "tvmia.html?stream=an_RCN",
             // "https://streamx10.cloud/global2.php?channel=rcnco",
@@ -5120,8 +5120,8 @@ MisCanales.set(
     {
         pais: "Colombia",
         enlaces: [
-            servidorCanalesOnline + "tdtcloudpro.html?stream=winsports",            
-            "https://cdn.tdtcloud.xyz/ws02.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=winsports",            
+            // "https://cdn.tdtcloud.xyz/ws02.php",
             // "https://172m3u8.netlify.app/?id=Win_Sports",
             // "https://172m3u8.netlify.app/?id=Win_Sports_2",
             // "https://streamx10.cloud/global2.php?channel=winsports",
@@ -5140,8 +5140,8 @@ MisCanales.set(
     {
         pais: "Colombia",
         enlaces: [
-            servidorCanalesOnline + "tdtcloudpro.html?stream=winsportsplus",
-            "https://cdn.tdtcloud.xyz/ws01.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=winsportsplus",
+            // "https://cdn.tdtcloud.xyz/ws01.php",
             // servidorCanalesOnline + "tvmia.html?stream=bn_WINPLUS",
             // "https://streamx10.cloud/global2.php?channel=winsportsplus",
             // "https://streamx10.cloud/global1.php?channel=winsportsplus",
@@ -6826,8 +6826,8 @@ MisCanales.set(
     {
         pais: "Estados Unidos",
         enlaces: [
-            servidorCanalesOnline + "tdtcloudpro.html?stream=universo",
-            "https://cdn.tdtcloud.xyz/ws21.php",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=universo",
+            // "https://cdn.tdtcloud.xyz/ws21.php",
             // "cobo.html?id=UNIVERSO", ///Universo
             // "https://streamx10.cloud/global2.php?channel=universo_usa",
             // "https://streamx10.cloud/global1.php?channel=universo_usa",
