@@ -959,12 +959,13 @@
                 // Codificar en base64
                 var base64Key = btoa(keyString);
 
-                // var extensionUrl = `chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#${config.url}?ck=${encodeURIComponent(base64Key)}&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyIsInVzZXItYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQ4LjAuMC4wIFNhZmFyaS81MzcuMzYiLCJzZWMtY2gtdWEtcGxhdGZvcm0iOiJcIldpbmRvd3NcIiIsInNlYy1jaC11YS1tb2JpbGUiOiI/MCIsInNlYy1ncGMiOiIxIn0=`;
+                var extensionUrl = `chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#${config.url}?ck=${encodeURIComponent(base64Key)}&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyIsInVzZXItYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQ4LjAuMC4wIFNhZmFyaS81MzcuMzYiLCJzZWMtY2gtdWEtcGxhdGZvcm0iOiJcIldpbmRvd3NcIiIsInNlYy1jaC11YS1tb2JpbGUiOiI/MCIsInNlYy1ncGMiOiIxIn0=`;
                 // var extensionUrl = `chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#${config.url}?ck=${encodeURIComponent(base64Key)}&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyJ9`;
                 // var extensionUrl = `chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#${config.url}?ck=${encodeURIComponent(base64Key)}&headers=eyJyZWZlcmVyIjoiaHR0cHM6Ly9wbGF5ZXIuc2Vuc2EuY29tLmFyLyZ3ZWJ0b2tlbj0xLjAifQ%3D%3D`;
 
 
-                var extensionUrl = `chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#${config.url}?ck=${encodeURIComponent(base64Key)}&headers=eyJyZWZlcmVyIjoiaHR0cHM6Ly9wbGF5ZXIuc2Vuc2EuY29tLmFyLyNzcGEvJndlYnRva2VuPTEuMCJ9`;
+                // var extensionUrl = `chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#${config.url}?ck=${encodeURIComponent(base64Key)}&headers=eyJyZWZlcmVyIjoiaHR0cHM6Ly9wbGF5ZXIuc2Vuc2EuY29tLmFyLyNzcGEvJndlYnRva2VuPTEuMCJ9`;
+                // var extensionUrl = `chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html#${config.url}?ck=${encodeURIComponent(base64Key)}&headers=eyJvcmlnaW4iOiJodHRwczovL3dlYmNsaWVudC5hbnRpbmFwbGF5cGx1cy5jb20uYXIiLCJyZWZlcmVyIjoiaHR0cHM6Ly93ZWJjbGllbnQuYW50aW5hcGxheXBsdXMuY29tLmFyLyIsInVzZXItYWdlbnQiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQ4LjAuMC4wIFNhZmFyaS81MzcuMzYiLCJzZWMtY2gtdWEtcGxhdGZvcm0iOiJcIldpbmRvd3NcIiIsInNlYy1jaC11YS1tb2JpbGUiOiI/MCIsInNlYy1ncGMiOiIxIn0=`;
 
                 const playerDiv = document.getElementById("player");
                 const alertaDiv = document.getElementById("alerta-extension");
