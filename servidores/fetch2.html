@@ -143,8 +143,9 @@
         }
 
         async function cargarm3u8() {
-            let url = new URL(window.location.href);
-            const stream = url.searchParams.get('stream');
+            let urlObj = new URL(window.location.href);
+            const stream = urlObj.searchParams.get('stream');
+            const urlDirecta = urlObj.searchParams.get('url');
 
             const streamUrls = {
                 "Telefe": "https://mdstrm.com/live-stream/69e0fb650d9e3eb5340cdd5c?player=69f8d6e334a190b16647b23b",
@@ -202,51 +203,80 @@
 
 
                 "espn_latamvidz1": "https://latamvidz1.com/canals.php?stream=espn",
+                "prueba": "https://verpelistv.com/pelicula/los-dos-hijos-de-francisco_Nq43K/?vod=1080p",
 
             };
 
-            const getURL = streamUrls[stream];
-            if (!getURL) {
-                alert("Parámetro 'stream' vacío o erróneo");
-                ocultarLoader();
-                return null;
+            let getURL;
+
+            if (urlDirecta) {
+                // Si viene ?url=..., se usa directo, sin pasar por streamUrls
+                getURL = decodeURIComponent(urlDirecta);
+            } else {
+                getURL = streamUrls[stream];
+                if (!getURL) {
+                    alert("Parámetro 'stream' vacío o erróneo");
+                    ocultarLoader();
+                    return null;
+                }
             }
 
             const proxies = [
                 // "https://sportsonline.ppvtv.top/proxy?url=" + getURL,
+                // "https://proxy-chbte.infinityfreeapp.com/proxy.php?url=" + getURL,
+                "https://myproxy.senorgatorade123.workers.dev/?url=" + getURL,
+                "https://proxy-videx.canalesonline24.workers.dev/?url=" + getURL,
                 "https://corsproxy.io/?" + getURL,
                 "https://api.codetabs.com/v1/proxy/?quest=" + getURL,
                 "https://api.allorigins.win/raw?url=" + getURL,
                 "https://pelisjuanita.com/tv/corsproxy.php?url=" + getURL,
-                "https://myproxy.senorgatorade123.workers.dev/?url=" + getURL,
                 "https://cors-proxy.wangzhishi.net/" + getURL
             ];
 
             for (const proxyURL of proxies) {
                 try {
                     const res = await fetch(proxyURL);
-                    const html = await res.text();
-                    const match = html.match(/(?:https?:)?\/\/[^"'\s]+\.m3u8(?:\?[^"'\s]*)?/g);
+                    let html = await res.text();
+
+                    // Si el proxy devuelve JSON (ej: {"contents": "..."}), lo detectamos y extraemos
+                    if (html.trim().startsWith("{")) {
+                        try {
+                            const json = JSON.parse(html);
+                            html = json.contents || json.data || json.body || html;
+                        } catch (e) {
+                            // no era JSON válido, seguimos con el texto tal cual
+                        }
+                    }
+
+                    // Convierte \/ en /
+                    html = html.replace(/\\\//g, "/");
+
+                    console.log(`[DEBUG] ${proxyURL} -> largo html: ${html.length}, contiene 'mp4': ${html.includes(".mp4")}, contiene 'm3u8': ${html.includes(".m3u8")}`);
+
+                    const match = html.match(/https?:\/\/[^\s"'<>]+\.(m3u8|mp4|flv)(?:\?[^\s"'<>]*)?/i);
+
                     if (match) {
-                        console.log("M3U8 encontrado:", match[0]);
-                        return { m3u8: match[0] };
+                        const ext = match[1].toLowerCase();
+                        console.log(`${ext.toUpperCase()} encontrado:`, match[0]);
+                        return { url: match[0], type: ext };
                     } else {
-                        console.warn(`No se encontró m3u8 en: ${proxyURL}`);
+                        console.warn(`No se encontró m3u8/mp4/flv en: ${proxyURL}`);
                     }
                 } catch (err) {
                     console.error(`Error con ${proxyURL}:`, err);
                 }
             }
 
-            console.error("No se pudo obtener el enlace .m3u8 desde ningún proxy.");
+            console.error("No se pudo obtener el enlace desde ningún proxy.");
             return null;
         }
 
 
         cargarm3u8().then(result => {
-            if (result && result.m3u8) {
+            if (result && result.url) {
                 jwplayer("player").setup({
-                    file: result.m3u8,
+                    file: result.url,
+                    type: result.type === "m3u8" ? "hls" : result.type,
                     width: "100%",
                     height: "100%",
                     autostart: true,

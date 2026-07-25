@@ -35,7 +35,7 @@ MisCanales.set(
             // servidorCanalesOnline + "telefepro.html",
             // servidorCanalesOnline + "telefe_mundial.html?id=Telefe_Mundial",
             // servidorCanalesOnline + "telefe_mundial.html?id=Telefe_Stream",
-            servidorCanalesOnline + "videx.html?id=telefe",
+            // servidorCanalesOnline + "videx.html?id=telefe",
             "https://stream-xhd.com/live1.php?stream=telefe",
             "https://stream-xhd.com/live2.php?stream=telefe",
             // servidorCanalesOnline + "fetch.html?stream=Telefe",
@@ -112,7 +112,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTNfU0ZF",
             servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTNfU0ZF",
             servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTNfU0ZF",
-            servidorCanalesOnline + "telefe.html?channel=telefe_santafe",
+            // servidorCanalesOnline + "telefe.html?channel=telefe_santafe",
             // servidorCanalesOnline + "fetch.html?stream=Telefe_SantaFe",
 
             // Servidores de Stgo. del Estero
@@ -143,14 +143,14 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOF9DQkE",
             servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOF9DQkE",
             servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOF9DQkE",
-            servidorCanalesOnline + "telefe.html?channel=telefe_cordoba",
+            // servidorCanalesOnline + "telefe.html?channel=telefe_cordoba",
             // servidorCanalesOnline + "fetch.html?stream=Telefe_Cordoba",
 
             // Servidores de Rosario
             servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfNV9Sb3Nhcmlv",
             servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfNV9Sb3Nhcmlv",
             servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfNV9Sb3Nhcmlv",
-            servidorCanalesOnline + "telefe.html?channel=telefe_rosario",
+            // servidorCanalesOnline + "telefe.html?channel=telefe_rosario",
             // servidorCanalesOnline + "fetch.html?stream=Telefe_Rosario",
 
 
@@ -3120,7 +3120,7 @@ MisCanales.set(
             servidorCanalesOnline + "akamaized.html?id=tycsports_arg",
             servidorCanalesOnline + "akamaizedpro.html?id=tycsports",
             servidorCanalesOnline + "akamaized.html?id=tycsports",
-            servidorCanalesOnline + "deepcathinkpro.html?feed=77",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=77",
             servidorCanalesOnline + "latamlive.html?id=TYC_SPORTS_AR_ENC_LIVE",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=tycsports",
             // "https://cdn.tdtcloud.xyz/ws14.php",
@@ -3242,7 +3242,7 @@ MisCanales.set(
             servidorCanalesOnline + "flypro.html?id=dsports",
             servidorCanalesOnline + "fly-hls.html?id=dsports",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=dsports",
-            servidorCanalesOnline + "deepcathinkpro.html?feed=94",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=94",
             // "https://cdn.tdtcloud.xyz/ws07.php",
             "https://streamx-hd.com/live1.php?stream=dsports",
             // servidorCanalesOnline + "proxym3u8/?id=DSPORTS_AR",
@@ -3290,7 +3290,7 @@ MisCanales.set(
             servidorCanalesOnline + "flypro.html?id=dsports2",
             servidorCanalesOnline + "fly-hls.html?id=dsports2",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=dsports2",
-            servidorCanalesOnline + "deepcathinkpro.html?feed=95",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=95",
             // "https://cdn.tdtcloud.xyz/ws08.php",
             // servidorCanalesOnline + "proxym3u8/?id=DSPORTS2_AR",
             // "https://172m3u8.netlify.app/?id=Dsports2",
@@ -3327,7 +3327,7 @@ MisCanales.set(
             servidorCanalesOnline + "flypro.html?id=dsportsplus",
             servidorCanalesOnline + "fly-hls.html?id=dsportsplus",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=dsportsplus",
-            servidorCanalesOnline + "deepcathinkpro.html?feed=96",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=96",
             // "https://cdn.tdtcloud.xyz/ws09.php",
             // "https://rereyano.ru/player/3/96",
             // "https://cartelive.club/player/3/96",
@@ -3461,7 +3461,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=VE5UX1Nwb3J0c19IRA",
             servidorCanalesOnline + "akamaizedpro.html?id=tntsports_arg",
             servidorCanalesOnline + "akamaized.html?id=tntsports_arg",
-            servidorCanalesOnline + "deepcathinkpro.html?feed=75",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=75",
             servidorCanalesOnline + "latamlive.html?id=TNTS_ENC_LIVE",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=tntsports",
             // "https://cdn.tdtcloud.xyz/ws22.php",
@@ -3499,7 +3499,7 @@ MisCanales.set(
     {
         pais: "Chile",
         enlaces: [
-            servidorCanalesOnline + "deepcathinkpro.html?feed=83",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=83",
             // servidorCanalesOnline + "tvmia.html?stream=an_TNT_SPORTS_PREMIUM",
             // "https://streamx10.cloud/global2.php?channel=tntsportschile",
             // "https://streamx10.cloud/global1.php?channel=tntsportschile",
@@ -3552,8 +3552,8 @@ MisCanales.set(
     {
         pais: "México",
         enlaces: [
-            servidorCanalesOnline + "akamaizedpro.html?id=espn2",
-            servidorCanalesOnline + "akamaized.html?id=espn2",
+            servidorCanalesOnline + "akamaizedpro.html?id=espn_2",
+            servidorCanalesOnline + "akamaized.html?id=espn_2",
             // "https://streamx10.cloud/global2.php?channel=espn2mx",
             // "https://streamx10.cloud/global1.php?channel=espn2mx",
             // "https://la10hd.com/vivo/canal.php?stream=espn2mx",
@@ -3568,8 +3568,8 @@ MisCanales.set(
     {
         pais: "México",
         enlaces: [
-            servidorCanalesOnline + "akamaizedpro.html?id=espn3",
-            servidorCanalesOnline + "akamaized.html?id=espn3",
+            servidorCanalesOnline + "akamaizedpro.html?id=espn_3",
+            servidorCanalesOnline + "akamaized.html?id=espn_3",
             // "https://streamx10.cloud/global2.php?channel=espn3mx",
             // "https://streamx10.cloud/global1.php?channel=espn3mx",
             // "https://la10hd.com/vivo/canal.php?stream=espn3mx",
@@ -3666,7 +3666,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjJIRA",
             servidorCanalesOnline + "akamaizedpro.html?id=espn_arg",
             servidorCanalesOnline + "akamaized.html?id=espn_arg",
-            servidorCanalesOnline + "videx.html?id=espn_1",
+            // servidorCanalesOnline + "videx.html?id=espn_1",
 
             ///Uruguay
             servidorCanalesOnline + "cvatt_pro.html?get=RVNQTl9VWQ==",
@@ -3728,7 +3728,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjJfQXJn",
             servidorCanalesOnline + "akamaizedpro.html?id=espn2_arg",
             servidorCanalesOnline + "akamaized.html?id=espn2_arg",
-            servidorCanalesOnline + "videx.html?id=espn_1",
+            // servidorCanalesOnline + "videx.html?id=espn_1",
             
 
             ///Uruguay
@@ -3790,7 +3790,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjM",
             servidorCanalesOnline + "akamaizedpro.html?id=espn3_arg",
             servidorCanalesOnline + "akamaized.html?id=espn3_arg",
-            servidorCanalesOnline + "videx.html?id=espn_3",
+            // servidorCanalesOnline + "videx.html?id=espn_3",
 
             ///Uruguay
             servidorCanalesOnline + "cvatt_pro.html?get=RVNQTjNfVXktUHk=",
@@ -3852,7 +3852,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTkhE",
             servidorCanalesOnline + "akamaizedpro.html?id=espn4_arg",
             servidorCanalesOnline + "akamaized.html?id=espn4_arg",
-            servidorCanalesOnline + "videx.html?id=espn_4",
+            // servidorCanalesOnline + "videx.html?id=espn_4",
             servidorCanalesOnline + "latamlive.html?id=ESPN4_AR_ENC_LIVE",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=espn4",
             // "https://cdn.tdtcloud.xyz/ws10.php",
@@ -3897,7 +3897,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=RVNQTjQ=",
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjQ=",
             servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjQ=",
-            servidorCanalesOnline + "videx.html?id=espn_5",
+            // servidorCanalesOnline + "videx.html?id=espn_5",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=espn5",
             // "https://cdn.tdtcloud.xyz/ws11.php",
             // "server/cvatt2_ext.html?get=RVNQTjQ=",
@@ -3934,7 +3934,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=Rm94U3BvcnRzM19VWQ==",
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
-            servidorCanalesOnline + "videx.html?id=espn_6",
+            // servidorCanalesOnline + "videx.html?id=espn_6",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=espn6",
             // "https://cdn.tdtcloud.xyz/ws12.php",
             // "server/cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
@@ -3971,7 +3971,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt.html?get=Rm94U3BvcnRzMl9VWQ==",
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
-            servidorCanalesOnline + "videx.html?id=espn_7",
+            // servidorCanalesOnline + "videx.html?id=espn_7",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=espn7",
             // "https://cdn.tdtcloud.xyz/ws13.php",
             // "server/cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
@@ -4059,8 +4059,8 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94X1Nwb3J0c19QcmVtaXVuX0hE",
             servidorCanalesOnline + "akamaizedpro.html?id=espnpr_arg",
             servidorCanalesOnline + "akamaized.html?id=espnpr_arg",
-            servidorCanalesOnline + "videx.html?id=espn_premium_ar",
-            servidorCanalesOnline + "deepcathinkpro.html?feed=76",
+            // servidorCanalesOnline + "videx.html?id=espn_premium_ar",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=76",
             servidorCanalesOnline + "latamlive.html?id=ESPNPREMIUM_ENC_LIVE",
             servidorCanalesOnline + "edge.html?get=ESPN_Premium",
             // servidorCanalesOnline + "tvmia.html?stream=c_ESPN_PREMIUM",
@@ -4798,7 +4798,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRz",
             servidorCanalesOnline + "akamaizedpro.html?id=foxsports_arg",
             servidorCanalesOnline + "akamaized.html?id=foxsports_arg",
-            servidorCanalesOnline + "videx.html?id=fox_sports_ar",
+            // servidorCanalesOnline + "videx.html?id=fox_sports_ar",
             servidorCanalesOnline + "latamlive.html?id=FOX_SPORTS_HD_AR_ENC_LIVE",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports1ar",
             // "https://cdn.tdtcloud.xyz/ws17.php",
@@ -4849,7 +4849,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzMkhE",
             servidorCanalesOnline + "akamaizedpro.html?id=foxsports2_arg",
             servidorCanalesOnline + "akamaized.html?id=foxsports2_arg",
-            servidorCanalesOnline + "videx.html?id=fox_sports_2_ar",
+            // servidorCanalesOnline + "videx.html?id=fox_sports_2_ar",
             servidorCanalesOnline + "latamlive.html?id=FOX_SPORTS2_HD_AR_ENC_LIVE",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports2ar",
             // "https://cdn.tdtcloud.xyz/ws18.php",
@@ -4900,7 +4900,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzM0hE",
             servidorCanalesOnline + "akamaizedpro.html?id=foxsports3_arg",
             servidorCanalesOnline + "akamaized.html?id=foxsports3_arg",
-            servidorCanalesOnline + "videx.html?id=fox_sports_3_ar",
+            // servidorCanalesOnline + "videx.html?id=fox_sports_3_ar",
             servidorCanalesOnline + "latamlive.html?id=FOX_SPORTS3_AR_ENC_LIVE",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=foxsports3ar",
             // "https://cdn.tdtcloud.xyz/ws19.php",
@@ -5318,8 +5318,8 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "videx.html?id=dazn_f1",
-            servidorCanalesOnline + "deepcathinkpro.html?feed=60",
+            // servidorCanalesOnline + "videx.html?id=dazn_f1",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=60",
             // servidorCanalesOnline + "vodgc.html?id=dazn_f1",
             // servidorCanalesOnline + "hls.html?stream=dazn_f1",
             // "https://deportelibres.shop/total/stream-537.php",
@@ -8908,7 +8908,7 @@ MisCanales.set(
     {
         pais: "Varios",
         enlaces: [
-            servidorCanalesOnline + "videx.html?id=los_simpons",
+            // servidorCanalesOnline + "videx.html?id=los_simpons",
             servidorCanalesOnline + "vaughnpro.html",
             // servidorCanalesOnline + "giatv.html?id=los_simpson",
             // servidorCanalesOnline + "giatv.html?id=los_simpson2",
