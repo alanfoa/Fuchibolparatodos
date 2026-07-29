@@ -3729,7 +3729,7 @@ MisCanales.set(
             servidorCanalesOnline + "akamaizedpro.html?id=espn2_arg",
             servidorCanalesOnline + "akamaized.html?id=espn2_arg",
             // servidorCanalesOnline + "videx.html?id=espn_1",
-            
+
 
             ///Uruguay
             servidorCanalesOnline + "cvatt_pro.html?get=RVNQTjJfVVk=",
@@ -4779,6 +4779,26 @@ MisCanales.set(
             // "https://streamx10.cloud/global2.php?channel=goltv",
             // "https://streamx10.cloud/global1.php?channel=goltv",
             // servidorCanalesOnline + "jjfutbol2pro.html?name=goltv",
+        ]
+    }
+);
+
+MisCanales.set(
+    "Tigo Sports",
+    {
+        pais: "Paraguay",
+        enlaces: [
+            servidorCanalesOnline + "m3u8.html?stream=Tigo_Sport_Paraguay",
+        ]
+    }
+);
+
+MisCanales.set(
+    "Tigo Sports Plus",
+    {
+        pais: "Paraguay",
+        enlaces: [
+            servidorCanalesOnline + "m3u8.html?stream=Tigo_Sport_Plus_Paraguay",
         ]
     }
 );
@@ -9169,6 +9189,16 @@ MisCanales.set(
             servidorCanalesOnline + "kick fusion.html",
             servidorCanalesOnline + "kick tendencia.html",
             servidorCanalesOnline + "kick topvistos.html",
+        ]
+    }
+);
+
+MisCanales.set(
+    "YouTube",
+    {
+        pais: "Argentina",
+        enlaces: [
+            servidorCanalesOnline + "ApiYTBuscador.html",
         ]
     }
 );
