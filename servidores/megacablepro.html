@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Reproductor IPTV</title>
+    <style>
+        :root {
+            --primary-color: #00d2ff;
+            --bg-glass: rgba(15, 15, 20, 0.85);
+            --border-glass: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        #flow-player {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #fp_video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Contenedor Flotante de Controles */
+        .controls {
+            position: absolute;
+            left: 14px;
+            right: 14px;
+            bottom: 14px;
+            z-index: 30;
+            display: flex;
+            flex-direction: column;
+            /* En movil va en 2 filas */
+            gap: 8px;
+            padding: 12px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Fila 1: Barra de progreso */
+        .controls-top {
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Fila 2: Botones */
+        .controls-bottom {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .controls-left,
+        .controls-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-ctrl {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            color: #fff;
+            transition: background 0.2s ease, transform 0.15s ease;
+            flex-shrink: 0;
+        }
+
+        .btn-ctrl:active {
+            transform: scale(0.92);
+        }
+
+        .btn-ctrl svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Contenedor de Volumen */
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        #fp_vol_bar {
+            width: 50px;
+            height: 4px;
+            border-radius: 2px;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            cursor: pointer;
+            display: none;
+            /* Se oculta en celular por defecto */
+        }
+
+        #fp_vol_bar::-webkit-slider-thumb {
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+        /* Barra de Progreso */
+        #fp_bar {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            cursor: pointer;
+        }
+
+        #fp_bar::-webkit-slider-thumb {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        #fp_bar::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: none;
+        }
+
+        /* Menú de Calidad */
+        #fp_qmenu {
+            position: absolute;
+            right: 14px;
+            bottom: 90px;
+            z-index: 40;
+            min-width: 120px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 6px;
+            display: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        #fp_qmenu div {
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        #fp_qmenu div:active {
+            background: var(--primary-color);
+            color: #000;
+        }
+
+        /* Auto-ocultar Interfaz */
+        #flow-player.hide-ui {
+            cursor: none;
+        }
+
+        #flow-player.hide-ui .controls {
+            opacity: 0;
+            transform: translateY(15px);
+            pointer-events: none;
+        }
+
+        /* iPhone Landscape Hack */
+        #flow-player.ios-landscape {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vh;
+            height: 100vw;
+            transform: rotate(90deg) translateY(-100%);
+            transform-origin: top left;
+            z-index: 9999;
+        }
+
+        /* Adaptación para Pantallas Grandes (PC / Tablets en Landscape) */
+        @media (min-width: 768px) {
+            .controls {
+                flex-direction: row;
+                /* Vuelve a 1 sola fila en PC */
+                align-items: center;
+                gap: 12px;
+                padding: 10px 18px;
+            }
+
+            .controls-top {
+                flex: 1;
+            }
+
+            .controls-bottom {
+                width: auto;
+                justify-content: flex-start;
+                gap: 12px;
+            }
+
+            #fp_vol_bar {
+                display: block;
+                /* Muestra slider de volumen en PC */
+            }
+
+            .btn-ctrl:hover {
+                background: rgba(255, 255, 255, 0.15);
+                transform: scale(1.08);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="flow-player">
+        <video id="fp_video" playsinline autoplay></video>
+
+        <!-- Controles -->
+        <div class="controls">
+            <!-- Fila Superior: Progreso de Reproducción -->
+            <div class="controls-top">
+                <input id="fp_bar" type="range" value="0" min="0" step="0.1" max="100">
+            </div>
+
+            <!-- Fila Inferior: Botones -->
+            <div class="controls-bottom">
+                <div class="controls-left">
+                    <!-- Play / Pause -->
+                    <button id="fp_play" class="btn-ctrl" title="Reproducir/Pausar">
+                        <svg id="fp_icoPlay" viewBox="0 0 24 24" style="display:block;">
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                        <svg id="fp_icoPause" viewBox="0 0 24 24" style="display:none;">
+                            <path d="M6 19h4V5H6zm8-14v14h4V5z"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Volumen -->
+                    <div class="volume-container">
+                        <button id="fp_mute" class="btn-ctrl" title="Silenciar">
+                            <svg id="fp_icoVolMax" viewBox="0 0 24 24" style="display:block;">
+                                <path
+                                    d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
+                                </path>
+                            </svg>
+                            <svg id="fp_icoVolMute" viewBox="0 0 24 24" style="display:none;">
+                                <path
+                                    d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z">
+                                </path>
+                            </svg>
+                        </button>
+                        <input id="fp_vol_bar" type="range" min="0" max="1" step="0.05" value="1" title="Volumen">
+                    </div>
+                </div>
+
+                <div class="controls-right">
+                    <!-- Calidad -->
+                    <button id="fp_gear" class="btn-ctrl" title="Calidad">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z">
+                            </path>
+                        </svg>
+                    </button>
+
+                    <!-- Pantalla Completa -->
+                    <button id="fp_fs" class="btn-ctrl" title="Pantalla Completa">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path
+                                d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="fp_qmenu"></div>
+    </div>
+
+    <!-- Shaka Player Core -->
+    <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.3.5/dist/shaka-player.compiled.js"></script>
+    <script src="../js/script-config.js"></script>
+
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        var ConfiguracionCanales = ConfiguracionCanales || {
+
+            HBO_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/HBO_HD/master.mpd",
+                clearkey: {
+                    "225c28ca172a4ab090974417a7487976": "3cfcdf7fdd6f3c63966ba46e00a7dcd7",
+                    "5434a3d879e24a3f9e454fb7abb96c7d": "3cfcdf7fdd6f3c63966ba46e00a7dcd7",
+                    "e0262045164f44a98b64e2ee5d691799": "3cfcdf7fdd6f3c63966ba46e00a7dcd7"
+                }
+            },
+            HBO_2: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/HBO_2/master.mpd",
+                clearkey: {
+                    "5043cb9a2f834cb29bf1c1e391caf21d": "f4c19097774209959f007842d2113bb9",
+                    "548aed3b1f3a40dc9dcb4cebf524280e": "f4c19097774209959f007842d2113bb9",
+                    "5d22589f7cf3461caf6e91823fe62e1f": "f4c19097774209959f007842d2113bb9"
+                }
+            },
+            HBO_Signature_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/HBO_Signature_HD/master.mpd",
+                clearkey: {
+                    "70c8ed5297624eee92a5aa10183e98eb": "7b2220b8fbc9ab8598b29df4e304ceb9",
+                    "e92b229f334a46dba033f7ab74297632": "7b2220b8fbc9ab8598b29df4e304ceb9",
+                    "f5cbfaa8b4d343a3b220af88043c71ce": "7b2220b8fbc9ab8598b29df4e304ceb9"
+                }
+            },
+            HBO_FAMILY: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/HBO_FAMILY/master.mpd",
+                clearkey: {
+                    "a5fde013b5f24cb5a70e8738447a81e7": "13fc80ba65d2f9b0af3cdda369d53516",
+                    "d348fd7b45f0494993addda989521116": "13fc80ba65d2f9b0af3cdda369d53516",
+                    "b44d06d01800487a8eb9a630b475bdff": "13fc80ba65d2f9b0af3cdda369d53516"
+                }
+            },
+            HBO_XTREME: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/HBO_XTREME/master.mpd",
+                clearkey: {
+                    "2c2f5bb1f217400b86f041b9c669a85d": "0ac6cc8b06fe39e2c72d6dc4f4679e60",
+                    "4cf4bed6239e46e38ade0e4e8cd98001": "0ac6cc8b06fe39e2c72d6dc4f4679e60",
+                    "c8ed9c778ce946e6a7d98e82a3af379c": "0ac6cc8b06fe39e2c72d6dc4f4679e60"
+                }
+            },
+            ESPN_Premium_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/ESPN_Premium_HD/master.mpd",
+                clearkey: {
+                    "8108cc522fe34774b2e33497373982b9": "b3bb5d578b56b4973b8711f68851a21a",
+                    "f81c7c51fd984510a12a87853bbd6790": "b3bb5d578b56b4973b8711f68851a21a",
+                    "2552ad584e5b46d3a422d4eadb0f609e": "b3bb5d578b56b4973b8711f68851a21a"
+                }
+            },
+            Telefe_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/Telefe_HD/master.mpd",
+                clearkey: {
+                    "43914631b0e341a5b89a4057bc5969d3": "8b51ea9d538a76951a2f38aa1762632a",
+                    "01b64a456b9e4214bb3f1555a8046354": "8b51ea9d538a76951a2f38aa1762632a",
+                    "3ca1ea551743402fb2e27c6dfccabdec": "8b51ea9d538a76951a2f38aa1762632a"
+                }
+            },
+            Canal_13_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/Canal_13_HD/master.mpd",
+                clearkey: {
+                    "e944e3ee6f384672b1146878bcd0fbe5": "31e77ebc6969b1ad8aa2fd45e22be49c",
+                    "8a2f87a5859342218de04b5f8f59624e": "31e77ebc6969b1ad8aa2fd45e22be49c",
+                    "26329e336b344b2984f1e0127bed22f7": "31e77ebc6969b1ad8aa2fd45e22be49c"
+                }
+            },
+            A24_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/A24_HD/master.mpd",
+                clearkey: {
+                    "9fc34d93db8d470ba466accc37f09f92": "0c0484a7a01f5b7035ca929b5ae18c96",
+                    "143a5c99969843689be9d3af10678499": "0c0484a7a01f5b7035ca929b5ae18c96",
+                    "86c0c5c5d8e54e6bb5b8f2839f780eb6": "0c0484a7a01f5b7035ca929b5ae18c96"
+                }
+            },
+            _26_TV: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/_26_TV/master.mpd",
+                clearkey: {
+                    "d3eb5478013744d5b1d14da638af94c2": "f3707ffd9b1a69b5d6977cdb514cb599",
+                    "861163890fef4a9f887601873ba37153": "f3707ffd9b1a69b5d6977cdb514cb599",
+                    "3ee3283c55054b9386078de8d71a2384": "f3707ffd9b1a69b5d6977cdb514cb599"
+                }
+            },
+            TV_Publica_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/TV_Publica_HD/master.mpd",
+                clearkey: {
+                    "dd7e765b5a3749e78209c70ad361254d": "932c47485db98e3b42369ff7a18ee66e",
+                    "fa127109c56245f3ac62bde681a13cb7": "932c47485db98e3b42369ff7a18ee66e",
+                    "eaa5861be384426f9acdc9383f81aa73": "932c47485db98e3b42369ff7a18ee66e"
+                }
+            },
+            Cronica: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/Cronica/master.mpd",
+                clearkey: {
+                    "2dc0c255859646f583bef7bddaef0e03": "a73ed3fb56fe307649ab4de5fdc427a4",
+                    "38b300096e2a4bb2b25fdb1de3443bc4": "a73ed3fb56fe307649ab4de5fdc427a4",
+                    "6cef889099b9447a8912a105493315d3": "a73ed3fb56fe307649ab4de5fdc427a4"
+                }
+            },
+            TN: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/TN/master.mpd",
+                clearkey: {
+                    "99120b7200764b0c8a4ff59397a75c5c": "4affb4dcd2f8d25d2742dd95b50ac591",
+                    "6c245c08cfb0404495ca441015e484a1": "4affb4dcd2f8d25d2742dd95b50ac591",
+                    "6ef708cb12ef476a9f087823613d684d": "4affb4dcd2f8d25d2742dd95b50ac591"
+                }
+            },
+            TNT_Sports_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/TNT_Sports_HD/master.mpd",
+                clearkey: {
+                    "91fdb127559a4d73976ef07928f451b2": "e8a970a158d9afe205372dc6ada8a01a",
+                    "4db14cce2cbc494abad468bedad7dee2": "e8a970a158d9afe205372dc6ada8a01a",
+                    "e76e57afe72342a6a6c92aedd5ae5953": "e8a970a158d9afe205372dc6ada8a01a"
+                }
+            },
+            LN_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/LN_HD/master.mpd",
+                clearkey: {
+                    "1d63248e91b349349f2b88ffa80e6b26": "51b06f93bf2b9715bb422f1b5e40fa37",
+                    "70283104669d4396aa32df417170f360": "51b06f93bf2b9715bb422f1b5e40fa37",
+                    "96d28a6acc564a1cbf591d8645baa195": "51b06f93bf2b9715bb422f1b5e40fa37"
+                }
+            },
+            Canal_9_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/Canal_9_HD/master.mpd",
+                clearkey: {
+                    "ac042c9b2ba8467593aafcc756ecd67b": "79a0e6cd53781b110dd24b450fcf5dee",
+                    "88c483ddd0cc4a12acbb5b276f9a21de": "79a0e6cd53781b110dd24b450fcf5dee",
+                    "b721f0d459344dd6b79b6659312aa95a": "79a0e6cd53781b110dd24b450fcf5dee"
+                }
+            },
+            TNT_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/TNT_HD/master.mpd",
+                clearkey: {
+                    "af673e9e63a640af858b766de96bf0e6": "3c2a94d12d038c7b1b108d952a1661d4",
+                    "3e320d70c5504e31b351519cac50a681": "3c2a94d12d038c7b1b108d952a1661d4",
+                    "57b75c72d35745ddb179645db1fbcdf5": "3c2a94d12d038c7b1b108d952a1661d4"
+                }
+            },
+            TNT_Series: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/TNT_Series/master.mpd",
+                clearkey: {
+                    "d10ceb7fe53a4afda8795eafd1356fca": "41b62862a7b5c7e3fce8552a6921d3af",
+                    "c0e4a183490b43c5bc0a6ef762e37363": "41b62862a7b5c7e3fce8552a6921d3af",
+                    "ec95572b5b2d4ef4a00df230c92dddce": "41b62862a7b5c7e3fce8552a6921d3af"
+                }
+            },
+            America_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/America_HD/master.mpd",
+                clearkey: {
+                    "101d00935c444008b3c2b81d5ee8bf38": "7ab7ed944172227fa99b22c0dfaa66a1",
+                    "6bc3e340ef874929a03369f3ddbc632b": "7ab7ed944172227fa99b22c0dfaa66a1",
+                    "111bc66c8da742a28551fc17de43675c": "7ab7ed944172227fa99b22c0dfaa66a1"
+                }
+            },
+            C5N: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/C5N/master.mpd",
+                clearkey: {
+                    "b88e40a182824ebbb1fed22f73625382": "6b813c419fad81877e12ac2d8850fa55",
+                    "d55420cc5411428ca579f0d04a1e60e8": "6b813c419fad81877e12ac2d8850fa55",
+                    "5f05a5a181de40e4ad3a4f896c009190": "6b813c419fad81877e12ac2d8850fa55"
+                }
+            },
+            CNN_Espanol: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/CNN_Espanol/master.mpd",
+                clearkey: {
+                    "b5b6435f402048bcb59e5b45f9f09184": "4b9c4178c6187bcbec06c9375b9654bb",
+                    "e23711dbff6f494bb4725337d0ce3369": "4b9c4178c6187bcbec06c9375b9654bb",
+                    "f9b28aa9825d4849a4d66ec630d82325": "4b9c4178c6187bcbec06c9375b9654bb"
+                }
+            },
+            ESPN_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/ESPN_HD/master.mpd",
+                clearkey: {
+                    "40c3f66c7a5f45d9a9fae53a516f2cd8": "afda0f46fc465a79859b488f4be5ee9b",
+                    "9f985112eb2f4623bbd58be212c88dc0": "afda0f46fc465a79859b488f4be5ee9b",
+                    "c0c7816a415a4e50b945cc8cd8d98cc0": "afda0f46fc465a79859b488f4be5ee9b"
+                }
+            },
+            ESPN_2_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/ESPN_2_HD/master.mpd",
+                clearkey: {
+                    "189c4b3e23d14535a59f6cdd489c0949": "7972c4353cefdfaafca39822e75d95ee",
+                    "eace2bbc0fc0433d85170951f584f4a2": "7972c4353cefdfaafca39822e75d95ee",
+                    "a2dc641e671e4ceda44b0817227bb72e": "7972c4353cefdfaafca39822e75d95ee"
+                }
+            },
+            ESPN_3_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/ESPN_3_HD/master.mpd",
+                clearkey: {
+                    "809f333803a4441bb49d2f7810aa17e0": "744f43169e827a278b2f173a88cd75d7",
+                    "1ad05dae4429479089a573c02cf1731c": "744f43169e827a278b2f173a88cd75d7",
+                    "f0fffbf231044703ae29dbdeb845436a": "744f43169e827a278b2f173a88cd75d7"
+                }
+            },
+            ESPN_4_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/ESPN_EXTRA_HD/master.mpd",
+                clearkey: {
+                    "72091f681054494da3b1e5d9a85a86f9": "f648674a85366f2d1213c8a37f8d5fc1",
+                    "b23272e5d7be4cef8b170a20bc7f0ec1": "f648674a85366f2d1213c8a37f8d5fc1",
+                    "a78c2fd53df44a23bb03969e86683a8f": "f648674a85366f2d1213c8a37f8d5fc1"
+                }
+            },
+            Fox_Sports_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/Fox_Sports_HD/master.mpd",
+                clearkey: {
+                    "e1b436794cf045e1a4f4d2111f89afc7": "db9446fefaf908e8ffa682e36da48e82",
+                    "6841c639d7bc4290abbbe317d42b3fef": "db9446fefaf908e8ffa682e36da48e82",
+                    "a03b61617d7748eb89a7d6cab042e913": "db9446fefaf908e8ffa682e36da48e82"
+                }
+            },
+            Fox_Sports_2_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/Fox_Sports_2_HD/master.mpd",
+                clearkey: {
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
+                }
+            },
+            Fox_Sports_3_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/Fox_Sports_3_HD/master.mpd",
+                clearkey: {
+                    "7fb73ee2155e488c80315c1370852474": "b981d81a0161a4d7d54be383af021fab",
+                    "c86049c69fdd4640aadc6070f6b7f564": "b981d81a0161a4d7d54be383af021fab",
+                    "174b44e443d540ca8ab4ba35f536aa29": "b981d81a0161a4d7d54be383af021fab"
+                }
+            },
+            Cartoon_Network: { //NO anda
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/Cartoon_Network/master.mpd",
+                clearkey: {
+                    "6a0098a63ab44b80933a20e94ea862ea": "0289c5d510727500939ad2a2746ac73b",
+                    "20ab356871c64b84babc7a90f05d8e3c": "0289c5d510727500939ad2a2746ac73b",
+                    "83dbba9220134ce7b76706687c20d27b": "0289c5d510727500939ad2a2746ac73b"
+                }
+            },
+            TyC_Sports_HD: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/TyC_Sports_HD/master.mpd",
+                clearkey: {
+                    "db41d57853874a1b9865cdf8f62e741c": "c03ed92e0c15a7d807d71235143437f5",
+                    "6ae2f06dc3fb4c22955d2b802443c440": "c03ed92e0c15a7d807d71235143437f5",
+                    "676b315a7b84499da15fe50d25d3161c": "c03ed92e0c15a7d807d71235143437f5"
+                }
+            },
+            Cartoonito: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/Cartoonito/master.mpd",
+                clearkey: {
+                    "b79a3977453a43ed9c9f8d72c0916113": "140c62709f5e172c002f087359d47e6a",
+                    "e300cb72284e4bb3a1c3486bab98d0cc": "140c62709f5e172c002f087359d47e6a",
+                    "38b273501fe14c8bbc0e9e2c31d640f9": "140c62709f5e172c002f087359d47e6a"
+                }
+            },
+            asdasdasdasd: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
+                clearkey: {
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
+                }
+            },
+            asdasdasdasd: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
+                clearkey: {
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
+                }
+            },
+            asdasdasdasd: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
+                clearkey: {
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
+                }
+            },
+            asdasdasdasd: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
+                clearkey: {
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
+                }
+            },
+            asdasdasdasd: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
+                clearkey: {
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
+                }
+            },
+            asdasdasdasd: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
+                clearkey: {
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
+                }
+            },
+            asdasdasdasd: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
+                clearkey: {
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
+                }
+            },
+            asdasdasdasd: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
+                clearkey: {
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
+                }
+            },
+            asdasdasdasd: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
+                clearkey: {
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
+                }
+            },
+            asdasdasdasd: {
+                url: "https://megatvorigin01-ccdia.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
+                clearkey: {
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
+                }
+            },
+        };
+        var id = getParameterByName('id');
+        var config = ConfiguracionCanales[id];
+
+        const video = document.getElementById("fp_video");
+        const bar = document.getElementById("fp_bar");
+        const play = document.getElementById("fp_play");
+        const icoPlay = document.getElementById("fp_icoPlay");
+        const icoPause = document.getElementById("fp_icoPause");
+        const mute = document.getElementById("fp_mute");
+        const volBar = document.getElementById("fp_vol_bar");
+        const icoVolMax = document.getElementById("fp_icoVolMax");
+        const icoVolMute = document.getElementById("fp_icoVolMute");
+        const fs = document.getElementById("fp_fs");
+        const gear = document.getElementById("fp_gear");
+        const qmenu = document.getElementById("fp_qmenu");
+        const box = document.getElementById("flow-player");
+
+        let lastVolume = 1;
+
+        async function initShaka() {
+            shaka.polyfill.installAll();
+
+            if (!shaka.Player.isBrowserSupported()) {
+                console.error("Shaka Player no soportado");
+                return;
+            }
+
+            if (!config) {
+                console.error("No se encontró configuración para el canal solicitado (id=" + id + ").");
+                return;
+            }
+
+            const player = new shaka.Player(video);
+
+            const drmConfig = {};
+            if (config.clearkey) {
+                drmConfig.clearKeys = config.clearkey;
+            }
+
+            player.configure({
+                drm: drmConfig,
+                abr: { enabled: true },
+                preferredAudioLanguage: "es",
+                preferredTextLanguage: "es",
+                streaming: {
+                    liveSync: {
+                        enabled: true,
+                        targetLatency: 3,
+                        targetLatencyTolerance: 0.5
+                    },
+                    bufferingGoal: 10
+                }
+            });
+
+            player.addEventListener("error", e => console.error("Shaka error:", e.detail));
+
+            try {
+                await player.load(config.url);
+            } catch (e) {
+                console.error("Error cargando el manifiesto:", e);
+                return;
+            }
+
+            // Menú de calidad
+            const tracks = player.getVariantTracks();
+            const porAltura = new Map();
+            tracks.filter(t => t.height).forEach(t => {
+                const actual = porAltura.get(t.height);
+                if (!actual || (t.bandwidth || 0) > (actual.bandwidth || 0)) {
+                    porAltura.set(t.height, t);
+                }
+            });
+
+            qmenu.innerHTML = "";
+            const auto = document.createElement("div");
+            auto.textContent = "Auto";
+            auto.onclick = () => { player.configure({ abr: { enabled: true } }); qmenu.style.display = "none"; };
+            qmenu.appendChild(auto);
+
+            Array.from(porAltura.values())
+                .sort((a, b) => b.height - a.height)
+                .forEach(t => {
+                    const d = document.createElement("div");
+                    d.textContent = t.height + "p";
+                    d.onclick = () => {
+                        player.configure({ abr: { enabled: false } });
+                        player.selectVariantTrack(t, true);
+                        qmenu.style.display = "none";
+                    };
+                    qmenu.appendChild(d);
+                });
+        }
+
+        initShaka();
+
+        /* Reproducir / Pausa */
+        play.onclick = () => video.paused ? video.play() : video.pause();
+        video.onplay = () => { icoPlay.style.display = "none"; icoPause.style.display = "block"; showUI(); };
+        video.onpause = () => { icoPlay.style.display = "block"; icoPause.style.display = "none"; box.classList.remove("hide-ui"); };
+
+        /* Tiempo / Progreso */
+        video.ontimeupdate = () => {
+            bar.max = video.duration || 100;
+            bar.value = video.currentTime;
+        };
+        bar.oninput = () => video.currentTime = bar.value;
+
+        /* Control de Volumen y Mute */
+        function updateVolumeUI() {
+            if (video.muted || video.volume === 0) {
+                icoVolMax.style.display = "none";
+                icoVolMute.style.display = "block";
+                volBar.value = 0;
+            } else {
+                icoVolMax.style.display = "block";
+                icoVolMute.style.display = "none";
+                volBar.value = video.volume;
+            }
+        }
+
+        volBar.oninput = (e) => {
+            const val = parseFloat(e.target.value);
+            video.volume = val;
+            video.muted = val === 0;
+            if (val > 0) lastVolume = val;
+            updateVolumeUI();
+        };
+
+        mute.onclick = () => {
+            if (video.muted || video.volume === 0) {
+                video.muted = false;
+                video.volume = lastVolume > 0 ? lastVolume : 1;
+            } else {
+                lastVolume = video.volume;
+                video.muted = true;
+            }
+            updateVolumeUI();
+        };
+
+        /* Pantalla Completa */
+        function toggleFS() {
+            if (!document.fullscreenElement) box.requestFullscreen();
+            else document.exitFullscreen();
+        }
+        fs.onclick = toggleFS;
+        video.ondblclick = toggleFS;
+
+        let lastTap = 0;
+        video.ontouchend = () => {
+            const now = Date.now();
+            if (now - lastTap < 300) toggleFS();
+            lastTap = now;
+        };
+
+        /* Menú de Calidad */
+        gear.onclick = (e) => {
+            e.stopPropagation();
+            qmenu.style.display = qmenu.style.display === "block" ? "none" : "block";
+        };
+
+        document.addEventListener("click", (e) => {
+            if (!qmenu.contains(e.target) && e.target !== gear) {
+                qmenu.style.display = "none";
+            }
+        });
+
+        /* Orientación en iOS */
+        const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+        document.addEventListener("fullscreenchange", async () => {
+            if (document.fullscreenElement) {
+                if (!isIOS && screen.orientation?.lock) { try { await screen.orientation.lock("landscape") } catch (e) { } }
+                if (isIOS) box.classList.add("ios-landscape");
+            } else {
+                if (!isIOS && screen.orientation?.unlock) { try { screen.orientation.unlock() } catch (e) { } }
+                box.classList.remove("ios-landscape");
+            }
+        });
+
+        /* Ocultar interfaz automáticamente */
+        let uiTimer;
+        function showUI() {
+            box.classList.remove("hide-ui");
+            clearTimeout(uiTimer);
+            if (!video.paused) {
+                uiTimer = setTimeout(() => {
+                    box.classList.add("hide-ui");
+                    qmenu.style.display = "none";
+                }, 3000);
+            }
+        }
+        box.addEventListener("mousemove", showUI);
+        box.addEventListener("touchstart", showUI);
+        box.addEventListener("click", showUI);
+    </script>
+</body>
+
+</html>

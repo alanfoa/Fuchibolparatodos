@@ -30,6 +30,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZWZlSEQ=",
             servidorCanalesOnline + "akamaizedpro.html?id=telefe_arg",
             servidorCanalesOnline + "akamaized.html?id=telefe_arg",
+            servidorCanalesOnline + "megacablepro.html?id=Telefe_HD",
             // servidorCanalesOnline + "cobo.html?id=TELEFE",
             // servidorCanalesOnline + "telefe.html",
             // servidorCanalesOnline + "telefepro.html",
