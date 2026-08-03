@@ -3,217 +3,132 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="noindex, nofollow, noarchive" name="robots" />
     <meta name="referrer" content="no-referrer" />
-    <title>Reproductor IPTV</title>
+    <title>megacable</title>
     <style>
-        :root {
-            --primary-color: #00d2ff;
-            --bg-glass: rgba(15, 15, 20, 0.85);
-            --border-glass: rgba(255, 255, 255, 0.12);
-        }
-
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
         html,
         body {
-            width: 100%;
-            height: 100%;
+            width: 100% !important;
+            height: 100% !important;
             margin: 0;
             padding: 0;
             background: #000;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden;
-            user-select: none;
         }
 
         #flow-player {
             position: relative;
             width: 100%;
             height: 100%;
+            overflow: hidden;
             background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         #fp_video {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            background: #000;
         }
 
-        /* Contenedor Flotante de Controles */
+        #fp_fs {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 30;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity .3s ease, background-color .2s ease;
+        }
+
+        #fp_fs:hover {
+            background: rgba(20, 171, 209, 0.35);
+        }
+
         .controls {
             position: absolute;
-            left: 14px;
-            right: 14px;
-            bottom: 14px;
+            left: 0;
+            right: 0;
+            bottom: 0;
             z-index: 30;
             display: flex;
-            flex-direction: column;
-            /* En movil va en 2 filas */
-            gap: 8px;
-            padding: 12px;
-            background: var(--bg-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-glass);
-            border-radius: 18px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        /* Fila 1: Barra de progreso */
-        .controls-top {
-            width: 100%;
-            display: flex;
             align-items: center;
+            gap: 12px;
+            padding: 10px 14px 12px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.45) 60%, transparent 100%);
+            transition: opacity .3s ease;
         }
 
-        /* Fila 2: Botones */
-        .controls-bottom {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .controls-left,
-        .controls-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-ctrl {
+        #fp_play,
+        #fp_mute,
+        #fp_gear {
             background: transparent;
             border: none;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 34px;
+            height: 34px;
             padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 12px;
-            color: #fff;
-            transition: background 0.2s ease, transform 0.15s ease;
-            flex-shrink: 0;
-        }
-
-        .btn-ctrl:active {
-            transform: scale(0.92);
-        }
-
-        .btn-ctrl svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        /* Contenedor de Volumen */
-        .volume-container {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        #fp_vol_bar {
-            width: 50px;
-            height: 4px;
-            border-radius: 2px;
-            appearance: none;
-            background: rgba(255, 255, 255, 0.2);
-            outline: none;
-            cursor: pointer;
-            display: none;
-            /* Se oculta en celular por defecto */
-        }
-
-        #fp_vol_bar::-webkit-slider-thumb {
-            appearance: none;
-            width: 12px;
-            height: 12px;
             border-radius: 50%;
-            background: #fff;
+            transition: background-color .18s ease, transform .18s ease;
         }
 
-        /* Barra de Progreso */
+        #fp_play:hover,
+        #fp_mute:hover,
+        #fp_gear:hover {
+            background-color: rgba(20, 171, 209, 0.22);
+            transform: scale(1.08);
+        }
+
         #fp_bar {
-            width: 100%;
-            height: 6px;
-            border-radius: 3px;
-            appearance: none;
-            background: rgba(255, 255, 255, 0.2);
-            outline: none;
+            flex: 1;
+            height: 4px;
             cursor: pointer;
+            accent-color: #14abd1;
         }
 
-        #fp_bar::-webkit-slider-thumb {
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            box-shadow: 0 0 10px var(--primary-color);
-        }
-
-        #fp_bar::-moz-range-thumb {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            border: none;
-        }
-
-        /* Menú de Calidad */
         #fp_qmenu {
             position: absolute;
             right: 14px;
-            bottom: 90px;
+            bottom: 58px;
             z-index: 40;
-            min-width: 120px;
-            background: var(--bg-glass);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--border-glass);
-            border-radius: 14px;
-            padding: 6px;
+            min-width: 100px;
+            background: rgba(10, 10, 12, 0.92);
+            border: 1px solid rgba(20, 171, 209, 0.25);
+            border-radius: 8px;
+            padding: 6px 0;
             display: none;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
         }
 
         #fp_qmenu div {
-            padding: 10px 14px;
+            padding: 8px 16px;
             color: #fff;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 8px;
+            font-size: 13px;
             cursor: pointer;
-            text-align: center;
         }
 
-        #fp_qmenu div:active {
-            background: var(--primary-color);
-            color: #000;
+        #fp_qmenu div:hover {
+            background: rgba(20, 171, 209, 0.25);
         }
 
-        /* Auto-ocultar Interfaz */
-        #flow-player.hide-ui {
-            cursor: none;
-        }
-
-        #flow-player.hide-ui .controls {
+        /* Auto-ocultar controles */
+        #flow-player.hide-ui .controls,
+        #flow-player.hide-ui #fp_fs {
             opacity: 0;
-            transform: translateY(15px);
             pointer-events: none;
         }
 
-        /* iPhone Landscape Hack */
+        /* Fallback de landscape para iOS (no soporta screen.orientation.lock) */
         #flow-player.ios-landscape {
             position: fixed;
             top: 0;
@@ -224,37 +139,6 @@
             transform-origin: top left;
             z-index: 9999;
         }
-
-        /* Adaptación para Pantallas Grandes (PC / Tablets en Landscape) */
-        @media (min-width: 768px) {
-            .controls {
-                flex-direction: row;
-                /* Vuelve a 1 sola fila en PC */
-                align-items: center;
-                gap: 12px;
-                padding: 10px 18px;
-            }
-
-            .controls-top {
-                flex: 1;
-            }
-
-            .controls-bottom {
-                width: auto;
-                justify-content: flex-start;
-                gap: 12px;
-            }
-
-            #fp_vol_bar {
-                display: block;
-                /* Muestra slider de volumen en PC */
-            }
-
-            .btn-ctrl:hover {
-                background: rgba(255, 255, 255, 0.15);
-                transform: scale(1.08);
-            }
-        }
     </style>
 </head>
 
@@ -262,74 +146,47 @@
     <div id="flow-player">
         <video id="fp_video" playsinline autoplay></video>
 
-        <!-- Controles -->
+        <button id="fp_fs">
+            <svg viewBox="0 0 24 24" width="26" height="26" stroke="#14abd1" stroke-width="3" fill="none">
+                <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path>
+            </svg>
+        </button>
+
         <div class="controls">
-            <!-- Fila Superior: Progreso de Reproducción -->
-            <div class="controls-top">
-                <input id="fp_bar" type="range" value="0" min="0" step="0.1" max="100">
-            </div>
+            <button id="fp_play">
+                <svg id="fp_icoPlay" viewBox="0 0 24 24" fill="#fff" style="display:block;">
+                    <path d="M8 5v14l11-7z"></path>
+                </svg>
+                <svg id="fp_icoPause" viewBox="0 0 24 24" fill="#fff" style="display:none;">
+                    <path d="M6 19h4V5H6zm8-14v14h4V5z"></path>
+                </svg>
+            </button>
 
-            <!-- Fila Inferior: Botones -->
-            <div class="controls-bottom">
-                <div class="controls-left">
-                    <!-- Play / Pause -->
-                    <button id="fp_play" class="btn-ctrl" title="Reproducir/Pausar">
-                        <svg id="fp_icoPlay" viewBox="0 0 24 24" style="display:block;">
-                            <path d="M8 5v14l11-7z"></path>
-                        </svg>
-                        <svg id="fp_icoPause" viewBox="0 0 24 24" style="display:none;">
-                            <path d="M6 19h4V5H6zm8-14v14h4V5z"></path>
-                        </svg>
-                    </button>
+            <input id="fp_bar" type="range" value="0" min="0" step="0.1" max="4294967296">
 
-                    <!-- Volumen -->
-                    <div class="volume-container">
-                        <button id="fp_mute" class="btn-ctrl" title="Silenciar">
-                            <svg id="fp_icoVolMax" viewBox="0 0 24 24" style="display:block;">
-                                <path
-                                    d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
-                                </path>
-                            </svg>
-                            <svg id="fp_icoVolMute" viewBox="0 0 24 24" style="display:none;">
-                                <path
-                                    d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z">
-                                </path>
-                            </svg>
-                        </button>
-                        <input id="fp_vol_bar" type="range" min="0" max="1" step="0.05" value="1" title="Volumen">
-                    </div>
-                </div>
+            <button id="fp_mute">
+                <svg viewBox="0 0 24 24" fill="#fff">
+                    <path d="M3 10v4h4l5 5V5L7 10z"></path>
+                </svg>
+            </button>
 
-                <div class="controls-right">
-                    <!-- Calidad -->
-                    <button id="fp_gear" class="btn-ctrl" title="Calidad">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <!-- Pantalla Completa -->
-                    <button id="fp_fs" class="btn-ctrl" title="Pantalla Completa">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path
-                                d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
+            <button id="fp_gear">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="#14abd1">
+                    <path
+                        d="M19.4 13.5c.04-.5.06-1 .06-1.5s-.02-1-.06-1.5l2.11-1.65a.5.5 0 0 0 .12-.64l-2-3.46a.5.5 0 0 0-.6-.22l-2.49 1a7.03 7.03 0 0 0-2.6-1.5l-.38-2.65A.5.5 0 0 0 13.1 1h-4a.5.5 0 0 0-.5.42l-.38 2.65a7.03 7.03 0 0 0-2.6 1.5l-2.49-1a.5.5 0 0 0-.6.22l-2 3.46a.5.5 0 0 0 .12.64L2.6 10.5c-.04.5-.06 1-.06 1.5s.02 1 .06 1.5L.49 15.15a.5.5 0 0 0-.12.64l2 3.46c.14.24.43.34.69.22l2.49-1a7.03 7.03 0 0 0 2.6 1.5l.38 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.38-2.65a7.03 7.03 0 0 0 2.6-1.5l2.49 1c.26.12.55.02.69-.22l2-3.46a.5.5 0 0 0-.12-.64L19.4 13.5zM11 15.5A3.5 3.5 0 1 1 11 8a3.5 3.5 0 0 1 0 7.5z">
+                    </path>
+                </svg>
+            </button>
         </div>
 
         <div id="fp_qmenu"></div>
     </div>
 
-    <!-- Shaka Player Core -->
+    <!-- Shaka Player -->
     <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.3.5/dist/shaka-player.compiled.js"></script>
-    <script src="../js/script-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.3.5/dist/shaka-player.ui.js"></script>
 
+    <script src="../js/script-config.js"></script>
     <script>
         function getParameterByName(name) {
             name = name.replace(/[\[\]]/g, "\\$&");
@@ -340,9 +197,8 @@
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
 
-        var ConfiguracionCanales = ConfiguracionCanales || {
-
-            // https://megatvorigin01-ccdia.megacable.com.ar
+        // Cada canal define: url (m3u8 o mpd) y, si corresponde, clearkey: { keyId: key, ... } (multikey)
+        var ConfiguracionCanales = {
 
             HBO_HD: {
                 url: "https://megatvcdn1-sl.megacable.com.ar/content/live/HBO_HD/master.mpd",
@@ -592,20 +448,20 @@
                     "38b273501fe14c8bbc0e9e2c31d640f9": "140c62709f5e172c002f087359d47e6a"
                 }
             },
-            Disney_Jr: {
-                url: "https://megatvcdn1-sl.megacable.com.ar/content/live/Disney_Jr/master.mpd",
+            asdasdasdasd: {
+                url: "https://megatvcdn1-sl.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
                 clearkey: {
-                    "afc5980a55984f9a8285abc710dc6de6": "4cdac8b5d84fb92530043a635c4133b0",
-                    "3dc73372392943bf84ade0cee960dd3c": "4cdac8b5d84fb92530043a635c4133b0",
-                    "9b272e85b5b04c9a904eb3cdcb607415": "4cdac8b5d84fb92530043a635c4133b0"
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
                 }
             },
-            Disney_Channel_HD: {
-                url: "https://megatvcdn1-sl.megacable.com.ar/content/live/Disney_Channel_HD/master.mpd",
+            asdasdasdasd: {
+                url: "https://megatvcdn1-sl.megacable.com.ar/content/live/asdasdasdasd/master.mpd",
                 clearkey: {
-                    "c786324d92214d42a22b0e3a3827178d": "68414da538de95356ec2234faf6e521e",
-                    "4f44cc93f44b4b25a453b3c4f4b2fa40": "68414da538de95356ec2234faf6e521e",
-                    "00b6ccdba63e486aa4b91cec3a2ff0c5": "68414da538de95356ec2234faf6e521e"
+                    "972ce878aaca4a7097c619ebf45901be": "68f402cc761bbef08b56cd9c201980bf",
+                    "7420dce6d24544caa3a15376126c6945": "68f402cc761bbef08b56cd9c201980bf",
+                    "f3fb8bed8d2b44fab903a44d03f440b1": "68f402cc761bbef08b56cd9c201980bf"
                 }
             },
             asdasdasdasd: {
@@ -673,6 +529,7 @@
                 }
             },
         };
+
         var id = getParameterByName('id');
         var config = ConfiguracionCanales[id];
 
@@ -682,15 +539,12 @@
         const icoPlay = document.getElementById("fp_icoPlay");
         const icoPause = document.getElementById("fp_icoPause");
         const mute = document.getElementById("fp_mute");
-        const volBar = document.getElementById("fp_vol_bar");
-        const icoVolMax = document.getElementById("fp_icoVolMax");
-        const icoVolMute = document.getElementById("fp_icoVolMute");
         const fs = document.getElementById("fp_fs");
         const gear = document.getElementById("fp_gear");
         const qmenu = document.getElementById("fp_qmenu");
         const box = document.getElementById("flow-player");
 
-        let lastVolume = 1;
+        video.muted = false;
 
         async function initShaka() {
             shaka.polyfill.installAll();
@@ -709,12 +563,13 @@
 
             const drmConfig = {};
             if (config.clearkey) {
+                // Multikey ClearKey: acepta 1, 2, 3, 10+ keys tal cual venga en la config del canal
                 drmConfig.clearKeys = config.clearkey;
             }
 
             player.configure({
                 drm: drmConfig,
-                abr: { enabled: true },
+                abr: { enabled: false },
                 preferredAudioLanguage: "es",
                 preferredTextLanguage: "es",
                 streaming: {
@@ -731,12 +586,13 @@
 
             try {
                 await player.load(config.url);
+                console.log("Manifiesto cargado con éxito:", config.url);
             } catch (e) {
                 console.error("Error cargando el manifiesto:", e);
                 return;
             }
 
-            // Menú de calidad
+            // Menú de calidad (dedupeando resoluciones repetidas por distinto codec)
             const tracks = player.getVariantTracks();
             const porAltura = new Map();
             tracks.filter(t => t.height).forEach(t => {
@@ -768,58 +624,20 @@
 
         initShaka();
 
-        /* Reproducir / Pausa */
+        /* ===== Controles (sin tocar) ===== */
         play.onclick = () => video.paused ? video.play() : video.pause();
         video.onplay = () => { icoPlay.style.display = "none"; icoPause.style.display = "block"; showUI(); };
         video.onpause = () => { icoPlay.style.display = "block"; icoPause.style.display = "none"; box.classList.remove("hide-ui"); };
 
-        /* Tiempo / Progreso */
-        video.ontimeupdate = () => {
-            bar.max = video.duration || 100;
-            bar.value = video.currentTime;
-        };
+        video.ontimeupdate = () => { bar.max = video.duration || 0; bar.value = video.currentTime; };
         bar.oninput = () => video.currentTime = bar.value;
 
-        /* Control de Volumen y Mute */
-        function updateVolumeUI() {
-            if (video.muted || video.volume === 0) {
-                icoVolMax.style.display = "none";
-                icoVolMute.style.display = "block";
-                volBar.value = 0;
-            } else {
-                icoVolMax.style.display = "block";
-                icoVolMute.style.display = "none";
-                volBar.value = video.volume;
-            }
-        }
+        mute.onclick = () => video.muted = !video.muted;
 
-        volBar.oninput = (e) => {
-            const val = parseFloat(e.target.value);
-            video.volume = val;
-            video.muted = val === 0;
-            if (val > 0) lastVolume = val;
-            updateVolumeUI();
-        };
-
-        mute.onclick = () => {
-            if (video.muted || video.volume === 0) {
-                video.muted = false;
-                video.volume = lastVolume > 0 ? lastVolume : 1;
-            } else {
-                lastVolume = video.volume;
-                video.muted = true;
-            }
-            updateVolumeUI();
-        };
-
-        /* Pantalla Completa */
-        function toggleFS() {
-            if (!document.fullscreenElement) box.requestFullscreen();
-            else document.exitFullscreen();
-        }
+        function toggleFS() { if (!document.fullscreenElement) box.requestFullscreen(); else document.exitFullscreen(); }
         fs.onclick = toggleFS;
-        video.ondblclick = toggleFS;
 
+        video.ondblclick = toggleFS;
         let lastTap = 0;
         video.ontouchend = () => {
             const now = Date.now();
@@ -827,19 +645,9 @@
             lastTap = now;
         };
 
-        /* Menú de Calidad */
-        gear.onclick = (e) => {
-            e.stopPropagation();
-            qmenu.style.display = qmenu.style.display === "block" ? "none" : "block";
-        };
+        gear.onclick = () => { qmenu.style.display = qmenu.style.display === "block" ? "none" : "block"; };
 
-        document.addEventListener("click", (e) => {
-            if (!qmenu.contains(e.target) && e.target !== gear) {
-                qmenu.style.display = "none";
-            }
-        });
-
-        /* Orientación en iOS */
+        /* landscape */
         const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
         document.addEventListener("fullscreenchange", async () => {
             if (document.fullscreenElement) {
@@ -851,16 +659,13 @@
             }
         });
 
-        /* Ocultar interfaz automáticamente */
+        /* auto hide */
         let uiTimer;
         function showUI() {
             box.classList.remove("hide-ui");
             clearTimeout(uiTimer);
             if (!video.paused) {
-                uiTimer = setTimeout(() => {
-                    box.classList.add("hide-ui");
-                    qmenu.style.display = "none";
-                }, 3000);
+                uiTimer = setTimeout(() => { box.classList.add("hide-ui"); }, 2500);
             }
         }
         box.addEventListener("mousemove", showUI);
