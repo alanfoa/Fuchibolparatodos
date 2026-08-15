@@ -253,7 +253,8 @@
 
                     console.log(`[DEBUG] ${proxyURL} -> largo html: ${html.length}, contiene 'mp4': ${html.includes(".mp4")}, contiene 'm3u8': ${html.includes(".m3u8")}`);
 
-                    const match = html.match(/https?:\/\/[^\s"'<>]+\.(m3u8|mp4|flv)(?:\?[^\s"'<>]*)?/i);
+                    // const match = html.match(/https?:\/\/[^\s"'<>]+\.(m3u8|mp4|flv)(?:\?[^\s"'<>]*)?/i);
+                    const match = html.match(/https?:\/\/[^\s"'<>]+\.(m3u8|flv)(?:\?[^\s"'<>]*)?/i);
 
                     if (match) {
                         const ext = match[1].toLowerCase();
