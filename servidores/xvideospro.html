@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XVIDEOS</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <style>
+        :root {
+            --bg: #0d0f12;
+            --panel: #15181c;
+            --line: #242830;
+            --text: #e8eaed;
+            --muted: #8a8f98;
+            --accent: #5ec2a6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            padding: 16px;
+        }
+
+        h1 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 12px;
+            letter-spacing: .2px;
+        }
+
+        /* Estilos de la barra de paginación */
+        .pagination-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            width: 100%;
+        }
+
+        .pagination-container::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .pagination-container::-webkit-scrollbar-thumb {
+            background: var(--line);
+            border-radius: 3px;
+        }
+
+        .page-btn {
+            background: var(--panel);
+            color: var(--text);
+            border: 1px solid var(--line);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .page-btn.active {
+            background: var(--accent);
+            color: #04241c;
+            border-color: var(--accent);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .ellipsis {
+            color: var(--muted);
+            padding: 0 2px;
+            font-size: 12px;
+        }
+
+        #status {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 16px;
+            min-height: 18px;
+        }
+
+        /* Grilla responsive */
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        @media (min-width: 600px) {
+            body {
+                padding: 24px;
+            }
+            h1 {
+                font-size: 20px;
+                margin-bottom: 16px;
+            }
+            .page-btn {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+            .pagination-container {
+                gap: 6px;
+            }
+            #grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 16px;
+            }
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+        }
+
+        .thumb {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .dur {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            background: rgba(0, 0, 0, .75);
+            color: #fff;
+            font-size: 10px;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .info {
+            padding: 8px 10px;
+        }
+
+        .title {
+            font-size: 12px;
+            line-height: 1.3;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Modal adaptable a celulares (100% pantalla) */
+        #modalOverlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .85);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 0;
+        }
+
+        #modalOverlay.open {
+            display: flex;
+        }
+
+        #modalBox {
+            background: var(--panel);
+            border: none;
+            border-radius: 0;
+            width: 100%;
+            height: 100%;
+            max-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        @media (min-width: 600px) {
+            #modalOverlay {
+                padding: 24px;
+            }
+            #modalBox {
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                width: min(960px, 100%);
+                height: auto;
+                max-height: 90vh;
+            }
+        }
+
+        #modalHeader {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* padding: 12px 14px; */
+            border-bottom: 1px solid var(--line);
+            background: var(--panel);
+        }
+
+        #modalTitle {
+            font-size: 13px;
+            color: var(--muted);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-right: 12px;
+        }
+
+        #modalClose {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        #modalClose:hover {
+            background: var(--line);
+        }
+
+        #modalFrameWrap {
+            position: relative;
+            width: 100%;
+            flex: 1;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 600px) {
+            #modalFrameWrap {
+                aspect-ratio: 16/9;
+                flex: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <h1>Video List Webview</h1> -->
+
+    <div id="pagination" class="pagination-container"></div>
+
+    <div id="status" style="display: none;"></div>
+    <div id="grid"></div>
+
+    <div id="modalOverlay">
+        <div id="modalBox">
+            <div id="modalHeader">
+                <span id="modalTitle"></span>
+                <button id="modalClose">✕</button>
+            </div>
+            <div id="modalFrameWrap">
+                <video id="modalVideo" controls autoplay playsinline
+                    style="width:100%;max-height:90%;background:#000;"></video>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PROXY = "https://myproxy.senorgatorade123.workers.dev/?url=";
+        const BASE_DOMAIN = "https://www.xvideos.es";
+
+        const TOTAL_PAGES = 100;
+        let currentPage = 0;
+
+        const paginationEl = document.getElementById('pagination');
+        const statusEl = document.getElementById('status');
+        const grid = document.getElementById('grid');
+
+        function getUrlForPage(pageIndex) {
+            if (pageIndex === 0) {
+                return `${BASE_DOMAIN}/home/es`;
+            }
+            return `${BASE_DOMAIN}/new/${pageIndex}`;
+        }
+
+        function renderPagination() {
+            paginationEl.innerHTML = '';
+
+            const isMobile = window.innerWidth < 600;
+
+            // Botón "Nuevas"
+            const btnNuevas = createPageButton(isMobile ? 'Inicio' : 'Nuevas', 0, currentPage === 0);
+            paginationEl.appendChild(btnNuevas);
+
+            // Botón "Anterior"
+            if (currentPage > 0) {
+                const btnPrev = createPageButton('‹', currentPage - 1, false);
+                paginationEl.appendChild(btnPrev);
+            }
+
+            // En celulares se muestran máximo 3 números
+            const maxVisible = isMobile ? 3 : 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+            let endPage = Math.min(TOTAL_PAGES, startPage + maxVisible - 1);
+
+            if (endPage - startPage < maxVisible - 1) {
+                startPage = Math.max(1, endPage - maxVisible + 1);
+            }
+
+            if (startPage > 1) {
+                paginationEl.appendChild(createPageButton(1, 1, currentPage === 1));
+                if (startPage > 2) {
+                    const span = document.createElement('span');
+                    span.className = 'ellipsis';
+                    span.textContent = '..';
+                    paginationEl.appendChild(span);
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                paginationEl.appendChild(createPageButton(i, i, currentPage === i));
+            }
+
+            if (endPage < TOTAL_PAGES) {
+                if (endPage < TOTAL_PAGES - 1) {
+                    const span = document.createElement('span');
+                    span.className = 'ellipsis';
+                    span.textContent = '..';
+                    paginationEl.appendChild(span);
+                }
+                paginationEl.appendChild(createPageButton(TOTAL_PAGES, TOTAL_PAGES, currentPage === TOTAL_PAGES));
+            }
+
+            // Botón "Siguiente"
+            if (currentPage < TOTAL_PAGES) {
+                const btnNext = createPageButton('›', currentPage + 1, false);
+                paginationEl.appendChild(btnNext);
+            }
+        }
+
+        function createPageButton(text, pageIndex, isActive) {
+            const btn = document.createElement('button');
+            btn.className = `page-btn ${isActive ? 'active' : ''}`;
+            btn.textContent = text;
+            btn.onclick = () => changePage(pageIndex);
+            return btn;
+        }
+
+        function changePage(pageIndex) {
+            if (pageIndex === currentPage) return;
+            currentPage = pageIndex;
+            renderPagination();
+            loadVideos();
+        }
+
+        window.addEventListener('resize', renderPagination);
+
+        renderPagination();
+        loadVideos();
+
+        async function loadVideos() {
+            const target = getUrlForPage(currentPage);
+
+            if (target.includes("ejemplo.com")) {
+                statusEl.textContent = 'Configura el dominio real en BASE_DOMAIN.';
+                return;
+            }
+
+            grid.innerHTML = '';
+            statusEl.textContent = 'Cargando...';
+
+            document.querySelectorAll('.page-btn').forEach(b => b.disabled = true);
+
+            try {
+                const proxyUrl = PROXY + encodeURIComponent(target);
+                const res = await fetch(proxyUrl);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const html = await res.text();
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                const items = doc.querySelectorAll('.mozaique .thumb-block');
+                const videos = [];
+
+                items.forEach(item => {
+                    const linkEl = item.querySelector('.thumb a');
+                    const imgEl = item.querySelector('.thumb img');
+                    const titleEl = item.querySelector('.title a');
+                    const durationEl = item.querySelector('.duration');
+
+                    let href = linkEl ? linkEl.getAttribute('href') : '';
+                    let imageSrc = imgEl?.getAttribute('data-src') || imgEl?.src || '';
+
+                    if (href) {
+                        href = new URL(href, target).href;
+                    }
+
+                    if (imageSrc && imageSrc.trim() !== '') {
+                        videos.push({
+                            href: href,
+                            image: imageSrc,
+                            duration: durationEl?.textContent.trim() || '',
+                            title: titleEl?.getAttribute('title') || titleEl?.textContent.trim() || ''
+                        });
+                    }
+                });
+
+                render(videos);
+                statusEl.textContent = `${videos.length} video(s) encontrados.`;
+            } catch (err) {
+                statusEl.textContent = 'Error: ' + err.message;
+            } finally {
+                document.querySelectorAll('.page-btn').forEach(b => b.disabled = false);
+            }
+        }
+
+        function render(videos) {
+            grid.innerHTML = '';
+            videos.forEach(v => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="thumb">
+                        <img src="${escapeHtml(v.image)}" loading="lazy" alt="">
+                        ${v.duration ? `<span class="dur">${escapeHtml(v.duration)}</span>` : ''}
+                    </div>
+                    <div class="info">
+                        <p class="title">${escapeHtml(v.title)}</p>
+                    </div>
+                `;
+
+                const imgEl = card.querySelector('img');
+                imgEl.addEventListener('error', () => {
+                    card.remove();
+                });
+
+                if (v.href) {
+                    card.addEventListener('click', () => openModal(v));
+                }
+                grid.appendChild(card);
+            });
+        }
+
+        // -------- Modal --------
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalVideo = document.getElementById("modalVideo");
+        const modalTitle = document.getElementById('modalTitle');
+        const modalClose = document.getElementById('modalClose');
+
+        async function openModal(v) {
+            retry = true;
+            retrying = false;
+            retryCount = 0;
+            modalTitle.textContent = v.title || v.href;
+            modalOverlay.classList.add("open");
+            modalVideo.dataset.page = v.href;
+            loadM3U8(v.href);
+        }
+
+        function closeModal() {
+            retry = false;
+            retrying = false;
+            if (window.hls) window.hls.destroy();
+            modalOverlay.classList.remove("open");
+            modalVideo.pause();
+            modalVideo.removeAttribute("src");
+            modalVideo.load();
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        function escapeHtml(str) {
+            const d = document.createElement('div');
+            d.textContent = str || '';
+            return d.innerHTML;
+        }
+
+        // -------- Control de reintentos --------
+        let retry = true;
+        let retrying = false;
+        let retryCount = 0;
+        const MAX_RETRIES = 5;
+
+        function scheduleRetry(videoPage) {
+            if (!retry || retrying) return;
+            retryCount++;
+            if (retryCount > MAX_RETRIES) {
+                console.log("Se alcanzó el máximo de reintentos (" + MAX_RETRIES + ").");
+                statusEl.textContent = "No se pudo cargar el video después de varios intentos.";
+                return;
+            }
+            retrying = true;
+            const delay = 1000 * retryCount;
+            console.log(`Reintentando (${retryCount}/${MAX_RETRIES}) en ${delay}ms...`);
+            setTimeout(() => {
+                retrying = false;
+                loadM3U8(videoPage);
+            }, delay);
+        }
+
+        async function loadM3U8(videoPage) {
+            try {
+                const res = await fetch(PROXY + encodeURIComponent(videoPage));
+                let html = await res.text();
+                html = html.replace(/\\\//g, "/");
+                const match = html.match(/https?:\/\/[^"'\\\s]+\.m3u8[^"'\\\s]*/i);
+
+                if (!match) throw new Error("No se encontró ningún m3u8.");
+                const m3u8 = match[0];
+
+                if (Hls.isSupported()) {
+                    if (window.hls) window.hls.destroy();
+                    window.hls = new Hls();
+                    window.hls.loadSource(m3u8);
+                    window.hls.attachMedia(modalVideo);
+
+                    window.hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                        retryCount = 0;
+                        modalVideo.play().catch(() => { });
+                    });
+
+                    window.hls.on(Hls.Events.ERROR, (event, data) => {
+                        if (data.fatal) {
+                            window.hls.destroy();
+                            window.hls = null;
+                            scheduleRetry(videoPage);
+                        }
+                    });
+                } else {
+                    modalVideo.src = m3u8;
+                }
+
+                await modalVideo.play();
+            } catch (e) {
+                scheduleRetry(videoPage);
+            }
+        }
+
+        modalVideo.addEventListener("error", () => {
+            scheduleRetry(modalVideo.dataset.page);
+        });
+    </script>
+
+</body>
+
+</html>

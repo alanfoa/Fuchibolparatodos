@@ -9321,6 +9321,16 @@ MisCanales.set(
             ]
         }
     );
+
+MisCanales.set(
+        "XVIDEOS",
+        {
+            pais: "Argentina",
+            enlaces: [
+                servidorCanalesOnline + "xvideospro.html",
+            ]
+        }
+    );
 // ---- FIN: CANALES AUTO-GENERADOS ----
 
 // dlhd_so();
