@@ -9264,6 +9264,16 @@ MisCanales.set(
 );
 
 MisCanales.set(
+    "Pluto TV",
+    {
+        pais: "Argentina",
+        enlaces: [
+            servidorCanalesOnline + "Pluto.html",
+        ]
+    }
+);
+
+MisCanales.set(
         "Venus",
         {
             pais: "Argentina",
