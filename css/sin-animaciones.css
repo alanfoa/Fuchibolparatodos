@@ -1,0 +1,20 @@
+/* Fase 2 - Botón "desactivar animaciones".
+   Archivo local (NO se sincroniza desde el remoto).
+   Se activa con la clase .sin-animaciones en <html>. */
+html.sin-animaciones *,
+html.sin-animaciones *::before,
+html.sin-animaciones *::after {
+    animation: none !important;
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+}
+
+html.sin-animaciones .bg-particles,
+html.sin-animaciones #snowflakes-container,
+html.sin-animaciones .particle,
+html.sin-animaciones .snowflake {
+    display: none !important;
+}

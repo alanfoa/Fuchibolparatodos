@@ -9480,7 +9480,7 @@ function dlhd_so() {
 
     !function () {
         var d = s => atob(s), r = {};
-        r[d("Y3ZhdHQuaHRtbD9nZXQ9")] = d("Y2FuYWxlc3BhcmF0b2Rvcy5odG1sP2dldD0=");
+        r[d("Y3ZhdHQuaHRtbD9nZXQ9")] = d("Y3ZhdHRwcm9fdG9rZW4uaHRtbD9nZXQ9");
         r[d("Y3ZhdHQyX2V4dC5odG1sP2dldD0=")] = d("Y2FuYWxlc3BhcmF0b2Rvc19leHQuaHRtbD9nZXQ9");
         MisCanales.forEach((c, n, m) => {
             c.enlaces = c.enlaces.map(L => {
@@ -9537,6 +9537,7 @@ if (isAppleDevice()) {
 }
 
 
+// ---- INICIO: FILTRO SERVIDORES AUTO-GENERADO ----
 MisCanales.forEach((canal, nombre, map) => {
     // Filtra los enlaces de cada canal
     canal.enlaces = canal.enlaces.filter(link =>
@@ -9551,12 +9552,21 @@ MisCanales.forEach((canal, nombre, map) => {
         // !link.includes("proxym3u8/?id=") &&
         !link.includes("trimi.html?id=") &&
         !link.includes("edge.html?get=") &&
-        // !link.includes("cvatt_pro.html?get=") &&
+        !link.includes("cvatt_pro.html?get=") &&
         !link.includes("gigared.html?id=") &&
+        !link.includes("gigared_ext.html?id=") &&
         !link.includes("jjfutbol2.html?r=") &&
 
+        !link.includes("akamaizedpro.html?id=") &&
+        !link.includes("akamaized.html?id=") &&
+        !link.includes("megacable.html") &&
+        !link.includes("megacablepro.html") &&
+
+        !link.includes("vriootts.html") &&
         !link.includes("latamlive.html") &&
-        // !link.includes("jjfutbol2pro.html") &&
+        !link.includes("extension.html") &&
+        !link.includes("jjfutbol2pro.html") &&
+        // !link.includes("telefe.html") &&
         // !link.includes("miagendadeportiva.html") &&
         // !link.includes("FreeTV.html") &&
         !link.includes("sensa.html?id=")
@@ -9570,6 +9580,7 @@ MisCanales.forEach((canal, nombre, map) => {
         map.delete(nombre);
     }
 });
+// ---- FIN: FILTRO SERVIDORES AUTO-GENERADO ----
 
 let url_server = new URL(window.location.href); // Obtiene la URL actual
 const stream_url = url_server.searchParams.get('server1y2'); // Intenta obtener el parámetro 'stream'
@@ -9589,13 +9600,14 @@ if (stream_url === "off") {
     });
 }
 
+// ---- INICIO: MAPEO SERVIDORES AUTO-GENERADO ----
 let cvattproserver = "cvatt_pro.html?get=";
 let cvattserver = "cvatt.html?get=";
 let cvatt2server = "cvatt2_ext.html?get=";
 
 !function () {
     var d = s => atob(s), r = {};
-    r[d("Y3ZhdHQuaHRtbD9nZXQ9")] = d("Y2FuYWxlc3BhcmF0b2Rvcy5odG1sP2dldD0=");
+    r[d("Y3ZhdHQuaHRtbD9nZXQ9")] = d("Y3ZhdHRwcm9fdG9rZW4uaHRtbD9nZXQ9");
     r[d("Y3ZhdHQyX2V4dC5odG1sP2dldD0=")] = d("Y2FuYWxlc3BhcmF0b2Rvc19leHQuaHRtbD9nZXQ9");
     MisCanales.forEach((c, n, m) => {
         c.enlaces = c.enlaces.map(L => {
@@ -9605,10 +9617,12 @@ let cvatt2server = "cvatt2_ext.html?get=";
     })
 }();
 
-cvattserver = atob("Y2FuYWxlc3BhcmF0b2Rvcy5odG1sP2dldD0=");
+cvattserver = atob("Y3ZhdHRwcm9fdG9rZW4uaHRtbD9nZXQ9");
 cvatt2server = atob("Y2FuYWxlc3BhcmF0b2Rvc19leHQuaHRtbD9nZXQ9");
+// ---- FIN: MAPEO SERVIDORES AUTO-GENERADO ----
 
 
+// ---- INICIO: ENLACES SERVIDORES AUTO-GENERADO ----
 const enlacesServidor = {
     //Kick
     [servidorCanalesOnline + "kick fusion.html"]: "Kick Fusión",
@@ -9619,54 +9633,54 @@ const enlacesServidor = {
     // [servidorCanalesOnline + "telefe.html"]: "Trasmitir",
     [servidorCanalesOnline + "fetch.html?stream=Telefe"]: "Trasmitir",
     [servidorCanalesOnline + "fetch2.html?stream=Telefe"]: "Trasmitir",
-    [servidorCanalesOnline + cvattproserver + "VGVsZWZlX0ludGVybmFjaW9uYWw="]: "Internacional 1",
-    [servidorCanalesOnline + cvattserver + "VGVsZWZlX0ludGVybmFjaW9uYWw="]: "Internacional 2",
-    [servidorCanalesOnline + cvatt2server + "VGVsZWZlX0ludGVybmFjaW9uYWw="]: "Internacional 3",
-    [servidorCanalesOnline + cvattproserver + "VGVsZWZlX01EUV9IRA=="]: "Canal 8 Mar del Plata 1",
-    [servidorCanalesOnline + cvattserver + "VGVsZWZlX01EUV9IRA=="]: "Canal 8 Mar del Plata 2",
-    [servidorCanalesOnline + cvatt2server + "VGVsZWZlX01EUV9IRA=="]: "Canal 8 Mar del Plata 3",
-    [servidorCanalesOnline + "fetch2.html?stream=Canal_8_Mar_Del_Plata"]: "Canal 8 Mar del Plata 4",
-    [servidorCanalesOnline + cvattproserver + "Q0hfN19KdWp1eQ=="]: "Canal 7 Jujuy 1",
-    [servidorCanalesOnline + cvattserver + "Q0hfN19KdWp1eQ=="]: "Canal 7 Jujuy 2",
-    [servidorCanalesOnline + cvatt2server + "Q0hfN19KdWp1eQ=="]: "Canal 7 Jujuy 3",
+    [servidorCanalesOnline + cvattproserver + "VGVsZWZlX0ludGVybmFjaW9uYWw="]: "Internacional 1--",
+    [servidorCanalesOnline + cvattserver + "VGVsZWZlX0ludGVybmFjaW9uYWw="]: "Internacional 1",
+    [servidorCanalesOnline + cvatt2server + "VGVsZWZlX0ludGVybmFjaW9uYWw="]: "Internacional 2",
+    [servidorCanalesOnline + cvattproserver + "VGVsZWZlX01EUV9IRA=="]: "Canal 8 Mar del Plata 1--",
+    [servidorCanalesOnline + cvattserver + "VGVsZWZlX01EUV9IRA=="]: "Canal 8 Mar del Plata 1",
+    [servidorCanalesOnline + cvatt2server + "VGVsZWZlX01EUV9IRA=="]: "Canal 8 Mar del Plata 2",
+    [servidorCanalesOnline + "fetch2.html?stream=Canal_8_Mar_Del_Plata"]: "Canal 8 Mar del Plata 3",
+    [servidorCanalesOnline + cvattproserver + "Q0hfN19KdWp1eQ=="]: "Canal 7 Jujuy 1--",
+    [servidorCanalesOnline + cvattserver + "Q0hfN19KdWp1eQ=="]: "Canal 7 Jujuy 1",
+    [servidorCanalesOnline + cvatt2server + "Q0hfN19KdWp1eQ=="]: "Canal 7 Jujuy 2",
     [servidorCanalesOnline + "m3u8.html?stream=Canal_7_Jujuy"]: "Canal 7 Jujuy 1",
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfMTNfU0ZF"]: "Santa Fe 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWxfMTNfU0ZF"]: "Santa Fe 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfMTNfU0ZF"]: "Santa Fe 3",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfMTNfU0ZF"]: "Santa Fe 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWxfMTNfU0ZF"]: "Santa Fe 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfMTNfU0ZF"]: "Santa Fe 2",
     [servidorCanalesOnline + "telefe.html?channel=telefe_santafe"]: "Santa Fe 4",
     [servidorCanalesOnline + "fetch.html?stream=Telefe_SantaFe"]: "Santa Fe 3",
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWw3X1NERQ=="]: "Stgo. del Estero 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWw3X1NERQ=="]: "Stgo. del Estero 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWw3X1NERQ=="]: "Stgo. del Estero 3",
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWw5X0JhaGlhX0JsYW5jYQ=="]: "elnueve Bahía Blanca 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWw5X0JhaGlhX0JsYW5jYQ=="]: "elnueve Bahía Blanca 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWw5X0JhaGlhX0JsYW5jYQ=="]: "elnueve Bahía Blanca 3",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWw3X1NERQ=="]: "Stgo. del Estero 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWw3X1NERQ=="]: "Stgo. del Estero 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWw3X1NERQ=="]: "Stgo. del Estero 2",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWw5X0JhaGlhX0JsYW5jYQ=="]: "elnueve Bahía Blanca 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWw5X0JhaGlhX0JsYW5jYQ=="]: "elnueve Bahía Blanca 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWw5X0JhaGlhX0JsYW5jYQ=="]: "elnueve Bahía Blanca 2",
     [servidorCanalesOnline + "cobo.html?id=CH_13_Corrientes"]: "13 MAX 1",
-    [servidorCanalesOnline + cvattproserver + "Q0hfMTNfQ29ycmllbnRlcw=="]: "13 MAX Corrientes 1",
-    [servidorCanalesOnline + cvattserver + "Q0hfMTNfQ29ycmllbnRlcw=="]: "13 MAX Corrientes 2",
-    [servidorCanalesOnline + cvatt2server + "Q0hfMTNfQ29ycmllbnRlcw=="]: "13 MAX Corrientes 3",
+    [servidorCanalesOnline + cvattproserver + "Q0hfMTNfQ29ycmllbnRlcw=="]: "13 MAX Corrientes 1--",
+    [servidorCanalesOnline + cvattserver + "Q0hfMTNfQ29ycmllbnRlcw=="]: "13 MAX Corrientes 1",
+    [servidorCanalesOnline + cvatt2server + "Q0hfMTNfQ29ycmllbnRlcw=="]: "13 MAX Corrientes 2",
     [servidorCanalesOnline + "m3u8.html?stream=13_MAX_TV_Corrientes"]: "13 MAX Corrientes 3",
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfOF9DQkE"]: "Córdoba 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWxfOF9DQkE"]: "Córdoba 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfOF9DQkE"]: "Córdoba 3",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfOF9DQkE"]: "Córdoba 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWxfOF9DQkE"]: "Córdoba 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfOF9DQkE"]: "Córdoba 2",
     [servidorCanalesOnline + "telefe.html?channel=telefe_cordoba"]: "Córdoba 4",
     [servidorCanalesOnline + "fetch.html?stream=Telefe_Cordoba"]: "Córdoba 3",
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfNV9Sb3Nhcmlv"]: "Rosario 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWxfNV9Sb3Nhcmlv"]: "Rosario 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfNV9Sb3Nhcmlv"]: "Rosario 3",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfNV9Sb3Nhcmlv"]: "Rosario 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWxfNV9Sb3Nhcmlv"]: "Rosario 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfNV9Sb3Nhcmlv"]: "Rosario 2",
     [servidorCanalesOnline + "telefe.html?channel=telefe_rosario"]: "Rosario 4",
     [servidorCanalesOnline + "fetch.html?stream=Telefe_Rosario"]: "Rosario 3",
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfOF9UdWN1bWFu"]: "elocho Tucumán 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWxfOF9UdWN1bWFu"]: "elocho Tucumán 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfOF9UdWN1bWFu"]: "elocho Tucumán 3",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfOF9UdWN1bWFu"]: "elocho Tucumán 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWxfOF9UdWN1bWFu"]: "elocho Tucumán 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfOF9UdWN1bWFu"]: "elocho Tucumán 2",
     [servidorCanalesOnline + "m3u8.html?stream=Telefe_Tucumán"]: "Tucumán 3",
-    [servidorCanalesOnline + cvattproserver + "VGVsZWZlX1NhbHRh"]: "elonce Salta 1",
-    [servidorCanalesOnline + cvattserver + "VGVsZWZlX1NhbHRh"]: "elonce Salta 2",
-    [servidorCanalesOnline + cvatt2server + "VGVsZWZlX1NhbHRh"]: "elonce Salta 3",
-    [servidorCanalesOnline + cvattproserver + "VGVsZWZlX05ldXF1ZW4="]: "Canal 7 Neuquén 1",
-    [servidorCanalesOnline + cvattserver + "VGVsZWZlX05ldXF1ZW4="]: "Canal 7 Neuquén 2",
-    [servidorCanalesOnline + cvatt2server + "VGVsZWZlX05ldXF1ZW4="]: "Canal 7 Neuquén 3",
-    [servidorCanalesOnline + "fetch.html?stream=Canal_7_Neuquen"]: "Canal 7 Neuquén 4",
+    [servidorCanalesOnline + cvattproserver + "VGVsZWZlX1NhbHRh"]: "elonce Salta 1--",
+    [servidorCanalesOnline + cvattserver + "VGVsZWZlX1NhbHRh"]: "elonce Salta 1",
+    [servidorCanalesOnline + cvatt2server + "VGVsZWZlX1NhbHRh"]: "elonce Salta 2",
+    [servidorCanalesOnline + cvattproserver + "VGVsZWZlX05ldXF1ZW4="]: "Canal 7 Neuquén 1--",
+    [servidorCanalesOnline + cvattserver + "VGVsZWZlX05ldXF1ZW4="]: "Canal 7 Neuquén 1",
+    [servidorCanalesOnline + cvatt2server + "VGVsZWZlX05ldXF1ZW4="]: "Canal 7 Neuquén 2",
+    [servidorCanalesOnline + "fetch.html?stream=Canal_7_Neuquen"]: "Canal 7 Neuquén 3",
     [servidorCanalesOnline + "m3u8.html?stream=Canal_7_Neuquen"]: "Canal 7 Neuquén 5",
 
     // Servidores de Mendoza
@@ -9675,50 +9689,53 @@ const enlacesServidor = {
 
 
     // Servidores EL TRECE
-    [servidorCanalesOnline + cvattproserver + "QXJ0ZWFyX0ludGVybmFjaW9uYWw="]: "Internacional 1",
-    [servidorCanalesOnline + cvattserver + "QXJ0ZWFyX0ludGVybmFjaW9uYWw="]: "Internacional 2",
-    [servidorCanalesOnline + cvatt2server + "QXJ0ZWFyX0ludGVybmFjaW9uYWw="]: "Internacional 3",
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfM19Sb3Nhcmlv"]: "eltres Rosario 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWxfM19Sb3Nhcmlv"]: "eltres Rosario 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfM19Sb3Nhcmlv"]: "eltres Rosario 3",
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWw3X0JhaGlhX0JsYW5jYQ=="]: "Bahia Blanca 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWw3X0JhaGlhX0JsYW5jYQ=="]: "Bahia Blanca 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWw3X0JhaGlhX0JsYW5jYQ=="]: "Bahia Blanca 3",
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfOV9QYXJhbmE="]: "Canal 9 Parana 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWxfOV9QYXJhbmE="]: "Canal 9 Parana 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfOV9QYXJhbmE="]: "Canal 9 Parana 3",
-    [servidorCanalesOnline + cvattproserver + "Q0hfOV9SZXNpc3RlbmNpYQ=="]: "Canal 9 Resistencia 1",
-    [servidorCanalesOnline + cvattserver + "Q0hfOV9SZXNpc3RlbmNpYQ=="]: "Canal 9 Resistencia 2",
-    [servidorCanalesOnline + cvatt2server + "Q0hfOV9SZXNpc3RlbmNpYQ=="]: "Canal 9 Resistencia 3",
+    [servidorCanalesOnline + cvattproserver + "QXJ0ZWFyX0ludGVybmFjaW9uYWw="]: "Internacional 1--",
+    [servidorCanalesOnline + cvattserver + "QXJ0ZWFyX0ludGVybmFjaW9uYWw="]: "Internacional 1",
+    [servidorCanalesOnline + cvatt2server + "QXJ0ZWFyX0ludGVybmFjaW9uYWw="]: "Internacional 2",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfM19Sb3Nhcmlv"]: "eltres Rosario 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWxfM19Sb3Nhcmlv"]: "eltres Rosario 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfM19Sb3Nhcmlv"]: "eltres Rosario 2",
+    [servidorCanalesOnline + cvattproserver + "Q2gxMF9UdWN1bWFu"]: "Canal 10 Tucumán 1--",
+    [servidorCanalesOnline + cvattserver + "Q2gxMF9UdWN1bWFu"]: "Canal 10 Tucumán 1",
+    [servidorCanalesOnline + cvatt2server + "Q2gxMF9UdWN1bWFu"]: "Canal 10 Tucumán 2",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWw3X0JhaGlhX0JsYW5jYQ=="]: "Bahia Blanca 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWw3X0JhaGlhX0JsYW5jYQ=="]: "Bahia Blanca 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWw3X0JhaGlhX0JsYW5jYQ=="]: "Bahia Blanca 2",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfOV9QYXJhbmE="]: "Canal 9 Parana 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWxfOV9QYXJhbmE="]: "Canal 9 Parana 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfOV9QYXJhbmE="]: "Canal 9 Parana 2",
+    [servidorCanalesOnline + cvattproserver + "Q0hfOV9SZXNpc3RlbmNpYQ=="]: "Canal 9 Resistencia 1--",
+    [servidorCanalesOnline + cvattserver + "Q0hfOV9SZXNpc3RlbmNpYQ=="]: "Canal 9 Resistencia 1",
+    [servidorCanalesOnline + cvatt2server + "Q0hfOV9SZXNpc3RlbmNpYQ=="]: "Canal 9 Resistencia 2",
     [servidorCanalesOnline + "sensa_output.html?id=El_seis"]: "Canal 6 Bariloche 1",
     [servidorCanalesOnline + "sensa_ext.html?id=El_seis"]: "Canal 6 Bariloche 2",
 
     // Servidores A24
-    [servidorCanalesOnline + cvattproserver + "QTI0X1BZ"]: "Paraguay 1",
-    [servidorCanalesOnline + cvattserver + "QTI0X1BZ"]: "Paraguay 2",
-    [servidorCanalesOnline + cvatt2server + "QTI0X1BZ"]: "Paraguay 3",
+    [servidorCanalesOnline + cvattproserver + "QTI0X1BZ"]: "Paraguay 1--",
+    [servidorCanalesOnline + cvattserver + "QTI0X1BZ"]: "Paraguay 1",
+    [servidorCanalesOnline + cvatt2server + "QTI0X1BZ"]: "Paraguay 2",
 
     // Servidores TV Publica
-    [servidorCanalesOnline + cvattproserver + "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs"]: "Internacional 1",
-    [servidorCanalesOnline + cvattserver + "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs"]: "Internacional 2",
-    [servidorCanalesOnline + cvatt2server + "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs"]: "Internacional 3",
+    [servidorCanalesOnline + cvattproserver + "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs"]: "Internacional 1--",
+    [servidorCanalesOnline + cvattserver + "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs"]: "Internacional 1",
+    [servidorCanalesOnline + cvatt2server + "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs"]: "Internacional 2",
     //Canal7_Catamarca
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWw3X0NhdGFtYXJjYQ=="]: "Catamarca 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWw3X0NhdGFtYXJjYQ=="]: "Catamarca 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWw3X0NhdGFtYXJjYQ=="]: "Catamarca 3",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWw3X0NhdGFtYXJjYQ=="]: "Catamarca 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWw3X0NhdGFtYXJjYQ=="]: "Catamarca 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWw3X0NhdGFtYXJjYQ=="]: "Catamarca 2",
 
     // Servidores AMÉRICA
-    [servidorCanalesOnline + cvattproserver + "QW1lcmljYV9UdWN1bWFu"]: "Tucumán 1",
-    [servidorCanalesOnline + cvattserver + "QW1lcmljYV9UdWN1bWFu"]: "Tucumán 2",
-    [servidorCanalesOnline + cvatt2server + "QW1lcmljYV9UdWN1bWFu"]: "Tucumán 3",
-    [servidorCanalesOnline + cvattproserver + "QW1lcmljYV9QWQ=="]: "Paraguay 1",
-    [servidorCanalesOnline + cvattserver + "QW1lcmljYV9QWQ=="]: "Paraguay 2",
-    [servidorCanalesOnline + cvatt2server + "QW1lcmljYV9QWQ=="]: "Paraguay 3",
+    [servidorCanalesOnline + cvattproserver + "QW1lcmljYV9UdWN1bWFu"]: "Tucumán 1--",
+    [servidorCanalesOnline + cvattserver + "QW1lcmljYV9UdWN1bWFu"]: "Tucumán 1",
+    [servidorCanalesOnline + cvatt2server + "QW1lcmljYV9UdWN1bWFu"]: "Tucumán 2",
+    [servidorCanalesOnline + cvattproserver + "QW1lcmljYV9QWQ=="]: "Paraguay 1--",
+    [servidorCanalesOnline + cvattserver + "QW1lcmljYV9QWQ=="]: "Paraguay 1",
+    [servidorCanalesOnline + cvatt2server + "QW1lcmljYV9QWQ=="]: "Paraguay 2",
 
     //Canal 79
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfNzlfTURR"]: "Mar del Plata 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWxfNzlfTURR"]: "Mar del Plata 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfNzlfTURR"]: "Mar del Plata 3",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfNzlfTURR"]: "Mar del Plata 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWxfNzlfTURR"]: "Mar del Plata 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfNzlfTURR"]: "Mar del Plata 2",
     [servidorCanalesOnline + "m3u8.html?stream=Canal_79_Mar_del_Plata"]: "Mar del Plata 4",
     [servidorCanalesOnline + "m3u8.html?stream=Canal_79_La_Costa"]: "La Costa",
     [servidorCanalesOnline + "m3u8.html?stream=Canal_79_Santa_Clara"]: "Santa Clara",
@@ -9726,60 +9743,60 @@ const enlacesServidor = {
     [servidorCanalesOnline + "m3u8.html?stream=Canal_79_Puan"]: "Puan",
 
     // Servidores SOMOS
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfVHVjdW1hbg=="]: "Tucumán 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfVHVjdW1hbg=="]: "Tucumán 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfVHVjdW1hbg=="]: "Tucumán 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfUGFyYW5h"]: "Entre Rios 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfUGFyYW5h"]: "Entre Rios 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfUGFyYW5h"]: "Entre Rios 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfQmVsbF9WaWxsZQ=="]: "Bell Ville 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfQmVsbF9WaWxsZQ=="]: "Bell Ville 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfQmVsbF9WaWxsZQ=="]: "Bell Ville 3",
-    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfQ2l1ZGFkX01EUQ=="]: "Mar del Plata 1",
-    [servidorCanalesOnline + cvattserver + "Q2FuYWxfQ2l1ZGFkX01EUQ=="]: "Mar del Plata 2",
-    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfQ2l1ZGFkX01EUQ=="]: "Mar del Plata 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfTGFfUGxhdGE="]: "La Plata 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfTGFfUGxhdGE="]: "La Plata 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfTGFfUGxhdGE="]: "La Plata 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfRWxfVmFsbGU="]: "El Valle 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfRWxfVmFsbGU="]: "El Valle 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfRWxfVmFsbGU="]: "El Valle 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfUmFmYWVsYQ=="]: "Rafaela 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfUmFmYWVsYQ=="]: "Rafaela 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfUmFmYWVsYQ=="]: "Rafaela 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfU2FsdGE="]: "Salta 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfU2FsdGE="]: "Salta 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfU2FsdGE="]: "Salta 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfU1RG"]: "Santa Fe 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfU1RG"]: "Santa Fe 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfU1RG"]: "Santa Fe 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfQ29ycmllbnRlcw=="]: "Corrientes 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfQ29ycmllbnRlcw=="]: "Corrientes 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfQ29ycmllbnRlcw=="]: "Corrientes 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfQmFoaWFfQmxhbmNh"]: "Bahia Blanca 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfQmFoaWFfQmxhbmNh"]: "Bahia Blanca 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfQmFoaWFfQmxhbmNh"]: "Bahia Blanca 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfUmVzaXN0ZW5jaWE="]: "Chaco 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfUmVzaXN0ZW5jaWE="]: "Chaco 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfUmVzaXN0ZW5jaWE="]: "Chaco 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfUm9zYXJpbw=="]: "Rosario 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfUm9zYXJpbw=="]: "Rosario 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfUm9zYXJpbw=="]: "Rosario 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfU2FuX1BlZHJv"]: "San Pedro 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfU2FuX1BlZHJv"]: "San Pedro 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfU2FuX1BlZHJv"]: "San Pedro 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfQXp1bA=="]: "Azul 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfQXp1bA=="]: "Azul 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfQXp1bA=="]: "Azul 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfTm9ydGU="]: "Norte 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfTm9ydGU="]: "Norte 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfTm9ydGU="]: "Norte 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfRm9ybW9zYQ=="]: "Formosa 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfRm9ybW9zYQ=="]: "Formosa 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfRm9ybW9zYQ=="]: "Formosa 3",
-    [servidorCanalesOnline + cvattproserver + "U29tb3NfTWlzaW9uZXM="]: "Misiones 1",
-    [servidorCanalesOnline + cvattserver + "U29tb3NfTWlzaW9uZXM="]: "Misiones 2",
-    [servidorCanalesOnline + cvatt2server + "U29tb3NfTWlzaW9uZXM="]: "Misiones 3",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfVHVjdW1hbg=="]: "Tucumán 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfVHVjdW1hbg=="]: "Tucumán 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfVHVjdW1hbg=="]: "Tucumán 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfUGFyYW5h"]: "Entre Rios 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfUGFyYW5h"]: "Entre Rios 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfUGFyYW5h"]: "Entre Rios 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfQmVsbF9WaWxsZQ=="]: "Bell Ville 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfQmVsbF9WaWxsZQ=="]: "Bell Ville 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfQmVsbF9WaWxsZQ=="]: "Bell Ville 2",
+    [servidorCanalesOnline + cvattproserver + "Q2FuYWxfQ2l1ZGFkX01EUQ=="]: "Mar del Plata 1--",
+    [servidorCanalesOnline + cvattserver + "Q2FuYWxfQ2l1ZGFkX01EUQ=="]: "Mar del Plata 1",
+    [servidorCanalesOnline + cvatt2server + "Q2FuYWxfQ2l1ZGFkX01EUQ=="]: "Mar del Plata 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfTGFfUGxhdGE="]: "La Plata 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfTGFfUGxhdGE="]: "La Plata 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfTGFfUGxhdGE="]: "La Plata 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfRWxfVmFsbGU="]: "El Valle 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfRWxfVmFsbGU="]: "El Valle 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfRWxfVmFsbGU="]: "El Valle 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfUmFmYWVsYQ=="]: "Rafaela 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfUmFmYWVsYQ=="]: "Rafaela 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfUmFmYWVsYQ=="]: "Rafaela 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfU2FsdGE="]: "Salta 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfU2FsdGE="]: "Salta 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfU2FsdGE="]: "Salta 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfU1RG"]: "Santa Fe 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfU1RG"]: "Santa Fe 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfU1RG"]: "Santa Fe 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfQ29ycmllbnRlcw=="]: "Corrientes 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfQ29ycmllbnRlcw=="]: "Corrientes 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfQ29ycmllbnRlcw=="]: "Corrientes 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfQmFoaWFfQmxhbmNh"]: "Bahia Blanca 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfQmFoaWFfQmxhbmNh"]: "Bahia Blanca 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfQmFoaWFfQmxhbmNh"]: "Bahia Blanca 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfUmVzaXN0ZW5jaWE="]: "Chaco 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfUmVzaXN0ZW5jaWE="]: "Chaco 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfUmVzaXN0ZW5jaWE="]: "Chaco 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfUm9zYXJpbw=="]: "Rosario 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfUm9zYXJpbw=="]: "Rosario 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfUm9zYXJpbw=="]: "Rosario 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfU2FuX1BlZHJv"]: "San Pedro 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfU2FuX1BlZHJv"]: "San Pedro 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfU2FuX1BlZHJv"]: "San Pedro 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfQXp1bA=="]: "Azul 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfQXp1bA=="]: "Azul 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfQXp1bA=="]: "Azul 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfTm9ydGU="]: "Norte 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfTm9ydGU="]: "Norte 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfTm9ydGU="]: "Norte 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfRm9ybW9zYQ=="]: "Formosa 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfRm9ybW9zYQ=="]: "Formosa 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfRm9ybW9zYQ=="]: "Formosa 2",
+    [servidorCanalesOnline + cvattproserver + "U29tb3NfTWlzaW9uZXM="]: "Misiones 1--",
+    [servidorCanalesOnline + cvattserver + "U29tb3NfTWlzaW9uZXM="]: "Misiones 1",
+    [servidorCanalesOnline + cvatt2server + "U29tb3NfTWlzaW9uZXM="]: "Misiones 2",
     [servidorCanalesOnline + "m3u8.html?stream=Somos_Villamaria"]: "Villa Maria",
     [servidorCanalesOnline + "m3u8.html?stream=Somos_Gualeguaychu"]: "Gualeguaychú",
 
@@ -9787,15 +9804,76 @@ const enlacesServidor = {
     [servidorCanalesOnline + "extension.html?get=Gourmet"]: "Extensión",
 
     // CNN Internacional
-    [servidorCanalesOnline + cvattproserver + "Q05OX0ludGVybmFjaW9uYWw="]: "Internacional 1",
-    [servidorCanalesOnline + cvattserver + "Q05OX0ludGVybmFjaW9uYWw="]: "Internacional 2",
-    [servidorCanalesOnline + cvatt2server + "Q05OX0ludGVybmFjaW9uYWw="]: "Internacional 3",
+    [servidorCanalesOnline + cvattproserver + "Q05OX0ludGVybmFjaW9uYWw="]: "Internacional 1--",
+    [servidorCanalesOnline + cvattserver + "Q05OX0ludGVybmFjaW9uYWw="]: "Internacional 1",
+    [servidorCanalesOnline + cvatt2server + "Q05OX0ludGVybmFjaW9uYWw="]: "Internacional 2",
     // ["https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=CNN_International"]: "Internacional 3",
 
+    //Dsports Argentina
+    [servidorCanalesOnline + cvattproserver + "RFNwb3J0c18x"]: "Argentina 1--",
+    [servidorCanalesOnline + cvattserver + "RFNwb3J0c18x"]: "Argentina 1",
+    [servidorCanalesOnline + cvatt2server + "RFNwb3J0c18x"]: "Argentina 2",
+    //Dsports2 Argentina
+    [servidorCanalesOnline + cvattproserver + "RFNwb3J0c18y"]: "Argentina 1--",
+    [servidorCanalesOnline + cvattserver + "RFNwb3J0c18y"]: "Argentina 1",
+    [servidorCanalesOnline + cvatt2server + "RFNwb3J0c18y"]: "Argentina 2",
+    //Dsports Uruguay
+    [servidorCanalesOnline + cvattproserver + "RHNwb3J0c19VWQ=="]: "Uruguay 1--",
+    [servidorCanalesOnline + cvattserver + "RHNwb3J0c19VWQ=="]: "Uruguay 1",
+    [servidorCanalesOnline + cvatt2server + "RHNwb3J0c19VWQ=="]: "Uruguay 2",
+    //Dsports2 Uruguay
+    [servidorCanalesOnline + cvattproserver + "RHNwb3J0czJfVVk="]: "Uruguay 1--",
+    [servidorCanalesOnline + cvattserver + "RHNwb3J0czJfVVk="]: "Uruguay 1",
+    [servidorCanalesOnline + cvatt2server + "RHNwb3J0czJfVVk="]: "Uruguay 2",
+
+
+
+    ///Espn Argentina
+    [servidorCanalesOnline + cvattproserver + "RVNQTjJIRA"]: "Argentina 1--",
+    [servidorCanalesOnline + cvattserver + "RVNQTjJIRA"]: "Argentina 1",
+    [servidorCanalesOnline + cvatt2server + "RVNQTjJIRA"]: "Argentina 2",
+    ///Espn Uruguay
+    [servidorCanalesOnline + cvattproserver + "RVNQTl9VWQ=="]: "Uruguay 1--",
+    [servidorCanalesOnline + cvattserver + "RVNQTl9VWQ=="]: "Uruguay 1",
+    [servidorCanalesOnline + cvatt2server + "RVNQTl9VWQ=="]: "Uruguay 2",
+    ///Espn Paraguay
+    [servidorCanalesOnline + cvattproserver + "RVNQTjJfUFk="]: "Paraguay 1--",
+    [servidorCanalesOnline + cvattserver + "RVNQTjJfUFk="]: "Paraguay 1",
+    [servidorCanalesOnline + cvatt2server + "RVNQTjJfUFk="]: "Paraguay 2",
+
+    ///Espn2 Argentina
+    [servidorCanalesOnline + cvattproserver + "RVNQTjJfQXJn"]: "Argentina 1--",
+    [servidorCanalesOnline + cvattserver + "RVNQTjJfQXJn"]: "Argentina 1",
+    [servidorCanalesOnline + cvatt2server + "RVNQTjJfQXJn"]: "Argentina 2",
+    ///Espn2 Uruguay
+    [servidorCanalesOnline + cvattproserver + "RVNQTjJfVVk="]: "Uruguay 1--",
+    [servidorCanalesOnline + cvattserver + "RVNQTjJfVVk="]: "Uruguay 1",
+    [servidorCanalesOnline + cvatt2server + "RVNQTjJfVVk="]: "Uruguay 2",
+    ///Espn2 Paraguay
+    [servidorCanalesOnline + cvattproserver + "RVNQTl9QWQ=="]: "Paraguay 1--",
+    [servidorCanalesOnline + cvattserver + "RVNQTl9QWQ=="]: "Paraguay 1",
+    [servidorCanalesOnline + cvatt2server + "RVNQTl9QWQ=="]: "Paraguay 2",
+
+    ///Espn3 Argentina
+    [servidorCanalesOnline + cvattproserver + "RVNQTjM"]: "Argentina 1--",
+    [servidorCanalesOnline + cvattserver + "RVNQTjM"]: "Argentina 1",
+    [servidorCanalesOnline + cvatt2server + "RVNQTjM"]: "Argentina 2",
+    ///Espn3 Uruguay
+    [servidorCanalesOnline + cvattproserver + "RVNQTjNfVXktUHk="]: "Uruguay 1--",
+    [servidorCanalesOnline + cvattserver + "RVNQTjNfVXktUHk="]: "Uruguay 1",
+    [servidorCanalesOnline + cvatt2server + "RVNQTjNfVXktUHk="]: "Uruguay 2",
+    ///Espn3 Paraguay
+    // [servidorCanalesOnline + cvattproserver + "RVNQTjNfVXktUHk"]: "Paraguay 1--",
+    // [servidorCanalesOnline + cvattserver + "RVNQTjNfVXktUHk"]: "Paraguay 1",
+    // [servidorCanalesOnline + cvatt2server + "RVNQTjNfVXktUHk"]: "Paraguay 2",
+
+
+
+
     //Telemundo
-    [servidorCanalesOnline + cvattproserver + "VGVsZW11bmRvX0hE"]: "Internacional 1",
-    [servidorCanalesOnline + cvattserver + "VGVsZW11bmRvX0hE"]: "Internacional 2",
-    [servidorCanalesOnline + cvatt2server + "VGVsZW11bmRvX0hE"]: "Internacional 3",
+    [servidorCanalesOnline + cvattproserver + "VGVsZW11bmRvX0hE"]: "Internacional 1--",
+    [servidorCanalesOnline + cvattserver + "VGVsZW11bmRvX0hE"]: "Internacional 1",
+    [servidorCanalesOnline + cvatt2server + "VGVsZW11bmRvX0hE"]: "Internacional 2",
     // [servidorCanalesOnline + "anbalancer.html?id=Telemundo_HD"]: "Internacional 3",
     [servidorCanalesOnline + "cobo.html?id=TELEMUNDO47_1"]: "Telemundo 47 1",
     [servidorCanalesOnline + "cobo.html?id=TELEMUNDO47_2"]: "Telemundo 47 2",
@@ -9804,52 +9882,52 @@ const enlacesServidor = {
     [servidorCanalesOnline + "m3u8.html?stream=Telemundo_PR"]: "Puerto Rico",
 
     //ESPN DISNEY
-    ["https://streamtp-abc.net/premier.php?stream=starplus01"]: "starplus01",
-    ["https://streamtp-abc.net/premier.php?stream=starplus02"]: "starplus02",
-    ["https://streamtp-abc.net/premier.php?stream=starplus03"]: "starplus03",
-    ["https://streamtp-abc.net/premier.php?stream=starplus04"]: "starplus04",
-    ["https://streamtp-abc.net/premier.php?stream=starplus05"]: "starplus05",
-    ["https://streamtp-abc.net/premier.php?stream=starplus06"]: "starplus06",
-    ["https://streamtp-abc.net/premier.php?stream=starplus07"]: "starplus07",
-    ["https://streamtp-abc.net/premier.php?stream=starplus08"]: "starplus08",
-    ["https://streamtp-abc.net/premier.php?stream=starplus09"]: "starplus09",
-    ["https://streamtp-abc.net/premier.php?stream=starplus10"]: "starplus10",
-    ["https://streamtp-abc.net/premier.php?stream=starplus11"]: "starplus11",
-    ["https://streamtp-abc.net/premier.php?stream=starplus12"]: "starplus12",
-    ["https://streamtp-abc.net/premier.php?stream=starplus13"]: "starplus13",
-    ["https://streamtp-abc.net/premier.php?stream=starplus14"]: "starplus14",
-    ["https://streamtp-abc.net/premier.php?stream=starplus15"]: "starplus15",
-    ["https://streamtp-abc.net/premier.php?stream=starplus16"]: "starplus16",
+    ["https://streamx-hd.com/live1.php?stream=starplus01"]: "starplus01",
+    ["https://streamx-hd.com/live1.php?stream=starplus02"]: "starplus02",
+    ["https://streamx-hd.com/live1.php?stream=starplus03"]: "starplus03",
+    ["https://streamx-hd.com/live1.php?stream=starplus04"]: "starplus04",
+    ["https://streamx-hd.com/live1.php?stream=starplus05"]: "starplus05",
+    ["https://streamx-hd.com/live1.php?stream=starplus06"]: "starplus06",
+    ["https://streamx-hd.com/live1.php?stream=starplus07"]: "starplus07",
+    ["https://streamx-hd.com/live1.php?stream=starplus08"]: "starplus08",
+    ["https://streamx-hd.com/live1.php?stream=starplus09"]: "starplus09",
+    ["https://streamx-hd.com/live1.php?stream=starplus10"]: "starplus10",
+    ["https://streamx-hd.com/live1.php?stream=starplus11"]: "starplus11",
+    ["https://streamx-hd.com/live1.php?stream=starplus12"]: "starplus12",
+    ["https://streamx-hd.com/live1.php?stream=starplus13"]: "starplus13",
+    ["https://streamx-hd.com/live1.php?stream=starplus14"]: "starplus14",
+    ["https://streamx-hd.com/live1.php?stream=starplus15"]: "starplus15",
+    ["https://streamx-hd.com/live1.php?stream=starplus16"]: "starplus16",
 
-    ["https://streamtp-abc.net/premier.php?stream=espnplus1"]: "espnplus1",
-    ["https://streamtp-abc.net/premier.php?stream=espnplus2"]: "espnplus2",
-    ["https://streamtp-abc.net/premier.php?stream=espnplus3"]: "espnplus3",
-    ["https://streamtp-abc.net/premier.php?stream=espnplus4"]: "espnplus4",
-    ["https://streamtp-abc.net/premier.php?stream=espnplus5"]: "espnplus5",
-    ["https://streamtp-abc.net/premier.php?stream=espnplus6"]: "espnplus6",
-    ["https://streamtp-abc.net/premier.php?stream=espnplus7"]: "espnplus7",
-    ["https://streamtp-abc.net/premier.php?stream=espnplus8"]: "espnplus8",
-    ["https://streamtp-abc.net/premier.php?stream=espnplus9"]: "espnplus9",
-    ["https://streamtp-abc.net/premier.php?stream=disney1"]: "disney1",
-    ["https://streamtp-abc.net/premier.php?stream=disney2"]: "disney2",
-    ["https://streamtp-abc.net/premier.php?stream=disney3"]: "disney3",
-    ["https://streamtp-abc.net/premier.php?stream=disney4"]: "disney4",
-    ["https://streamtp-abc.net/premier.php?stream=disney5"]: "disney5",
-    ["https://streamtp-abc.net/premier.php?stream=disney6"]: "disney6",
-    ["https://streamtp-abc.net/premier.php?stream=disney7"]: "disney7",
-    ["https://streamtp-abc.net/premier.php?stream=disney8"]: "disney8",
-    ["https://streamtp-abc.net/premier.php?stream=disney9"]: "disney9",
-    ["https://streamtp-abc.net/premier.php?stream=disney10"]: "disney10",
-    ["https://streamtp-abc.net/premier.php?stream=disney11"]: "disney11",
-    ["https://streamtp-abc.net/premier.php?stream=disney12"]: "disney12",
-    ["https://streamtp-abc.net/premier.php?stream=disney13"]: "disney13",
-    ["https://streamtp-abc.net/premier.php?stream=disney14"]: "disney14",
-    ["https://streamtp-abc.net/premier.php?stream=disney15"]: "disney15",
-    ["https://streamtp-abc.net/premier.php?stream=disney16"]: "disney16",
-    ["https://streamtp-abc.net/premier.php?stream=disney17"]: "disney17",
-    ["https://streamtp-abc.net/premier.php?stream=disney18"]: "disney18",
-    ["https://streamtp-abc.net/premier.php?stream=disney19"]: "disney19",
-    ["https://streamtp-abc.net/premier.php?stream=disney20"]: "disney20",
+    ["https://streamx-hd.com/live1.php?stream=espnplus1"]: "espnplus1",
+    ["https://streamx-hd.com/live1.php?stream=espnplus2"]: "espnplus2",
+    ["https://streamx-hd.com/live1.php?stream=espnplus3"]: "espnplus3",
+    ["https://streamx-hd.com/live1.php?stream=espnplus4"]: "espnplus4",
+    ["https://streamx-hd.com/live1.php?stream=espnplus5"]: "espnplus5",
+    ["https://streamx-hd.com/live1.php?stream=espnplus6"]: "espnplus6",
+    ["https://streamx-hd.com/live1.php?stream=espnplus7"]: "espnplus7",
+    ["https://streamx-hd.com/live1.php?stream=espnplus8"]: "espnplus8",
+    ["https://streamx-hd.com/live1.php?stream=espnplus9"]: "espnplus9",
+    ["https://streamx-hd.com/live1.php?stream=disney1"]: "disney1",
+    ["https://streamx-hd.com/live1.php?stream=disney2"]: "disney2",
+    ["https://streamx-hd.com/live1.php?stream=disney3"]: "disney3",
+    ["https://streamx-hd.com/live1.php?stream=disney4"]: "disney4",
+    ["https://streamx-hd.com/live1.php?stream=disney5"]: "disney5",
+    ["https://streamx-hd.com/live1.php?stream=disney6"]: "disney6",
+    ["https://streamx-hd.com/live1.php?stream=disney7"]: "disney7",
+    ["https://streamx-hd.com/live1.php?stream=disney8"]: "disney8",
+    ["https://streamx-hd.com/live1.php?stream=disney9"]: "disney9",
+    ["https://streamx-hd.com/live1.php?stream=disney10"]: "disney10",
+    ["https://streamx-hd.com/live1.php?stream=disney11"]: "disney11",
+    ["https://streamx-hd.com/live1.php?stream=disney12"]: "disney12",
+    ["https://streamx-hd.com/live1.php?stream=disney13"]: "disney13",
+    ["https://streamx-hd.com/live1.php?stream=disney14"]: "disney14",
+    ["https://streamx-hd.com/live1.php?stream=disney15"]: "disney15",
+    ["https://streamx-hd.com/live1.php?stream=disney16"]: "disney16",
+    ["https://streamx-hd.com/live1.php?stream=disney17"]: "disney17",
+    ["https://streamx-hd.com/live1.php?stream=disney18"]: "disney18",
+    ["https://streamx-hd.com/live1.php?stream=disney19"]: "disney19",
+    ["https://streamx-hd.com/live1.php?stream=disney20"]: "disney20",
 
     // Gran Hermano Cámaras
     [servidorCanalesOnline + "GranHermano.html?id=24h"]: "Cámara 24hs",
@@ -9873,33 +9951,10 @@ const enlacesServidor = {
     // [servidorCanalesOnline + "Mundial_de_Clubes.html?stream=https://streamx10.cloud/global2.php?channel=eventos4"]: "ESPN DISNEY",
     // [servidorCanalesOnline + "Mundial_de_Clubes.html?stream=https://streamx10.cloud/global2.php?channel=sporttvbr1"]: "SportTV BR",
 
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dsports"]: "DSport",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dsports"]: "DSport",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dsports"]: "DSport",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dsports2"]: "DSport2",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dsports2"]: "DSport2",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dsports2"]: "DSport2",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dazntv1"]: "DAZN 1",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dazntv1"]: "DAZN 1",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dazntv1"]: "DAZN 1",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dazntv2"]: "DAZN 2",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dazntv2"]: "DAZN 2",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dazntv2"]: "DAZN 2",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=dazntv3"]: "DAZN 3",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=dazntv3"]: "DAZN 3",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=dazntv3"]: "DAZN 3",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=tudn_usa"]: "Turd",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=tudn_usa"]: "Turd",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=tudn_usa"]: "Turd",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=eventos4"]: "ESPN DISNEY",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=eventos4"]: "ESPN DISNEY",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=eventos4"]: "ESPN DISNEY",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canal.php?stream=sporttvbr1"]: "SportTV BR",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://tvtvhd.com/canales.php?stream=sporttvbr1"]: "SportTV BR",
-    // [servidorCanalesOnline + "Mundial_de_Clubes.html?streamservidorCanalesOnline + =jjfutbol2.html?r=https://la14hd.com/vivo/canal.php?stream=sporttvbr1"]: "SportTV BR",
 
     // [servidorCanalesOnline + "edge.html?get="]: "Trasmitir",
 };
+// ---- FIN: ENLACES SERVIDORES AUTO-GENERADO ----
 
 
 

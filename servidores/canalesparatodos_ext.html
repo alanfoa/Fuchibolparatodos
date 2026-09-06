@@ -174,7 +174,7 @@
             border-color: var(--color-danger);
         }
     </style>
-    <script src="asd.js"></script>
+    <script src="cHV0byBlbCBxdWUgcm9iYQ.js"></script>
     <script src="../js/script-config.js"></script>
 </head>
 
@@ -304,13 +304,7 @@
                     throw new Error('Los archivos de canales no se cargaron correctamente');
                 }
 
-                var getVal = getParameterByName('get');
-                if (!getVal) {
-                    var stored = sessionStorage.getItem("cvatt_channel") || "";
-                    var match = stored.match(/[?&]get=([^&]+)/);
-                    if (match) getVal = decodeURIComponent(match[1]);
-                }
-                const channels = getChannelKeys(getVal);
+                const channels = getChannelKeys(getParameterByName('get'));
                 if (!channels || channels.length === 0) {
                     throw new Error('No se encontraron canales válidos');
                 }
