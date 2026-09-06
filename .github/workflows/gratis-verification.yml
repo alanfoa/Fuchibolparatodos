@@ -1,0 +1,32 @@
+# Vigía "gratis": control diario de que la pagina publicada siga sin paywall,
+# sin guardas de recarga y con las opciones de TNT sanas. NO commitea ni
+# pushea nada => NO consume builds de Netlify. Si falla, la corrida se ve en
+# rojo en Actions como alerta.
+name: vigia-gratis
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vigia-gratis
+  cancel-in-progress: true
+
+jobs:
+  gratis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Controlar paywall/guardas/opciones
+        run: node .github/scripts/vigia-gratis.js

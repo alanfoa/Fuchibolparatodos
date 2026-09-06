@@ -1,0 +1,52 @@
+# Autosustentabilidad: mantiene el clon sincronizado con la original
+# (canalesonline.netlify.app). Corre cada 6 horas y a mano (workflow_dispatch).
+# Solo commitea/pushea si el remoto cambió de verdad => Netlify buildea
+# únicamente cuando hay novedades, no en cada corrida.
+#
+# Para cambiar la frecuencia editar la línea cron '23 */6 * * *':
+#   cada hora      -> '23 * * * *'
+#   cada 12 horas  -> '23 */12 * * *'
+#   diario         -> '23 6 * * *'
+name: sync-con-original
+
+on:
+  schedule:
+    - cron: '23 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-con-original
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Sincronizar con la original
+        # Si el remoto falla o los cambios no pasan las validaciones
+        # (sintaxis/TNT/servidores), el script sale con codigo != 0 y no se
+        # commitea nada (la corrida falla a proposito).
+        run: node scripts/check-updates.js
+
+      - name: Commit si hubo cambios reales
+        run: |
+          git add js/script-ch.js servidores css scripts/check-updates.js
+          if git diff --cached --quiet; then
+            echo "Sin cambios respecto al remoto -> no hay commit ni build."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "auto: sync con canalesonline (canales/opciones/servidores)"
+            git push origin HEAD:main
+          fi

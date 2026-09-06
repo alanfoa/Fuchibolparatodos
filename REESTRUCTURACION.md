@@ -213,21 +213,74 @@ original ya no tiene:
 - [x] FASE 3 — Verificación gratis (automatizada; la comprobación en navegador
       queda para FASE 5).
 - [x] FASE 4 — Validación automatizada.
-- [ ] FASE 5 — Prueba manual (usuario).
-- [x] FASE 6 — Commit único SIN PUSH (rama `reestructuracion`).
+- [x] FASE 5 — Prueba manual (usuario): las 3 opciones de TNT reproducen.
+- [x] FASE 6 — Commit único + PR #1 mergeado + producción Netlify verificada
+      (rama `reestructuracion` como respaldo).
 
 ---
 
-## 8) Estado operativo (05/09/2026)
+## 8) Estado operativo (06/09/2026)
 
-- Rama de trabajo: **`reestructuracion`** (creada a pedido del usuario para no
-  tocar lo remoto). `main` queda **intacto** (sigue 1 commit adelante de
-  `origin/main`, sin cambios).
-- **Nada fue pusheado ni afecta el deploy remoto.** Todo cambio vive en el
-  árbol de trabajo/branch local.
-- Fases 1-4 completas y verificadas. FASE 6 hecha (commit único `7b49a48` en
-  la rama, SIN PUSH). Solo queda **FASE 5**: prueba del usuario en navegador.
+- **Producción publicada**: `https://fuchibolparatodos.netlify.app` — `main` ==
+  `origin/main` (merge de PR #1). Verificado: index con marca propia, opciones
+  de TNT 200, sin modal, sin bloqueo.
+- **Netlify duplicado a eliminar**: `fuchibolparatodos1.netlify.app` (mismo
+  repo, contenido idéntico). Se conserva `fuchibolparatodos`. El borrado se
+  hace desde el dashboard (Danger Zone) con la cuenta del usuario.
+- **Rama `reestructuracion`** (`55100ff`) conservada como respaldo/rollback;
+  local de trabajo actual: `main`.
 - Observación: un dry-run detectó una variación transitoria de un archivo en el
   remoto (CDN/edge); las corridas posteriores fueron idempotentes ("Sin
   cambios"). Si reaparece, el sync es idempotente y no rompe nada, solo podría
-  alternar un archivo si el remoto fluctúa.
+  alternar un archivo si el remoto fluctúa (mitigado por "commit solo si
+  cambió").
+
+---
+
+## 9) Autosustentabilidad (06/09/2026)
+
+Objetivo: el clon debe **"sustentarse solo"**: si la original agrega o quita
+opciones/canales/servidores, se replica automáticamente, sin intervención.
+
+### Reglas del sync (seguir al remoto)
+
+- La validación de TNT **ya no exige exactamente 3 opciones**. Nueva regla
+  (`validarTntRelativo` en `scripts/check-updates.js`): pipeline resuelve OK +
+  **al menos 1 opción** + todos los servidores referenciados existen localmente.
+  Si la original pasa de 3→2 o 3→4, se copia el estado remoto (y se avisa).
+  Si quedara 0 opciones o un server sin archivo, se descarta (safe).
+- Se conservan 3 validaciones que evitan "copiar algo roto": sintaxis JS,
+  pipeline, servidores presentes. Salidas `exit != 0` → no se commitea.
+
+### Workflow `sync-con-original` (`.github/workflows/sync.yml`)
+
+- [x] Cron **cada 6 horas** (`'23 */6 * * *'`) + disparo manual
+      (`workflow_dispatch`), con `concurrency`.
+- [x] Corre `node scripts/check-updates.js` contra el remoto.
+- [x] **Commitea/pushea a `main` solo si hubo cambios reales** → Netlify
+      buildea únicamente cuando hay novedades (no se gastan builds por correr
+      seguido). Cambiar frecuencia editando el cron (documentado en el archivo).
+- [x] Identidad de commit: `github-actions[bot]`.
+- [x] Si el remoto falla / warnings / validaciones → sale != 0, NO commitea.
+
+### Workflow `vigia-gratis` (`.github/workflows/gratis-verification.yml`)
+
+- [x] Cron **diario** + manual. **No commitea ni pushea** → no consume builds.
+- [x] Controla en `fuchibolparatodos.netlify.app`: ausencia de marcadores de
+      paywall/donaciones/guardas (`Bienvenido a Canales`, `8.000`,
+      `FECHA_VALIDACION`, `bloqueoUS`, `canalesonline24@`, `MAX_PAGE_RELOADS`,
+      etc.), opciones TNT 200 y que la opción 2 cargue el player `cHV0by` +
+      `initializePlayer()`.
+- [x] Si algo aparece → la corrida **falla en rojo** (alerta en GitHub).
+
+### Poda de huérfanos (NO en v1)
+
+- Si la original elimina una opción, el `.html` viejo queda en `servidores/`
+  (inofensivo, ya no se sirve). No se borran automáticamente para no romper
+  referencias de otras páginas. Podría agregarse una poda conservadora a futuro.
+
+### Riesgo conocido
+
+- Si la original inventara un mecanismo nuevo que exige código en
+  `script-canalespro.js` (que NO se sincroniza por el paywall), habría que
+  portar esa lógica a mano. Se detecta revisando los commits `auto:`.

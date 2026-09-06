@@ -375,6 +375,23 @@ function testCanal(jsContent, nombreCanal, origin) {
     }
 }
 
+// Validación "seguir al remoto" para un canal de referencia (TNT):
+// NO fija la cantidad de opciones (ya no se exige exactamente 3), sino que
+// acepta la cantidad que resuelva la original. Las únicas condiciones son:
+// resolución OK, al menos 1 opción y que cada servidor referenciado exista
+// localmente. Así, si la original agrega o elimina opciones, el clon las copia.
+// REESTRUCTURACION (autosustentabilidad): reemplaza el chequeo canalCount === 3.
+function validarTntRelativo(tnt, repoRoot) {
+    if (!tnt.ok) return { ok: false, razon: tnt.error || 'el pipeline no resolvió' };
+    if (tnt.canalCount < 1) return { ok: false, razon: 'TNT no resuelve ninguna opción' };
+    const faltantes = verificarServidores(tnt.enlaces, repoRoot);
+    if (faltantes.length) return { ok: false, razon: 'servidores faltantes: ' + faltantes.join(', ') };
+    const aviso = tnt.canalCount !== 3
+        ? 'cantidad de opciones de TNT pasó a ' + tnt.canalCount + ' (se copia el estado del remoto)'
+        : null;
+    return { ok: true, aviso };
+}
+
 // Lista de archivos servidores referenciados por los enlaces y si existen localmente
 function verificarServidores(enlaces, repoRoot) {
     const faltantes = [];
@@ -553,11 +570,13 @@ async function main() {
 
                 const origin = 'https://fuchibolparatodos.netlify.app';
                 const tnt = testCanal(newRemoteContent, 'TNT Sports', origin);
-                const tntOk = tnt.ok && tnt.canalCount === 3;
+                const tntVal = validarTntRelativo(tnt, repoRoot);
+                const tntOk = tntVal.ok;
                 console.log(`  Validación pipeline (${origin}):`);
                 if (tnt.ok) {
                     console.log(`    canales totales: ${tnt.canales}`);
-                    console.log(`    '${tnt.canal}': ${tnt.canalCount} enlaces ${tntOk ? 'OK' : '(se esperaba 3)'}`);
+                    console.log(`    '${tnt.canal}': ${tnt.canalCount} enlaces ${tntVal.ok ? 'OK' : '(' + (tntVal.razon || 'falla') + ')'}`);
+                    if (tntVal.aviso) console.log(`    >>> ${tntVal.aviso}`);
                     const faltantes = verificarServidores(tnt.enlaces, repoRoot);
                     console.log(`    servidores faltantes: ${faltantes.length ? faltantes.join(', ') : 'ninguno'}`);
                     if (tnt.enlaces.length) {
@@ -567,7 +586,7 @@ async function main() {
                     console.log(`    ERROR al ejecutar pipeline: ${tnt.error}`);
                 }
 
-                if (!sintaxisOk || !tntOk || tnt.enlaces.some(e => verificarServidores([e], repoRoot).length)) {
+                if (!sintaxisOk || !tntOk) {
                     console.log(`  ✖ CAMBIO DESCARTADO: el resultado no pasa las validaciones. Se mantiene el archivo local.`);
                     hasChanges = true; // hay novedades remotas, pero NO se aplicaron
                     warnings.push(`${file.local}: cambios remotos descartados por validación (sintaxis/TNT/servidores)`);
@@ -685,7 +704,7 @@ async function main() {
     }
 }
 
-module.exports = { extractChannelSets, extractServerFilenames, extractBalancedBlock, extractFilterBlock, extractMapeoServidores, syncSections, validarSintaxis, testCanal, verificarServidores, ejecutarPipeline, PATCHES };
+module.exports = { extractChannelSets, extractServerFilenames, extractBalancedBlock, extractFilterBlock, extractMapeoServidores, syncSections, validarSintaxis, testCanal, verificarServidores, ejecutarPipeline, validarTntRelativo, PATCHES };
 
 if (require.main === module) {
     main().catch(e => {
