@@ -2,3 +2,6 @@ PAGINA DESCARGADA ENTERA/
 node_modules/
 .DS_Store
 Thumbs.db
+NOTAS.md
+analisis.md
+*.backup

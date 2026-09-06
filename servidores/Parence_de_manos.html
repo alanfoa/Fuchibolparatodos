@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Parense de Manos III</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a0a0f 0%, #3d1520 50%, #1a0a0f 100%);
+        }
+
+        #kick-player {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+        }
+
+        #kick-player.active {
+            display: block;
+        }
+
+        #schedule-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+        }
+
+        #schedule-screen.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            grid-template-rows: auto auto;
+            gap: 20px;
+            max-width: 1600px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .center-section {
+            grid-column: 2;
+            grid-row: 1 / 3;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            max-width: 350px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 30px rgba(255, 51, 102, 0.8));
+        }
+
+        .event-date {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff3366;
+            text-shadow: 0 0 20px rgba(255, 51, 102, 0.8);
+            margin-bottom: 8px;
+        }
+
+        .event-time {
+            font-size: 20px;
+            color: #d9a3b0;
+            margin-bottom: 30px;
+        }
+
+        .schedule-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .left-column {
+            grid-column: 1;
+            grid-row: 1 / 3;
+        }
+
+        .right-column {
+            grid-column: 3;
+            grid-row: 1 / 3;
+        }
+
+        .schedule-item {
+            background: linear-gradient(135deg, rgba(201, 41, 74, 0.2) 0%, rgba(61, 21, 32, 0.3) 100%);
+            border: 2px solid rgba(255, 51, 102, 0.3);
+            border-radius: 10px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .schedule-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .schedule-item:hover::before {
+            opacity: 1;
+        }
+
+        .schedule-item.current {
+            border-color: #ff3366;
+            box-shadow: 0 0 25px rgba(255, 51, 102, 0.6);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 25px rgba(255, 51, 102, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 35px rgba(255, 51, 102, 0.9);
+            }
+        }
+
+        .time-badge {
+            background: linear-gradient(135deg, #ff3366 0%, #c9294a 100%);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 13px;
+            min-width: 60px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.3);
+        }
+
+        .event-info {
+            flex: 1;
+            color: white;
+        }
+
+        .event-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 2px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .event-subtitle {
+            font-size: 11px;
+            color: #d9a3b0;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0a0f 0%, #3d1520 50%, #1a0a0f 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .loading-screen.hidden {
+            display: none;
+        }
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(255, 255, 255, 0.1);
+            border-top: 6px solid #ff3366;
+            border-right: 6px solid #ff3366;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 20px;
+            box-shadow: 0 0 25px rgba(255, 51, 102, 0.5);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .live-indicator {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            /* background: rgba(26, 10, 15, 0.85); */
+            /* border: 1px solid rgba(255, 51, 102, 0.4); */
+            border-radius: 10px;
+            padding: 10px 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            min-width: 250px;
+            max-width: 320px;
+            transition: opacity 0.3s ease;
+        }
+
+        .live-indicator:hover {
+            /* background: rgba(26, 10, 15, 0.95);
+            border-color: rgba(255, 51, 102, 0.6); */
+        }
+
+        .live-indicator.hidden {
+            display: none;
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 51, 102, 0.3);
+            color: #ff3366;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: #ff3366;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .current-event {
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .current-time {
+            color: #ff3366;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .next-event {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 51, 102, 0.2);
+        }
+
+        .next-label {
+            color: rgba(217, 163, 176, 0.7);
+            font-size: 10px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .next-event-title {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .next-event-time {
+            color: rgba(255, 51, 102, 0.8);
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .main-container {
+                gap: 15px;
+            }
+
+            .logo {
+                max-width: 280px;
+            }
+
+            .event-date {
+                font-size: 26px;
+            }
+
+            .event-time {
+                font-size: 18px;
+            }
+
+            .schedule-item {
+                padding: 8px 12px;
+            }
+
+            .event-title {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 950px) {
+            .left-column,
+            .right-column {
+                display: none !important;
+            }
+
+            .live-indicator {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                min-width: auto;
+                max-width: none;
+                padding: 12px 15px;
+            }
+
+            .current-event {
+                font-size: 14px;
+            }
+
+            .next-event-title {
+                font-size: 12px;
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .center-section {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .schedule-column {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .logo {
+                max-width: 250px;
+            }
+
+            .event-date {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .schedule-column {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                max-width: 200px;
+            }
+
+            .event-date {
+                font-size: 18px;
+            }
+
+            .event-time {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-height: 700px) {
+            #schedule-screen {
+                padding: 10px;
+            }
+
+            .main-container {
+                gap: 10px;
+            }
+
+            .logo {
+                max-width: 180px;
+                margin-bottom: 10px;
+            }
+
+            .event-date {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+
+            .event-time {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+
+            .schedule-item {
+                padding: 6px 10px;
+                gap: 8px;
+            }
+
+            .time-badge {
+                font-size: 11px;
+                padding: 5px 8px;
+                min-width: 50px;
+            }
+
+            .event-title {
+                font-size: 12px;
+            }
+
+            .event-subtitle {
+                font-size: 10px;
+            }
+
+            .live-indicator {
+                top: 5px;
+                left: 5px;
+                right: 5px;
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading-screen" class="loading-screen">
+        <div class="spinner"></div>
+        <div class="loading-text">Verificando transmisión...</div>
+    </div>
+
+    <div id="live-indicator" class="live-indicator hidden">
+        <div class="live-badge">
+            <div class="live-dot"></div>
+            <span>AHORA</span>
+        </div>
+        <div class="current-event" id="current-event-text">Cargando...</div>
+        <div class="current-time" id="current-event-time"></div>
+        <div class="next-event" id="next-event-container">
+            <div class="next-label">A continuación</div>
+            <div class="next-event-title" id="next-event-text"></div>
+            <div class="next-event-time" id="next-event-time"></div>
+        </div>
+    </div>
+
+    <iframe id="kick-player" allowfullscreen frameborder="0" scrolling="no"></iframe>
+
+    <div id="schedule-screen">
+        <div class="main-container">
+            <!-- Columna Izquierda -->
+            <div class="schedule-column left-column">
+                <div class="schedule-item" data-time="16:00">
+                    <div class="time-badge">16:00</div>
+                    <div class="event-info">
+                        <div class="event-title">APERTURA DE PUERTAS</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="16:30">
+                    <div class="time-badge">16:30</div>
+                    <div class="event-info">
+                        <div class="event-title">COMIENZA LA TRANSMISIÓN</div>
+                        <div class="event-subtitle">+ DJ SET VICA BAH</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="17:00">
+                    <div class="time-badge">17:00</div>
+                    <div class="event-info">
+                        <div class="event-title">ALFOMBRA ROJA</div>
+                        <div class="event-subtitle">COMIENZO TRANSMISIÓN TELEFE</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="17:40">
+                    <div class="time-badge">17:40</div>
+                    <div class="event-info">
+                        <div class="event-title">VIDEO OPENING</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="17:45">
+                    <div class="time-badge">17:45</div>
+                    <div class="event-info">
+                        <div class="event-title">APERTURA EVENTO</div>
+                        <div class="event-subtitle">PRESENTACIÓN DE LOS HOST</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="18:00">
+                    <div class="time-badge">18:00</div>
+                    <div class="event-info">
+                        <div class="event-title">MONZON VS BONAVENA</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="18:30">
+                    <div class="time-badge">18:30</div>
+                    <div class="event-info">
+                        <div class="event-title">VIGNA VS VICCONTE</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="19:00">
+                    <div class="time-badge">19:00</div>
+                    <div class="event-info">
+                        <div class="event-title">SHOW UN POCO DE RUIDO</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="19:20">
+                    <div class="time-badge">19:20</div>
+                    <div class="event-info">
+                        <div class="event-title">PEREZ VS JOVE</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="19:50">
+                    <div class="time-badge">19:50</div>
+                    <div class="event-info">
+                        <div class="event-title">DAIRI VS ESPE</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="20:15">
+                    <div class="time-badge">20:15</div>
+                    <div class="event-info">
+                        <div class="event-title">SHOW LIT KILLAH</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Central -->
+            <div class="center-section">
+                <img src="https://canalesonline.netlify.app/img/Parence de manos.webp" alt="Parense de Manos III"
+                    class="logo">
+                <div class="event-date">VIERNES 20 DE DICIEMBRE 2025</div>
+                <div class="event-time">Desde las 16:00hs</div>
+            </div>
+
+            <!-- Columna Derecha -->
+            <div class="schedule-column right-column">
+                <div class="schedule-item" data-time="20:30">
+                    <div class="time-badge">20:30</div>
+                    <div class="event-info">
+                        <div class="event-title">GABINO VS BANKS</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="21:00">
+                    <div class="time-badge">21:00</div>
+                    <div class="event-info">
+                        <div class="event-title">COTY VS CARITO</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="21:30">
+                    <div class="time-badge">21:30</div>
+                    <div class="event-info">
+                        <div class="event-title">SHOW TUSSWARRIORS</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="21:50">
+                    <div class="time-badge">21:50</div>
+                    <div class="event-info">
+                        <div class="event-title">MERNUEL VS COSMIC KID</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="22:20">
+                    <div class="time-badge">22:20</div>
+                    <div class="event-info">
+                        <div class="event-title">GREGO VS GONCHO</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="22:50">
+                    <div class="time-badge">22:50</div>
+                    <div class="event-info">
+                        <div class="event-title">SHOW GASPAR BENEGAS</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="23:10">
+                    <div class="time-badge">23:10</div>
+                    <div class="event-info">
+                        <div class="event-title">PERXITAA VS COKER</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="23:40">
+                    <div class="time-badge">23:40</div>
+                    <div class="event-info">
+                        <div class="event-title">VIDEO HOMENAJE</div>
+                        <div class="event-subtitle">HIMNO NACIONAL ARGENTINO</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="23:50">
+                    <div class="time-badge">23:50</div>
+                    <div class="event-info">
+                        <div class="event-title">PERI VS MARAVILLA</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="00:30">
+                    <div class="time-badge">00:30</div>
+                    <div class="event-info">
+                        <div class="event-title">GERO VS MAZZA</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" data-time="01:00">
+                    <div class="time-badge">01:00</div>
+                    <div class="event-info">
+                        <div class="event-title">DESPEDIDA Y CRÉDITOS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const CHANNEL = 'LuquitaRodriguez';
+        const EVENT_DATE = new Date('2025-12-20T16:00:00-03:00');
+        const RETRY_DELAY = 30000;
+
+        const iframe = document.getElementById('kick-player');
+        const scheduleScreen = document.getElementById('schedule-screen');
+        const loadingScreen = document.getElementById('loading-screen');
+        const liveIndicator = document.getElementById('live-indicator');
+
+        let retryInterval;
+
+        const SCHEDULE = [
+            { time: '16:00', title: 'APERTURA DE PUERTAS', subtitle: '' },
+            { time: '16:30', title: 'COMIENZA LA TRANSMISIÓN', subtitle: '+ DJ SET VICA BAH' },
+            { time: '17:00', title: 'ALFOMBRA ROJA', subtitle: 'COMIENZO TRANSMISIÓN TELEFE' },
+            { time: '17:40', title: 'VIDEO OPENING', subtitle: '' },
+            { time: '17:45', title: 'APERTURA EVENTO', subtitle: 'PRESENTACIÓN DE LOS HOST' },
+            { time: '18:00', title: 'MONZON VS BONAVENA', subtitle: '' },
+            { time: '18:30', title: 'VIGNA VS VICCONTE', subtitle: '' },
+            { time: '19:00', title: 'SHOW UN POCO DE RUIDO', subtitle: '' },
+            { time: '19:20', title: 'PEREZ VS JOVE', subtitle: '' },
+            { time: '19:50', title: 'DAIRI VS ESPE', subtitle: '' },
+            { time: '20:15', title: 'SHOW LIT KILLAH', subtitle: '' },
+            { time: '20:30', title: 'GABINO VS BANKS', subtitle: '' },
+            { time: '21:00', title: 'COTY VS CARITO', subtitle: '' },
+            { time: '21:30', title: 'SHOW TUSSWARRIORS', subtitle: '' },
+            { time: '21:50', title: 'MERNUEL VS COSMIC KID', subtitle: '' },
+            { time: '22:20', title: 'GREGO VS GONCHO', subtitle: '' },
+            { time: '22:50', title: 'SHOW GASPAR BENEGAS', subtitle: '' },
+            { time: '23:10', title: 'PERXITAA VS COKER', subtitle: '' },
+            { time: '23:40', title: 'VIDEO HOMENAJE', subtitle: 'HIMNO NACIONAL ARGENTINO' },
+            { time: '23:50', title: 'PERI VS MARAVILLA', subtitle: '' },
+            { time: '00:30', title: 'GERO VS MAZZA', subtitle: '' },
+            { time: '01:00', title: 'DESPEDIDA Y CRÉDITOS', subtitle: '' }
+        ];
+
+        function getEventDateTime(timeStr) {
+            const [hours, minutes] = timeStr.split(':').map(Number);
+            let eventDate = new Date(EVENT_DATE);
+            eventDate.setHours(hours, minutes, 0, 0);
+            
+            if (hours < 16) {
+                eventDate.setDate(eventDate.getDate() + 1);
+            }
+            
+            return eventDate;
+        }
+
+        function updateLiveIndicator() {
+            const now = new Date();
+            let currentEvent = null;
+            let nextEvent = null;
+
+            for (let i = 0; i < SCHEDULE.length; i++) {
+                const eventStart = getEventDateTime(SCHEDULE[i].time);
+                const eventEnd = i < SCHEDULE.length - 1 
+                    ? getEventDateTime(SCHEDULE[i + 1].time)
+                    : new Date(eventStart.getTime() + 60 * 60000);
+
+                if (now >= eventStart && now < eventEnd) {
+                    currentEvent = SCHEDULE[i];
+                    nextEvent = i < SCHEDULE.length - 1 ? SCHEDULE[i + 1] : null;
+                    break;
+                }
+            }
+
+            if (currentEvent) {
+                const displayTitle = currentEvent.subtitle 
+                    ? `${currentEvent.title} - ${currentEvent.subtitle}` 
+                    : currentEvent.title;
+                
+                document.getElementById('current-event-text').textContent = displayTitle;
+                document.getElementById('current-event-time').textContent = currentEvent.time;
+                
+                if (nextEvent) {
+                    const nextDisplayTitle = nextEvent.subtitle 
+                        ? `${nextEvent.title} - ${nextEvent.subtitle}` 
+                        : nextEvent.title;
+                    
+                    document.getElementById('next-event-text').textContent = nextDisplayTitle;
+                    document.getElementById('next-event-time').textContent = nextEvent.time;
+                    document.getElementById('next-event-container').style.display = 'block';
+                } else {
+                    document.getElementById('next-event-container').style.display = 'none';
+                }
+                
+                liveIndicator.classList.remove('hidden');
+            } else {
+                liveIndicator.classList.add('hidden');
+            }
+        }
+
+        function updateCurrentEvent() {
+            const now = new Date();
+            const items = document.querySelectorAll('.schedule-item');
+
+            items.forEach(item => {
+                const timeStr = item.getAttribute('data-time');
+                const [hours, minutes] = timeStr.split(':').map(Number);
+
+                let eventDate = new Date(EVENT_DATE);
+                eventDate.setHours(hours, minutes, 0, 0);
+
+                if (hours < 16) {
+                    eventDate.setDate(eventDate.getDate() + 1);
+                }
+
+                const nextEventDate = new Date(eventDate.getTime() + 30 * 60000);
+
+                if (now >= eventDate && now < nextEventDate) {
+                    item.classList.add('current');
+                } else {
+                    item.classList.remove('current');
+                }
+            });
+
+            updateLiveIndicator();
+        }
+
+        async function getChannelInfo() {
+            try {
+                const response = await fetch(`https://kick.com/api/v2/channels/${CHANNEL}`);
+                const data = await response.json();
+                return {
+                    isLive: data.livestream !== null,
+                    livestream: data.livestream
+                };
+            } catch (error) {
+                console.error('Error al obtener información del canal:', error);
+                return { isLive: false };
+            }
+        }
+
+        function showSchedule() {
+            loadingScreen.classList.add('hidden');
+            scheduleScreen.classList.add('active');
+            iframe.classList.remove('active');
+            updateCurrentEvent();
+            setInterval(updateCurrentEvent, 60000);
+        }
+
+        function showStream() {
+            loadingScreen.classList.add('hidden');
+            scheduleScreen.classList.remove('active');
+            iframe.classList.add('active');
+            iframe.src = `https://player.kick.com/${CHANNEL}?autoplay=true&muted=false&parent=canalesonline.netlify.app`;
+            
+            updateLiveIndicator();
+            setInterval(updateLiveIndicator, 60000);
+        }
+
+        async function checkAndInitialize() {
+            const now = new Date();
+
+            if (now < EVENT_DATE) {
+                console.log('El evento aún no ha comenzado');
+                showSchedule();
+
+                const timeUntilEvent = EVENT_DATE.getTime() - now.getTime();
+                setTimeout(() => {
+                    checkAndInitialize();
+                }, timeUntilEvent);
+                return;
+            }
+
+            const channelInfo = await getChannelInfo();
+
+            if (channelInfo.isLive) {
+                console.log('Stream en vivo detectado');
+                showStream();
+                clearInterval(retryInterval);
+            } else {
+                console.log('Stream no está en vivo, mostrando cronograma');
+                showSchedule();
+                scheduleRetry();
+            }
+        }
+
+        function scheduleRetry() {
+            clearInterval(retryInterval);
+            retryInterval = setInterval(async () => {
+                console.log('Reintentando conexión...');
+                const channelInfo = await getChannelInfo();
+
+                if (channelInfo.isLive) {
+                    clearInterval(retryInterval);
+                    showStream();
+                }
+            }, RETRY_DELAY);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', checkAndInitialize);
+        } else {
+            checkAndInitialize();
+        }
+    </script>
+</body>
+
+</html>

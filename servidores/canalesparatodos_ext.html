@@ -203,7 +203,7 @@
                 class="install-button" target="_blank">
                 Instalar Extensión
             </a>
-            <button class="retry-button" onclick="initializePlayer()">
+            <button class="retry-button" onclick="reiniciarBucle()">
                 Reintentar
             </button>
         </div>
@@ -218,6 +218,7 @@
         let currentChannel;
         let mpdBase;
         let iframeAdded = false;
+        const MAX_PAGE_RELOADS = 3;
 
         // Función para mostrar/ocultar elementos
         function showElement(id) {
@@ -269,10 +270,20 @@
 
                 // 👉 Espera 1 segundo cuando cargue el iframe y reinicia la página
                 iframe.onload = () => {
-                    console.log("Iframe cargado, reiniciando en 1 segundo...");
-                    setTimeout(() => {
-                        location.reload();
-                    }, 500);
+                    var reinicios = (parseInt(sessionStorage.getItem("canalesparatodos_ext_reinicios") || "0", 10)) + 1;
+                    sessionStorage.setItem("canalesparatodos_ext_reinicios", String(reinicios));
+                    console.log("Iframe cargado, reinicio " + reinicios + "/" + MAX_PAGE_RELOADS + "..." );
+                    if (reinicios >= MAX_PAGE_RELOADS) {
+                        var playerDiv = document.getElementById('player');
+                        if (playerDiv) playerDiv.innerHTML = '';
+                        iframeAdded = false;
+                        hideAllMessages();
+                        showElement('alerta-extension');
+                    } else {
+                        setTimeout(() => {
+                            location.reload();
+                        }, 500);
+                    }
                 };
 
                 // iframe.onload = () => {
@@ -357,6 +368,7 @@
                 isExtensionInstalled(
                     () => {
                         console.log("Extensión detectada, cargando canal...");
+                        sessionStorage.removeItem("canalesparatodos_ext_reinicios");
                         hideAllMessages();
                         playerDiv.classList.remove("hidden");
                         playerDiv.innerHTML = `<iframe id="iframe" class="extension-iframe" allow="encrypted-media" allowfullscreen src="${extensionUrl}"></iframe>`;
@@ -373,6 +385,12 @@
                 hideAllMessages();
                 alert(`Error: ${error.message}`);
             }
+        }
+
+        // Limpia el contador de recargas y reintenta (botón Reintentar)
+        function reiniciarBucle() {
+            sessionStorage.removeItem("canalesparatodos_ext_reinicios");
+            initializePlayer();
         }
 
         // Función principal de inicialización

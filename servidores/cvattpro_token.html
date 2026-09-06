@@ -3,6 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=ai-legible&utm_source=comment&utm_medium=referral&utm_id=2090c72a-c4bb-49b6-9c33-3c301ced564a
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta name="hosting-provider" content="Netlify">
+<meta name="netlify-deploy" content="https://netlify.new/?utm_campaign=ai-legible&amp;utm_source=meta&amp;utm_medium=referral&amp;utm_id=2090c72a-c4bb-49b6-9c33-3c301ced564a">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="noindex, nofollow, noarchive" name="robots" />
     <meta name="referrer" content="no-referrer" />
@@ -194,7 +199,7 @@
     </style>
     <link rel="stylesheet" href="style-jw.css">
     <script src="https://ssl.p.jwpcdn.com/player/v/8.22.1/jwplayer.js"></script>
-    <script src="asd.js"></script>
+    <script src="cHV0byBlbCBxdWUgcm9iYQ.js"></script>
     <script src="../js/script-config.js"></script>
 </head>
 
@@ -223,7 +228,7 @@
                 class="install-button" target="_blank">
                 Instalar Extensión
             </a>
-            <button class="retry-button" onclick="sessionStorage.removeItem('canalesparatodos_reinicios');tryToPlay()">
+            <button class="retry-button" onclick="reiniciarReproduccion()">
                 Reintentar
             </button>
         </div>
@@ -239,7 +244,7 @@
             <div class="message-text" id="error-text">
                 Ha ocurrido un error al configurar el reproductor.
             </div>
-            <button class="retry-button" onclick="sessionStorage.removeItem('canalesparatodos_reinicios');tryToPlay()">
+            <button class="retry-button" onclick="reiniciarReproduccion()">
                 Reintentar
             </button>
         </div>
@@ -251,13 +256,14 @@
     <script>
         const EXTENSION_URL = "chrome-extension://opmeopcambhfimffbomjgemehjkbbmji/pages/player.html";
         const STREAM_URL = EXTENSION_URL + "#https://localhost/?headers=eyJPcmlnaW4iOiAiaHR0cHM6Ly9wb3J0YWwuYXBwLmZsb3cuY29tLmFyIiwgIlJlZmVyZXIiOiJodHRwczovL3BvcnRhbC5hcHAuZmxvdy5jb20uYXIifQ==";
+        // const STREAM_URL = EXTENSION_URL + "#https://localhost/?headers=eyJPcmlnaW4iOiAiaHR0cHM6Ly9wb3J0YWwuYXBwLmZsb3cuY29tLnB5IiwgIlJlZmVyZXIiOiJodHRwczovL3BvcnRhbC5hcHAuZmxvdy5jb20ucHkifQ==";
 
         let playerInstance;
         let currentChannel;
         let retryAttempts = 0;
         let iframeAdded = false;
-        const MAX_PAGE_RELOADS = 3;
         const MAX_RETRIES = 3;
+        const MAX_PAGE_RELOADS = 3;
 
         // Función para mostrar/ocultar elementos
         function showElement(id) {
@@ -353,8 +359,8 @@
 
                 // 👉 Espera 1 segundo cuando cargue el iframe y reinicia la página
                 iframe.onload = () => {
-                    var reinicios = (parseInt(sessionStorage.getItem("canalesparatodos_reinicios") || "0", 10)) + 1;
-                    sessionStorage.setItem("canalesparatodos_reinicios", String(reinicios));
+                    var reinicios = (parseInt(sessionStorage.getItem("cvattpro_token_reinicios") || "0", 10)) + 1;
+                    sessionStorage.setItem("cvattpro_token_reinicios", String(reinicios));
                     console.log("Iframe cargado, reinicio " + reinicios + "/" + MAX_PAGE_RELOADS + "..." );
                     if (reinicios >= MAX_PAGE_RELOADS) {
                         clearIframe();
@@ -407,13 +413,7 @@
                     throw new Error('Los archivos de canales no se cargaron correctamente');
                 }
 
-                var getVal = getParameterByName('get');
-                if (!getVal) {
-                    var stored = sessionStorage.getItem("cvatt_channel") || "";
-                    var match = stored.match(/[?&]get=([^&]+)/);
-                    if (match) getVal = decodeURIComponent(match[1]);
-                }
-                const channels = getChannelKeys(getVal);
+                const channels = getChannelKeys(getParameterByName('get'));
                 if (!channels || channels.length === 0) {
                     throw new Error('No se encontraron canales válidos');
                 }
@@ -440,15 +440,15 @@
                 playerInstance = jwplayer("player").setup({
                     playlist: [{
                         title: "",
-                        description: "fuchibolparatodos.netlify.app",
+                        description: "canalesonline.netlify.app",
                         sources: [{
                             default: true,
                             type: "dash",
                             file: mpd,
                             drm: {
                                 clearkey: {
-                                    keyId: currentChannel && currentChannel.keyId || "",
-                                    key: currentChannel && currentChannel.key || ""
+                                    keyId: currentChannel.keyId,
+                                    key: currentChannel.key
                                 }
                             }
                         }]
@@ -473,7 +473,7 @@
                 });
 
                 jwplayer("player").on("play", function () {
-                    sessionStorage.removeItem("canalesparatodos_reinicios");
+                    sessionStorage.removeItem("cvattpro_token_reinicios");
                     var player = jwplayer("player");
                     var audioTracks = player.getAudioTracks();
 
@@ -516,6 +516,12 @@
                     }
                 });
             }
+        }
+
+        // Limpia el contador de recargas y reintenta manualmente
+        function reiniciarReproduccion() {
+            sessionStorage.removeItem("cvattpro_token_reinicios");
+            tryToPlay();
         }
 
         // Función para intentar reproducir y manejar errores

@@ -395,11 +395,21 @@ function getParameterByName(name) {
 
 
 
-// async function getURLwithToken() {
+// async function getURLwithToken(channelToLoad) {
+    // ===== TOKEN POR CANAL (auto) =====
+    var chDelToken = channelToLoad || channelList[0];
+    if (chDelToken) {
+        var nombreToken = atob(chDelToken.getURL);
+        var entidadToken = "c" + (chDelToken.number || 3) + "eds";
+        var claveToken = "cvatt_token_" + entidadToken + "_" + nombreToken;
+        var tokenExistente = sessionStorage.getItem(claveToken);
+        if (tokenExistente) { return tokenExistente; }
+    }
 //     let token = sessionStorage.getItem('token')
 //     if (!token) {
 //         // const url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc/La_Nacion.m3u8';
-//         const url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc_C/La_Nacion.m3u8';
+//         var url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc_C/La_Nacion.m3u8';
+        if (chDelToken) { url = "https://chromecast.cvattv.com.ar/live/" + entidadToken + "/" + nombreToken + "/SA_Live_dash_enc_C/" + nombreToken + ".m3u8"; }
 //         let response = await fetch(url, { signal: AbortSignal.timeout(5000) });
 //         if (response.redirected) {
 //             const regex = /(https:\/\/.+?)(?=\/live)/;
@@ -414,7 +424,16 @@ function getParameterByName(name) {
 // }
 
 
-// async function getURLwithToken() {
+// async function getURLwithToken(channelToLoad) {
+    // ===== TOKEN POR CANAL (auto) =====
+    var chDelToken = channelToLoad || channelList[0];
+    if (chDelToken) {
+        var nombreToken = atob(chDelToken.getURL);
+        var entidadToken = "c" + (chDelToken.number || 3) + "eds";
+        var claveToken = "cvatt_token_" + entidadToken + "_" + nombreToken;
+        var tokenExistente = sessionStorage.getItem(claveToken);
+        if (tokenExistente) { return tokenExistente; }
+    }
 //     const TEST_MPD = 'https://cdn.cvattv.com.ar/live/c7eds/Fox_Sports_Premiun_HD/SA_Live_dash_cenc/Fox_Sports_Premiun_HD.mpd';
 //     const TOKEN_REGEX = /(https:\/\/.+?)(?=\/live)/;
 
@@ -438,7 +457,16 @@ function getParameterByName(name) {
 // }
 
 
-async function getURLwithToken() {
+async function getURLwithToken(channelToLoad) {
+    // ===== TOKEN POR CANAL (auto) =====
+    var chDelToken = channelToLoad || channelList[0];
+    if (chDelToken) {
+        var nombreToken = atob(chDelToken.getURL);
+        var entidadToken = "c" + (chDelToken.number || 3) + "eds";
+        var claveToken = "cvatt_token_" + entidadToken + "_" + nombreToken;
+        var tokenExistente = sessionStorage.getItem(claveToken);
+        if (tokenExistente) { return tokenExistente; }
+    }
     // Método principal: chromecast m3u8 redirect
     let token = sessionStorage.getItem('token');
     if (token) return token;
@@ -447,14 +475,15 @@ async function getURLwithToken() {
 
     // Método 1: chromecast m3u8
     try {
-        const url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc_C/La_Nacion.m3u8';
+        var url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc_C/La_Nacion.m3u8';
+        if (chDelToken) { url = "https://chromecast.cvattv.com.ar/live/" + entidadToken + "/" + nombreToken + "/SA_Live_dash_enc_C/" + nombreToken + ".m3u8"; }
         // const url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/sa_dash_full_e_7CF9BB041AD89713AD8CF4CF/La_Nacion.m3u8';
         const response = await fetch(url, { signal: AbortSignal.timeout(5000) });
         if (response.redirected) {
             const match = response.url.match(TOKEN_REGEX);
             if (match) {
                 token = match[0];
-                sessionStorage.setItem('token', token);
+                if (chDelToken) { sessionStorage.setItem(claveToken, token); } else { sessionStorage.setItem('token', token); }
                 console.info('[token] Método 1 OK:', token);
                 return token;
             }
@@ -465,7 +494,8 @@ async function getURLwithToken() {
 
     // Método 2: MPD directo — sin chequear response.redirected
     try {
-        const TEST_MPD = 'https://cdn.cvattv.com.ar/live/c7eds/Fox_Sports_Premiun_HD/SA_Live_dash_cenc/Fox_Sports_Premiun_HD.mpd';
+        var TEST_MPD = 'https://cdn.cvattv.com.ar/live/c7eds/Fox_Sports_Premiun_HD/SA_Live_dash_cenc/Fox_Sports_Premiun_HD.mpd';
+        if (chDelToken) { TEST_MPD = "https://cdn.cvattv.com.ar/live/" + entidadToken + "/" + nombreToken + "/SA_Live_dash_cenc/" + nombreToken + ".mpd"; }
         const response = await fetch(TEST_MPD, { signal: AbortSignal.timeout(5000) });
         
         // Loguear para debuggear
@@ -476,7 +506,7 @@ async function getURLwithToken() {
         if (match && !match[0].includes('cdn.cvattv.com.ar')) {
             // Solo es válido si la URL final NO es la misma de origen (significa que hubo redirect)
             token = match[0];
-            sessionStorage.setItem('token', token);
+            if (chDelToken) { sessionStorage.setItem(claveToken, token); } else { sessionStorage.setItem('token', token); }
             console.info('[token] Método 2 OK:', token);
             return token;
         }
@@ -503,7 +533,7 @@ async function getValidMpd(channelInfo) {
     // while (mt2.length > 0) {
     while (getMPDTries < 5) {
         getMPDTries++
-        let urlWithToken = await getURLwithToken()
+        let urlWithToken = await getURLwithToken(channelToLoad)
         // const [baseUrl, token] = urlWithToken.split(/(?<=\.com\.ar\/)/);
         // let url = `https://flow-cdn-gcp.app.flow.com.ar/${token}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
         let url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
