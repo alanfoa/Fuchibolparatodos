@@ -10,12 +10,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- <link rel="stylesheet" href="../css/style.css"> -->
     <link rel="stylesheet" href="../css/style-pro.css">
+    <link rel="stylesheet" href="../css/sin-animaciones.css">
     <link rel="shortcut icon" href="../assets/favicon.png" type="image/png">
+    <script>
+        // Aplicar la clase antes de pintar para evitar parpadeo de animaciones
+        try {
+            if (localStorage.getItem('sin_animaciones') === '1') {
+                document.documentElement.classList.add('sin-animaciones');
+            }
+        } catch (e) {
+            /* localStorage no disponible */
+        }
+    </script>
 </head>
 
 <body class="bg-dark">
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark bg-gradient p-0">
+    <nav class="navbar navbar-expand navbar-dark bg-dark bg-gradient p-0" style="position:relative">
         <a class="navbar-brand p-0 m-0 ms-2 flex-shrink-0" href="/" title="Fuchibolparatodos">
             <img src="../assets/logo-nav.png" alt="Fuchibolparatodos" height="36">
         </a>
@@ -32,6 +43,11 @@
             <!-- <li class="nav-item"><a class="nav-link btn btn-secondary px-3 bi bi-share-fill" href="compartir.html"
                     title="Compartir app"></a></li> -->
         </ul>
+        </div>
+        <div style="position:absolute;right:8px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:4px">
+            <a id="id_toggle-animaciones" class="btn btn-secondary bi bi-stars text-light px-3"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" href="#"
+                title="Desactivar animaciones"></a>
         </div>
     </nav>
 
@@ -108,6 +124,7 @@
         });
     </script>
 
+    <script src="../js/sin-animaciones.js"></script>
 </body>
 
 </html>
