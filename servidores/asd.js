@@ -14,7 +14,7 @@ const CHANNELS = new Map([
     // Canal 7
     ...["Q29uc3RydWlyX1RW","RHNwb3J0c19QbHVzX1VZ","SHVzdGxlcg==","RHNwb3J0czJfVVk=","RHNwb3J0c19VWQ==","VG9kb19Ob3RpY2lhc180Sw==", "RGF5c3Rhcg==", "U29tb3NfTWlzaW9uZXM=", "VW5pdmVyc2lkYWRfTURR", "RWNvVHZfVGFuZGls", "U29tb3NfQmVsbF9WaWxsZQ==", "U29tb3NfVHVjdW1hbg==", "VW5pb25UVg==", "VmVudXNfTWVkaWE=", "U29tb3NfU2FuX1BlZHJv", "VGVsZW1lZGlh", "Q2FuYWxfMTBfSnVuaW4=", "VGVsZUp1bmlu", "U29tb3NfQXp1bA==", "RVNQTjNfVXktUHk=", "RVNQTjNfVXktUHk==", "RXZlbnRvc18z", "QTNfQ2luZQ==", "QXJpcmFuZw==", "QmFuZGVpcmFudGVz", "QWxsamF6emVyYQ==", "Q2FuYWxfUFJP", "VW5pdmVyc28=", "Q2FuYWxfMTFfUGFyYW5h", "Q0FOQUxfTFVa", "QWxsZWdyb0hE", "QmFieVRW", "RE5ld3M=", "VVNBX05ldHdvcms=", "QTNfU2VyaWVz", "TWVnYV9UVg==", "QW1lcmljYV9UdWN1bWFu", "UFhfU3BvcnRz", "Q2gxMF9UdWN1bWFu", "SG9tZV9hbmRfR2FyZGVu", "REhF", "Rmxvd19NdXNpY19YUA==", "QUVIRA==", "SG9sYV9UVg==", "QVhOSEQ=", "TVRWMDA=", "V2FybmVySEQ=", "R0VOX1RW", "Rm94X1Nwb3J0c19QcmVtaXVuX0hE", "VG9kb05vdGljaWFz", "VHlDU3BvcnQ", "QW1lcmljYTI0", "QzVO", "TGFfTmFjaW9u", "Q3JvbmljYVRW", "Q2FuYWxfOF9UdWN1bWFu", "UGFyYWd1YXlfVFY=", "UGFyYW1vdW50", "Q29tZWR5Q2VudHJhbA", "Rmxvd19NdXNpY18x", "Rmxvd19NdXNpY18y", "Rmxvd19NdXNpY18z", "Qm9vbWVyYW5n", "RHJlYW13b3Jrcw==", "QW5pbWFsUGxhbmV0", "SGlzdG9yeUhE", "SUQ=", "QnJhdm9UVg==", "U29ueUhE", "U29ueV9Nb3ZpZXM=", "VHJ1VFY=", "SEJPX1BPUA==", "RGlzY292ZXJ5VHVyYm8=", "RGlzbmV5SnI=", "SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=", "Rm94U3BvcnRzMl9VWQ==", "RVNQTjQ=", "Rm94U3BvcnRzM19VWQ==", "RXZlbnRvc19IRF9VeQ==", "VGVsZW11bmRvX0hE", "UGFzaW9uZXM="].map(k => [k, 7]),
     // Canal 6
-    ...["Q2FuYWxfMTBfTURR", "Q2FuYWxfOTA=", "U29tb3NfTm9ydGU=", "QU1DX1Nlcmllcw==", "Q2FibGVfWV9EaWFyaW8=", "VFZfRXNwYW5h", "VHZfR2FsaWNpYQ==", "RVNQTjJfQXJn", "Q2FuYWxfMjE=", "VGVsZW5vdmVsYXM=", "RVdUTg==", "S1pP", "Vm9ydGVyaXg=", "RFc=", "Q05OX0ludGVybmFjaW9uYWw=", "S2lkb28=", "VG9vbmNhc3Q=", "UGxpbV9QbGlt", "RnJhbmNlXzI0", "Tmlja211c2lj", "U29tb3NfTGFfUGxhdGE=", "QXJ0ZWFyX0ludGVybmFjaW9uYWw=", "RXZlbnRvc18yX0hE", "R29sZGVu", "Q2FuYWxfOV9QYXJhbmE=", "R29sZl9DaGFubmVs", "Q2FuYWxfYQ==", "QW1lcmljYV9TcG9ydHM=", "Q2luZW1heA==", "Q2FuYWxfOF9DQkE=", "MjZfVFZfSEQ", "RGlwdXRhZG9zX1RW", "QXJnZW50aW5pc2ltYQ", "TWV0cm8", "QkJDX1dvcmxkX05ld3M", "VGhlYXRlcl9IRA==", "R2xpdHo=", "UXVpZXJvX0hE", "RGlzY292ZXJ5X1dvcmxkX0hE", "RXVyb2NoYW5uZWw=", "RGlzY292ZXJ5X1NjaWVuY2U=", "SU5DQUFfVHY=", "VFY1X01vbmRl", "TVRWX0hpdHM=", "TVRWX0hE", "Tmlja19Kcg==", "VFZFX0VzcGFuYQ==", "V09CSQ==", "Vm9sdmVy", "VGVsZXN1cg==", "TGlmZXRpbWU=", "QW50ZW5hXzM=", "Rm94X05ld3M=", "VHZfQ2hpbGU=", "TWFzX0NoaWM=", "U3R1ZGlvX1VuaXZlcnNhbA==", "SVNBVA==", "U3VuX0NoYW5uZWw=", "UkFJ", "VmVudXM=", "U2V4dHJlbWU", "UGxheWJveQ", "VE5UX1Nwb3J0c19IRA==", "VGVsZWZlSEQ=", "Q2FuYWw3", "RW5jdWVudHJv", "VGVsZW1heA", "TmV0X1RW", "Q2FuYWxfMTJfQ0JB", "RWxfR2FyYWdl", "RmlsbV9BcnRz", "VW5pdmVyc2FsX0NoYW5uZWxfSEQ=", "RXVyb3BhX0V1cm9wYQ", "RXVyb25ld3M=", "Rm9vZF9OZXR3b3Jr", "RV9FbnRlcnRhaW5tZW50X1RlbGV2aXNpb24=", "Q00=", "UEFLQV9QQUtB", "SGlzdG9yeV8y", "U3lGeQ==", "VEJT", "VENN", "SEJPXzI=", "SEJPX1BsdXM=", "SEJPX0ZhbWlseQ==", "SEJPX0V4dHJlbWU=", "SEJPX011bmRp", "SEJPX1NpZ25hdHVyZQ==", "Q2FuYWxfUnVyYWw=", "VExD", "Q2FuYWxfZGVfbGFfY2l1ZGFk", "RGlzY292ZXJ5X0tpZHM=", "SFRW", "TkJBX1RW", "VW5pdmVyc2FsX0NpbmVtYQ==", "VW5pdmVyc2FsX0NvbWVkeQ==", "dW5pdmVyc2FsX0NyaW1l", "VW5pdmVyc2FsX1ByZW1pZXJl", "VW5pdmVyc2FsX1JlYWxpdHk=", "Q05OX2VuX0VzcGFub2w=", "Q2FuYWxfZGVfbGFzX2VzdHJlbGxhcw=="].map(k => [k, 6]),
+    ...["Q2FuYWxfMTBfTURR", "Q2FuYWxfOTA=", "U29tb3NfTm9ydGU=", "QU1DX1Nlcmllcw==", "Q2FibGVfWV9EaWFyaW8=", "VFZfRXNwYW5h", "VHZfR2FsaWNpYQ==", "RVNQTjJfQXJn", "Q2FuYWxfMjE=", "VGVsZW5vdmVsYXM=", "RVdUTg==", "S1pP", "Vm9ydGVyaXg=", "RFc=", "Q05OX0ludGVybmFjaW9uYWw=", "S2lkb28=", "VG9vbmNhc3Q=", "UGxpbV9QbGlt", "RnJhbmNlXzI0", "Tmlja211c2lj", "U29tb3NfTGFfUGxhdGE=", "QXJ0ZWFyX0ludGVybmFjaW9uYWw=", "RXZlbnRvc18yX0hE", "R29sZGVu", "Q2FuYWxfOV9QYXJhbmE=", "R29sZl9DaGFubmVs", "Q2FuYWxfYQ==", "QW1lcmljYV9TcG9ydHM=", "Q2luZW1heA==", "Q2FuYWxfOF9DQkE=", "MjZfVFZfSEQ", "RGlwdXRhZG9zX1RW", "QXJnZW50aW5pc2ltYQ", "TWV0cm8", "QkJDX1dvcmxkX05ld3M", "VGhlYXRlcl9IRA==", "R2xpdHo=", "UXVpZXJvX0hE", "RGlzY292ZXJ5X1dvcmxkX0hE", "RXVyb2NoYW5uZWw=", "RGlzY292ZXJ5X1NjaWVuY2U=", "SU5DQUFfVHY=", "VFY1X01vbmRl", "TVRWX0hpdHM=", "TVRWX0hE", "Tmlja19Kcg==", "VFZFX0VzcGFuYQ==", "V09CSQ==", "Vm9sdmVy", "VGVsZXN1cg==", "TGlmZXRpbWU=", "QW50ZW5hXzM=", "Rm94X05ld3M=", "VHZfQ2hpbGU=", "TWFzX0NoaWM=", "U3R1ZGlvX1VuaXZlcnNhbA==", "SVNBVA==", "U3VuX0NoYW5uZWw=", "UkFJ", "VmVudXM=", "U2V4dHJlbWU", "UGxheWJveQ", "VE5UX1Nwb3J0c19IRA", "VGVsZWZlSEQ=", "Q2FuYWw3", "RW5jdWVudHJv", "VGVsZW1heA", "TmV0X1RW", "Q2FuYWxfMTJfQ0JB", "RWxfR2FyYWdl", "RmlsbV9BcnRz", "VW5pdmVyc2FsX0NoYW5uZWxfSEQ=", "RXVyb3BhX0V1cm9wYQ", "RXVyb25ld3M=", "Rm9vZF9OZXR3b3Jr", "RV9FbnRlcnRhaW5tZW50X1RlbGV2aXNpb24=", "Q00=", "UEFLQV9QQUtB", "SGlzdG9yeV8y", "U3lGeQ==", "VEJT", "VENN", "SEJPXzI=", "SEJPX1BsdXM=", "SEJPX0ZhbWlseQ==", "SEJPX0V4dHJlbWU=", "SEJPX011bmRp", "SEJPX1NpZ25hdHVyZQ==", "Q2FuYWxfUnVyYWw=", "VExD", "Q2FuYWxfZGVfbGFfY2l1ZGFk", "RGlzY292ZXJ5X0tpZHM=", "SFRW", "TkJBX1RW", "VW5pdmVyc2FsX0NpbmVtYQ==", "VW5pdmVyc2FsX0NvbWVkeQ==", "dW5pdmVyc2FsX0NyaW1l", "VW5pdmVyc2FsX1ByZW1pZXJl", "VW5pdmVyc2FsX1JlYWxpdHk=", "Q05OX2VuX0VzcGFub2w=", "Q2FuYWxfZGVfbGFzX2VzdHJlbGxhcw=="].map(k => [k, 6]),
     // Canal 5
     ...["QzlOX0M0", "Q2FuYWxfQw==", "U29tb3NfUm9zYXJpbw==", "U29tb3NfU1RG", "QUJDX1RWX0M0"].map(k => [k, 5]),
     // Canal 4
@@ -46,6 +46,7 @@ function getChannelKeys(getURL) {
         "": { keyId: "", key: "" }, //
         "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs": { keyId: "09833bbfc87acd3a509a57e75b4d37ef", key: "13906c6849c0c81de495ddd9539765fe" }, //TV_Publica_Internacional
         
+        "VGVsZWZlX1Rlc3RDNg==": { keyId: "b5c32c5a5504b0afabb2b4baaaecdb48", key: "e31730aa3bf4c9706d0a2fe2352f33d0" }, //
         
         //Caidos
         "Q2FuYWwzX1NhbnRhX1Jvc2E=": { keyId: "719aa3a5e270c7f69eba374ed80d7986", key: "97ac59118cf4cf242e2c31e87cd38e1e" }, //Canal3_Santa_Rosa
@@ -148,7 +149,8 @@ function getChannelKeys(getURL) {
         "Vm9ydGVyaXg=": { keyId: "eabe2c22350c26c7f0ad84b34932f08d", key: "39fa06836ec0f81d8dd9b6e01a3070e3" }, //Vorterix
         "TWl4VFY=": { keyId: "0e1327b5b1f4dfe767aec622c9ef64ce", key: "60c64a922af0121bf73261c825e33f18" }, //MixTV
         "RFc=": { keyId: "e21fc12c6ee185fbc90a052b05026be9", key: "0f96fd52903707aac0b42853a043ffd0" }, //DW
-        "U1VSX1RWX0M0": { keyId: "988ae4e8408981609ded9f8b23bbf79d", key: "b867c66791bcad67ee142be1e21c2577" }, //SUR_TV_C4
+        // "U1VSX1RWX0M0": { keyId: "988ae4e8408981609ded9f8b23bbf79d", key: "b867c66791bcad67ee142be1e21c2577" }, //SUR_TV_C4
+        "U1VSX1RWX0M0": { keyId: "c047764a90e9a5b0213aec8fed8a24aa", key: "07e62001064fbe64796b4ed3836761f4" }, //SUR_TV_C4
         "Q05OX0ludGVybmFjaW9uYWw=": { keyId: "9f24708ad1184ee3a04b650941f9894b", key: "e5bc7c5ff392119423dbf1c023a7b21c" }, //CNN_Internacional
         "S2lkb28=": { keyId: "dcd89337a501ab929c01a039774089dc", key: "e96cc7be9139a8d581b3f5eebebfc10d" }, //Kidoo
         "QmFieVRW": { keyId: "9e09f0a3ecb932582e0f3bc6a6194c8d", key: "6d2363b7ba7680ea3bf6dcbad1efa5bf" }, //BabyTV
@@ -208,22 +210,29 @@ function getChannelKeys(getURL) {
         "dW5pdmVyc2FsX0NyaW1l": { keyId: "1efd7edf60e1514f775dd13d046ae708", key: "c2ef1abbd945c62c11b1375eaaa50f0d" }, // Universal Crime
         "VW5pdmVyc2FsX1ByZW1pZXJl": { keyId: "0eb20b51ad13b58ad417f11318e588b3", key: "ad5d29a33d73d21187157802de8e6097" }, // Universal Premiere
         "VW5pdmVyc2FsX1JlYWxpdHk=": { keyId: "cedd9c1a5c2ae43f80ee3197212016d6", key: "bf47a3c39e164a97ea6adc4c8dd57435" }, // Universal Reality
-        "RVNQTjJIRA": { keyId: "e884b711ab111beb8a7ba1e7bcbdc9bf", key: "cb89ee3961599e3e648a5aad60895f34" }, //ESPN
+        // "RVNQTjJIRA": { keyId: "e884b711ab111beb8a7ba1e7bcbdc9bf", key: "cb89ee3961599e3e648a5aad60895f34" }, //ESPN
+        "RVNQTjJIRA": { keyId: "d079ffa3757e8335611fc48be6ba47ff", key: "05059d1cb21b6708a55e9c26fb38e2f3" }, //ESPN
         "RVNQTjJfQXJn": { keyId: "65a5bfa3c7a72dde60be9b0c7406c8fc", key: "0b40ae9f78a7bac3b57ecbf72d3c081e" }, //ESPN2_Arg
-        "RVNQTjM": { keyId: "f4c9f97e2a36feab0e5077f2b44cbc4e", key: "1743cd03dfe3736b2c95da91a783af38" }, //ESPN3
-        "RVNQTkhE": { keyId: "cc8d44406ed6bf1898ad9f7a2d64f29e", key: "fb85d059687ab0fc67805806204edbdf" }, //ESPNHD 4
+        // "RVNQTjM": { keyId: "f4c9f97e2a36feab0e5077f2b44cbc4e", key: "1743cd03dfe3736b2c95da91a783af38" }, //ESPN3
+        "RVNQTjM": { keyId: "deeed0f44c6b45e064f4d5064486e821", key: "bf89ceeb93564ddc603ba6afd8c9266a" }, //ESPN3
+        // "RVNQTkhE": { keyId: "cc8d44406ed6bf1898ad9f7a2d64f29e", key: "fb85d059687ab0fc67805806204edbdf" }, //ESPNHD 4
+        "RVNQTkhE": { keyId: "d02981e6faeacef49c90fdb053ab641d", key: "645e13624e933841b1ea35cda1b55bd1" }, //ESPNHD 4
         "RVNQTjQ=": { keyId: "24f2b3e741f0d9e9a8d516faff38bddc", key: "bbd3fd02fb104e1463ac528a13f67e4a" }, // ESPN 5
         "Rm94U3BvcnRzM19VWQ==": { keyId: "5fc7b662e69c0fbf8d39691166b1c919", key: "89157cdd25df25d56f1ecccee3850888" }, // ESPN 6
         "Rm94U3BvcnRzMl9VWQ==": { keyId: "5fc7b662e69c0fbf8d39691166b1c919", key: "89157cdd25df25d56f1ecccee3850888" }, // ESPN 7
-        "Rm94U3BvcnRz": { keyId: "cbc2a0c7a38df0aa3333cd71841d3b0d", key: "aac61b730e2ac1df23f1e872e7541c1b" }, //FoxSports
-        "Rm94U3BvcnRzMkhE": { keyId: "c98ddffc470fe449ae1a8d6492116976", key: "5086d370e840010232cf4532b16e197f" }, //FoxSports2HD
-        "Rm94U3BvcnRzM0hE": { keyId: "55b47390cf9e4997dae6dac85e057875", key: "fa39e855543c5d70f30600d59e5e4c1b" }, //FoxSports3HD
+        // "Rm94U3BvcnRz": { keyId: "cbc2a0c7a38df0aa3333cd71841d3b0d", key: "aac61b730e2ac1df23f1e872e7541c1b" }, //FoxSports
+        "Rm94U3BvcnRz": { keyId: "37730b00a5f92084c47a8129e84559f3", key: "a2e20a45a057ff4e7c0bc2ad49e6f3e5" }, //FoxSports
+        // "Rm94U3BvcnRzMkhE": { keyId: "c98ddffc470fe449ae1a8d6492116976", key: "5086d370e840010232cf4532b16e197f" }, //FoxSports2HD
+        "Rm94U3BvcnRzMkhE": { keyId: "1b0ab680ef94a1842185fa78a830cbd7", key: "23129ab5572aeda7607c920655c0dbea" }, //FoxSports2HD
+        // "Rm94U3BvcnRzM0hE": { keyId: "55b47390cf9e4997dae6dac85e057875", key: "fa39e855543c5d70f30600d59e5e4c1b" }, //FoxSports3HD
+        "Rm94U3BvcnRzM0hE": { keyId: "4629bd0ae30c0e72af111fb948fada1c", key: "7864154c679e769e7f164ba083c8fad3" }, //FoxSports3HD
         "VE5UX1Nwb3J0c19IRA": { keyId: "bc80fa3da696e503f940fde5f681a1c5", key: "ea46e4e9f1132e8dd71fb77f7d55058a" }, //TNT_Sports_HD
         "Rm94X1Nwb3J0c19QcmVtaXVuX0hE": { keyId: "4c230dbc7f6a4bfa6ad0aa73ff792374", key: "4186a7c2a15f590a9399886feaec4257" }, //ESPN_Premiun_HD
         "VHlDU3BvcnQ": { keyId: "2b21c8fa9a329cce311a4c4a4aa996a1", key: "cc23ea1fb32629f9e1f48c8deeae3e5b" }, //TyCSport
         "VHlDX0ludGVybmFjaW9uYWw": { keyId: "58e1ebe75d944f6a98ea67b1c7c0a572", key: "1c311b069dbce31ce8e62a6e7e2433eb" }, //TyC_Internacional
         "Q2FuYWw3": { keyId: "cc8c82ac2ec7e9799527c29db7354e81", key: "cc4aae173dd2ef17ae26be3f7ae87662" }, //Canal7-TV PUBLICA
-        "RGVwb3JUVkhE": { keyId: "f362097815892a4b83950f1d106ff0b2", key: "4349e42e81c31a8389f4a42fcd298928" }, //DeporTVHD
+        // "RGVwb3JUVkhE": { keyId: "f362097815892a4b83950f1d106ff0b2", key: "4349e42e81c31a8389f4a42fcd298928" }, //DeporTVHD
+        "RGVwb3JUVkhE": { keyId: "e721cdf9043ee562296005056a2757de", key: "70259c9d827905e8088cdedceb56ae87" }, //DeporTVHD
         "VlRWX0hE": { keyId: "b96960aa715a4e51b7e952e81c99ac8e", key: "5bbffc680764dbd63d90b774b3aa0c0a" }, //VTV_HD
         "VlRWX1BsdXNfSEQ": { keyId: "da8a49a594160cc0059f07b9f71cd39a", key: "37ca91dd799b351a02445151c7f61070" }, //VTV_Plus_HD
         
@@ -239,7 +248,8 @@ function getChannelKeys(getURL) {
         "QTNfQ2luZQ==": { keyId: "d6ff881a6f07986a80d6ad6f041b57d4", key: "b401c87c2ab11a1a488ee1c474b109ae" }, //A3_Cine
         "QUVIRA==": { keyId: "db12035627a4b3d7198b761f36b4a290", key: "80ca761a875992ac0e50b0851d5563fe" }, //AEHD
         "QU1D": { keyId: "1fa6a86fd80b6d1425dde74482b5dc9c", key: "744c3636d57a651ab444cf9fe5f95b33" }, //AMC
-        "QW1lcmljYVRW": { keyId: "8ea235ce0826408b221c498115a9b62d", key: "7aa9266ed91ea4510483370029dfcf45" }, //AmericaTV
+        // "QW1lcmljYVRW": { keyId: "8ea235ce0826408b221c498115a9b62d", key: "7aa9266ed91ea4510483370029dfcf45" }, //AmericaTV
+        "QW1lcmljYVRW": { keyId: "3d7afc43dab940d699b61466b245369f", key: "712b5165ff990156e6c9e580b0b4df59" }, //AmericaTV
         "QW5pbWFsUGxhbmV0": { keyId: "4146a8ecbb0540dc807c6389ee87e0bc", key: "0c3cdc1b3e4617c57361265e9fa4c5bd" }, // Animal Planet
         "QW50ZW5hXzM=": { keyId: "1e1ad422a6714482b66fa702c16e50c6", key: "4fdf28a0ab91356ca55a75f4e9bf8c92" }, //Antena_3-INTERNACIONAL
         "QXJnZW50aW5pc2ltYQ": { keyId: "a6243f46366445ebbf3117ec27365481", key: "81667cdc3bcf19a6a66c0919fa00a20b" }, //Argentinisima
@@ -255,14 +265,18 @@ function getChannelKeys(getURL) {
         "Q2FydG9vbk5ldHdvcms=": { keyId: "d7df56efaa36a71141d238854cc46d1d", key: "8abb2ee9150d8b2af8ebec0de0f833c8" }, // Cartoon Network
         "Qm9vbWVyYW5n": { keyId: "5792e613fceb699c79cbc0e75fe4cd37", key: "a672793730476ed23e5c1bce2ff570c6" }, //Boomerang-cartonito
         "SU5DQUFfVHY=": { keyId: "d44f40e49d2945c1a3701c0885ff0b00", key: "6382b6279087402714b6824688c456df" }, //INCAA_Tv-CINE AR
-        "Q2luZWNhbmFsSEQ=": { keyId: "6003e92dd0d9f548329015c9e15dd578", key: "213cf85cb5f9fe569757004a77e05948" }, //CinecanalHD
+        // "Q2luZWNhbmFsSEQ=": { keyId: "6003e92dd0d9f548329015c9e15dd578", key: "213cf85cb5f9fe569757004a77e05948" }, //CinecanalHD
+        "Q2luZWNhbmFsSEQ=": { keyId: "98b31a0a125d81ef4c9caf1683f55444", key: "7ec3df0771fe86c9f405765ce9fb5204" }, //CinecanalHD
         "Q2luZW1heA==": { keyId: "977928a92b82ba3781741a6470f8f45b", key: "51f4e62827c128f7210b79a11587661a" }, // cinemax
-        "TWFnYXppbmU=": { keyId: "4f1235069d34c22cb73d9b78bae15587", key: "55e068ff6b152e34c66dc639b38e8692" }, //ciudad Magazine
+        // "TWFnYXppbmU=": { keyId: "4f1235069d34c22cb73d9b78bae15587", key: "55e068ff6b152e34c66dc639b38e8692" }, //ciudad Magazine
+        "TWFnYXppbmU=": { keyId: "36bc52ea68831dbbec6a9529bc81a9e8", key: "39858817235ad0c15640dbde56f87d78" }, //ciudad Magazine
         "Q00=": { keyId: "682f36b5736f4560951ca14b80d29524", key: "3accb729067a39b3b8143f1b447b9d25" }, //CM
         "Q29tZWR5Q2VudHJhbA": { keyId: "4013f784c5ef4318ad47024e61eb094e", key: "bad433a547f97c7f65cda5e83b8dd416" }, //ComedyCentral
         "Q3JvbmljYVRW": { keyId: "745e7abcc90d41ab706b2ac2f4371da3", key: "50acd9d19d1361cb4a8a13a867bdc352" }, //CronicaTV
-        "RGlzY292ZXJ5SEQ=": { keyId: "c283c84a7af0d7c8b9b612a8fb22a001", key: "f45510c721eebd6eaa86a2e16ccbd77d" }, //DiscoveryHD
-        "RGlzY292ZXJ5SG9tZUhlYWx0aEhE": { keyId: "9b0a76dd7a0df1e1b4320aeb1254d1a9", key: "d011267775c38d6d2ab09b428c03d63f" }, // Discovery hyh
+        // "RGlzY292ZXJ5SEQ=": { keyId: "c283c84a7af0d7c8b9b612a8fb22a001", key: "f45510c721eebd6eaa86a2e16ccbd77d" }, //DiscoveryHD
+        "RGlzY292ZXJ5SEQ=": { keyId: "f55aec775d92cea41ea0f80b8615495a", key: "8927f326931c6a5af38d0cd7cd744338" }, //DiscoveryHD
+        // "RGlzY292ZXJ5SG9tZUhlYWx0aEhE": { keyId: "9b0a76dd7a0df1e1b4320aeb1254d1a9", key: "d011267775c38d6d2ab09b428c03d63f" }, // Discovery hyh
+        "RGlzY292ZXJ5SG9tZUhlYWx0aEhE": { keyId: "6e2bc2b3c9464c407af6d0559bb5e1ea", key: "43ec5e698b6f60a0f41d604909a25186" }, // Discovery hyh
         "SUQ=": { keyId: "0956caf2e2bd41f49fdcead7cc94fe24", key: "640c49578073a911938617eb4e652d6c" }, // Discovery  id
         "RGlzY292ZXJ5X0tpZHM=": { keyId: "ffb2f0f63c23a3592d4653e938b9ca19", key: "d3661ae881fc55fc7a15815cd439747b" }, // Discovery Kids
         "RGlzY292ZXJ5X1NjaWVuY2U=": { keyId: "46ba409fb04e40fb86b466d97e3a9588", key: "f129fb9b5d213e20e2abe529b8cf2597" }, //Discovery_Science
@@ -275,8 +289,10 @@ function getChannelKeys(getURL) {
         "RHJlYW13b3Jrcw==": { keyId: "7f30c43e47544412221fd64201d92f4b", key: "f83d09d75a0946b1d71aa48c201b4d8b" }, //Dreamworks
         "RGlwdXRhZG9zX1RW": { keyId: "9666b195171442afd4551a8de01291a6", key: "1c0061df9b4b098e40355167e97cfbf0" }, //Diputados_TV
         "Q2FuYWwxMlVSVQ==": { keyId: "dfde9d35d7438bfdf61da5dfac0557c1", key: "acb13370c03a7254e2bb9cc9d2125017" }, //Tele
-        "Q2FuYWw5": { keyId: "24f4ff211136ae6512a1b552200db405", key: "602122f8426c5c942b8c18d299cc6020" }, //Canal9
-        "QXJ0ZWFySEQ": { keyId: "5179017f49326d14af0a9ceec831aee6", key: "09b4a463b029ebc28a288bed2da70a76" }, //ArtearHD-EL TRECE
+        // "Q2FuYWw5": { keyId: "24f4ff211136ae6512a1b552200db405", key: "602122f8426c5c942b8c18d299cc6020" }, //Canal9
+        "Q2FuYWw5": { keyId: "3ddf62bf44e68f06a6adb810199df713", key: "2ace15b4ffbe70940fdf04cf97e114e7" }, //Canal9
+        // "QXJ0ZWFySEQ": { keyId: "5179017f49326d14af0a9ceec831aee6", key: "09b4a463b029ebc28a288bed2da70a76" }, //ArtearHD-EL TRECE
+        "QXJ0ZWFySEQ": { keyId: "4aa8ec10f92b212c0cbaaa8e0591b468", key: "17985aeaac30e62e6dad45f4df84cc2c" }, //ArtearHD-EL TRECE
         "RW5jdWVudHJv": { keyId: "ac3ae78beb64478ab390b4ad70e3e0c9", key: "c7d669761c3516d852a0edf9e07c9198" }, //Encuentro
         "RV9FbnRlcnRhaW5tZW50X1RlbGV2aXNpb24=": { keyId: "5883553207f13e3dc8cecd1113d5ba68", key: "45434d40636dfa0e5312b93218e02185" }, //E_Entertainment_Television
         "RXVyb2NoYW5uZWw=": { keyId: "6f0fc214d9844a7590f0884d55b44c42", key: "b2fe1bb5f9c79035301c328c1e93b0ee" }, //Eurochannel
@@ -293,7 +309,8 @@ function getChannelKeys(getURL) {
         "RWxfR2FyYWdl": { keyId: "03d1dfb8df034d8b81e57753df00a36d", key: "08d83660db4a73bb1d61d60b09df5f4d" }, //El_Garage
         "R0VOX1RW": { keyId: "49eb924ba998ca7fbbaee30dcef1ecb4", key: "6e131b04b2e87598fb588ac205673698" }, //GEN_TV
         "R2xpdHo=": { keyId: "f812ef81d6ce425a8db4012a1ef8b0c1", key: "5c2b9791b1074727eb349588e32bdc0a" }, //Glitz NO FUNCIONA
-        "R291cm1ldA==": { keyId: "93d853ac4c8e24cf0295f6f97ee53bd3", key: "fa5817fab4fb054ccea1abb9f3d767ed" }, //Gourmet
+        // "R291cm1ldA==": { keyId: "93d853ac4c8e24cf0295f6f97ee53bd3", key: "fa5817fab4fb054ccea1abb9f3d767ed" }, //Gourmet
+        "R291cm1ldA==": { keyId: "8bde4fca7757c6c9f15a7bada68df2ba", key: "89ba78584f7612f0fccc62d26043433e" }, //Gourmet
         "SEJPSEQ=": { keyId: "5317283f4110fac3fb3a0becd9f648bc", key: "0754a03c926b1247216e01d9dbcfac28" }, // HBO
         "SEJPXzI=": { keyId: "c90cc57ad2c436e5a77db2f8d9db2d85", key: "04f6c73984bdcffd013050608497935d" }, // HBO 2
         "SEJPX0ZhbWlseQ==": { keyId: "535473132f68082160b489482ca35f8e", key: "e90fd91fcd3fc809bed2b1c0d37f7297" }, // HBO Family
@@ -314,14 +331,16 @@ function getChannelKeys(getURL) {
         "TVRWX0hE": { keyId: "0c9eb3ead38a122ac460ad96a8ebfd2e", key: "66bfbfa4449eb8bc1bcf7577d5bffaad" }, //MTV_HD
         "TVRWMDA=": { keyId: "1f0c09ed9e5841cf867ba6eb3cdfd61d", key: "802c89c6bae6a245aaafcf40c1986fc1" }, //MTV00
         "TVRWX0hpdHM=": { keyId: "61008dfc867544cd872de99b1f2b82cf", key: "716449756316b91c54803aaa22a2fbf0" }, //MTV_Hits
-        "TmF0R2VvSEQ=": { keyId: "4be0c61ceddc62294cc9e23b627af53d", key: "852c1935d11c3c53d0a1ceff3bb3bf16" }, // NATGEO
+        // "TmF0R2VvSEQ=": { keyId: "4be0c61ceddc62294cc9e23b627af53d", key: "852c1935d11c3c53d0a1ceff3bb3bf16" }, // NATGEO
+        "TmF0R2VvSEQ=": { keyId: "73735c1740464c99cca3ffb450c15811", key: "b9241d083c902fa615e4f780081ae926" }, // NATGEO
         "TmV0X1RW": { keyId: "89d433166edd31d56df2a59df8ec6704", key: "b2015faded0a456d10aa8db1b4cbac68" }, //Net_TV
         "Tmlja2Vsb2Rlb24=": { keyId: "61c18cefecc2d067beaa9ff181305345", key: "38d6f650cbf9a38fd9f35c01f98e647a" }, // NICK
         "Tmlja19Kcg==": { keyId: "e824b2277a86fd6adfc40aa948e5064a", key: "28da2dbbe8e1a1463bbb23895b922083" }, //Nick_Jr
         "Tk9USUNJQVNfUFlfQzQ=": { keyId: "8f66fe15735b2b1b3d5eb3646caa405e", key: "404b93fd7b499b1061c9a714e1cdb2d0" }, //NOTICIAS_PY_C4
         "UGFyYWd1YXlfVFY=": { keyId: "68a5bd6c58e6c05bacfd18d3feec31f2", key: "ae23f8357512df2dfabcb8104b078182" }, //Paraguay_TV
         "UGFyYW1vdW50": { keyId: "b85b710ecff3e38f31fc8e249b1c1cef", key: "a1544c193dde6f8858c9358ee69a60a7" }, //Paramount
-        "UEFSQVZJU0lPTl9DNA==": { keyId: "bd8e8c9b32ef027e8ff4ff0cfce855a4", key: "2918e9893b570c3fa1f215b52a12cc91" }, //PARAVISION_C4
+        // "UEFSQVZJU0lPTl9DNA==": { keyId: "bd8e8c9b32ef027e8ff4ff0cfce855a4", key: "2918e9893b570c3fa1f215b52a12cc91" }, //PARAVISION_C4
+        "UEFSQVZJU0lPTl9DNA==": { keyId: "b02c568163c14cfda4ddb958a0aab742", key: "edef8ba979d64acea3c827dcd51d21ed" }, //PARAVISION_C4
         "UEFLQV9QQUtB": { keyId: "334001b2f2644df9bdf35e92d2b89f8f", key: "475ec87d86ed0636dbb6d6d9d4a43bb7" }, //PAKA_PAKA
         "UXVpZXJvX0hE": { keyId: "a354b0c82a3a720c4a6f52ed5a1190f4", key: "45a76dcc84f058cfabc8b958d7303b28" }, //Quiero_HD
         "UkFJ": { keyId: "d214547d7d9a4011a39a899ce6e70071", key: "16c2ed0617cf1e123f3af6ea8875a82d" }, //RAI
@@ -347,9 +366,11 @@ function getChannelKeys(getURL) {
         "VEVMRUZVVFVST19DNA==": { keyId: "5d2731cf8a59b73438ef59d88cd882bf", key: "3f412fa6368b7db4903588de695377e1" }, //TELEFUTURO_C4
         "VGVsZW1heA": { keyId: "e7ec364ad6854fedad797538cb58780d", key: "57dfb3fca2ca35b37ff81c35595e9be8" }, //Telemax
         "VG9kb05vdGljaWFz": { keyId: "7ceb1cd0622cd7e88fcdc99fe3a55de6", key: "951637093d41c7388a1ef3f620cfea21" }, //TodoNoticias-TN
-        "VE5UX0hEX0FyZw": { keyId: "faad1722a575f4d9ec7b774db63c879c", key: "cf0184830344ba36ad2ffef9dd2dd9d0" }, //TNT_HD_Arg
+        // "VE5UX0hEX0FyZw": { keyId: "faad1722a575f4d9ec7b774db63c879c", key: "cf0184830344ba36ad2ffef9dd2dd9d0" }, //TNT_HD_Arg
+        "VE5UX0hEX0FyZw": { keyId: "61d9873e1f281cd0223acce773cc08b0", key: "3dda0d89ece37c244ed8cb7e90153555" }, //TNT_HD_Arg
         "VEJT": { keyId: "49a0179b034ae899cb67d8a5834181aa", key: "486e2c6d69adea7e17f2960e8e366612" }, // TNT Novelas (TBS)
-        "VE5UU2VyaWVz": { keyId: "5c14d6aeb19bf113edf91a7b544253cb", key: "8d776d6f9c5c840ebe88d767dd731692" }, // TNT Series
+        // "VE5UU2VyaWVz": { keyId: "5c14d6aeb19bf113edf91a7b544253cb", key: "8d776d6f9c5c840ebe88d767dd731692" }, // TNT Series
+        "VE5UU2VyaWVz": { keyId: "613a3dc25b1d3ed4186e2a399ac7f081", key: "7b5cf1cf7aeda446359bbcd23b5771b6" }, // TNT Series
         "VHZfQ2hpbGU=": { keyId: "c5d0d76e24844235988f9265619e5fec", key: "446b71a6deb806c6f129e25de999d07c" }, //Tv_Chile
         "VGV2ZV9DaXVkYWQ=": { keyId: "9b536cd1716647ee94c45fa4836d29d6", key: "d691c88a95440666742d1d8183182347" }, //Teve_Ciudad
         "VFY1X01vbmRl": { keyId: "62034ff5988b4787b17cdf6f751a3142", key: "b3938f0af28b4c0c082b0d4210e389a0" }, //TV5_Monde
@@ -366,7 +387,8 @@ function getChannelKeys(getURL) {
         "SFRW": { keyId: "daecef5fe32f4ce083c6a0c692755d6a", key: "d4227f24389a9ba77293214b93eb0d7d" }, // HTV
         "SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=": { keyId: "5299f96f873aa0f0e47edc4e15784717", key: "9d53176b0969492f2d93f1867be1dce1" }, // IP Noticias
         "UlBDX0M0": { keyId: "a8093cdcb2d504bd38f16764bd21b6e5", key: "bfcf3b033b5f0b5ae020751a6746326f" }, // el trece py
-        "QWR1bHRfU3dpbQ==": { keyId: "9be1432e1e594c8d0648a44d3d9f0c46", key: "8e6c785b14d973c504074b1920f11b15" }, // AS
+        // "QWR1bHRfU3dpbQ==": { keyId: "9be1432e1e594c8d0648a44d3d9f0c46", key: "8e6c785b14d973c504074b1920f11b15" }, // AS
+        "QWR1bHRfU3dpbQ==": { keyId: "4e63e6ecde4f9cd9e68021b4c9af2d21", key: "438e6d40e9952362eef1c690c5f8455a" }, // AS
         "Q2FuYWxfZGVfbGFfY2l1ZGFk": { keyId: "5ee7842b3cf24d1dba088365fa5d0543", key: "69cec006409823c06fbf2866a231b4f7" }, // El Canal de la Ciudad
     };
 
@@ -395,21 +417,11 @@ function getParameterByName(name) {
 
 
 
-// async function getURLwithToken(channelToLoad) {
-    // ===== TOKEN POR CANAL (auto) =====
-    var chDelToken = channelToLoad || channelList[0];
-    if (chDelToken) {
-        var nombreToken = atob(chDelToken.getURL);
-        var entidadToken = "c" + (chDelToken.number || 3) + "eds";
-        var claveToken = "cvatt_token_" + entidadToken + "_" + nombreToken;
-        var tokenExistente = sessionStorage.getItem(claveToken);
-        if (tokenExistente) { return tokenExistente; }
-    }
+// async function getURLwithToken() {
 //     let token = sessionStorage.getItem('token')
 //     if (!token) {
 //         // const url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc/La_Nacion.m3u8';
-//         var url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc_C/La_Nacion.m3u8';
-        if (chDelToken) { url = "https://chromecast.cvattv.com.ar/live/" + entidadToken + "/" + nombreToken + "/SA_Live_dash_enc_C/" + nombreToken + ".m3u8"; }
+//         const url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc_C/La_Nacion.m3u8';
 //         let response = await fetch(url, { signal: AbortSignal.timeout(5000) });
 //         if (response.redirected) {
 //             const regex = /(https:\/\/.+?)(?=\/live)/;
@@ -424,16 +436,7 @@ function getParameterByName(name) {
 // }
 
 
-// async function getURLwithToken(channelToLoad) {
-    // ===== TOKEN POR CANAL (auto) =====
-    var chDelToken = channelToLoad || channelList[0];
-    if (chDelToken) {
-        var nombreToken = atob(chDelToken.getURL);
-        var entidadToken = "c" + (chDelToken.number || 3) + "eds";
-        var claveToken = "cvatt_token_" + entidadToken + "_" + nombreToken;
-        var tokenExistente = sessionStorage.getItem(claveToken);
-        if (tokenExistente) { return tokenExistente; }
-    }
+// async function getURLwithToken() {
 //     const TEST_MPD = 'https://cdn.cvattv.com.ar/live/c7eds/Fox_Sports_Premiun_HD/SA_Live_dash_cenc/Fox_Sports_Premiun_HD.mpd';
 //     const TOKEN_REGEX = /(https:\/\/.+?)(?=\/live)/;
 
@@ -457,16 +460,7 @@ function getParameterByName(name) {
 // }
 
 
-async function getURLwithToken(channelToLoad) {
-    // ===== TOKEN POR CANAL (auto) =====
-    var chDelToken = channelToLoad || channelList[0];
-    if (chDelToken) {
-        var nombreToken = atob(chDelToken.getURL);
-        var entidadToken = "c" + (chDelToken.number || 3) + "eds";
-        var claveToken = "cvatt_token_" + entidadToken + "_" + nombreToken;
-        var tokenExistente = sessionStorage.getItem(claveToken);
-        if (tokenExistente) { return tokenExistente; }
-    }
+async function getURLwithToken() {
     // Método principal: chromecast m3u8 redirect
     let token = sessionStorage.getItem('token');
     if (token) return token;
@@ -475,15 +469,14 @@ async function getURLwithToken(channelToLoad) {
 
     // Método 1: chromecast m3u8
     try {
-        var url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc_C/La_Nacion.m3u8';
-        if (chDelToken) { url = "https://chromecast.cvattv.com.ar/live/" + entidadToken + "/" + nombreToken + "/SA_Live_dash_enc_C/" + nombreToken + ".m3u8"; }
+        const url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc_C/La_Nacion.m3u8';
         // const url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/sa_dash_full_e_7CF9BB041AD89713AD8CF4CF/La_Nacion.m3u8';
         const response = await fetch(url, { signal: AbortSignal.timeout(5000) });
         if (response.redirected) {
             const match = response.url.match(TOKEN_REGEX);
             if (match) {
                 token = match[0];
-                if (chDelToken) { sessionStorage.setItem(claveToken, token); } else { sessionStorage.setItem('token', token); }
+                sessionStorage.setItem('token', token);
                 console.info('[token] Método 1 OK:', token);
                 return token;
             }
@@ -494,8 +487,7 @@ async function getURLwithToken(channelToLoad) {
 
     // Método 2: MPD directo — sin chequear response.redirected
     try {
-        var TEST_MPD = 'https://cdn.cvattv.com.ar/live/c7eds/Fox_Sports_Premiun_HD/SA_Live_dash_cenc/Fox_Sports_Premiun_HD.mpd';
-        if (chDelToken) { TEST_MPD = "https://cdn.cvattv.com.ar/live/" + entidadToken + "/" + nombreToken + "/SA_Live_dash_cenc/" + nombreToken + ".mpd"; }
+        const TEST_MPD = 'https://cdn.cvattv.com.ar/live/c7eds/Fox_Sports_Premiun_HD/SA_Live_dash_cenc/Fox_Sports_Premiun_HD.mpd';
         const response = await fetch(TEST_MPD, { signal: AbortSignal.timeout(5000) });
         
         // Loguear para debuggear
@@ -506,7 +498,7 @@ async function getURLwithToken(channelToLoad) {
         if (match && !match[0].includes('cdn.cvattv.com.ar')) {
             // Solo es válido si la URL final NO es la misma de origen (significa que hubo redirect)
             token = match[0];
-            if (chDelToken) { sessionStorage.setItem(claveToken, token); } else { sessionStorage.setItem('token', token); }
+            sessionStorage.setItem('token', token);
             console.info('[token] Método 2 OK:', token);
             return token;
         }
@@ -533,7 +525,7 @@ async function getValidMpd(channelInfo) {
     // while (mt2.length > 0) {
     while (getMPDTries < 5) {
         getMPDTries++
-        let urlWithToken = await getURLwithToken(channelToLoad)
+        let urlWithToken = await getURLwithToken()
         // const [baseUrl, token] = urlWithToken.split(/(?<=\.com\.ar\/)/);
         // let url = `https://flow-cdn-gcp.app.flow.com.ar/${token}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
         let url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;

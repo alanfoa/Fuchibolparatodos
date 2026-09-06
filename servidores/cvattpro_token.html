@@ -3,11 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-<!-- This site is hosted on Netlify. Anyone can build and deploy a site
-     like this one for free: https://netlify.new/?utm_campaign=ai-legible&utm_source=comment&utm_medium=referral&utm_id=2090c72a-c4bb-49b6-9c33-3c301ced564a
-     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
-<meta name="hosting-provider" content="Netlify">
-<meta name="netlify-deploy" content="https://netlify.new/?utm_campaign=ai-legible&amp;utm_source=meta&amp;utm_medium=referral&amp;utm_id=2090c72a-c4bb-49b6-9c33-3c301ced564a">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="noindex, nofollow, noarchive" name="robots" />
     <meta name="referrer" content="no-referrer" />
@@ -228,7 +223,7 @@
                 class="install-button" target="_blank">
                 Instalar Extensión
             </a>
-            <button class="retry-button" onclick="reiniciarReproduccion()">
+            <button class="retry-button" onclick="tryToPlay()">
                 Reintentar
             </button>
         </div>
@@ -244,7 +239,7 @@
             <div class="message-text" id="error-text">
                 Ha ocurrido un error al configurar el reproductor.
             </div>
-            <button class="retry-button" onclick="reiniciarReproduccion()">
+            <button class="retry-button" onclick="tryToPlay()">
                 Reintentar
             </button>
         </div>
@@ -263,7 +258,6 @@
         let retryAttempts = 0;
         let iframeAdded = false;
         const MAX_RETRIES = 3;
-        const MAX_PAGE_RELOADS = 3;
 
         // Función para mostrar/ocultar elementos
         function showElement(id) {
@@ -359,18 +353,10 @@
 
                 // 👉 Espera 1 segundo cuando cargue el iframe y reinicia la página
                 iframe.onload = () => {
-                    var reinicios = (parseInt(sessionStorage.getItem("cvattpro_token_reinicios") || "0", 10)) + 1;
-                    sessionStorage.setItem("cvattpro_token_reinicios", String(reinicios));
-                    console.log("Iframe cargado, reinicio " + reinicios + "/" + MAX_PAGE_RELOADS + "..." );
-                    if (reinicios >= MAX_PAGE_RELOADS) {
-                        clearIframe();
-                        hideAllMessages();
-                        showError("No se pudo reproducir el canal. Probá con otra opción de servidor o revisá la conexión.");
-                    } else {
-                        setTimeout(() => {
-                            location.reload();
-                        }, 500);
-                    }
+                    console.log("Iframe cargado, reiniciando en 1 segundo...");
+                    setTimeout(() => {
+                        location.reload();
+                    }, 500);
                 };
 
                 // iframe.onload = () => {
@@ -473,7 +459,6 @@
                 });
 
                 jwplayer("player").on("play", function () {
-                    sessionStorage.removeItem("cvattpro_token_reinicios");
                     var player = jwplayer("player");
                     var audioTracks = player.getAudioTracks();
 
@@ -516,12 +501,6 @@
                     }
                 });
             }
-        }
-
-        // Limpia el contador de recargas y reintenta manualmente
-        function reiniciarReproduccion() {
-            sessionStorage.removeItem("cvattpro_token_reinicios");
-            tryToPlay();
         }
 
         // Función para intentar reproducir y manejar errores

@@ -284,8 +284,8 @@ function syncSections(localContent, remoteContent, warnings, fileLabel) {
         const afterMarker = result.slice(endIdx);
         const currentSection = result.slice(startIdx + section.start.length, endIdx);
 
-        const currentHash = sha256(Buffer.from(currentSection));
-        const remoteHash = sha256(Buffer.from(remoteSection));
+        const currentHash = sha256(Buffer.from(currentSection.trim()));
+        const remoteHash = sha256(Buffer.from(remoteSection.trim()));
         console.log(`  Sección ${section.name}: hash local=${currentHash.slice(0, 8)} remote=${remoteHash.slice(0, 8)} (${section.countLabel(remoteContent)})`);
 
         if (currentHash !== remoteHash) {
@@ -399,302 +399,25 @@ const CUBIERTOS_POR_TRANSFORMADOR = new Set([
 // Servidores que el sitio usa en runtime pero que NO aparecen como literal
 // "servidorCanalesOnline + 'x.html'" en el script-ch.js remoto (porque el actor
 // final solo existe en base64 dentro del mapeo). Hay que descargarlos siempre.
+// REESTRUCTURACION: se agregaron canalesparatodos_ext.html y canalesparatodos.html
+// (opciones 1/2 de TNT) para que queden byte-idénticos al remoto aunque la
+// original ya no los liste en script-ch.js.
 const SERVERS_ADICIONALES = [
     'cvattpro_token.html',
+    'canalesparatodos_ext.html',
+    'canalesparatodos.html',
     'cHV0byBlbCBxdWUgcm9iYQ.js'
 ];
 
 // Parches locales que se aplican DESPUÉS de descargar un archivo del remoto.
-// Permiten corregir bugs de UX en archivos que el remoto sirve idénticos, sin
-// perder el fix en el próximo sync (el remoto sigue siendo la base y el parche
-// se reaplica en cada descarga). Cada parche recibe el contenido (string) y
-// devuelve el contenido modificado. DEBE ser idempotente: si el marcador ya
-// está aplicado, devolver el contenido sin tocar.
-const PATCHES = {
-    // ============ asd.js: token por canal ============
-    // La original obtiene el token probando Fox/La_Nacion y el CDN devuelve un
-    // JWT cuyo "path" queda ligado a ESA ruta. Al reusarlo para otro canal
-    // (ej TNT) el CDN puede responder 403 en segmentos. Este parche mintea el
-    // token contra la URL del PROPIO canal (cdn.cvattv.com.ar redirige y emite
-    // el token con el path correcto) y cachea por canal en sessionStorage.
-    'asd.js': (content) => {
-        const marker = '// ===== TOKEN POR CANAL (auto) =====';
-        if (content.includes(marker)) return content;
-
-        const usaCRLF = content.includes('\r\n');
-        let c = usaCRLF ? content.replace(/\r\n/g, '\n') : content;
-
-        c = ifReplace(
-            c,
-            'async function getURLwithToken() {',
-            'async function getURLwithToken(channelToLoad) {\n' +
-            '    // ===== TOKEN POR CANAL (auto) =====\n' +
-            '    var chDelToken = channelToLoad || channelList[0];\n' +
-            '    if (chDelToken) {\n' +
-            '        var nombreToken = atob(chDelToken.getURL);\n' +
-            '        var entidadToken = "c" + (chDelToken.number || 3) + "eds";\n' +
-            '        var claveToken = "cvatt_token_" + entidadToken + "_" + nombreToken;\n' +
-            '        var tokenExistente = sessionStorage.getItem(claveToken);\n' +
-            '        if (tokenExistente) { return tokenExistente; }\n' +
-            '    }'
-        );
-
-        // Método 1: chromecast m3u8 del propio canal (si aplica)
-        c = ifReplace(
-            c,
-            "        const url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc_C/La_Nacion.m3u8';",
-            "        var url = 'https://chromecast.cvattv.com.ar/live/c7eds/La_Nacion/SA_Live_dash_enc_C/La_Nacion.m3u8';\n" +
-            '        if (chDelToken) { url = "https://chromecast.cvattv.com.ar/live/" + entidadToken + "/" + nombreToken + "/SA_Live_dash_enc_C/" + nombreToken + ".m3u8"; }'
-        );
-        c = ifReplace(
-            c,
-            "                token = match[0];\n" +
-            "                sessionStorage.setItem('token', token);\n" +
-            "                console.info('[token] Método 1 OK:', token);",
-            "                token = match[0];\n" +
-            '                if (chDelToken) { sessionStorage.setItem(claveToken, token); } else { sessionStorage.setItem(\'token\', token); }\n' +
-            "                console.info('[token] Método 1 OK:', token);"
-        );
-
-        // Método 2: cdn redirect del propio canal (método que la web usa hoy)
-        c = ifReplace(
-            c,
-            "        const TEST_MPD = 'https://cdn.cvattv.com.ar/live/c7eds/Fox_Sports_Premiun_HD/SA_Live_dash_cenc/Fox_Sports_Premiun_HD.mpd';",
-            "        var TEST_MPD = 'https://cdn.cvattv.com.ar/live/c7eds/Fox_Sports_Premiun_HD/SA_Live_dash_cenc/Fox_Sports_Premiun_HD.mpd';\n" +
-            '        if (chDelToken) { TEST_MPD = "https://cdn.cvattv.com.ar/live/" + entidadToken + "/" + nombreToken + "/SA_Live_dash_cenc/" + nombreToken + ".mpd"; }'
-        );
-        c = ifReplace(
-            c,
-            "            token = match[0];\n" +
-            "            sessionStorage.setItem('token', token);\n" +
-            "            console.info('[token] Método 2 OK:', token);",
-            "            token = match[0];\n" +
-            '            if (chDelToken) { sessionStorage.setItem(claveToken, token); } else { sessionStorage.setItem(\'token\', token); }\n' +
-            "            console.info('[token] Método 2 OK:', token);"
-        );
-
-        // getValidMpd: pedir el token del canal objetivo
-        c = ifReplace(
-            c,
-            '        let urlWithToken = await getURLwithToken()',
-            '        let urlWithToken = await getURLwithToken(channelToLoad)'
-        );
-
-        return usaCRLF ? c.replace(/\n/g, '\r\n') : c;
-    },
-
-    // ============ cvattpro_token.html: frenar loop (v2) ============
-    // Opción 1 actual. El loop: falla -> iframe del respaldo -> onload ->
-    // location.reload() -> vuelve a fallar. Guard con contador MÁX + reset solo
-    // en 'play' (reproducción real) y en el botón Reintentar (manual).
-    'cvattpro_token.html': (content) => {
-        const usaCRLF = content.includes('\r\n');
-        let c = usaCRLF ? content.replace(/\r\n/g, '\n') : content;
-
-        if (!c.includes('const MAX_PAGE_RELOADS = 3;')) {
-            c = ifReplace(
-                c,
-                'const MAX_RETRIES = 3;',
-                'const MAX_RETRIES = 3;\n        const MAX_PAGE_RELOADS = 3;'
-            );
-        }
-
-        c = ifReplace(
-            c,
-            'iframe.onload = () => {\n' +
-            '                    console.log("Iframe cargado, reiniciando en 1 segundo...");\n' +
-            '                    setTimeout(() => {\n' +
-            '                        location.reload();\n' +
-            '                    }, 500);\n' +
-            '                };',
-            'iframe.onload = () => {\n' +
-            '                    var reinicios = (parseInt(sessionStorage.getItem("cvattpro_token_reinicios") || "0", 10)) + 1;\n' +
-            '                    sessionStorage.setItem("cvattpro_token_reinicios", String(reinicios));\n' +
-            '                    console.log("Iframe cargado, reinicio " + reinicios + "/" + MAX_PAGE_RELOADS + "..." );\n' +
-            '                    if (reinicios >= MAX_PAGE_RELOADS) {\n' +
-            '                        clearIframe();\n' +
-            '                        hideAllMessages();\n' +
-            '                        showError("No se pudo reproducir el canal. Probá con otra opción de servidor o revisá la conexión.");\n' +
-            '                    } else {\n' +
-            '                        setTimeout(() => {\n' +
-            '                            location.reload();\n' +
-            '                        }, 500);\n' +
-            '                    }\n' +
-            '                };'
-        );
-
-        // Reset SOLO cuando arranca la reproducción real
-        c = ifReplace(
-            c,
-            'jwplayer("player").on("play", function () {\n' +
-            '                    var player = jwplayer("player");',
-            'jwplayer("player").on("play", function () {\n' +
-            '                    sessionStorage.removeItem("cvattpro_token_reinicios");\n' +
-            '                    var player = jwplayer("player");'
-        );
-
-        // Botones Reintentar (extension-message y error-message): limpian contador
-        if (!c.includes('onclick="reiniciarReproduccion()"')) {
-            c = replaceAll(c, 'onclick="tryToPlay()"', 'onclick="reiniciarReproduccion()"');
-        }
-        if (!c.includes('function reiniciarReproduccion()')) {
-            c = ifReplace(
-                c,
-                '        // Función para intentar reproducir y manejar errores',
-                '        // Limpia el contador de recargas y reintenta manualmente\n' +
-                '        function reiniciarReproduccion() {\n' +
-                '            sessionStorage.removeItem("cvattpro_token_reinicios");\n' +
-                '            tryToPlay();\n' +
-                '        }\n\n' +
-                '        // Función para intentar reproducir y manejar errores'
-            );
-        }
-
-        return usaCRLF ? c.replace(/\n/g, '\r\n') : c;
-    },
-
-    // ============ canalesparatodos_ext.html: frenar loop (v2) ============
-    // Opción 2 actual (extensión). Guard sobre el iframe de arranque que recarga
-    // la página. Reset cuando se crea el iframe real del playback y con el botón
-    // Reintentar (alerta-extension).
-    'canalesparatodos_ext.html': (content) => {
-        const usaCRLF = content.includes('\r\n');
-        let c = usaCRLF ? content.replace(/\r\n/g, '\n') : content;
-
-        if (!c.includes('const MAX_PAGE_RELOADS = 3;')) {
-            c = ifReplace(
-                c,
-                'let iframeAdded = false;',
-                'let iframeAdded = false;\n        const MAX_PAGE_RELOADS = 3;'
-            );
-        }
-
-        c = ifReplace(
-            c,
-            'iframe.onload = () => {\n' +
-            '                    console.log("Iframe cargado, reiniciando en 1 segundo...");\n' +
-            '                    setTimeout(() => {\n' +
-            '                        location.reload();\n' +
-            '                    }, 500);\n' +
-            '                };',
-            'iframe.onload = () => {\n' +
-            '                    var reinicios = (parseInt(sessionStorage.getItem("canalesparatodos_ext_reinicios") || "0", 10)) + 1;\n' +
-            '                    sessionStorage.setItem("canalesparatodos_ext_reinicios", String(reinicios));\n' +
-            '                    console.log("Iframe cargado, reinicio " + reinicios + "/" + MAX_PAGE_RELOADS + "..." );\n' +
-            '                    if (reinicios >= MAX_PAGE_RELOADS) {\n' +
-            '                        var playerDiv = document.getElementById(\'player\');\n' +
-            '                        if (playerDiv) playerDiv.innerHTML = \'\';\n' +
-            '                        iframeAdded = false;\n' +
-            '                        hideAllMessages();\n' +
-            '                        showElement(\'alerta-extension\');\n' +
-            '                    } else {\n' +
-            '                        setTimeout(() => {\n' +
-            '                            location.reload();\n' +
-            '                        }, 500);\n' +
-            '                    }\n' +
-            '                };'
-        );
-
-        // Reset cuando se crea el iframe real del playback (éxito)
-        c = ifReplace(
-            c,
-            '                        console.log("Extensión detectada, cargando canal...");',
-            '                        console.log("Extensión detectada, cargando canal...");\n' +
-            '                        sessionStorage.removeItem("canalesparatodos_ext_reinicios");'
-        );
-
-        // Botón Reintentar (alerta-extension): limpia contador y reintenta
-        if (!c.includes('onclick="reiniciarBucle()"')) {
-            c = replaceAll(c, 'onclick="initializePlayer()"', 'onclick="reiniciarBucle()"');
-        }
-        if (!c.includes('function reiniciarBucle()')) {
-            c = ifReplace(
-                c,
-                '        // Función principal de inicialización',
-                '        // Limpia el contador de recargas y reintenta (botón Reintentar)\n' +
-                '        function reiniciarBucle() {\n' +
-                '            sessionStorage.removeItem("canalesparatodos_ext_reinicios");\n' +
-                '            initializePlayer();\n' +
-                '        }\n\n' +
-                '        // Función principal de inicialización'
-            );
-        }
-
-        return usaCRLF ? c.replace(/\n/g, '\r\n') : c;
-    },
-
-    // ============ canalesparatodos.html: frenar loop (v2) ============
-    // Legacy (ya no la usa la grilla, but queda para bookmarks). Mantiene el
-    // guard de v1 y corrige el bug: el reset en 'ready' borraba el contador
-    // ANTES del error -> loop infinito. Aplica el reset solo en 'play' y en el
-    // botón Reintentar.
-    'canalesparatodos.html': (content) => {
-        const usaCRLF = content.includes('\r\n');
-        let c = usaCRLF ? content.replace(/\r\n/g, '\n') : content;
-
-        // 1) Contador global (idempotente)
-        if (!c.includes('const MAX_PAGE_RELOADS = 3;')) {
-            c = ifReplace(
-                c,
-                'let iframeAdded = false;',
-                'let iframeAdded = false;\n' +
-                '        const MAX_PAGE_RELOADS = 3;'
-            );
-        }
-
-        // 2) iframe.onload con contador
-        c = ifReplace(
-            c,
-            'iframe.onload = () => {\n' +
-            '                    console.log("Iframe cargado, reiniciando en 1 segundo...");\n' +
-            '                    setTimeout(() => {\n' +
-            '                        location.reload();\n' +
-            '                    }, 500);\n' +
-            '                };',
-            'iframe.onload = () => {\n' +
-            '                    var reinicios = (parseInt(sessionStorage.getItem("canalesparatodos_reinicios") || "0", 10)) + 1;\n' +
-            '                    sessionStorage.setItem("canalesparatodos_reinicios", String(reinicios));\n' +
-            '                    console.log("Iframe cargado, reinicio " + reinicios + "/" + MAX_PAGE_RELOADS + "..." );\n' +
-            '                    if (reinicios >= MAX_PAGE_RELOADS) {\n' +
-            '                        clearIframe();\n' +
-            '                        hideAllMessages();\n' +
-            '                        showError("No se pudo reproducir el canal. Probá con otra opción de servidor o revisá la conexión.");\n' +
-            '                    } else {\n' +
-            '                        setTimeout(() => {\n' +
-            '                            location.reload();\n' +
-            '                        }, 500);\n' +
-            '                    }\n' +
-            '                };'
-        );
-
-        // 3) Quitar el reset que quedó en 'ready' (bug v1: reseteaba antes del error)
-        c = replaceAll(
-            c,
-            '                    showElement(\'player\');\n' +
-            '                    sessionStorage.removeItem("canalesparatodos_reinicios");\n' +
-            '                });',
-            '                    showElement(\'player\');\n' +
-            '                });'
-        );
-
-        // 4) Reset SOLO en 'play' (reproducción real)
-        c = ifReplace(
-            c,
-            'jwplayer("player").on("play", function () {\n' +
-            '                    var player = jwplayer("player");',
-            'jwplayer("player").on("play", function () {\n' +
-            '                    sessionStorage.removeItem("canalesparatodos_reinicios");\n' +
-            '                    var player = jwplayer("player");'
-        );
-
-        // 5) Botones Reintentar: limpian contador y reintentan
-        if (!c.includes('canalesparatodos_reinicios\');tryToPlay()')) {
-            c = replaceAll(c, 'onclick="tryToPlay()"', 'onclick="sessionStorage.removeItem(\'canalesparatodos_reinicios\');tryToPlay()"');
-        }
-
-        return usaCRLF ? c.replace(/\n/g, '\r\n') : c;
-    }
-};
+// REESTRUCTURACION (2026-09-05): se ELIMINARON los parches de comportamiento —
+// guard v2 de reinicios (cvattpro_token/canalesparatodos_ext/canalesparatodos) y
+// "token por canal" en asd.js — para que los archivos de reproducción queden
+// byte-idénticos a la original (canalesonline.netlify.app). Lo gratuito (modal,
+// donaciones, analytics) vive en js/script-config.js y js/script-canalespro.js, que
+// NO se sincronizan. Si en el futuro hacen falta parches, se agregan acá y DEBEN
+// ser idempotentes.
+const PATCHES = {};
 
 // Descarga un archivo remoto y lo actualiza localmente si cambió
 async function syncFile(remotePath, localPath, label, dryRun) {
@@ -762,6 +485,7 @@ async function main() {
     const repoRoot = path.resolve(__dirname, '..');
     const dryRun = process.argv.includes('--dry-run');
     let hasChanges = false;
+    let asdRemoteDisponible = true;
     let warnings = [];
     let remoteScriptChContent = null;
 
@@ -784,6 +508,7 @@ async function main() {
         const localExiste = fs.existsSync(localPath);
 
         if (descargaErr) {
+            if (file.remote === '/servidores/asd.js') asdRemoteDisponible = false;
             if (localExiste) {
                 console.log(`  No disponible en remoto (${descargaErr}). Se conserva el archivo local.`);
                 continue;
@@ -900,6 +625,35 @@ async function main() {
         console.log(`\n[servidores HTML]`);
         console.log(`  ERROR: No hay contenido de script-ch.js para extraer servidores`);
         warnings.push(`servidores HTML: no se pudo extraer lista (script-ch.js no disponible)`);
+    }
+
+    // --- PASO 2.5: Normalizar asd.js (remoto 404 -> copia de cHV0by) ---
+    // REESTRUCTURACION: la original ya no sirve /servidores/asd.js (404) y sus
+    // páginas usan cHV0byBlbCBxdWUgcm9iYQ.js. Para que cualquier referencia vieja
+    // a asd.js se comporte igual que la original, asd.js local pasa a ser una
+    // copia byte-a-byte de cHV0byBlbCBxdWUgcm9iYQ.js (idempotente).
+    if (!asdRemoteDisponible) {
+        const asdPath = path.join(repoRoot, 'servidores', 'asd.js');
+        const cHv0byPath = path.join(repoRoot, 'servidores', 'cHV0byBlbCBxdWUgcm9iYQ.js');
+        if (fs.existsSync(asdPath) && fs.existsSync(cHv0byPath)) {
+            const src = fs.readFileSync(cHv0byPath);
+            const cur = fs.readFileSync(asdPath);
+            console.log('\n[asd.js: normalización]');
+            if (!src.equals(cur)) {
+                console.log('  asd.js != cHV0byBlbCBxdWUgcm9iYQ.js -> se reemplaza (copia idéntica)');
+                if (dryRun) {
+                    console.log('  >>> CAMBIO (dry-run, no se escribe)');
+                } else {
+                    fs.copyFileSync(asdPath, asdPath + '.backup');
+                    console.log('  Backup creado: ' + asdPath + '.backup');
+                    fs.writeFileSync(asdPath, src);
+                    console.log('  >>> asd.js ACTUALIZADO (copia de cHV0byBlbCBxdWUgcm9iYQ.js)');
+                }
+                hasChanges = true;
+            } else {
+                console.log('  Sin cambios (asd.js ya es copia de cHV0byBlbCBxdWUgcm9iYQ.js)');
+            }
+        }
     }
 
     // --- PASO 3: Sincronizar archivos auxiliares (CSS, JS) ---
