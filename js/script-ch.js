@@ -148,9 +148,9 @@ MisCanales.set(
 
 
             // Servidores de Cordoba
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOF9DQkE",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOF9DQkE",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOF9DQkE",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOF9DQkE",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOF9DQkE",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOF9DQkE",
             // servidorCanalesOnline + "telefe.html?channel=telefe_cordoba",
             // servidorCanalesOnline + "fetch.html?stream=Telefe_Cordoba",
 
@@ -819,11 +819,11 @@ MisCanales.set(
         enlaces: [
             servidorCanalesOnline + "cvatt_pro.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
             servidorCanalesOnline + "cvatt.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
             // "server/cvatt.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
             // "https://sssshhh.xyz/cvatt.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
             // "https://a3.115tv.site/cvatt.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
             // "https://a3.115tv.site/cvatt2_ext.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
             servidorCanalesOnline + "aneviapro.html?id=IP_Noticias",
             servidorCanalesOnline + "edge.html?get=Ar12",
             servidorCanalesOnline + "sensa.html?id=Argentina12",
@@ -1401,7 +1401,7 @@ MisCanales.set(
             // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWwxMF9DQkFfSEQ=",
             // servidorCanalesOnline + "cvatt.html?get=Q2FuYWwxMF9DQkFfSEQ=",
             // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWwxMF9DQkFfSEQ=",
-            servidorCanalesOnline + "m3u8.html?stream=Canal_10_Cordoba",
+            // servidorCanalesOnline + "m3u8.html?stream=Canal_10_Cordoba",
         ]
     }
 );
@@ -7738,9 +7738,9 @@ MisCanales.set(
         pais: "Estados Unidos",
         guide: "Nickelodeon HD",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=Tmlja2Vsb2Rlb24=",
-            // servidorCanalesOnline + "cvatt.html?get=Tmlja2Vsb2Rlb24=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Tmlja2Vsb2Rlb24=",
+            servidorCanalesOnline + "cvatt_pro.html?get=Tmlja2Vsb2Rlb24=",
+            servidorCanalesOnline + "cvatt.html?get=Tmlja2Vsb2Rlb24=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Tmlja2Vsb2Rlb24=",
             // "server/cvatt.html?get=Tmlja2Vsb2Rlb24=",
             // "https://sssshhh.xyz/cvatt.html?get=Tmlja2Vsb2Rlb24=",
             // "https://a3.115tv.site/cvatt.html?get=Tmlja2Vsb2Rlb24=",
