@@ -679,13 +679,13 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTJfQ0JB",
-            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTJfQ0JB",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTJfQ0JB",
+            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTJfQ0JB",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTJfQ0JB",
             // "server/cvatt.html?get=Q2FuYWxfMTJfQ0JB",
             // "https://sssshhh.xyz/cvatt.html?get=Q2FuYWxfMTJfQ0JB",
             // "https://a3.115tv.site/cvatt.html?get=Q2FuYWxfMTJfQ0JB",
             // "https://a3.115tv.site/cvatt2_ext.html?get=Q2FuYWxfMTJfQ0JB",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTJfQ0JB",
             servidorCanalesOnline + "sensa.html?id=Canal12cba",
             // "server/cvatt2_ext.html?get=Q2FuYWxfMTJfQ0JB",
             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=Q2FuYWxfMTJfQ0JB",
@@ -704,9 +704,9 @@ MisCanales.set(
         pais: "Argentina",
         guide: "CANAL A",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfYQ==",
-            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfYQ==",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfYQ==",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfYQ==",
+            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfYQ==",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfYQ==",
             servidorCanalesOnline + "edge.html?get=Canal_A",
             servidorCanalesOnline + "sensa.html?id=CanalA",
             servidorCanalesOnline + "gigared.html?id=CanalA",
@@ -722,13 +722,13 @@ MisCanales.set(
         pais: "Argentina",
         guide: "Net TV",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=TmV0X1RW",
-            servidorCanalesOnline + "cvatt.html?get=TmV0X1RW",
+            // servidorCanalesOnline + "cvatt_pro.html?get=TmV0X1RW",
+            // servidorCanalesOnline + "cvatt.html?get=TmV0X1RW",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=TmV0X1RW",
             // "server/cvatt.html?get=TmV0X1RW",
             // "https://sssshhh.xyz/cvatt.html?get=TmV0X1RW",
             // "https://a3.115tv.site/cvatt.html?get=TmV0X1RW",
             // "https://a3.115tv.site/cvatt2_ext.html?get=TmV0X1RW",
-            servidorCanalesOnline + "cvatt2_ext.html?get=TmV0X1RW",
             servidorCanalesOnline + "edge.html?get=NETTV",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=NET_TV",
             servidorCanalesOnline + "tvmia.html?stream=an_NET_TV",
@@ -752,13 +752,13 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=QnJhdm9UVg==",
-            servidorCanalesOnline + "cvatt.html?get=QnJhdm9UVg==",
+            // servidorCanalesOnline + "cvatt_pro.html?get=QnJhdm9UVg==",
+            // servidorCanalesOnline + "cvatt.html?get=QnJhdm9UVg==",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=QnJhdm9UVg==",
             // "server/cvatt.html?get=QnJhdm9UVg==",
             // "https://sssshhh.xyz/cvatt.html?get=QnJhdm9UVg==",
             // "https://a3.115tv.site/cvatt.html?get=QnJhdm9UVg==",
             // "https://a3.115tv.site/cvatt2_ext.html?get=QnJhdm9UVg==",
-            servidorCanalesOnline + "cvatt2_ext.html?get=QnJhdm9UVg==",
             servidorCanalesOnline + "tvmia.html?stream=an_BRAVO_TV",
             servidorCanalesOnline + "sensa.html?id=BravoTV",
             servidorCanalesOnline + "m3u8.html?stream=BRAVOTV_CABA",
@@ -779,13 +779,13 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=VGVsZW1heA",
-            servidorCanalesOnline + "cvatt.html?get=VGVsZW1heA",
+            // servidorCanalesOnline + "cvatt_pro.html?get=VGVsZW1heA",
+            // servidorCanalesOnline + "cvatt.html?get=VGVsZW1heA",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZW1heA",
             // "server/cvatt.html?get=VGVsZW1heA",
             // "https://sssshhh.xyz/cvatt.html?get=VGVsZW1heA",
             // "https://a3.115tv.site/cvatt.html?get=VGVsZW1heA",
             // "https://a3.115tv.site/cvatt2_ext.html?get=VGVsZW1heA",
-            servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZW1heA",
             servidorCanalesOnline + "m3u8.html?stream=Telemax_CABA",
             // "server/cvatt2_ext.html?get=VGVsZW1heA",
             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=VGVsZW1heA",
@@ -817,9 +817,9 @@ MisCanales.set(
         pais: "Argentina",
         guide: "IP HD",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
-            servidorCanalesOnline + "cvatt.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
+            // servidorCanalesOnline + "cvatt.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
             // "server/cvatt.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
             // "https://sssshhh.xyz/cvatt.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
             // "https://a3.115tv.site/cvatt.html?get=SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=",
@@ -845,13 +845,13 @@ MisCanales.set(
         pais: "Venezuela",
         guide: "Telesur",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=VGVsZXN1cg==",
-            servidorCanalesOnline + "cvatt.html?get=VGVsZXN1cg==",
+            // servidorCanalesOnline + "cvatt_pro.html?get=VGVsZXN1cg==",
+            // servidorCanalesOnline + "cvatt.html?get=VGVsZXN1cg==",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZXN1cg==",
             // "server/cvatt.html?get=VGVsZXN1cg==",
             // "https://sssshhh.xyz/cvatt.html?get=VGVsZXN1cg==",
             // "https://a3.115tv.site/cvatt.html?get=VGVsZXN1cg==",
             // "https://a3.115tv.site/cvatt2_ext.html?get=VGVsZXN1cg==",
-            servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZXN1cg==",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=Telesur",
             // "https://aux.canalesonline24.workers.dev/trimi.html?id=TELESUR",
             // servidorCanalesOnline + "m3u8.html?stream=TeleSur_Vene",
@@ -871,13 +871,13 @@ MisCanales.set(
     {
         pais: "Paraguay",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=R0VOX1RW",
-            servidorCanalesOnline + "cvatt.html?get=R0VOX1RW",
+            // servidorCanalesOnline + "cvatt_pro.html?get=R0VOX1RW",
+            // servidorCanalesOnline + "cvatt.html?get=R0VOX1RW",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=R0VOX1RW",
             // "server/cvatt.html?get=R0VOX1RW",
             // "https://sssshhh.xyz/cvatt.html?get=R0VOX1RW",
             // "https://a3.115tv.site/cvatt.html?get=R0VOX1RW",
             // "https://a3.115tv.site/cvatt2_ext.html?get=R0VOX1RW",
-            servidorCanalesOnline + "cvatt2_ext.html?get=R0VOX1RW",
             // "server/cvatt2_ext.html?get=R0VOX1RW",
             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=R0VOX1RW",
             // "https://flowflowflow1.dombhei.com/cvatt.html?get=R0VOX1RW",
@@ -918,9 +918,9 @@ MisCanales.set(
     {
         pais: "Paraguay",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=VW5pdmVyc28=",
-            servidorCanalesOnline + "cvatt.html?get=VW5pdmVyc28=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=VW5pdmVyc28=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=VW5pdmVyc28=",
+            // servidorCanalesOnline + "cvatt.html?get=VW5pdmVyc28=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=VW5pdmVyc28=",
         ]
     }
 );
@@ -942,9 +942,9 @@ MisCanales.set(
     {
         pais: "Paraná",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTFfUGFyYW5h",
-            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTFfUGFyYW5h",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTFfUGFyYW5h",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTFfUGFyYW5h",
+            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTFfUGFyYW5h",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTFfUGFyYW5h",
             // servidorCanalesOnline + "aneviapro.html?id=m3u8_eloncetv",
         ]
     }
@@ -955,9 +955,9 @@ MisCanales.set(
     {
         pais: "Paraná",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Q2FibGVfWV9EaWFyaW8=",
-            servidorCanalesOnline + "cvatt.html?get=Q2FibGVfWV9EaWFyaW8=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FibGVfWV9EaWFyaW8=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FibGVfWV9EaWFyaW8=",
+            // servidorCanalesOnline + "cvatt.html?get=Q2FibGVfWV9EaWFyaW8=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FibGVfWV9EaWFyaW8=",
         ]
     }
 );
@@ -967,9 +967,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfZGVfbGFfY2l1ZGFk",
-            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfZGVfbGFfY2l1ZGFk",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfZGVfbGFfY2l1ZGFk",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfZGVfbGFfY2l1ZGFk",
+            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfZGVfbGFfY2l1ZGFk",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfZGVfbGFfY2l1ZGFk",
             // "server/cvatt.html?get=Q2FuYWxfZGVfbGFfY2l1ZGFk",
             // "https://sssshhh.xyz/cvatt.html?get=Q2FuYWxfZGVfbGFfY2l1ZGFk",
             // "https://a3.115tv.site/cvatt.html?get=Q2FuYWxfZGVfbGFfY2l1ZGFk",
@@ -1018,17 +1018,17 @@ MisCanales.set(
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfUmFmYWVsYQ==",
             // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfUmFmYWVsYQ==",
             //Tucuman
-            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfVHVjdW1hbg==",
-            servidorCanalesOnline + "cvatt.html?get=U29tb3NfVHVjdW1hbg==",
-            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfVHVjdW1hbg==",
+            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfVHVjdW1hbg==",
+            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfVHVjdW1hbg==",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfVHVjdW1hbg==",
             //Paraná Entre Rios
             // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfUGFyYW5h",
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfUGFyYW5h",
             // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfUGFyYW5h",
             //Bell Ville
-            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfQmVsbF9WaWxsZQ==",
-            servidorCanalesOnline + "cvatt.html?get=U29tb3NfQmVsbF9WaWxsZQ==",
-            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfQmVsbF9WaWxsZQ==",
+            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfQmVsbF9WaWxsZQ==",
+            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfQmVsbF9WaWxsZQ==",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfQmVsbF9WaWxsZQ==",
             //Del Valle
             // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfRWxfVmFsbGU=",
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfRWxfVmFsbGU=",
@@ -1050,21 +1050,21 @@ MisCanales.set(
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfU2FuX1BlZHJv",
             // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfU2FuX1BlZHJv",
             //Somos Azul
-            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfQXp1bA==",
-            servidorCanalesOnline + "cvatt.html?get=U29tb3NfQXp1bA==",
-            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfQXp1bA==",
+            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfQXp1bA==",
+            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfQXp1bA==",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfQXp1bA==",
             //Somos Norte
-            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfTm9ydGU=",
-            servidorCanalesOnline + "cvatt.html?get=U29tb3NfTm9ydGU=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfTm9ydGU=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfTm9ydGU=",
+            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfTm9ydGU=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfTm9ydGU=",
             //Somos Formosa
             // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfRm9ybW9zYQ==",
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfRm9ybW9zYQ==",
             // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfRm9ybW9zYQ==",
             //Somos Misiones
-            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfTWlzaW9uZXM=",
-            servidorCanalesOnline + "cvatt.html?get=U29tb3NfTWlzaW9uZXM=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfTWlzaW9uZXM=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfTWlzaW9uZXM=",
+            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfTWlzaW9uZXM=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfTWlzaW9uZXM=",
             //Villa Maria
             // servidorCanalesOnline + "m3u8.html?stream=Somos_Villamaria",
             //Gualeguaychu
@@ -1132,9 +1132,9 @@ MisCanales.set(
         pais: "Estados Unidos",
         guide: "EWTN",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=RVdUTg==",
-            servidorCanalesOnline + "cvatt.html?get=RVdUTg==",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RVdUTg==",
+            // servidorCanalesOnline + "cvatt_pro.html?get=RVdUTg==",
+            // servidorCanalesOnline + "cvatt.html?get=RVdUTg==",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=RVdUTg==",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=EWTN",
             servidorCanalesOnline + "sensa.html?id=EWTN",
             // servidorCanalesOnline + "sensa_ext.html?id=EWTN",
@@ -1259,9 +1259,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTBfTURR",
-            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTBfTURR",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTBfTURR",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTBfTURR",
+            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTBfTURR",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTBfTURR",
             "https://vmf.edge-apps.net/embed/live.php?streamname=canal10mdq-100044&autoplay=true",
             servidorCanalesOnline + "edge-apps.html?id=canal10mdq",
         ]
@@ -1292,9 +1292,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=RWNvVHZfVGFuZGls",
-            servidorCanalesOnline + "cvatt.html?get=RWNvVHZfVGFuZGls",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RWNvVHZfVGFuZGls",
+            // servidorCanalesOnline + "cvatt_pro.html?get=RWNvVHZfVGFuZGls",
+            // servidorCanalesOnline + "cvatt.html?get=RWNvVHZfVGFuZGls",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=RWNvVHZfVGFuZGls",
             // servidorCanalesOnline + "m3u8.html?stream=EcoTV_Tandil",
         ]
     }
@@ -1339,9 +1339,9 @@ MisCanales.set(
         pais: "Argentina",
         guide: "Orbe 21",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMjE=",
-            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMjE=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMjE=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMjE=",
+            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMjE=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMjE=",
             servidorCanalesOnline + "m3u8.html?stream=Orbe_21",
         ]
     }
@@ -1363,9 +1363,9 @@ MisCanales.set(
         pais: "Argentina",
         guide: "CONSTRUIR",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Q29uc3RydWlyX1RW",
-            servidorCanalesOnline + "cvatt.html?get=Q29uc3RydWlyX1RW",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Q29uc3RydWlyX1RW",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Q29uc3RydWlyX1RW",
+            // servidorCanalesOnline + "cvatt.html?get=Q29uc3RydWlyX1RW",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Q29uc3RydWlyX1RW",
             servidorCanalesOnline + "aneviapro.html?id=construiriptv",
             servidorCanalesOnline + "boldmss.html?get=CONSTRUIR_TV",
             // servidorCanalesOnline + "boldmss_ext.html?get=CONSTRUIR_TV",
@@ -1444,9 +1444,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=VGVsZW1lZGlh",
-            servidorCanalesOnline + "cvatt.html?get=VGVsZW1lZGlh",
-            servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZW1lZGlh",
+            // servidorCanalesOnline + "cvatt_pro.html?get=VGVsZW1lZGlh",
+            // servidorCanalesOnline + "cvatt.html?get=VGVsZW1lZGlh",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZW1lZGlh",
         ]
     }
 );
@@ -1492,9 +1492,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=VGVsZUp1bmlu",
-            servidorCanalesOnline + "cvatt.html?get=VGVsZUp1bmlu",
-            servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZUp1bmlu",
+            // servidorCanalesOnline + "cvatt_pro.html?get=VGVsZUp1bmlu",
+            // servidorCanalesOnline + "cvatt.html?get=VGVsZUp1bmlu",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZUp1bmlu",
         ]
     }
 );
@@ -1504,9 +1504,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTBfSnVuaW4=",
-            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTBfSnVuaW4=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTBfSnVuaW4=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTBfSnVuaW4=",
+            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTBfSnVuaW4=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTBfSnVuaW4=",
             "https://vmf.edge-apps.net/embed/live.php?streamname=canal10junin-100056&autoplay=true",
             servidorCanalesOnline + "m3u8.html?stream=Canal_13_La_Rioja",
             servidorCanalesOnline + "edge-apps.html?id=canal10junin",
@@ -1558,9 +1558,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=RE5ld3M=",
-            servidorCanalesOnline + "cvatt.html?get=RE5ld3M=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RE5ld3M=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=RE5ld3M=",
+            // servidorCanalesOnline + "cvatt.html?get=RE5ld3M=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=RE5ld3M=",
             servidorCanalesOnline + "edge.html?get=DNews",
         ]
     }
@@ -1812,9 +1812,9 @@ MisCanales.set(
         pais: "Argentina",
         enlaces: [
             // "m3u8.html?stream=Canal_Luz_Rosario",
-            servidorCanalesOnline + "cvatt_pro.html?get=Q0FOQUxfTFVa",
-            servidorCanalesOnline + "cvatt.html?get=Q0FOQUxfTFVa",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Q0FOQUxfTFVa",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Q0FOQUxfTFVa",
+            // servidorCanalesOnline + "cvatt.html?get=Q0FOQUxfTFVa",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Q0FOQUxfTFVa",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=Canal_Luz",
             servidorCanalesOnline + "sensa.html?id=CanalLuz",
             "https://vmf.edge-apps.net/embed/live.php?streamname=canal_luz01-100009&autoplay=true",
@@ -1904,9 +1904,9 @@ MisCanales.set(
         pais: "España",
         guide: "DW",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=RFc=",
-            servidorCanalesOnline + "cvatt.html?get=RFc=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RFc=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=RFc=",
+            // servidorCanalesOnline + "cvatt.html?get=RFc=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=RFc=",
             servidorCanalesOnline + "edge.html?get=DW",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=Deutsche_Welle",
             servidorCanalesOnline + "sensa.html?id=DW_Channel",
@@ -1951,13 +1951,13 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=QW50ZW5hXzM=",
-            servidorCanalesOnline + "cvatt.html?get=QW50ZW5hXzM=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=QW50ZW5hXzM=",
+            // servidorCanalesOnline + "cvatt.html?get=QW50ZW5hXzM=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=QW50ZW5hXzM=",
             // "server/cvatt.html?get=QW50ZW5hXzM=",
             // "https://sssshhh.xyz/cvatt.html?get=QW50ZW5hXzM=",
             // "https://a3.115tv.site/cvatt.html?get=QW50ZW5hXzM=",
             // "https://a3.115tv.site/cvatt2_ext.html?get=QW50ZW5hXzM=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=QW50ZW5hXzM=",
             servidorCanalesOnline + "zapitvpro.html?id=antena3",
             // servidorCanalesOnline + "tvmia.html?stream=sn_ANTENA3",
             // "https://172m3u8.netlify.app/?id=Antena_3",
@@ -2071,13 +2071,13 @@ MisCanales.set(
         pais: "España",
         guide: "tve HD",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=VFZfRXNwYW5h",
-            servidorCanalesOnline + "cvatt.html?get=VFZfRXNwYW5h",
+            // servidorCanalesOnline + "cvatt_pro.html?get=VFZfRXNwYW5h",
+            // servidorCanalesOnline + "cvatt.html?get=VFZfRXNwYW5h",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=VFZfRXNwYW5h",
             // "server/cvatt.html?get=VFZfRXNwYW5h",
             // "https://sssshhh.xyz/cvatt.html?get=VFZfRXNwYW5h",
             // "https://a3.115tv.site/cvatt.html?get=VFZfRXNwYW5h",
             // "https://a3.115tv.site/cvatt2_ext.html?get=VFZfRXNwYW5h",
-            servidorCanalesOnline + "cvatt2_ext.html?get=VFZfRXNwYW5h",
             servidorCanalesOnline + "edge.html?get=TVE",
             servidorCanalesOnline + "gigared.html?id=TVE",
             servidorCanalesOnline + "gigared_ext.html?id=TVE",
@@ -2459,13 +2459,13 @@ MisCanales.set(
         pais: "Chile",
         guide: "TV CHILE",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=VHZfQ2hpbGU=",
-            servidorCanalesOnline + "cvatt.html?get=VHZfQ2hpbGU=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=VHZfQ2hpbGU=",
+            // servidorCanalesOnline + "cvatt.html?get=VHZfQ2hpbGU=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=VHZfQ2hpbGU=",
             // "server/cvatt.html?get=VHZfQ2hpbGU=",
             // "https://sssshhh.xyz/cvatt.html?get=VHZfQ2hpbGU=",
             // "https://a3.115tv.site/cvatt.html?get=VHZfQ2hpbGU=",
             // "https://a3.115tv.site/cvatt2_ext.html?get=VHZfQ2hpbGU=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=VHZfQ2hpbGU=",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=TV_Chile",
             servidorCanalesOnline + "sensa.html?id=TVChile",
             // servidorCanalesOnline + "sensa_ext.html?id=TVChile",
@@ -3091,9 +3091,9 @@ MisCanales.set(
     {
         pais: "Paraguay",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=TWVnYV9UVg==",
-            servidorCanalesOnline + "cvatt.html?get=TWVnYV9UVg==",
-            servidorCanalesOnline + "cvatt2_ext.html?get=TWVnYV9UVg==",
+            // servidorCanalesOnline + "cvatt_pro.html?get=TWVnYV9UVg==",
+            // servidorCanalesOnline + "cvatt.html?get=TWVnYV9UVg==",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=TWVnYV9UVg==",
             servidorCanalesOnline + "m3u8.html?stream=MegaTV_PARA",
         ]
     }
@@ -3144,6 +3144,338 @@ MisCanales.set(
             // servidorCanalesOnline + "cvatt_pro.html?get=RXZlbnRvc18z",
             // servidorCanalesOnline + "cvatt.html?get=RXZlbnRvc18z",
             // servidorCanalesOnline + "cvatt2_ext.html?get=RXZlbnRvc18z",
+        ]
+    }
+);
+
+MisCanales.set(
+    "DeporTV",
+    {
+        pais: "Argentina",
+        guide: "DEPORTV HD",
+        enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=RGVwb3JUVkhE",
+            servidorCanalesOnline + "cvatt.html?get=RGVwb3JUVkhE",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RGVwb3JUVkhE",
+            // "server/cvatt.html?get=RGVwb3JUVkhE",
+            // "https://sssshhh.xyz/cvatt.html?get=RGVwb3JUVkhE",
+            // "https://a3.115tv.site/cvatt.html?get=RGVwb3JUVkhE",
+            // "https://a3.115tv.site/cvatt2_ext.html?get=RGVwb3JUVkhE",
+            servidorCanalesOnline + "edge.html?get=Deportv",
+            // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=DeporTV_HD",
+            servidorCanalesOnline + "tvmia.html?stream=an_DEPORTV",
+            servidorCanalesOnline + "sensa.html?id=Deportv",
+            // "https://aux.canalesonline24.workers.dev/trimi.html?id=DEPORTV",
+            // servidorCanalesOnline + "sensa_ext.html?id=Deportv",
+            // "server/cvatt2_ext.html?get=RGVwb3JUVkhE",
+            // "cvattde.html?get=RGVwb3JUVkhE",
+            // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=RGVwb3JUVkhE",
+            // "https://flowflowflow1.dombhei.com/cvatt.html?get=RGVwb3JUVkhE",
+            // "https://cv.photocalltv.me/cv2.php?get=RGVwb3JUVkhE",
+            // "https://tomyjerry.nebunexa.com/cvatt.php?get=RGVwb3JUVkhE",
+            // "https://nebunexa.com/cvatt.php?get=RGVwb3JUVkhE",
+            // "https://www.enlatele.tv/player/cv2.php?get=RGVwb3JUVkhE",
+        ]
+    }
+);
+
+MisCanales.set(
+    "DSports",
+    {
+        pais: "Argentina",
+        enlaces: [
+            ///Argentina
+            servidorCanalesOnline + "cvatt_pro.html?get=RFNwb3J0c18x",
+            servidorCanalesOnline + "cvatt.html?get=RFNwb3J0c18x",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RFNwb3J0c18x",
+            servidorCanalesOnline + "ciades.html?id=DSPORT",
+            servidorCanalesOnline + "dsports.html?id=DSports_cbsivideo",
+            servidorCanalesOnline + "akamaizedpro.html?id=dsports_arg",
+            servidorCanalesOnline + "akamaized.html?id=dsports_arg",
+
+            ///Uruguay
+            // servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19VWQ==",
+            // servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19VWQ==",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19VWQ==",
+
+
+
+
+            servidorCanalesOnline + "flypro.html?id=dsports",
+            servidorCanalesOnline + "fly-hls.html?id=dsports",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=dsports",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=94",
+            // "https://cdn.tdtcloud.xyz/ws07.php",
+            "https://streamx-hd.com/live1.php?stream=dsports",
+            // servidorCanalesOnline + "proxym3u8/?id=DSPORTS_AR",
+            // "https://199m3u8.netlify.app/?id=DSports",
+            // servidorCanalesOnline + "m3u8.html?stream=DSportsArg_2",
+            // "https://superiorcrop.net/embed/ehf5qe1r",
+            // "https://live.vkvideo.ru/app/embed/fanfut3",
+            // servidorCanalesOnline + "extension.html?get=DSPORTS",
+            // "https://elcanaldeportivo.com/dsports-sharecast.php",
+            // "https://welivesports.shop/goal/directvarg.php",
+            // "https://telegratuita.org/premium/player1.php?canal=dsports",
+            // "https://rereyano.ru/player/3/94",
+            // "https://cartelive.club/player/3/94",
+            // "https://bolaloca.my/player/3/94",
+            // "https://futbollibrelibre.com/canales.php?stream=dsports",
+            // "https://streamx10.cloud/global2.php?channel=dsports",
+            // "https://streamx10.cloud/global1.php?channel=dsports",
+            // "https://streamx10.cloud/global3.php?channel=dsports", //No funciona en la apk
+            // "https://la10hd.com/vivo/canal.php?stream=dsports",
+            // "https://la10hd.com/vivo/canales.php?stream=dsports",
+            servidorCanalesOnline + "jjfutbol2pro.html?name=dsports",
+            // "https://fullchannels.online/canales.php?id=directv",
+        ]
+    }
+);
+
+MisCanales.set(
+    "DSports2",
+    {
+        pais: "Argentina",
+        enlaces: [
+            ///Argentina
+            servidorCanalesOnline + "cvatt_pro.html?get=RFNwb3J0c18y",
+            servidorCanalesOnline + "cvatt.html?get=RFNwb3J0c18y",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RFNwb3J0c18y",
+            servidorCanalesOnline + "ciades.html?id=DSPORT2",
+            servidorCanalesOnline + "dsports.html?id=DSports2_cbsivideo",
+            servidorCanalesOnline + "akamaizedpro.html?id=dsports2_arg",
+            servidorCanalesOnline + "akamaized.html?id=dsports2_arg",
+
+            ///Uruguay
+            // servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0czJfVVk=",
+            // servidorCanalesOnline + "cvatt.html?get=RHNwb3J0czJfVVk=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0czJfVVk=",
+
+            servidorCanalesOnline + "flypro.html?id=dsports2",
+            servidorCanalesOnline + "fly-hls.html?id=dsports2",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=dsports2",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=95",
+            // "https://cdn.tdtcloud.xyz/ws08.php",
+            // servidorCanalesOnline + "proxym3u8/?id=DSPORTS2_AR",
+            // "https://172m3u8.netlify.app/?id=Dsports2",
+            // servidorCanalesOnline + "m3u8.html?stream=DSports2Arg",
+            // "https://welivesport.shop/embed/directv2arg.php",
+            // "https://lal0hd.com/sw.html?get=https://lal0hd.com/repro/eventos.html",
+            // "https://rereyano.ru/player/3/95",
+            // "https://cartelive.club/player/3/95",
+            // "https://bolaloca.my/player/3/95",
+            // "https://thedaddy.click/embed/stream-25.php",
+            // "https://futbollibrelibre.com/canales.php?stream=dsports2",
+            // "https://streamx10.cloud/global2.php?channel=dsports2",
+            // "https://streamx10.cloud/global1.php?channel=dsports2",
+            // "https://streamx10.cloud/global3.php?channel=dsports2", //No funciona en la apk
+            // "https://la10hd.com/vivo/canal.php?stream=dsports2",
+            // "https://la10hd.com/vivo/canales.php?stream=dsports2",
+            servidorCanalesOnline + "jjfutbol2pro.html?name=dsports2",
+            // "https://fullchannels.online/canales.php?id=directv2-op2",
+        ]
+    }
+);
+
+MisCanales.set(
+    "DSports Plus",
+    {
+        pais: "Argentina",
+        enlaces: [
+            ///Uruguay
+            // servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19QbHVzX1VZ",
+            // servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19QbHVzX1VZ",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19QbHVzX1VZ",
+
+            servidorCanalesOnline + "dsports.html?id=DSportsPlus_cbsivideo",
+            servidorCanalesOnline + "flypro.html?id=dsportsplus",
+            servidorCanalesOnline + "fly-hls.html?id=dsportsplus",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=dsportsplus",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=96",
+            // "https://cdn.tdtcloud.xyz/ws09.php",
+            // "https://rereyano.ru/player/3/96",
+            // "https://cartelive.club/player/3/96",
+            // "https://bolaloca.my/player/3/96",
+            // "https://futbollibrelibre.com/canales.php?stream=dsportsplus",
+            // "https://streamx10.cloud/global2.php?channel=dsportsplus",
+            // "https://streamx10.cloud/global1.php?channel=dsportsplus",
+            // "https://streamx10.cloud/global3.php?channel=dsportsplus", //No funciona en la apk
+            // "https://la10hd.com/vivo/canal.php?stream=dsportsplus",
+            // "https://la10hd.com/vivo/canales.php?stream=dsportsplus",
+            servidorCanalesOnline + "jjfutbol2pro.html?name=dsports+",
+            // "https://fullchannels.online/canales.php?id=directvplus-op2",
+            // "https://zonahack-2aeb7.web.app/tvonline.html?url=https://cansd-teleetreee-maemb.glitch.me/detee3.html",
+        ]
+    }
+);
+
+MisCanales.set(
+    "VS Sports",
+    {
+        pais: "Estados Unidos",
+        enlaces: [
+            // servidorCanalesOnline + "cvatt_pro.html?get=Tmlja211c2lj",
+            // servidorCanalesOnline + "cvatt.html?get=Tmlja211c2lj",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Tmlja211c2lj",
+        ]
+    }
+);
+
+MisCanales.set(
+    "BEIN Ñ Sport",
+    {
+        pais: "Estados Unidos",
+        enlaces: [
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=beinsports",
+            // "https://cdn.tdtcloud.xyz/ws23.php",
+            // servidorCanalesOnline + "cobo.html?id=BEIN_XTRA_N_ES",
+            // "https://forlessmake.store/cobo.html?id=BEIN_XTRA_N_ES",
+            // "https://la10hd.com/vivo/canal.php?stream=beinsportes",
+            // "https://la10hd.com/vivo/canales.php?stream=beinsportes",
+            servidorCanalesOnline + "jjfutbol2pro.html?name=beinsportes",
+            // "https://fullchannels.online/canales.php?id=bein-op3",
+
+        ]
+    }
+);
+
+MisCanales.set(
+    "GOLPLAY",
+    {
+        pais: "España",
+        enlaces: [
+            // servidorCanalesOnline + "tvmia.html?stream=sn_GOL_PLAY",
+        ]
+    }
+);
+
+MisCanales.set(
+    "Claro Sports",
+    {
+        pais: "México",
+        enlaces: [
+            servidorCanalesOnline + "akamaizedpro.html?id=clarosports",
+            servidorCanalesOnline + "akamaized.html?id=clarosports",
+            servidorCanalesOnline + "m3u8.html?stream=Claro_Sports",
+            servidorCanalesOnline + "m3u8.html?stream=Claro_Sports2",
+            servidorCanalesOnline + "sensa.html?id=ClaroSports",
+            servidorCanalesOnline + "edge.html?get=Claro_Sports",
+            // servidorCanalesOnline + "sensa_ext.html?id=ClaroSports",
+        ]
+    }
+);
+
+MisCanales.set(
+    "AMÉRICA SPORTS",
+    {
+        pais: "Argentina",
+        enlaces: [
+            // servidorCanalesOnline + "cvatt_pro.html?get=QW1lcmljYV9TcG9ydHM=",
+            // servidorCanalesOnline + "cvatt.html?get=QW1lcmljYV9TcG9ydHM=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=QW1lcmljYV9TcG9ydHM=",
+            servidorCanalesOnline + "akamaizedpro.html?id=americasport_arg",
+            servidorCanalesOnline + "akamaized.html?id=americasport_arg",
+            // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=America_Sports",
+            servidorCanalesOnline + "sensa.html?id=AmericaSports",
+            // servidorCanalesOnline + "sensa_ext.html?id=AmericaSports",
+        ]
+    }
+);
+
+MisCanales.set(
+    "SHOWSPORT",
+    {
+        pais: "Argentina",
+        enlaces: [
+            // servidorCanalesOnline + "cvatt_pro.html?get=U2hvd19TcG9ydHM=",
+            // servidorCanalesOnline + "cvatt.html?get=U2hvd19TcG9ydHM=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=U2hvd19TcG9ydHM=",
+        ]
+    }
+);
+
+MisCanales.set(
+    "PX SPORTS",
+    {
+        pais: "México",
+        enlaces: [
+            // servidorCanalesOnline + "cvatt_pro.html?get=UFhfU3BvcnRz",
+            // servidorCanalesOnline + "cvatt.html?get=UFhfU3BvcnRz",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=UFhfU3BvcnRz",
+            servidorCanalesOnline + "akamaizedpro.html?id=pxsports",
+            servidorCanalesOnline + "akamaized.html?id=pxsports",
+            servidorCanalesOnline + "sensa.html?id=PXSports",
+            // servidorCanalesOnline + "sensa_ext.html?id=PXSports",
+        ]
+    }
+);
+
+MisCanales.set(
+    "TNT Sports",
+    {
+        pais: "Argentina",
+        guide: "TNT Sport Premium HD",
+        enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=VE5UX1Nwb3J0c19IRA",
+            servidorCanalesOnline + "cvatt.html?get=VE5UX1Nwb3J0c19IRA",
+            // "server/cvatt.html?get=VE5UX1Nwb3J0c19IRA",
+            // "https://sssshhh.xyz/cvatt.html?get=VE5UX1Nwb3J0c19IRA",
+            // "https://a3.115tv.site/cvatt.html?get=VE5UX1Nwb3J0c19IRA",
+            // "https://a3.115tv.site/cvatt2_ext.html?get=VE5UX1Nwb3J0c19IRA",
+            servidorCanalesOnline + "cvatt2_ext.html?get=VE5UX1Nwb3J0c19IRA",
+            servidorCanalesOnline + "ciades.html?id=TNT_SPORTS",
+            servidorCanalesOnline + "akamaizedpro.html?id=tntsports_arg",
+            servidorCanalesOnline + "akamaized.html?id=tntsports_arg",
+            servidorCanalesOnline + "megacable.html?id=TNT_Sports_HD",
+            servidorCanalesOnline + "megacablepro.html?id=TNT_Sports_HD",
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=75",
+            servidorCanalesOnline + "latamlive.html?id=TNTS_ENC_LIVE",
+            // servidorCanalesOnline + "tdtcloudpro.html?stream=tntsports",
+            // "https://cdn.tdtcloud.xyz/ws22.php",
+            servidorCanalesOnline + "edge.html?get=TNT_Sports",
+            "https://aux.canalesonline24.workers.dev/trimi.html?id=TNT_SPORTS",
+            servidorCanalesOnline + "gigared.html?id=TNT_Sports_Premium",
+            servidorCanalesOnline + "gigared_ext.html?id=TNT_Sports_Premium",
+            // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=TNT_Sports_HD",
+            // "https://aux.canalesonline24.workers.dev/trimi.html?id=TNT_SPORTS2",
+            // "server/cvatt2_ext.html?get=VE5UX1Nwb3J0c19IRA",
+            // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=VE5UX1Nwb3J0c19IRA",
+            // "https://flowflowflow1.dombhei.com/cvatt.html?get=VE5UX1Nwb3J0c19IRA",
+            // "https://cv.photocalltv.me/cv2.php?get=VE5UX1Nwb3J0c19IRA",
+            // "https://tomyjerry.nebunexa.com/cvatt.php?get=VE5UX1Nwb3J0c19IRA",
+            // "https://nebunexa.com/cvatt.php?get=VE5UX1Nwb3J0c19IRA",
+            // "https://www.enlatele.tv/player/cv2.php?get=VE5UX1Nwb3J0c19IRA",
+            // "https://betzta.com/canales.php?stream=tntsportar",
+            // "https://futbollibrelibre.com/canales.php?stream=tntsports",
+            // "https://telegratuita.org/premium/player1.php?canal=tntsportsar",
+            // "https://rereyano.ru/player/4/75",
+            // "https://cartelive.club/player/4/75",
+            // "https://bolaloca.my/player/4/75",
+            // "https://streamx10.cloud/global2.php?channel=tntsports",
+            // "https://streamx10.cloud/global1.php?channel=tntsports",
+            // "https://streamx10.cloud/global3.php?channel=tntsports_argentina", //No funciona en la apk
+            // "https://la10hd.com/vivo/canal.php?stream=tntsports",
+            // "https://la10hd.com/vivo/canales.php?stream=tntsports",
+            servidorCanalesOnline + "jjfutbol2pro.html?name=tntsports",
+        ]
+    }
+);
+
+MisCanales.set(
+    "TNT Sports Premium CL",
+    {
+        pais: "Chile",
+        enlaces: [
+            // servidorCanalesOnline + "deepcathinkpro.html?feed=83",
+            // servidorCanalesOnline + "tvmia.html?stream=an_TNT_SPORTS_PREMIUM",
+            // "https://streamx10.cloud/global2.php?channel=tntsportschile",
+            // "https://streamx10.cloud/global1.php?channel=tntsportschile",
+            // "https://streamx10.cloud/global2.php?channel=tnt_chile",
+            // "https://streamx10.cloud/global1.php?channel=tnt_chile",
+            // "https://streamx10.cloud/global3.php?channel=tnt_chile", //No funciona en la apk
+            // "https://la10hd.com/vivo/canal.php?stream=tntsportschile",
+            // "https://la10hd.com/vivo/canales.php?stream=tntsportschile",
+            // servidorCanalesOnline + "jjfutbol2pro.html?name=tntsportschile",
+            // "https://fullchannels.online/canales.php?id=tntchile",
         ]
     }
 );
@@ -3231,338 +3563,6 @@ MisCanales.set(
             // "https://streamx10.cloud/global2.php?channel=tycinternacional",
             // "https://streamx10.cloud/global1.php?channel=tycinternacional",
             servidorCanalesOnline + "jjfutbol2pro.html?name=tycinternacional",
-        ]
-    }
-);
-
-MisCanales.set(
-    "DeporTV",
-    {
-        pais: "Argentina",
-        guide: "DEPORTV HD",
-        enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=RGVwb3JUVkhE",
-            servidorCanalesOnline + "cvatt.html?get=RGVwb3JUVkhE",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RGVwb3JUVkhE",
-            // "server/cvatt.html?get=RGVwb3JUVkhE",
-            // "https://sssshhh.xyz/cvatt.html?get=RGVwb3JUVkhE",
-            // "https://a3.115tv.site/cvatt.html?get=RGVwb3JUVkhE",
-            // "https://a3.115tv.site/cvatt2_ext.html?get=RGVwb3JUVkhE",
-            servidorCanalesOnline + "edge.html?get=Deportv",
-            // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=DeporTV_HD",
-            servidorCanalesOnline + "tvmia.html?stream=an_DEPORTV",
-            servidorCanalesOnline + "sensa.html?id=Deportv",
-            // "https://aux.canalesonline24.workers.dev/trimi.html?id=DEPORTV",
-            // servidorCanalesOnline + "sensa_ext.html?id=Deportv",
-            // "server/cvatt2_ext.html?get=RGVwb3JUVkhE",
-            // "cvattde.html?get=RGVwb3JUVkhE",
-            // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=RGVwb3JUVkhE",
-            // "https://flowflowflow1.dombhei.com/cvatt.html?get=RGVwb3JUVkhE",
-            // "https://cv.photocalltv.me/cv2.php?get=RGVwb3JUVkhE",
-            // "https://tomyjerry.nebunexa.com/cvatt.php?get=RGVwb3JUVkhE",
-            // "https://nebunexa.com/cvatt.php?get=RGVwb3JUVkhE",
-            // "https://www.enlatele.tv/player/cv2.php?get=RGVwb3JUVkhE",
-        ]
-    }
-);
-
-MisCanales.set(
-    "DSports",
-    {
-        pais: "Argentina",
-        enlaces: [
-            ///Argentina
-            servidorCanalesOnline + "cvatt_pro.html?get=RFNwb3J0c18x",
-            servidorCanalesOnline + "cvatt.html?get=RFNwb3J0c18x",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RFNwb3J0c18x",
-            servidorCanalesOnline + "ciades.html?id=DSPORT",
-            servidorCanalesOnline + "dsports.html?id=DSports_cbsivideo",
-            servidorCanalesOnline + "akamaizedpro.html?id=dsports_arg",
-            servidorCanalesOnline + "akamaized.html?id=dsports_arg",
-
-            ///Uruguay
-            servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19VWQ==",
-            servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19VWQ==",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19VWQ==",
-
-
-
-
-            servidorCanalesOnline + "flypro.html?id=dsports",
-            servidorCanalesOnline + "fly-hls.html?id=dsports",
-            // servidorCanalesOnline + "tdtcloudpro.html?stream=dsports",
-            // servidorCanalesOnline + "deepcathinkpro.html?feed=94",
-            // "https://cdn.tdtcloud.xyz/ws07.php",
-            "https://streamx-hd.com/live1.php?stream=dsports",
-            // servidorCanalesOnline + "proxym3u8/?id=DSPORTS_AR",
-            // "https://199m3u8.netlify.app/?id=DSports",
-            // servidorCanalesOnline + "m3u8.html?stream=DSportsArg_2",
-            // "https://superiorcrop.net/embed/ehf5qe1r",
-            // "https://live.vkvideo.ru/app/embed/fanfut3",
-            // servidorCanalesOnline + "extension.html?get=DSPORTS",
-            // "https://elcanaldeportivo.com/dsports-sharecast.php",
-            // "https://welivesports.shop/goal/directvarg.php",
-            // "https://telegratuita.org/premium/player1.php?canal=dsports",
-            // "https://rereyano.ru/player/3/94",
-            // "https://cartelive.club/player/3/94",
-            // "https://bolaloca.my/player/3/94",
-            // "https://futbollibrelibre.com/canales.php?stream=dsports",
-            // "https://streamx10.cloud/global2.php?channel=dsports",
-            // "https://streamx10.cloud/global1.php?channel=dsports",
-            // "https://streamx10.cloud/global3.php?channel=dsports", //No funciona en la apk
-            // "https://la10hd.com/vivo/canal.php?stream=dsports",
-            // "https://la10hd.com/vivo/canales.php?stream=dsports",
-            servidorCanalesOnline + "jjfutbol2pro.html?name=dsports",
-            // "https://fullchannels.online/canales.php?id=directv",
-        ]
-    }
-);
-
-MisCanales.set(
-    "DSports2",
-    {
-        pais: "Argentina",
-        enlaces: [
-            ///Argentina
-            servidorCanalesOnline + "cvatt_pro.html?get=RFNwb3J0c18y",
-            servidorCanalesOnline + "cvatt.html?get=RFNwb3J0c18y",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RFNwb3J0c18y",
-            servidorCanalesOnline + "ciades.html?id=DSPORT2",
-            servidorCanalesOnline + "dsports.html?id=DSports2_cbsivideo",
-            servidorCanalesOnline + "akamaizedpro.html?id=dsports2_arg",
-            servidorCanalesOnline + "akamaized.html?id=dsports2_arg",
-
-            ///Uruguay
-            servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0czJfVVk=",
-            servidorCanalesOnline + "cvatt.html?get=RHNwb3J0czJfVVk=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0czJfVVk=",
-
-            servidorCanalesOnline + "flypro.html?id=dsports2",
-            servidorCanalesOnline + "fly-hls.html?id=dsports2",
-            // servidorCanalesOnline + "tdtcloudpro.html?stream=dsports2",
-            // servidorCanalesOnline + "deepcathinkpro.html?feed=95",
-            // "https://cdn.tdtcloud.xyz/ws08.php",
-            // servidorCanalesOnline + "proxym3u8/?id=DSPORTS2_AR",
-            // "https://172m3u8.netlify.app/?id=Dsports2",
-            // servidorCanalesOnline + "m3u8.html?stream=DSports2Arg",
-            // "https://welivesport.shop/embed/directv2arg.php",
-            // "https://lal0hd.com/sw.html?get=https://lal0hd.com/repro/eventos.html",
-            // "https://rereyano.ru/player/3/95",
-            // "https://cartelive.club/player/3/95",
-            // "https://bolaloca.my/player/3/95",
-            // "https://thedaddy.click/embed/stream-25.php",
-            // "https://futbollibrelibre.com/canales.php?stream=dsports2",
-            // "https://streamx10.cloud/global2.php?channel=dsports2",
-            // "https://streamx10.cloud/global1.php?channel=dsports2",
-            // "https://streamx10.cloud/global3.php?channel=dsports2", //No funciona en la apk
-            // "https://la10hd.com/vivo/canal.php?stream=dsports2",
-            // "https://la10hd.com/vivo/canales.php?stream=dsports2",
-            servidorCanalesOnline + "jjfutbol2pro.html?name=dsports2",
-            // "https://fullchannels.online/canales.php?id=directv2-op2",
-        ]
-    }
-);
-
-MisCanales.set(
-    "DSports Plus",
-    {
-        pais: "Argentina",
-        enlaces: [
-            ///Uruguay
-            servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19QbHVzX1VZ",
-            servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19QbHVzX1VZ",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19QbHVzX1VZ",
-
-            servidorCanalesOnline + "dsports.html?id=DSportsPlus_cbsivideo",
-            servidorCanalesOnline + "flypro.html?id=dsportsplus",
-            servidorCanalesOnline + "fly-hls.html?id=dsportsplus",
-            // servidorCanalesOnline + "tdtcloudpro.html?stream=dsportsplus",
-            // servidorCanalesOnline + "deepcathinkpro.html?feed=96",
-            // "https://cdn.tdtcloud.xyz/ws09.php",
-            // "https://rereyano.ru/player/3/96",
-            // "https://cartelive.club/player/3/96",
-            // "https://bolaloca.my/player/3/96",
-            // "https://futbollibrelibre.com/canales.php?stream=dsportsplus",
-            // "https://streamx10.cloud/global2.php?channel=dsportsplus",
-            // "https://streamx10.cloud/global1.php?channel=dsportsplus",
-            // "https://streamx10.cloud/global3.php?channel=dsportsplus", //No funciona en la apk
-            // "https://la10hd.com/vivo/canal.php?stream=dsportsplus",
-            // "https://la10hd.com/vivo/canales.php?stream=dsportsplus",
-            servidorCanalesOnline + "jjfutbol2pro.html?name=dsports+",
-            // "https://fullchannels.online/canales.php?id=directvplus-op2",
-            // "https://zonahack-2aeb7.web.app/tvonline.html?url=https://cansd-teleetreee-maemb.glitch.me/detee3.html",
-        ]
-    }
-);
-
-MisCanales.set(
-    "VS Sports",
-    {
-        pais: "Estados Unidos",
-        enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Tmlja211c2lj",
-            servidorCanalesOnline + "cvatt.html?get=Tmlja211c2lj",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Tmlja211c2lj",
-        ]
-    }
-);
-
-MisCanales.set(
-    "BEIN Ñ Sport",
-    {
-        pais: "Estados Unidos",
-        enlaces: [
-            // servidorCanalesOnline + "tdtcloudpro.html?stream=beinsports",
-            // "https://cdn.tdtcloud.xyz/ws23.php",
-            // servidorCanalesOnline + "cobo.html?id=BEIN_XTRA_N_ES",
-            // "https://forlessmake.store/cobo.html?id=BEIN_XTRA_N_ES",
-            // "https://la10hd.com/vivo/canal.php?stream=beinsportes",
-            // "https://la10hd.com/vivo/canales.php?stream=beinsportes",
-            servidorCanalesOnline + "jjfutbol2pro.html?name=beinsportes",
-            // "https://fullchannels.online/canales.php?id=bein-op3",
-
-        ]
-    }
-);
-
-MisCanales.set(
-    "GOLPLAY",
-    {
-        pais: "España",
-        enlaces: [
-            // servidorCanalesOnline + "tvmia.html?stream=sn_GOL_PLAY",
-        ]
-    }
-);
-
-MisCanales.set(
-    "Claro Sports",
-    {
-        pais: "México",
-        enlaces: [
-            servidorCanalesOnline + "akamaizedpro.html?id=clarosports",
-            servidorCanalesOnline + "akamaized.html?id=clarosports",
-            servidorCanalesOnline + "m3u8.html?stream=Claro_Sports",
-            servidorCanalesOnline + "m3u8.html?stream=Claro_Sports2",
-            servidorCanalesOnline + "sensa.html?id=ClaroSports",
-            servidorCanalesOnline + "edge.html?get=Claro_Sports",
-            // servidorCanalesOnline + "sensa_ext.html?id=ClaroSports",
-        ]
-    }
-);
-
-MisCanales.set(
-    "AMÉRICA SPORTS",
-    {
-        pais: "Argentina",
-        enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=QW1lcmljYV9TcG9ydHM=",
-            servidorCanalesOnline + "cvatt.html?get=QW1lcmljYV9TcG9ydHM=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=QW1lcmljYV9TcG9ydHM=",
-            servidorCanalesOnline + "akamaizedpro.html?id=americasport_arg",
-            servidorCanalesOnline + "akamaized.html?id=americasport_arg",
-            // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=America_Sports",
-            servidorCanalesOnline + "sensa.html?id=AmericaSports",
-            // servidorCanalesOnline + "sensa_ext.html?id=AmericaSports",
-        ]
-    }
-);
-
-MisCanales.set(
-    "SHOWSPORT",
-    {
-        pais: "Argentina",
-        enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=U2hvd19TcG9ydHM=",
-            // servidorCanalesOnline + "cvatt.html?get=U2hvd19TcG9ydHM=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=U2hvd19TcG9ydHM=",
-        ]
-    }
-);
-
-MisCanales.set(
-    "PX SPORTS",
-    {
-        pais: "México",
-        enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=UFhfU3BvcnRz",
-            servidorCanalesOnline + "cvatt.html?get=UFhfU3BvcnRz",
-            servidorCanalesOnline + "cvatt2_ext.html?get=UFhfU3BvcnRz",
-            servidorCanalesOnline + "akamaizedpro.html?id=pxsports",
-            servidorCanalesOnline + "akamaized.html?id=pxsports",
-            servidorCanalesOnline + "sensa.html?id=PXSports",
-            // servidorCanalesOnline + "sensa_ext.html?id=PXSports",
-        ]
-    }
-);
-
-MisCanales.set(
-    "TNT Sports",
-    {
-        pais: "Argentina",
-        guide: "TNT Sport Premium HD",
-        enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=VE5UX1Nwb3J0c19IRA",
-            servidorCanalesOnline + "cvatt.html?get=VE5UX1Nwb3J0c19IRA",
-            // "server/cvatt.html?get=VE5UX1Nwb3J0c19IRA",
-            // "https://sssshhh.xyz/cvatt.html?get=VE5UX1Nwb3J0c19IRA",
-            // "https://a3.115tv.site/cvatt.html?get=VE5UX1Nwb3J0c19IRA",
-            // "https://a3.115tv.site/cvatt2_ext.html?get=VE5UX1Nwb3J0c19IRA",
-            servidorCanalesOnline + "cvatt2_ext.html?get=VE5UX1Nwb3J0c19IRA",
-            servidorCanalesOnline + "ciades.html?id=TNT_SPORTS",
-            servidorCanalesOnline + "akamaizedpro.html?id=tntsports_arg",
-            servidorCanalesOnline + "akamaized.html?id=tntsports_arg",
-            servidorCanalesOnline + "megacable.html?id=TNT_Sports_HD",
-            servidorCanalesOnline + "megacablepro.html?id=TNT_Sports_HD",
-            // servidorCanalesOnline + "deepcathinkpro.html?feed=75",
-            servidorCanalesOnline + "latamlive.html?id=TNTS_ENC_LIVE",
-            // servidorCanalesOnline + "tdtcloudpro.html?stream=tntsports",
-            // "https://cdn.tdtcloud.xyz/ws22.php",
-            servidorCanalesOnline + "edge.html?get=TNT_Sports",
-            "https://aux.canalesonline24.workers.dev/trimi.html?id=TNT_SPORTS",
-            servidorCanalesOnline + "gigared.html?id=TNT_Sports_Premium",
-            servidorCanalesOnline + "gigared_ext.html?id=TNT_Sports_Premium",
-            // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=TNT_Sports_HD",
-            // "https://aux.canalesonline24.workers.dev/trimi.html?id=TNT_SPORTS2",
-            // "server/cvatt2_ext.html?get=VE5UX1Nwb3J0c19IRA",
-            // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=VE5UX1Nwb3J0c19IRA",
-            // "https://flowflowflow1.dombhei.com/cvatt.html?get=VE5UX1Nwb3J0c19IRA",
-            // "https://cv.photocalltv.me/cv2.php?get=VE5UX1Nwb3J0c19IRA",
-            // "https://tomyjerry.nebunexa.com/cvatt.php?get=VE5UX1Nwb3J0c19IRA",
-            // "https://nebunexa.com/cvatt.php?get=VE5UX1Nwb3J0c19IRA",
-            // "https://www.enlatele.tv/player/cv2.php?get=VE5UX1Nwb3J0c19IRA",
-            // "https://betzta.com/canales.php?stream=tntsportar",
-            // "https://futbollibrelibre.com/canales.php?stream=tntsports",
-            // "https://telegratuita.org/premium/player1.php?canal=tntsportsar",
-            // "https://rereyano.ru/player/4/75",
-            // "https://cartelive.club/player/4/75",
-            // "https://bolaloca.my/player/4/75",
-            // "https://streamx10.cloud/global2.php?channel=tntsports",
-            // "https://streamx10.cloud/global1.php?channel=tntsports",
-            // "https://streamx10.cloud/global3.php?channel=tntsports_argentina", //No funciona en la apk
-            // "https://la10hd.com/vivo/canal.php?stream=tntsports",
-            // "https://la10hd.com/vivo/canales.php?stream=tntsports",
-            servidorCanalesOnline + "jjfutbol2pro.html?name=tntsports",
-        ]
-    }
-);
-
-MisCanales.set(
-    "TNT Sports Premium CL",
-    {
-        pais: "Chile",
-        enlaces: [
-            // servidorCanalesOnline + "deepcathinkpro.html?feed=83",
-            // servidorCanalesOnline + "tvmia.html?stream=an_TNT_SPORTS_PREMIUM",
-            // "https://streamx10.cloud/global2.php?channel=tntsportschile",
-            // "https://streamx10.cloud/global1.php?channel=tntsportschile",
-            // "https://streamx10.cloud/global2.php?channel=tnt_chile",
-            // "https://streamx10.cloud/global1.php?channel=tnt_chile",
-            // "https://streamx10.cloud/global3.php?channel=tnt_chile", //No funciona en la apk
-            // "https://la10hd.com/vivo/canal.php?stream=tntsportschile",
-            // "https://la10hd.com/vivo/canales.php?stream=tntsportschile",
-            // servidorCanalesOnline + "jjfutbol2pro.html?name=tntsportschile",
-            // "https://fullchannels.online/canales.php?id=tntchile",
         ]
     }
 );
@@ -3955,13 +3955,13 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=RVNQTjQ=",
-            servidorCanalesOnline + "cvatt.html?get=RVNQTjQ=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=RVNQTjQ=",
+            // servidorCanalesOnline + "cvatt.html?get=RVNQTjQ=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjQ=",
             // "server/cvatt.html?get=RVNQTjQ=",
             // "https://sssshhh.xyz/cvatt.html?get=RVNQTjQ=",
             // "https://a3.115tv.site/cvatt.html?get=RVNQTjQ=",
             // "https://a3.115tv.site/cvatt2_ext.html?get=RVNQTjQ=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=RVNQTjQ=",
             // servidorCanalesOnline + "videx.html?id=espn_5",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=espn5",
             // "https://cdn.tdtcloud.xyz/ws11.php",
@@ -3992,13 +3992,13 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Rm94U3BvcnRzM19VWQ==",
-            servidorCanalesOnline + "cvatt.html?get=Rm94U3BvcnRzM19VWQ==",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Rm94U3BvcnRzM19VWQ==",
+            // servidorCanalesOnline + "cvatt.html?get=Rm94U3BvcnRzM19VWQ==",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
             // "server/cvatt.html?get=Rm94U3BvcnRzM19VWQ==",
             // "https://sssshhh.xyz/cvatt.html?get=Rm94U3BvcnRzM19VWQ==",
             // "https://a3.115tv.site/cvatt.html?get=Rm94U3BvcnRzM19VWQ==",
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzM19VWQ==",
             // servidorCanalesOnline + "videx.html?id=espn_6",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=espn6",
             // "https://cdn.tdtcloud.xyz/ws12.php",
@@ -4029,13 +4029,13 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=Rm94U3BvcnRzMl9VWQ==",
-            servidorCanalesOnline + "cvatt.html?get=Rm94U3BvcnRzMl9VWQ==",
+            // servidorCanalesOnline + "cvatt_pro.html?get=Rm94U3BvcnRzMl9VWQ==",
+            // servidorCanalesOnline + "cvatt.html?get=Rm94U3BvcnRzMl9VWQ==",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
             // "server/cvatt.html?get=Rm94U3BvcnRzMl9VWQ==",
             // "https://sssshhh.xyz/cvatt.html?get=Rm94U3BvcnRzMl9VWQ==",
             // "https://a3.115tv.site/cvatt.html?get=Rm94U3BvcnRzMl9VWQ==",
             // "https://a3.115tv.site/cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
-            servidorCanalesOnline + "cvatt2_ext.html?get=Rm94U3BvcnRzMl9VWQ==",
             // servidorCanalesOnline + "videx.html?id=espn_7",
             // servidorCanalesOnline + "tdtcloudpro.html?stream=espn7",
             // "https://cdn.tdtcloud.xyz/ws13.php",
@@ -6628,13 +6628,13 @@ MisCanales.set(
     {
         pais: "Uruguay",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=VGV2ZV9DaXVkYWQ=",
-            servidorCanalesOnline + "cvatt.html?get=VGV2ZV9DaXVkYWQ=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=VGV2ZV9DaXVkYWQ=",
+            // servidorCanalesOnline + "cvatt.html?get=VGV2ZV9DaXVkYWQ=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=VGV2ZV9DaXVkYWQ=",
             // "server/cvatt.html?get=VGV2ZV9DaXVkYWQ=",
             // "https://sssshhh.xyz/cvatt.html?get=VGV2ZV9DaXVkYWQ=",
             // "https://a3.115tv.site/cvatt.html?get=VGV2ZV9DaXVkYWQ=",
             // "https://a3.115tv.site/cvatt2_ext.html?get=VGV2ZV9DaXVkYWQ=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=VGV2ZV9DaXVkYWQ=",
             servidorCanalesOnline + "tvmia.html?stream=c_TV_CUIDAD",
             // "server/cvatt2_ext.html?get=VGV2ZV9DaXVkYWQ=",
             // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=VGV2ZV9DaXVkYWQ=",
