@@ -3386,9 +3386,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "cvatt_pro.html?get=U2hvd19TcG9ydHM=",
-            servidorCanalesOnline + "cvatt.html?get=U2hvd19TcG9ydHM=",
-            servidorCanalesOnline + "cvatt2_ext.html?get=U2hvd19TcG9ydHM=",
+            // servidorCanalesOnline + "cvatt_pro.html?get=U2hvd19TcG9ydHM=",
+            // servidorCanalesOnline + "cvatt.html?get=U2hvd19TcG9ydHM=",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=U2hvd19TcG9ydHM=",
         ]
     }
 );
