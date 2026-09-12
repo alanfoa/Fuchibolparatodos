@@ -195,7 +195,8 @@ function getChannelKeys(getURL) {
         "Q2FuYWxfOV9QYXJhbmE=": { keyId: "dd573858f3414066b9292ef6397a5c3c", key: "593eb5f7facce4240ff7a5f26afd47e0" }, //Canal_9_Parana - El trece
         "Q2FuYWxfM19Sb3Nhcmlv": { keyId: "662447df521fb590b72b1a11671c2afd", key: "81c204c443987d7b176587d626a124a0" }, //Canal_3_Rosario - El trece
         "Q2FuYWw3X0JhaGlhX0JsYW5jYQ==": { keyId: "a15243320c0a79defa8814252e3e8c07", key: "0659db05632c0061c126db7a12582499" }, //Canal7_Bahia_Blanca - El trece
-        "Q2FuYWxfUnVyYWw=": { keyId: "b02c568163c14cfda4ddb958a0aab742", key: "ef64a70ac85a663a3308be6476610aad" }, //Canal_Rural
+        // "Q2FuYWxfUnVyYWw=": { keyId: "b02c568163c14cfda4ddb958a0aab742", key: "ef64a70ac85a663a3308be6476610aad" }, //Canal_Rural
+        "Q2FuYWxfUnVyYWw=": { keyId: "72308b4673698df3c4143be5410c82d4", key: "35f38c9fb04664572ee6c0a9c53a2388" }, //Canal_Rural
         "U2hvd19TcG9ydHM=": { keyId: "df3ed6245bb9af1a0346379e8e475dff", key: "f86f8457438d4e449d53b956cc1be664" }, //Show_Sports
         "UFhfU3BvcnRz": { keyId: "9393321daef1463fc7e2e060298db852", key: "be6bc91e17816f67e62596bed463c5ad" }, //PX_Sports
         "Q2FuYWxfMTNfU0ZF": { keyId: "59ef9057114f44a480b62e36a6b1374f", key: "74ef97bc54df5655c3a1d4f80b16e8d7" }, //Santa Fe Telefe
@@ -251,7 +252,8 @@ function getChannelKeys(getURL) {
         "Q2FuYWxfOTA=": { keyId: "ca50103f3285421e8be7da8c0c0e7a54", key: "3608e92a6feddf228c1f035ebb764426" }, //Canal_90
 
 
-        "TkJBX1RW": { keyId: "d0c38de3c9844e4e9f975dffb3eff8ad", key: "141ca0fdf6ebadfa7107576b8e09e117" }, //NBA TV 
+        // "TkJBX1RW": { keyId: "d0c38de3c9844e4e9f975dffb3eff8ad", key: "141ca0fdf6ebadfa7107576b8e09e117" }, //NBA TV 
+        "TkJBX1RW": { keyId: "1a9ded52bb6b4a95ceaf0225f6ec950d", key: "96ddfcf278a5103f3a4535efcb3cada2" }, //NBA TV 
         // "QW1lcmljYTI0": { keyId: "3b1b027dd011af20fd9956c16dc084fb", key: "45f75aacf06593c9b693fe427c67e5b8" }, //America24-A24
         "QW1lcmljYTI0": { keyId: "71133ea8e1941323a21acb5090c5c469", key: "f46178e47581d410008a505eeed759fe" }, //America24-A24
         "QTNfQ2luZQ==": { keyId: "d6ff881a6f07986a80d6ad6f041b57d4", key: "b401c87c2ab11a1a488ee1c474b109ae" }, //A3_Cine
@@ -262,7 +264,8 @@ function getChannelKeys(getURL) {
         "QW1lcmljYVRW": { keyId: "3d7afc43dab940d699b61466b245369f", key: "712b5165ff990156e6c9e580b0b4df59" }, //AmericaTV
         "QW5pbWFsUGxhbmV0": { keyId: "4146a8ecbb0540dc807c6389ee87e0bc", key: "0c3cdc1b3e4617c57361265e9fa4c5bd" }, // Animal Planet
         "QW50ZW5hXzM=": { keyId: "1e1ad422a6714482b66fa702c16e50c6", key: "4fdf28a0ab91356ca55a75f4e9bf8c92" }, //Antena_3-INTERNACIONAL
-        "QXJnZW50aW5pc2ltYQ": { keyId: "a6243f46366445ebbf3117ec27365481", key: "81667cdc3bcf19a6a66c0919fa00a20b" }, //Argentinisima
+        // "QXJnZW50aW5pc2ltYQ": { keyId: "a6243f46366445ebbf3117ec27365481", key: "81667cdc3bcf19a6a66c0919fa00a20b" }, //Argentinisima
+        "QXJnZW50aW5pc2ltYQ": { keyId: "7e9c0f045a0940b971d1067eecf629b7", key: "923f466a008d077b21ac13ede21600a5" }, //Argentinisima
         "QVhOSEQ=": { keyId: "03e77b5bbf5135a85d587c5af2f2f730", key: "1dd1ab1938a791d03f09eb88478b4880" }, //AXNHD
         "QkJDX1dvcmxkX05ld3M": { keyId: "019f72f2091d4cbea59ff8c85b117f86", key: "a4eac51195506752f9f63ad24def9c37" }, //BBC_World_News
         "QnJhdm9UVg==": { keyId: "ad7fbbec39cea4a5a63ac13d94da48d4", key: "f71087b4dc211db079237c0fb783eb93" }, //BravoTV
@@ -297,7 +300,8 @@ function getChannelKeys(getURL) {
         "VGhlYXRlcl9IRA==": { keyId: "5279c05ea51c4dae8e7fa6be88448089", key: "b28dfafba4b848dfd5d7c177ebf19108" }, //DISCOVERY Theater_HD
         "VExD": { keyId: "58761c7b2819491eb3a0d765842c341a", key: "9dabc48f88bd7f266734e57501bd6f47" }, // Discovery TLC
         "RGlzY292ZXJ5VHVyYm8=": { keyId: "a611ddbf8c15fa617a0c391cb7b3e128", key: "0cd1300baf8890380fd41124962195c4" }, // Discovery TURBO
-        "RGlzY292ZXJ5X1dvcmxkX0hE": { keyId: "34ee94c2263345f7a3a590661264e490", key: "56757d656a697ab7a2e5e083b5d21bb5" }, //Discovery_World_HD
+        // "RGlzY292ZXJ5X1dvcmxkX0hE": { keyId: "34ee94c2263345f7a3a590661264e490", key: "56757d656a697ab7a2e5e083b5d21bb5" }, //Discovery_World_HD
+        "RGlzY292ZXJ5X1dvcmxkX0hE": { keyId: "31e4b8ab99b5a7bd7812834701825dd9", key: "fe9e6e8c22b0d33baaae895b9d0317aa" }, //Discovery_World_HD
         // "RGlzbmV5Q2hhbm5lbEhE": { keyId: "4a742e478d14023e1993e011d9415f94", key: "0df77ede9bc744376836d21afa137dda" }, //DisneyChannelHD
         "RGlzbmV5Q2hhbm5lbEhE": { keyId: "138981ed5f75527232593af4c92c9007", key: "0f05c78bd7e8bc3e9e0f708c1424f34b" }, //DisneyChannelHD
         "RGlzbmV5SnI=": { keyId: "bd29c4a538f28845ce33581111749428", key: "46d9589f41a11c3637c07c604956deac" }, // Disney Junior
