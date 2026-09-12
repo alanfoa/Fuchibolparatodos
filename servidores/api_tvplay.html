@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Play - Reproductor Fullscreen</title>
+    
+    <!-- Estilos de JWPlayer -->
+    <link rel="stylesheet" href="style-jw.css">
+    
+    <!-- Librería JWPlayer -->
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Buscador */
+        .search-container {
+            /* max-width: 500px; */
+            margin: 0 auto 30px auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            border: 2px solid #333;
+            background-color: #1e1e1e;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #007bff;
+        }
+
+        /* Grilla de Canales */
+        .grid-channels {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+            /* max-width: 1200px; */
+            margin: 0 auto;
+        }
+
+        /* Tarjeta / Botón */
+        .channel-card {
+            background-color: #1e1e1e;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .channel-card:hover {
+            transform: translateY(-5px);
+            border-color: #007bff;
+            background-color: #2a2a2a;
+        }
+
+        .channel-card img {
+            max-width: 100%;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .channel-card span {
+            font-size: 14px;
+            font-weight: bold;
+            color: #eee;
+        }
+
+        /* Modal Fullscreen Estricto */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000000;
+            z-index: 99999;
+            overflow: hidden;
+        }
+
+        .modal-content {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #player {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Botón de Cierre */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 100000;
+            text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #ff4d4d;
+        }
+
+        #loading {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- <h1>Canales de TV</h1> -->
+
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar canal..." oninput="filterChannels()">
+    </div>
+    
+    <div id="loading">Cargando canales...</div>
+    <div id="channels-container" class="grid-channels"></div>
+
+    <!-- Modal Pantalla Completa -->
+    <div id="playerModal" class="modal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div id="player"></div>
+        </div>
+    </div>
+
+    <script>
+        const baseUrl = 'https://servidores.exefiguee.workers.dev/http://45.226.28.9:8085/';
+        const fetchUrl = baseUrl + '?tvwatch';
+        let allChannels = [];
+
+        document.addEventListener('DOMContentLoaded', fetchChannels);
+
+        async function fetchChannels() {
+            try {
+                const response = await fetch(fetchUrl);
+                const text = await response.text();
+
+                const regex = /var\s+Streams\s*=\s*(\[[\s\S]*?\]);/;
+                const match = text.match(regex);
+
+                if (match && match[1]) {
+                    allChannels = JSON.parse(match[1]);
+                    renderChannels(allChannels);
+                } else {
+                    document.getElementById('loading').innerText = 'No se encontraron datos de canales.';
+                }
+            } catch (error) {
+                console.error('Error al realizar el fetch:', error);
+                document.getElementById('loading').innerText = 'Error al cargar los canales.';
+            }
+        }
+
+        function renderChannels(channels) {
+            const container = document.getElementById('channels-container');
+            const loading = document.getElementById('loading');
+            loading.style.display = 'none';
+            container.innerHTML = '';
+
+            if (channels.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No se encontraron resultados.</p>';
+                return;
+            }
+
+            channels.forEach(channel => {
+                const card = document.createElement('div');
+                card.className = 'channel-card';
+
+                let posterUrl = channel.poster;
+                if (!posterUrl.startsWith('http')) {
+                    posterUrl = baseUrl + posterUrl;
+                }
+
+                card.innerHTML = `
+                    <img src="${posterUrl}" alt="${channel.name}" onerror="this.src='https://via.placeholder.com/150x80?text=Sin+Imagen'">
+                    <span>${channel.name}</span>
+                `;
+
+                card.onclick = () => openPlayer(channel.url);
+                container.appendChild(card);
+            });
+        }
+
+        function filterChannels() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allChannels.filter(channel => 
+                channel.name.toLowerCase().includes(query)
+            );
+            renderChannels(filtered);
+        }
+
+        function openPlayer(streamUrl) {
+            const modal = document.getElementById('playerModal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Evita el scroll del fondo cuando el modal está abierto
+
+            jwplayer("player").setup({
+                file: streamUrl,
+                width: "100%",
+                height: "100%",
+                autostart: true
+            });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('playerModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restablece el scroll del fondo
+            jwplayer("player").stop();
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -145,7 +145,8 @@ function getChannelKeys(getURL) {
         "Q2FuYWxfVQ==": { keyId: "202a19e4871c4739a8010aa7b25af37d", key: "07015b4cfa048a3351b83d60aeca5ead" }, //Canal_UCL
         "Q0FOQUxfTFVa": { keyId: "f7523ea5a2da78c465d928be1d81e2a5", key: "870ad69e98abd52b443bd8f0204b3bc4" }, //CANAL_LUZ
         "RVdUTg==": { keyId: "07df3c48652a431ab779d133f085b799", key: "ee2fbeec1ecdffa5617383f684dfda0e" }, //EWTN
-        "S1pP": { keyId: "695d07988114f7fec31f8f27a6d67c32", key: "8e4fbb96cff6a31c88f81565b199a13a" }, //KZO
+        // "S1pP": { keyId: "695d07988114f7fec31f8f27a6d67c32", key: "8e4fbb96cff6a31c88f81565b199a13a" }, //KZO
+        "S1pP": { keyId: "71c9374566b0b5517083bc923175969a", key: "56292911445ae704f390669ec5d7faa7" }, //KZO
         "QWxsZWdyb0hE": { keyId: "e55e61b81b992d6c21466891d72157e9", key: "566d341bf7209a88976e75c20ad7aca2" }, //AllegroHD
         "Vm9ydGVyaXg=": { keyId: "eabe2c22350c26c7f0ad84b34932f08d", key: "39fa06836ec0f81d8dd9b6e01a3070e3" }, //Vorterix
         "TWl4VFY=": { keyId: "0e1327b5b1f4dfe767aec622c9ef64ce", key: "60c64a922af0121bf73261c825e33f18" }, //MixTV
