@@ -294,12 +294,17 @@ function getChannelKeys(getURL) {
         "RGlzY292ZXJ5SEQ=": { keyId: "f55aec775d92cea41ea0f80b8615495a", key: "8927f326931c6a5af38d0cd7cd744338" }, //DiscoveryHD
         // "RGlzY292ZXJ5SG9tZUhlYWx0aEhE": { keyId: "9b0a76dd7a0df1e1b4320aeb1254d1a9", key: "d011267775c38d6d2ab09b428c03d63f" }, // Discovery hyh
         "RGlzY292ZXJ5SG9tZUhlYWx0aEhE": { keyId: "6e2bc2b3c9464c407af6d0559bb5e1ea", key: "43ec5e698b6f60a0f41d604909a25186" }, // Discovery hyh
-        "SUQ=": { keyId: "0956caf2e2bd41f49fdcead7cc94fe24", key: "640c49578073a911938617eb4e652d6c" }, // Discovery  id
+        // "SUQ=": { keyId: "0956caf2e2bd41f49fdcead7cc94fe24", key: "640c49578073a911938617eb4e652d6c" }, // Discovery  id
+        "SUQ=": { keyId: "2a6094881a1486dc8a3efe6be9f22017", key: "ddb8613a5a749a93d9bbc44559298de0" }, // Discovery  id
         "RGlzY292ZXJ5X0tpZHM=": { keyId: "ffb2f0f63c23a3592d4653e938b9ca19", key: "d3661ae881fc55fc7a15815cd439747b" }, // Discovery Kids
-        "RGlzY292ZXJ5X1NjaWVuY2U=": { keyId: "46ba409fb04e40fb86b466d97e3a9588", key: "f129fb9b5d213e20e2abe529b8cf2597" }, //Discovery_Science
-        "VGhlYXRlcl9IRA==": { keyId: "5279c05ea51c4dae8e7fa6be88448089", key: "b28dfafba4b848dfd5d7c177ebf19108" }, //DISCOVERY Theater_HD
-        "VExD": { keyId: "58761c7b2819491eb3a0d765842c341a", key: "9dabc48f88bd7f266734e57501bd6f47" }, // Discovery TLC
-        "RGlzY292ZXJ5VHVyYm8=": { keyId: "a611ddbf8c15fa617a0c391cb7b3e128", key: "0cd1300baf8890380fd41124962195c4" }, // Discovery TURBO
+        // "RGlzY292ZXJ5X1NjaWVuY2U=": { keyId: "46ba409fb04e40fb86b466d97e3a9588", key: "f129fb9b5d213e20e2abe529b8cf2597" }, //Discovery_Science
+        "RGlzY292ZXJ5X1NjaWVuY2U=": { keyId: "c9fcd9709b38058ca2c90b83e81bc039", key: "fb736e65c2a7248987e58a2a7e6d49a6" }, //Discovery_Science
+        // "VGhlYXRlcl9IRA==": { keyId: "5279c05ea51c4dae8e7fa6be88448089", key: "b28dfafba4b848dfd5d7c177ebf19108" }, //DISCOVERY Theater_HD
+        "VGhlYXRlcl9IRA==": { keyId: "e76e0dd95f2187770a6fa9f72d7600f5", key: "bcab30dad55228fcd0a89a534b7b4f04" }, //DISCOVERY Theater_HD
+        // "VExD": { keyId: "58761c7b2819491eb3a0d765842c341a", key: "9dabc48f88bd7f266734e57501bd6f47" }, // Discovery TLC
+        "VExD": { keyId: "2718fd9ea3492a477bd91c51d348185d", key: "979d54e467efcac7b5ea18d50f74ee08" }, // Discovery TLC
+        // "RGlzY292ZXJ5VHVyYm8=": { keyId: "a611ddbf8c15fa617a0c391cb7b3e128", key: "0cd1300baf8890380fd41124962195c4" }, // Discovery TURBO
+        "RGlzY292ZXJ5VHVyYm8=": { keyId: "0f55ecc6486bcae9fd3f53271fc16ad8", key: "eeb7df5969fc58b5771f2f3bc7502ad5" }, // Discovery TURBO
         // "RGlzY292ZXJ5X1dvcmxkX0hE": { keyId: "34ee94c2263345f7a3a590661264e490", key: "56757d656a697ab7a2e5e083b5d21bb5" }, //Discovery_World_HD
         "RGlzY292ZXJ5X1dvcmxkX0hE": { keyId: "31e4b8ab99b5a7bd7812834701825dd9", key: "fe9e6e8c22b0d33baaae895b9d0317aa" }, //Discovery_World_HD
         // "RGlzbmV5Q2hhbm5lbEhE": { keyId: "4a742e478d14023e1993e011d9415f94", key: "0df77ede9bc744376836d21afa137dda" }, //DisneyChannelHD
