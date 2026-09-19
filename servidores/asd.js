@@ -289,7 +289,8 @@ function getChannelKeys(getURL) {
         "Rmxvd19NdXNpY18z": { keyId: "e078b15ed770ec71f803c0ecc43de033", key: "7010bccda544f74d1b425c4cebd082d4" }, //Flow_Music_3
         "Rm9vZF9OZXR3b3Jr": { keyId: "94d3ef068988afbe74787867f3f505c5", key: "6264b63a33548f46327ce824127841ba" }, //Food_Network
         "Rm94X05ld3M=": { keyId: "488ea1defb086bbe1927cba169da7d5f", key: "ce35b54276eadded7b8d4301b3f9cc66" }, //Fox_News
-        "RlhIRA==": { keyId: "9701932cab0e4aa3b8078176d5d54dd0", key: "76819026588b16fd7083436b2b94485e" }, //FXHD
+        // "RlhIRA==": { keyId: "9701932cab0e4aa3b8078176d5d54dd0", key: "76819026588b16fd7083436b2b94485e" }, //FXHD
+        "RlhIRA==": { keyId: "9ab9c42c713e0fb5517dc77cc19d6755", key: "d8c271b82387e609b6c19e5e79240aff" }, //FXHD
         "RWxfR2FyYWdl": { keyId: "a3ea9cbb34e7f4dbf6156a68f913d6d7", key: "1c00f433ce482e2b8766a6a020634947" }, //El_Garage
         "R0VOX1RW": { keyId: "07437c8de4e0da2fbfae8137647fbed5", key: "2993a1e2086fada083a8a2edd0ecc56b" }, //GEN_TV
         "R2xpdHo=": { keyId: "f812ef81d6ce425a8db4012a1ef8b0c1", key: "5c2b9791b1074727eb349588e32bdc0a" }, //Glitz NO FUNCIONA
