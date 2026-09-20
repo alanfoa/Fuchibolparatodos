@@ -3048,9 +3048,9 @@ MisCanales.set(
     {
         pais: "Paraguay",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=UlBDX0M0",
-            // servidorCanalesOnline + "cvatt.html?get=UlBDX0M0",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=UlBDX0M0",
+            servidorCanalesOnline + "cvatt_pro.html?get=UlBDX0M0",
+            servidorCanalesOnline + "cvatt.html?get=UlBDX0M0",
+            servidorCanalesOnline + "cvatt2_ext.html?get=UlBDX0M0",
             // "server/cvatt.html?get=UlBDX0M0",
             // "https://sssshhh.xyz/cvatt.html?get=UlBDX0M0",
             // "https://a3.115tv.site/cvatt.html?get=UlBDX0M0",

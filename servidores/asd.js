@@ -18,7 +18,7 @@ const CHANNELS = new Map([
     // Canal 5
     ...["QzlOX0M0", "Q2FuYWxfQw==", "U29tb3NfUm9zYXJpbw==", "U29tb3NfU1RG", "QUJDX1RWX0M0"].map(k => [k, 5]),
     // Canal 4
-    ...["SEVJX05PVw==", "UlBDX0M0", "RVNQTl9VWQ==", "Q0hfN19KdWp1eQ==", "Q2FuYWwzX1NhbnRhX1Jvc2E=", "Q2FuYWxfOV9NZW5kb3ph", "Q2FuYWw5X0xhX1Jpb2ph", "VFNOX05lY29jaGVh", "Q2FuYWw3X0NhdGFtYXJjYQ==", "U29tb3NfRm9ybW9zYQ==", "Q2FuYWxfM19Gb3Jtb3Nh", "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs", "TmFuZHV0aV9QeQ==", "RWR1Y2FuYWw=", "UkND", "Q2FuYWxfMl9NRFFfTEND", "VGVsZWZlX01EUV9IRA==", "U29tb3NfUGFyYW5h", "Q2FuYWxfMTFfRm9ybW9zYQ==", "Q2FuYWxfMTNfUmlvXzR0bw==", "QW1lcmljYV9QWQ==", "QTI0X1BZ", "RXZlbnRvczNfVVk=", "RXZlbnRvc18yX1VZ", "RVNQTjJfVVk=", "RXZlbnRvczJfUFk=", "RVNQTl9QWQ==", "RVNQTjJfUFk=", "NVJUVg==", "Q2FuYWwxMF9SaW9fTmVncm8=", "Q2FuYWxfNV9Sb3Nhcmlv", "VFZfQ2FtYXJh", "Q0hfMTJfUG9zYWRhcw==", "Q0JBMjQ=", "TWl4VFY=", "TG9jYWxfQ2FybG9zX1Bheg==", "Q2FuYWwxMF9DQkFfSEQ=", "VU5JQ0FOQUxfQzQ=", "TGF0YW1fUnVyYWw=", "U29tb3NfQ29ycmllbnRlcw==", "U29tb3NfU2FsdGE=", "U29tb3NfUmFmYWVsYQ==", "U29tb3NfUmVzaXN0ZW5jaWE=", "U29tb3NfRWxfVmFsbGU=", "Q2FuYWxfQ2l1ZGFkX01EUQ==", "NV9EaWFzX1BZ", "VGVsZWZlX0ludGVybmFjaW9uYWw=", "Q0hfMTNfQ29ycmllbnRlcw==", "U2hvd19TcG9ydHM=", "Q0hfOV9SZXNpc3RlbmNpYQ==", "VEVMRUZVVFVST19DNA==", "VGVsZWZlX05ldXF1ZW4=", "VGVsZWZlX1NhbHRh", "U05UX0M0", "UEFSQVZJU0lPTl9DNA==", "Tk9USUNJQVNfUFlfQzQ=", "TEFfVEVMRV9DNA==", "U1VSX1RWX0M0", "Q2FuYWwxMlVSVQ==", "Q2FuYWw0X1VSVQ==", "SEJPSEQ=", "Q2FuYWwxMF9VUlU=", "UlBDX0M0"].map(k => [k, 4]),
+    ...["SEVJX05PVw==", "UlBDX0M0", "RVNQTl9VWQ==", "Q0hfN19KdWp1eQ==", "Q2FuYWwzX1NhbnRhX1Jvc2E=", "Q2FuYWxfOV9NZW5kb3ph", "Q2FuYWw5X0xhX1Jpb2ph", "VFNOX05lY29jaGVh", "Q2FuYWw3X0NhdGFtYXJjYQ==", "U29tb3NfRm9ybW9zYQ==", "Q2FuYWxfM19Gb3Jtb3Nh", "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs", "TmFuZHV0aV9QeQ==", "RWR1Y2FuYWw=", "UkND", "Q2FuYWxfMl9NRFFfTEND", "VGVsZWZlX01EUV9IRA==", "U29tb3NfUGFyYW5h", "Q2FuYWxfMTFfRm9ybW9zYQ==", "Q2FuYWxfMTNfUmlvXzR0bw==", "QW1lcmljYV9QWQ==", "QTI0X1BZ", "RXZlbnRvczNfVVk=", "RXZlbnRvc18yX1VZ", "RVNQTjJfVVk=", "RXZlbnRvczJfUFk=", "RVNQTl9QWQ==", "RVNQTjJfUFk=", "NVJUVg==", "Q2FuYWwxMF9SaW9fTmVncm8=", "Q2FuYWxfNV9Sb3Nhcmlv", "VFZfQ2FtYXJh", "Q0hfMTJfUG9zYWRhcw==", "Q0JBMjQ=", "TWl4VFY=", "TG9jYWxfQ2FybG9zX1Bheg==", "Q2FuYWwxMF9DQkFfSEQ=", "VU5JQ0FOQUxfQzQ=", "TGF0YW1fUnVyYWw=", "U29tb3NfQ29ycmllbnRlcw==", "U29tb3NfU2FsdGE=", "U29tb3NfUmFmYWVsYQ==", "U29tb3NfUmVzaXN0ZW5jaWE=", "U29tb3NfRWxfVmFsbGU=", "Q2FuYWxfQ2l1ZGFkX01EUQ==", "NV9EaWFzX1BZ", "VGVsZWZlX0ludGVybmFjaW9uYWw=", "Q0hfMTNfQ29ycmllbnRlcw==", "U2hvd19TcG9ydHM=", "Q0hfOV9SZXNpc3RlbmNpYQ==", "VEVMRUZVVFVST19DNA==", "VGVsZWZlX05ldXF1ZW4=", "VGVsZWZlX1NhbHRh", "U05UX0M0", "UEFSQVZJU0lPTl9DNA==", "Tk9USUNJQVNfUFlfQzQ=", "TEFfVEVMRV9DNA==", "U1VSX1RWX0M0", "Q2FuYWwxMlVSVQ==", "Q2FuYWw0X1VSVQ==", "SEJPSEQ=", "Q2FuYWwxMF9VUlU="].map(k => [k, 4]),
     // Canal 3
     ...["QU1DX1Nlcmllcw==", "RFNwb3J0c18x", "RFNwb3J0c18y", "U2VuYWxfTWFyaWE=", "Q2FuYWxfNzlfTURR", "RXZlbnRvc19QWQ==", "Q2FuYWw3X1NERQ==", "Qmxvb21iZXJn", "Q2FuYWxfVQ==", "RnJhbmNlMjRfRmxvdw==", "VFZfTmFjaW9uYWxfVXk=", "UmVkZV9SZWNvcmQ=", "U29tb3NfQmFoaWFfQmxhbmNh", "Q2FuYWxfM19Sb3Nhcmlv", "Q2FuYWw3X0JhaGlhX0JsYW5jYQ==", "Q2FuYWxfMTNfU0ZF", "Q2FuYWw5X0JhaGlhX0JsYW5jYQ==", "TmF0R2VvSEQ=", "VE5UX0hEX0FyZw==", "VE5UU2VyaWVz", "Q2FydG9vbk5ldHdvcms=", "Tmlja2Vsb2Rlb24=", "QWR1bHRfU3dpbQ==", "RXZlbnRvczFIRA"].map(k => [k, 3])
 ]);
@@ -100,14 +100,13 @@ function getChannelKeys(getURL) {
         "VW5pdmVyc2lkYWRfTURR": { keyId: "4f6ab7206de81b4f19edcbc735a7f4ca", key: "5d05b9738b9a999a4b7c5b495866c21c" }, //Universidad_MDQ
         "": { keyId: "", key: "" }, //
         "": { keyId: "", key: "" }, //
-        // "UlBDX0M0": { keyId: "a5a9d75cde4024c3f0479f32b229eebc", key: "3f5c379be6ee9c568bf81ca73f3e9144" }, //RPC_C4 no anda
         "RHNwb3J0c19VWQ==": { keyId: "143c71292a6dd58404efad283b220539", key: "9fceff2f3d70e2f569d5565407d7f743" }, //Dsports_UY
         "RHNwb3J0czJfVVk=": { keyId: "969a3f92b501140c840243fb52e2bde0", key: "d9957d1813667c03e67f6b21632ea7b4" }, //Dsports2_UY
         "RFNwb3J0c18x": { keyId: "86d19904429f78baf98cf1fd481c430e", key: "5229197732a9a3e109264b272bd782f2" }, //Dsports_UY
         "RFNwb3J0c18y": { keyId: "33848c262a3cc8c0eb8b34cdb9691f04", key: "fd8e52ad745cec9e62263928a10f3abd" }, //Dsports2_UY
         "RHNwb3J0c19QbHVzX1VZ": { keyId: "517d3690fb9e64f95a9272958a84df32", key: "b563bc52ea05c1e7002a996f688b08b9" }, //DSports-3 UY 
-
-
+        
+        
         "RVNQTjJfUFk=": { keyId: "0aab4bd18144c7316c35c74ccce96ddc", key: "3e6db98d9df4747108bd896cba0be57d" }, //ESPN2_PY creo que es 1
         "RVNQTl9QWQ==": { keyId: "4cbc5f5cbac72d38371bb63309e4a9d2", key: "dbc8de27da9726cd2e7659abb08e86ef" }, //ESPN_PY creo que es 2
         "RVNQTjNfVXktUHk=": { keyId: "ed53871dc50dcdc59a6271db3c8c51b3", key: "0c21dc8629e3f2e6fe9efa8b80dc447e" }, //ESPN3_Uy-Py creo que es 3
@@ -129,9 +128,9 @@ function getChannelKeys(getURL) {
         "U29tb3NfTm9ydGU=": { keyId: "ee8a6cc35fdb4ab7adeed9d16593459f", key: "5ca774838d5c887f7a8d7dee64b9a6b0" }, //Somos_Norte
         "VmVudXNfTWVkaWE=": { keyId: "835af7d77bd13621ba044ab931e5e89f", key: "753ed98985b348ab7bf3c0a2b24930eb" }, //Venus_Media
         "QU1DX1Nlcmllcw==": { keyId: "30ffe7a2776537e8cec7020d783536f9", key: "7b4f323576ac85d8938f5bebc245131c" }, //AMC_Series
-
-
-
+        
+        
+        
         "Q2FuYWxfUFJP": { keyId: "e3dae0418c43c763bdc55c7cc887fb40", key: "608425ead9e9ce5e143cad164350f738" }, //Canal_PRO
         "Qmxvb21iZXJn": { keyId: "5e627ea0331d29957c4f4188a4591acd", key: "e08fd83ff31754b66ca99dc2a37af398" }, //Bloomberg
         "VFZfQ2FtYXJh": { keyId: "9357704ade444dc3b23be89865af2f58", key: "3d03e0a79d8f7b7aa2897c3d24bd4b6a" }, //TV_Camara Paraguay
@@ -178,7 +177,7 @@ function getChannelKeys(getURL) {
         "U29tb3NfUmVzaXN0ZW5jaWE=": { keyId: "a7c3579af87560a1dbc599c882516f95", key: "cdfe03336cc80ef7c3dd9eb19f298d04" }, //Somos_Resistencia
         "U29tb3NfRWxfVmFsbGU=": { keyId: "513f2056bf40d9123918fd7939fbf065", key: "075ee6dd9b67d88be5642eaa510e91cb" }, //Somos_El_Valle
         "U29tb3NfTWlzaW9uZXM=": { keyId: "170d08ce1e5e94e366318d178700e0cf", key: "76259c53b90ce8e0c2824ed49b767bd4" }, //Somos_Misiones
-
+        
         "Q2FuYWxfQ2l1ZGFkX01EUQ==": { keyId: "b57763b8d9c205d609ea509432201fac", key: "a476cf79190fe4810efdd81e32317ff3" }, //Canal_Ciudad_MDQ
         "QUJDX1RWX0M0": { keyId: "1e8c184b326a2fb228b37a4a7114b633", key: "1c5fa10b3fe66d8693b8755e5f6ae6c0" }, //ABC_TV_C4
         "TWVnYV9UVg==": { keyId: "61a2b4ab23a8aaecf1333544b9401da5", key: "7d69d25a9b592969393d5aa89d5d40e6" }, //Mega_TV
@@ -226,14 +225,14 @@ function getChannelKeys(getURL) {
         "RGVwb3JUVkhE": { keyId: "e721cdf9043ee562296005056a2757de", key: "70259c9d827905e8088cdedceb56ae87" }, //DeporTVHD
         "VlRWX0hE": { keyId: "b96960aa715a4e51b7e952e81c99ac8e", key: "5bbffc680764dbd63d90b774b3aa0c0a" }, //VTV_HD
         "VlRWX1BsdXNfSEQ": { keyId: "da8a49a594160cc0059f07b9f71cd39a", key: "37ca91dd799b351a02445151c7f61070" }, //VTV_Plus_HD
-
-
+        
+        
         "RXZlbnRvczFIRA": { keyId: "fdb996352a45b339b86f3eb336af36c6", key: "21b8543c13b2b87e0e097602a71f3f91" }, //Eventos1HD-ESPN EXTRA?
         "RXZlbnRvc18yX0hE": { keyId: "02c5f46dec4c3feadde6f5b0b0c6e9b6", key: "89186f8c250f8291b4211ac1b2bdc103" }, //Eventos_2_HD - Muestra Flow
         "RXZlbnRvc18z": { keyId: "8b2fdf5a35d01a6ac888b7e8b1a2ddad", key: "2c088b42e71dba1c572e7f04d2934430" }, //Eventos_3
         "Q2FuYWxfOTA=": { keyId: "ca50103f3285421e8be7da8c0c0e7a54", key: "3608e92a6feddf228c1f035ebb764426" }, //Canal_90
-
-
+        
+        
         "TkJBX1RW": { keyId: "1a9ded52bb6b4a95ceaf0225f6ec950d", key: "96ddfcf278a5103f3a4535efcb3cada2" }, //NBA TV 
         "QW1lcmljYTI0": { keyId: "71133ea8e1941323a21acb5090c5c469", key: "f46178e47581d410008a505eeed759fe" }, //America24-A24
         "QTNfQ2luZQ==": { keyId: "d6ff881a6f07986a80d6ad6f041b57d4", key: "b401c87c2ab11a1a488ee1c474b109ae" }, //A3_Cine
@@ -289,8 +288,8 @@ function getChannelKeys(getURL) {
         "Rmxvd19NdXNpY18z": { keyId: "e078b15ed770ec71f803c0ecc43de033", key: "7010bccda544f74d1b425c4cebd082d4" }, //Flow_Music_3
         "Rm9vZF9OZXR3b3Jr": { keyId: "94d3ef068988afbe74787867f3f505c5", key: "6264b63a33548f46327ce824127841ba" }, //Food_Network
         "Rm94X05ld3M=": { keyId: "488ea1defb086bbe1927cba169da7d5f", key: "ce35b54276eadded7b8d4301b3f9cc66" }, //Fox_News
-        // "RlhIRA==": { keyId: "9701932cab0e4aa3b8078176d5d54dd0", key: "76819026588b16fd7083436b2b94485e" }, //FXHD
-        "RlhIRA==": { keyId: "9ab9c42c713e0fb5517dc77cc19d6755", key: "d8c271b82387e609b6c19e5e79240aff" }, //FXHD
+        "RlhIRA==": { keyId: "9701932cab0e4aa3b8078176d5d54dd0", key: "76819026588b16fd7083436b2b94485e" }, //FXHD
+        // "RlhIRA==": { keyId: "9ab9c42c713e0fb5517dc77cc19d6755", key: "d8c271b82387e609b6c19e5e79240aff" }, //FXHD
         "RWxfR2FyYWdl": { keyId: "a3ea9cbb34e7f4dbf6156a68f913d6d7", key: "1c00f433ce482e2b8766a6a020634947" }, //El_Garage
         "R0VOX1RW": { keyId: "07437c8de4e0da2fbfae8137647fbed5", key: "2993a1e2086fada083a8a2edd0ecc56b" }, //GEN_TV
         "R2xpdHo=": { keyId: "f812ef81d6ce425a8db4012a1ef8b0c1", key: "5c2b9791b1074727eb349588e32bdc0a" }, //Glitz NO FUNCIONA
@@ -366,18 +365,19 @@ function getChannelKeys(getURL) {
         "SHVzdGxlcg==": { keyId: "cf37db556be5ee1ecd1ee1f1bcf39390", key: "cb2d8390f9c6c39311939fb51ba42ab2" }, //Hustler
         "SFRW": { keyId: "daecef5fe32f4ce083c6a0c692755d6a", key: "d4227f24389a9ba77293214b93eb0d7d" }, // HTV
         "SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=": { keyId: "723d8d918d61cee1f708ec849b6498a2", key: "b4b48cfccc1cddcc73bc7a7df46cb531" }, // IP Noticias
-        "UlBDX0M0": { keyId: "a8093cdcb2d504bd38f16764bd21b6e5", key: "bfcf3b033b5f0b5ae020751a6746326f" }, // el trece py
+        // "UlBDX0M0": { keyId: "a8093cdcb2d504bd38f16764bd21b6e5", key: "bfcf3b033b5f0b5ae020751a6746326f" }, // el trece py
+        "UlBDX0M0": { keyId: "a5a9d75cde4024c3f0479f32b229eebc", key: "3f5c379be6ee9c568bf81ca73f3e9144" }, //RPC_C4 no anda
         "QWR1bHRfU3dpbQ==": { keyId: "4e63e6ecde4f9cd9e68021b4c9af2d21", key: "438e6d40e9952362eef1c690c5f8455a" }, // AS
         "Q2FuYWxfZGVfbGFfY2l1ZGFk": { keyId: "8700e5c6a3528f38f878a1720ab8a5d4", key: "dd4d69622cd92dfe429229925c6a0a75" }, // El Canal de la Ciudad
     };
-
+    
     channelList[0].name = atob(getURL);
     channelList[0].getURL = getURL;
     channelList[0].number = getChannelNumber(getURL);
     channelList[0].keyId = channelMap[getURL].keyId;
     channelList[0].key = channelMap[getURL].key;
-
-
+    
+    
     // return channelMap[getURL] || { keyId: null, key: null };
     return channelList;
 }
@@ -426,39 +426,52 @@ let mt = [
 ]
 
 // // Comprueba dominios y lo asigna
-// async function getValidMpd(channelInfo) {
-//     const channelToLoad = channelInfo || channelList[0];
-//     let urlWithToken = await getURLwithToken()
-//     let url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/sa_dash_full_e_7CF9BB041AD89713AD8CF4CF/${atob(channelToLoad.getURL)}.mpd`;
-//     // let url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
-//     return url;
-// }
-
-
 async function getValidMpd(channelInfo) {
     const channelToLoad = channelInfo || channelList[0];
-    const urlWithToken = await getURLwithToken();
-    const channelPath = atob(channelToLoad.getURL);
-    const channelNumber = channelToLoad.number || 3;
+    let urlWithToken = await getURLwithToken()
+    // let url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/sa_dash_full_e_7CF9BB041AD89713AD8CF4CF/${atob(channelToLoad.getURL)}.mpd`;
+    // let url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
+    // let url;
+    // if(atob(channelToLoad.getURL) === "FXHD" || atob(channelToLoad.getURL) === "TBS"){
+    //     url = `${urlWithToken}/out/v1/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
+    // }else
+    //     url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
+    // return url;
 
-    // 1. Definimos la lista de URLs a probar en orden
-    const primaryUrl = `${urlWithToken}/live/c${channelNumber}eds/${channelPath}/sa_dash_full_e_7CF9BB041AD89713AD8CF4CF/${channelPath}.mpd`;
-    const fallbackUrl = `${urlWithToken}/live/c${channelNumber}eds/${channelPath}/SA_Live_dash_enc/${channelPath}.mpd`;
+    const channel = atob(channelToLoad.getURL);
+
+    const path = ["FXHD", "TBS"].includes(channel)
+        ? `/out/v1/${channel}/SA_Live_dash_enc/${channel}.mpd`
+        : `/live/c${channelToLoad.number || 3}eds/${channel}/SA_Live_dash_enc/${channel}.mpd`;
     
-    // const primaryUrl = `${urlWithToken}/out/v1/${channelPath}/SA_Live_dash_enc/${channelPath}.mpd`;
-    // const fallbackUrl = `${urlWithToken}/live/c${channelNumber}eds/${channelPath}/SA_Live_dash_enc/${channelPath}.mpd`;
-
-    // 2. Probamos la primera URL
-    try {
-        const response = await fetch(primaryUrl, { method: 'HEAD' });
-        
-        if (response.ok) {
-            return primaryUrl;
-        }
-    } catch (error) {
-        console.warn('Error al verificar la primera MPD, usando fallback:', error);
-    }
-
-    // 3. Si la primera falla o responde con error (404, 500, etc.), retorna la segunda
-    return fallbackUrl;
+    return `${urlWithToken}${path}`;
 }
+
+
+// async function getValidMpd(channelInfo) {
+//     const channelToLoad = channelInfo || channelList[0];
+//     const urlWithToken = await getURLwithToken();
+//     const channelPath = atob(channelToLoad.getURL);
+//     const channelNumber = channelToLoad.number || 3;
+
+//     // 1. Definimos la lista de URLs a probar en orden
+//     const primaryUrl = `${urlWithToken}/live/c${channelNumber}eds/${channelPath}/sa_dash_full_e_7CF9BB041AD89713AD8CF4CF/${channelPath}.mpd`;
+//     const fallbackUrl = `${urlWithToken}/live/c${channelNumber}eds/${channelPath}/SA_Live_dash_enc/${channelPath}.mpd`;
+    
+//     // const primaryUrl = `${urlWithToken}/out/v1/${channelPath}/SA_Live_dash_enc/${channelPath}.mpd`;
+//     // const fallbackUrl = `${urlWithToken}/live/c${channelNumber}eds/${channelPath}/SA_Live_dash_enc/${channelPath}.mpd`;
+
+//     // 2. Probamos la primera URL
+//     try {
+//         const response = await fetch(primaryUrl, { method: 'HEAD' });
+        
+//         if (response.ok) {
+//             return primaryUrl;
+//         }
+//     } catch (error) {
+//         console.warn('Error al verificar la primera MPD, usando fallback:', error);
+//     }
+
+//     // 3. Si la primera falla o responde con error (404, 500, etc.), retorna la segunda
+//     return fallbackUrl;
+// }
