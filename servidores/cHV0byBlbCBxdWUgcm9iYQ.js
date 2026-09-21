@@ -107,7 +107,7 @@ function getChannelKeys(getURL) {
         "RHNwb3J0c19QbHVzX1VZ": { keyId: "517d3690fb9e64f95a9272958a84df32", key: "b563bc52ea05c1e7002a996f688b08b9" }, //DSports-3 UY 
         
         
-        "RVNQTjJfUFk=": { keyId: "0aab4bd18144c7316c35c74ccce96ddc", key: "3e6db98d9df4747108bd896cba0be57d" }, //ESPN2_PY creo que es 1
+        "RVNQTjJfUFk=": { keyId: "88003c992a67f3221dc4502fcf4a8086", key: "dade5af67461fdacecb721dbbb500fb1" }, //ESPN2_PY creo que es 1
         "RVNQTl9QWQ==": { keyId: "4cbc5f5cbac72d38371bb63309e4a9d2", key: "dbc8de27da9726cd2e7659abb08e86ef" }, //ESPN_PY creo que es 2
         "RVNQTjNfVXktUHk=": { keyId: "ed53871dc50dcdc59a6271db3c8c51b3", key: "0c21dc8629e3f2e6fe9efa8b80dc447e" }, //ESPN3_Uy-Py creo que es 3
         "": { keyId: "", key: "" }, //
@@ -148,7 +148,7 @@ function getChannelKeys(getURL) {
         "Vm9ydGVyaXg=": { keyId: "eabe2c22350c26c7f0ad84b34932f08d", key: "39fa06836ec0f81d8dd9b6e01a3070e3" }, //Vorterix
         "TWl4VFY=": { keyId: "0e1327b5b1f4dfe767aec622c9ef64ce", key: "60c64a922af0121bf73261c825e33f18" }, //MixTV
         "RFc=": { keyId: "8bb583ab165ad7646298b7091d642162", key: "39a0ad8e7513ecfad34c60c519320095" }, //DW
-        "U1VSX1RWX0M0": { keyId: "c047764a90e9a5b0213aec8fed8a24aa", key: "07e62001064fbe64796b4ed3836761f4" }, //SUR_TV_C4
+        "U1VSX1RWX0M0": { keyId: "64b5c35275f4288e2a05f7702dcb036b", key: "ded6887ccad57ea7ff9949d0c6f4ac1b" }, //SUR_TV_C4
         "Q05OX0ludGVybmFjaW9uYWw=": { keyId: "cdef9f28233ed83d8efc9d558230fe4c", key: "d90e7278af48ff14a1913036d9126a94" }, //CNN_Internacional
         "S2lkb28=": { keyId: "dcd89337a501ab929c01a039774089dc", key: "e96cc7be9139a8d581b3f5eebebfc10d" }, //Kidoo
         "QmFieVRW": { keyId: "9e09f0a3ecb932582e0f3bc6a6194c8d", key: "6d2363b7ba7680ea3bf6dcbad1efa5bf" }, //BabyTV
@@ -156,7 +156,7 @@ function getChannelKeys(getURL) {
         "UGxpbV9QbGlt": { keyId: "5b34ec5be9a7d394e5f49a5ea55ac4f6", key: "3e8cca6f945a3a4c9984ae528c2407b9" }, //Plim_Plim
         "RnJhbmNlXzI0": { keyId: "f687c6991de847a7570aaafed45ef0ef", key: "f9ef914c2d632cdbc180d5b4828f0956" }, //France_24
         "RnJhbmNlMjRfRmxvdw==": { keyId: "92e2f2caa23a7b883e343b26c9f90ed1", key: "ff145008f5c53ee75c6d3498cd778acc" }, //France24_Flow
-        "R0VOX19DQU0x": { keyId: "a2624484ee4d8c41bac4d41eee323773", key: "b58f5c587f8ba08e1132243b139ba4d4" }, //Nickmusic
+        "R0VOX19DQU0x": { keyId: "a2624484ee4d8c41bac4d41eee323773", key: "b58f5c587f8ba08e1132243b139ba4d4" }, //GEN__CAM1
         "RE5ld3M=": { keyId: "5dcaeaa309c8d828c7731c7877158a92", key: "423e96f5f1199b026cbab4a7521e0591" }, //DNews
         "TG9jYWxfQ2FybG9zX1Bheg==": { keyId: "7804609194dc7145bf297153276096d2", key: "03d3f4e3d0b35362dadfddce10dee00c" }, //Local_Carlos_Paz
         "Q2FuYWxfQw==": { keyId: "9a866ca98bef2351a68e4843139f8073", key: "b0893077653d1ef842a1b65d8b34455a" }, //Canal_C
@@ -431,16 +431,10 @@ async function getValidMpd(channelInfo) {
     let urlWithToken = await getURLwithToken()
     // let url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/sa_dash_full_e_7CF9BB041AD89713AD8CF4CF/${atob(channelToLoad.getURL)}.mpd`;
     // let url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
-    // let url;
-    // if(atob(channelToLoad.getURL) === "FXHD" || atob(channelToLoad.getURL) === "TBS"){
-    //     url = `${urlWithToken}/out/v1/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
-    // }else
-    //     url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
-    // return url;
 
     const channel = atob(channelToLoad.getURL);
 
-    const path = ["FXHD", "TBS"].includes(channel)
+    const path = ["FXHD", "TBS", "Europa_Europa"].includes(channel)
         ? `/out/v1/${channel}/SA_Live_dash_enc/${channel}.mpd`
         : `/live/c${channelToLoad.number || 3}eds/${channel}/SA_Live_dash_enc/${channel}.mpd`;
     

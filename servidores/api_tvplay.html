@@ -167,7 +167,7 @@
     </div>
 
     <script>
-        const baseUrl = 'https://servidores.exefiguee.workers.dev/http://45.226.28.9:8085/';
+        const baseUrl = 'https://servidores.exefiguee.workers.dev/http://45.226.28.9:8085/?tvwatch';
         const fetchUrl = baseUrl + '?tvwatch';
         let allChannels = [];
 
@@ -237,7 +237,7 @@
             document.body.style.overflow = 'hidden'; // Evita el scroll del fondo cuando el modal está abierto
 
             jwplayer("player").setup({
-                file: streamUrl,
+                file: "https://teleapp-tv-705810336142.us-west2.run.app/api/proxy?url="+streamUrl,
                 width: "100%",
                 height: "100%",
                 autostart: true
