@@ -1027,9 +1027,9 @@ MisCanales.set(
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfQmVsbF9WaWxsZQ==",
             // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfQmVsbF9WaWxsZQ==",
             //Del Valle
-            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfRWxfVmFsbGU=",
-            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfRWxfVmFsbGU=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfRWxfVmFsbGU=",
+            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfRWxfVmFsbGU=",
+            servidorCanalesOnline + "cvatt.html?get=U29tb3NfRWxfVmFsbGU=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfRWxfVmFsbGU=",
             //Salta
             // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfU2FsdGE=",
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfU2FsdGE=",
@@ -1047,9 +1047,9 @@ MisCanales.set(
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfU2FuX1BlZHJv",
             // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfU2FuX1BlZHJv",
             //Somos Azul
-            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfQXp1bA==",
-            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfQXp1bA==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfQXp1bA==",
+            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfQXp1bA==",
+            servidorCanalesOnline + "cvatt.html?get=U29tb3NfQXp1bA==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfQXp1bA==",
             //Somos Norte
             // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfTm9ydGU=",
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfTm9ydGU=",
@@ -1168,9 +1168,9 @@ MisCanales.set(
     {
         pais: "Uruguay",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWwxMlVSVQ==",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWwxMlVSVQ==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWwxMlVSVQ==",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWwxMlVSVQ==",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWwxMlVSVQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWwxMlVSVQ==",
             // "server/cvatt.html?get=Q2FuYWwxMlVSVQ==",
             // "https://sssshhh.xyz/cvatt.html?get=Q2FuYWwxMlVSVQ==",
             // "https://a3.115tv.site/cvatt.html?get=Q2FuYWwxMlVSVQ==",
@@ -1522,6 +1522,21 @@ MisCanales.set(
             // servidorCanalesOnline + "m3u8.html?stream=Canal_10_Rio_Negro",
             servidorCanalesOnline + "fetch.html?stream=Canal_10_Rio_Negro",
             // "https://arcast.net/c10rionegro/index.php",
+        ]
+    }
+);
+
+MisCanales.set(
+    "Televida Mendoza",
+    {
+        pais: "Argentina",
+        enlaces: [
+            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOV9NZW5kb3ph",
+            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOV9NZW5kb3ph",
+            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOV9NZW5kb3ph",
+            // servidorCanalesOnline + "m3u8.html?stream=El_Nueve_Mendoza",
+            // servidorCanalesOnline + "extension.html?get=Televidaar",
+            // "https://rudo.video/live/televidaar?enablejsapi=1",
         ]
     }
 );
@@ -2518,9 +2533,9 @@ MisCanales.set(
     {
         pais: "Uruguay",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWwxMF9VUlU=",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWwxMF9VUlU=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWwxMF9VUlU=",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWwxMF9VUlU=",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWwxMF9VUlU=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWwxMF9VUlU=",
             // "server/cvatt.html?get=Q2FuYWwxMF9VUlU=",
             // "https://sssshhh.xyz/cvatt.html?get=Q2FuYWwxMF9VUlU=",
             // "https://a3.115tv.site/cvatt.html?get=Q2FuYWwxMF9VUlU=",
