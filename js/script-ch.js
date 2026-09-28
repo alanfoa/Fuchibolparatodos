@@ -6763,6 +6763,16 @@ MisCanales.set(
 );
 
 MisCanales.set(
+    "Warner ES",
+    {
+        pais: "Estados Unidos",
+        enlaces: [
+            servidorCanalesOnline + "zapitvpro.html?id=warner_es",
+        ]
+    }
+);
+
+MisCanales.set(
     "Studio Universal",
     {
         pais: "Estados Unidos",
@@ -9654,7 +9664,7 @@ MisCanales.forEach((canal, nombre, map) => {
         !link.includes("jjfutbol2pro.html") &&
         // !link.includes("ciades.html") &&
         // !link.includes("ciadespro.html") &&
-        !link.includes("zapitvpro.html") &&
+        // !link.includes("zapitvpro.html") &&
         // !link.includes("telefe.html") &&
         // !link.includes("miagendadeportiva.html") &&
         // !link.includes("FreeTV.html") &&
