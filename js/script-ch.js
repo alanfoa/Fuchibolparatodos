@@ -756,7 +756,7 @@ MisCanales.set(
 );
 
 MisCanales.set(
-    "Bravo TV",
+    "Alpha TV",
     {
         pais: "Argentina",
         enlaces: [
@@ -3267,9 +3267,9 @@ MisCanales.set(
             servidorCanalesOnline + "akamaized.html?id=dsports_arg",
 
             ///Uruguay
-            // servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19VWQ==",
-            // servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19VWQ==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19VWQ==",
+            servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19VWQ==",
+            servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19VWQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19VWQ==",
 
 
 
@@ -3320,9 +3320,9 @@ MisCanales.set(
             servidorCanalesOnline + "akamaized.html?id=dsports2_arg",
 
             ///Uruguay
-            // servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0czJfVVk=",
-            // servidorCanalesOnline + "cvatt.html?get=RHNwb3J0czJfVVk=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0czJfVVk=",
+            servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0czJfVVk=",
+            servidorCanalesOnline + "cvatt.html?get=RHNwb3J0czJfVVk=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0czJfVVk=",
 
             servidorCanalesOnline + "flypro.html?id=dsports2",
             servidorCanalesOnline + "fly-hls.html?id=dsports2",
@@ -3378,6 +3378,18 @@ MisCanales.set(
             servidorCanalesOnline + "jjfutbol2pro.html?name=dsports+",
             // "https://fullchannels.online/canales.php?id=directvplus-op2",
             // "https://zonahack-2aeb7.web.app/tvonline.html?url=https://cansd-teleetreee-maemb.glitch.me/detee3.html",
+        ]
+    }
+);
+
+MisCanales.set(
+    "DSports Uruguay Premium",
+    {
+        pais: "Estados Unidos",
+        enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=RFNwb3J0c19VcnVndWF5X1ByZW1pdW0=",
+            servidorCanalesOnline + "cvatt.html?get=RFNwb3J0c19VcnVndWF5X1ByZW1pdW0=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RFNwb3J0c19VcnVndWF5X1ByZW1pdW0=",
         ]
     }
 );
@@ -6345,9 +6357,9 @@ MisCanales.set(
     {
         pais: "Estados Unidos",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=QU1DX1Nlcmllcw==",
-            // servidorCanalesOnline + "cvatt.html?get=QU1DX1Nlcmllcw==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=QU1DX1Nlcmllcw==",
+            servidorCanalesOnline + "cvatt_pro.html?get=QU1DX1Nlcmllcw==",
+            servidorCanalesOnline + "cvatt.html?get=QU1DX1Nlcmllcw==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=QU1DX1Nlcmllcw==",
             servidorCanalesOnline + "aneviapro.html?id=AMC",
             servidorCanalesOnline + "edge.html?get=AMC_Series",
             servidorCanalesOnline + "gigared.html?id=Mas_Chic",
