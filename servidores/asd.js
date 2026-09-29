@@ -12,13 +12,13 @@ let channelList = [
 
 const CHANNELS = new Map([
     // Canal 7
-    ...["RXZlbnRvc180Sw==","R0VOX19DQU0x","Q29uc3RydWlyX1RW", "RHNwb3J0c19QbHVzX1VZ", "SHVzdGxlcg==", "RHNwb3J0czJfVVk=", "RHNwb3J0c19VWQ==", "VG9kb19Ob3RpY2lhc180Sw==", "RGF5c3Rhcg==", "U29tb3NfTWlzaW9uZXM=", "VW5pdmVyc2lkYWRfTURR", "RWNvVHZfVGFuZGls", "U29tb3NfQmVsbF9WaWxsZQ==", "U29tb3NfVHVjdW1hbg==", "VW5pb25UVg==", "VmVudXNfTWVkaWE=", "U29tb3NfU2FuX1BlZHJv", "VGVsZW1lZGlh", "Q2FuYWxfMTBfSnVuaW4=", "VGVsZUp1bmlu", "U29tb3NfQXp1bA==", "RVNQTjNfVXktUHk=", "RVNQTjNfVXktUHk==", "RXZlbnRvc18z", "QTNfQ2luZQ==", "QXJpcmFuZw==", "QmFuZGVpcmFudGVz", "QWxsamF6emVyYQ==", "Q2FuYWxfUFJP", "VW5pdmVyc28=", "Q2FuYWxfMTFfUGFyYW5h", "Q0FOQUxfTFVa", "QWxsZWdyb0hE", "QmFieVRW", "RE5ld3M=", "VVNBX05ldHdvcms=", "QTNfU2VyaWVz", "TWVnYV9UVg==", "QW1lcmljYV9UdWN1bWFu", "UFhfU3BvcnRz", "Q2gxMF9UdWN1bWFu", "SG9tZV9hbmRfR2FyZGVu", "REhF", "Rmxvd19NdXNpY19YUA==", "QUVIRA==", "SG9sYV9UVg==", "QVhOSEQ=", "TVRWMDA=", "V2FybmVySEQ=", "R0VOX1RW", "Rm94X1Nwb3J0c19QcmVtaXVuX0hE", "VG9kb05vdGljaWFz", "VHlDU3BvcnQ", "QW1lcmljYTI0", "QzVO", "TGFfTmFjaW9u", "Q3JvbmljYVRW", "Q2FuYWxfOF9UdWN1bWFu", "UGFyYWd1YXlfVFY=", "UGFyYW1vdW50", "Q29tZWR5Q2VudHJhbA", "Rmxvd19NdXNpY18x", "Rmxvd19NdXNpY18y", "Rmxvd19NdXNpY18z", "Qm9vbWVyYW5n", "RHJlYW13b3Jrcw==", "QW5pbWFsUGxhbmV0", "SGlzdG9yeUhE", "SUQ=", "QnJhdm9UVg==", "U29ueUhE", "U29ueV9Nb3ZpZXM=", "VHJ1VFY=", "SEJPX1BPUA==", "RGlzY292ZXJ5VHVyYm8=", "RGlzbmV5SnI=", "SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=", "Rm94U3BvcnRzMl9VWQ==", "RVNQTjQ=", "Rm94U3BvcnRzM19VWQ==", "RXZlbnRvc19IRF9VeQ==", "VGVsZW11bmRvX0hE", "UGFzaW9uZXM="].map(k => [k, 7]),
+    ...["UmVpbm9fSW5mYW50aWw=","RXZlbnRvc180Sw==","R0VOX19DQU0x","Q29uc3RydWlyX1RW", "RHNwb3J0c19QbHVzX1VZ", "SHVzdGxlcg==", "RHNwb3J0czJfVVk=", "RHNwb3J0c19VWQ==", "VG9kb19Ob3RpY2lhc180Sw==", "RGF5c3Rhcg==", "U29tb3NfTWlzaW9uZXM=", "VW5pdmVyc2lkYWRfTURR", "RWNvVHZfVGFuZGls", "U29tb3NfQmVsbF9WaWxsZQ==", "U29tb3NfVHVjdW1hbg==", "VW5pb25UVg==", "VmVudXNfTWVkaWE=", "U29tb3NfU2FuX1BlZHJv", "VGVsZW1lZGlh", "Q2FuYWxfMTBfSnVuaW4=", "VGVsZUp1bmlu", "U29tb3NfQXp1bA==", "RVNQTjNfVXktUHk=", "RVNQTjNfVXktUHk==", "RXZlbnRvc18z", "QTNfQ2luZQ==", "QXJpcmFuZw==", "QmFuZGVpcmFudGVz", "QWxsamF6emVyYQ==", "Q2FuYWxfUFJP", "VW5pdmVyc28=", "Q2FuYWxfMTFfUGFyYW5h", "Q0FOQUxfTFVa", "QWxsZWdyb0hE", "QmFieVRW", "RE5ld3M=", "VVNBX05ldHdvcms=", "QTNfU2VyaWVz", "TWVnYV9UVg==", "QW1lcmljYV9UdWN1bWFu", "UFhfU3BvcnRz", "Q2gxMF9UdWN1bWFu", "SG9tZV9hbmRfR2FyZGVu", "REhF", "Rmxvd19NdXNpY19YUA==", "QUVIRA==", "SG9sYV9UVg==", "QVhOSEQ=", "TVRWMDA=", "V2FybmVySEQ=", "R0VOX1RW", "Rm94X1Nwb3J0c19QcmVtaXVuX0hE", "VG9kb05vdGljaWFz", "VHlDU3BvcnQ", "QW1lcmljYTI0", "QzVO", "TGFfTmFjaW9u", "Q3JvbmljYVRW", "Q2FuYWxfOF9UdWN1bWFu", "UGFyYWd1YXlfVFY=", "UGFyYW1vdW50", "Q29tZWR5Q2VudHJhbA", "Rmxvd19NdXNpY18x", "Rmxvd19NdXNpY18y", "Rmxvd19NdXNpY18z", "Qm9vbWVyYW5n", "RHJlYW13b3Jrcw==", "QW5pbWFsUGxhbmV0", "SGlzdG9yeUhE", "SUQ=", "QnJhdm9UVg==", "U29ueUhE", "U29ueV9Nb3ZpZXM=", "VHJ1VFY=", "SEJPX1BPUA==", "RGlzY292ZXJ5VHVyYm8=", "RGlzbmV5SnI=", "SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=", "Rm94U3BvcnRzMl9VWQ==", "RVNQTjQ=", "Rm94U3BvcnRzM19VWQ==", "RXZlbnRvc19IRF9VeQ==", "VGVsZW11bmRvX0hE", "UGFzaW9uZXM="].map(k => [k, 7]),
     // Canal 6
     ...["U29tb3NfVmlsbGFfTWFyaWE=","VEJT","Q2FuYWxfMTBfTURR", "Q2FuYWxfOTA=", "U29tb3NfTm9ydGU=",  "Q2FibGVfWV9EaWFyaW8=", "VFZfRXNwYW5h", "VHZfR2FsaWNpYQ==", "RVNQTjJfQXJn", "Q2FuYWxfMjE=", "VGVsZW5vdmVsYXM=", "RVdUTg==", "S1pP", "Vm9ydGVyaXg=", "RFc=", "Q05OX0ludGVybmFjaW9uYWw=", "S2lkb28=", "VG9vbmNhc3Q=", "UGxpbV9QbGlt", "RnJhbmNlXzI0", "Tmlja211c2lj", "U29tb3NfTGFfUGxhdGE=", "QXJ0ZWFyX0ludGVybmFjaW9uYWw=", "RXZlbnRvc18yX0hE", "R29sZGVu", "Q2FuYWxfOV9QYXJhbmE=", "R29sZl9DaGFubmVs", "Q2FuYWxfYQ==", "QW1lcmljYV9TcG9ydHM=", "Q2luZW1heA==", "Q2FuYWxfOF9DQkE", "MjZfVFZfSEQ", "RGlwdXRhZG9zX1RW", "QXJnZW50aW5pc2ltYQ", "TWV0cm8", "QkJDX1dvcmxkX05ld3M", "VGhlYXRlcl9IRA==", "R2xpdHo=", "UXVpZXJvX0hE", "RGlzY292ZXJ5X1dvcmxkX0hE", "RXVyb2NoYW5uZWw=", "RGlzY292ZXJ5X1NjaWVuY2U=", "SU5DQUFfVHY=", "VFY1X01vbmRl", "TVRWX0hpdHM=", "TVRWX0hE", "Tmlja19Kcg==", "VFZFX0VzcGFuYQ==", "V09CSQ==", "Vm9sdmVy", "VGVsZXN1cg==", "TGlmZXRpbWU=", "QW50ZW5hXzM=", "Rm94X05ld3M=", "VHZfQ2hpbGU=", "TWFzX0NoaWM=", "U3R1ZGlvX1VuaXZlcnNhbA==", "SVNBVA==", "U3VuX0NoYW5uZWw=", "UkFJ", "VmVudXM=", "U2V4dHJlbWU", "UGxheWJveQ", "VE5UX1Nwb3J0c19IRA", "VGVsZWZlSEQ=", "Q2FuYWw3", "RW5jdWVudHJv", "VGVsZW1heA", "TmV0X1RW", "Q2FuYWxfMTJfQ0JB", "RWxfR2FyYWdl", "RmlsbV9BcnRz", "VW5pdmVyc2FsX0NoYW5uZWxfSEQ=", "RXVyb3BhX0V1cm9wYQ", "RXVyb25ld3M=", "Rm9vZF9OZXR3b3Jr", "RV9FbnRlcnRhaW5tZW50X1RlbGV2aXNpb24=", "Q00=", "UEFLQV9QQUtB", "SGlzdG9yeV8y", "U3lGeQ==", "VEJT", "VENN", "SEJPXzI=", "SEJPX1BsdXM=", "SEJPX0ZhbWlseQ==", "SEJPX0V4dHJlbWU=", "SEJPX011bmRp", "SEJPX1NpZ25hdHVyZQ==", "Q2FuYWxfUnVyYWw=", "VExD", "Q2FuYWxfZGVfbGFfY2l1ZGFk", "RGlzY292ZXJ5X0tpZHM=", "SFRW", "TkJBX1RW", "VW5pdmVyc2FsX0NpbmVtYQ==", "VW5pdmVyc2FsX0NvbWVkeQ==", "dW5pdmVyc2FsX0NyaW1l", "VW5pdmVyc2FsX1ByZW1pZXJl", "VW5pdmVyc2FsX1JlYWxpdHk=", "Q05OX2VuX0VzcGFub2w=", "Q2FuYWxfZGVfbGFzX2VzdHJlbGxhcw=="].map(k => [k, 6]),
     // Canal 5
     ...["QzlOX0M0", "Q2FuYWxfQw==", "U29tb3NfUm9zYXJpbw==", "U29tb3NfU1RG", "QUJDX1RWX0M0"].map(k => [k, 5]),
     // Canal 4
-    ...["Q2FuYWwxMlVSVQ==","SEVJX05PVw==", "UlBDX0M0", "RVNQTl9VWQ==", "Q0hfN19KdWp1eQ==", "Q2FuYWwzX1NhbnRhX1Jvc2E=", "Q2FuYWxfOV9NZW5kb3ph", "Q2FuYWw5X0xhX1Jpb2ph", "VFNOX05lY29jaGVh", "Q2FuYWw3X0NhdGFtYXJjYQ==", "U29tb3NfRm9ybW9zYQ==", "Q2FuYWxfM19Gb3Jtb3Nh", "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs", "TmFuZHV0aV9QeQ==", "RWR1Y2FuYWw=", "UkND", "Q2FuYWxfMl9NRFFfTEND", "VGVsZWZlX01EUV9IRA==", "U29tb3NfUGFyYW5h", "Q2FuYWxfMTFfRm9ybW9zYQ==", "Q2FuYWxfMTNfUmlvXzR0bw==", "QW1lcmljYV9QWQ==", "QTI0X1BZ", "RXZlbnRvczNfVVk=", "RXZlbnRvc18yX1VZ", "RVNQTjJfVVk=", "RXZlbnRvczJfUFk=", "RVNQTl9QWQ==", "RVNQTjJfUFk=", "NVJUVg==", "Q2FuYWwxMF9SaW9fTmVncm8=", "Q2FuYWxfNV9Sb3Nhcmlv", "VFZfQ2FtYXJh", "Q0hfMTJfUG9zYWRhcw==", "Q0JBMjQ=", "TWl4VFY=", "TG9jYWxfQ2FybG9zX1Bheg==", "Q2FuYWwxMF9DQkFfSEQ=", "VU5JQ0FOQUxfQzQ=", "TGF0YW1fUnVyYWw=", "U29tb3NfQ29ycmllbnRlcw==", "U29tb3NfU2FsdGE=", "U29tb3NfUmFmYWVsYQ==", "U29tb3NfUmVzaXN0ZW5jaWE=", "U29tb3NfRWxfVmFsbGU=", "Q2FuYWxfQ2l1ZGFkX01EUQ==", "NV9EaWFzX1BZ", "VGVsZWZlX0ludGVybmFjaW9uYWw=", "Q0hfMTNfQ29ycmllbnRlcw==", "U2hvd19TcG9ydHM=", "Q0hfOV9SZXNpc3RlbmNpYQ==", "VEVMRUZVVFVST19DNA==", "VGVsZWZlX05ldXF1ZW4=", "VGVsZWZlX1NhbHRh", "U05UX0M0", "UEFSQVZJU0lPTl9DNA==", "Tk9USUNJQVNfUFlfQzQ=", "TEFfVEVMRV9DNA==", "U1VSX1RWX0M0", "Q2FuYWwxMlVSVQ==", "Q2FuYWw0X1VSVQ==", "SEJPSEQ=", "Q2FuYWwxMF9VUlU="].map(k => [k, 4]),
+    ...["RFNwb3J0c19VcnVndWF5X1ByZW1pdW0=","Q2FuYWwxMlVSVQ==","SEVJX05PVw==", "UlBDX0M0", "RVNQTl9VWQ==", "Q0hfN19KdWp1eQ==", "Q2FuYWwzX1NhbnRhX1Jvc2E=", "Q2FuYWxfOV9NZW5kb3ph", "Q2FuYWw5X0xhX1Jpb2ph", "VFNOX05lY29jaGVh", "Q2FuYWw3X0NhdGFtYXJjYQ==", "U29tb3NfRm9ybW9zYQ==", "Q2FuYWxfM19Gb3Jtb3Nh", "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs", "TmFuZHV0aV9QeQ==", "RWR1Y2FuYWw=", "UkND", "Q2FuYWxfMl9NRFFfTEND", "VGVsZWZlX01EUV9IRA==", "U29tb3NfUGFyYW5h", "Q2FuYWxfMTFfRm9ybW9zYQ==", "Q2FuYWxfMTNfUmlvXzR0bw==", "QW1lcmljYV9QWQ==", "QTI0X1BZ", "RXZlbnRvczNfVVk=", "RXZlbnRvc18yX1VZ", "RVNQTjJfVVk=", "RXZlbnRvczJfUFk=", "RVNQTl9QWQ==", "RVNQTjJfUFk=", "NVJUVg==", "Q2FuYWwxMF9SaW9fTmVncm8=", "Q2FuYWxfNV9Sb3Nhcmlv", "VFZfQ2FtYXJh", "Q0hfMTJfUG9zYWRhcw==", "Q0JBMjQ=", "TWl4VFY=", "TG9jYWxfQ2FybG9zX1Bheg==", "Q2FuYWwxMF9DQkFfSEQ=", "VU5JQ0FOQUxfQzQ=", "TGF0YW1fUnVyYWw=", "U29tb3NfQ29ycmllbnRlcw==", "U29tb3NfU2FsdGE=", "U29tb3NfUmFmYWVsYQ==", "U29tb3NfUmVzaXN0ZW5jaWE=", "U29tb3NfRWxfVmFsbGU=", "Q2FuYWxfQ2l1ZGFkX01EUQ==", "NV9EaWFzX1BZ", "VGVsZWZlX0ludGVybmFjaW9uYWw=", "Q0hfMTNfQ29ycmllbnRlcw==", "U2hvd19TcG9ydHM=", "Q0hfOV9SZXNpc3RlbmNpYQ==", "VEVMRUZVVFVST19DNA==", "VGVsZWZlX05ldXF1ZW4=", "VGVsZWZlX1NhbHRh", "U05UX0M0", "UEFSQVZJU0lPTl9DNA==", "Tk9USUNJQVNfUFlfQzQ=", "TEFfVEVMRV9DNA==", "U1VSX1RWX0M0", "Q2FuYWwxMlVSVQ==", "Q2FuYWw0X1VSVQ==", "SEJPSEQ=", "Q2FuYWwxMF9VUlU="].map(k => [k, 4]),
     // Canal 3
     ...["QU1DX1Nlcmllcw==", "RFNwb3J0c18x", "RFNwb3J0c18y", "U2VuYWxfTWFyaWE=", "Q2FuYWxfNzlfTURR", "RXZlbnRvc19QWQ==", "Q2FuYWw3X1NERQ==", "Qmxvb21iZXJn", "Q2FuYWxfVQ==", "RnJhbmNlMjRfRmxvdw==", "VFZfTmFjaW9uYWxfVXk=", "UmVkZV9SZWNvcmQ=", "U29tb3NfQmFoaWFfQmxhbmNh", "Q2FuYWxfM19Sb3Nhcmlv", "Q2FuYWw3X0JhaGlhX0JsYW5jYQ==", "Q2FuYWxfMTNfU0ZF", "Q2FuYWw5X0JhaGlhX0JsYW5jYQ==", "TmF0R2VvSEQ=", "VE5UX0hEX0FyZw==", "VE5UU2VyaWVz", "Q2FydG9vbk5ldHdvcms=", "Tmlja2Vsb2Rlb24=", "QWR1bHRfU3dpbQ==", "RXZlbnRvczFIRA"].map(k => [k, 3])
 ]);
@@ -106,7 +106,7 @@ function getChannelKeys(getURL) {
         "RHNwb3J0czJfVVk=": { keyId: "969a3f92b501140c840243fb52e2bde0", key: "d9957d1813667c03e67f6b21632ea7b4" }, //Dsports2_UY
         "RFNwb3J0c18x": { keyId: "86d19904429f78baf98cf1fd481c430e", key: "5229197732a9a3e109264b272bd782f2" }, //Dsports_UY
         "RFNwb3J0c18y": { keyId: "33848c262a3cc8c0eb8b34cdb9691f04", key: "fd8e52ad745cec9e62263928a10f3abd" }, //Dsports2_UY
-        "RHNwb3J0c19QbHVzX1VZ": { keyId: "517d3690fb9e64f95a9272958a84df32", key: "b563bc52ea05c1e7002a996f688b08b9" }, //DSports-3 UY 
+        "RHNwb3J0c19QbHVzX1VZ": { keyId: "fc51b58e664b610663329079722d98b3", key: "3a444d28d15313665b305bb99c0e4c82" }, //DSports-3 UY 
         
         
         "RVNQTjJfUFk=": { keyId: "88003c992a67f3221dc4502fcf4a8086", key: "dade5af67461fdacecb721dbbb500fb1" }, //ESPN2_PY creo que es 1
@@ -129,7 +129,8 @@ function getChannelKeys(getURL) {
         "U29tb3NfU2FuX1BlZHJv": { keyId: "5ed7bfb5a7be4d99df70ed73852098d4", key: "df5123a8a8160b62b51c7cb6001be23c" }, //Somos_San_Pedro
         "U29tb3NfTm9ydGU=": { keyId: "ee8a6cc35fdb4ab7adeed9d16593459f", key: "5ca774838d5c887f7a8d7dee64b9a6b0" }, //Somos_Norte
         "VmVudXNfTWVkaWE=": { keyId: "835af7d77bd13621ba044ab931e5e89f", key: "753ed98985b348ab7bf3c0a2b24930eb" }, //Venus_Media
-        "QU1DX1Nlcmllcw==": { keyId: "30ffe7a2776537e8cec7020d783536f9", key: "7b4f323576ac85d8938f5bebc245131c" }, //AMC_Series
+        "QU1DX1Nlcmllcw==": { keyId: "eede4d68b8f02d26fe3f59d2125b56e2", key: "2f064e1c42bd2ec12bc98d02eb62f06e" }, //AMC_Series
+        "RFNwb3J0c19VcnVndWF5X1ByZW1pdW0=": { keyId: "e2ad044c97034afceaa46eed5e5f2bf1", key: "eed15ba92518ce67a278ebf10e67e5ee" }, //AMC_Series
         
         
         
@@ -147,13 +148,13 @@ function getChannelKeys(getURL) {
         "RVdUTg==": { keyId: "07df3c48652a431ab779d133f085b799", key: "ee2fbeec1ecdffa5617383f684dfda0e" }, //EWTN
         "S1pP": { keyId: "71c9374566b0b5517083bc923175969a", key: "56292911445ae704f390669ec5d7faa7" }, //KZO
         "QWxsZWdyb0hE": { keyId: "e55e61b81b992d6c21466891d72157e9", key: "566d341bf7209a88976e75c20ad7aca2" }, //AllegroHD
-        "Vm9ydGVyaXg=": { keyId: "eabe2c22350c26c7f0ad84b34932f08d", key: "39fa06836ec0f81d8dd9b6e01a3070e3" }, //Vorterix
-        "TWl4VFY=": { keyId: "0e1327b5b1f4dfe767aec622c9ef64ce", key: "60c64a922af0121bf73261c825e33f18" }, //MixTV
+        "Vm9ydGVyaXg=": { keyId: "83132aeb8ac536b1287b3a121767f5f6", key: "24488449ccf4f53a8d77874ef85f44b8" }, //Vorterix
+        "TWl4VFY=": { keyId: "65d71143cb18b78e179cee85f858d5dd", key: "24eddb4521a6b36f7770d6a4f2d907ee" }, //MixTV
         "RFc=": { keyId: "8bb583ab165ad7646298b7091d642162", key: "39a0ad8e7513ecfad34c60c519320095" }, //DW
         "U1VSX1RWX0M0": { keyId: "64b5c35275f4288e2a05f7702dcb036b", key: "ded6887ccad57ea7ff9949d0c6f4ac1b" }, //SUR_TV_C4
         "Q05OX0ludGVybmFjaW9uYWw=": { keyId: "cdef9f28233ed83d8efc9d558230fe4c", key: "d90e7278af48ff14a1913036d9126a94" }, //CNN_Internacional
-        "S2lkb28=": { keyId: "dcd89337a501ab929c01a039774089dc", key: "e96cc7be9139a8d581b3f5eebebfc10d" }, //Kidoo
-        "QmFieVRW": { keyId: "9e09f0a3ecb932582e0f3bc6a6194c8d", key: "6d2363b7ba7680ea3bf6dcbad1efa5bf" }, //BabyTV
+        "S2lkb28=": { keyId: "9d073f33950953eba4e8bb7f3d5c228f", key: "9afaff0e76d8182b8fb794f1579aefd4" }, //Kidoo
+        "QmFieVRW": { keyId: "b6cc8d4a7959bcc18413927f1a498a7c", key: "195b94d2ff3357e93d24e296c39b4326" }, //BabyTV
         "VG9vbmNhc3Q=": { keyId: "1b9f0bdb87e459cc9a02f16a58fb1e8a", key: "e112e71f1b991d61dd26719e2de903b6" }, //Tooncast
         "UGxpbV9QbGlt": { keyId: "5b34ec5be9a7d394e5f49a5ea55ac4f6", key: "3e8cca6f945a3a4c9984ae528c2407b9" }, //Plim_Plim
         "RnJhbmNlXzI0": { keyId: "f687c6991de847a7570aaafed45ef0ef", key: "f9ef914c2d632cdbc180d5b4828f0956" }, //France_24
@@ -180,11 +181,13 @@ function getChannelKeys(getURL) {
         "U29tb3NfRWxfVmFsbGU=": { keyId: "a0042dcced83d437680d129bdbbbdef9", key: "1ea1740c1ece75874f1f4acb8dffc2eb" }, //Somos_El_Valle
         "U29tb3NfTWlzaW9uZXM=": { keyId: "792b981b3688ad9dac8f130758b5813f", key: "6af49ddea22c02dc586ee08086665e78" }, //Somos_Misiones
         
+        "UmVpbm9fSW5mYW50aWw=": { keyId: "b6e4e7306f1dac49fceecc6ce0bebe1d", key: "6d02fe9fc3938bb268405ad1693f0a5a" }, //Somos_Misiones
+        
         "Q2FuYWxfQ2l1ZGFkX01EUQ==": { keyId: "b57763b8d9c205d609ea509432201fac", key: "a476cf79190fe4810efdd81e32317ff3" }, //Canal_Ciudad_MDQ
         "QUJDX1RWX0M0": { keyId: "1e8c184b326a2fb228b37a4a7114b633", key: "1c5fa10b3fe66d8693b8755e5f6ae6c0" }, //ABC_TV_C4
         "TWVnYV9UVg==": { keyId: "61a2b4ab23a8aaecf1333544b9401da5", key: "7d69d25a9b592969393d5aa89d5d40e6" }, //Mega_TV
         "NV9EaWFzX1BZ": { keyId: "07cb38268f0b93ba451304b79bc56aa6", key: "ff35371918bba3252e0aab1c3b1bde33" }, //5_Dias_PY
-        "VGVsZWZlX0ludGVybmFjaW9uYWw=": { keyId: "cc0abcc84ec380cfc192b96d32abad23", key: "9b7825385b89ff82d01909a4ae404877" }, //Telefe_Internacional
+        "VGVsZWZlX0ludGVybmFjaW9uYWw=": { keyId: "2a3fd5e0c53eab2a7ff19e101888c3fb", key: "e16cb312b80a063ab346bdc8baf93464" }, //Telefe_Internacional
         "QXJ0ZWFyX0ludGVybmFjaW9uYWw=": { keyId: "c5f7b491a191048931aaaf0314558bc7", key: "6477522b434cad2020b5fb4d055720b0" }, //Artear_Internacional - El Trece Internacional
         "R29sZGVu": { keyId: "f6cd784e5b53208261dd81a345908400", key: "b125fd77d7d88752dc045e57edcf9943" }, //Golden
         "QW1lcmljYV9UdWN1bWFu": { keyId: "ed542fdaa4598671e26aca3e160afed7", key: "cdb880c60523b9ebc61b9003c41f8048" }, //America_Tucuman
@@ -194,12 +197,12 @@ function getChannelKeys(getURL) {
         "Q2FuYWw3X0JhaGlhX0JsYW5jYQ==": { keyId: "a15243320c0a79defa8814252e3e8c07", key: "0659db05632c0061c126db7a12582499" }, //Canal7_Bahia_Blanca - El trece
         "Q2FuYWxfUnVyYWw=": { keyId: "72308b4673698df3c4143be5410c82d4", key: "35f38c9fb04664572ee6c0a9c53a2388" }, //Canal_Rural
         "U2hvd19TcG9ydHM=": { keyId: "df3ed6245bb9af1a0346379e8e475dff", key: "f86f8457438d4e449d53b956cc1be664" }, //Show_Sports
-        "UFhfU3BvcnRz": { keyId: "9393321daef1463fc7e2e060298db852", key: "be6bc91e17816f67e62596bed463c5ad" }, //PX_Sports
+        "UFhfU3BvcnRz": { keyId: "61973e2f6b81657862b645fe2a34416a", key: "2786c5b66d05cf6f1a42b8c270453319" }, //PX_Sports
         "Q2FuYWxfMTNfU0ZF": { keyId: "59ef9057114f44a480b62e36a6b1374f", key: "74ef97bc54df5655c3a1d4f80b16e8d7" }, //Santa Fe Telefe
         "Q2FuYWw5X0JhaGlhX0JsYW5jYQ==": { keyId: "7ccfc823faed878832b3e4a69fcb72a2", key: "d68b394ab768f4a2ec148ab8cdac46ef" }, //Bahia Blanca - Telefe
         "Q2gxMF9UdWN1bWFu": { keyId: "7a53740aa52d8b50ccb218aab5e9d50e", key: "e772fa4a4997b50a0ff04e2ef286a864" }, //Ch10_Tucuman
         "Q2FuYWxfYQ==": { keyId: "ada50e6dfa73ff021b64cda0e3266441", key: "a8e86512821e7657d05acbbb703b5269" }, //CANAL A
-        "QW1lcmljYV9TcG9ydHM=": { keyId: "a0aa01337a2148bda1e21862295ae037", key: "fee0f87a0527497351fc54ce36ad1de2" }, //Americasports-arg
+        "QW1lcmljYV9TcG9ydHM=": { keyId: "3269536fedc69cba1e0281ff62cc4eb9", key: "5246eedf4e7af3771f80899db667dede" }, //Americasports-arg
         "REhF": { keyId: "7650ddfb5362bb721625873d246b71cc", key: "51c2839183b1f5056d94fe0b75e44662" }, //DHE
         "R29sZl9DaGFubmVs": { keyId: "38d6226b7cd2cfa86b4b9cdaa455e7d7", key: "24f0ef2bf787647cc02df870417eed2b" }, //GOLF TV
         "SG9tZV9hbmRfR2FyZGVu": { keyId: "fb0b850c84cede52061cf6f84fce6cc3", key: "f3de5c89d06ce99a76bdf20703da3cc2" }, //HGTV
@@ -222,7 +225,7 @@ function getChannelKeys(getURL) {
         "VE5UX1Nwb3J0c19IRA": { keyId: "9fb56301bc7687baf0b1a61def9a007a", key: "947d2294ba67256827e8e97f267e71e0" }, //TNT_Sports_HD
         "Rm94X1Nwb3J0c19QcmVtaXVuX0hE": { keyId: "c502892e037a9f34827147b2b24e42cf", key: "2531bd34bec6c0e8fa4e07aedb261ade" }, //ESPN_Premiun_HD
         "VHlDU3BvcnQ": { keyId: "0b1e6825350fa1bc0032f8f36287e006", key: "11fc540a4539d18f91cd403a5ed42284" }, //TyCSport
-        "VHlDX0ludGVybmFjaW9uYWw": { keyId: "58e1ebe75d944f6a98ea67b1c7c0a572", key: "1c311b069dbce31ce8e62a6e7e2433eb" }, //TyC_Internacional
+        "VHlDX0ludGVybmFjaW9uYWw": { keyId: "e7880e1b0d50ca324646b9d73d781e1f", key: "2bef2d7912ee52310d421c1d7756d072" }, //TyC_Internacional
         "Q2FuYWw3": { keyId: "589f5b6f4afec0b3362cd6be2ab1eb36", key: "6d685f3151730ca6a4be7765a46d30a5" }, //Canal7-TV PUBLICA
         "RGVwb3JUVkhE": { keyId: "e721cdf9043ee562296005056a2757de", key: "70259c9d827905e8088cdedceb56ae87" }, //DeporTVHD
         "VlRWX0hE": { keyId: "b96960aa715a4e51b7e952e81c99ac8e", key: "5bbffc680764dbd63d90b774b3aa0c0a" }, //VTV_HD
@@ -233,12 +236,12 @@ function getChannelKeys(getURL) {
         "RXZlbnRvc18yX0hE": { keyId: "02c5f46dec4c3feadde6f5b0b0c6e9b6", key: "89186f8c250f8291b4211ac1b2bdc103" }, //Eventos_2_HD - Muestra Flow
         "RXZlbnRvc18z": { keyId: "8b2fdf5a35d01a6ac888b7e8b1a2ddad", key: "2c088b42e71dba1c572e7f04d2934430" }, //Eventos_3
         "RXZlbnRvc180Sw==": { keyId: "ab88f544b8958534bd928fb632fac573", key: "5dea763b9260a6f4b9baed7b59eca136" }, //Eventos_4K
-        "Q2FuYWxfOTA=": { keyId: "ca50103f3285421e8be7da8c0c0e7a54", key: "3608e92a6feddf228c1f035ebb764426" }, //Canal_90
+        "Q2FuYWxfOTA=": { keyId: "6fb360cc7cd30d761f0ed1b7df5d4768", key: "b2118e1b4d1cc0b3664e66c886bd673d" }, //Canal_90
         
         
         "TkJBX1RW": { keyId: "1a9ded52bb6b4a95ceaf0225f6ec950d", key: "96ddfcf278a5103f3a4535efcb3cada2" }, //NBA TV 
         "QW1lcmljYTI0": { keyId: "71133ea8e1941323a21acb5090c5c469", key: "f46178e47581d410008a505eeed759fe" }, //America24-A24
-        "QTNfQ2luZQ==": { keyId: "d6ff881a6f07986a80d6ad6f041b57d4", key: "b401c87c2ab11a1a488ee1c474b109ae" }, //A3_Cine
+        "QTNfQ2luZQ==": { keyId: "5fd23d78b94f5dd7a5020547bf1673d3", key: "29e4d16d200d4aca5437d144b8538e92" }, //A3_Cine
         "QUVIRA==": { keyId: "46d4dda63edf221dae86a32c6e1c8fdb", key: "40d66cb806ec1fa0f5649d800a43ec44" }, //AEHD
         "QU1D": { keyId: "30ffe7a2776537e8cec7020d783536f9", key: "7b4f323576ac85d8938f5bebc245131c" }, //AMC
         "QW1lcmljYVRW": { keyId: "3d7afc43dab940d699b61466b245369f", key: "712b5165ff990156e6c9e580b0b4df59" }, //AmericaTV
@@ -247,7 +250,7 @@ function getChannelKeys(getURL) {
         "QXJnZW50aW5pc2ltYQ": { keyId: "7e9c0f045a0940b971d1067eecf629b7", key: "923f466a008d077b21ac13ede21600a5" }, //Argentinisima
         "QVhOSEQ=": { keyId: "95b9c884a97447ecab423d054cc499aa", key: "f57499f1432bb70e9cb9a0ebfbef2da4" }, //AXNHD
         "QkJDX1dvcmxkX05ld3M": { keyId: "fe5abcb69ce6fe6d735275317046241c", key: "917566c164adacba90d0364f31808bd8" }, //BBC_World_News
-        "QnJhdm9UVg==": { keyId: "ad7fbbec39cea4a5a63ac13d94da48d4", key: "f71087b4dc211db079237c0fb783eb93" }, //BravoTV
+        "QnJhdm9UVg==": { keyId: "d67ea3430c0dd019e820535765268109", key: "7d7bf2d1b5f4c7c97138a1b9b98e0675" }, //BravoTV
         "QzVO": { keyId: "ef98ad3a4a5b9f6edae885e8bf450d3c", key: "861873c6c69eb66df0afc3034a02a796" }, //C5N
         "QzlOX0M0": { keyId: "ed6a4c25be366a68b9758a24900fd7fc", key: "ed523316b354cd5b1b99b3f9e6a99af5" }, //C9N_C4
         "Q2FuYWwxMlVSVQ==": { keyId: "b34081cdb9cb2f15ceecfc18d7274494", key: "88a3476f512c9d95b62ecea15665c3a3" }, //Canal12URU
@@ -261,7 +264,7 @@ function getChannelKeys(getURL) {
         "Q2luZWNhbmFsSEQ=": { keyId: "98b31a0a125d81ef4c9caf1683f55444", key: "7ec3df0771fe86c9f405765ce9fb5204" }, //CinecanalHD
         "Q2luZW1heA==": { keyId: "fd84db183866916b15366b4852e68da8", key: "1201b1f0ed299a46ddffabb5c8553793" }, // cinemax
         "TWFnYXppbmU=": { keyId: "36bc52ea68831dbbec6a9529bc81a9e8", key: "39858817235ad0c15640dbde56f87d78" }, //ciudad Magazine
-        "Q00=": { keyId: "682f36b5736f4560951ca14b80d29524", key: "3accb729067a39b3b8143f1b447b9d25" }, //CM
+        "Q00=": { keyId: "eb0b25b83dfe576856ca30ff55e6dfd6", key: "30380b34a4de53bc0b3edcf9f2c6abe2" }, //CM
         "Q29tZWR5Q2VudHJhbA": { keyId: "797eb97d11b7ee31e7da456248464879", key: "93a54e23d6fb5e7d05420a279923988c" }, //ComedyCentral
         "Q3JvbmljYVRW": { keyId: "33ded37fefaa6c3d6878e0d555dfaffd", key: "9e024c10af20f240a1ea35b94d147f28" }, //CronicaTV
         "RGlzY292ZXJ5SEQ=": { keyId: "f55aec775d92cea41ea0f80b8615495a", key: "8927f326931c6a5af38d0cd7cd744338" }, //DiscoveryHD
@@ -274,8 +277,8 @@ function getChannelKeys(getURL) {
         "RGlzY292ZXJ5VHVyYm8=": { keyId: "0f55ecc6486bcae9fd3f53271fc16ad8", key: "eeb7df5969fc58b5771f2f3bc7502ad5" }, // Discovery TURBO
         "RGlzY292ZXJ5X1dvcmxkX0hE": { keyId: "31e4b8ab99b5a7bd7812834701825dd9", key: "fe9e6e8c22b0d33baaae895b9d0317aa" }, //Discovery_World_HD
         "RGlzbmV5Q2hhbm5lbEhE": { keyId: "138981ed5f75527232593af4c92c9007", key: "0f05c78bd7e8bc3e9e0f708c1424f34b" }, //DisneyChannelHD
-        "RGlzbmV5SnI=": { keyId: "bd29c4a538f28845ce33581111749428", key: "46d9589f41a11c3637c07c604956deac" }, // Disney Junior
-        "RHJlYW13b3Jrcw==": { keyId: "7f30c43e47544412221fd64201d92f4b", key: "f83d09d75a0946b1d71aa48c201b4d8b" }, //Dreamworks
+        "RGlzbmV5SnI=": { keyId: "632429cd9963a76f90951145da4b22e6", key: "bcc852793cf3f85a1e0acd0509853e47" }, // Disney Junior
+        "RHJlYW13b3Jrcw==": { keyId: "390fe5ab3c92229bf7042ca0eec699a8", key: "33a0b849889f678c60156093dc07a5ca" }, //Dreamworks
         "RGlwdXRhZG9zX1RW": { keyId: "83404a1a63bad8a1d21aabf89f6436cc", key: "b4ce534c34911e703ffc780653bb2a78" }, //Diputados_TV
         // "Q2FuYWwxMlVSVQ==": { keyId: "dfde9d35d7438bfdf61da5dfac0557c1", key: "acb13370c03a7254e2bb9cc9d2125017" }, //Tele
         "Q2FuYWw5": { keyId: "3ddf62bf44e68f06a6adb810199df713", key: "2ace15b4ffbe70940fdf04cf97e114e7" }, //Canal9
@@ -284,16 +287,16 @@ function getChannelKeys(getURL) {
         "RV9FbnRlcnRhaW5tZW50X1RlbGV2aXNpb24=": { keyId: "194d96e9bd9009b1eacc529e3260560a", key: "c37a50d6848ce6d3dcce0c15d227b9e0" }, //E_Entertainment_Television
         "RXVyb2NoYW5uZWw=": { keyId: "95e7d20fc07b39fe9560be1a6be83ce1", key: "40ef00abd884db6166b105da88862849" }, //Eurochannel
         "RXVyb25ld3M=": { keyId: "04d36f1e6df4061c481d5734bf269aaf", key: "4d567918139c6ca6e9a07e8cd0111a2e" }, //Euronews
-        "RXVyb3BhX0V1cm9wYQ": { keyId: "02ba4e4b769e4c148250ec3f2f206e46", key: "659530e217d14c24826899bdefac48e9" }, //Europa_Europa
+        "RXVyb3BhX0V1cm9wYQ": { keyId: "8bd459a9144057b023f993e54e27775e", key: "02a88246e1dc82d2aea02d131f3312e2" }, //Europa_Europa
         "RmlsbV9BcnRz": { keyId: "44ced0f8d39827356490dfdb264d9a0b", key: "af022335fabcd3e2df916b2b53ae3685" }, //Film_Arts
-        "Rmxvd19NdXNpY19YUA==": { keyId: "b2aae44a74144be8b2118e20d1412bab", key: "8a7ae996d12d8d5d5637d1044f8e08b7" }, //Flow_Music_XP
+        "Rmxvd19NdXNpY19YUA==": { keyId: "552c6be6b9f5bd19e76bbdfd53d2f175", key: "78555120f3c692883dce7c89e1bebe62" }, //Flow_Music_XP
         "Rmxvd19NdXNpY18x": { keyId: "f34cd7709f093d23d4db009107d96862", key: "d8a829138d970b45e867c9733a31b2f0" }, //Flow_Music_1
         "Rmxvd19NdXNpY18y": { keyId: "596b599580b39ae2f3c413f7eae36902", key: "2d7e3d5d31f68690fd877a111f84e8e3" }, //Flow_Music_2
         "Rmxvd19NdXNpY18z": { keyId: "e078b15ed770ec71f803c0ecc43de033", key: "7010bccda544f74d1b425c4cebd082d4" }, //Flow_Music_3
         "Rm9vZF9OZXR3b3Jr": { keyId: "94d3ef068988afbe74787867f3f505c5", key: "6264b63a33548f46327ce824127841ba" }, //Food_Network
         "Rm94X05ld3M=": { keyId: "488ea1defb086bbe1927cba169da7d5f", key: "ce35b54276eadded7b8d4301b3f9cc66" }, //Fox_News
-        "RlhIRA==": { keyId: "9701932cab0e4aa3b8078176d5d54dd0", key: "76819026588b16fd7083436b2b94485e" }, //FXHD
-        // "RlhIRA==": { keyId: "9ab9c42c713e0fb5517dc77cc19d6755", key: "d8c271b82387e609b6c19e5e79240aff" }, //FXHD
+        // "RlhIRA==": { keyId: "9701932cab0e4aa3b8078176d5d54dd0", key: "76819026588b16fd7083436b2b94485e" }, //FXHD
+        "RlhIRA==": { keyId: "78a17258be5ca72ec3bc362aeb976816", key: "31c188361f6431cf4dfb5c176870b4e9" }, //FXHD
         "RWxfR2FyYWdl": { keyId: "a3ea9cbb34e7f4dbf6156a68f913d6d7", key: "1c00f433ce482e2b8766a6a020634947" }, //El_Garage
         "R0VOX1RW": { keyId: "07437c8de4e0da2fbfae8137647fbed5", key: "2993a1e2086fada083a8a2edd0ecc56b" }, //GEN_TV
         "R2xpdHo=": { keyId: "f812ef81d6ce425a8db4012a1ef8b0c1", key: "5c2b9791b1074727eb349588e32bdc0a" }, //Glitz NO FUNCIONA
@@ -315,7 +318,7 @@ function getChannelKeys(getURL) {
         "TEFfVEVMRV9DNA==": { keyId: "51bcbf1f1f83f30e91a1f1b6ff9155ee", key: "c1fb35c39a7353bf9493799086d887ac" }, //LA_TELE_C4
         "TGlmZXRpbWU=": { keyId: "c0e2d5650551523ee94db5dc1a8a13d4", key: "d555f25b35d8f32cf9efab28c24ca1ba" }, //Lifetime
         "TWFzX0NoaWM=": { keyId: "dac8ff1688994efd898222acdd05cafc", key: "22fdf97c7233667518258ed16ccb2545" }, //Mas_Chic
-        "TVRWX0hE": { keyId: "0c9eb3ead38a122ac460ad96a8ebfd2e", key: "66bfbfa4449eb8bc1bcf7577d5bffaad" }, //MTV_HD
+        "TVRWX0hE": { keyId: "bbb2956cf5963fb1ae243998ad2722f2", key: "27f1f7ef07abe59d54be2bce4c9a1bc2" }, //MTV_HD
         "TVRWMDA=": { keyId: "1f0c09ed9e5841cf867ba6eb3cdfd61d", key: "802c89c6bae6a245aaafcf40c1986fc1" }, //MTV00
         "TVRWX0hpdHM=": { keyId: "61008dfc867544cd872de99b1f2b82cf", key: "716449756316b91c54803aaa22a2fbf0" }, //MTV_Hits
         "TmF0R2VvSEQ=": { keyId: "73735c1740464c99cca3ffb450c15811", key: "b9241d083c902fa615e4f780081ae926" }, // NATGEO
@@ -326,11 +329,11 @@ function getChannelKeys(getURL) {
         "UGFyYWd1YXlfVFY=": { keyId: "01dd2887ed345bc7642dabdb48d03d01", key: "54e68667949f5b569ff0fcd434f4d243" }, //Paraguay_TV
         "UGFyYW1vdW50": { keyId: "b85b710ecff3e38f31fc8e249b1c1cef", key: "a1544c193dde6f8858c9358ee69a60a7" }, //Paramount
         "UEFSQVZJU0lPTl9DNA==": { keyId: "b02c568163c14cfda4ddb958a0aab742", key: "edef8ba979d64acea3c827dcd51d21ed" }, //PARAVISION_C4
-        "UEFLQV9QQUtB": { keyId: "334001b2f2644df9bdf35e92d2b89f8f", key: "475ec87d86ed0636dbb6d6d9d4a43bb7" }, //PAKA_PAKA
-        "UXVpZXJvX0hE": { keyId: "a354b0c82a3a720c4a6f52ed5a1190f4", key: "45a76dcc84f058cfabc8b958d7303b28" }, //Quiero_HD
+        "UEFLQV9QQUtB": { keyId: "e9c421a7f205ca08e62ebe3ca40e3433", key: "65fa197dc2f472739c1d84fcb5f880cf" }, //PAKA_PAKA
+        "UXVpZXJvX0hE": { keyId: "b650f8342cb564426d68304411bbfe8b", key: "91c659df1f76ccc54ccd865517824e34" }, //Quiero_HD
         "UkFJ": { keyId: "d214547d7d9a4011a39a899ce6e70071", key: "16c2ed0617cf1e123f3af6ea8875a82d" }, //RAI
         "U05UX0M0": { keyId: "a64f7643405eb504a6634036a96705e3", key: "e8c404746c8622774e35eba67fcc8623" }, //SNT_C4
-        "U29ueUhE": { keyId: "fd9619f9d7c2d5115a339941279e0b4b", key: "bf55635e6591f905659fa27ab3ca2812" }, // Sony Channel
+        "U29ueUhE": { keyId: "c0ea1d3cec5fb73c67b07463bf490c40", key: "b53f056deb062277d1b201a6086e98f6" }, // Sony Channel
         "U29ueV9Nb3ZpZXM=": { keyId: "f76233e56d5102867c2bc5418871ad07", key: "16b38f0f7a797b3bb87983ebf5879814" }, // Sony Movie
         "U3BhY2U=": { keyId: "32684b675439d127a5ab1e07b2a57242", key: "e169f625df475d6d1c014cca1a52a251" }, //Space
         "Rk9YSEQ=": { keyId: "fc14190acc872e204f3973c75b6439f2", key: "34cf13899db248a7aa2c1deb288d75ef" }, //STAR-FOXHD
@@ -352,7 +355,7 @@ function getChannelKeys(getURL) {
         "VGVsZW1heA": { keyId: "bddc55bb3a2d3423281dc109107d851d", key: "9078a3e48389afcf63a457c0565e5263" }, //Telemax
         "VG9kb05vdGljaWFz": { keyId: "775d4113d76beac8231e92ed732e27d6", key: "0854a56be655bfa9055ef0e4980f4674" }, //TodoNoticias-TN
         "VE5UX0hEX0FyZw": { keyId: "61d9873e1f281cd0223acce773cc08b0", key: "3dda0d89ece37c244ed8cb7e90153555" }, //TNT_HD_Arg
-        "VEJT": { keyId: "c62c95f2180545198eb91df4cc32e3fc", key: "6a21b6ef5adb8689dda7c3cc1eec0c35" }, // TNT Novelas (TBS)
+        "VEJT": { keyId: "335d12d0d4515548f7f25bde9eef1b67", key: "59a410da4f04672990f5112eea4dcdfb" }, // TNT Novelas (TBS)
         "VE5UU2VyaWVz": { keyId: "613a3dc25b1d3ed4186e2a399ac7f081", key: "7b5cf1cf7aeda446359bbcd23b5771b6" }, // TNT Series
         "VHZfQ2hpbGU=": { keyId: "c5d0d76e24844235988f9265619e5fec", key: "446b71a6deb806c6f129e25de999d07c" }, //Tv_Chile
         "VGV2ZV9DaXVkYWQ=": { keyId: "9b536cd1716647ee94c45fa4836d29d6", key: "d691c88a95440666742d1d8183182347" }, //Teve_Ciudad
@@ -367,7 +370,7 @@ function getChannelKeys(getURL) {
         "VmVudXM=": { keyId: "34237d2ae6684ee7a011f5b9c7c43e6d", key: "05d973d987915120e567880f50a422af" }, //Venus
         "U2V4dHJlbWU": { keyId: "95bd64227acf458daf7886f803d0298e", key: "79e28ee0ec58958bb666f9e53a0cd434" }, //Sextreme
         "SHVzdGxlcg==": { keyId: "cf37db556be5ee1ecd1ee1f1bcf39390", key: "cb2d8390f9c6c39311939fb51ba42ab2" }, //Hustler
-        "SFRW": { keyId: "daecef5fe32f4ce083c6a0c692755d6a", key: "d4227f24389a9ba77293214b93eb0d7d" }, // HTV
+        "SFRW": { keyId: "3d29ee7a67ff04156c6cb56b90cb5d0e", key: "95139c5421574247ced3d0a10d3bbe12" }, // HTV
         "SW52ZXN0aWdhY2lvbl9QZXJpb2Rpc3RpY2E=": { keyId: "723d8d918d61cee1f708ec849b6498a2", key: "b4b48cfccc1cddcc73bc7a7df46cb531" }, // IP Noticias
         // "UlBDX0M0": { keyId: "a8093cdcb2d504bd38f16764bd21b6e5", key: "bfcf3b033b5f0b5ae020751a6746326f" }, // el trece py
         "UlBDX0M0": { keyId: "a5a9d75cde4024c3f0479f32b229eebc", key: "3f5c379be6ee9c568bf81ca73f3e9144" }, //RPC_C4 no anda
@@ -434,15 +437,18 @@ async function getValidMpd(channelInfo) {
     const channelToLoad = channelInfo || channelList[0];
     let urlWithToken = await getURLwithToken()
     // let url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/sa_dash_full_e_7CF9BB041AD89713AD8CF4CF/${atob(channelToLoad.getURL)}.mpd`;
-    // let url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
+    let url = `${urlWithToken}/live/c${channelToLoad.number || 3}eds/${atob(channelToLoad.getURL)}/SA_Live_dash_enc/${atob(channelToLoad.getURL)}.mpd`;
 
     const channel = atob(channelToLoad.getURL);
 
-    const path = ["FXHD", "TBS", "Europa_Europa"].includes(channel)
-        ? `/out/v1/${channel}/SA_Live_dash_enc/${channel}.mpd`
-        : `/live/c${channelToLoad.number || 3}eds/${channel}/SA_Live_dash_enc/${channel}.mpd`;
+    // const path = ["FXHD", "TBS", "Europa_Europa"].includes(channel)
+    //     ? `/out/v1/${channel}/SA_Live_dash_enc/${channel}.mpd`
+    //     : `/live/c${channelToLoad.number || 3}eds/${channel}/SA_Live_dash_enc/${channel}.mpd`;
     
-    return `${urlWithToken}${path}`;
+    // return `${urlWithToken}${path}`;
+
+
+    return url;
 }
 
 
