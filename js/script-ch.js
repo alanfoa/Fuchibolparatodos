@@ -1566,6 +1566,18 @@ MisCanales.set(
 );
 
 MisCanales.set(
+    "+Perfil",
+    {
+        pais: "Argentina",
+        enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfRWNvbm9taWNv",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfRWNvbm9taWNv",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfRWNvbm9taWNv",
+        ]
+    }
+);
+
+MisCanales.set(
     "Next TV Carlos Paz",
     {
         pais: "Argentina",
@@ -7353,9 +7365,9 @@ MisCanales.set(
     {
         pais: "México",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=VGVsZW11bmRvX0hE",
-            // servidorCanalesOnline + "cvatt.html?get=VGVsZW11bmRvX0hE",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZW11bmRvX0hE",
+            servidorCanalesOnline + "cvatt_pro.html?get=VGVsZW11bmRvX0hE",
+            servidorCanalesOnline + "cvatt.html?get=VGVsZW11bmRvX0hE",
+            servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZW11bmRvX0hE",
             // "server/cvatt.html?get=VGVsZW11bmRvX0hE",
             // "server/cvatt2_ext.html?get=VGVsZW11bmRvX0hE",
             servidorCanalesOnline + "sensa.html?id=Telemundo",
@@ -7578,6 +7590,18 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt.html?get=S1pP",
             servidorCanalesOnline + "cvatt2_ext.html?get=S1pP",
             servidorCanalesOnline + "tvmia.html?stream=an_KZO_Entertainment",
+        ]
+    }
+);
+
+MisCanales.set(
+    "Canal 90",
+    {
+        pais: "Argentina",
+        enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOTA=",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOTA=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOTA=",
         ]
     }
 );
@@ -8692,9 +8716,9 @@ MisCanales.set(
         pais: "Panamá",
         guide: "SUN Channel HD",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=U3VuX0NoYW5uZWw=",
-            // servidorCanalesOnline + "cvatt.html?get=U3VuX0NoYW5uZWw=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=U3VuX0NoYW5uZWw=",
+            servidorCanalesOnline + "cvatt_pro.html?get=U3VuX0NoYW5uZWw=",
+            servidorCanalesOnline + "cvatt.html?get=U3VuX0NoYW5uZWw=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=U3VuX0NoYW5uZWw=",
             // "server/cvatt.html?get=U3VuX0NoYW5uZWw=",
             // "https://sssshhh.xyz/cvatt.html?get=U3VuX0NoYW5uZWw=",
             // "https://a3.115tv.site/cvatt.html?get=U3VuX0NoYW5uZWw=",

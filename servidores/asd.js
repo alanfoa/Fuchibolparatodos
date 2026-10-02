@@ -338,13 +338,13 @@ function getChannelKeys(getURL) {
         "U3BhY2U=": { keyId: "32684b675439d127a5ab1e07b2a57242", key: "e169f625df475d6d1c014cca1a52a251" }, //Space
         "Rk9YSEQ=": { keyId: "fc14190acc872e204f3973c75b6439f2", key: "34cf13899db248a7aa2c1deb288d75ef" }, //STAR-FOXHD
         "U3R1ZGlvX1VuaXZlcnNhbA==": { keyId: "dbe5d9ce01740076fdc95cbc0253b9ee", key: "d8a8ef434bffae80e45e203f6f7f4988" }, //Studio_Universal
-        "U3VuX0NoYW5uZWw=": { keyId: "158177692aa3463eae5f4e1f72403e9c", key: "1c6c026fba9cf7ecb576c7bedce0ead4" }, //Sun_Channel
+        "U3VuX0NoYW5uZWw=": { keyId: "997776e5454ed2c20d1cf82cf11e79b4", key: "403559af86e7b8b578f19205f9cdc6f0" }, //Sun_Channel
         "U3lGeQ==": { keyId: "9cd99cbb466c42e5b33e7a2ef7e2c7df", key: "18d9faccdaf2d15807d0a3f713e8b2a4" }, //SyFy
         "VENN": { keyId: "d40eab36dff7414984c6f51b7174be0c", key: "ebb259a7f76be779f8dd7d68f55e0098" }, // TCM
         "VGVsZXN1cg==": { keyId: "5235d8ee29f14ce6b26ea5d828aee77a", key: "6bf6bd339e3098babc2ab0b984cd2376" }, //Telesur
         "VGVsZWZlSEQ=": { keyId: "69d08ad795092fc59dbdfb194424dd92", key: "a73948b44e9292eede50c0c654301860" }, //TelefeHD
         "Q05OX2VuX0VzcGFub2w=": { keyId: "c63f6550cfa1dd89e607e6d10e0cd8e1", key: "30e26cc32d090bd86ad1e350fed5ce68" }, //CNN
-        "VGVsZW11bmRvX0hE": { keyId: "53d752e4649dadd808d913985f86ee77", key: "d1fd24db1b61d634cabfc44538ce9b0e" }, //Telemundo
+        "VGVsZW11bmRvX0hE": { keyId: "8f1780497a311eb5e38ea03085888c47", key: "0dbdebc8d5336c970ac8c904e9bcd034" }, //Telemundo
         "UGFzaW9uZXM=": { keyId: "dcf5f8c4d5b8d1f68a68dbe8a5c8d490", key: "b888f5f0c1cc6e097a67a56c25e2f490" }, //Pasiones
         "Q2FuYWxfOF9DQkE": { keyId: "103ce214b4d04c8eb4dd43670e956dad", key: "20e030576b8dc4df0d1c68e16af3bc0f" }, //Canal_8_Cordoba-TELEFE
         "Q2FuYWxfOF9UdWN1bWFu": { keyId: "7760caa058b51b7cce151c0539fa4a8f", key: "edd086c1011ed2c54cbe869d0e8d9289" }, //Canal_8_Tucuman-TELEFE
@@ -376,7 +376,7 @@ function getChannelKeys(getURL) {
         "UlBDX0M0": { keyId: "a5a9d75cde4024c3f0479f32b229eebc", key: "3f5c379be6ee9c568bf81ca73f3e9144" }, //RPC_C4 no anda
         "QWR1bHRfU3dpbQ==": { keyId: "4e63e6ecde4f9cd9e68021b4c9af2d21", key: "438e6d40e9952362eef1c690c5f8455a" }, // AS
         "Q2FuYWxfZGVfbGFfY2l1ZGFk": { keyId: "8700e5c6a3528f38f878a1720ab8a5d4", key: "dd4d69622cd92dfe429229925c6a0a75" }, // El Canal de la Ciudad
-        "Q2FuYWxfRWNvbm9taWNv": { keyId: "2bbbc95ef2db831cab99b3bc29f96e14", key: "f3755517e66c2bf8af9e7dda33a7c9ab" }, // El Canal de la Ciudad
+        "Q2FuYWxfRWNvbm9taWNv": { keyId: "2bbbc95ef2db831cab99b3bc29f96e14", key: "f3755517e66c2bf8af9e7dda33a7c9ab" }, // Canal_Economico
     };
     
     channelList[0].name = atob(getURL);
