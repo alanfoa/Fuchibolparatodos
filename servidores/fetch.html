@@ -230,7 +230,7 @@
 
         async function obtenerM3U8() {
             try {
-                const response = await fetch('https://api.codetabs.com/v1/proxy/?quest=' + getURL);
+                const response = await fetch('https://servidores.exefiguee.workers.dev/' + getURL);
                 const html = await response.text();
                 const match = html.match(/(?:https?:)?\/\/[^"'\s]+\.m3u8(?:\?[^"'\s]*)?/g);
 
