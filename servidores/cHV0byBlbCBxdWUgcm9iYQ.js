@@ -42,7 +42,7 @@ function getChannelKeys(getURL) {
         "Q2FuYWxfMTBfSnVuaW4=": { keyId: "2002528cbe8ebac766a4b87b2c931cb7", key: "e545efab88c32190b395fe2fa96cf0ce" }, //Canal_10_Junin
         "VGVsZW1lZGlh": { keyId: "294b92debd46867562934091f551e6e5", key: "79ec0fe4b5fa6c66a29c93542a070f19" }, //Telemedia
         "QTI0X1BZ": { keyId: "3ca6efbbe0202efe4bba7ca50433537a", key: "4c896a4ac1c9d89d38e7b68b21a40837" }, //A24_PY
-        "QW1lcmljYV9QWQ==": { keyId: "4e4a187474de8e29a8507d496c8a594f", key: "daab5ccf306d67749740f7ce02c07850" }, //America_PY
+        "QW1lcmljYV9QWQ==": { keyId: "cfec17aceb86d821cb6f704e48c52588", key: "3ba71285a8c6c9c15c937083ef424a6d" }, //America_PY
         "": { keyId: "", key: "" }, //
         "VFZfUHVibGljYV9JbnRlcm5hY2lvbmFs": { keyId: "09833bbfc87acd3a509a57e75b4d37ef", key: "13906c6849c0c81de495ddd9539765fe" }, //TV_Publica_Internacional
 
@@ -196,7 +196,7 @@ function getChannelKeys(getURL) {
         "Q2FuYWxfM19Sb3Nhcmlv": { keyId: "662447df521fb590b72b1a11671c2afd", key: "81c204c443987d7b176587d626a124a0" }, //Canal_3_Rosario - El trece
         "Q2FuYWw3X0JhaGlhX0JsYW5jYQ==": { keyId: "a15243320c0a79defa8814252e3e8c07", key: "0659db05632c0061c126db7a12582499" }, //Canal7_Bahia_Blanca - El trece
         "Q2FuYWxfUnVyYWw=": { keyId: "72308b4673698df3c4143be5410c82d4", key: "35f38c9fb04664572ee6c0a9c53a2388" }, //Canal_Rural
-        "U2hvd19TcG9ydHM=": { keyId: "df3ed6245bb9af1a0346379e8e475dff", key: "f86f8457438d4e449d53b956cc1be664" }, //Show_Sports
+        "U2hvd19TcG9ydHM=": { keyId: "4981c59c331cacfff70390a99b10279d", key: "76037d01b44ff1e2be5c1d08fbb1f04e" }, //Show_Sports
         "UFhfU3BvcnRz": { keyId: "61973e2f6b81657862b645fe2a34416a", key: "2786c5b66d05cf6f1a42b8c270453319" }, //PX_Sports
         "Q2FuYWxfMTNfU0ZF": { keyId: "59ef9057114f44a480b62e36a6b1374f", key: "74ef97bc54df5655c3a1d4f80b16e8d7" }, //Santa Fe Telefe
         "Q2FuYWw5X0JhaGlhX0JsYW5jYQ==": { keyId: "7ccfc823faed878832b3e4a69fcb72a2", key: "d68b394ab768f4a2ec148ab8cdac46ef" }, //Bahia Blanca - Telefe
