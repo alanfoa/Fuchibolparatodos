@@ -9481,11 +9481,11 @@ MisCanales.set(
 );
 
 MisCanales.set(
-    "Pluto TV",
+    "Starvios",
     {
         pais: "Argentina",
         enlaces: [
-            servidorCanalesOnline + "Pluto.html",
+            servidorCanalesOnline + "Starvios.html",
         ]
     }
 );

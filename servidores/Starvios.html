@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starvios Live Streams - JWPlayer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        starvios: {
+                            pink: '#ff2a85',
+                            dark: '#0b0b0e',
+                            card: '#121217',
+                            border: '#1f1f28'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #08080a;
+            color: #f3f4f6;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0b0e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f1f28;
+            border-radius: 4px;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Header / Buscador de Canales Local y Botón Actualizar -->
+    <header class="border-b border-starvios-border bg-starvios-dark/90 backdrop-blur sticky top-0 z-40 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex-1 max-w-xl relative mx-auto">
+                <input type="text" id="searchInput" placeholder="Buscar canal, juego o título entre todos los directos..."
+                    class="w-full bg-[#16161e] border border-[#262635] focus:border-starvios-pink rounded-full px-10 py-2 text-sm text-gray-200 outline-none transition"
+                    oninput="filterStreams()">
+                <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3.5 top-3"></i>
+            </div>
+            
+            <!-- Botón Actualizar Datos -->
+            <button onclick="fetchLiveStreams(this)" id="btnRefresh" class="flex items-center gap-1.5 bg-[#16161e] hover:bg-starvios-pink border border-starvios-border text-gray-300 hover:text-white text-xs font-medium px-4 py-2 rounded-full transition shrink-0">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                <span class="hidden sm:inline">Actualizar</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Contenido Principal: Grilla de Directos en Vivo -->
+    <main class="max-w-[1600px] w-full mx-auto p-2 sm:p-4 md:p-6 flex flex-col gap-6 flex-1">
+        <div class="flex items-center justify-between px-2 sm:px-0">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
+                Canales en Vivo
+            </h2>
+            <span id="liveCount" class="text-xs text-gray-400">Cargando directos...</span>
+        </div>
+
+        <div id="streamsGrid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4">
+            <!-- Las tarjetas se inyectarán aquí -->
+        </div>
+
+        <!-- Indicador de carga al hacer scroll -->
+        <div id="loadingMore" class="text-center py-6 text-xs text-gray-500 hidden">
+            Cargando más canales...
+        </div>
+    </main>
+
+    <!-- Modal 100% Pantalla -->
+    <div id="streamModal" class="fixed inset-0 bg-black z-50 flex flex-col hidden h-screen w-screen overflow-hidden">
+        <div class="flex items-center justify-between px-6 py-3 bg-starvios-dark border-b border-starvios-border shrink-0 z-10 h-[73px]">
+            <div class="flex items-center gap-3">
+                <img id="modalAvatar" src="" alt="Avatar" class="w-10 h-10 rounded-full border border-starvios-pink object-cover bg-starvios-card">
+                <div class="min-w-0">
+                    <h3 id="modalUsername" class="text-sm font-bold text-white truncate"></h3>
+                    <p id="modalStreamTitle" class="text-xs text-gray-400 truncate max-w-xs sm:max-w-md md:max-w-lg"></p>
+                </div>
+            </div>
+            <button onclick="closeStreamModal()" class="p-2 bg-[#181822] hover:bg-starvios-pink text-gray-300 hover:text-white rounded-full transition shrink-0">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div class="w-full h-[calc(100vh-73px)] relative bg-black flex items-center justify-center overflow-hidden">
+            <div id="jwplayerDiv" class="w-full h-full"></div>
+
+            <div id="playerPlaceholder" class="absolute inset-0 z-20 flex flex-col items-center justify-center p-6 text-center bg-[#0d0d12] pointer-events-none">
+                <div class="p-4 rounded-full bg-starvios-pink/10 border border-starvios-pink/20 text-starvios-pink mb-3">
+                    <i data-lucide="tv" class="w-10 h-10"></i>
+                </div>
+                <h3 class="text-base font-semibold text-gray-200 mb-1" id="placeholderTitle">Cargando directo...</h3>
+                <p class="text-xs text-gray-400 max-w-sm" id="placeholderSub">Conectando con Cloudflare Stream.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="border-t border-starvios-border py-4 text-center text-xs text-gray-500">
+        <p>Starvios Live Player &copy; 2026</p>
+    </footer>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        let playerInstance = null;
+        let proxyPrefix = "https://servidores.exefiguee.workers.dev/";
+        let allStreams = [];
+        let filteredStreams = [];
+        let displayedCount = 0;
+        const batchSize = 20;
+
+        lucide.createIcons();
+
+        function resolveImageUrl(path) {
+            if (!path) return '';
+            if (path.startsWith('http://') || path.startsWith('https://')) {
+                return path;
+            }
+            return `https://starvios.com/api/public/img?p=${path}`;
+        }
+
+        async function fetchLiveStreams(btn = null) {
+            let apiUrl = `https://starvios.com/api/public/live-now?_t=${Date.now()}`;
+            const grid = document.getElementById('streamsGrid');
+            let icon = null;
+
+            if (btn) {
+                btn.disabled = true;
+                icon = btn.querySelector('i');
+                if (icon) icon.classList.add('animate-spin');
+            } else {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-xs text-gray-500">Buscando directos en vivo...</div>`;
+            }
+
+            try {
+                const response = await fetch(proxyPrefix + encodeURIComponent(apiUrl));
+                if (!response.ok) throw new Error("Error en la API");
+                const data = await response.json();
+                allStreams = data.rows || [];
+                filterStreams();
+            } catch (err) {
+                console.error("Error al obtener la API, intentando directo:", err);
+                try {
+                    const resDirect = await fetch(apiUrl);
+                    const dataDirect = await resDirect.json();
+                    allStreams = dataDirect.rows || [];
+                    filterStreams();
+                } catch(e) {
+                    if (!btn) {
+                        grid.innerHTML = `<div class="col-span-full text-center py-12 text-xs text-red-400">Error al conectar con la API de directos.</div>`;
+                    }
+                }
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    if (icon) icon.classList.remove('animate-spin');
+                }
+            }
+        }
+
+        function resetAndRender() {
+            displayedCount = 0;
+            document.getElementById('streamsGrid').innerHTML = '';
+            document.getElementById('liveCount').textContent = `${allStreams.length} canales en directo`;
+            loadMoreStreams();
+        }
+
+        function loadMoreStreams() {
+            const grid = document.getElementById('streamsGrid');
+            const loadingIndicator = document.getElementById('loadingMore');
+            
+            if (displayedCount >= filteredStreams.length) {
+                loadingIndicator.classList.add('hidden');
+                return;
+            }
+
+            const nextBatch = filteredStreams.slice(displayedCount, displayedCount + batchSize);
+            displayedCount += nextBatch.length;
+
+            nextBatch.forEach(stream => {
+                const profile = stream.profiles || {};
+                const username = profile.username || 'desconocido';
+                const displayName = profile.display_name || username;
+                const avatar = resolveImageUrl(profile.avatar_url) || `https://placehold.co/120x120/1e1b4b/ffffff?text=${username.charAt(0).toUpperCase()}`;
+                const thumb = resolveImageUrl(stream.thumbnail_url) || avatar;
+                const category = stream.category || 'General';
+                const title = stream.title || 'Directo sin título';
+                const viewers = stream.viewer_count || 0;
+                
+                const rawPlaybackId = stream.playback_id || '';
+                let cleanPlaybackId = rawPlaybackId;
+                if (cleanPlaybackId.startsWith('cf')) {
+                    cleanPlaybackId = cleanPlaybackId.substring(2);
+                }
+                const hlsUrl = cleanPlaybackId ? `https://customer-v4n77b7tsunuc58z.cloudflarestream.com/${cleanPlaybackId}/manifest/video.m3u8` : '';
+
+                const card = document.createElement('div');
+                card.className = "bg-starvios-card border border-starvios-border rounded-xl overflow-hidden hover:border-starvios-pink/65 transition cursor-pointer flex flex-col group relative";
+                card.onclick = () => openStreamModal(rawPlaybackId, username, displayName, avatar, title);
+
+                card.innerHTML = `
+                    <div class="relative w-full aspect-video bg-black overflow-hidden thumb-container">
+                        <img src="${thumb}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300 stream-thumb" onerror="this.src='https://placehold.co/640x360/121217/ff2a85?text=Starvios'">
+                        <div class="absolute top-1.5 left-1.5 bg-red-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider flex items-center gap-1 shadow z-10">
+                            <span class="w-1 h-1 rounded-full bg-white animate-pulse"></span> LIVE
+                        </div>
+                        <div class="absolute bottom-1.5 right-1.5 bg-black/70 backdrop-blur text-gray-200 text-[9px] px-1.5 py-0.5 rounded flex items-center gap-1 z-10">
+                            <i data-lucide="eye" class="w-3 h-3 text-starvios-pink"></i> ${viewers}
+                        </div>
+                        <!-- Mensaje de Carga Previa -->
+                        <div class="preview-loader absolute inset-0 bg-black/80 backdrop-blur-xs flex flex-col items-center justify-center gap-1.5 opacity-0 pointer-events-none transition-opacity duration-200 z-20 p-2 text-center">
+                            <div class="w-4 h-4 border-2 border-starvios-pink border-t-transparent rounded-full animate-spin"></div>
+                            <span class="text-[10px] font-medium text-gray-200 leading-tight">Cargando transmisión previa...</span>
+                        </div>
+                    </div>
+                    <div class="p-2.5 sm:p-3.5 flex gap-2.5 sm:gap-3 flex-1">
+                        <img src="${avatar}" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border border-starvios-border shrink-0" onerror="this.src='https://placehold.co/120x120/1e1b4b/ffffff?text=S'">
+                        <div class="flex flex-col flex-1 min-w-0">
+                            <h3 class="text-[11px] sm:text-xs font-bold text-white truncate group-hover:text-starvios-pink transition">${title}</h3>
+                            <p class="text-[10px] sm:text-xs text-gray-400 truncate mt-0.5">@${username}</p>
+                            <span class="text-[10px] sm:text-[11px] text-starvios-pink font-medium mt-1 truncate">${category}</span>
+                        </div>
+                    </div>
+                `;
+
+                const thumbContainer = card.querySelector('.thumb-container');
+                const loader = card.querySelector('.preview-loader');
+                let previewVideo = null;
+                let hlsPreview = null;
+
+                card.addEventListener('mouseenter', () => {
+                    if (!hlsUrl) return;
+                    loader.classList.remove('opacity-0');
+
+                    previewVideo = document.createElement('video');
+                    previewVideo.className = "absolute inset-0 w-full h-full object-cover z-20 pointer-events-none opacity-0 transition-opacity duration-300";
+                    previewVideo.autoplay = true;
+                    previewVideo.muted = true;
+                    previewVideo.playsInline = true;
+                    thumbContainer.appendChild(previewVideo);
+
+                    previewVideo.addEventListener('playing', () => {
+                        loader.classList.add('opacity-0');
+                        previewVideo.classList.remove('opacity-0');
+                    });
+
+                    if (Hls.isSupported()) {
+                        hlsPreview = new Hls({ enableWorker: true, lowLatencyMode: true });
+                        hlsPreview.loadSource(hlsUrl);
+                        hlsPreview.attachMedia(previewVideo);
+                    } else if (previewVideo.canPlayType('application/vnd.apple.mpegurl')) {
+                        previewVideo.src = hlsUrl;
+                    }
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    loader.classList.add('opacity-0');
+                    if (hlsPreview) {
+                        hlsPreview.destroy();
+                        hlsPreview = null;
+                    }
+                    if (previewVideo) {
+                        previewVideo.remove();
+                        previewVideo = null;
+                    }
+                });
+
+                grid.appendChild(card);
+            });
+
+            lucide.createIcons();
+
+            if (displayedCount < filteredStreams.length) {
+                loadingIndicator.classList.remove('hidden');
+            } else {
+                loadingIndicator.classList.add('hidden');
+            }
+        }
+
+        function filterStreams() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            filteredStreams = allStreams.filter(stream => {
+                const profile = stream.profiles || {};
+                const username = (profile.username || '').toLowerCase();
+                const displayName = (profile.display_name || '').toLowerCase();
+                const title = (stream.title || '').toLowerCase();
+                const category = (stream.category || '').toLowerCase();
+                return username.includes(query) || displayName.includes(query) || title.includes(query) || category.includes(query);
+            });
+
+            resetAndRender();
+        }
+
+        window.addEventListener('scroll', () => {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
+                loadMoreStreams();
+            }
+        });
+
+        function openStreamModal(rawPlaybackId, username, displayName, avatarUrl, title) {
+            if (!rawPlaybackId) {
+                alert("Este canal no tiene un Playback ID activo.");
+                return;
+            }
+
+            let cleanPlaybackId = rawPlaybackId;
+            if (cleanPlaybackId.startsWith('cf')) {
+                cleanPlaybackId = cleanPlaybackId.substring(2);
+            }
+
+            const hlsUrl = `https://customer-v4n77b7tsunuc58z.cloudflarestream.com/${cleanPlaybackId}/manifest/video.m3u8`;
+
+            document.getElementById('modalAvatar').src = avatarUrl;
+            document.getElementById('modalUsername').textContent = displayName || `@${username}`;
+            document.getElementById('modalStreamTitle').textContent = title;
+
+            document.body.style.overflow = 'hidden';
+            document.getElementById('streamModal').classList.remove('hidden');
+            document.getElementById('placeholderTitle').textContent = "Cargando directo...";
+            document.getElementById('placeholderSub').textContent = "Conectando con Cloudflare Stream.";
+            document.getElementById('playerPlaceholder').classList.remove('hidden');
+
+            setupJWPlayer(hlsUrl);
+        }
+
+        function closeStreamModal() {
+            if (playerInstance) {
+                try {
+                    playerInstance.remove();
+                } catch(e) {}
+                playerInstance = null;
+            }
+            document.body.style.overflow = '';
+            document.getElementById('streamModal').classList.add('hidden');
+        }
+
+        function setupJWPlayer(hlsUrl) {
+            if (typeof jwplayer === "undefined") {
+                alert("JWPlayer no se ha cargado correctamente.");
+                return;
+            }
+
+            if (playerInstance) {
+                try { playerInstance.remove(); } catch(e) {}
+            }
+
+            playerInstance = jwplayer("jwplayerDiv").setup({
+                file: hlsUrl,
+                width: "100%",
+                height: "100%",
+                autostart: true,
+                stretching: "uniform"
+            });
+
+            playerInstance.on('ready', () => {
+                document.getElementById('playerPlaceholder').classList.add('hidden');
+            });
+
+            playerInstance.on('error', (err) => {
+                console.warn("JWPlayer Error:", err);
+                document.getElementById('placeholderTitle').textContent = "Error al conectar con Cloudflare Stream";
+                document.getElementById('placeholderSub').textContent = "El directo podría estar offline o requerir autenticación.";
+                document.getElementById('playerPlaceholder').classList.add('hidden');
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchLiveStreams();
+        });
+    </script>
+</body>
+</html>
