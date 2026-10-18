@@ -138,7 +138,9 @@
         }
 
         async function fetchLiveStreams(btn = null) {
-            let apiUrl = `https://starvios.com/api/public/live-now?_t=${Date.now()}`;
+            // let apiUrl = `https://starvios.com/api/public/live-now?_t=${Date.now()}`;
+            let apiUrl = `https://starvios.com/api/public/live-now?top=60&_t=${Date.now()}`;
+            // let apiUrl = `https://starvios.com/api/public/discovery?kind=clips&limit=8`;
             const grid = document.getElementById('streamsGrid');
             let icon = null;
 

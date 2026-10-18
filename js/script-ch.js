@@ -414,7 +414,7 @@ MisCanales.set(
     );
 
 MisCanales.set(
-    "TV PÚBLICA",
+    "Canal 7",
     {
         pais: "Argentina",
         guide: "TV PÚBLICA HD",
@@ -9476,6 +9476,16 @@ MisCanales.set(
         pais: "Argentina",
         enlaces: [
             servidorCanalesOnline + "ApiYTBuscador.html",
+        ]
+    }
+);
+
+MisCanales.set(
+    "Pluto TV",
+    {
+        pais: "Argentina",
+        enlaces: [
+            servidorCanalesOnline + "Pluto.html",
         ]
     }
 );
