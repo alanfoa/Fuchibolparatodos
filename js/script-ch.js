@@ -422,7 +422,7 @@ MisCanales.set(
     "Canal 7",
     {
         pais: "Argentina",
-        guide: "TV PÚBLICA HD",
+        guide: "Canal 7 Hd",
         enlaces: [
             servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWw3",
             servidorCanalesOnline + "cvatt.html?get=Q2FuYWw3",
