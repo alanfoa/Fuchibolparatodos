@@ -158,9 +158,9 @@ MisCanales.set(
             // servidorCanalesOnline + "fetch.html?stream=Telefe_Cordoba",
 
             // Servidores de Rosario
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfNV9Sb3Nhcmlv",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfNV9Sb3Nhcmlv",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfNV9Sb3Nhcmlv",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfNV9Sb3Nhcmlv",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfNV9Sb3Nhcmlv",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfNV9Sb3Nhcmlv",
             // servidorCanalesOnline + "telefe.html?channel=telefe_rosario",
             // servidorCanalesOnline + "fetch.html?stream=Telefe_Rosario",
 
@@ -236,9 +236,9 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=QXJ0ZWFyX0ludGVybmFjaW9uYWw=",
 
             //Canal 3 Rosario
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfM19Sb3Nhcmlv",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfM19Sb3Nhcmlv",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfM19Sb3Nhcmlv",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfM19Sb3Nhcmlv",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfM19Sb3Nhcmlv",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfM19Sb3Nhcmlv",
 
             //Canal 10 Tucumán
             // servidorCanalesOnline + "cvatt_pro.html?get=Q2gxMF9UdWN1bWFu",
@@ -1027,9 +1027,9 @@ MisCanales.set(
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfU1RG",
             // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfU1RG",
             //Rosario
-            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfUm9zYXJpbw==",
-            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfUm9zYXJpbw==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfUm9zYXJpbw==",
+            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfUm9zYXJpbw==",
+            servidorCanalesOnline + "cvatt.html?get=U29tb3NfUm9zYXJpbw==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfUm9zYXJpbw==",
             //Corrientes
             // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfQ29ycmllbnRlcw==",
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfQ29ycmllbnRlcw==",

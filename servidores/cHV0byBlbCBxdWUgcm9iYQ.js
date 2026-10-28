@@ -170,7 +170,7 @@ function getChannelKeys(getURL) {
         "UmVkZV9SZWNvcmQ=": { keyId: "b0bd8ea11b3f4c219903085ef1d44b0d", key: "9a25709a72c2ca93cb738665736cfa5a" }, //Rede_Record
         "QTNfU2VyaWVz": { keyId: "6aa5288008ab3b1c01ccb2fc55bdd151", key: "0be049527ccbc5bfadc42f7845a5d35e" }, //A3_Series
         "TGF0YW1fUnVyYWw=": { keyId: "abdfd83824e9ba585f74fb72c647aa4f", key: "9967e06e39893998d16714988d9d87f1" }, //Latam_Rural
-        "U29tb3NfUm9zYXJpbw==": { keyId: "863ed7f26cf51850b9ed735545c788ce", key: "789edf190d78baefb569e8ca09ac86c2" }, //Somos_Rosario
+        "U29tb3NfUm9zYXJpbw==": { keyId: "2ca95cff9a7781ad8f2889063496bccc", key: "0901d3bebb0c2fe8db3870a21f736b5d" }, //Somos_Rosario
         "U29tb3NfQmFoaWFfQmxhbmNh": { keyId: "64c7e9ed4e3930b54d020c08a6792f10", key: "737b6374d4492e8c233ca2c2ebac9b85" }, //Somos_Bahia_Blanca
         "U29tb3NfU1RG": { keyId: "1344e18e45e6e6e5ec0a302d769c8e52", key: "913cfe90bb3af2d402eada6ad50ce22d" }, //Somos_STF
         "U29tb3NfQ29ycmllbnRlcw==": { keyId: "f0179a4ba9f407dfdee057a33f8f220c", key: "e0c3f11cb1d7f8d17b7a1532f29edb0b" }, //Somos_Corrientes
@@ -193,7 +193,7 @@ function getChannelKeys(getURL) {
         "QW1lcmljYV9UdWN1bWFu": { keyId: "ed542fdaa4598671e26aca3e160afed7", key: "cdb880c60523b9ebc61b9003c41f8048" }, //America_Tucuman
         "Q0hfMTNfQ29ycmllbnRlcw==": { keyId: "ee837d0ec414d95a51b0c7a57d49d307", key: "883fd72dc9b72db33d7b4f8dc0eb0016" }, //CH_13_Corrientes
         "Q2FuYWxfOV9QYXJhbmE=": { keyId: "dd573858f3414066b9292ef6397a5c3c", key: "593eb5f7facce4240ff7a5f26afd47e0" }, //Canal_9_Parana - El trece
-        "Q2FuYWxfM19Sb3Nhcmlv": { keyId: "662447df521fb590b72b1a11671c2afd", key: "81c204c443987d7b176587d626a124a0" }, //Canal_3_Rosario - El trece
+        "Q2FuYWxfM19Sb3Nhcmlv": { keyId: "ee913585839e85aef43ba0d9f9846748", key: "2e91c53c7e5916b1b4b2917c2ec30ab4" }, //Canal_3_Rosario - El trece
         "Q2FuYWw3X0JhaGlhX0JsYW5jYQ==": { keyId: "a15243320c0a79defa8814252e3e8c07", key: "0659db05632c0061c126db7a12582499" }, //Canal7_Bahia_Blanca - El trece
         "Q2FuYWxfUnVyYWw=": { keyId: "72308b4673698df3c4143be5410c82d4", key: "35f38c9fb04664572ee6c0a9c53a2388" }, //Canal_Rural
         "U2hvd19TcG9ydHM=": { keyId: "4981c59c331cacfff70390a99b10279d", key: "76037d01b44ff1e2be5c1d08fbb1f04e" }, //Show_Sports
@@ -348,7 +348,7 @@ function getChannelKeys(getURL) {
         "UGFzaW9uZXM=": { keyId: "dcf5f8c4d5b8d1f68a68dbe8a5c8d490", key: "b888f5f0c1cc6e097a67a56c25e2f490" }, //Pasiones
         "Q2FuYWxfOF9DQkE": { keyId: "103ce214b4d04c8eb4dd43670e956dad", key: "20e030576b8dc4df0d1c68e16af3bc0f" }, //Canal_8_Cordoba-TELEFE
         "Q2FuYWxfOF9UdWN1bWFu": { keyId: "7760caa058b51b7cce151c0539fa4a8f", key: "edd086c1011ed2c54cbe869d0e8d9289" }, //Canal_8_Tucuman-TELEFE
-        "Q2FuYWxfNV9Sb3Nhcmlv": { keyId: "c61b5ac8e1664bf5b544e92ea2597e1c", key: "938437ac25f0a18e04efc1a083489edc" }, //Canal_5_Rosario-TELEFE
+        "Q2FuYWxfNV9Sb3Nhcmlv": { keyId: "17b3ea5b07979f719c9c1f29c566a04d", key: "b7eee6522ad1abbcee2c096d55d1c175" }, //Canal_5_Rosario-TELEFE
         "VGVsZWZlX1NhbHRh": { keyId: "6c7a5de392f874308e4dd8f2837f1115", key: "9ccf9ec6922c403d67d0df7952547581" }, //Telefe_Salta
         "VGVsZWZlX05ldXF1ZW4=": { keyId: "55828b728b8affe6d1d57d050025645d", key: "8ac11ed6d0ccaeac3f8218419f65bb94" }, //Telefe_Neuquen
         "VEVMRUZVVFVST19DNA==": { keyId: "ed2e9a12e8ae518192c371b6ee86744b", key: "7eaa24ac6e23fd7be2d48005d916eeb4" }, //TELEFUTURO_C4
