@@ -205,53 +205,124 @@
         // }
 
 
-        // Obtener HTML -> Desencriptar -> Extraer Token
-        async function obtenerTokenServidor(slug = 'a24') {
+        async function obtenerTokenServidor(slug = null) {
+            // Detecta automáticamente el slug desde la URL (?id=TELEFE o ?embed_ch=TELEFE) si no se pasa por parámetro
+            if (!slug) {
+                const params = new URLSearchParams(location.search);
+                slug = params.get('embed_ch') || 'a24';
+            }
+
+            // console.log(`[DEBUG] Iniciando obtenerTokenServidor para el slug: "${slug}"`);
             try {
-                // 1. Descarga el token.json oficial desde GitHub
-                const res = await fetch(`https://el20chinitdt.github.io/Automatizador-de-Tokens/token.json?t=` + Date.now());
-                if (!res.ok) throw new Error('No se pudo conectar con GitHub para obtener token.json');
+                const sources = [];
+                const repo = typeof getActiveRepo === 'function' ? getActiveRepo() : 'el20chinitdt/Automatizador-de-Tokens';
+                const [owner, name] = repo.split('/');
+                if (owner && name) {
+                    sources.push(`https://${owner.toLowerCase()}.github.io/${name}/token.json?t=` + Date.now());
+                    sources.push(`https://raw.githubusercontent.com/${owner}/${name}/refs/heads/main/token.json?t=` + Date.now());
+                }
+                sources.push('token.json?t=' + Date.now());
 
-                const raw = await res.json();
+                let raw = null;
+                for (const url of sources) {
+                    try {
+                        const res = await fetch(url, { cache: 'no-store' });
+                        if (res.ok) {
+                            raw = await res.json();
+                            break;
+                        }
+                    } catch (_) { }
+                }
+
+                if (!raw || !raw.embeds) {
+                    throw new Error('No se pudo conectar o descargar el token.json desde ninguna fuente.');
+                }
+
                 const cleanSlug = String(slug).trim().toLowerCase();
-
-                if (!raw.embeds || !raw.embeds[cleanSlug]) {
-                    throw new Error(`El canal "${cleanSlug}" no existe o no tiene un embed válido en el repositorio.`);
+                if (!raw.embeds[cleanSlug]) {
+                    throw new Error(`El canal "${cleanSlug}" no existe o no tiene un embed válido.`);
                 }
 
                 const blob = raw.embeds[cleanSlug];
+                if (!blob.k || !blob.hash || !blob.salt) {
+                    throw new Error('Embed inválido: falta clave, hash o salt.');
+                }
 
-                // Función interna de SHA-256 para validar la integridad
+                // Funciones criptográficas internas y autónomas
                 async function sha256(m) {
-                    const h = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(m));
+                    const input = typeof m === 'string' ? new TextEncoder().encode(m) : m;
+                    const h = await crypto.subtle.digest('SHA-256', input);
                     return Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2, '0')).join('');
                 }
 
-                const unhex = h => Uint8Array.from(h.match(/../g).map(x => parseInt(x, 16)));
+                const unhex = h => {
+                    if (typeof h !== 'string' || !/^(?:[0-9a-f]{2})+$/i.test(h)) throw new Error('Hash inválido.');
+                    return Uint8Array.from(h.match(/../g).map(x => parseInt(x, 16)));
+                };
+
                 const fromB64 = b => Uint8Array.from(atob(b), ch => ch.charCodeAt(0));
 
-                // 2. Valida la integridad del hash del embed
-                const expected = await sha256('elchini-embed-integrity-v4:' + String(blob.salt) + ':' + blob.k);
-                if (expected !== blob.hash) {
-                    throw new Error('Fallo en la verificación de seguridad del hash del embed.');
+                function localXorStream(dataBytes, keyBytes) {
+                    const out = new Uint8Array(dataBytes.length);
+                    const kLen = keyBytes.length;
+                    for (let i = 0; i < dataBytes.length; i++) {
+                        out[i] = dataBytes[i] ^ keyBytes[i % kLen];
+                    }
+                    return out;
                 }
 
-                // 3. Descifra los datos del canal usando su clave individual 'k' (AES-GCM)
-                const key = await crypto.subtle.importKey('raw', unhex(blob.k), { name: 'AES-GCM' }, false, ['decrypt']);
-                const aad = new TextEncoder().encode('elchini-embed-v4');
-                const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: fromB64(blob.iv), additionalData: aad, tagLength: 128 }, key, fromB64(blob.data));
-                const decryptedData = JSON.parse(new TextDecoder().decode(pt));
+                // 2. Validación de integridad hash
+                const expected = await sha256('elchini-embed-integrity-v6:' + String(blob.salt) + ':' + blob.k);
+                if (expected !== blob.hash) {
+                    const expectedV5 = await sha256('elchini-embed-integrity-v5:' + String(blob.salt) + ':' + blob.k);
+                    const expectedV4 = await sha256('elchini-embed-integrity-v4:' + String(blob.salt) + ':' + blob.k);
+                    if (expectedV5 !== blob.hash && expectedV4 !== blob.hash) {
+                        throw new Error('Fallo en la verificación de seguridad del hash del embed.');
+                    }
+                }
 
-                if (!decryptedData || !decryptedData.token) {
-                    console.error("No se encontró el token en la configuración descifrada del embed.");
+                // 3. Descifrado AES-GCM + XOR corregido
+                const rawKey = unhex(blob.k);
+                const key = await crypto.subtle.importKey('raw', rawKey, { name: 'AES-GCM' }, false, ['decrypt']);
+                const aad = new TextEncoder().encode(blob.version === 6 ? 'elchini-embed-v6' : (blob.version === 5 ? 'elchini-embed-v5' : 'elchini-embed-v4'));
+
+                let encData = fromB64(blob.data);
+
+                if (blob.sha256) {
+                    const checkSha = await sha256(encData);
+                    if (checkSha !== blob.sha256) throw new Error('Integridad SHA-256 del payload violada.');
+                }
+
+                // Aplicar la capa XOR obligatoria con la clave cruda antes de desencriptar con AES-GCM
+                if (blob.xor || blob.version >= 5) {
+                    encData = localXorStream(encData, rawKey);
+                    // console.log("[DEBUG] Capa XOR aplicada correctamente en el payload.");
+                }
+
+                const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: fromB64(blob.iv), additionalData: aad, tagLength: 128 }, key, encData);
+                const decryptedText = new TextDecoder().decode(pt);
+                const decryptedData = JSON.parse(decryptedText);
+
+                const channelConfig = decryptedData.canal || decryptedData;
+                const tokenVal = channelConfig.token || decryptedData.token;
+
+                if (!decryptedData || !tokenVal) {
+                    console.error("[DEBUG] No se encontró el token en el JSON descifrado.");
                     return null;
                 }
 
-                // Retorna el token limpio extraído de forma segura
-                return decryptedData.token;
+                let finalToken = String(tokenVal).trim();
+                if (finalToken.includes('token=')) {
+                    const p = finalToken.split('token=');
+                    if (p[1]) finalToken = p[1].split('&')[0];
+                }
+
+                const resultToken = decodeURIComponent(finalToken).trim();
+                // console.log("[DEBUG] ¡Token obtenido y desencriptado con éxito para", cleanSlug, "!");
+                return resultToken;
 
             } catch (error) {
-                console.error("Error al obtener o descifrar el token desde GitHub:", error);
+                console.error("[DEBUG ERROR CRÍTICO] Fallo en obtenerTokenServidor:", error);
                 return null;
             }
         }
