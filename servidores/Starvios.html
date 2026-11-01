@@ -138,7 +138,8 @@
         }
 
         async function fetchLiveStreams(btn = null) {
-            let apiUrl = `https://starvios.com/api/public/live-now?_t=${Date.now()}`;
+            let apiUrl = `https://starvios.com/api/public/live-now`;
+            // let apiUrl = `https://starvios.com/api/public/live-now?_t=${Date.now()}`;
             // let apiUrl = `https://starvios.com/api/public/live-now?top=60&_t=${Date.now()}`;
             // let apiUrl = `https://starvios.com/api/public/discovery?kind=clips&limit=8`;
             // let apiUrl = `https://starvios.com/api/public/discovery?kind=channel&username=marsaltech`;
@@ -209,13 +210,16 @@
                 const category = stream.category || 'General';
                 const title = stream.title || 'Directo sin título';
                 const viewers = stream.viewer_count || 0;
+
+                // alert(stream.playback_id);
                 
                 const rawPlaybackId = stream.playback_id || '';
                 let cleanPlaybackId = rawPlaybackId;
                 if (cleanPlaybackId.startsWith('cf')) {
                     cleanPlaybackId = cleanPlaybackId.substring(2);
                 }
-                const hlsUrl = cleanPlaybackId ? `https://customer-v4n77b7tsunuc58z.cloudflarestream.com/${cleanPlaybackId}/manifest/video.m3u8` : '';
+                // const hlsUrl = cleanPlaybackId ? `https://customer-v4n77b7tsunuc58z.cloudflarestream.com/${cleanPlaybackId}/manifest/video.m3u8` : '';
+                const hlsUrl = proxyPrefix+rawPlaybackId;
 
                 const card = document.createElement('div');
                 card.className = "bg-starvios-card border border-starvios-border rounded-xl overflow-hidden hover:border-starvios-pink/65 transition cursor-pointer flex flex-col group relative";
@@ -331,7 +335,8 @@
                 cleanPlaybackId = cleanPlaybackId.substring(2);
             }
 
-            const hlsUrl = `https://customer-v4n77b7tsunuc58z.cloudflarestream.com/${cleanPlaybackId}/manifest/video.m3u8`;
+            // const hlsUrl = `https://customer-v4n77b7tsunuc58z.cloudflarestream.com/${cleanPlaybackId}/manifest/video.m3u8`;
+            const hlsUrl = proxyPrefix+`${cleanPlaybackId}`;
 
             document.getElementById('modalAvatar').src = avatarUrl;
             document.getElementById('modalUsername').textContent = displayName || `@${username}`;
