@@ -139,13 +139,13 @@ function getChannelKeys(getURL) {
         "VFZfQ2FtYXJh": { keyId: "cd3c8a1978041cab3f4e78633b480d27", key: "a196a0703d3712e4ffcd5fcad131c336" }, //TV_Camara Paraguay
         "VW5pdmVyc28=": { keyId: "ff2c94143de42e334c7ee3e081224ee4", key: "558c45cc6a1c9aa0b3ea99895196c6e4" }, //Universo PupoTV Paraguay
         "Q2FuYWxfMTFfUGFyYW5h": { keyId: "82d766840c7ea82b4f309ae1d4f9c0d7", key: "41071d71fc94b54c87e6140d7b2e9226" }, //Canal_11_Parana
-        "Q2FuYWxfMjE=": { keyId: "29ccae9b98d74e76b35ac4e9a7fd1af1", key: "cd6f0d4dca0fc30533e845fc8ea6a945" }, //Canal_21 Orbe 21
+        "Q2FuYWxfMjE=": { keyId: "3972dab125777799edf1d6484b0cfe23", key: "68f32795854be3edd65e001efa898eb2" }, //Canal_21 Orbe 21
         "Q0hfMTJfUG9zYWRhcw==": { keyId: "9c996a1465acddc9c3f7a2dd9b86aa88", key: "a2b63e48c99bebb52bfcdb1830efdd3e" }, //CH_12_Posadas
         "Q0JBMjQ=": { keyId: "b93e6ce6b4fb51b890ac57d8c0b6a402", key: "53eb2499d8c57cf6f9ea887c8683c591" }, //CBA24 - Canal U
         "VGVsZW5vdmVsYXM=": { keyId: "62bf7b8ec759904f0676d24b0baef659", key: "16435593f900bd954071486abdc8bd81" }, //Telenovelas
         "Q2FuYWxfVQ==": { keyId: "202a19e4871c4739a8010aa7b25af37d", key: "07015b4cfa048a3351b83d60aeca5ead" }, //Canal_UCL
         "Q0FOQUxfTFVa": { keyId: "f7523ea5a2da78c465d928be1d81e2a5", key: "870ad69e98abd52b443bd8f0204b3bc4" }, //CANAL_LUZ
-        "RVdUTg==": { keyId: "07df3c48652a431ab779d133f085b799", key: "ee2fbeec1ecdffa5617383f684dfda0e" }, //EWTN
+        "RVdUTg==": { keyId: "5c535a3ea83cce6c38a8af04a0760789", key: "1a15d611780ac05139d7322e01096d44" }, //EWTN
         "S1pP": { keyId: "71c9374566b0b5517083bc923175969a", key: "56292911445ae704f390669ec5d7faa7" }, //KZO
         "QWxsZWdyb0hE": { keyId: "e55e61b81b992d6c21466891d72157e9", key: "566d341bf7209a88976e75c20ad7aca2" }, //AllegroHD
         "Vm9ydGVyaXg=": { keyId: "83132aeb8ac536b1287b3a121767f5f6", key: "24488449ccf4f53a8d77874ef85f44b8" }, //Vorterix
@@ -204,7 +204,7 @@ function getChannelKeys(getURL) {
         "Q2FuYWxfYQ==": { keyId: "ada50e6dfa73ff021b64cda0e3266441", key: "a8e86512821e7657d05acbbb703b5269" }, //CANAL A
         "QW1lcmljYV9TcG9ydHM=": { keyId: "3269536fedc69cba1e0281ff62cc4eb9", key: "5246eedf4e7af3771f80899db667dede" }, //Americasports-arg
         "REhF": { keyId: "7650ddfb5362bb721625873d246b71cc", key: "51c2839183b1f5056d94fe0b75e44662" }, //DHE
-        "R29sZl9DaGFubmVs": { keyId: "38d6226b7cd2cfa86b4b9cdaa455e7d7", key: "24f0ef2bf787647cc02df870417eed2b" }, //GOLF TV
+        "R29sZl9DaGFubmVs": { keyId: "fdd337296e43e69aefee1bbc4f04e663", key: "d9883167d78827a0ec24dae99e03a3e2" }, //GOLF TV
         "SG9tZV9hbmRfR2FyZGVu": { keyId: "fb0b850c84cede52061cf6f84fce6cc3", key: "f3de5c89d06ce99a76bdf20703da3cc2" }, //HGTV
         "Q0hfOV9SZXNpc3RlbmNpYQ==": { keyId: "dde29700ee0423e1afe3828c6f251295", key: "1928b62bc191bd26c357137d7d909868" }, //Canal 9 Resistencia
         "VW5pdmVyc2FsX0NpbmVtYQ==": { keyId: "6c2ba2a391c2edc5a2990841c5c30636", key: "892061b87f07c6d816f234a1328c3420" }, // Universal Cinema
@@ -246,7 +246,7 @@ function getChannelKeys(getURL) {
         "QU1D": { keyId: "30ffe7a2776537e8cec7020d783536f9", key: "7b4f323576ac85d8938f5bebc245131c" }, //AMC
         "QW1lcmljYVRW": { keyId: "3d7afc43dab940d699b61466b245369f", key: "712b5165ff990156e6c9e580b0b4df59" }, //AmericaTV
         "QW5pbWFsUGxhbmV0": { keyId: "bd3391cf0c35692dbaca16b76169e211", key: "0dd3924a07b0a4051f6db1d57e75a700" }, // Animal Planet
-        "QW50ZW5hXzM=": { keyId: "1e1ad422a6714482b66fa702c16e50c6", key: "4fdf28a0ab91356ca55a75f4e9bf8c92" }, //Antena_3-INTERNACIONAL
+        "QW50ZW5hXzM=": { keyId: "a9a898c754cddb9da22fce3ae9cd963a", key: "f5854da52404b3eabbff4cdf1438ceff" }, //Antena_3-INTERNACIONAL
         "QXJnZW50aW5pc2ltYQ": { keyId: "7e9c0f045a0940b971d1067eecf629b7", key: "923f466a008d077b21ac13ede21600a5" }, //Argentinisima
         "QVhOSEQ=": { keyId: "95b9c884a97447ecab423d054cc499aa", key: "f57499f1432bb70e9cb9a0ebfbef2da4" }, //AXNHD
         "QkJDX1dvcmxkX05ld3M": { keyId: "fe5abcb69ce6fe6d735275317046241c", key: "917566c164adacba90d0364f31808bd8" }, //BBC_World_News

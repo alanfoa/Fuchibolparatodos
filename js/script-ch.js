@@ -1154,9 +1154,9 @@ MisCanales.set(
         pais: "Estados Unidos",
         guide: "EWTN",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=RVdUTg==",
-            // servidorCanalesOnline + "cvatt.html?get=RVdUTg==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=RVdUTg==",
+            servidorCanalesOnline + "cvatt_pro.html?get=RVdUTg==",
+            servidorCanalesOnline + "cvatt.html?get=RVdUTg==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RVdUTg==",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=EWTN",
             servidorCanalesOnline + "sensa.html?id=EWTN",
             // servidorCanalesOnline + "sensa_ext.html?id=EWTN",
@@ -1362,9 +1362,9 @@ MisCanales.set(
         pais: "Argentina",
         guide: "Orbe 21",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMjE=",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMjE=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMjE=",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMjE=",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMjE=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMjE=",
             servidorCanalesOnline + "m3u8.html?stream=Orbe_21",
         ]
     }
@@ -2014,9 +2014,9 @@ MisCanales.set(
     {
         pais: "España",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=QW50ZW5hXzM=",
-            // servidorCanalesOnline + "cvatt.html?get=QW50ZW5hXzM=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=QW50ZW5hXzM=",
+            servidorCanalesOnline + "cvatt_pro.html?get=QW50ZW5hXzM=",
+            servidorCanalesOnline + "cvatt.html?get=QW50ZW5hXzM=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=QW50ZW5hXzM=",
             // "server/cvatt.html?get=QW50ZW5hXzM=",
             // "https://sssshhh.xyz/cvatt.html?get=QW50ZW5hXzM=",
             // "https://a3.115tv.site/cvatt.html?get=QW50ZW5hXzM=",
@@ -5130,9 +5130,9 @@ MisCanales.set(
         pais: "Estados Unidos",
         guide: "Golf Channel HD",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=R29sZl9DaGFubmVs",
-            // servidorCanalesOnline + "cvatt.html?get=R29sZl9DaGFubmVs",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=R29sZl9DaGFubmVs",
+            servidorCanalesOnline + "cvatt_pro.html?get=R29sZl9DaGFubmVs",
+            servidorCanalesOnline + "cvatt.html?get=R29sZl9DaGFubmVs",
+            servidorCanalesOnline + "cvatt2_ext.html?get=R29sZl9DaGFubmVs",
             servidorCanalesOnline + "edge.html?get=Golf_Channel",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=Golf_Channel_HD",
             servidorCanalesOnline + "tvmia.html?stream=an_GOLF_TV_AMÉRICA",
@@ -5206,6 +5206,7 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
+            
             // "https://futbollibrelibre.com/canales.php?stream=movistar",
             // "https://streamx10.cloud/global2.php?channel=movistar_deportes_peru",
             // "https://streamx10.cloud/global1.php?channel=movistar_deportes_peru",
