@@ -35,6 +35,7 @@ MisCanales.set(
 
             servidorCanalesOnline + "ciades.html?id=TELEFE",
             servidorCanalesOnline + "ciadespro.html?id=TELEFE",
+            servidorCanalesOnline + "rcspro.html?id=Telefe_Interior",
             servidorCanalesOnline + "zapsterpro.html?id=TelefeHD",
             servidorCanalesOnline + "m3u8.html?stream=Telefe",
             servidorCanalesOnline + "akamaizedpro.html?id=telefe_arg",
@@ -206,6 +207,7 @@ MisCanales.set(
             // "https://sssshhh.xyz/cvatt.html?get=QXJ0ZWFySEQ",
             // "https://a3.115tv.site/cvatt.html?get=QXJ0ZWFySEQ",
             // "https://a3.115tv.site/cvatt2_ext.html?get=QXJ0ZWFySEQ",
+            servidorCanalesOnline + "rcspro.html?id=El_Trece_Satelital",
             servidorCanalesOnline + "zapsterpro.html?id=ElTreceHD",
             servidorCanalesOnline + "akamaizedpro.html?id=eltrece_arg",
             servidorCanalesOnline + "akamaized.html?id=eltrece_arg",
@@ -293,6 +295,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=QW1lcmljYVRW",
             servidorCanalesOnline + "ciades.html?id=AMERICA",
             servidorCanalesOnline + "ciadespro.html?id=AMERICA",
+            servidorCanalesOnline + "rcspro.html?id=America_TV_Interior",
             servidorCanalesOnline + "zapsterpro.html?id=AmericaTV",
             servidorCanalesOnline + "akamaizedpro.html?id=americatv_arg",
             servidorCanalesOnline + "akamaized.html?id=americatv_arg",
@@ -393,7 +396,7 @@ MisCanales.set(
                 // "https://a3.115tv.site/cvatt2_ext.html?get=MjZfVFZfSEQ",
                 servidorCanalesOnline + "ciades.html?id=CANAL26",
                 servidorCanalesOnline + "ciadespro.html?id=CANAL26",
-                servidorCanalesOnline + "zapsterpro.html?id=canal26hls",
+                servidorCanalesOnline + "zapsterpro.html?id=canal26",
                 servidorCanalesOnline + "akamaizedpro.html?id=canal26_arg",
                 servidorCanalesOnline + "akamaized.html?id=canal26_arg",
                 servidorCanalesOnline + "megacable.html?id=_26_TV",
@@ -528,7 +531,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=VG9kb05vdGljaWFz",
             servidorCanalesOnline + "ciades.html?id=TN",
             servidorCanalesOnline + "ciadespro.html?id=TN",
-            servidorCanalesOnline + "zapsterpro.html?id=todonoticias",
+            servidorCanalesOnline + "zapsterpro.html?id=TN",
             servidorCanalesOnline + "akamaizedpro.html?id=tn",
             servidorCanalesOnline + "akamaized.html?id=tn",
             servidorCanalesOnline + "megacable.html?id=TN",
@@ -668,6 +671,7 @@ MisCanales.set(
             servidorCanalesOnline + "ciades.html?id=ELNUEVE",
             servidorCanalesOnline + "ciadespro.html?id=ELNUEVE",
             servidorCanalesOnline + "zapsterpro.html?id=Canal9",
+            servidorCanalesOnline + "rcspro.html?id=El_Nueve_Interior",
             servidorCanalesOnline + "akamaizedpro.html?id=elnueve_arg",
             servidorCanalesOnline + "akamaized.html?id=elnueve_arg",
             servidorCanalesOnline + "megacable.html?id=Canal_9_HD",
@@ -726,6 +730,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfYQ==",
             servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfYQ==",
             servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfYQ==",
+            servidorCanalesOnline + "rcspro.html?id=Canal_a",
             servidorCanalesOnline + "edge.html?get=Canal_A",
             servidorCanalesOnline + "sensa.html?id=CanalA",
             servidorCanalesOnline + "gigared.html?id=CanalA",
@@ -5206,7 +5211,7 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            
+
             // "https://futbollibrelibre.com/canales.php?stream=movistar",
             // "https://streamx10.cloud/global2.php?channel=movistar_deportes_peru",
             // "https://streamx10.cloud/global1.php?channel=movistar_deportes_peru",
@@ -5814,6 +5819,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=SEJPSEQ=",
             servidorCanalesOnline + "ciades.html?id=HBO",
             servidorCanalesOnline + "ciadespro.html?id=HBO",
+            servidorCanalesOnline + "rcspro.html?id=HBO_HD",
             servidorCanalesOnline + "megacable.html?id=HBO_HD",
             servidorCanalesOnline + "megacablepro.html?id=HBO_HD",
             servidorCanalesOnline + "latamlive.html?id=HBO_HD_AR_ENC_LIVE",
@@ -5853,6 +5859,7 @@ MisCanales.set(
             servidorCanalesOnline + "ciadespro.html?id=HBO2",
             servidorCanalesOnline + "megacable.html?id=HBO_2",
             servidorCanalesOnline + "megacablepro.html?id=HBO_2",
+            servidorCanalesOnline + "rcspro.html?id=HBO_2_HD",
             servidorCanalesOnline + "latamlive.html?id=HBO2_AR_ENC_LIVE",
             servidorCanalesOnline + "edge.html?get=HBO_2",
             servidorCanalesOnline + "sensa.html?id=HBO2",
@@ -5887,6 +5894,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=SEJPX1BsdXM=",
             servidorCanalesOnline + "ciades.html?id=HBOPLUS",
             servidorCanalesOnline + "ciadespro.html?id=HBOPLUS",
+            servidorCanalesOnline + "rcspro.html?id=HBO_plus_HD",
             servidorCanalesOnline + "latamlive.html?id=HBO_PLUS_HD_AR_ENC_LIVE",
             servidorCanalesOnline + "edge.html?get=HBO_Plus",
             servidorCanalesOnline + "sensa.html?id=HBOPlus",
@@ -5922,6 +5930,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=SEJPX0ZhbWlseQ==",
             servidorCanalesOnline + "ciades.html?id=HBOFAMILY",
             servidorCanalesOnline + "ciadespro.html?id=HBOFAMILY",
+            servidorCanalesOnline + "rcspro.html?id=HBO_Family_HD",
             servidorCanalesOnline + "megacable.html?id=HBO_FAMILY",
             servidorCanalesOnline + "megacablepro.html?id=HBO_FAMILY",
             servidorCanalesOnline + "latamlive.html?id=HBO_FAMILY_HD_AR_ENC_LIVE",
@@ -5959,6 +5968,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=SEJPX0V4dHJlbWU=",
             servidorCanalesOnline + "ciades.html?id=HBOXTREME",
             servidorCanalesOnline + "ciadespro.html?id=HBOXTREME",
+            servidorCanalesOnline + "rcspro.html?id=HBO_Xtreme_HD",
             servidorCanalesOnline + "megacable.html?id=HBO_XTREME",
             servidorCanalesOnline + "megacablepro.html?id=HBO_XTREME",
             servidorCanalesOnline + "latamlive.html?id=HBO_XTREME_HD_AR_ENC_LIVE",
@@ -5994,6 +6004,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=SEJPX011bmRp",
             servidorCanalesOnline + "ciades.html?id=HBOMUNDI",
             servidorCanalesOnline + "ciadespro.html?id=HBOMUNDI",
+            servidorCanalesOnline + "rcspro.html?id=HBO_Mundi_HD",
             servidorCanalesOnline + "latamlive.html?id=HBO_MUNDI_HD_AR_ENC_LIVE",
             servidorCanalesOnline + "sensa.html?id=HBOMundi",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=HBO_MUNDI",
@@ -6026,6 +6037,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=SEJPX1BPUA==",
             servidorCanalesOnline + "ciades.html?id=HBOPOP",
             servidorCanalesOnline + "ciadespro.html?id=HBOPOP",
+            servidorCanalesOnline + "rcspro.html?id=HBO_POP_HD",
             servidorCanalesOnline + "latamlive.html?id=HBO_POP_AR_HD_ENC_LIVE",
             servidorCanalesOnline + "edge.html?get=HBO_POP",
             servidorCanalesOnline + "sensa.html?id=HBOPop",
@@ -6059,6 +6071,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=SEJPX1NpZ25hdHVyZQ==",
             servidorCanalesOnline + "ciades.html?id=HBOSIGNATURE",
             servidorCanalesOnline + "ciadespro.html?id=HBOSIGNATURE",
+            servidorCanalesOnline + "rcspro.html?id=HBO_Signature_HD",
             servidorCanalesOnline + "megacable.html?id=HBO_Signature_HD",
             servidorCanalesOnline + "megacablepro.html?id=HBO_Signature_HD",
             servidorCanalesOnline + "latamlive.html?id=HBO_SIGNATURE_AR_HD_ENC_LIVE",
@@ -9149,6 +9162,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt_pro.html?get=QXJnZW50aW5pc2ltYQ",
             servidorCanalesOnline + "cvatt.html?get=QXJnZW50aW5pc2ltYQ",
             servidorCanalesOnline + "cvatt2_ext.html?get=QXJnZW50aW5pc2ltYQ",
+            servidorCanalesOnline + "rcspro.html?id=Argentinisima_Satelital",
             // "server/cvatt.html?get=QXJnZW50aW5pc2ltYQ",
             // "https://sssshhh.xyz/cvatt.html?get=QXJnZW50aW5pc2ltYQ",
             // "https://a3.115tv.site/cvatt.html?get=QXJnZW50aW5pc2ltYQ",
@@ -9177,6 +9191,7 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfUnVyYWw=",
             servidorCanalesOnline + "ciades.html?id=RURAL",
             servidorCanalesOnline + "ciadespro.html?id=RURAL",
+            servidorCanalesOnline + "rcspro.html?id=Canal_Rural",
             servidorCanalesOnline + "edge.html?get=Canal_Rural",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=Canal_Rural",
             servidorCanalesOnline + "sensa.html?id=CanalRural",
@@ -9520,16 +9535,6 @@ MisCanales.set(
 );
 
 MisCanales.set(
-    "Starvios",
-    {
-        pais: "Argentina",
-        enlaces: [
-            servidorCanalesOnline + "Starvios.html",
-        ]
-    }
-);
-
-MisCanales.set(
         "Venus",
         {
             pais: "Argentina",
@@ -9740,7 +9745,7 @@ MisCanales.forEach((canal, nombre, map) => {
         !link.includes("extension.html") &&
         !link.includes("jjfutbol2pro.html") &&
         !link.includes("ciades.html") &&
-        // !link.includes("ciadespro.html") &&
+        !link.includes("ciadespro.html") &&
         // !link.includes("zapitvpro.html") &&
         // !link.includes("telefe.html") &&
         // !link.includes("miagendadeportiva.html") &&

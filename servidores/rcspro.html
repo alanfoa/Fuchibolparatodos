@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>rcs pro</title>
+
+    <!-- Bitmovin Player -->
+    <script src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+
+    <style>
+        html,
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Color de la barra de progreso de Bitmovin */
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition-marker,
+        .bmpui-ui-volumeslider .bmpui-seekbar-playbackposition {
+            background-color: #51E0C0 !important;
+        }
+    </style>
+    <link rel="stylesheet" href="style-jw.css">
+</head>
+
+<body>
+    <div id="player"></div>
+
+    <script src="../js/script-config.js"></script>
+    <script>
+        /* ════════════════════════════════════════════════════════
+         * Interceptar licencia Bitmovin
+         * ════════════════════════════════════════════════════════ */
+        (function () {
+            var GRANT = 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+            function override(u) {
+                var wm = document.querySelector('button.bmpui-ui-watermark');
+                if (wm) wm.setAttribute('disabled', 'disabled');
+                if (u.indexOf('licensing.bitmovin.com/licensing') > -1) return GRANT;
+                if (u.indexOf('licensing.bitmovin.com/impression') > -1) return GRANT;
+                return u;
+            }
+            var _open = XMLHttpRequest.prototype.open;
+            XMLHttpRequest.prototype.open = function () {
+                arguments[1] = override(arguments[1]);
+                return _open.apply(this, arguments);
+            };
+        })();
+
+        /* ════════════════════════════════════════════════════════
+         * Helpers
+         * ════════════════════════════════════════════════════════ */
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        /* ════════════════════════════════════════════════════════
+         * Configuración de canales
+         * ════════════════════════════════════════════════════════ */
+        var ConfiguracionCanales = {
+
+            "NHK_World": { url: "https://broker.cdn.rcs.net.ar/mnp/nhk/output.mpd" },
+            "AVC": { url: "https://broker.cdn.rcs.net.ar/inet/avchd/index.m3u8" },
+            "Telediario_Television": { url: "https://broker.cdn.rcs.net.ar/mnp/imperio/output.mpd" },
+            "BBC_World_News": { url: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/bbc/output.mpd" },
+            "AVC_HD": { url: "https://broker.cdn.rcs.net.ar/inet/avchd/index.m3u8" },
+            "CyD_Litoral": { url: "https://broker.cdn.rcs.net.ar/hub/cableydiario/cableydiario.m3u8" },
+            "Enlace": { url: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/enlace/output.mpd" },
+            "Canal_Rural": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/rural/output.mpd" },
+            "America_TV_Interior": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/z6dvn63g3s00000002pek8z593pbgi2x/output.mpd" },
+            "El_Trece_Satelital": { url: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/t0i1o7528g7ef00000006ok69ikbp24i/output.mpd" },
+            "El_Nueve_Interior": { url: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/elnueve/output.mpd" },
+            "Telefe_Interior": { url: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/yb00000004pgcoaan51zn2w74bzgpszr/output.mpd" },
+            "CM": { url: "http://181.209.37.74:8001/play/a0e6/index.m3u8?token=miguel2026" },
+            "MTV": { url: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/mtv/output.mpd" },
+            "Quiero_Musica_TV": { url: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/quieromusica/output.mpd" },
+            "Allegro_HD": { url: "http://181.209.37.74:8001/play/a092/index.m3u8?token=miguel2026" },
+            "Tooncast": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/tooncast/output.mpd" },
+            "Nickelodeon": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/nickelodeon/output.mpd" },
+            "Zoomoo": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/zoomoo/output.mpd" },
+            "Volver": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/volver/output.mpd" },
+            "DHE": { url: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/dhe/output.mpd" },
+            "HBO_HD": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/hbo/output.mpd" },
+            "HBO_2_HD": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/hbo2/output.mpd" },
+            "HBO_plus_HD": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/hboplus/output.mpd" },
+            "HBO_Family_HD": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/hbofam/output.mpd" },
+            "HBO_Xtreme_HD": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/hboxtr/output.mpd" },
+            "HBO_Mundi_HD": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/hbomund/output.mpd" },
+            "HBO_POP_HD": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/hbopop/output.mpd" },
+            "HBO_Signature_HD": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/hbosig/output.mpd" },
+            "Argentinisima_Satelital": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/arg_sat/output.mpd" },
+            "Metro_HD": { url: "https://ushuaia-vision.cdn.rcs.net.ar/g48EaXkDY2tZP6qmpzKjFQ/metro/output.mpd" },
+            "Canal_a": { url: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/canala/output.mpd" },
+            "CN23": { url: "http://181.209.37.74:8001/play/a0dq/index.m3u8?token=miguel2026" },
+            "Deportv": { url: "http://181.209.37.74:8001/play/a07f/index.m3u8?token=miguel2026" },
+            "Televisión_Publica_Fueguina": { url: "https://tvfuego.cdn.rcs.net.ar/HGxWMSZtXcn2A3b9zrDfUL/tvpfueguina/output.mpd" },
+            "Canal_8_San_Juan": { url: "https://broker.cdn.rcs.net.ar/onpower/canal8_dash/canal8/index.mpd" },
+            "Multivision": { url: "http://181.209.37.74:8001/play/a0e3/index.m3u8?token=miguel2026" },
+            "Canal_7_Neuquen": { url: "https://broker.cdn.rcs.net.ar/hub/telefenqn/dash/canal7neuquen.mpd" },
+            "Canal_6_Entre_Rios_TV": { url: "http://190.7.17.102/V8/1/1.m3u8" },
+
+
+
+        };
+
+        /* ════════════════════════════════════════════════════════
+         * Inicializar
+         * ════════════════════════════════════════════════════════ */
+        var id = getParameterByName('id');
+        var config = ConfiguracionCanales[id];
+
+        if (config) {
+            var player = new bitmovin.player.Player(document.getElementById('player'), {
+                key: '11d3698c-efdf-42f1-8769-54663995de2b',
+                analytics: false,
+                cast: { enable: true },
+                playback: { autoplay: true, muted: false },
+                style: { width: '100%', height: '100%' }
+            });
+
+            // Armar source
+            var source = {};
+
+            if (config.url.includes('.m3u8')) {
+                source.hls = "https://proxy-ott.gaticaelchini.workers.dev/?url="+ encodeURIComponent(config.url);
+                // source.hls = "https://proxygenerico.canalesonline24.workers.dev/?url="+config.url;
+            } else {
+                source.dash = "https://proxy-ott.gaticaelchini.workers.dev/?url="+ encodeURIComponent(config.url);
+                // source.dash = "https://proxygenerico.canalesonline24.workers.dev/?url="+config.url;
+            }
+
+            // ClearKey DRM
+            if (config.clearkey) {
+                var keyId = Object.keys(config.clearkey)[0];
+                var key = config.clearkey[keyId];
+                source.drm = {
+                    clearkey: [{ keyId: keyId, key: key }]
+                };
+            }
+
+            // Seleccionar pista de audio en español al reproducir
+            player.on(bitmovin.player.PlayerEvent.Play, function () {
+                var tracks = player.getAvailableAudio();
+                if (!tracks || tracks.length === 0) return;
+
+                var spanishTrack = tracks.find(function (t) {
+                    var name = (t.label || t.lang || '').toLowerCase();
+                    return name.includes('spanish') || name.includes('spa') || name.includes('es');
+                });
+
+                if (spanishTrack) {
+                    player.setAudio(spanishTrack.id);
+                } else {
+                    player.setAudio(tracks[0].id);
+                }
+            });
+
+            player.load(source).catch(function (err) {
+                console.error('Bitmovin load error:', err);
+            });
+        }
+    </script>
+</body>
+
+</html>
