@@ -10,6 +10,16 @@ let MisCanales = new Map();
 
 // ---- INICIO: CANALES AUTO-GENERADOS ----
 MisCanales.set(
+    "Tribuna",
+    {
+        pais: "Argentina",
+        enlaces: [
+            servidorCanalesOnline + "Tribuna.html",
+        ]
+    }
+);
+
+MisCanales.set(
     "LPF PLAY",
     {
         pais: "Argentina",
@@ -121,9 +131,9 @@ MisCanales.set(
             servidorCanalesOnline + "fetch2.html?stream=Canal_8_Mar_Del_Plata",
 
             // Servidores de Santa Fe
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTNfU0ZF",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTNfU0ZF",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTNfU0ZF",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTNfU0ZF",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTNfU0ZF",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTNfU0ZF",
             // servidorCanalesOnline + "telefe.html?channel=telefe_santafe",
             // servidorCanalesOnline + "fetch.html?stream=Telefe_SantaFe",
 
@@ -152,9 +162,9 @@ MisCanales.set(
 
 
             // Servidores de Cordoba
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOF9DQkE",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOF9DQkE",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOF9DQkE",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOF9DQkE",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOF9DQkE",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOF9DQkE",
             // servidorCanalesOnline + "telefe.html?channel=telefe_cordoba",
             // servidorCanalesOnline + "fetch.html?stream=Telefe_Cordoba",
 
@@ -174,20 +184,20 @@ MisCanales.set(
             // "https://www.dailymotion.com/embed/video/x8z8w7c?autoplay=1",
 
             // Servidores de Salta
-            // servidorCanalesOnline + "cvatt_pro.html?get=VGVsZWZlX1NhbHRh",
-            // servidorCanalesOnline + "cvatt.html?get=VGVsZWZlX1NhbHRh",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZWZlX1NhbHRh",
+            servidorCanalesOnline + "cvatt_pro.html?get=VGVsZWZlX1NhbHRh",
+            servidorCanalesOnline + "cvatt.html?get=VGVsZWZlX1NhbHRh",
+            servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZWZlX1NhbHRh",
 
             // Servidores de Jujuy
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q0hfN19KdWp1eQ==",
-            // servidorCanalesOnline + "cvatt.html?get=Q0hfN19KdWp1eQ==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q0hfN19KdWp1eQ==",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q0hfN19KdWp1eQ==",
+            servidorCanalesOnline + "cvatt.html?get=Q0hfN19KdWp1eQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q0hfN19KdWp1eQ==",
             servidorCanalesOnline + "m3u8.html?stream=Canal_7_Jujuy",
 
             // Servidores de Neuquen
-            // servidorCanalesOnline + "cvatt_pro.html?get=VGVsZWZlX05ldXF1ZW4=",
-            // servidorCanalesOnline + "cvatt.html?get=VGVsZWZlX05ldXF1ZW4=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZWZlX05ldXF1ZW4=",
+            servidorCanalesOnline + "cvatt_pro.html?get=VGVsZWZlX05ldXF1ZW4=",
+            servidorCanalesOnline + "cvatt.html?get=VGVsZWZlX05ldXF1ZW4=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZWZlX05ldXF1ZW4=",
             // servidorCanalesOnline + "fetch.html?stream=Canal_7_Neuquen",
             // servidorCanalesOnline + "m3u8.html?stream=Canal_7_Neuquen",
         ]
@@ -243,23 +253,23 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfM19Sb3Nhcmlv",
 
             //Canal 10 Tucumán
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2gxMF9UdWN1bWFu",
-            // servidorCanalesOnline + "cvatt.html?get=Q2gxMF9UdWN1bWFu",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2gxMF9UdWN1bWFu",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2gxMF9UdWN1bWFu",
+            servidorCanalesOnline + "cvatt.html?get=Q2gxMF9UdWN1bWFu",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2gxMF9UdWN1bWFu",
 
             //Canal 7 Bahia Blanca
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWw3X0JhaGlhX0JsYW5jYQ==",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWw3X0JhaGlhX0JsYW5jYQ==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWw3X0JhaGlhX0JsYW5jYQ==",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWw3X0JhaGlhX0JsYW5jYQ==",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWw3X0JhaGlhX0JsYW5jYQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWw3X0JhaGlhX0JsYW5jYQ==",
 
             //Canal 6 Bariloche
             // servidorCanalesOnline + "sensa_output.html?id=El_seis",
             // servidorCanalesOnline + "sensa_ext.html?id=El_seis",
 
             //Canal 9 Parana
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOV9QYXJhbmE=",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOV9QYXJhbmE=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOV9QYXJhbmE=",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOV9QYXJhbmE=",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOV9QYXJhbmE=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOV9QYXJhbmE=",
 
             //Canal 9 Resistencia
             // servidorCanalesOnline + "cvatt_pro.html?get=Q0hfOV9SZXNpc3RlbmNpYQ==",
@@ -702,9 +712,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTJfQ0JB",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTJfQ0JB",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTJfQ0JB",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTJfQ0JB",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTJfQ0JB",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTJfQ0JB",
             // "server/cvatt.html?get=Q2FuYWxfMTJfQ0JB",
             // "https://sssshhh.xyz/cvatt.html?get=Q2FuYWxfMTJfQ0JB",
             // "https://a3.115tv.site/cvatt.html?get=Q2FuYWxfMTJfQ0JB",
@@ -871,9 +881,9 @@ MisCanales.set(
         pais: "Venezuela",
         guide: "Telesur",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=VGVsZXN1cg==",
-            // servidorCanalesOnline + "cvatt.html?get=VGVsZXN1cg==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZXN1cg==",
+            servidorCanalesOnline + "cvatt_pro.html?get=VGVsZXN1cg==",
+            servidorCanalesOnline + "cvatt.html?get=VGVsZXN1cg==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=VGVsZXN1cg==",
             // "server/cvatt.html?get=VGVsZXN1cg==",
             // "https://sssshhh.xyz/cvatt.html?get=VGVsZXN1cg==",
             // "https://a3.115tv.site/cvatt.html?get=VGVsZXN1cg==",
@@ -1020,13 +1030,13 @@ MisCanales.set(
         enlaces: [
             servidorCanalesOnline + "tvmia.html?stream=an_SOMOS",
             //Mar del plata
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfQ2l1ZGFkX01EUQ==",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfQ2l1ZGFkX01EUQ==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfQ2l1ZGFkX01EUQ==",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfQ2l1ZGFkX01EUQ==",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfQ2l1ZGFkX01EUQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfQ2l1ZGFkX01EUQ==",
             //La Plata
-            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfTGFfUGxhdGE=",
-            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfTGFfUGxhdGE=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfTGFfUGxhdGE=",
+            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfTGFfUGxhdGE=",
+            servidorCanalesOnline + "cvatt.html?get=U29tb3NfTGFfUGxhdGE=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfTGFfUGxhdGE=",
             //Santa Fe
             // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfU1RG",
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfU1RG",
@@ -1040,9 +1050,9 @@ MisCanales.set(
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfQ29ycmllbnRlcw==",
             // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfQ29ycmllbnRlcw==",
             //Rafaela
-            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfUmFmYWVsYQ==",
-            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfUmFmYWVsYQ==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfUmFmYWVsYQ==",
+            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfUmFmYWVsYQ==",
+            servidorCanalesOnline + "cvatt.html?get=U29tb3NfUmFmYWVsYQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfUmFmYWVsYQ==",
             //Tucuman
             servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfVHVjdW1hbg==",
             servidorCanalesOnline + "cvatt.html?get=U29tb3NfVHVjdW1hbg==",
@@ -1060,9 +1070,9 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt.html?get=U29tb3NfRWxfVmFsbGU=",
             servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfRWxfVmFsbGU=",
             //Salta
-            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfU2FsdGE=",
-            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfU2FsdGE=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfU2FsdGE=",
+            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfU2FsdGE=",
+            servidorCanalesOnline + "cvatt.html?get=U29tb3NfU2FsdGE=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfU2FsdGE=",
             //Bahia Blanca
             // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfQmFoaWFfQmxhbmNh",
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfQmFoaWFfQmxhbmNh",
@@ -1080,13 +1090,13 @@ MisCanales.set(
             servidorCanalesOnline + "cvatt.html?get=U29tb3NfQXp1bA==",
             servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfQXp1bA==",
             //Somos Norte
-            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfTm9ydGU=",
-            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfTm9ydGU=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfTm9ydGU=",
+            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfTm9ydGU=",
+            servidorCanalesOnline + "cvatt.html?get=U29tb3NfTm9ydGU=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfTm9ydGU=",
             //Somos Formosa
-            // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfRm9ybW9zYQ==",
-            // servidorCanalesOnline + "cvatt.html?get=U29tb3NfRm9ybW9zYQ==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfRm9ybW9zYQ==",
+            servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfRm9ybW9zYQ==",
+            servidorCanalesOnline + "cvatt.html?get=U29tb3NfRm9ybW9zYQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=U29tb3NfRm9ybW9zYQ==",
             //Somos Misiones
             // servidorCanalesOnline + "cvatt_pro.html?get=U29tb3NfTWlzaW9uZXM=",
             // servidorCanalesOnline + "cvatt.html?get=U29tb3NfTWlzaW9uZXM=",
@@ -1175,9 +1185,9 @@ MisCanales.set(
     {
         pais: "Paraguay",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=UEFSQVZJU0lPTl9DNA==",
-            // servidorCanalesOnline + "cvatt.html?get=UEFSQVZJU0lPTl9DNA==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=UEFSQVZJU0lPTl9DNA==",
+            servidorCanalesOnline + "cvatt_pro.html?get=UEFSQVZJU0lPTl9DNA==",
+            servidorCanalesOnline + "cvatt.html?get=UEFSQVZJU0lPTl9DNA==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=UEFSQVZJU0lPTl9DNA==",
             // "server/cvatt.html?get=UEFSQVZJU0lPTl9DNA==",
             // "https://sssshhh.xyz/cvatt.html?get=UEFSQVZJU0lPTl9DNA==",
             // "https://a3.115tv.site/cvatt.html?get=UEFSQVZJU0lPTl9DNA==",
@@ -1221,9 +1231,9 @@ MisCanales.set(
     {
         pais: "Uruguay",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=VFZfTmFjaW9uYWxfVXk=",
-            // servidorCanalesOnline + "cvatt.html?get=VFZfTmFjaW9uYWxfVXk=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=VFZfTmFjaW9uYWxfVXk=",
+            servidorCanalesOnline + "cvatt_pro.html?get=VFZfTmFjaW9uYWxfVXk=",
+            servidorCanalesOnline + "cvatt.html?get=VFZfTmFjaW9uYWxfVXk=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=VFZfTmFjaW9uYWxfVXk=",
         ]
     }
 );
@@ -1350,11 +1360,27 @@ MisCanales.set(
 );
 
 MisCanales.set(
+    "Canal 5 Santa Maria",
+    {
+        pais: "Argentina",
+        enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=U2VuYWxfTWFyaWE=",
+            servidorCanalesOnline + "cvatt.html?get=U2VuYWxfTWFyaWE=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=U2VuYWxfTWFyaWE=",
+            // servidorCanalesOnline + "m3u8.html?stream=Canal_5_Santa_Maria",
+        ]
+    }
+);
+
+MisCanales.set(
     "Caras TV",
     {
         pais: "Argentina",
         guide: "CARAS TV",
         enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=Q0FSQVM=",
+            servidorCanalesOnline + "cvatt.html?get=Q0FSQVM=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q0FSQVM=",
             servidorCanalesOnline + "m3u8.html?stream=Caras_TV",
             servidorCanalesOnline + "edge.html?get=Caras_TV",
         ]
@@ -1426,9 +1452,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWwxMF9DQkFfSEQ=",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWwxMF9DQkFfSEQ=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWwxMF9DQkFfSEQ=",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWwxMF9DQkFfSEQ=",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWwxMF9DQkFfSEQ=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWwxMF9DQkFfSEQ=",
             // servidorCanalesOnline + "m3u8.html?stream=Canal_10_Cordoba",
         ]
     }
@@ -1439,9 +1465,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTNfUmlvXzR0bw==",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTNfUmlvXzR0bw==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTNfUmlvXzR0bw==",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTNfUmlvXzR0bw==",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTNfUmlvXzR0bw==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTNfUmlvXzR0bw==",
         ]
     }
 );
@@ -1495,9 +1521,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTFfRm9ybW9zYQ==",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTFfRm9ybW9zYQ==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTFfRm9ybW9zYQ==",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfMTFfRm9ybW9zYQ==",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfMTFfRm9ybW9zYQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfMTFfRm9ybW9zYQ==",
             // servidorCanalesOnline + "m3u8html?stream=Lapacho_Canal_11",
         ]
     }
@@ -1511,6 +1537,19 @@ MisCanales.set(
             // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfM19Gb3Jtb3Nh",
             // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfM19Gb3Jtb3Nh",
             // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfM19Gb3Jtb3Nh",
+        ]
+    }
+);
+
+MisCanales.set(
+    "TV Publica Pampeana",
+    {
+        pais: "Argentina",
+        enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWwzX1NhbnRhX1Jvc2E=",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWwzX1NhbnRhX1Jvc2E=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWwzX1NhbnRhX1Jvc2E=",
+            // servidorCanalesOnline + "m3u8.html?stream=Television_Publica_Pampeana",
         ]
     }
 );
@@ -1562,9 +1601,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOV9NZW5kb3ph",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOV9NZW5kb3ph",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOV9NZW5kb3ph",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfOV9NZW5kb3ph",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfOV9NZW5kb3ph",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfOV9NZW5kb3ph",
             // servidorCanalesOnline + "m3u8.html?stream=El_Nueve_Mendoza",
             // servidorCanalesOnline + "extension.html?get=Televidaar",
             // "https://rudo.video/live/televidaar?enablejsapi=1",
@@ -1577,9 +1616,9 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfQw==",
-            // servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfQw==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfQw==",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q2FuYWxfQw==",
+            servidorCanalesOnline + "cvatt.html?get=Q2FuYWxfQw==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q2FuYWxfQw==",
         ]
     }
 );
@@ -1867,9 +1906,9 @@ MisCanales.set(
         pais: "Argentina",
         enlaces: [
             // "m3u8.html?stream=Canal_Luz_Rosario",
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q0FOQUxfTFVa",
-            // servidorCanalesOnline + "cvatt.html?get=Q0FOQUxfTFVa",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q0FOQUxfTFVa",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q0FOQUxfTFVa",
+            servidorCanalesOnline + "cvatt.html?get=Q0FOQUxfTFVa",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q0FOQUxfTFVa",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=Canal_Luz",
             servidorCanalesOnline + "sensa.html?id=CanalLuz",
             "https://vmf.edge-apps.net/embed/live.php?streamname=canal_luz01-100009&autoplay=true",
@@ -3147,9 +3186,9 @@ MisCanales.set(
     {
         pais: "Paraguay",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=TmFuZHV0aV9QeQ==",
-            // servidorCanalesOnline + "cvatt.html?get=TmFuZHV0aV9QeQ==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=TmFuZHV0aV9QeQ==",
+            servidorCanalesOnline + "cvatt_pro.html?get=TmFuZHV0aV9QeQ==",
+            servidorCanalesOnline + "cvatt.html?get=TmFuZHV0aV9QeQ==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=TmFuZHV0aV9QeQ==",
         ]
     }
 );
@@ -3389,10 +3428,15 @@ MisCanales.set(
     {
         pais: "Argentina",
         enlaces: [
-            ///Uruguay
+            ///Argentina
             servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19QbHVzX1VZ",
             servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19QbHVzX1VZ",
             servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19QbHVzX1VZ",
+
+            ///Uruguay
+            servidorCanalesOnline + "cvatt_pro.html?get=RHNwb3J0c19QbHVzX1VydWd1YXk=",
+            servidorCanalesOnline + "cvatt.html?get=RHNwb3J0c19QbHVzX1VydWd1YXk=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RHNwb3J0c19QbHVzX1VydWd1YXk=",
 
             servidorCanalesOnline + "dsports.html?id=DSportsPlus_cbsivideo",
             servidorCanalesOnline + "flypro.html?id=dsportsplus",
@@ -3621,6 +3665,7 @@ MisCanales.set(
             // "https://a3.115tv.site/cvatt2_ext.html?get=VHlDU3BvcnQ",
             servidorCanalesOnline + "ciades.html?id=TYC",
             servidorCanalesOnline + "ciadespro.html?id=TYC",
+            servidorCanalesOnline + "zapsterpro.html?id=TyC_Sports",
             servidorCanalesOnline + "vodgc.html?id=TYC",
             servidorCanalesOnline + "akamaizedpro.html?id=tycsports_arg",
             servidorCanalesOnline + "akamaized.html?id=tycsports_arg",
@@ -3659,6 +3704,19 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canales.php?stream=tycsports",
             servidorCanalesOnline + "jjfutbol2pro.html?name=tycsports",
             // "https://can-teestremaa-sd-depopp.glitch.me/teeyceeargsdd.html",
+        ]
+    }
+);
+
+MisCanales.set(
+    "TyC Sports 2",
+    {
+        pais: "Argentina",
+        // guide: "ESPN EXTRA HD",
+        enlaces: [
+            servidorCanalesOnline + "cvatt_pro.html?get=RXZlbnRvczFIRA",
+            servidorCanalesOnline + "cvatt.html?get=RXZlbnRvczFIRA",
+            servidorCanalesOnline + "cvatt2_ext.html?get=RXZlbnRvczFIRA",
         ]
     }
 );
@@ -4125,35 +4183,6 @@ MisCanales.set(
             // "https://la10hd.com/vivo/canal.php?stream=espn7",
             // "https://la10hd.com/vivo/canales.php?stream=espn7",
             servidorCanalesOnline + "jjfutbol2pro.html?name=espn7",
-        ]
-    }
-);
-
-MisCanales.set(
-    "ESPN Extra",
-    {
-        pais: "Argentina",
-        guide: "ESPN EXTRA HD",
-        enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=RXZlbnRvczFIRA",
-            // servidorCanalesOnline + "cvatt.html?get=RXZlbnRvczFIRA",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=RXZlbnRvczFIRA",
-            // "server/cvatt.html?get=RXZlbnRvczFIRA",
-            // "https://sssshhh.xyz/cvatt.html?get=RXZlbnRvczFIRA",
-            // "https://a3.115tv.site/cvatt.html?get=RXZlbnRvczFIRA",
-            // "https://a3.115tv.site/cvatt2_ext.html?get=RXZlbnRvczFIRA",
-            // "server/cvatt2_ext.html?get=RXZlbnRvczFIRA",
-            // "https://cantodspaexteenop1.github.io/todscansoextensiin-op-1.html?get=RXZlbnRvczFIRA",
-            // "https://flowflowflow1.dombhei.com/cvatt.html?get=RXZlbnRvczFIRA",
-            // "https://cv.photocalltv.me/cv2.php?get=RXZlbnRvczFIRA",
-            // "https://tomyjerry.nebunexa.com/cvatt.php?get=RXZlbnRvczFIRA",
-            // "https://nebunexa.com/cvatt.php?get=RXZlbnRvczFIRA",
-            // "https://www.enlatele.tv/player/cv2.php?get=RXZlbnRvczFIRA",
-            // "https://a3.115tv.site/cvattde.html?get=RXZlbnRvczFIRA",
-            // servidorCanalesOnline + "cvattde.html?get=RXZlbnRvczFIRA",
-            // "server/cvattde.html?get=RXZlbnRvczFIRA",
-            // "https://sssshhh.xyz/cvattde.html?get=RXZlbnRvczFIRA",
-            // servidorCanalesOnline + "jjfutbol2pro.html?name=espnpremium",
         ]
     }
 );
@@ -5541,9 +5570,9 @@ MisCanales.set(
     {
         pais: "Brasil",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=UmVkZV9SZWNvcmQ=",
-            // servidorCanalesOnline + "cvatt.html?get=UmVkZV9SZWNvcmQ=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=UmVkZV9SZWNvcmQ=",
+            servidorCanalesOnline + "cvatt_pro.html?get=UmVkZV9SZWNvcmQ=",
+            servidorCanalesOnline + "cvatt.html?get=UmVkZV9SZWNvcmQ=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=UmVkZV9SZWNvcmQ=",
         ]
     }
 );
@@ -7302,9 +7331,9 @@ MisCanales.set(
     {
         pais: "México",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=Q0JBMjQ=",
-            // servidorCanalesOnline + "cvatt.html?get=Q0JBMjQ=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=Q0JBMjQ=",
+            servidorCanalesOnline + "cvatt_pro.html?get=Q0JBMjQ=",
+            servidorCanalesOnline + "cvatt.html?get=Q0JBMjQ=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=Q0JBMjQ=",
         ]
     }
 );
@@ -7454,9 +7483,9 @@ MisCanales.set(
     {
         pais: "Paraguay",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=VW5pb25UVg==",
-            // servidorCanalesOnline + "cvatt.html?get=VW5pb25UVg==",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=VW5pb25UVg==",
+            servidorCanalesOnline + "cvatt_pro.html?get=VW5pb25UVg==",
+            servidorCanalesOnline + "cvatt.html?get=VW5pb25UVg==",
+            servidorCanalesOnline + "cvatt2_ext.html?get=VW5pb25UVg==",
         ]
     }
 );
@@ -7658,9 +7687,9 @@ MisCanales.set(
         pais: "Italia",
         guide: "Rai HD",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=UkFJ",
-            // servidorCanalesOnline + "cvatt.html?get=UkFJ",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=UkFJ",
+            servidorCanalesOnline + "cvatt_pro.html?get=UkFJ",
+            servidorCanalesOnline + "cvatt.html?get=UkFJ",
+            servidorCanalesOnline + "cvatt2_ext.html?get=UkFJ",
             // "server/cvatt.html?get=UkFJ",
             // "https://sssshhh.xyz/cvatt.html?get=UkFJ",
             // "https://a3.115tv.site/cvatt.html?get=UkFJ",
@@ -8296,9 +8325,9 @@ MisCanales.set(
     {
         pais: "Estados Unidos",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=QWxsZWdyb0hE",
-            // servidorCanalesOnline + "cvatt.html?get=QWxsZWdyb0hE",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=QWxsZWdyb0hE",
+            servidorCanalesOnline + "cvatt_pro.html?get=QWxsZWdyb0hE",
+            servidorCanalesOnline + "cvatt.html?get=QWxsZWdyb0hE",
+            servidorCanalesOnline + "cvatt2_ext.html?get=QWxsZWdyb0hE",
             // "https://auxcanalesonline.netlify.app/?path=/anbalancerpro.html?id=Allegro_HD",
             servidorCanalesOnline + "sensa.html?id=Allegro",
             // servidorCanalesOnline + "sensa_ext.html?id=Allegro",
@@ -8398,9 +8427,9 @@ MisCanales.set(
     {
         pais: "Paraguay",
         enlaces: [
-            // servidorCanalesOnline + "cvatt_pro.html?get=VmVudXNfTWVkaWE=",
-            // servidorCanalesOnline + "cvatt.html?get=VmVudXNfTWVkaWE=",
-            // servidorCanalesOnline + "cvatt2_ext.html?get=VmVudXNfTWVkaWE=",
+            servidorCanalesOnline + "cvatt_pro.html?get=VmVudXNfTWVkaWE=",
+            servidorCanalesOnline + "cvatt.html?get=VmVudXNfTWVkaWE=",
+            servidorCanalesOnline + "cvatt2_ext.html?get=VmVudXNfTWVkaWE=",
         ]
     }
 );
@@ -9576,8 +9605,8 @@ MisCanales.set(
             pais: "Argentina",
             enlaces: [
                 // servidorCanalesOnline + "cvatt_pro.html?get=SHVzdGxlcg==",
-                // servidorCanalesOnline + "cvatt.html?get=SHVzdGxlcg==",
-                // servidorCanalesOnline + "cvatt2_ext.html?get=SHVzdGxlcg==",
+                servidorCanalesOnline + "cvatt.html?get=SHVzdGxlcg==",
+                servidorCanalesOnline + "cvatt2_ext.html?get=SHVzdGxlcg==",
             ]
         }
     );
@@ -9998,6 +10027,10 @@ const enlacesServidor = {
     [servidorCanalesOnline + cvattproserver + "RFNwb3J0c18y"]: "Argentina 1--",
     [servidorCanalesOnline + cvattserver + "RFNwb3J0c18y"]: "Argentina 1",
     [servidorCanalesOnline + cvatt2server + "RFNwb3J0c18y"]: "Argentina 2",
+    //Dsports Plus Argentina
+    [servidorCanalesOnline + cvattproserver + "RHNwb3J0c19QbHVzX1VZ"]: "Argentina 1--",
+    [servidorCanalesOnline + cvattserver + "RHNwb3J0c19QbHVzX1VZ"]: "Argentina 1",
+    [servidorCanalesOnline + cvatt2server + "RHNwb3J0c19QbHVzX1VZ"]: "Argentina 2",
     //Dsports Uruguay
     [servidorCanalesOnline + cvattproserver + "RHNwb3J0c19VWQ=="]: "Uruguay 1--",
     [servidorCanalesOnline + cvattserver + "RHNwb3J0c19VWQ=="]: "Uruguay 1",
@@ -10006,6 +10039,10 @@ const enlacesServidor = {
     [servidorCanalesOnline + cvattproserver + "RHNwb3J0czJfVVk="]: "Uruguay 1--",
     [servidorCanalesOnline + cvattserver + "RHNwb3J0czJfVVk="]: "Uruguay 1",
     [servidorCanalesOnline + cvatt2server + "RHNwb3J0czJfVVk="]: "Uruguay 2",
+    //Dsports Plus Uruguay
+    [servidorCanalesOnline + cvattproserver + "RHNwb3J0c19QbHVzX1VydWd1YXk="]: "Uruguay 1--",
+    [servidorCanalesOnline + cvattserver + "RHNwb3J0c19QbHVzX1VydWd1YXk="]: "Uruguay 1",
+    [servidorCanalesOnline + cvatt2server + "RHNwb3J0c19QbHVzX1VydWd1YXk="]: "Uruguay 2",
 
 
 
