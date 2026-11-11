@@ -3,94 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tribuna - Agenda & Streamer</title>
+  <title>Tribuna - Guía y Streamer</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- JWPlayer Library & Key -->
   <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
-  <script>
-    jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";
-  </script>
-  
+  <script>jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      background-color: #0b0f19;
-      color: #e2e8f0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-    .match-card {
-      background-color: #141c2e;
-      border: 1.5px solid #232f48;
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
-      transition: all 0.2s ease;
-    }
-    .match-card.clickable {
-      cursor: pointer;
-    }
-    .match-card.clickable:hover {
-      border-color: #f59e0b;
-      transform: translateY(-2px);
-    }
-    .crest-box {
-      background-color: #0d1424;
-      border: 1px solid #1e293b;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    .badge-live {
-      background-color: rgba(16, 185, 129, 0.15);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-    }
-    .badge-pending {
-      background-color: rgba(100, 116, 139, 0.15);
-      color: #94a3b8;
-      border: 1px solid rgba(100, 116, 139, 0.2);
-    }
-    #jwplayer-container {
-      width: 100% !important;
-      height: 100% !important;
-    }
-    .jwplayer {
-      width: 100% !important;
-      height: 100% !important;
-    }
+    body { background-color:#0b0f19; color:#e2e8f0; font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; }
+    .match-card { background-color:#141c2e; border:1.5px solid #232f48; box-shadow:0 4px 20px -2px rgba(0,0,0,.4); transition:all .2s ease; }
+    .match-card.clickable { cursor:pointer; }
+    .match-card.clickable:hover { border-color:#f59e0b; transform:translateY(-2px); }
+    .match-card.disabled { opacity:.75; }
+    .crest-box { background-color:#0d1424; border:1px solid #1e293b; box-shadow:inset 0 2px 4px rgba(0,0,0,.5); }
+    .badge-live { background:rgba(16,185,129,.15); color:#34d399; border:1px solid rgba(16,185,129,.3); }
+    .badge-pending { background:rgba(100,116,139,.15); color:#94a3b8; border:1px solid rgba(100,116,139,.2); }
+    .badge-finished { background:rgba(148,163,184,.1); color:#64748b; border:1px solid rgba(148,163,184,.15); }
+    .badge-warn { background:rgba(244,63,94,.12); color:#fb7185; border:1px solid rgba(244,63,94,.3); }
+    .category-header { background:linear-gradient(90deg,#141c2e 0%,#0d1424 100%); border-left:4px solid #f59e0b; }
+    #jwplayer-container, .jwplayer { width:100% !important; height:100% !important; }
   </style>
-  <link rel="stylesheet" href="style-jw.css">
 </head>
-<body class="min-h-screen flex flex-col p-2 sm:p-5">
+<body class="min-h-screen flex flex-col p-3 sm:p-6">
 
-  <!-- Header -->
-  <header class="max-w-7xl mx-auto w-full mb-3 sm:mb-6">
-    <div class="flex flex-row items-center justify-between gap-3 mb-3">
-      <div class="flex items-center gap-2 sm:gap-3">
-        <h1 class="text-lg sm:text-2xl font-black text-white tracking-tight flex items-center gap-1.5">
-          <i class="fa-solid fa-trophy text-amber-500 text-base sm:text-xl"></i> Tribuna
-        </h1>
-        <span id="last-updated" class="text-[10px] sm:text-xs text-slate-400 font-medium">Cargando...</span>
+  <header class="max-w-7xl mx-auto w-full mb-5">
+    <div class="flex flex-row items-center justify-between gap-3 mb-4">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 text-lg font-black">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+        <div>
+          <h1 class="text-xl sm:text-2xl font-black text-white tracking-tight">Tribuna</h1>
+          <span id="last-updated" class="text-[10px] sm:text-xs text-slate-400 font-medium">Actualizando...</span>
+        </div>
       </div>
-
-      <button onclick="fetchProgrammingData()" class="px-2.5 py-1 sm:px-4 sm:py-2 bg-slate-800 border border-slate-700 rounded-xl text-[11px] sm:text-xs font-bold text-slate-200 hover:bg-slate-700 transition flex items-center justify-center gap-1.5">
-        <i class="fa-solid fa-rotate text-xs" id="refresh-icon"></i> <span class="hidden sm:inline">Actualizar</span>
+      <button onclick="fetchProgrammingData()" class="px-3.5 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs font-bold text-slate-200 hover:bg-slate-700 transition flex items-center gap-2 shadow-md">
+        <i class="fa-solid fa-rotate" id="refresh-icon"></i> <span class="hidden sm:inline">Actualizar</span>
       </button>
     </div>
 
-    <!-- Filtros -->
-    <div class="bg-slate-900/90 p-2.5 sm:p-4 rounded-2xl border border-slate-800 shadow-lg space-y-2">
-      <div class="flex flex-col sm:flex-row gap-2">
+    <div class="bg-slate-900/90 p-3 sm:p-4 rounded-2xl border border-slate-800 shadow-xl backdrop-blur-md space-y-3">
+      <div class="flex flex-col sm:flex-row gap-2.5">
         <div class="relative flex-1">
-          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
-          <input type="text" id="search-input" placeholder="Buscar equipo..." 
-            class="w-full pl-8 pr-3 py-1.5 bg-slate-950 border border-slate-800 rounded-xl text-xs font-medium focus:outline-none focus:border-blue-500 text-slate-100 placeholder-slate-500 transition">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs sm:text-sm"></i>
+          <input type="text" id="search-input" placeholder="Buscar por equipo, competición o deporte..."
+            class="w-full pl-9 pr-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-amber-500 text-slate-100 placeholder-slate-500 transition">
         </div>
-
-        <div class="flex items-center gap-1.5">
-          <select id="date-select" class="flex-1 sm:flex-none bg-slate-950 border border-slate-800 rounded-xl px-2.5 py-1.5 text-slate-300 font-bold text-xs focus:outline-none focus:border-blue-500">
+        <div class="flex items-center gap-2">
+          <select id="date-select" class="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-slate-300 font-bold text-xs focus:outline-none focus:border-amber-500">
             <option value="today" selected>Hoy</option>
+            <option value="live">En vivo</option>
+            <option value="signal">Con señal</option>
             <option value="all">Todos</option>
           </select>
-
-          <select id="competition-select" class="flex-1 sm:flex-none bg-slate-950 border border-slate-800 rounded-xl px-2.5 py-1.5 text-slate-300 font-bold text-xs focus:outline-none focus:border-blue-500 max-w-[140px] sm:max-w-none truncate">
+          <select id="competition-select" class="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-slate-300 font-bold text-xs focus:outline-none focus:border-amber-500 max-w-[160px] sm:max-w-none truncate">
             <option value="all">Todas las competiciones</option>
           </select>
         </div>
@@ -98,33 +63,25 @@
     </div>
   </header>
 
-  <!-- Grid de Eventos -->
-  <main class="max-w-7xl mx-auto w-full flex-1">
-    <div id="cards-view" class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-5">
-      <!-- Tarjetas dinámicas -->
-    </div>
-
-    <!-- Estado vacío -->
-    <div id="empty-state" class="hidden bg-slate-900 rounded-3xl p-6 sm:p-12 text-center my-8 border border-slate-800">
-      <i class="fa-solid fa-calendar-xmark text-3xl sm:text-4xl text-slate-600 mb-3"></i>
-      <h3 class="text-xs sm:text-base font-bold text-slate-300">No hay partidos para mostrar</h3>
-      <p class="text-[11px] sm:text-xs text-slate-500 mt-1">Cambiá a "Todos" para ver el resto de la programación.</p>
+  <main class="max-w-7xl mx-auto w-full flex-1 space-y-6">
+    <div id="categories-container" class="space-y-6"></div>
+    <div id="empty-state" class="hidden bg-slate-900/80 rounded-3xl p-10 text-center my-12 border border-slate-800">
+      <i class="fa-solid fa-calendar-xmark text-4xl text-slate-600 mb-3"></i>
+      <h3 class="text-sm sm:text-base font-bold text-slate-300">No hay eventos para mostrar</h3>
+      <p class="text-xs text-slate-500 mt-1">Probá cambiando el filtro a "Todos" o realizá otra búsqueda.</p>
     </div>
   </main>
 
-  <!-- Modal JWPlayer (100vw x 100vh) -->
   <div id="player-modal" class="fixed inset-0 z-50 bg-black hidden flex flex-col">
     <div class="h-12 bg-slate-950 border-b border-slate-800 px-4 flex items-center justify-between flex-shrink-0">
       <div class="flex items-center gap-2 truncate pr-2">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0"></span>
         <h2 id="modal-title" class="text-slate-100 font-bold text-xs sm:text-sm truncate">Transmisión en Vivo</h2>
       </div>
-
       <button onclick="closePlayer()" class="w-8 h-8 bg-slate-800 hover:bg-red-600 text-slate-200 hover:text-white rounded-lg flex items-center justify-center transition flex-shrink-0">
         <i class="fa-solid fa-xmark text-base"></i>
       </button>
     </div>
-
     <div class="flex-1 w-full bg-black relative">
       <div id="jwplayer-container"></div>
     </div>
@@ -132,336 +89,342 @@
 
   <script>
     const PROXY_PREFIX = "https://servidores.exefiguee.workers.dev/";
-    const API_TARGET = "https://files.tribuna.lol/_status/programming-home.json";
-    
-    let rawEvents = [];
+    const API_TARGET   = "https://files.tribuna.lol/_status/programming-home.json";
+    const STREAM_BASE  = "https://files.tribuna.lol/";
+    // Zona horaria en la que vienen "date" y "time" cuando no hay startAt (futbolenlatv.es = hora de España)
+    const SOURCE_TZ = "Europe/Madrid";
+    // Si conocés la URL de las señales (dazn-25, movistar-liga, hypermotion...), completala acá:
+    // const signalUrl = (id) => `${STREAM_BASE}${id}/index.m3u8`;
+    const signalUrl = null;
+    const DEFAULT_DURATION_MIN = 150;
+
     let processedEvents = [];
+    let visibleEvents = [];
     let jwPlayerInstance = null;
 
     document.addEventListener('DOMContentLoaded', () => {
       fetchProgrammingData();
       setInterval(fetchProgrammingData, 60000);
-
       document.getElementById('search-input').addEventListener('input', applyFilters);
-      document.getElementById('date-select').addEventListener('change', applyFilters);
+      document.getElementById('date-select').addEventListener('change', () => { populateCompetitionsDropdown(); applyFilters(); });
       document.getElementById('competition-select').addEventListener('change', applyFilters);
+      document.getElementById('categories-container').addEventListener('click', (ev) => {
+        const card = ev.target.closest('[data-idx]');
+        if (!card) return;
+        const e = visibleEvents[+card.dataset.idx];
+        if (e && e.streamUrl) playStream(e.streamUrl, titleOf(e));
+      });
+      // fallback de escudos (webp -> png -> icono)
+      document.addEventListener('error', (ev) => {
+        const img = ev.target;
+        if (!(img instanceof HTMLImageElement)) return;
+        if (img.dataset.fallback && img.src !== img.dataset.fallback) {
+          img.src = img.dataset.fallback;
+          img.dataset.fallback = '';
+        } else {
+          img.style.display = 'none';
+        }
+      }, true);
     });
 
+    // ---------- Datos ----------
     async function fetchProgrammingData() {
-      const refreshIcon = document.getElementById('refresh-icon');
-      refreshIcon.classList.add('fa-spin');
-
+      const icon = document.getElementById('refresh-icon');
+      icon.classList.add('fa-spin');
+      let data = null;
       try {
-        const response = await fetch(`${PROXY_PREFIX}${API_TARGET}`);
-        if (!response.ok) throw new Error("Fallo Proxy");
-        const data = await response.json();
-
-        rawEvents = data.fixtures || [];
-        document.getElementById('last-updated').textContent = `Actualizado: ${new Date(data.updatedAt || Date.now()).toLocaleTimeString()}`;
-        
-        processEventsData();
+        const r = await fetch(PROXY_PREFIX + API_TARGET);
+        if (!r.ok) throw new Error('Proxy ' + r.status);
+        data = await r.json();
       } catch (err) {
         try {
-          const directRes = await fetch(API_TARGET);
-          const data = await directRes.json();
-          rawEvents = data.fixtures || [];
-          document.getElementById('last-updated').textContent = `Actualizado: ${new Date(data.updatedAt || Date.now()).toLocaleTimeString()}`;
-          processEventsData();
-        } catch (e2) {
-          console.error("Error al cargar agenda:", e2);
-        }
-      } finally {
-        refreshIcon.classList.remove('fa-spin');
+          const r2 = await fetch(API_TARGET);
+          data = await r2.json();
+        } catch (e2) { console.error('Error al cargar agenda:', e2); }
       }
+      if (data) {
+        document.getElementById('last-updated').textContent =
+          'Actualizado: ' + new Date(data.updatedAt || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        processEventsData(data.fixtures || []);
+      }
+      icon.classList.remove('fa-spin');
     }
 
-    function processEventsData() {
-      const eventMap = new Map();
+    // "2026-11-08" + "21:00" en hora de España -> ms UTC
+    function sourceTimeToUtcMs(date, time) {
+      const [y, m, d] = date.split('-').map(Number);
+      const [hh, mm] = (time || '00:00').split(':').map(Number);
+      const guess = Date.UTC(y, m - 1, d, hh, mm);
+      const parts = Object.fromEntries(
+        new Intl.DateTimeFormat('en-US', { timeZone: SOURCE_TZ, hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })
+          .formatToParts(new Date(guess)).map(p => [p.type, p.value])
+      );
+      const asUtc = Date.UTC(+parts.year, +parts.month - 1, +parts.day, (+parts.hour) % 24, +parts.minute);
+      return guess - (asUtc - guess);
+    }
 
-      rawEvents.forEach(item => {
-        let m3u8 = null;
+    function getStart(item) {
+      const iso = item.startAt || item.startsAt;
+      if (iso) { const t = new Date(iso).getTime(); if (!isNaN(t)) return t; }
+      if (item.date) return sourceTimeToUtcMs(item.date, item.time);
+      return 0;
+    }
 
-        if (item.lane) {
-          const cleanLane = item.lane.replace(/\/$/, '');
-          const cleanIndex = (item.index || 'index.m3u8').replace(/^\//, '');
-          m3u8 = `https://files.tribuna.lol/${cleanLane}/${cleanIndex}`;
-        } else if (item.id && item.id.includes('vidio-match')) {
-          m3u8 = `https://files.tribuna.lol/shurstv-cloud-live/${item.id}/index.m3u8`;
-        } else if (item.providerEventId && item.provider === 'vidio') {
-          m3u8 = `https://files.tribuna.lol/shurstv-cloud-live/vidio-match-${item.providerEventId}/index.m3u8`;
+    function norm(s) {
+      return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/atletico/g, 'at')
+        .replace(/\b(fc|cf|cd|ud|club|de|del|la|el)\b/g, '')
+        .replace(/[^a-z0-9]/g, '');
+    }
+
+    function buildStream(item) {
+      if (!item.emissionReady) return null;           // sin señal emitiéndose, no hay link
+      if (item.lane) return `${STREAM_BASE}${item.lane.replace(/\/$/, '')}/${(item.index || 'index.m3u8').replace(/^\//, '')}`;
+      if (item.id && item.id.startsWith('vidio-match')) return `${STREAM_BASE}shurstv-cloud-live/${item.id}/index.m3u8`;
+      return null;
+    }
+
+    function mergeItems(prev, item) {
+      return {
+        ...item, ...prev,
+        competition: prev.competition || item.competition,
+        homeCrest: prev.homeCrest || item.homeCrest,
+        homeCrestFallback: prev.homeCrestFallback || item.homeCrestFallback,
+        awayCrest: prev.awayCrest || item.awayCrest,
+        awayCrestFallback: prev.awayCrestFallback || item.awayCrestFallback,
+        competitionIcon: prev.competitionIcon || item.competitionIcon,
+        channels: [...new Set([...(prev.channels || []), ...(item.channels || [])])],
+        signalIds: [...new Set([...(prev.signalIds || []), ...(item.signalIds || [])])],
+        providerStatus: prev.providerStatus || item.providerStatus,
+        streamUrl: prev.streamUrl || item.streamUrl,
+        available: prev.available || item.available,
+        start: prev.start || item.start,
+        end: prev.end || item.end
+      };
+    }
+
+    function processEventsData(fixtures) {
+      const list = [];
+      const byId = new Map();
+
+      fixtures.forEach(raw => {
+        const start = getStart(raw);
+        const item = {
+          ...raw,
+          start,
+          end: raw.expectedEndAt ? new Date(raw.expectedEndAt).getTime() : start + DEFAULT_DURATION_MIN * 60000,
+          streamUrl: buildStream(raw)
+        };
+        if (!item.streamUrl && signalUrl && item.available && item.signalIds && item.signalIds.length) {
+          item.streamUrl = signalUrl(item.signalIds[0]);
         }
 
-        let key = item.id;
-        if (item.home && item.away) {
-          key = `${item.date || ''}_${(item.home).toLowerCase().trim()}_${(item.away).toLowerCase().trim()}`.replace(/[^a-z0-9]/g, '');
+        // 1) mismo id
+        let target = byId.get(item.id);
+        // 2) mismo horario y mismo local o visitante (nombres normalizados)
+        if (!target && item.home && item.away) {
+          const h = norm(item.home), a = norm(item.away);
+          target = list.find(o => o.away && o.start === item.start && (norm(o.home) === h || norm(o.away) === a));
         }
-
-        if (!eventMap.has(key)) {
-          eventMap.set(key, { ...item, streamUrl: m3u8 });
+        if (target) {
+          const merged = mergeItems(target, item);
+          Object.assign(target, merged);
+          byId.set(item.id, target);
         } else {
-          const prev = eventMap.get(key);
-          eventMap.set(key, {
-            ...prev,
-            home: prev.home || item.home,
-            away: prev.away || item.away,
-            competition: prev.competition || item.competition,
-            channels: [...new Set([...(prev.channels || []), ...(item.channels || [])])],
-            providerStatus: item.providerStatus || prev.providerStatus,
-            streamUrl: m3u8 || prev.streamUrl,
-            startAt: item.startAt || prev.startAt
-          });
+          list.push(item);
+          byId.set(item.id, item);
         }
       });
 
-      rawEvents.forEach(item => {
-        if (item.id && item.id.startsWith('vidio-match') && item.lane) {
-          const cleanLane = item.lane.replace(/\/$/, '');
-          const m3u8 = `https://files.tribuna.lol/${cleanLane}/index.m3u8`;
-          
-          for (let [key, val] of eventMap.entries()) {
-            if (val.home && item.title && item.title.toLowerCase().includes(val.home.toLowerCase().slice(0, 4))) {
-              val.streamUrl = m3u8;
-            }
-          }
-        }
-      });
-
-      processedEvents = Array.from(eventMap.values());
+      processedEvents = list;
       populateCompetitionsDropdown();
       applyFilters();
     }
 
-    function populateCompetitionsDropdown() {
-      const select = document.getElementById('competition-select');
-      const currentVal = select.value;
-      const comps = [...new Set(processedEvents.map(e => e.competition).filter(Boolean))].sort();
-
-      select.innerHTML = `<option value="all">Todas las competiciones</option>`;
-      comps.forEach(c => {
-        const opt = document.createElement('option');
-        opt.value = c;
-        opt.textContent = c;
-        select.appendChild(opt);
-      });
-      select.value = currentVal;
-    }
-
-    function getExactTimestamp(item) {
-      if (item.startAt) {
-        const t = new Date(item.startAt).getTime();
-        if (!isNaN(t)) return t;
-      }
-      
-      const datePart = item.date || new Date().toISOString().split('T')[0];
-      const timePart = item.time || '00:00';
-      const d = new Date(`${datePart}T${timePart}:00`);
-      return isNaN(d.getTime()) ? 0 : d.getTime();
-    }
-
-    function parseToLocalTime(isoString, fallbackTime) {
-      if (isoString) {
-        const d = new Date(isoString);
-        if (!isNaN(d.getTime())) {
-          return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-        }
-      }
-      return fallbackTime || '--:--';
-    }
-
-    function isToday(isoString, itemDate) {
-      const todayStr = new Date().toLocaleDateString('en-CA');
-      
-      if (isoString) {
-        const d = new Date(isoString);
-        if (!isNaN(d.getTime())) {
-          return d.toLocaleDateString('en-CA') === todayStr;
-        }
-      }
-      
-      if (itemDate) {
-        return itemDate === todayStr;
-      }
-      
-      return false;
-    }
-
-    function applyFilters() {
-      const search = document.getElementById('search-input').value.toLowerCase().trim();
-      const dateFilter = document.getElementById('date-select').value;
-      const selectedComp = document.getElementById('competition-select').value;
-
-      const filtered = processedEvents.filter(e => {
-        const matchText = (e.home || '').toLowerCase().includes(search) ||
-                          (e.away || '').toLowerCase().includes(search) ||
-                          (e.competition || '').toLowerCase().includes(search);
-        
-        if (!matchText) return false;
-
-        if (dateFilter === 'today') {
-          if (!isToday(e.startAt, e.date)) return false;
-        }
-
-        if (selectedComp !== 'all' && e.competition !== selectedComp) return false;
-
-        return true;
-      });
-
-      filtered.sort((a, b) => getExactTimestamp(a) - getExactTimestamp(b));
-
-      render(filtered);
-    }
-
-    function translateStatus(item) {
-      const status = (item.providerStatus || '').toUpperCase();
-      
-      if (status === 'LIVE' || status === 'IN_PLAY' || status === 'FIRST_HALF' || status === 'SECOND_HALF') {
-        return { label: 'EN JUEGO', type: 'live' };
-      }
-      if (status === 'HALFTIME') {
-        return { label: 'ENTRETIEMPO', type: 'live' };
-      }
-      if (status === 'FINISHED' || status === 'ENDED') {
-        return { label: 'FINALIZADO', type: 'finished' };
-      }
-
-      // Si ya pasó la hora de inicio y tiene stream disponible, se marca automáticamente como EN JUEGO
-      if (item.startAt) {
-        const startTime = new Date(item.startAt).getTime();
-        if (Date.now() >= startTime && item.streamUrl) {
-          return { label: 'EN JUEGO', type: 'live' };
-        }
-      }
-
+    // ---------- Estado / filtros ----------
+    function getStatus(e) {
+      const s = (e.providerStatus || '').toUpperCase();
+      if (['POSTPONED', 'CANCELED', 'CANCELLED', 'SUSPENDED'].includes(s)) return { label: 'POSTERGADO', type: 'warn' };
+      if (['FINISHED', 'ENDED'].includes(s)) return { label: 'FINALIZADO', type: 'finished' };
+      if (s === 'HALFTIME') return { label: 'ENTRETIEMPO', type: 'live' };
+      if (['LIVE', 'IN_PLAY', 'FIRST_HALF', 'SECOND_HALF'].includes(s)) return { label: 'EN JUEGO', type: 'live' };
+      const now = Date.now();
+      if (e.start && now < e.start) return { label: 'PROGRAMADO', type: 'pending' };
+      if (e.start && now <= e.end) return { label: 'EN JUEGO', type: 'live' };
+      if (e.start) return { label: 'FINALIZADO', type: 'finished' };
       return { label: 'PROGRAMADO', type: 'pending' };
     }
 
-    function render(events) {
-      const cardsView = document.getElementById('cards-view');
-      const emptyState = document.getElementById('empty-state');
+    function localDay(ms) { return new Date(ms).toLocaleDateString('en-CA'); }
 
-      if (events.length === 0) {
-        cardsView.innerHTML = '';
-        emptyState.classList.remove('hidden');
-        return;
-      }
+    function isTodayEvent(e) {
+      if (!e.start) return false;
+      return localDay(e.start) === localDay(Date.now()) || getStatus(e).type === 'live';
+    }
 
-      emptyState.classList.add('hidden');
+    function dateFiltered() {
+      const mode = document.getElementById('date-select').value;
+      return processedEvents.filter(e => {
+        if (mode === 'today') return isTodayEvent(e);
+        if (mode === 'live') return getStatus(e).type === 'live';
+        if (mode === 'signal') return !!e.streamUrl || (e.available && e.signalIds && e.signalIds.length);
+        return true;
+      });
+    }
 
-      cardsView.innerHTML = events.map(e => {
-        const statusInfo = translateStatus(e);
-        let badgeClass = 'badge-pending';
-        let dotColor = 'bg-slate-400';
+    function populateCompetitionsDropdown() {
+      const select = document.getElementById('competition-select');
+      const current = select.value;
+      const comps = [...new Set(dateFiltered().map(e => e.competition).filter(Boolean))].sort();
+      select.innerHTML = '<option value="all">Todas las competiciones</option>';
+      comps.forEach(c => {
+        const o = document.createElement('option');
+        o.value = c; o.textContent = c;
+        select.appendChild(o);
+      });
+      select.value = comps.includes(current) ? current : 'all';
+    }
 
-        if (statusInfo.type === 'live') {
-          badgeClass = 'badge-live';
-          dotColor = 'bg-emerald-400';
-        }
+    function applyFilters() {
+      const q = document.getElementById('search-input').value.toLowerCase().trim();
+      const comp = document.getElementById('competition-select').value;
+      const filtered = dateFiltered().filter(e => {
+        if (comp !== 'all' && e.competition !== comp) return false;
+        if (!q) return true;
+        return [e.home, e.away, e.competition, e.sport].some(v => (v || '').toLowerCase().includes(q));
+      });
+      filtered.sort((a, b) => a.start - b.start);
+      renderGrouped(filtered);
+    }
 
-        const displayTime = parseToLocalTime(e.startAt, e.time);
-        const channelName = (e.channels && e.channels.length) ? e.channels[0].split(' ')[0] : (e.source || 'Deportes');
-        const isClickable = !!e.streamUrl;
-        const cardClass = isClickable ? 'match-card clickable' : 'match-card disabled';
-        const titleText = escapeQuotes(e.home + ' vs ' + e.away);
+    // ---------- Render ----------
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    function titleOf(e) { return (e.home || 'Evento') + (e.away ? ' vs ' + e.away : ''); }
+
+    function iconUrl(p) {
+      if (!p) return null;
+      if (/^https?:\/\//.test(p)) return p;
+      return 'https://tribuna.lol' + (p.startsWith('/') ? '' : '/') + p;
+    }
+
+    function crestHTML(src, fallback) {
+      if (!src) return '<i class="fa-solid fa-shield-halved text-base text-slate-600"></i>';
+      return `<img src="${esc(src)}" ${fallback ? `data-fallback="${esc(fallback)}"` : ''} class="w-full h-full object-contain" loading="lazy">`;
+    }
+
+    function timeLabel(e) {
+      if (!e.start) return e.time || '--:--';
+      const d = new Date(e.start);
+      const t = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+      if (localDay(e.start) === localDay(Date.now())) return t;
+      return d.toLocaleDateString([], { weekday: 'short', day: '2-digit', month: '2-digit' }) + ' ' + t;
+    }
+
+    function channelOf(e) {
+      const c = (e.channels && e.channels[0]) || e.source || 'Deportes';
+      return c.replace(/\s*[(:].*$/, '').trim();
+    }
+
+    function renderGrouped(events) {
+      visibleEvents = events;
+      const container = document.getElementById('categories-container');
+      const empty = document.getElementById('empty-state');
+      if (!events.length) { container.innerHTML = ''; empty.classList.remove('hidden'); return; }
+      empty.classList.add('hidden');
+
+      const groups = new Map();
+      events.forEach((e, idx) => {
+        const comp = e.competition || 'Otros Eventos';
+        if (!groups.has(comp)) groups.set(comp, []);
+        groups.get(comp).push({ e, idx });
+      });
+
+      container.innerHTML = [...groups.entries()].map(([compName, items]) => {
+        const count = `${items.length} ${items.length === 1 ? 'EVENTO' : 'EVENTOS'}`;
+        const cards = items.map(({ e, idx }) => {
+          const st = getStatus(e);
+          const badge = { live: 'badge-live', pending: 'badge-pending', finished: 'badge-finished', warn: 'badge-warn' }[st.type];
+          const dot = st.type === 'live' ? 'bg-emerald-400' : st.type === 'warn' ? 'bg-rose-400' : 'bg-slate-400';
+          const clickable = !!e.streamUrl && st.type !== 'finished' && st.type !== 'warn';
+          if (!clickable) e = Object.assign(e, { streamUrl: clickable ? e.streamUrl : (st.type === 'finished' || st.type === 'warn' ? null : e.streamUrl) });
+          const hasStream = !!e.streamUrl;
+          const ico = iconUrl(e.competitionIcon);
+          const hasAway = !!(e.away && e.away.trim());
+          const single = !hasAway || (!e.homeCrest && !e.awayCrest && !!ico);
+          const hasSignal = !hasStream && e.available && e.signalIds && e.signalIds.length;
+
+          const body = single ? `
+            <div class="flex flex-col items-center justify-center text-center my-2">
+              ${ico ? `<div class="crest-box w-12 h-12 rounded-xl flex items-center justify-center p-2 mb-2"><img src="${esc(ico)}" class="w-full h-full object-contain" loading="lazy"></div>` : ''}
+              <h4 class="font-bold text-slate-100 text-xs sm:text-sm leading-snug line-clamp-3 px-1">${esc(e.home || 'Evento Especial')}</h4>
+              ${hasAway ? `<p class="text-[10px] sm:text-xs text-slate-400 mt-0.5 line-clamp-2 px-1">${esc(e.away)}</p>` : ''}
+            </div>` : `
+            <div class="grid grid-cols-5 items-center gap-1 mb-3">
+              <div class="col-span-2 flex flex-col items-center text-center">
+                <div class="crest-box w-11 h-11 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center p-1.5 mb-1">${crestHTML(e.homeCrestFallback ? e.homeCrest : e.homeCrest, e.homeCrestFallback)}</div>
+                <h4 class="font-bold text-slate-100 text-[11px] sm:text-xs leading-tight line-clamp-2">${esc(e.home)}</h4>
+              </div>
+              <div class="col-span-1 text-center"><span class="text-[9px] font-black text-slate-500 tracking-widest uppercase">VS</span></div>
+              <div class="col-span-2 flex flex-col items-center text-center">
+                <div class="crest-box w-11 h-11 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center p-1.5 mb-1">${crestHTML(e.awayCrest, e.awayCrestFallback)}</div>
+                <h4 class="font-bold text-slate-100 text-[11px] sm:text-xs leading-tight line-clamp-2">${esc(e.away)}</h4>
+              </div>
+            </div>`;
+
+          return `
+            <div class="match-card ${hasStream ? 'clickable' : 'disabled'} rounded-2xl p-3 sm:p-4 flex flex-col justify-between min-h-[140px]" data-idx="${idx}">
+              <div>
+                <div class="flex items-center justify-between mb-3 gap-2">
+                  <span class="px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-black tracking-wider flex items-center gap-1 uppercase ${badge}">
+                    <span class="w-1.5 h-1.5 rounded-full ${dot}"></span>${st.label}
+                  </span>
+                  <span class="text-xs sm:text-base font-extrabold text-amber-400 tracking-tight whitespace-nowrap">${esc(timeLabel(e))}</span>
+                </div>
+                ${body}
+              </div>
+              <div class="pt-2.5 border-t border-slate-800/80 flex items-center justify-between mt-auto">
+                <div class="flex items-center gap-1 text-[10px] font-bold text-slate-400 truncate pr-1">
+                  <span class="w-1.5 h-1.5 rounded-full ${hasStream ? 'bg-emerald-500' : hasSignal ? 'bg-amber-500' : 'bg-rose-500'} flex-shrink-0"></span>
+                  <span class="truncate">${esc(channelOf(e))}</span>
+                </div>
+                ${hasStream
+                  ? '<span class="text-[10px] font-extrabold text-amber-400 flex items-center gap-1 uppercase tracking-wider flex-shrink-0"><i class="fa-solid fa-circle-play text-xs"></i> VER STREAM</span>'
+                  : `<span class="text-[10px] font-bold text-slate-600 uppercase tracking-wider flex-shrink-0">${hasSignal ? 'Señal sin link' : 'Sin señal'}</span>`}
+              </div>
+            </div>`;
+        }).join('');
 
         return `
-          <div class="${cardClass} rounded-2xl sm:rounded-3xl p-3 sm:p-5 flex flex-col justify-between"
-            ${isClickable ? `onclick="playStream('${e.streamUrl}', '${titleText}')"` : ''}>
-            <div>
-              <!-- Header Tarjeta -->
-              <div class="flex items-center justify-between mb-3 sm:mb-5">
-                <span class="px-1.5 py-0.5 sm:px-2.5 rounded-full text-[9px] sm:text-[11px] font-black tracking-wider flex items-center gap-1 uppercase ${badgeClass}">
-                  <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${dotColor}"></span>
-                  ${statusInfo.label}
-                </span>
-                <span class="text-base sm:text-2xl font-extrabold text-amber-400 tracking-tight">
-                  ${displayTime}
-                </span>
-              </div>
-
-              <!-- Equipos -->
-              <div class="grid grid-cols-5 items-center gap-0.5 sm:gap-1 mb-3 sm:mb-5">
-                <!-- Local -->
-                <div class="col-span-2 flex flex-col items-center text-center">
-                  <div class="crest-box w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center p-1.5 mb-1.5">
-                    ${e.homeCrest ? `<img src="${e.homeCrest}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://static.futbolenlatv.com/img/20130727123206-espana.png'">` : `<i class="fa-solid fa-shield-halved text-base sm:text-2xl text-slate-600"></i>`}
-                  </div>
-                  <h4 class="font-bold text-slate-100 text-[11px] sm:text-sm leading-tight line-clamp-2">${e.home || 'Local'}</h4>
-                </div>
-
-                <!-- VS -->
-                <div class="col-span-1 text-center">
-                  <span class="text-[9px] sm:text-xs font-black text-slate-500 tracking-widest uppercase">VS</span>
-                </div>
-
-                <!-- Visitante -->
-                <div class="col-span-2 flex flex-col items-center text-center">
-                  <div class="crest-box w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center p-1.5 mb-1.5">
-                    ${e.awayCrest ? `<img src="${e.awayCrest}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://static.futbolenlatv.com/img/20130727123206-espana.png'">` : `<i class="fa-solid fa-shield-halved text-base sm:text-2xl text-slate-600"></i>`}
-                  </div>
-                  <h4 class="font-bold text-slate-100 text-[11px] sm:text-sm leading-tight line-clamp-2">${e.away || 'Visitante'}</h4>
-                </div>
-              </div>
+          <div class="space-y-3">
+            <div class="category-header px-4 py-2.5 rounded-xl flex items-center justify-between shadow-md">
+              <h3 class="text-xs sm:text-sm font-black text-white uppercase tracking-wider">${esc(compName)}</h3>
+              <span class="text-[10px] font-bold text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/20">${count}</span>
             </div>
-
-            <!-- Footer Tarjeta -->
-            <div class="pt-2 sm:pt-3 border-t border-slate-800/80 flex items-center justify-between">
-              <div class="flex items-center gap-1 text-[10px] sm:text-[11px] font-bold text-slate-400 truncate pr-1">
-                <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${e.streamUrl ? 'bg-emerald-500' : 'bg-rose-500'} flex-shrink-0"></span>
-                <span class="truncate">${channelName}</span>
-              </div>
-
-              ${e.streamUrl ? `
-                <span class="text-[9px] sm:text-[11px] font-extrabold text-amber-400 flex items-center gap-1 uppercase tracking-wider flex-shrink-0">
-                  <i class="fa-solid fa-circle-play text-[10px] sm:text-xs"></i> <span class="hidden sm:inline">VER STREAM</span><span class="sm:hidden">VER</span>
-                </span>
-              ` : `
-                <span class="text-[9px] sm:text-[11px] font-bold text-slate-600 uppercase tracking-wider flex-shrink-0">
-                  Sin señal
-                </span>
-              `}
-            </div>
-          </div>
-        `;
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">${cards}</div>
+          </div>`;
       }).join('');
     }
 
-    function playStream(url, title = "Transmisión en Vivo") {
-      const proxiedUrl = `${PROXY_PREFIX}${url}`;
-      const modal = document.getElementById('player-modal');
+    // ---------- Player ----------
+    function playStream(url, title = 'Transmisión en Vivo') {
       document.getElementById('modal-title').textContent = title;
-
-      modal.classList.remove('hidden');
-
-      if (jwPlayerInstance) {
-        jwPlayerInstance.remove();
-        jwPlayerInstance = null;
-      }
-
-      jwPlayerInstance = jwplayer("jwplayer-container").setup({
-        file: proxiedUrl,
-        type: "hls",
+      document.getElementById('player-modal').classList.remove('hidden');
+      if (jwPlayerInstance) { jwPlayerInstance.remove(); jwPlayerInstance = null; }
+      jwPlayerInstance = jwplayer('jwplayer-container').setup({
+        file: PROXY_PREFIX + url,
+        type: 'hls',
         autostart: true,
-        width: "100%",
-        height: "100%",
-        stretching: "uniform"
+        width: '100%',
+        height: '100%',
+        stretching: 'uniform'
       });
     }
 
     function closePlayer() {
-      const modal = document.getElementById('player-modal');
-      
-      if (jwPlayerInstance) {
-        jwPlayerInstance.stop();
-        jwPlayerInstance.remove();
-        jwPlayerInstance = null;
-      }
-      modal.classList.add('hidden');
-    }
-
-    function escapeQuotes(str) {
-      return (str || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+      if (jwPlayerInstance) { jwPlayerInstance.stop(); jwPlayerInstance.remove(); jwPlayerInstance = null; }
+      document.getElementById('player-modal').classList.add('hidden');
     }
   </script>
-   <script src="../js/script-config.js"></script>
 </body>
 </html>

@@ -9612,6 +9612,36 @@ MisCanales.set(
     );
 
 MisCanales.set(
+        "Brazzers",
+        {
+            pais: "Argentina",
+            enlaces: [
+                servidorCanalesOnline + "prueba9.html?canal=Brazzers",
+            ]
+        }
+    );
+
+MisCanales.set(
+        "Reality Kings",
+        {
+            pais: "Argentina",
+            enlaces: [
+                servidorCanalesOnline + "prueba9.html?canal=Reality Kings",
+            ]
+        }
+    );
+
+MisCanales.set(
+        "Dorcel",
+        {
+            pais: "Argentina",
+            enlaces: [
+                servidorCanalesOnline + "prueba9.html?canal=Dorcel",
+            ]
+        }
+    );
+
+MisCanales.set(
         "CHATURBATE",
         {
             pais: "Argentina",

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>zapster pro - IPTV Bitmovin</title>
+
+    <!-- Bitmovin Player -->
+    <script src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+
+    <style>
+        html,
+        body {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            font-family: Arial, sans-serif;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Mensaje de carga / error en pantalla */
+        #msg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 18px;
+            z-index: 999;
+            text-align: center;
+        }
+
+        /* Color de la barra de progreso de Bitmovin */
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition-marker,
+        .bmpui-ui-volumeslider .bmpui-seekbar-playbackposition {
+            background-color: #51E0C0 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="msg">Cargando lista y buscando canal...</div> -->
+    <div id="msg">Cargando...</div>
+    <div id="player"></div>
+
+    <script>
+        /* ════════════════════════════════════════════════════════
+         * Interceptar licencia Bitmovin (Tu truco original)
+         * ════════════════════════════════════════════════════════ */
+        (function () {
+            var GRANT = 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+            function override(u) {
+                var wm = document.querySelector('button.bmpui-ui-watermark');
+                if (wm) wm.setAttribute('disabled', 'disabled');
+                if (u.indexOf('licensing.bitmovin.com/licensing') > -1) return GRANT;
+                if (u.indexOf('licensing.bitmovin.com/impression') > -1) return GRANT;
+                return u;
+            }
+            var _open = XMLHttpRequest.prototype.open;
+            XMLHttpRequest.prototype.open = function () {
+                arguments[1] = override(arguments[1]);
+                return _open.apply(this, arguments);
+            };
+        })();
+
+        /* ════════════════════════════════════════════════════════
+         * Helpers
+         * ════════════════════════════════════════════════════════ */
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Traductor Base64Url (kid/k) a formato ClearKey Hexadecimal para Bitmovin
+        function parseClearKeyForBitmovin(drmString) {
+            try {
+                const parts = drmString.split(',');
+                let kidB64 = '', keyB64 = '';
+                parts.forEach(p => {
+                    if (p.startsWith('kid:')) kidB64 = p.replace('kid:', '').trim();
+                    if (p.startsWith('k:')) keyB64 = p.replace('k:', '').trim();
+                });
+                if (!kidB64 || !keyB64) return null;
+
+                const b64ToHex = (b64) => {
+                    let base64 = b64.replace(/-/g, '+').replace(/_/g, '/');
+                    while (base64.length % 4) base64 += '=';
+                    const bin = atob(base64);
+                    let hex = '';
+                    for (let i = 0; i < bin.length; i++) {
+                        hex += ('0' + bin.charCodeAt(i).toString(16)).slice(-2);
+                    }
+                    return hex;
+                };
+
+                return {
+                    keyId: b64ToHex(kidB64),
+                    key: b64ToHex(keyB64)
+                };
+            } catch (e) {
+                console.error("Error parseando ClearKey:", e);
+                return null;
+            }
+        }
+
+        /* ════════════════════════════════════════════════════════
+         * Lógica principal de carga dinámica IPTV
+         * ════════════════════════════════════════════════════════ */
+        async function iniciarReproductorIPTV() {
+            const msg = document.getElementById('msg');
+            const canalBuscado = getParameterByName('canal') ? getParameterByName('canal').trim().toLowerCase() : '';
+
+            if (!canalBuscado) {
+                msg.innerHTML = "⚠️ Falta el parámetro del canal.<br><small>Usa: <code>?canal=NombreDelCanal</code></small>";
+                msg.style.color = "#ff5555";
+                return;
+            }
+
+            try {
+                // Tu Worker y la URL de la lista IPTV
+                const workerBase = "https://servidores.exefiguee.workers.dev/";
+                const listaUrl = "https://ia800901.us.archive.org/7/items/prueba9_202607/prueba.9/prueba9.json";
+                const endpoint = workerBase + encodeURIComponent(listaUrl);
+
+                // msg.innerHTML = `Buscando <strong>"${canalBuscado}"</strong> en la lista...`;
+
+                const response = await fetch(endpoint);
+                if (!response.ok) throw new Error(`Error HTTP del Worker: ${response.status}`);
+
+                let rawText = await response.text();
+
+                // --- Saneamiento del JSON que hicimos a prueba de balas ---
+                rawText = rawText.replace(/^\uFEFF/, '').trim();
+                if (rawText.startsWith('"') && rawText.endsWith('"')) {
+                    try { rawText = JSON.parse(rawText); } catch (e) { }
+                }
+                rawText = rawText.replace(/\{\s*["']?summary["']?\s*:\s*\{[^}]*\}\s*,\s*/g, '{');
+                rawText = rawText.replace(/"([^"]+?)"\s*["']{2,}\s*:/g, '"$1":');
+                rawText = rawText.replaceAll('"":', '":');
+                rawText = rawText.replace(/[\u0000-\u001F\u007F-\u009F]/g, ch => (ch === '\n' || ch === '\r' || ch === '\t' ? " " : ""));
+
+                const data = JSON.parse(rawText);
+                const groupsList = Array.isArray(data) ? data : (data?.categories || data?.groups || []);
+
+                let encontrado = null;
+
+                // Buscar el canal de forma flexible
+                for (const group of groupsList) {
+                    const stations = group.channels || group.stations || group.samples || [];
+                    for (const st of stations) {
+                        const name = (st.title || st.name || "").trim().toLowerCase();
+                        if (name.includes(canalBuscado)) {
+                            encontrado = st;
+                            break;
+                        }
+                    }
+                    if (encontrado) break;
+                }
+
+                if (!encontrado) {
+                    msg.innerHTML = `❌ No se encontró ningún canal con el nombre: <strong>"${canalBuscado}"</strong>`;
+                    msg.style.color = "#ff5555";
+                    return;
+                }
+
+                // Ocultar mensaje de carga
+                msg.style.display = "none";
+
+                // Armar la configuración del reproductor Bitmovin
+                var player = new bitmovin.player.Player(document.getElementById('player'), {
+                    key: '11d3698c-efdf-42f1-8769-54663995de2b',
+                    analytics: false,
+                    cast: { enable: true },
+                    playback: { autoplay: true, muted: false },
+                    style: { width: '100%', height: '100%' }
+                });
+
+                var source = {};
+                let streamUrl = encontrado.url;
+
+                // --- 🛡️ ASEGURAR QUE PASE POR EL WORKER SI ES DE ARCHIVE O EXTERNO ---
+                if (streamUrl.includes('archive.org') || streamUrl.includes('lanza-')) {
+                    // if (streamUrl.includes('.m3u8')) {
+                    const workerBase = "https://servidores.exefiguee.workers.dev/";
+                    streamUrl = workerBase + encodeURIComponent(streamUrl);
+                    console.log("🔄 Stream enrutado por Worker:", streamUrl);
+                }
+                if (streamUrl.includes('http://88.212.7.11/live/')) {
+                    const workerBase = "https://proxy-ott.gaticaelchini.workers.dev/?url=";
+                    streamUrl = workerBase + encodeURIComponent(streamUrl);
+                    console.log("🔄 Stream enrutado por Worker:", streamUrl);
+                }
+
+                // if (streamUrl.includes('/SA_Live_dash_enc/')) {
+                //     const token = "https://edge-live34-hr.cvattv.com.ar/tok_eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOiIxNzk0Mjc0ODY5Iiwic2lwIjoiMTg2LjEyLjE5MC41MyIsInBhdGgiOiIvbGl2ZS9jNmVkcy9UZWxlZmVIRC9TQV9MaXZlX2Rhc2hfY2VuYy8iLCJzZXNzaW9uX2Nkbl9pZCI6ImRlMjZkNWUwMjI4NjVjZWYiLCJzZXNzaW9uX2lkIjoiIiwiY2xpZW50X2lkIjoiIiwiZGV2aWNlX2lkIjoiIiwibWF4X3Nlc3Npb25zIjowLCJzZXNzaW9uX2R1cmF0aW9uIjowLCJ1cmwiOiJodHRwczovLzIwMS4yMzUuNjYuMTIyIiwiYXVkIjoiNzkiLCJzb3VyY2VzIjpbODUsMTQ0LDIxMCw4Niw4OF19.QXVYPTtdf5KRiQpLc6BxmpnGxqD83gYmlC1ki2LoHE_638D8J4YwGoHgln9PEDVgEVIzJ1ExpQG8VUBNHkoRVQ==";
+                //     streamUrl = token + encodeURIComponent(streamUrl);
+                //     console.log("🔄 Stream enrutado por Worker:", streamUrl);
+                // }
+
+                if (streamUrl.includes('.m3u8')) {
+                    source.hls = streamUrl;
+                } else {
+                    source.dash = streamUrl;
+                }
+
+                // Inyectar ClearKey DRM si el canal lo tiene
+                const drmUri = encontrado.drm_license_uri;
+                if (drmUri && drmUri.startsWith('kid:')) {
+                    const clearkeyData = parseClearKeyForBitmovin(drmUri);
+                    if (clearkeyData) {
+                        source.drm = {
+                            clearkey: [clearkeyData]
+                        };
+                        console.log("🔐 DRM ClearKey aplicado en Bitmovin:", source.drm);
+                    }
+                }
+
+                // Seleccionar pista de audio en español automáticamente
+                player.on(bitmovin.player.PlayerEvent.Play, function () {
+                    var tracks = player.getAvailableAudio();
+                    if (!tracks || tracks.length === 0) return;
+
+                    var spanishTrack = tracks.find(function (t) {
+                        var name = (t.label || t.lang || '').toLowerCase();
+                        return name.includes('spanish') || name.includes('spa') || name.includes('es');
+                    });
+
+                    if (spanishTrack) {
+                        player.setAudio(spanishTrack.id);
+                    } else {
+                        player.setAudio(tracks[0].id);
+                    }
+                });
+
+                player.load(source).catch(function (err) {
+                    console.error('Bitmovin load error:', err);
+                    msg.style.display = "block";
+                    msg.innerHTML = `❌ Error de reproducción en Bitmovin: ${err.message}`;
+                    msg.style.color = "#ff5555";
+                });
+
+            } catch (err) {
+                msg.style.display = "block";
+                msg.innerHTML = `❌ Error procesando lista: ${err.message}`;
+                msg.style.color = "#ff5555";
+                console.error(err);
+            }
+        }
+
+        // Ejecutar al cargar la página
+        window.onload = iniciarReproductorIPTV;
+    </script>
+</body>
+
+</html>
