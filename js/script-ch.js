@@ -9616,6 +9616,7 @@ MisCanales.set(
         {
             pais: "Argentina",
             enlaces: [
+                servidorCanalesOnline + "88212.html?id=brazzers",
                 servidorCanalesOnline + "prueba9.html?canal=Brazzers",
             ]
         }
@@ -9626,6 +9627,7 @@ MisCanales.set(
         {
             pais: "Argentina",
             enlaces: [
+                servidorCanalesOnline + "88212.html?id=realitykings",
                 servidorCanalesOnline + "prueba9.html?canal=Reality Kings",
             ]
         }
@@ -9636,6 +9638,7 @@ MisCanales.set(
         {
             pais: "Argentina",
             enlaces: [
+                servidorCanalesOnline + "88212.html?id=dorcel",
                 servidorCanalesOnline + "prueba9.html?canal=Dorcel",
             ]
         }

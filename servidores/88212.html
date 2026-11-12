@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>88212</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        #player {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #status {
+            color: white;
+            text-align: center;
+            margin-top: 20%;
+            font-size: 1.2em;
+        }
+
+        /* Color de la barra de progreso de Bitmovin */
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition,
+        .bmpui-ui-seekbar .bmpui-seekbar-playbackposition-marker,
+        .bmpui-ui-volumeslider .bmpui-seekbar-playbackposition {
+            background-color: #51E0C0 !important;
+        }
+    </style>
+
+    <!-- Bitmovin Player -->
+    <script src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+</head>
+
+<body>
+    <div id="player">
+        <div id="status">Cargando...</div>
+    </div>
+
+    <script>
+        // ── Lista de canales ───────────────────────────────────────────
+        const canais = {
+            brazzers: {
+                url: "http://88.212.7.11/live/test_brazzers_hd_hevc/playlist.m3u8",
+                ck_keyid: "",
+                ck_key: ""
+            },
+            realitykings: {
+                url: "http://88.212.7.11/live/test_realitykings_sd_hevc/playlist.m3u8",
+                ck_keyid: "",
+                ck_key: ""
+            },
+            dorcel: {
+                url: "http://88.212.7.11/live/test_dorcel_hd_hevc/playlist.m3u8",
+                ck_keyid: "",
+                ck_key: ""
+            },
+        };
+
+        // ── Leer parámetro de la URL ───────────────────────────────────
+        function getParam(name) {
+            return new URL(window.location.href).searchParams.get(name);
+        }
+
+        const id = getParam('id');
+        const config = canais[id];
+
+        if (!config) {
+            document.getElementById('status').innerHTML =
+                '<h2>Canal inválido o no encontrado.</h2>';
+        } else {
+            // Exponer variables como las espera el bloque de inicialización
+            var url = "https://proxy-ott.gaticaelchini.workers.dev/?url=" + config.url;
+            var ck_keyid = config.ck_keyid;
+            var ck_key = config.ck_key;
+
+            // ── Protección básica ──────────────────────────────────────
+            (function () {
+                document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'F12' ||
+                        (e.ctrlKey && e.shiftKey && ['I', 'C', 'J'].indexOf(e.key) > -1)) {
+                        e.preventDefault();
+                    }
+                });
+            })();
+
+            var statusEl = document.getElementById('status');
+            function showPlayer() { statusEl.style.display = 'none'; }
+
+            // ── Interceptar licencia Bitmovin ──────────────────────────
+            (function () {
+                var GRANT = 'data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ==';
+                function override(u) {
+                    var wm = document.querySelector('button.bmpui-ui-watermark');
+                    if (wm) wm.setAttribute('disabled', 'disabled');
+                    if (u.indexOf('licensing.bitmovin.com/licensing') > -1) return GRANT;
+                    if (u.indexOf('licensing.bitmovin.com/impression') > -1) return GRANT;
+                    return u;
+                }
+                var _open = XMLHttpRequest.prototype.open;
+                XMLHttpRequest.prototype.open = function () {
+                    arguments[1] = override(arguments[1]);
+                    return _open.apply(this, arguments);
+                };
+            })();
+
+            // ── Inicializar Bitmovin ───────────────────────────────────
+            // ── Inicializar Bitmovin directamente ─────────────────────
+            var player = new bitmovin.player.Player(document.getElementById('player'), {
+                key: '11d3698c-efdf-42f1-8769-54663995de2b',
+                analytics: false,
+                cast: { enable: true },
+                playback: { autoplay: true, muted: false }
+            });
+
+            // Cambiar 'dash' por 'hls' ya que el enlace es un archivo .m3u8
+            var source = { hls: url };
+            if (ck_keyid && ck_key) {
+                source.drm = { clearkey: [{ keyId: ck_keyid, key: ck_key }] };
+            }
+
+            player.load(source).then(showPlayer).catch(function (err) {
+                console.error('Bitmovin error:', err);
+                document.getElementById('status').innerHTML = '<h2>Error al cargar el stream.</h2>';
+            });
+        }
+    </script>
+    <script src="../js/script-config.js"></script>
+</body>
+
+</html>

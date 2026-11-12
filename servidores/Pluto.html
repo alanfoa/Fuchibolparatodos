@@ -570,7 +570,7 @@ https://jmp2.uk/plu-67d9b0ebc290c9499046e88f.m3u8`;
             // Pedirle al worker que resuelva la redirección de jmp2.uk a stitcher.pluto.tv
             let realStreamUrl = streamUrl;
             try {
-                const res = await fetch("https://proxy-plutotv.canalesonline24.workers.dev/?mode=redirect&url=" + encodeURIComponent(streamUrl));
+                const res = await fetch("https://proxyplutotv.canalesonline24.workers.dev/?mode=redirect&url=" + encodeURIComponent(streamUrl));
                 if (res.ok) {
                     realStreamUrl = await res.text(); // Devuelve https://stitcher-ipv4.pluto.tv/...
                 }
@@ -579,7 +579,7 @@ https://jmp2.uk/plu-67d9b0ebc290c9499046e88f.m3u8`;
             }
 
             // Le pasamos la URL de Pluto TV envuelta en el proxy a JW Player
-            const finalProxyUrl = "https://proxy-plutotv.canalesonline24.workers.dev/?url=" + encodeURIComponent(realStreamUrl);
+            const finalProxyUrl = "https://proxyplutotv.canalesonline24.workers.dev/?url=" + encodeURIComponent(realStreamUrl);
 
             if (!playerInstance) {
                 playerInstance = jwplayer("jwplayer-container").setup({
