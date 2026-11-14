@@ -1,625 +1,842 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pluto TV - JWPlayer IPTV</title>
-    <meta content="noindex, nofollow, noarchive" name="robots" />
-    <meta name="referrer" content="no-referrer" />
-    <!-- Script JWPlayer solicitado -->
-    <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
-    <script>
-        jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Plataforma IPTV - Canales</title>
 
-    <link rel="stylesheet" href="style-jw.css">
+<!-- hls.js: reproductor HLS gratuito, sin licencia -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js"></script>
 
-    <style>
-        :root {
-            --bg-color: #121214;
-            --card-bg: #1e1e24;
-            --accent-color: #e50914;
-            --text-color: #ffffff;
-            --text-secondary: #a0a0a0;
-        }
+<style>
+  :root {
+    --bg: #0e0e11;
+    --panel: #141418;
+    --card: #1d1d21;
+    --line: #282832;
+    --input: #25252b;
+    --text: #ffffff;
+    --muted: #888;
+    --accent: #e50914;
+    --star: #f5c518;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh; display: flex; flex-direction: column;
+  }
+  header {
+    background: var(--panel); padding: 16px 24px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px;
+    border-bottom: 1px solid #22222a; position: sticky; top: 0; z-index: 10;
+  }
+  .search-input {
+    background: var(--input); border: 1px solid #3a3a45; padding: 10px 18px;
+    border-radius: 20px; color: #fff; outline: none; width: 320px; max-width: 100%;
+    font-size: .95rem; transition: border-color .3s;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .btn {
+    border: 1px solid #3a3a45; background: var(--input); color: #fff;
+    padding: 10px 18px; border-radius: 20px; font-weight: bold; cursor: pointer;
+    font-size: .9rem; transition: background .2s;
+  }
+  .btn:hover { background: #33333d; }
+  .btn.active { background: var(--accent); border-color: var(--accent); }
+  .btn.active:hover { background: #f40612; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-        }
+  .catalog-container { max-width: 1500px; margin: 0 auto; padding: 32px 20px; flex: 1; width: 100%; }
+  .status-msg { text-align: center; color: var(--muted); font-size: 1.05rem; margin-top: 40px; line-height: 1.6; }
+  .status-msg button { margin-top: 14px; }
 
-        header {
-            max-width: 1200px;
-            margin: 0 auto 30px auto;
-            text-align: center;
-        }
+  .guide { display: flex; flex-direction: column; gap: 10px; }
+  .row { display: flex; gap: 10px; align-items: stretch; }
+  .logo-cell {
+    flex: 0 0 140px; height: 140px; background: var(--card); border-radius: 8px; position: relative;
+    display: flex; align-items: center; justify-content: center; padding: 18px; cursor: pointer;
+    font-size: .8rem; text-align: center; border: 2px solid transparent;
+  }
+  .logo-cell img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .fav-star {
+    position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,.55); border: none; color: var(--muted);
+    border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: .85rem; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .fav-star.active, .fav-star:hover { color: var(--star); }
+  .track-wrap { flex: 1; min-width: 0; position: relative; }
+  .track-wrap .track { width: 100%; cursor: grab; }
+  .track-wrap .track.dragging { cursor: grabbing; user-select: none; }
+  .arrow {
+    position: absolute; top: 0; bottom: 0; width: 64px; border: none; color: #fff; font-size: 2rem;
+    cursor: pointer; z-index: 3; opacity: 0; transition: opacity .2s; display: flex; align-items: center;
+  }
+  .arrow[hidden] { display: none; }
+  .arrow.left  { left: 0;  justify-content: flex-start; padding-left: 12px;  background: linear-gradient(90deg, rgba(14,14,17,.95), rgba(14,14,17,0)); }
+  .arrow.right { right: 0; justify-content: flex-end;   padding-right: 12px; background: linear-gradient(270deg, rgba(14,14,17,.95), rgba(14,14,17,0)); }
+  .track-wrap:hover .arrow, .arrow:focus-visible { opacity: 1; }
+  @media (hover: none) { .arrow { display: none; } }
+  .track { flex: 1; display: flex; gap: 10px; overflow-x: auto; min-width: 0; scrollbar-width: none; }
+  .track::-webkit-scrollbar { display: none; }
+  .prog {
+    flex: 0 0 420px; height: 140px; background: var(--card); border-radius: 8px; overflow: hidden;
+    display: flex; align-items: center; padding: 0 28px; cursor: pointer; border: 2px solid transparent;
+  }
+  .prog.live { flex: 0 0 660px; padding: 0; }
+  .prog { position: relative; }
+  .prog .thumb { flex: 0 0 245px; width: 245px; height: 100%; background: #000; position: relative; overflow: hidden; }
+  .prog .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .prog .desc { color: #bbb; font-size: .9rem; margin-top: 6px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .prog .name { padding-right: 34px; }
+  .info-btn {
+    position: absolute; top: 14px; right: 16px; width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid #ddd; background: transparent; color: #ddd; font: italic 700 .85rem Georgia, serif;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2;
+  }
+  .info-btn:hover { background: #fff; color: #000; }
+  .prog.live .txt { padding: 0 28px; flex: 1; min-width: 0; }
+  .prog .name { font-size: 1.15rem; font-weight: 700; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .prog .sub { color: #bbb; font-size: .95rem; margin-top: 8px; font-weight: 600; display: flex; align-items: center; gap: 14px; }
+  .prog .bar { flex: 1; height: 3px; background: #4a4a52; border-radius: 2px; overflow: hidden; }
+  .prog .bar > i { display: block; height: 100%; background: #fff; }
+  .prog:hover, .prog:focus-visible, .logo-cell:hover, .logo-cell:focus-visible { border-color: var(--star); outline: none; }
+  .empty-row { color: var(--muted); display: flex; align-items: center; padding: 0 20px; }
+  @media (max-width: 700px) {
+    .logo-cell { flex-basis: 84px; height: 110px; padding: 10px; }
+    .prog { flex-basis: 70vw; height: 110px; padding: 0 16px; }
+    .prog.live { flex-basis: 88vw; }
+    .prog .thumb { flex-basis: 34%; }
+    .prog .name { font-size: 1rem; }
+  }
+  .more-wrap { text-align: center; margin-top: 28px; }
 
-        h1 {
-            margin-bottom: 20px;
-            font-size: 2.2rem;
-        }
-
-        .controls {
-            display: flex;
-            /* flex-wrap: wrap; */
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-
-        #search-bar {
-            width: 100%;
-            max-width: 400px;
-            padding: 12px 20px;
-            border-radius: 25px;
-            border: 1px solid #333;
-            background-color: #2a2a32;
-            color: var(--text-color);
-            font-size: 1rem;
-            outline: none;
-        }
-
-        #search-bar:focus {
-            border-color: var(--accent-color);
-        }
-
-        .filter-btn {
-            background-color: #2a2a32;
-            color: var(--text-color);
-            border: none;
-            padding: 10px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background-color: var(--accent-color);
-        }
-
-        /* Grid de Canales */
-        .channels-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .channel-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .channel-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .channel-logo {
-            width: 100%;
-            height: 100px;
-            object-fit: contain;
-            margin-bottom: 12px;
-        }
-
-        .channel-name {
-            font-size: 0.95rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 5px;
-            line-height: 1.2;
-        }
-
-        .channel-group {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-        }
-
-        .fav-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.6);
-            border: none;
-            color: #fff;
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.2s;
-        }
-
-        .fav-btn.active {
-            color: #ffca28;
-        }
-
-        /* Modal JWPlayer 100% Pantalla */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000;
-            z-index: 9999;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            color: #fff;
-            font-size: 32px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 10000;
-            background: rgba(0, 0, 0, 0.6);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            user-select: none;
-            transition: 0.2s;
-        }
-
-        .close-btn:hover {
-            background: rgba(229, 9, 20, 0.8);
-        }
-
-        #jwplayer-container {
-            width: 100% !important;
-            height: 100% !important;
-        }
-    </style>
+  /* Reproductor */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 100;
+    display: flex; opacity: 0; pointer-events: none; transition: opacity .3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  .modal-content { width: 100%; height: 100%; background: #18181c; display: flex; flex-direction: column; }
+  .modal-header {
+    padding: 0px 20px; background: #1f1f26; border-bottom: 1px solid #2a2a32;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  }
+  .modal-title { font-size: 1rem; font-weight: bold; }
+  .close-modal { background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+  .modal-body { position: relative; flex: 1; background: #000; min-height: 0; }
+  #playerHost { position: absolute; inset: 0; background: #000; }
+  #playerHost video { width: 100%; height: 100%; background: #000; }
+  #playerMsg {
+    position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+    text-align: center; padding: 24px; color: #ccc; line-height: 1.6; pointer-events: none;
+  }
+  /* Panel de programación */
+  .sched-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 110; display: none;
+    align-items: center; justify-content: center; padding: 16px;
+  }
+  .sched-overlay.open { display: flex; }
+  .sched-box { background: #1b1b22; border: 1px solid var(--line); border-radius: 12px; width: 100%; max-width: 560px; max-height: 85vh; display: flex; flex-direction: column; }
+  .sched-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--line); font-weight: bold; }
+  .sched-list { overflow-y: auto; padding: 6px 0; }
+  .sched-item { display: flex; gap: 14px; padding: 10px 18px; border-bottom: 1px solid #22222a; }
+  .sched-list.no-scroll { scrollbar-width: none; }
+  .sched-list.no-scroll::-webkit-scrollbar { display: none; }
+  .sched-item.live { background: rgba(229,9,20,.12); border-left: 3px solid var(--accent); }
+  .sched-item .t { color: var(--muted); font-size: .8rem; white-space: nowrap; min-width: 92px; }
+  .sched-item .n { font-weight: 600; font-size: .92rem; }
+  .sched-item .e { color: #aaa; font-size: .8rem; margin-top: 2px; }
+  .sched-note { padding: 10px 18px; color: var(--muted); font-size: .78rem; border-top: 1px solid var(--line); }
+  
+  /* ===== Móvil ===== */
+  .close-modal { padding: 0px 10px; }
+  @media (max-width: 700px) {
+    header { padding: 10px 12px; padding-top: calc(10px + env(safe-area-inset-top)); gap: 8px; }
+    .search-input { flex: 1 1 100%; width: 100%; font-size: 16px; }
+    header .btn { flex: 1; padding: 10px 12px; }
+    .catalog-container { padding: 12px 10px calc(16px + env(safe-area-inset-bottom)); }
+    .guide, .row, .track { gap: 8px; }
+    .logo-cell { flex-basis: 76px; height: 96px; padding: 8px; font-size: .7rem; }
+    .fav-star { width: 26px; height: 26px; top: 4px; right: 4px; }
+    .track { scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+    .prog { flex-basis: 64vw; height: 96px; padding: 0 14px; scroll-snap-align: start; }
+    .prog.live { flex-basis: 84vw; padding: 0; }
+    .prog .thumb { flex-basis: 36%; width: 36%; }
+    .prog .desc { display: none; }
+    .info-btn { top: 8px; right: 8px; width: 22px; height: 22px; font-size: .75rem; }
+    .prog .name { padding-right: 26px; }
+    .prog.live .txt { padding: 0 12px; }
+    .prog .name { font-size: .95rem; }
+    .prog .sub { font-size: .8rem; gap: 8px; margin-top: 6px; }
+    .modal-content { height: 100dvh; }
+    .modal-header { padding: 0px 14px; padding-top: calc(10px + env(safe-area-inset-top)); }
+    .modal-title { font-size: .9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .sched-overlay { align-items: flex-end; padding: 0; }
+    .sched-box { max-width: none; border-radius: 16px 16px 0 0; max-height: 80dvh; padding-bottom: env(safe-area-inset-bottom); }
+    .sched-item { padding: 12px 14px; }
+    .sched-item .t { min-width: 78px; }
+  }
+</style>
+<link rel="stylesheet" href="style-jw.css">
 </head>
-
 <body>
 
-    <header>
-        <!-- <h1>Pluto TV IPTV</h1> -->
-        <div class="controls">
-            <input type="text" id="search-bar" placeholder="Buscar canal...">
-            <button class="filter-btn active" onclick="filterGroup('ALL', event)">Todos</button>
-            <button class="filter-btn" onclick="filterGroup('FAV', event)">⭐ Favoritos</button>
-        </div>
-    </header>
+<header>
+  <input type="text" class="search-input" id="searchInput" placeholder="Buscar canal o programa...">
+  <button class="btn active" id="tabAll">Todos</button>
+  <button class="btn" id="tabFavs">⭐ Favoritos</button>
+</header>
 
-    <div class="channels-grid" id="channels-container"></div>
+<main class="catalog-container">
+  <div id="statusMsg" class="status-msg">Cargando canales...</div>
+  <div class="guide" id="gridChannels"></div>
+  <div class="more-wrap"><button class="btn" id="moreBtn" style="display:none">Cargar más</button></div>
+</main>
 
-    <!-- Modal Fullscreen para JWPlayer -->
-    <div id="videoModal" class="modal">
-        <span class="close-btn" onclick="closePlayer()">&times;</span>
-        <div id="jwplayer-container"></div>
+<div class="sched-overlay" id="schedModal">
+  <div class="sched-box">
+    <div class="sched-head"><span id="schedTitle">Programación</span><button class="close-modal" id="schedClose" aria-label="Cerrar">✕</button></div>
+    <div class="sched-list" id="schedList"></div>
+    <div class="sched-note" id="schedNote"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="playerModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="modal-title" id="modalChannelTitle">Reproduciendo</span>
+      <button class="close-modal" id="closeBtn" aria-label="Cerrar">✕</button>
     </div>
+    <div class="modal-body">
+      <div id="playerHost"></div>
+      <div id="playerMsg"></div>
+    </div>
+  </div>
+</div>
 
-    <script src="../js/script-config.js"></script>
+<script>
+/* ================= CONFIGURACIÓN ================= */
+const WORKER_PROXY   = "https://pluto.lalore2925.workers.dev/?url=";           // proxy CORS para la API
+const STREAM_PROXY   = "https://proxyplutotv.canalesonline24.workers.dev/";   // proxy para los .m3u8
+const PAGE_URL       = "https://pluto.tv/latam/watch/live-tv/";                // página HTML (no depende del buildId)
+const STREAM_BASE    = "https://jmp2.uk/plu-";                                 // + id + ".m3u8"
+const GUIDE_API      = "https://service-channels.clusters.pluto.tv/v2/guide/timelines"; // guía completa por canal
+const GUIDE_WORKER   = "https://proxyplutoguia.canalesonline24.workers.dev/";   // Worker de guía completa (worker-guia.js)
+const JW_LIBRARY     = "https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js";   // librería de JW Player 8.26.0
+const JW_KEY         = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";   // tu licencia de JW Player
+const PAGE_SIZE      = Infinity;   // carga todos los canales de una vez                                                     // canales visibles por tanda
+const FAV_KEY        = "iptv_favs";
 
-    <script>
-        // Data del archivo M3U provisto
-        const m3uRawData = `#EXTM3U 
-#EXTINF:-1 tvg-id="5dcde437229eff00091b6c30" tvg-name="5dcde437229eff00091b6c30" tvg-logo="https://images.pluto.tv/channels/5dcde437229eff00091b6c30/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CINE ESTELAR
-https://jmp2.uk/plu-5dcde437229eff00091b6c30.m3u8
-#EXTINF:-1 tvg-id="5dcb62e63d4d8f0009f36881" tvg-name="5dcb62e63d4d8f0009f36881" tvg-logo="https://images.pluto.tv/channels/5dcb62e63d4d8f0009f36881/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CINE ACCIÓN
-https://jmp2.uk/plu-5dcb62e63d4d8f0009f36881.m3u8
-#EXTINF:-1 tvg-id="5e972a21ad709d00074195ba" tvg-name="5e972a21ad709d00074195ba" tvg-logo="https://images.pluto.tv/channels/5e972a21ad709d00074195ba/colorLogoPNG.png" group-title="PELICULAS",ESTRELLAS DE ACCIÓN
-https://jmp2.uk/plu-5e972a21ad709d00074195ba.m3u8
-#EXTINF:-1 tvg-id="61b793ccf571b80007b7a610" tvg-name="61b793ccf571b80007b7a610" tvg-logo="https://images.pluto.tv/channels/61b793ccf571b80007b7a610/colorLogoPNG.png" group-title="PELICULAS",ADRENALINA PURA
-https://jmp2.uk/plu-61b793ccf571b80007b7a610.m3u8
-#EXTINF:-1 tvg-id="5dcdde78f080d900098550e4" tvg-name="5dcdde78f080d900098550e4" tvg-logo="https://images.pluto.tv/channels/5dcdde78f080d900098550e4/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CINE COMEDIA
-https://jmp2.uk/plu-5dcdde78f080d900098550e4.m3u8
-#EXTINF:-1 tvg-id="5dcddfcb229eff00091b6bdf" tvg-name="5dcddfcb229eff00091b6bdf" tvg-logo="https://images.pluto.tv/channels/5dcddfcb229eff00091b6bdf/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CINE DRAMA
-https://jmp2.uk/plu-5dcddfcb229eff00091b6bdf.m3u8
-#EXTINF:-1 tvg-id="5dd7ea2aeab5230009986735" tvg-name="5dd7ea2aeab5230009986735" tvg-logo="https://images.pluto.tv/channels/5dd7ea2aeab5230009986735/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CINE ROMANCE
-https://jmp2.uk/plu-5dd7ea2aeab5230009986735.m3u8
-#EXTINF:-1 tvg-id="5ddc4e8bcbb9010009b4e84f" tvg-name="5ddc4e8bcbb9010009b4e84f" tvg-logo="https://images.pluto.tv/channels/5ddc4e8bcbb9010009b4e84f/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CINE SUSPENSO
-https://jmp2.uk/plu-5ddc4e8bcbb9010009b4e84f.m3u8
-#EXTINF:-1 tvg-id="624af40c004f8000079b784d" tvg-name="624af40c004f8000079b784d" tvg-logo="https://images.pluto.tv/channels/624af40c004f8000079b784d/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CINE CRIMEN
-https://jmp2.uk/plu-624af40c004f8000079b784d.m3u8
-#EXTINF:-1 tvg-id="5dcddf1ed95e740009fef7ab" tvg-name="5dcddf1ed95e740009fef7ab" tvg-logo="https://images.pluto.tv/channels/5dcddf1ed95e740009fef7ab/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CINE TERROR
-https://jmp2.uk/plu-5dcddf1ed95e740009fef7ab.m3u8
-#EXTINF:-1 tvg-id="6838a98df9bd067a38d1b8f7" tvg-name="6838a98df9bd067a38d1b8f7" tvg-logo="https://images.pluto.tv/channels/6838a98df9bd067a38d1b8f7/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CRIATURAS MALDITAS
-https://jmp2.uk/plu-6838a98df9bd067a38d1b8f7.m3u8
-#EXTINF:-1 tvg-id="5f2817d3d7573a00080f9175" tvg-name="5f2817d3d7573a00080f9175" tvg-logo="https://images.pluto.tv/channels/5f2817d3d7573a00080f9175/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV SCI-FI
-https://jmp2.uk/plu-5f2817d3d7573a00080f9175.m3u8
-#EXTINF:-1 tvg-id="62c5d80dc6de440007e033eb" tvg-name="62c5d80dc6de440007e033eb" tvg-logo="https://images.pluto.tv/channels/62c5d80dc6de440007e033eb/colorLogoPNG.png" group-title="PELICULAS",RUNTIME 
-https://jmp2.uk/plu-62c5d80dc6de440007e033eb.m3u8
-#EXTINF:-1 tvg-id="5defde6d6c07b50009cf0757" tvg-name="5defde6d6c07b50009cf0757" tvg-logo="https://images.pluto.tv/channels/5defde6d6c07b50009cf0757/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV NUESTRO CINE
-https://jmp2.uk/plu-5defde6d6c07b50009cf0757.m3u8
-#EXTINF:-1 tvg-id="6806d519fea7414f33f57016" tvg-name="6806d519fea7414f33f57016" tvg-logo="https://images.pluto.tv/channels/6806d519fea7414f33f57016/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CINE INSPIRADOR
-https://jmp2.uk/plu-6806d519fea7414f33f57016.m3u8
-#EXTINF:-1 tvg-id="5dfcde52d28b09000a42d7a2" tvg-name="5dfcde52d28b09000a42d7a2" tvg-logo="https://images.pluto.tv/channels/5dfcde52d28b09000a42d7a2/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV A LA MEXICANA
-https://jmp2.uk/plu-5dfcde52d28b09000a42d7a2.m3u8
-#EXTINF:-1 tvg-id="609059dc63be6e0007b4eca6" tvg-name="609059dc63be6e0007b4eca6" tvg-logo="https://images.pluto.tv/channels/609059dc63be6e0007b4eca6/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CINE CLÁSICO
-https://jmp2.uk/plu-609059dc63be6e0007b4eca6.m3u8
-#EXTINF:-1 tvg-id="5dd6ddb30a1d8a000908ed4c" tvg-name="5dd6ddb30a1d8a000908ed4c" tvg-logo="https://images.pluto.tv/channels/5dd6ddb30a1d8a000908ed4c/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV CINE FAMILIA
-https://jmp2.uk/plu-5dd6ddb30a1d8a000908ed4c.m3u8
-#EXTINF:-1 tvg-id="5dd6ed41526c77000941411c" tvg-name="5dd6ed41526c77000941411c" tvg-logo="https://images.pluto.tv/channels/5dd6ed41526c77000941411c/colorLogoPNG.png" group-title="PELICULAS",PLUTO.TV PRE-NAVIDAD
-https://jmp2.uk/plu-5dd6ed41526c77000941411c.m3u8
-#EXTINF:-1 tvg-id="655f62ff954b020008c91ec6" tvg-name="655f62ff954b020008c91ec6" tvg-logo="https://images.pluto.tv/channels/655f62ff954b020008c91ec6/colorLogoPNG.png" group-title="SERIES",PLUTO.TV SERIES DE CRIMEN
-https://jmp2.uk/plu-655f62ff954b020008c91ec6.m3u8
-#EXTINF:-1 tvg-id="668c5cb4f01dbe0008dd4082" tvg-name="668c5cb4f01dbe0008dd4082" tvg-logo="https://images.pluto.tv/channels/668c5cb4f01dbe0008dd4082/colorLogoPNG.png" group-title="SERIES",CBS SERIES
-https://jmp2.uk/plu-668c5cb4f01dbe0008dd4082.m3u8
-#EXTINF:-1 tvg-id="604928d54a4f730007ff76bc" tvg-name="604928d54a4f730007ff76bc" tvg-logo="https://images.pluto.tv/channels/604928d54a4f730007ff76bc/colorLogoPNG.png" group-title="SERIES",CSI
-https://jmp2.uk/plu-604928d54a4f730007ff76bc.m3u8
-#EXTINF:-1 tvg-id="63eb9255c111bc0008fe6ec4" tvg-name="63eb9255c111bc0008fe6ec4" tvg-logo="https://images.pluto.tv/channels/63eb9255c111bc0008fe6ec4/colorLogoPNG.png" group-title="SERIES",CSI: MIAMI
-https://jmp2.uk/plu-63eb9255c111bc0008fe6ec4.m3u8
-#EXTINF:-1 tvg-id="632b606e12a67b0007c9e371" tvg-name="632b606e12a67b0007c9e371" tvg-logo="https://images.pluto.tv/channels/632b606e12a67b0007c9e371/colorLogoPNG.png" group-title="SERIES",CSI: NY
-https://jmp2.uk/plu-632b606e12a67b0007c9e371.m3u8
-#EXTINF:-1 tvg-id="63eb947c4e83e70008ab877b" tvg-name="63eb947c4e83e70008ab877b" tvg-logo="https://images.pluto.tv/channels/63eb947c4e83e70008ab877b/colorLogoPNG.png" group-title="SERIES",NCIS
-https://jmp2.uk/plu-63eb947c4e83e70008ab877b.m3u8
-#EXTINF:-1 tvg-id="6764203df433320008836bc6" tvg-name="6764203df433320008836bc6" tvg-logo="https://images.pluto.tv/channels/6764203df433320008836bc6/colorLogoPNG.png" group-title="SERIES",LOS ASESINOS DE MIDSOMER 24/7
-https://jmp2.uk/plu-6764203df433320008836bc6.m3u8
-#EXTINF:-1 tvg-id="67f960680072d6b187a0682e" tvg-name="67f960680072d6b187a0682e" tvg-logo="https://images.pluto.tv/channels/67f960680072d6b187a0682e/colorLogoPNG.png" group-title="SERIES",NÚM3ROS
-https://jmp2.uk/plu-67f960680072d6b187a0682e.m3u8
-#EXTINF:-1 tvg-id="6479ff1c17f5e10008ad2797" tvg-name="6479ff1c17f5e10008ad2797" tvg-logo="https://images.pluto.tv/channels/6479ff1c17f5e10008ad2797/colorLogoPNG.png" group-title="SERIES",PLUTO.TV SERIES DE ACCIÓN
-https://jmp2.uk/plu-6479ff1c17f5e10008ad2797.m3u8
-#EXTINF:-1 tvg-id="64ff270f30ab3300084e259c" tvg-name="64ff270f30ab3300084e259c" tvg-logo="https://images.pluto.tv/channels/64ff270f30ab3300084e259c/colorLogoPNG.png" group-title="SERIES",ROOKIE BLUE: POLICÍAS NOVATOS 24/7
-https://jmp2.uk/plu-64ff270f30ab3300084e259c.m3u8
-#EXTINF:-1 tvg-id="678aa0b3680721c77c5035dd" tvg-name="678aa0b3680721c77c5035dd" tvg-logo="https://images.pluto.tv/channels/678aa0b3680721c77c5035dd/colorLogoPNG.png" group-title="SERIES",THE WALKING DEAD 24/7
-https://jmp2.uk/plu-678aa0b3680721c77c5035dd.m3u8
-#EXTINF:-1 tvg-id="5ec5761aabe4690007f6e047" tvg-name="5ec5761aabe4690007f6e047" tvg-logo="https://images.pluto.tv/channels/5ec5761aabe4690007f6e047/colorLogoPNG.png" group-title="SERIES",STAR TREK 24/7
-https://jmp2.uk/plu-5ec5761aabe4690007f6e047.m3u8
-#EXTINF:-1 tvg-id="65662f8a2c46f300088a84cc" tvg-name="65662f8a2c46f300088a84cc" tvg-logo="https://images.pluto.tv/channels/65662f8a2c46f300088a84cc/colorLogoPNG.png" group-title="SERIES",PLUTO.TV SERIES DE SCI-FI
-https://jmp2.uk/plu-65662f8a2c46f300088a84cc.m3u8
-#EXTINF:-1 tvg-id="67e598e28b99330f75b4c629" tvg-name="67e598e28b99330f75b4c629" tvg-logo="https://images.pluto.tv/channels/67e598e28b99330f75b4c629/colorLogoPNG.png" group-title="SERIES",ANDROMEDA 24/7
-https://jmp2.uk/plu-67e598e28b99330f75b4c629.m3u8
-#EXTINF:-1 tvg-id="66b3af1c3a4ad200081c7d03" tvg-name="66b3af1c3a4ad200081c7d03" tvg-logo="https://images.pluto.tv/channels/66b3af1c3a4ad200081c7d03/colorLogoPNG.png" group-title="SERIES",Z NATION
-https://jmp2.uk/plu-66b3af1c3a4ad200081c7d03.m3u8
-#EXTINF:-1 tvg-id="67e5941f0812459cb682d9c6" tvg-name="67e5941f0812459cb682d9c6" tvg-logo="https://images.pluto.tv/channels/67e5941f0812459cb682d9c6/colorLogoPNG.png" group-title="SERIES",RELIC HUNTER 24/7
-https://jmp2.uk/plu-67e5941f0812459cb682d9c6.m3u8
-#EXTINF:-1 tvg-id="5dcde1317578340009b751d0" tvg-name="5dcde1317578340009b751d0" tvg-logo="https://images.pluto.tv/channels/5dcde1317578340009b751d0/colorLogoPNG.png" group-title="SERIES",PLUTO.TV SERIES
-https://jmp2.uk/plu-5dcde1317578340009b751d0.m3u8
-#EXTINF:-1 tvg-id="655f626d57fe4a00085c7c3e" tvg-name="655f626d57fe4a00085c7c3e" tvg-logo="https://images.pluto.tv/channels/655f626d57fe4a00085c7c3e/colorLogoPNG.png" group-title="SERIES",PLUTO.TV SERIES DE COMEDIA
-https://jmp2.uk/plu-655f626d57fe4a00085c7c3e.m3u8
-#EXTINF:-1 tvg-id="655f636d954b020008c93299" tvg-name="655f636d954b020008c93299" tvg-logo="https://images.pluto.tv/channels/655f636d954b020008c93299/colorLogoPNG.png" group-title="SERIES",PLUTO.TV SERIES DE DRAMA
-https://jmp2.uk/plu-655f636d954b020008c93299.m3u8
-#EXTINF:-1 tvg-id="67e5987eef24f48ffca08fd7" tvg-name="67e5987eef24f48ffca08fd7" tvg-logo="https://images.pluto.tv/channels/67e5987eef24f48ffca08fd7/colorLogoPNG.png" group-title="SERIES",DOC MARTIN
-https://jmp2.uk/plu-67e5987eef24f48ffca08fd7.m3u8
-#EXTINF:-1 tvg-id="6806d570c178637410ae4962" tvg-name="6806d570c178637410ae4962" tvg-logo="https://images.pluto.tv/channels/6806d570c178637410ae4962/colorLogoPNG.png" group-title="SERIES",PLUTO.TV SERIES CONTINENTALES
-https://jmp2.uk/plu-6806d570c178637410ae4962.m3u8
-#EXTINF:-1 tvg-id="6185a9a88b2ce30007de5128" tvg-name="6185a9a88b2ce30007de5128" tvg-logo="https://images.pluto.tv/channels/6185a9a88b2ce30007de5128/colorLogoPNG.png" group-title="SERIES",PLUTO.TV K-DRAMAS
-https://jmp2.uk/plu-6185a9a88b2ce30007de5128.m3u8
-#EXTINF:-1 tvg-id="6661d5424b10960008599fa3" tvg-name="6661d5424b10960008599fa3" tvg-logo="https://images.pluto.tv/channels/6661d5424b10960008599fa3/colorLogoPNG.png" group-title="SERIES",PLUTO.TV TEEN K-DRAMAS
-https://jmp2.uk/plu-6661d5424b10960008599fa3.m3u8
-#EXTINF:-1 tvg-id="639751f81a36b400072b8f5a" tvg-name="639751f81a36b400072b8f5a" tvg-logo="https://images.pluto.tv/channels/639751f81a36b400072b8f5a/colorLogoPNG.png" group-title="SERIES",VIVE KANAL D DRAMA
-https://jmp2.uk/plu-639751f81a36b400072b8f5a.m3u8
-#EXTINF:-1 tvg-id="5dd837642c6e9300098ad484" tvg-name="5dd837642c6e9300098ad484" tvg-logo="https://images.pluto.tv/channels/5dd837642c6e9300098ad484/colorLogoPNG.png" group-title="SERIES",PLUTO.TV SERIES LATINAS
-https://jmp2.uk/plu-5dd837642c6e9300098ad484.m3u8
-#EXTINF:-1 tvg-id="5de802659167b10009e7deba" tvg-name="5de802659167b10009e7deba" tvg-logo="https://images.pluto.tv/channels/5de802659167b10009e7deba/colorLogoPNG.png" group-title="RETRO",PLUTO.TV SERIES RETRO
-https://jmp2.uk/plu-5de802659167b10009e7deba.m3u8
-#EXTINF:-1 tvg-id="67f95fa76b11614ab0caaef3" tvg-name="67f95fa76b11614ab0caaef3" tvg-logo="https://images.pluto.tv/channels/67f95fa76b11614ab0caaef3/colorLogoPNG.png" group-title="RETRO",HECHICERAS
-https://jmp2.uk/plu-67f95fa76b11614ab0caaef3.m3u8
-#EXTINF:-1 tvg-id="631fb6be21b7440007b9f606" tvg-name="631fb6be21b7440007b9f606" tvg-logo="https://images.pluto.tv/channels/631fb6be21b7440007b9f606/colorLogoPNG.png" group-title="RETRO",HECHIZADA
-https://jmp2.uk/plu-631fb6be21b7440007b9f606.m3u8
-#EXTINF:-1 tvg-id="68ffc086a530e036bc8f0305" tvg-name="68ffc086a530e036bc8f0305" tvg-logo="https://images.pluto.tv/channels/68ffc086a530e036bc8f0305/colorLogoPNG.png" group-title="RETRO",MI BELLA GENIO
-https://jmp2.uk/plu-68ffc086a530e036bc8f0305.m3u8
-#EXTINF:-1 tvg-id="63eb95baa99571000898a078" tvg-name="63eb95baa99571000898a078" tvg-logo="https://images.pluto.tv/channels/63eb95baa99571000898a078/colorLogoPNG.png" group-title="RETRO",MACGYVER
-https://jmp2.uk/plu-63eb95baa99571000898a078.m3u8
-#EXTINF:-1 tvg-id="677d93afe650a700081e5f18" tvg-name="677d93afe650a700081e5f18" tvg-logo="https://images.pluto.tv/channels/677d93afe650a700081e5f18/colorLogoPNG.png" group-title="RETRO",POPEYE
-https://jmp2.uk/plu-677d93afe650a700081e5f18.m3u8
-#EXTINF:-1 tvg-id="68a3a97fd8f7693ae3f8575f" tvg-name="68a3a97fd8f7693ae3f8575f" tvg-logo="https://images.pluto.tv/channels/68a3a97fd8f7693ae3f8575f/colorLogoPNG.png" group-title="RETRO",PITUFO TV
-https://jmp2.uk/plu-68a3a97fd8f7693ae3f8575f.m3u8
-#EXTINF:-1 tvg-id="5dcde0cc2efd2700090b7ff4" tvg-name="5dcde0cc2efd2700090b7ff4" tvg-logo="https://images.pluto.tv/channels/5dcde0cc2efd2700090b7ff4/colorLogoPNG.png" group-title="NOVELAS",PLUTO.TV NOVELAS
-https://jmp2.uk/plu-5dcde0cc2efd2700090b7ff4.m3u8
-#EXTINF:-1 tvg-id="686eed4c677f2f98b4a1ccd4" tvg-name="686eed4c677f2f98b4a1ccd4" tvg-logo="https://images.pluto.tv/channels/686eed4c677f2f98b4a1ccd4/colorLogoPNG.png" group-title="NOVELAS",PLUTO.TV NOVELAS CONTINENTALES
-https://jmp2.uk/plu-686eed4c677f2f98b4a1ccd4.m3u8
-#EXTINF:-1 tvg-id="6474a7958e3c0a0008b97cae" tvg-name="6474a7958e3c0a0008b97cae" tvg-logo="https://images.pluto.tv/channels/6474a7958e3c0a0008b97cae/colorLogoPNG.png" group-title="NOVELAS",PLUTO.TV NOVELAS DE MEXICO
-https://jmp2.uk/plu-6474a7958e3c0a0008b97cae.m3u8
-#EXTINF:-1 tvg-id="646ccdd0939a5900088a1980" tvg-name="646ccdd0939a5900088a1980" tvg-logo="https://images.pluto.tv/channels/646ccdd0939a5900088a1980/colorLogoPNG.png" group-title="NOVELAS",AZ CORAZÓN
-https://jmp2.uk/plu-646ccdd0939a5900088a1980.m3u8
-#EXTINF:-1 tvg-id="699769fa19ac123965833fd3" tvg-name="699769fa19ac123965833fd3" tvg-logo="https://images.pluto.tv/channels/699769fa19ac123965833fd3/colorLogoPNG.png" group-title="NOVELAS",CUANDO LOS ANGELES CAEN
-https://jmp2.uk/plu-699769fa19ac123965833fd3.m3u8
-#EXTINF:-1 tvg-id="69de4ad924a6d521f8b0a348" tvg-name="69de4ad924a6d521f8b0a348" tvg-logo="https://images.pluto.tv/channels/69de4ad924a6d521f8b0a348/colorLogoPNG.png" group-title="NOVELAS",RCN+
-https://jmp2.uk/plu-69de4ad924a6d521f8b0a348.m3u8
-#EXTINF:-1 tvg-id="699763787cfe0ffadadd106f" tvg-name="699763787cfe0ffadadd106f" tvg-logo="https://images.pluto.tv/channels/699763787cfe0ffadadd106f/colorLogoPNG.png" group-title="NOVELAS",MI GORDA BELLA
-https://jmp2.uk/plu-699763787cfe0ffadadd106f.m3u8
-#EXTINF:-1 tvg-id="699762a0172a5c3296892d92" tvg-name="699762a0172a5c3296892d92" tvg-logo="https://images.pluto.tv/channels/699762a0172a5c3296892d92/colorLogoPNG.png" group-title="NOVELAS",JUANA LA VIRGEN
-https://jmp2.uk/plu-699762a0172a5c3296892d92.m3u8
-#EXTINF:-1 tvg-id="604bdf4e6d0abc0007ba77ad" tvg-name="604bdf4e6d0abc0007ba77ad" tvg-logo="https://images.pluto.tv/channels/604bdf4e6d0abc0007ba77ad/colorLogoPNG.png" group-title="NOVELAS",SIN SENOS NO HAY PARAÍSO
-https://jmp2.uk/plu-604bdf4e6d0abc0007ba77ad.m3u8
-#EXTINF:-1 tvg-id="63211ba9cad976000794f988" tvg-name="63211ba9cad976000794f988" tvg-logo="https://images.pluto.tv/channels/63211ba9cad976000794f988/colorLogoPNG.png" group-title="NOVELAS",LA SELECC10N
-https://jmp2.uk/plu-63211ba9cad976000794f988.m3u8
-#EXTINF:-1 tvg-id="6474a86917f5e100089a0c1c" tvg-name="6474a86917f5e100089a0c1c" tvg-logo="https://images.pluto.tv/channels/6474a86917f5e100089a0c1c/colorLogoPNG.png" group-title="NOVELAS",PLUTO.TV NOVELAS DE VENEZUELA
-https://jmp2.uk/plu-6474a86917f5e100089a0c1c.m3u8
-#EXTINF:-1 tvg-id="698a45156dc3c71eb1ba6599" tvg-name="698a45156dc3c71eb1ba6599" tvg-logo="https://images.pluto.tv/channels/698a45156dc3c71eb1ba6599/colorLogoPNG.png" group-title="REALITY",PLUTO.TV AMOR Y MENTIRA
-https://jmp2.uk/plu-698a45156dc3c71eb1ba6599.m3u8
-#EXTINF:-1 tvg-id="5dcde197f6591d0009839e04" tvg-name="5dcde197f6591d0009839e04" tvg-logo="https://images.pluto.tv/channels/5dcde197f6591d0009839e04/colorLogoPNG.png" group-title="REALITY",PLUTO.TV REALITY
-https://jmp2.uk/plu-5dcde197f6591d0009839e04.m3u8
-#EXTINF:-1 tvg-id="5fab088b3279760007d4e4fd" tvg-name="5fab088b3279760007d4e4fd" tvg-logo="https://images.pluto.tv/channels/5fab088b3279760007d4e4fd/colorLogoPNG.png" group-title="REALITY",MTV PLUTO.TV 
-https://jmp2.uk/plu-5fab088b3279760007d4e4fd.m3u8
-#EXTINF:-1 tvg-id="64510d3ad3fdde00080951f2" tvg-name="64510d3ad3fdde00080951f2" tvg-logo="https://images.pluto.tv/channels/64510d3ad3fdde00080951f2/colorLogoPNG.png" group-title="REALITY",MTV DRAG
-https://jmp2.uk/plu-64510d3ad3fdde00080951f2.m3u8
-#EXTINF:-1 tvg-id="5de91b7ea86ee60009d89e75" tvg-name="5de91b7ea86ee60009d89e75" tvg-logo="https://images.pluto.tv/channels/5de91b7ea86ee60009d89e75/colorLogoPNG.png" group-title="REALITY",MTV REALITY
-https://jmp2.uk/plu-5de91b7ea86ee60009d89e75.m3u8
-#EXTINF:-1 tvg-id="6851b909954170e0128bc71d" tvg-name="6851b909954170e0128bc71d" tvg-logo="https://images.pluto.tv/channels/6851b909954170e0128bc71d/colorLogoPNG.png" group-title="REALITY",MTV DATING
-https://jmp2.uk/plu-6851b909954170e0128bc71d.m3u8
-#EXTINF:-1 tvg-id="61a52615cbef2500072876e2" tvg-name="61a52615cbef2500072876e2" tvg-logo="https://images.pluto.tv/channels/61a52615cbef2500072876e2/colorLogoPNG.png" group-title="REALITY",ACAPULCO SHORE
-https://jmp2.uk/plu-61a52615cbef2500072876e2.m3u8
-#EXTINF:-1 tvg-id="638693db857364000781b471" tvg-name="638693db857364000781b471" tvg-logo="https://images.pluto.tv/channels/638693db857364000781b471/colorLogoPNG.png" group-title="REALITY",MTV CON MI EX (LA VENGANZA DE LOS EX)
-https://jmp2.uk/plu-638693db857364000781b471.m3u8
-#EXTINF:-1 tvg-id="5e98a911c881310007d7aae2" tvg-name="5e98a911c881310007d7aae2" tvg-logo="https://images.pluto.tv/channels/5e98a911c881310007d7aae2/colorLogoPNG.png" group-title="REALITY",MTV RIDICULOUSNESS
-https://jmp2.uk/plu-5e98a911c881310007d7aae2.m3u8
-#EXTINF:-1 tvg-id="620fd9f4afb9a80007a9c6d5" tvg-name="620fd9f4afb9a80007a9c6d5" tvg-logo="https://images.pluto.tv/channels/620fd9f4afb9a80007a9c6d5/colorLogoPNG.png" group-title="REALITY",MTV TEEN MOM (MADRES ADOLESENTES)
-https://jmp2.uk/plu-620fd9f4afb9a80007a9c6d5.m3u8
-#EXTINF:-1 tvg-id="625461ef01f27a0007976ad1" tvg-name="625461ef01f27a0007976ad1" tvg-logo="https://images.pluto.tv/channels/625461ef01f27a0007976ad1/colorLogoPNG.png" group-title="REALITY",MTV CATFISH
-https://jmp2.uk/plu-625461ef01f27a0007976ad1.m3u8
-#EXTINF:-1 tvg-id="6851b909954170e0128bc71d" tvg-name="6851b909954170e0128bc71d" tvg-logo="https://images.pluto.tv/channels/6851b909954170e0128bc71d/colorLogoPNG.png" group-title="REALITY",MTV INK MASTER
-https://jmp2.uk/plu-6851b909954170e0128bc71d.m3u8
-#EXTINF:-1 tvg-id="5dd6d935d000120009bc1132" tvg-name="5dd6d935d000120009bc1132" tvg-logo="https://images.pluto.tv/channels/5dd6d935d000120009bc1132/colorLogoPNG.png" group-title="COMPETENCIAS",PLUTO.TV COMPETENCIAS 
-https://jmp2.uk/plu-5dd6d935d000120009bc1132.m3u8
-#EXTINF:-1 tvg-id="605e479d5b8229000763e697" tvg-name="605e479d5b8229000763e697" tvg-logo="https://images.pluto.tv/channels/605e479d5b8229000763e697/colorLogoPNG.png" group-title="COMPETENCIAS",ESCAPE PERFECTO POR SONY ONE CANAL 
-https://jmp2.uk/plu-605e479d5b8229000763e697.m3u8
-#EXTINF:-1 tvg-id="5e3ddbd27091820009f86dd9" tvg-name="5e3ddbd27091820009f86dd9" tvg-logo="https://images.pluto.tv/channels/5e3ddbd27091820009f86dd9/colorLogoPNG.png" group-title="COMPETENCIAS",MASTERCHEF
-https://jmp2.uk/plu-5e3ddbd27091820009f86dd9.m3u8
-#EXTINF:-1 tvg-id="6095ad97351eb0000754c1e6" tvg-name="6095ad97351eb0000754c1e6" tvg-logo="https://images.pluto.tv/channels/6095ad97351eb0000754c1e6/colorLogoPNG.png" group-title="COMPETENCIAS",HELL´S KITCHEN
-https://jmp2.uk/plu-6095ad97351eb0000754c1e6.m3u8
-#EXTINF:-1 tvg-id="5e46e64dc73db400094b5f0b" tvg-name="5e46e64dc73db400094b5f0b" tvg-logo="https://images.pluto.tv/channels/5e46e64dc73db400094b5f0b/colorLogoPNG.png" group-title="COMPETENCIAS",MINUTO PARA GANAR
-https://jmp2.uk/plu-5e46e64dc73db400094b5f0b.m3u8
-#EXTINF:-1 tvg-id="5ed6828192e8b3000743ef61" tvg-name="5ed6828192e8b3000743ef61" tvg-logo="https://images.pluto.tv/channels/5ed6828192e8b3000743ef61/colorLogoPNG.png" group-title="COMPETENCIAS",WIPE OUT (HOMBRE AL AGUA)
-https://jmp2.uk/plu-5ed6828192e8b3000743ef61.m3u8
-#EXTINF:-1 tvg-id="6495af324c014a000842e923" tvg-name="6495af324c014a000842e923" tvg-logo="https://images.pluto.tv/channels/6495af324c014a000842e923/colorLogoPNG.png" group-title="COMPETENCIAS",DESAFIO SUPER-HUMANOS
-https://jmp2.uk/plu-6495af324c014a000842e923.m3u8
-#EXTINF:-1 tvg-id="5ddc503ac7ef120009b101a2" tvg-name="5ddc503ac7ef120009b101a2" tvg-logo="https://images.pluto.tv/channels/5ddc503ac7ef120009b101a2/colorLogoPNG.png" group-title="CURIOSIDAD",PLUTO.TV DOCUMENTALES
-https://jmp2.uk/plu-5ddc503ac7ef120009b101a2.m3u8
-#EXTINF:-1 tvg-id="68b784d03e17b7676a0378f7" tvg-name="68b784d03e17b7676a0378f7" tvg-logo="https://images.pluto.tv/channels/68b784d03e17b7676a0378f7/colorLogoPNG.png" group-title="CURIOSIDAD",SHOCKWAVE
-https://jmp2.uk/plu-68b784d03e17b7676a0378f7.m3u8
-#EXTINF:-1 tvg-id="5dd85eac039bba0009e86d1d" tvg-name="5dd85eac039bba0009e86d1d" tvg-logo="https://images.pluto.tv/channels/5dd85eac039bba0009e86d1d/colorLogoPNG.png" group-title="CURIOSIDAD",PLUTO.TV NATURALEZA
-https://jmp2.uk/plu-5dd85eac039bba0009e86d1d.m3u8
-#EXTINF:-1 tvg-id="66a92375cd0d31000847b219" tvg-name="66a92375cd0d31000847b219" tvg-logo="https://images.pluto.tv/channels/66a92375cd0d31000847b219/colorLogoPNG.png" group-title="CURIOSIDAD",MOUSTROS DEL RIO
-https://jmp2.uk/plu-66a92375cd0d31000847b219.m3u8
-#EXTINF:-1 tvg-id="673249433a61d400087a51ed" tvg-name="673249433a61d400087a51ed" tvg-logo="https://images.pluto.tv/channels/673249433a61d400087a51ed/colorLogoPNG.png" group-title="CURIOSIDAD",CONSTRUCCIONES ASOMBROSAS
-https://jmp2.uk/plu-673249433a61d400087a51ed.m3u8
-#EXTINF:-1 tvg-id="673249afc7626f0008c7205d" tvg-name="673249afc7626f0008c7205d" tvg-logo="https://images.pluto.tv/channels/673249afc7626f0008c7205d/colorLogoPNG.png" group-title="CURIOSIDAD",VIDAS EXTREMAS
-https://jmp2.uk/plu-673249afc7626f0008c7205d.m3u8
-#EXTINF:-1 tvg-id="681ba2729624e6275efe0044" tvg-name="681ba2729624e6275efe0044" tvg-logo="https://images.pluto.tv/channels/681ba2729624e6275efe0044/colorLogoPNG.png" group-title="CURIOSIDAD",NATURETIME
-https://jmp2.uk/plu-681ba2729624e6275efe0044.m3u8
-#EXTINF:-1 tvg-id="5f4fed840a2764000720d966" tvg-name="5f4fed840a2764000720d966" tvg-logo="https://images.pluto.tv/channels/5f4fed840a2764000720d966/colorLogoPNG.png" group-title="CURIOSIDAD",STINGRAY PAISAJES 
-https://jmp2.uk/plu-5f4fed840a2764000720d966.m3u8
-#EXTINF:-1 tvg-id="61099f2b40d0640007fc5aa2" tvg-name="61099f2b40d0640007fc5aa2" tvg-logo="https://images.pluto.tv/channels/61099f2b40d0640007fc5aa2/colorLogoPNG.png" group-title="CURIOSIDAD",EL ENCANTADOR DE PERROS
-https://jmp2.uk/plu-61099f2b40d0640007fc5aa2.m3u8
-#EXTINF:-1 tvg-id="5ddc266f80e3550009136843" tvg-name="5ddc266f80e3550009136843" tvg-logo="https://images.pluto.tv/channels/5ddc266f80e3550009136843/colorLogoPNG.png" group-title="CURIOSIDAD",PLUTO.TV AVENTURA
-https://jmp2.uk/plu-5ddc266f80e3550009136843.m3u8
-#EXTINF:-1 tvg-id="62154548a2be360007cb02f0" tvg-name="62154548a2be360007cb02f0" tvg-logo="https://images.pluto.tv/channels/62154548a2be360007cb02f0/colorLogoPNG.png" group-title="CURIOSIDAD",ICE PILOTS (PILOTOS DEL ARTICO)
-https://jmp2.uk/plu-62154548a2be360007cb02f0.m3u8
-#EXTINF:-1 tvg-id="5dd6dc7480e3550009133d4a" tvg-name="5dd6dc7480e3550009133d4a" tvg-logo="https://images.pluto.tv/channels/5dd6dc7480e3550009133d4a/colorLogoPNG.png" group-title="CURIOSIDAD",PLUTO.TV VELOCIDAD
-https://jmp2.uk/plu-5dd6dc7480e3550009133d4a.m3u8
-#EXTINF:-1 tvg-id="64025592953da40008bf9238" tvg-name="64025592953da40008bf9238" tvg-logo="https://images.pluto.tv/channels/64025592953da40008bf9238/colorLogoPNG.png" group-title="CURIOSIDAD",LOCOS Y OBSESIÓNADOS POR LOS AUTOS
-https://jmp2.uk/plu-64025592953da40008bf9238.m3u8
-#EXTINF:-1 tvg-id="656e2536fbc15b00084ae29d" tvg-name="656e2536fbc15b00084ae29d" tvg-logo="https://images.pluto.tv/channels/656e2536fbc15b00084ae29d/colorLogoPNG.png" group-title="CURIOSIDAD",MI COCHE CLÁSICO
-https://jmp2.uk/plu-656e2536fbc15b00084ae29d.m3u8
-#EXTINF:-1 tvg-id="60e5ea9a9bb4200008376f76" tvg-name="60e5ea9a9bb4200008376f76" tvg-logo="https://images.pluto.tv/channels/60e5ea9a9bb4200008376f76/colorLogoPNG.png" group-title="CURIOSIDAD",MOTORVISION.TV
-https://jmp2.uk/plu-60e5ea9a9bb4200008376f76.m3u8
-#EXTINF:-1 tvg-id="5df265697ec3510009df1ef0" tvg-name="5df265697ec3510009df1ef0" tvg-logo="https://images.pluto.tv/channels/5df265697ec3510009df1ef0/colorLogoPNG.png" group-title="CURIOSIDAD",PLUTO.TV VIDA REAL
-https://jmp2.uk/plu-5df265697ec3510009df1ef0.m3u8
-#EXTINF:-1 tvg-id="6419ab7c9189ce000865a469" tvg-name="6419ab7c9189ce000865a469" tvg-logo="https://images.pluto.tv/channels/6419ab7c9189ce000865a469/colorLogoPNG.png" group-title="CURIOSIDAD",C.O.P.S.
-https://jmp2.uk/plu-6419ab7c9189ce000865a469.m3u8
-#EXTINF:-1 tvg-id="5f9992c685a2a80007fa414a" tvg-name="5f9992c685a2a80007fa414a" tvg-logo="https://images.pluto.tv/channels/5f9992c685a2a80007fa414a/colorLogoPNG.png" group-title="CURIOSIDAD",DOG EL CAZARRECOMPENSAS
-https://jmp2.uk/plu-5f9992c685a2a80007fa414a.m3u8
-#EXTINF:-1 tvg-id="5f23102d5e239d00074b092a" tvg-name="5f23102d5e239d00074b092a" tvg-logo="https://images.pluto.tv/channels/5f23102d5e239d00074b092a/colorLogoPNG.png" group-title="CURIOSIDAD",EMPEÑOS A LO BESTIA
-https://jmp2.uk/plu-5f23102d5e239d00074b092a.m3u8
-#EXTINF:-1 tvg-id="6109ab25b84d6a0007504886" tvg-name="6109ab25b84d6a0007504886" tvg-logo="https://images.pluto.tv/channels/6109ab25b84d6a0007504886/colorLogoPNG.png" group-title="CURIOSIDAD",MI OBSESIÓN FAVORITA
-https://jmp2.uk/plu-6109ab25b84d6a0007504886.m3u8
-#EXTINF:-1 tvg-id="678533155e0e6a000828cd48" tvg-name="678533155e0e6a000828cd48" tvg-logo="https://images.pluto.tv/channels/678533155e0e6a000828cd48/colorLogoPNG.png" group-title="CURIOSIDAD",UNTOLD STORIES OF THE ER
-https://jmp2.uk/plu-678533155e0e6a000828cd48.m3u8
-#EXTINF:-1 tvg-id="66ba53cda4ee2700083fac09" tvg-name="66ba53cda4ee2700083fac09" tvg-logo="https://images.pluto.tv/channels/66ba53cda4ee2700083fac09/colorLogoPNG.png" group-title="CURIOSIDAD",SALA DE EMERGENCIAS:HISTORIAS INEDITAS
-https://jmp2.uk/plu-66ba53cda4ee2700083fac09.m3u8
-#EXTINF:-1 tvg-id="5f230e416b68ff00075b0139" tvg-name="5f230e416b68ff00075b0139" tvg-logo="https://images.pluto.tv/channels/5f230e416b68ff00075b0139/colorLogoPNG.png" group-title="CURIOSIDAD",MISTERIOS MEDICOS
-https://jmp2.uk/plu-5f230e416b68ff00075b0139.m3u8
-#EXTINF:-1 tvg-id="63a084934734f30007457b2c" tvg-name="63a084934734f30007457b2c" tvg-logo="https://images.pluto.tv/channels/63a084934734f30007457b2c/colorLogoPNG.png" group-title="CURIOSIDAD",SMITHSINIAN CHANNEL
-https://jmp2.uk/plu-63a084934734f30007457b2c.m3u8
-#EXTINF:-1 tvg-id="5de5758e1a30dc00094fcd6c" tvg-name="5de5758e1a30dc00094fcd6c" tvg-logo="https://images.pluto.tv/channels/5de5758e1a30dc00094fcd6c/colorLogoPNG.png" group-title="CURIOSIDAD",PLUTO.TV HISTORIA
-https://jmp2.uk/plu-5de5758e1a30dc00094fcd6c.m3u8
-#EXTINF:-1 tvg-id="5dcde2f53449c50009b2b4dc" tvg-name="5dcde2f53449c50009b2b4dc" tvg-logo="https://images.pluto.tv/channels/5dcde2f53449c50009b2b4dc/colorLogoPNG.png" group-title="ZONA PARANORMAL",PLUTO.TV MISTERIOS
-https://jmp2.uk/plu-5dcde2f53449c50009b2b4dc.m3u8
-#EXTINF:-1 tvg-id="5f4d3696d938c900072679fd" tvg-name="5f4d3696d938c900072679fd" tvg-logo="https://images.pluto.tv/channels/5f4d3696d938c900072679fd/colorLogoPNG.png" group-title="ZONA PARANORMAL",HISTORIAS DE ULTRATUMBA
-https://jmp2.uk/plu-5f4d3696d938c900072679fd.m3u8
-#EXTINF:-1 tvg-id="645d1abbe1979c0008779d5a" tvg-name="645d1abbe1979c0008779d5a" tvg-logo="https://images.pluto.tv/channels/645d1abbe1979c0008779d5a/colorLogoPNG.png" group-title="ZONA PARANORMAL",ARCHIVOS EXTRATERRESTRES
-https://jmp2.uk/plu-645d1abbe1979c0008779d5a.m3u8
-#EXTINF:-1 tvg-id="5dcde27ffae9520009c0c75a" tvg-name="5dcde27ffae9520009c0c75a" tvg-logo="https://images.pluto.tv/channels/5dcde27ffae9520009c0c75a/colorLogoPNG.png" group-title="INVESTIGACION",PLUTO.TV INVESTIGA
-https://jmp2.uk/plu-5dcde27ffae9520009c0c75a.m3u8
-#EXTINF:-1 tvg-id="6109a9f5531b840007a4a187" tvg-name="6109a9f5531b840007a4a187" tvg-logo="https://images.pluto.tv/channels/6109a9f5531b840007a4a187/colorLogoPNG.png" group-title="INVESTIGACION",CAZADOR DE HOMICIDAS
-https://jmp2.uk/plu-6109a9f5531b840007a4a187.m3u8
-#EXTINF:-1 tvg-id="680bdaf54d7cf165c705f91e" tvg-name="680bdaf54d7cf165c705f91e" tvg-logo="https://images.pluto.tv/channels/680bdaf54d7cf165c705f91e/colorLogoPNG.png" group-title="INVESTIGACION",ZONAINVESTIGACION.TV
-https://jmp2.uk/plu-680bdaf54d7cf165c705f91e.m3u8
-#EXTINF:-1 tvg-id="5e67d41b93312100076f3fca" tvg-name="5e67d41b93312100076f3fca" tvg-logo="https://images.pluto.tv/channels/5e67d41b93312100076f3fca/colorLogoPNG.png" group-title="INVESTIGACION",LOS ARCHIVOS DEL F.B.I.
-https://jmp2.uk/plu-5e67d41b93312100076f3fca.m3u8
-#EXTINF:-1 tvg-id="5efb8c19b2678b000780d032" tvg-name="5efb8c19b2678b000780d032" tvg-logo="https://images.pluto.tv/channels/5efb8c19b2678b000780d032/colorLogoPNG.png" group-title="INVESTIGACION",ARCHIVOS FORENSES
-https://jmp2.uk/plu-5efb8c19b2678b000780d032.m3u8
-#EXTINF:-1 tvg-id="6732499ce40c4a0008bb9894" tvg-name="6732499ce40c4a0008bb9894" tvg-logo="https://images.pluto.tv/channels/6732499ce40c4a0008bb9894/colorLogoPNG.png" group-title="INVESTIGACION",CRIMEN DE WB
-https://jmp2.uk/plu-6732499ce40c4a0008bb9894.m3u8
-#EXTINF:-1 tvg-id="697c9bc2a7ce9d5a3d83504a" tvg-name="697c9bc2a7ce9d5a3d83504a" tvg-logo="https://images.pluto.tv/channels/697c9bc2a7ce9d5a3d83504a/colorLogoPNG.png" group-title="INVESTIGACION",DR. G
-https://jmp2.uk/plu-697c9bc2a7ce9d5a3d83504a.m3u8
-#EXTINF:-1 tvg-id="5ea71d48af1d0b0007d837f4" tvg-name="5ea71d48af1d0b0007d837f4" tvg-logo="https://images.pluto.tv/channels/5ea71d48af1d0b0007d837f4/colorLogoPNG.png" group-title="INVESTIGACION",LOS NUEVOS DETECTIVES
-https://jmp2.uk/plu-5ea71d48af1d0b0007d837f4.m3u8
-#EXTINF:-1 tvg-id="5f610042272f68000867685b" tvg-name="5f610042272f68000867685b" tvg-logo="https://images.pluto.tv/channels/5f610042272f68000867685b/colorLogoPNG.png" group-title="INVESTIGACION",MISTERIOS SIN RESOLVER
-https://jmp2.uk/plu-5f610042272f68000867685b.m3u8
-#EXTINF:-1 tvg-id="62310d5a5dc9550007c6f580" tvg-name="62310d5a5dc9550007c6f580" tvg-logo="https://images.pluto.tv/channels/62310d5a5dc9550007c6f580/colorLogoPNG.png" group-title="NOTICIAS",CBS NEWS
-https://jmp2.uk/plu-62310d5a5dc9550007c6f580.m3u8
-#EXTINF:-1 tvg-id="60492e6d7f3f560007ab0f62" tvg-name="60492e6d7f3f560007ab0f62" tvg-logo="https://images.pluto.tv/channels/60492e6d7f3f560007ab0f62/colorLogoPNG.png" group-title="NOTICIAS",ESTRELLA NEWS
-https://jmp2.uk/plu-60492e6d7f3f560007ab0f62.m3u8
-#EXTINF:-1 tvg-id="619d59b7cbef25000728221c" tvg-name="619d59b7cbef25000728221c" tvg-logo="https://images.pluto.tv/channels/619d59b7cbef25000728221c/colorLogoPNG.png" group-title="NOTICIAS",EURONEWS
-https://jmp2.uk/plu-619d59b7cbef25000728221c.m3u8
-#EXTINF:-1 tvg-id="67d9b0ebc290c9499046e88f" tvg-name="67d9b0ebc290c9499046e88f" tvg-logo="https://images.pluto.tv/channels/67d9b0ebc290c9499046e88f/colorLogoPNG.png" group-title="NOTICIAS",RCN NOTICIAS
-https://jmp2.uk/plu-67d9b0ebc290c9499046e88f.m3u8`;
+/* ================= ESTADO ================= */
+let channels = [];
+let favorites = loadFavs();
+let currentFilter = "all";
+let visibleCount = PAGE_SIZE;
+let hls = null;
+let jw = null;
+let playToken = 0;
 
-        let channels = [];
-        let favorites = JSON.parse(localStorage.getItem('pluto_favs')) || [];
-        let playerInstance = null;
-        let currentFilterGroup = 'ALL';
+const $ = id => document.getElementById(id);
 
-        // Parsear M3U
-        function parseM3U(data) {
-            const lines = data.split('\n');
-            const result = [];
-            let currentChannel = {};
+function loadFavs() {
+  try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch { return []; }
+}
+function saveFavs() {
+  try { localStorage.setItem(FAV_KEY, JSON.stringify(favorites)); } catch {}
+}
 
-            lines.forEach((line) => {
-                line = line.trim();
-                if (line.startsWith('#EXTINF:')) {
-                    const idMatch = line.match(/tvg-id="([^"]+)"/);
-                    const logoMatch = line.match(/tvg-logo="([^"]+)"/);
-                    const groupMatch = line.match(/group-title="([^"]+)"/);
-                    const nameParts = line.split(',');
+/* ================= CARGA DE CANALES ================= */
+// Obtiene el JSON de la página leyendo __NEXT_DATA__ (no depende del buildId de /_next/data/)
+async function fetchPageProps() {
+  const res = await fetch(WORKER_PROXY + encodeURIComponent(PAGE_URL));
+  if (!res.ok) throw new Error("El Worker respondió con estado " + res.status);
+  const html = await res.text();
+  const m = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
+  if (!m) throw new Error("No se encontró __NEXT_DATA__ (el Worker devolvió algo que no es la página de Pluto)");
+  const data = JSON.parse(m[1]);
+  return data.props?.pageProps || data.pageProps || {};
+}
 
-                    currentChannel = {
-                        id: idMatch ? idMatch[1] : Math.random().toString(),
-                        logo: logoMatch ? logoMatch[1] : '',
-                        group: groupMatch ? groupMatch[1] : 'VARIOS',
-                        name: nameParts[nameParts.length - 1].trim()
-                    };
-                } else if (line.startsWith('http')) {
-                    currentChannel.url = line;
-                    result.push(currentChannel);
-                    currentChannel = {};
-                }
-            });
-            return result;
-        }
+function extractChannels(pageProps) {
+  const out = [];
+  const seen = new Set();
+  const queries = pageProps.dehydratedState?.queries || [];
+  queries.forEach(q => {
+    const items = q.state?.data?.items;
+    if (!Array.isArray(items)) return;
+    items.forEach(item => {
+      const id = item.videoContentId;
+      if (!id || seen.has(id)) return;
+      seen.add(id);
+      out.push({
+        id,
+        name: item.channelName || ("Canal " + id),
+        listings: [...(item.currentListing || []), ...(item.upcomingListing || [])],
+        url: STREAM_BASE + id + ".m3u8",
+        icono: item.resolvedfilePathLogo || item.resolvedfilePathLogoSelected ||
+               ("https://images.pluto.tv/channels/" + id + "/colorLogoPNG.png"),
+        iconoColor: item.resolvedfilePathLogoSelected ||
+               ("https://images.pluto.tv/channels/" + id + "/colorLogoPNG.png")
+      });
+    });
+  });
+  return out;
+}
 
-        // Renderizar Canales
-        function renderChannels(channelList) {
-            const container = document.getElementById('channels-container');
-            container.innerHTML = '';
+// Busca en un objeto cualquier ruta de imagen cuyo nombre/valor encaje con el patrón (p. ej. 16_9 = horizontal)
+function findImage(obj, pattern, depth = 0) {
+  if (!obj || typeof obj !== "object" || depth > 4) return "";
+  for (const [k, v] of Object.entries(obj)) {
+    if (typeof v === "string" && /\.(jpe?g|png|webp)(\?|$)/i.test(v) && pattern.test(k + " " + v)) return v;
+  }
+  for (const v of Object.values(obj)) {
+    if (v && typeof v === "object") { const r = findImage(v, pattern, depth + 1); if (r) return r; }
+  }
+  return "";
+}
+function imgUrl(path) {
+  if (!path) return "";
+  if (/^https?:/i.test(path)) return path;
+  return "https://wwwimage-us.plutostatic.tv/thumbnails/photos/w400-q80/" +
+         path.replace(/^\/?files\//, "").replace(/^\//, "") + "?format=webp";
+}
+const LANDSCAPE = /16_9|16x9|landscape|screenshot|hero/i;
 
-            if (channelList.length === 0) {
-                container.innerHTML = `<p style="grid-column: 1/-1; text-align: center;">No se encontraron canales.</p>`;
-                return;
-            }
+// Imágenes candidatas del programa, de la más parecida a la oficial (poster 16:9) a la menos
+function thumbs(t) {
+  const ep = t.episode || {};
+  const epId = ep._id || ep.id;
+  const cands = [
+    findImage(ep, /poster16_9/i) || findImage(t, /poster16_9/i),
+    epId ? "https://images.pluto.tv/episodes/" + epId + "/poster16_9.jpg" : "",
+    findImage(ep, LANDSCAPE) || findImage(t, LANDSCAPE),
+    findImage(ep, /./)
+  ].map(imgUrl).filter((u, i, a) => u && a.indexOf(u) === i);
+  return { resolvedfilePathThumb: cands[0] || "", thumbFallbacks: cands.slice(1) };
+}
 
-            channelList.forEach(channel => {
-                const isFav = favorites.includes(channel.id);
-                const card = document.createElement('div');
-                card.className = 'channel-card';
-                card.onclick = (e) => {
-                    if (!e.target.classList.contains('fav-btn')) {
-                        openPlayer(channel.url);
-                    }
-                };
+// Guía completa: todos los canales + programación desde tu Worker
+async function loadFromGuideWorker() {
+  const res = await fetch(GUIDE_WORKER);
+  const json = await res.json();
+  if (!res.ok || json.error) throw new Error("Worker de guía (" + (json.step || res.status) + "): " + (json.error || "error"));
+  return (json.channels || []).map(c => {
+    const logo = (c.images || []).find(i => /solidLogo/i.test(i.type || ""))?.url ||
+                 (c.images || []).find(i => /colorLogo/i.test(i.type || ""))?.url;
+    return {
+      id: c.id,
+      name: c.name || ("Canal " + c.id),
+      url: STREAM_BASE + c.id + ".m3u8",
+      icono: logo || ("https://images.pluto.tv/channels/" + c.id + "/colorLogoPNG.png"),
+      iconoColor: (c.images || []).find(i => /colorLogo/i.test(i.type || ""))?.url ||
+                  ("https://images.pluto.tv/channels/" + c.id + "/colorLogoPNG.png"),
+      listings: ((json.timelines || {})[c.id] || []).map(t => ({
+        startTimestamp: Date.parse(t.start),
+        endTimestamp: Date.parse(t.stop),
+        title: t.title || t.episode?.series?.name || "",
+        episodeTitle: t.episode?.name || t.title || "",
+        entityType: t.episode?.series?.type === "movie" ? "movie" : "show",
+        description: t.episode?.description || t.description || t.episode?.series?.description || "",
+        ...thumbs(t)
+      }))
+    };
+  });
+}
 
-                card.innerHTML = `
-                    <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${channel.id}', event)">
-                        ★
-                    </button>
-                    <img class="channel-logo" src="${channel.logo}" alt="${channel.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/150x100?text=Sin+Logo'">
-                    <div class="channel-name">${channel.name}</div>
-                    <div class="channel-group">${channel.group}</div>
-                `;
-                container.appendChild(card);
-            });
-        }
+async function loadChannels() {
+  const status = $("statusMsg");
+  status.style.display = "block";
+  status.textContent = "Cargando canales...";
+  try {
+    if (GUIDE_WORKER) {
+      try { channels = await loadFromGuideWorker(); }
+      catch (e) { console.warn("Guía completa falló, uso la página de Pluto:", e.message); channels = []; }
+    }
+    if (!channels.length) channels = extractChannels(await fetchPageProps());
+    if (!channels.length) throw new Error("No se encontraron canales en la respuesta");
+    status.style.display = "none";
+    applyFilter();
+  } catch (err) {
+    console.error("Error al cargar canales:", err);
+    status.innerHTML = "No se pudieron cargar los canales.<br><small>" +
+      escapeHtml(err.message) + "</small><br><button class='btn' id='retryBtn'>Reintentar</button>";
+    $("retryBtn").onclick = loadChannels;
+  }
+}
 
-        // Alternar Favoritos
-        function toggleFavorite(id, event) {
-            event.stopPropagation();
-            if (favorites.includes(id)) {
-                favorites = favorites.filter(favId => favId !== id);
-            } else {
-                favorites.push(id);
-            }
-            localStorage.setItem('pluto_favs', JSON.stringify(favorites));
-            applyFilters();
-        }
+/* ================= RENDER ================= */
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+}
 
-        // Filtrar Canales
-        function applyFilters() {
-            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+// Programa en emisión según la hora actual (usa currentListing + upcomingListing)
+function nowListing(ch) {
+  const now = Date.now();
+  return ch.listings.find(l => l.startTimestamp <= now && now < l.endTimestamp) || null;
+}
+const fmtTime = ts => new Date(ts).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+function fmtRemaining(ms) {
+  const mins = Math.max(1, Math.ceil(ms / 60000));
+  const h = Math.floor(mins / 60), m = mins % 60;
+  return (h ? h + "h " : "") + m + "m restante";
+}
+function progTitle(l) {
+  return l.entityType === "show" && l.title && l.episodeTitle && l.episodeTitle !== l.title
+    ? l.title + " · " + l.episodeTitle : (l.episodeTitle || l.title || "Sin título");
+}
 
-            const filtered = channels.filter(channel => {
-                const matchesSearch = channel.name.toLowerCase().includes(searchTerm) || channel.group.toLowerCase().includes(searchTerm);
-                const matchesFav = currentFilterGroup === 'FAV' ? favorites.includes(channel.id) : true;
-                return matchesSearch && matchesFav;
-            });
+/* ====== PROGRAMACIÓN POR ID ======
+   getSchedule("ID")  -> devuelve { source, items:[{start,end,title,subtitle}] }
+   showSchedule("ID") -> abre el panel con la programación
+   Usable desde la consola:  showSchedule("5dcde437229eff00091b6c30")      */
+async function getSchedule(id, hours = 12) {
+  const ch = channels.find(c => c.id === id);
+  try {
+    const start = new Date(Date.now() - 30 * 60000).toISOString();
+    const api = GUIDE_API + "?start=" + encodeURIComponent(start) +
+                "&channelIds=" + encodeURIComponent(id) + "&duration=" + (hours * 60);
+    const res = await fetch(WORKER_PROXY + encodeURIComponent(api));
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const json = await res.json();
+    const entry = (json.data || []).find(d => d.channelId === id) || (json.data || [])[0];
+    const tl = entry && entry.timelines;
+    if (!Array.isArray(tl) || !tl.length) throw new Error("respuesta sin programación");
+    return {
+      source: "guide",
+      items: tl.map(t => ({
+        start: new Date(t.start).getTime(),
+        end: new Date(t.stop).getTime(),
+        title: t.title || t.episode?.series?.name || "Sin título",
+        subtitle: t.episode?.name && t.episode.name !== t.title ? t.episode.name : ""
+      }))
+    };
+  } catch (err) {
+    console.warn("Guía completa no disponible, uso datos locales:", err.message);
+    if (!ch) throw new Error("Canal no encontrado: " + id);
+    return {
+      source: "local",
+      items: ch.listings.map(l => ({
+        start: l.startTimestamp, end: l.endTimestamp,
+        title: l.title || l.episodeTitle,
+        subtitle: l.episodeTitle && l.episodeTitle !== l.title ? l.episodeTitle : ""
+      }))
+    };
+  }
+}
 
-            renderChannels(filtered);
-        }
+function showDetail(ch, l) {
+  $("schedTitle").textContent = progTitle(l);
+  const list = $("schedList");
+  list.className = "sched-list no-scroll";
+  list.textContent = "";
+  list.style.padding = "18px";
+  const srcs = [l.resolvedfilePathThumb, ...(l.thumbFallbacks || [])].filter(Boolean);
+  if (srcs.length) {
+    const cover = document.createElement("img");
+    let n = 0;
+    cover.alt = "";
+    cover.style.cssText = "display:block;width:100%;aspect-ratio:16/9;max-height:34vh;object-fit:cover;border-radius:8px;margin-bottom:14px;background:#000";
+    cover.onerror = () => { if (++n < srcs.length) cover.src = srcs[n]; else cover.remove(); };
+    cover.src = srcs[0];
+    list.appendChild(cover);
+  }
+  const t = document.createElement("div");
+  t.style.cssText = "color:#888;font-size:.85rem;margin-bottom:12px";
+  t.textContent = fmtTime(l.startTimestamp) + " – " + fmtTime(l.endTimestamp);
+  const d = document.createElement("div");
+  d.style.lineHeight = "1.55";
+  d.textContent = l.description || "Sin descripción disponible.";
+  list.append(t, d);
+  $("schedNote").textContent = ch.name;
+  $("schedModal").classList.add("open");
+}
 
-        function filterGroup(group, event) {
-            currentFilterGroup = group;
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            applyFilters();
-        }
+async function showSchedule(id) {
+  const ch = channels.find(c => c.id === id);
+  $("schedTitle").textContent = "Programación — " + (ch ? ch.name : id);
+  const list = $("schedList"), note = $("schedNote");
+  list.className = "sched-list";
+  list.textContent = "Cargando...";
+  list.style.padding = "18px";
+  note.textContent = "";
+  $("schedModal").classList.add("open");
+  try {
+    const { source, items } = await getSchedule(id);
+    const now = Date.now();
+    const upcoming = items.filter(i => i.end > now).sort((a, b) => a.start - b.start);
+    list.textContent = "";
+    list.style.padding = "6px 0";
+    if (!upcoming.length) { list.textContent = "Sin programación disponible."; list.style.padding = "18px"; return; }
+    upcoming.forEach(i => {
+      const row = document.createElement("div");
+      row.className = "sched-item" + (i.start <= now ? " live" : "");
+      const t = document.createElement("div"); t.className = "t";
+      t.textContent = fmtTime(i.start) + " – " + fmtTime(i.end);
+      const body = document.createElement("div");
+      const n = document.createElement("div"); n.className = "n";
+      n.textContent = (i.start <= now ? "● En vivo: " : "") + i.title;
+      body.appendChild(n);
+      if (i.subtitle) { const e = document.createElement("div"); e.className = "e"; e.textContent = i.subtitle; body.appendChild(e); }
+      row.append(t, body);
+      list.appendChild(row);
+    });
+    note.textContent = source === "local"
+      ? "Mostrando solo los próximos programas de la página (la guía completa no respondió)."
+      : "Guía completa de las próximas horas.";
+  } catch (err) {
+    list.textContent = "No se pudo cargar la programación: " + err.message;
+    list.style.padding = "18px";
+  }
+}
+window.getSchedule = getSchedule;
+window.showSchedule = showSchedule;
 
+function buildTrack(ch) {
+  const now = Date.now();
+  const track = document.createElement("div");
+  track.className = "track";
+  const items = ch.listings.filter(l => l.endTimestamp > now).sort((a, b) => a.startTimestamp - b.startTimestamp);
+  if (!items.length) {
+    const e = document.createElement("div");
+    e.className = "empty-row";
+    e.textContent = "Programación no disponible";
+    track.appendChild(e);
+    return track;
+  }
+  items.forEach(l => {
+    const live = l.startTimestamp <= now;
+    const el = document.createElement("div");
+    el.className = "prog" + (live ? " live" : "");
+    el.tabIndex = 0;
+    const txt = document.createElement("div");
+    if (live) {
+      const thumb = document.createElement("div");
+      thumb.className = "thumb";
+      const srcs = [l.resolvedfilePathThumb, ...(l.thumbFallbacks || [])].filter(Boolean);
+      if (srcs.length) {
+        const im = document.createElement("img");
+        let n = 0;
+        im.loading = "lazy";
+        im.alt = "";
+        im.onerror = () => { if (++n < srcs.length) im.src = srcs[n]; else im.remove(); };
+        im.src = srcs[0];
+        thumb.appendChild(im);
+      }
+      el.appendChild(thumb);
+      txt.className = "txt";
+    }
+    const name = document.createElement("div");
+    name.className = "name";
+    name.textContent = progTitle(l);
+    const sub = document.createElement("div");
+    sub.className = "sub";
+    if (live) {
+      const rem = document.createElement("span");
+      rem.textContent = fmtRemaining(l.endTimestamp - now);
+      const bar = document.createElement("div");
+      bar.className = "bar";
+      const fill = document.createElement("i");
+      fill.style.width = Math.min(100, Math.max(0, (now - l.startTimestamp) / (l.endTimestamp - l.startTimestamp) * 100)) + "%";
+      bar.appendChild(fill);
+      sub.append(rem, bar);
+    } else {
+      sub.textContent = fmtTime(l.startTimestamp);
+    }
+    txt.appendChild(name);
+    if (l.description) {
+      const desc = document.createElement("div");
+      desc.className = "desc";
+      desc.textContent = l.description;
+      txt.appendChild(desc);
+    }
+    txt.appendChild(sub);
+    el.appendChild(txt);
+    const info = document.createElement("button");
+    info.className = "info-btn";
+    info.textContent = "i";
+    info.setAttribute("aria-label", "Más información");
+    info.onclick = e => { e.stopPropagation(); showDetail(ch, l); };
+    el.appendChild(info);
+    const action = () => live ? openModal(ch) : showSchedule(ch.id);
+    el.onclick = action;
+    el.onkeydown = e => { if (e.key === "Enter") action(); };
+    track.appendChild(el);
+  });
+  return track;
+}
 
-        // Funciones del Reproductor JWPlayer
-        async function openPlayer(streamUrl) {
-            document.getElementById("videoModal").style.display = "block";
+/* ====== Navegación horizontal de cada fila ====== */
+function updateArrows(wrap) {
+  if (!wrap) return;
+  const t = wrap.querySelector(".track");
+  wrap.querySelector(".arrow.left").hidden  = t.scrollLeft <= 4;
+  wrap.querySelector(".arrow.right").hidden = t.scrollLeft + t.clientWidth >= t.scrollWidth - 4;
+}
 
-            // Pedirle al worker que resuelva la redirección de jmp2.uk a stitcher.pluto.tv
-            let realStreamUrl = streamUrl;
-            try {
-                const res = await fetch("https://proxyplutotv.canalesonline24.workers.dev/?mode=redirect&url=" + encodeURIComponent(streamUrl));
-                if (res.ok) {
-                    realStreamUrl = await res.text(); // Devuelve https://stitcher-ipv4.pluto.tv/...
-                }
-            } catch (e) {
-                console.error("No se pudo resolver la redirección:", e);
-            }
+let drag = null, justDragged = false;
+window.addEventListener("mousemove", e => {
+  if (!drag) return;
+  const dx = e.clientX - drag.startX;
+  if (Math.abs(dx) > 5) { drag.moved = true; drag.track.classList.add("dragging"); }
+  if (drag.moved) drag.track.scrollLeft = drag.startLeft - dx;
+});
+window.addEventListener("mouseup", () => {
+  if (!drag) return;
+  drag.track.classList.remove("dragging");
+  justDragged = drag.moved;
+  drag = null;
+});
 
-            // Le pasamos la URL de Pluto TV envuelta en el proxy a JW Player
-            const finalProxyUrl = "https://proxyplutotv.canalesonline24.workers.dev/?url=" + encodeURIComponent(realStreamUrl);
+function buildTrackWrap(ch) {
+  const wrap = document.createElement("div");
+  wrap.className = "track-wrap";
+  const mk = (dir, txt, label) => {
+    const b = document.createElement("button");
+    b.className = "arrow " + dir;
+    b.textContent = txt;
+    b.setAttribute("aria-label", label);
+    b.onclick = () => {
+      const t = wrap.querySelector(".track");
+      t.scrollBy({ left: (dir === "left" ? -1 : 1) * t.clientWidth * 0.8, behavior: "smooth" });
+    };
+    return b;
+  };
+  wrap.append(mk("left", "‹", "Anterior"), buildTrack(ch), mk("right", "›", "Siguiente"));
 
-            if (!playerInstance) {
-                playerInstance = jwplayer("jwplayer-container").setup({
-                    file: finalProxyUrl,
-                    width: "100%",
-                    height: "100%",
-                    autostart: true,
-                    type: "hls"
-                });
-            } else {
-                playerInstance.load([{
-                    file: finalProxyUrl,
-                    type: "hls"
-                }]);
-                playerInstance.play();
-            }
-        }
+  // Actualiza flechas al hacer scroll (scroll no burbujea: se usa captura)
+  wrap.addEventListener("scroll", () => updateArrows(wrap), true);
 
-        function closePlayer() {
-            document.getElementById("videoModal").style.display = "none";
-            if (playerInstance) {
-                playerInstance.pause();
-            }
-        }
+  // Arrastrar con el mouse (estado global, ver initDrag)
+  wrap.addEventListener("mousedown", e => {
+    if (e.button !== 0 || e.target.closest(".arrow")) return;
+    const t = wrap.querySelector(".track");
+    drag = { track: t, startX: e.clientX, startLeft: t.scrollLeft, moved: false };
+  });
+  // Si fue un arrastre, no abrir el reproductor / la guía
+  wrap.addEventListener("click", e => {
+    if (justDragged) { e.stopPropagation(); e.preventDefault(); justDragged = false; }
+  }, true);
 
-        // Inicializar
-        document.addEventListener('DOMContentLoaded', () => {
-            channels = parseM3U(m3uRawData);
-            renderChannels(channels);
+  requestAnimationFrame(() => updateArrows(wrap));
+  return wrap;
+}
 
-            document.getElementById('search-bar').addEventListener('input', applyFilters);
+function refreshNow() {
+  document.querySelectorAll(".row").forEach(row => {
+    const ch = channels.find(c => c.id === row.dataset.id);
+    if (!ch) return;
+    const old = row.querySelector(".track");
+    const fresh = buildTrack(ch);
+    const left = old.scrollLeft;
+    old.replaceWith(fresh);
+    fresh.scrollLeft = left;
+    updateArrows(row.querySelector(".track-wrap"));
+  });
+}
+setInterval(refreshNow, 30000);
 
-            // Tecla Escape para salir del modal
-            document.addEventListener('keydown', (e) => {
-                if (e.key === "Escape") {
-                    closePlayer();
-                }
-            });
-        });
-    </script>
+function renderGrid(list) {
+  const grid = $("gridChannels");
+  grid.innerHTML = "";
+  list.slice(0, visibleCount).forEach(ch => {
+    const row = document.createElement("div");
+    row.className = "row";
+    row.dataset.id = ch.id;
+
+    const cell = document.createElement("div");
+    cell.className = "logo-cell";
+    cell.tabIndex = 0;
+    cell.title = ch.name;
+    const star = document.createElement("button");
+    star.className = "fav-star" + (favorites.includes(ch.id) ? " active" : "");
+    star.textContent = "★";
+    star.setAttribute("aria-label", "Favorito");
+    star.onclick = e => { e.stopPropagation(); toggleFav(ch.id); };
+    const img = document.createElement("img");
+    img.src = ch.icono;
+    img.alt = ch.name;
+    img.loading = "lazy";
+    let colorBad = false;
+    // Si falla la versión a color vuelve a la sólida; si falla la sólida muestra el nombre
+    img.onerror = () => {
+      if (img.dataset.state === "color") { colorBad = true; img.dataset.state = "solid"; img.src = ch.icono; return; }
+      img.onerror = null;
+      img.replaceWith(document.createTextNode(ch.name));
+    };
+    const toColor = () => { if (!colorBad && ch.iconoColor && img.dataset.state !== "color") { img.dataset.state = "color"; img.src = ch.iconoColor; } };
+    const toSolid = () => { if (img.dataset.state === "color") { img.dataset.state = "solid"; img.src = ch.icono; } };
+    cell.addEventListener("mouseenter", toColor);
+    cell.addEventListener("mouseleave", toSolid);
+    cell.addEventListener("focus", toColor);
+    cell.addEventListener("blur", toSolid);
+    cell.append(star, img);
+    cell.onclick = () => openModal(ch);
+    cell.onkeydown = e => { if (e.key === "Enter") openModal(ch); };
+
+    row.append(cell, buildTrackWrap(ch));
+    grid.appendChild(row);
+  });
+
+  $("moreBtn").style.display = list.length > visibleCount ? "inline-block" : "none";
+
+  const status = $("statusMsg");
+  if (!list.length && channels.length) {
+    status.style.display = "block";
+    status.textContent = currentFilter === "favs" ? "Todavía no marcaste favoritos." : "No hay canales que coincidan.";
+  } else if (channels.length) {
+    status.style.display = "none";
+  }
+}
+
+function applyFilter() {
+  const q = $("searchInput").value.trim().toLowerCase();
+  let result = channels.filter(c => {
+    if (c.name.toLowerCase().includes(q)) return true;
+    const l = nowListing(c);
+    return l && ((l.title || "") + " " + (l.episodeTitle || "")).toLowerCase().includes(q);
+  });
+  if (currentFilter === "favs") result = result.filter(c => favorites.includes(c.id));
+  renderGrid(result);
+}
+
+function toggleFav(id) {
+  favorites = favorites.includes(id) ? favorites.filter(f => f !== id) : [...favorites, id];
+  saveFavs();
+  applyFilter();
+}
+
+function setTab(tab) {
+  currentFilter = tab;
+  visibleCount = PAGE_SIZE;
+  $("tabAll").classList.toggle("active", tab === "all");
+  $("tabFavs").classList.toggle("active", tab === "favs");
+  applyFilter();
+}
+
+/* ================= REPRODUCTOR (JW Player; hls.js como respaldo) ================= */
+let jwLoading = null;
+function loadJW() {
+  if (window.jwplayer) return Promise.resolve(true);
+  if (!JW_LIBRARY) return Promise.resolve(false);
+  if (!jwLoading) jwLoading = new Promise(res => {
+    const sc = document.createElement("script");
+    sc.src = JW_LIBRARY;
+    sc.onload = () => { if (JW_KEY && window.jwplayer) window.jwplayer.key = JW_KEY; res(!!window.jwplayer); };
+    sc.onerror = () => { console.warn("No se pudo cargar la librería de JW Player"); res(false); };
+    document.head.appendChild(sc);
+  });
+  return jwLoading;
+}
+
+function showPlayerMsg(text) {
+  const el = $("playerMsg");
+  el.textContent = text;
+  el.style.display = text ? "flex" : "none";
+}
+
+function destroyPlayer() {
+  playToken++;
+  if (jw) { try { jw.remove(); } catch (e) {} jw = null; }
+  if (hls) { hls.destroy(); hls = null; }
+  const host = $("playerHost");
+  const v = host.querySelector("video");
+  if (v) { v.pause(); v.removeAttribute("src"); v.load(); }
+  host.innerHTML = "";
+  showPlayerMsg("");
+}
+
+function startJW(ch, src, token) {
+  const host = $("playerHost");
+  host.innerHTML = '<div id="jwplayer"></div>';
+  try {
+    jw = window.jwplayer("jwplayer").setup({
+      playlist: [{ title: ch.name, sources: [{ file: src, type: "hls" }] }],
+      autostart: true,
+      width: "100%",
+      height: "100%",
+      stretching: "uniform"
+    });
+    jw.on("setupError", e => {
+      console.warn("JW Player no se pudo iniciar, uso hls.js:", e && e.message);
+      if (token !== playToken) return;
+      try { jw.remove(); } catch (x) {}
+      jw = null;
+      startHls(src);
+    });
+    jw.on("error", e => {
+      console.error("Error JW Player:", e);
+      if (token === playToken) showPlayerMsg("No se pudo cargar el canal. Puede estar caído o bloqueado por región.");
+    });
+  } catch (err) {
+    console.warn("JW Player falló, uso hls.js:", err.message);
+    startHls(src);
+  }
+}
+
+function startHls(src) {
+  const host = $("playerHost");
+  host.innerHTML = '<video controls autoplay playsinline></video>';
+  const video = host.querySelector("video");
+  if (window.Hls && Hls.isSupported()) {
+    hls = new Hls({ lowLatencyMode: false });
+    hls.loadSource(src);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(() => {}));
+    hls.on(Hls.Events.ERROR, (_, data) => {
+      if (!data.fatal) return;
+      console.error("Error HLS:", data);
+      if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+        showPlayerMsg("No se pudo cargar el canal. Puede estar caído o bloqueado por región.");
+        hls.destroy(); hls = null;
+      } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+        hls.recoverMediaError();
+      } else {
+        showPlayerMsg("Error de reproducción.");
+        hls.destroy(); hls = null;
+      }
+    });
+  } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    video.src = src; // Safari / iOS
+    video.play().catch(() => {});
+  } else {
+    showPlayerMsg("Tu navegador no soporta reproducción HLS.");
+  }
+}
+
+async function openModal(ch) {
+  const l = nowListing(ch);
+  $("modalChannelTitle").textContent = ch.name + (l ? " — " + (l.episodeTitle || l.title) : "");
+  $("playerModal").classList.add("open");
+  destroyPlayer();
+  const token = playToken;
+  const src = STREAM_PROXY + "?url=" + encodeURIComponent(ch.url);
+
+  const hasJW = await loadJW();
+  if (token !== playToken) return;       // se cerró o se cambió de canal mientras cargaba
+  if (hasJW) startJW(ch, src, token);
+  else startHls(src);
+}
+
+function closeModal() {
+  $("playerModal").classList.remove("open");
+  destroyPlayer();
+}
+
+/* ================= EVENTOS ================= */
+$("searchInput").addEventListener("input", () => { visibleCount = PAGE_SIZE; applyFilter(); });
+$("tabAll").onclick  = () => setTab("all");
+$("tabFavs").onclick = () => setTab("favs");
+$("moreBtn").onclick = () => { visibleCount += PAGE_SIZE; applyFilter(); };
+$("closeBtn").onclick = closeModal;
+$("schedClose").onclick = () => $("schedModal").classList.remove("open");
+$("schedModal").addEventListener("click", e => { if (e.target.id === "schedModal") $("schedModal").classList.remove("open"); });
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  if ($("schedModal").classList.contains("open")) $("schedModal").classList.remove("open");
+  else closeModal();
+});
+
+loadChannels();
+</script>
 </body>
-
 </html>
