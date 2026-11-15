@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="noindex, nofollow, noarchive" name="robots" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Live Cams Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="style-jw.css" />
+    <!-- JW Player 8.26.0 -->
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script>
+        const JW_LIBRARY = "https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js";
+        const JW_KEY = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";
+        if (typeof jwplayer !== 'undefined') {
+            jwplayer.key = JW_KEY;
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(236, 72, 153, 0.25);
+            border-color: #ec4899;
+        }
+
+        /* Asegurar que JW Player ocupe todo el contenedor del modal */
+        #jwplayerContainer,
+        #jwplayerContainer .jwplayer {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-40 bg-gray-950/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-tr from-pink-600 to-rose-500 flex items-center justify-center shadow-lg shadow-pink-600/20">
+                    <i class="fa-solid fa-video text-white text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+                        Live Cams
+                        <span id="totalBadge"
+                            class="text-xs font-medium bg-pink-600/20 text-pink-400 border border-pink-500/30 px-2 py-0.5 rounded-full">0</span>
+                    </h1>
+                    <p class="text-xs text-gray-400">Transmisiones en vivo</p>
+                </div>
+            </div>
+
+            <!-- Buscador y controles -->
+            <div class="flex items-center gap-2 flex-1 max-w-xl justify-end">
+                <div class="relative flex-1 max-w-xs">
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar modelo..."
+                        class="w-full bg-gray-900 border border-gray-700 text-sm text-white rounded-lg pl-9 pr-8 py-2 focus:outline-none focus:border-pink-500 transition" />
+                    <button id="clearSearch"
+                        class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+
+                <select id="categoryFilter"
+                    class="bg-gray-900 border border-gray-700 text-sm text-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-pink-500">
+                    <option value="all">Todas las categorías</option>
+                </select>
+
+                <button id="refreshBtn" onclick="loadModels()" title="Recargar lista"
+                    class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-200 px-3 py-2 rounded-lg text-sm transition flex items-center gap-2">
+                    <i id="refreshIcon" class="fa-solid fa-rotate-right"></i>
+                    <span class="hidden sm:inline">Actualizar</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+
+        <!-- Estado de Carga / Error -->
+        <div id="statusContainer" class="hidden flex flex-col items-center justify-center py-20 text-center">
+            <div id="loaderSpinner"
+                class="w-12 h-12 border-4 border-pink-500/30 border-t-pink-500 rounded-full animate-spin mb-4"></div>
+            <p id="statusTitle" class="text-lg font-semibold text-gray-200">Cargando transmisiones...</p>
+            <p id="statusSubtitle" class="text-sm text-gray-400 mt-1 max-w-md"></p>
+            <button id="retryBtn" onclick="loadModels()"
+                class="hidden mt-4 bg-pink-600 hover:bg-pink-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+                Reintentar
+            </button>
+        </div>
+
+        <!-- Grid de Modelos -->
+        <div id="modelsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+
+        <!-- Sin resultados -->
+        <div id="emptyState" class="hidden text-center py-20">
+            <i class="fa-regular fa-face-frown text-4xl text-gray-600 mb-3"></i>
+            <p class="text-gray-300 font-medium">No se encontraron modelos con ese filtro.</p>
+        </div>
+    </main>
+
+    <!-- Modal Reproductor Fullscreen -->
+    <div id="playerModal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-sm flex flex-col">
+        <!-- Barra superior del modal -->
+        <div class="flex items-center justify-between gap-2 px-4 py-3 bg-gray-950 border-b border-gray-800">
+            <div class="flex items-center gap-3">
+                <img id="modalAvatar" src="" alt=""
+                    class="w-9 h-9 rounded-full object-cover border border-pink-500 bg-gray-800" />
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h2 id="modalUsername" class="font-bold text-white text-base">Modelo</h2>
+                        <span
+                            class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span> EN VIVO
+                        </span>
+                    </div>
+                    <p id="modalMeta" class="text-xs text-gray-400">ID: -</p>
+                </div>
+            </div>
+
+            <button onclick="closePlayer()"
+                class="bg-pink-600 hover:bg-pink-500 text-white px-3.5 py-1.5 rounded-lg text-sm font-semibold transition flex items-center gap-1.5">
+                <i class="fa-solid fa-xmark"></i> Cerrar
+            </button>
+        </div>
+
+        <!-- Contenedor del Reproductor (sin estilos propios para usar style-jw.css) -->
+        <div class="flex-1 relative w-full h-full flex items-center justify-center overflow-hidden">
+            <div id="playerLoader" class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/80">
+                <div class="w-10 h-10 border-4 border-pink-500/30 border-t-pink-500 rounded-full animate-spin mb-3">
+                </div>
+                <span class="text-xs text-gray-300">Cargando transmisión...</span>
+            </div>
+
+            <div id="playerErrorBox"
+                class="hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/90 p-6 text-center">
+                <i class="fa-solid fa-triangle-exclamation text-3xl text-amber-500 mb-2"></i>
+                <p id="playerErrorMsg" class="text-sm text-gray-200 max-w-md">No se pudo reproducir el stream.</p>
+            </div>
+
+            <div id="jwplayerContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // CONFIGURACIÓN DE ENDPOINTS Y CONSTANTES
+        // ==========================================
+        const TARGET_API = 'https://es.stripchat.com/api/front/v2/models?primaryTag=girls&limit=60';
+        const CORS_PROXY = 'https://servidores.exefiguee.workers.dev/';
+        const PLAYER_BASE_URL = 'https://pelisjuanita.com/tv/mycamtv/stream.php?id=';
+        const IMG_CDN_BASE = 'https://static-proxy.strpst.com/';
+
+        let allModels = [];
+
+        // Elementos del DOM
+        const modelsGrid = document.getElementById('modelsGrid');
+        const statusContainer = document.getElementById('statusContainer');
+        const loaderSpinner = document.getElementById('loaderSpinner');
+        const statusTitle = document.getElementById('statusTitle');
+        const statusSubtitle = document.getElementById('statusSubtitle');
+        const retryBtn = document.getElementById('retryBtn');
+        const emptyState = document.getElementById('emptyState');
+        const totalBadge = document.getElementById('totalBadge');
+        const searchInput = document.getElementById('searchInput');
+        const clearSearch = document.getElementById('clearSearch');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const refreshIcon = document.getElementById('refreshIcon');
+
+        function proxify(url) {
+            if (!CORS_PROXY) return url;
+            const base = CORS_PROXY.endsWith('/') ? CORS_PROXY : `${CORS_PROXY}/`;
+            return `${base}?url=${encodeURIComponent(url)}`;
+        }
+
+        // ==========================================
+        // CARGA Y PARSEO DE LA API
+        // ==========================================
+        async function loadModels() {
+            showStatus('loading', 'Cargando transmisiones...', 'Consultando API mediante Cloudflare Worker...');
+            refreshIcon.classList.add('fa-spin');
+
+            try {
+                let response = await fetch(proxify(TARGET_API));
+
+                if (!response.ok) {
+                    response = await fetch(`${CORS_PROXY}${encodeURIComponent(TARGET_API)}`);
+                }
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                parseApiData(data);
+                hideStatus();
+                renderModels();
+            } catch (error) {
+                console.error('Error al cargar la API:', error);
+                showStatus(
+                    'error',
+                    'No se pudo conectar con la API',
+                    `Detalle: ${error.message}. Verifica que tu Worker permita el dominio de Stripchat.`
+                );
+            } finally {
+                refreshIcon.classList.remove('fa-spin');
+            }
+        }
+
+        function parseApiData(data) {
+            const uniqueMap = new Map();
+            const categories = new Set();
+
+            if (data && Array.isArray(data.blocks)) {
+                data.blocks.forEach((block) => {
+                    const blockLabel = formatBlockName(block.id || block.url || 'General');
+                    if (block.models && Array.isArray(block.models)) {
+                        block.models.forEach((model) => {
+                            if (model.streamName && !uniqueMap.has(model.streamName)) {
+                                uniqueMap.set(model.streamName, {
+                                    ...model,
+                                    categoryLabel: blockLabel
+                                });
+                                categories.add(blockLabel);
+                            }
+                        });
+                    }
+                });
+            } else if (data && Array.isArray(data.models)) {
+                data.models.forEach((model) => {
+                    if (model.streamName && !uniqueMap.has(model.streamName)) {
+                        uniqueMap.set(model.streamName, {
+                            ...model,
+                            categoryLabel: 'General'
+                        });
+                    }
+                });
+            }
+
+            allModels = Array.from(uniqueMap.values());
+            populateCategories(Array.from(categories));
+        }
+
+        function formatBlockName(raw) {
+            const map = {
+                countryGenderLanguageSpeaking: 'En Español',
+                countryGenderModels: 'Destacadas por País',
+                recommended: 'Recomendadas',
+                new: 'Nuevas',
+                hd: 'HD'
+            };
+            return map[raw] || raw.replace(/girls\//i, '').replace(/[-_]/g, ' ').toUpperCase();
+        }
+
+        function populateCategories(categories) {
+            const currentVal = categoryFilter.value;
+            categoryFilter.innerHTML = '<option value="all">Todas las categorías</option>';
+            categories.forEach((cat) => {
+                const opt = document.createElement('option');
+                opt.value = cat;
+                opt.textContent = cat;
+                categoryFilter.appendChild(opt);
+            });
+            if (categories.includes(currentVal)) {
+                categoryFilter.value = currentVal;
+            }
+        }
+
+        // ==========================================
+        // RENDERIZADO DE TARJETAS
+        // ==========================================
+        function renderModels() {
+            const query = searchInput.value.trim().toLowerCase();
+            const selectedCat = categoryFilter.value;
+
+            const filtered = allModels.filter((m) => {
+                const matchesName = m.username.toLowerCase().includes(query) || String(m.streamName).includes(query);
+                const matchesCat = selectedCat === 'all' || m.categoryLabel === selectedCat;
+                return matchesName && matchesCat;
+            });
+
+            totalBadge.textContent = filtered.length;
+            modelsGrid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            emptyState.classList.add('hidden');
+
+            const fragment = document.createDocumentFragment();
+
+            filtered.forEach((model) => {
+                const card = document.createElement('div');
+                card.className = 'card-hover bg-gray-900 border border-gray-800 rounded-xl overflow-hidden cursor-pointer flex flex-col group';
+                card.onclick = () => openPlayer(model);
+
+                const thumbUrl = buildImageUrl(model.previewUrlThumbSmall || model.avatarUrl);
+                const avatarUrl = buildImageUrl(model.avatarUrl);
+                const countryFlag = model.country ? getFlagEmoji(model.country) : '🌐';
+                const statusBadge = getStatusBadge(model.status);
+
+                card.innerHTML = `
+          <div class="relative aspect-[4/3] bg-gray-950 overflow-hidden">
+            <img
+              src="${thumbUrl}"
+              alt="${escapeHtml(model.username)}"
+              loading="lazy"
+              onerror="this.src='https://placehold.co/400x300/111827/6b7280?text=Sin+Vista+Previa'"
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-black/40"></div>
+
+            <!-- Badges superiores -->
+            <div class="absolute top-2 left-2 flex items-center gap-1.5">
+              ${statusBadge}
+              ${model.isHd ? '<span class="bg-black/70 backdrop-blur-sm text-pink-400 border border-pink-500/40 text-[10px] font-bold px-1.5 py-0.5 rounded">HD</span>' : ''}
+            </div>
+
+            ${model.isNew ? '<span class="absolute top-2 right-2 bg-emerald-500 text-gray-950 text-[10px] font-extrabold px-1.5 py-0.5 rounded uppercase">Nueva</span>' : ''}
+
+            <!-- Icono Play -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200 bg-black/30">
+              <div class="w-12 h-12 rounded-full bg-pink-600/90 text-white flex items-center justify-center shadow-lg">
+                <i class="fa-solid fa-play ml-0.5 text-lg"></i>
+              </div>
+            </div>
+
+            <!-- Info inferior -->
+            <div class="absolute bottom-2 left-2 right-2 flex items-center justify-between text-xs text-gray-200">
+              <span class="bg-black/65 backdrop-blur-sm px-2 py-0.5 rounded-md flex items-center gap-1 font-medium">
+                <i class="fa-solid fa-eye text-pink-400 text-[10px]"></i>
+                ${Number(model.viewersCount || 0).toLocaleString('es-AR')}
+              </span>
+              <span class="bg-black/65 backdrop-blur-sm px-1.5 py-0.5 rounded-md text-xs" title="País: ${(model.country || 'N/A').toUpperCase()}">
+                ${countryFlag}
+              </span>
+            </div>
+          </div>
+
+          <div class="p-3 flex items-center gap-2.5 bg-gray-900">
+            <img
+              src="${avatarUrl}"
+              alt=""
+              onerror="this.style.display='none'"
+              class="w-8 h-8 rounded-full object-cover border border-gray-700 shrink-0 bg-gray-800"
+            />
+            <div class="min-w-0 flex-1">
+              <h3 class="text-sm font-semibold text-white truncate group-hover:text-pink-400 transition">
+                ${escapeHtml(model.username)}
+              </h3>
+              <p class="text-[11px] text-gray-400 truncate">
+                ${model.groupShowTopic ? escapeHtml(model.groupShowTopic) : `ID: ${model.streamName}`}
+              </p>
+            </div>
+          </div>
+        `;
+
+                fragment.appendChild(card);
+            });
+
+            modelsGrid.appendChild(fragment);
+        }
+
+        // ==========================================
+        // REPRODUCTOR MODAL CON JW PLAYER 8.26.0
+        // ==========================================
+        async function openPlayer(model) {
+            const modal = document.getElementById('playerModal');
+            const modalUsername = document.getElementById('modalUsername');
+            const modalMeta = document.getElementById('modalMeta');
+            const modalAvatar = document.getElementById('modalAvatar');
+            const posterUrl = buildImageUrl(model.previewUrlThumbSmall || model.avatarUrl);
+
+            const endpointUrl = `${PLAYER_BASE_URL}${encodeURIComponent(model.streamName)}`;
+
+            modalUsername.textContent = model.username;
+            modalMeta.textContent = `Stream ID: ${model.streamName} • ${Number(model.viewersCount || 0).toLocaleString('es-AR')} espectadores`;
+            modalAvatar.src = buildImageUrl(model.avatarUrl);
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            await initJWPlayerStream(endpointUrl, model.username, posterUrl);
+        }
+
+        async function initJWPlayerStream(endpointUrl, title, poster) {
+            document.getElementById('playerErrorBox').classList.add('hidden');
+            document.getElementById('playerLoader').classList.remove('hidden');
+
+            let playableUrl = endpointUrl;
+
+            try {
+                const res = await fetch(proxify(endpointUrl));
+                if (res.ok) {
+                    const text = await res.text();
+                    if (text.trim().startsWith('#EXTM3U')) {
+                        playableUrl = proxify(endpointUrl);
+                    } else {
+                        const m3u8Match = text.match(/https?:\/\/[^\s"'<>\\]+\.m3u8[^\s"'<>\\]*/i);
+                        if (m3u8Match && m3u8Match[0]) {
+                            playableUrl = m3u8Match[0].replace(/\\\//g, '/');
+                        }
+                    }
+                }
+            } catch (err) {
+                console.warn('No se pudo inspeccionar stream.php previamente:', err);
+            }
+
+            document.getElementById('playerLoader').classList.add('hidden');
+            setupJWInstance(playableUrl, title, poster);
+        }
+
+        function setupJWInstance(fileUrl, title, poster) {
+            if (typeof jwplayer === 'undefined') {
+                showPlayerError('La librería de JW Player no pudo cargarse.');
+                return;
+            }
+
+            try {
+                jwplayer('jwplayerContainer').remove();
+            } catch (e) { }
+
+            // Sin configuración de skin/estilos para respetar style-jw.css
+            const player = jwplayer('jwplayerContainer').setup({
+                file: fileUrl,
+                type: 'hls',
+                image: poster,
+                title: title,
+                autostart: true,
+                mute: false,
+                hlshtml: true,
+                primary: 'html5'
+            });
+
+            player.on('error', (e) => {
+                console.error('JW Player Error:', e);
+                showPlayerError(`Error al reproducir el flujo (${e.message || 'Error de red/CORS'}).`);
+            });
+        }
+
+        function showPlayerError(msg) {
+            document.getElementById('playerLoader').classList.add('hidden');
+            document.getElementById('playerErrorMsg').textContent = msg;
+            document.getElementById('playerErrorBox').classList.remove('hidden');
+        }
+
+        function closePlayer() {
+            const modal = document.getElementById('playerModal');
+
+            try {
+                jwplayer('jwplayerContainer').remove();
+            } catch (e) { }
+
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !document.getElementById('playerModal').classList.contains('hidden')) {
+                closePlayer();
+            }
+        });
+
+        // ==========================================
+        // UTILIDADES
+        // ==========================================
+        function buildImageUrl(path) {
+            if (!path) return 'https://placehold.co/400x300/111827/6b7280?text=Live';
+            if (path.startsWith('http')) return path;
+            const cleanBase = IMG_CDN_BASE.endsWith('/') ? IMG_CDN_BASE.slice(0, -1) : IMG_CDN_BASE;
+            const cleanPath = path.startsWith('/') ? path : `/${path}`;
+            return `${cleanBase}${cleanPath}`;
+        }
+
+        function getStatusBadge(status) {
+            if (status === 'groupShow') {
+                return '<span class="bg-amber-500/90 text-gray-950 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase">Show Grupal</span>';
+            }
+            if (status === 'private') {
+                return '<span class="bg-purple-600/90 text-white text-[10px] font-bold px-1.5 py-0.5 rounded uppercase">Privado</span>';
+            }
+            return '<span class="bg-red-600/90 text-white text-[10px] font-bold px-1.5 py-0.5 rounded uppercase flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>Live</span>';
+        }
+
+        function getFlagEmoji(countryCode) {
+            if (!countryCode || countryCode.length !== 2) return '🌐';
+            const codePoints = countryCode
+                .toUpperCase()
+                .split('')
+                .map((char) => 127397 + char.charCodeAt());
+            return String.fromCodePoint(...codePoints);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function showStatus(type, title, subtitle) {
+            modelsGrid.innerHTML = '';
+            emptyState.classList.add('hidden');
+            statusContainer.classList.remove('hidden');
+            statusTitle.textContent = title;
+            statusSubtitle.textContent = subtitle;
+
+            if (type === 'loading') {
+                loaderSpinner.classList.remove('hidden');
+                retryBtn.classList.add('hidden');
+            } else {
+                loaderSpinner.classList.add('hidden');
+                retryBtn.classList.remove('hidden');
+            }
+        }
+
+        function hideStatus() {
+            statusContainer.classList.add('hidden');
+        }
+
+        // Eventos de búsqueda y filtro
+        searchInput.addEventListener('input', () => {
+            clearSearch.classList.toggle('hidden', searchInput.value.length === 0);
+            renderModels();
+        });
+
+        clearSearch.addEventListener('click', () => {
+            searchInput.value = '';
+            clearSearch.classList.add('hidden');
+            renderModels();
+        });
+
+        categoryFilter.addEventListener('change', renderModels);
+
+        // Iniciar carga al abrir la página
+        loadModels();
+    </script>
+    <script src="../js/script-config.js"></script>
+</body>
+
+</html>

@@ -9656,6 +9656,16 @@ MisCanales.set(
     );
 
 MisCanales.set(
+        "Stripchat",
+        {
+            pais: "Argentina",
+            enlaces: [
+                servidorCanalesOnline + "stripchat.html",
+            ]
+        }
+    );
+
+MisCanales.set(
         "XVIDEOS",
         {
             pais: "Argentina",
