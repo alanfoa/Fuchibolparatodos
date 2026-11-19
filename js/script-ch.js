@@ -10,26 +10,6 @@ let MisCanales = new Map();
 
 // ---- INICIO: CANALES AUTO-GENERADOS ----
 MisCanales.set(
-    "Tribuna",
-    {
-        pais: "Argentina",
-        enlaces: [
-            servidorCanalesOnline + "Tribuna.html",
-        ]
-    }
-);
-
-MisCanales.set(
-    "LPF PLAY",
-    {
-        pais: "Argentina",
-        enlaces: [
-            servidorCanalesOnline + "lpf.html",
-        ]
-    }
-);
-
-MisCanales.set(
     "TELEFE",
     {
         pais: "Argentina",
