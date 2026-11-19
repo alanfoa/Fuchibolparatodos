@@ -9811,13 +9811,14 @@ MisCanales.forEach((canal, nombre, map) => {
         !link.includes("akamaized.html?id=") &&
         !link.includes("megacable.html") &&
         !link.includes("megacablepro.html") &&
-
+        
         !link.includes("vriootts.html") &&
         !link.includes("latamlive.html") &&
         !link.includes("extension.html") &&
         !link.includes("jjfutbol2pro.html") &&
+        !link.includes("zapsterpro.html") &&
         !link.includes("ciades.html") &&
-        !link.includes("ciadespro.html") &&
+        // !link.includes("ciadespro.html") &&
         // !link.includes("zapitvpro.html") &&
         // !link.includes("telefe.html") &&
         // !link.includes("miagendadeportiva.html") &&
