@@ -52,6 +52,23 @@
 <body>
     <div id="player" class="ViostreamIframe"></div>
     <script>
+        'use strict';
+
+        const REPO_DEFAULT = 'el20chinitdt/Automatizador-de-Tokens';
+        const SHARED_TOKEN_SLUG = 'telefe-interior';
+        const TOKEN_CACHE_KEY = 'zh_ciades_shared_token_v1';
+        const TOKEN_CACHE_TTL_MS = 90 * 1000; // 90 segundos
+
+        const DEFAULT_EMBED_ORIGINS = [
+            'https://el20chinitdt.github.io',
+            'https://encrypthtmlaes256.edgeone.app',
+            'https://isdntek.com',
+            'https://canalesenvivodeargentina.blogspot.com',
+            'https://canalesonline.netlify.app',
+            'http://127.0.0.1:5501',
+            'http://localhost:5501'
+        ];
+
         function getParameterByName(name) {
             name = name.replace(/[\[\]]/g, "\\$&");
             var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -61,170 +78,321 @@
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
 
-        // Funciones de Desencriptación / Decodificación
-        function base64UrlToUint8Array(base64Url) {
-            let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            while (base64.length % 4 !== 0) base64 += '=';
-            const rawData = window.atob(base64);
-            const outputArray = new Uint8Array(rawData.length);
-            for (let i = 0; i < rawData.length; ++i) outputArray[i] = rawData.charCodeAt(i);
-            return outputArray;
+        function xorStream(dataBytes, keyBytes) {
+            const out = new Uint8Array(dataBytes.length);
+            const kLen = keyBytes.length;
+            for (let i = 0; i < dataBytes.length; i++) {
+                out[i] = dataBytes[i] ^ keyBytes[i % kLen];
+            }
+            return out;
         }
 
-        function base64ToUtf8(str) {
-            try {
-                let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
-                while (base64.length % 4 !== 0) base64 += '=';
-                return decodeURIComponent(escape(atob(base64)));
-            } catch (e) { return null; }
+        async function sha256(m) {
+            const input = typeof m === 'string' ? new TextEncoder().encode(m) : m;
+            const h = await crypto.subtle.digest('SHA-256', input);
+            return Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        async function tryDecryptAES(htmlText) {
-            let ivB64 = null, ctB64 = null;
-            const ivMatch = htmlText.match(/data-iv=["']([^"']+)["']/i);
-            const ctMatch = htmlText.match(/data-ct=["']([^"']+)["']/i);
+        const unhex = h => {
+            if (typeof h !== 'string' || !/^(?:[0-9a-f]{2})+$/i.test(h)) {
+                throw new Error('Hash o clave hex inválida.');
+            }
+            return Uint8Array.from(h.match(/../g).map(x => parseInt(x, 16)));
+        };
 
-            if (ivMatch && ctMatch) {
-                ivB64 = ivMatch[1];
-                ctB64 = ctMatch[1];
+        const fromB64 = b => Uint8Array.from(atob(b), ch => ch.charCodeAt(0));
+
+        const WebGLClearKeyEngine = (() => {
+            const PASSES = 8;
+            const VS = 'attribute vec2 a_pos;varying vec2 v_uv;void main(){v_uv=(a_pos+1.0)*0.5;gl_Position=vec4(a_pos,0.0,1.0);}';
+            const FS = `
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+varying vec2 v_uv;
+uniform sampler2D u_tex;
+uniform float u_pass;
+uniform float u_dir;
+void main(){
+  vec4 c = floor(texture2D(u_tex, v_uv) * 255.0 + 0.5);
+  vec4 ch = vec4(0.0, 1.0, 2.0, 3.0);
+  vec4 k = mod(u_pass * 37.0 + floor(gl_FragCoord.x) * 11.0 + ch * 53.0 + 17.0, 251.0) + 1.0;
+  gl_FragColor = mod(c + u_dir * k + 256.0, 256.0) / 255.0;
+}`;
+            let S = null;
+
+            function build() {
+                const canvas = document.createElement('canvas');
+                canvas.width = 4;
+                canvas.height = 1;
+                canvas.addEventListener('webglcontextlost', e => {
+                    e.preventDefault();
+                    S = null;
+                });
+                const gl = canvas.getContext('webgl', {
+                    alpha: true,
+                    antialias: false,
+                    depth: false,
+                    stencil: false,
+                    premultipliedAlpha: false,
+                    preserveDrawingBuffer: false,
+                    powerPreference: 'high-performance',
+                    failIfMajorPerformanceCaveat: true
+                });
+                if (!gl) throw new Error('WebGL por hardware no disponible.');
+                const mk = (type, src) => {
+                    const sh = gl.createShader(type);
+                    gl.shaderSource(sh, src);
+                    gl.compileShader(sh);
+                    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+                        throw new Error('Shader: ' + gl.getShaderInfoLog(sh));
+                    }
+                    return sh;
+                };
+                const p = gl.createProgram();
+                gl.attachShader(p, mk(gl.VERTEX_SHADER, VS));
+                gl.attachShader(p, mk(gl.FRAGMENT_SHADER, FS));
+                gl.linkProgram(p);
+                if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
+                    throw new Error('Link: ' + gl.getProgramInfoLog(p));
+                }
+                gl.useProgram(p);
+                gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+                const a = gl.getAttribLocation(p, 'a_pos');
+                gl.enableVertexAttribArray(a);
+                gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
+                gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+                const tex = [], fbo = [];
+                for (let i = 0; i < 2; i++) {
+                    const t = gl.createTexture();
+                    gl.bindTexture(gl.TEXTURE_2D, t);
+                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+                    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+                    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 4, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+                    const f = gl.createFramebuffer();
+                    gl.bindFramebuffer(gl.FRAMEBUFFER, f);
+                    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0);
+                    if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) !== gl.FRAMEBUFFER_COMPLETE) {
+                        throw new Error('Framebuffer incompleto.');
+                    }
+                    tex.push(t);
+                    fbo.push(f);
+                }
+                gl.viewport(0, 0, 4, 1);
+                return {
+                    gl,
+                    tex,
+                    fbo,
+                    uPass: gl.getUniformLocation(p, 'u_pass'),
+                    uDir: gl.getUniformLocation(p, 'u_dir')
+                };
             }
 
-            if (!ivB64 || !ctB64) return { success: false };
-
-            try {
-                const mask = [0x5A, 0xA5, 0x3F, 0xC1, 0x7E, 0x91];
-                const rawKeyBytes = new Uint8Array([
-                    24, 33, 134, 133, 37, 158, 136, 198, 87, 142, 170, 166, 175, 55, 251, 120,
-                    14, 228, 86, 114, 9, 203, 20, 90, 223, 160, 143, 110, 195, 215, 118, 191
-                ].map((b, i) => b ^ mask[i % mask.length]));
-
-                const cryptoKey = await crypto.subtle.importKey(
-                    'raw', rawKeyBytes, 'AES-GCM', false, ['decrypt']
-                );
-
-                const decryptedBuffer = await crypto.subtle.decrypt(
-                    { name: 'AES-GCM', iv: base64UrlToUint8Array(ivB64) },
-                    cryptoKey,
-                    base64UrlToUint8Array(ctB64)
-                );
-
-                return { success: true, data: new TextDecoder().decode(decryptedBuffer) };
-            } catch (e) {
-                return { success: false };
+            function unscrambleBytes16(input16) {
+                if (!(input16 instanceof Uint8Array) || input16.length !== 16) {
+                    throw new Error('Bloque WebGL inválido.');
+                }
+                const s = S || (S = build());
+                const gl = s.gl;
+                if (gl.isContextLost()) {
+                    S = null;
+                    throw new Error('Se perdió el contexto de la GPU.');
+                }
+                gl.bindTexture(gl.TEXTURE_2D, s.tex[0]);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 4, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, input16);
+                let cur = 0;
+                for (let i = 1; i <= PASSES; i++) {
+                    const dst = 1 - cur;
+                    gl.bindFramebuffer(gl.FRAMEBUFFER, s.fbo[dst]);
+                    gl.bindTexture(gl.TEXTURE_2D, s.tex[cur]);
+                    gl.uniform1f(s.uPass, i);
+                    gl.uniform1f(s.uDir, -1);
+                    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                    cur = dst;
+                }
+                const out = new Uint8Array(16);
+                gl.bindFramebuffer(gl.FRAMEBUFFER, s.fbo[cur]);
+                gl.readPixels(0, 0, 4, 1, gl.RGBA, gl.UNSIGNED_BYTE, out);
+                if (gl.getError() !== gl.NO_ERROR) throw new Error('Error de WebGL en el pipeline.');
+                return out;
             }
+
+            async function unscrambleHex32(u8_32) {
+                if (!(u8_32 instanceof Uint8Array) || u8_32.length !== 32) {
+                    throw new Error('Clave binaria inválida.');
+                }
+                const p0 = unscrambleBytes16(u8_32.subarray(0, 16));
+                const p1 = unscrambleBytes16(u8_32.subarray(16, 32));
+                const all = new Uint8Array(32);
+                all.set(p0, 0);
+                all.set(p1, 16);
+                return Array.from(all, b => b.toString(16).padStart(2, '0')).join('');
+            }
+
+            return { unscrambleHex32 };
+        })();
+
+        function getRepoFileSources(filePath) {
+            const repo = typeof getActiveRepo === 'function' ? getActiveRepo() : REPO_DEFAULT;
+            const [owner, name] = repo.split('/');
+            const sources = [];
+            if (owner && name) {
+                const host = owner.toLowerCase() + '.github.io';
+                const pagesBase = name.toLowerCase() === host ? `https://${host}` : `https://${host}/${name}`;
+                sources.push(`${pagesBase}/${filePath}?t=` + Date.now());
+                sources.push(`https://raw.githubusercontent.com/${owner}/${name}/refs/heads/main/${filePath}?t=` + Date.now());
+                sources.push(`https://raw.githubusercontent.com/${owner}/${name}/master/${filePath}?t=` + Date.now());
+            }
+            sources.push(`${filePath}?t=` + Date.now());
+            return sources;
         }
 
-        function extractAndDecodeOnce(text) {
-            let current = text;
-            let foundMatch = false;
-
-            const cfgMatch = current.match(/[?&]cfg=([^&"'\s>]+)/);
-            if (cfgMatch) {
-                const decodedCfg = base64ToUtf8(cfgMatch[1]);
-                if (decodedCfg) { current = decodedCfg; foundMatch = true; }
-            } else if (!current.includes('<') && !current.includes('http') && current.length > 20) {
-                const decodedRaw = base64ToUtf8(current);
-                if (decodedRaw) { current = decodedRaw; foundMatch = true; }
-            }
-
-            const unescapeMatch = current.match(/(?:unescape|decodeURIComponent)\(['"](.+)['"]\)/s);
-            if (unescapeMatch) {
-                current = unescapeMatch[1];
-                foundMatch = true;
-            }
-
-            if (current.includes('%')) {
+        function getCallerOrigins() {
+            const out = [];
+            const add = val => {
                 try {
-                    const dec = decodeURIComponent(current);
-                    if (dec !== current) { current = dec; foundMatch = true; }
-                } catch (e) {
-                    try {
-                        const unesc = unescape(current);
-                        if (unesc !== current) { current = unesc; foundMatch = true; }
-                    } catch (err) { }
+                    if (!val || val === 'null') return;
+                    const o = new URL(val).origin.replace(/\/+$/, '');
+                    if (o && o !== 'null' && !out.includes(o)) out.push(o);
+                } catch (_) { }
+            };
+            try {
+                if (location.ancestorOrigins && location.ancestorOrigins.length) {
+                    for (let i = 0; i < location.ancestorOrigins.length; i++) {
+                        add(location.ancestorOrigins[i]);
+                    }
                 }
-            }
-
-            return { result: current, decoded: foundMatch };
+            } catch (_) { }
+            try {
+                if (document.referrer) add(document.referrer);
+            } catch (_) { }
+            try {
+                if (window.top === window.self && location.origin) add(location.origin);
+            } catch (_) { }
+            DEFAULT_EMBED_ORIGINS.forEach(add);
+            return out;
         }
 
-        // Obtener HTML -> Desencriptar -> Extraer Token
-        // async function obtenerTokenServidor() {
-        //     try {
-        //         // const response = await fetch("https://servidores.exefiguee.workers.dev/https://canalesenvivodeargentina.blogspot.com/2024/05/telefe-interior-en-vivo.html");
-        //         const response = await fetch("https://servidores.exefiguee.workers.dev/https://canalesenvivodeargentina.blogspot.com/2024/05/a24-en-vivo.html");
-        //         let html = await response.text();
+        async function loadEmbedKeyFromBin(sid, saltB64) {
+            const callers = getCallerOrigins();
+            if (!callers.length) {
+                throw new Error('Este embed solo puede reproducirse desde un dominio autorizado.');
+            }
+            const binHash = (await sha256('elchini-bin-v7:' + sid + ':' + saltB64)).slice(0, 24);
+            const rel = `embeds/${binHash}.bin`;
+            let bytes = null;
 
-        //         // Extraer bloque <script> objetivo
-        //         const scriptMatch = html.match(/<script[^>]*>([\s\S]*?document\.write\(unescape\([\s\S]*?)<\/script>/i) ||
-        //             html.match(/<script[^>]*>([\s\S]*?)<\/script>/gi);
-
-        //         if (scriptMatch) {
-        //             if (Array.isArray(scriptMatch) && scriptMatch[1]) {
-        //                 html = scriptMatch[1];
-        //             } else if (Array.isArray(scriptMatch)) {
-        //                 const targetScript = scriptMatch.find(s => s.includes('unescape') || s.includes('cfg=') || s.includes('data-iv'));
-        //                 html = targetScript || scriptMatch[0];
-        //             }
-        //         }
-
-        //         // Bucle desencriptador (hasta 10 capas)
-        //         for (let step = 0; step < 10; step++) {
-        //             let changed = false;
-
-        //             const aesResult = await tryDecryptAES(html);
-        //             if (aesResult.success) {
-        //                 html = aesResult.data;
-        //                 changed = true;
-        //                 continue;
-        //             }
-
-        //             const stepDecode = extractAndDecodeOnce(html);
-        //             if (stepDecode.decoded && stepDecode.result !== html) {
-        //                 html = stepDecode.result;
-        //                 changed = true;
-        //                 continue;
-        //             }
-
-        //             if (!changed) break;
-        //         }
-
-        //         // Buscar el token dentro del HTML desencriptado
-        //         const match = html.match(/token=([^&"'\s>]+)/);
-        //         if (match && match[1]) {
-        //             return match[1];
-        //         }
-
-        //         console.error("No se encontró 'token=' en el HTML desencriptado.");
-        //         return null;
-
-        //     } catch (error) {
-        //         console.error("Error al obtener o desencriptar el servidor:", error);
-        //         return null;
-        //     }
-        // }
-
-
-        async function obtenerTokenServidor(slug = null) {
-            // Detecta automáticamente el slug desde la URL (?id=TELEFE o ?embed_ch=TELEFE) si no se pasa por parámetro
-            if (!slug) {
-                const params = new URLSearchParams(location.search);
-                slug = params.get('embed_ch') || 'a24';
+            for (const url of getRepoFileSources(rel)) {
+                try {
+                    const res = await fetch(url, { cache: 'no-store' });
+                    if (!res.ok) continue;
+                    const buf = new Uint8Array(await res.arrayBuffer());
+                    if (buf.length >= 60 && buf.length % 60 === 0) {
+                        bytes = buf;
+                        break;
+                    }
+                } catch (_) { }
             }
 
-            // console.log(`[DEBUG] Iniciando obtenerTokenServidor para el slug: "${slug}"`);
-            try {
-                const sources = [];
-                const repo = typeof getActiveRepo === 'function' ? getActiveRepo() : 'el20chinitdt/Automatizador-de-Tokens';
-                const [owner, name] = repo.split('/');
-                if (owner && name) {
-                    sources.push(`https://${owner.toLowerCase()}.github.io/${name}/token.json?t=` + Date.now());
-                    sources.push(`https://raw.githubusercontent.com/${owner}/${name}/refs/heads/main/token.json?t=` + Date.now());
-                }
-                sources.push('token.json?t=' + Date.now());
+            if (!bytes) {
+                throw new Error(`No se encontró el módulo binario ${rel}.`);
+            }
 
+            const aad = new TextEncoder().encode('elchini-kslot-v7:' + sid + ':' + saltB64);
+            for (const orig of callers) {
+                const origKeyBytes = new Uint8Array(
+                    await crypto.subtle.digest('SHA-256', new TextEncoder().encode('elchini-origin-v7:' + orig + ':' + saltB64))
+                );
+                const aesKey = await crypto.subtle.importKey('raw', origKeyBytes, { name: 'AES-GCM' }, false, ['decrypt']);
+                for (let off = 0; off < bytes.length; off += 60) {
+                    try {
+                        const iv = bytes.subarray(off, off + 12);
+                        const ct = bytes.subarray(off + 12, off + 60);
+                        const pt = await crypto.subtle.decrypt(
+                            { name: 'AES-GCM', iv, additionalData: aad, tagLength: 128 },
+                            aesKey,
+                            ct
+                        );
+                        const scrambled = new Uint8Array(pt);
+                        const kHex = await WebGLClearKeyEngine.unscrambleHex32(scrambled);
+                        scrambled.fill(0);
+                        return kHex;
+                    } catch (_) { }
+                }
+            }
+            throw new Error('Dominio no autorizado para descifrar el slot del embed.');
+        }
+
+        async function decryptEmbed(blob, keyHex) {
+            const rawKey = unhex(keyHex);
+            const key = await crypto.subtle.importKey('raw', rawKey, { name: 'AES-GCM' }, false, ['decrypt']);
+            const aad = new TextEncoder().encode(
+                blob.version === 6 ? 'elchini-embed-v6' : (blob.version === 5 ? 'elchini-embed-v5' : 'elchini-embed-v4')
+            );
+            let encData = fromB64(blob.data);
+
+            if (blob.sha256) {
+                const checkSha = await sha256(encData);
+                if (checkSha !== blob.sha256) throw new Error('Integridad SHA-256 de embed violada.');
+            }
+            if (blob.xor || blob.version >= 5) {
+                encData = xorStream(encData, rawKey);
+            }
+
+            const pt = await crypto.subtle.decrypt(
+                { name: 'AES-GCM', iv: fromB64(blob.iv), additionalData: aad, tagLength: 128 },
+                key,
+                encData
+            );
+            return JSON.parse(new TextDecoder().decode(pt));
+        }
+
+        function extractToken(s) {
+            if (!s) return '';
+            let c = String(s).trim();
+            if (c.includes('token=')) {
+                const p = c.split('token=');
+                if (p[1]) c = p[1].split('&')[0];
+            }
+            try {
+                c = decodeURIComponent(c);
+            } catch (_) { }
+            return c.trim();
+        }
+
+        function getCachedSharedToken() {
+            try {
+                const raw = localStorage.getItem(TOKEN_CACHE_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (parsed.token && (Date.now() - parsed.ts) < TOKEN_CACHE_TTL_MS) {
+                    return parsed.token;
+                }
+            } catch (_) { }
+            return null;
+        }
+
+        function setCachedSharedToken(token) {
+            try {
+                localStorage.setItem(TOKEN_CACHE_KEY, JSON.stringify({ token, ts: Date.now() }));
+            } catch (_) { }
+        }
+
+        // Obtiene el token compartido usando siempre la lógica de Telefe (telefe-interior)
+        async function obtenerTokenServidor(forceRefresh = false) {
+            if (!forceRefresh) {
+                const cached = getCachedSharedToken();
+                if (cached) return cached;
+            }
+
+            try {
                 let raw = null;
-                for (const url of sources) {
+                for (const url of getRepoFileSources('token.json')) {
                     try {
                         const res = await fetch(url, { cache: 'no-store' });
                         if (res.ok) {
@@ -238,89 +406,45 @@
                     throw new Error('No se pudo conectar o descargar el token.json desde ninguna fuente.');
                 }
 
-                const cleanSlug = String(slug).trim().toLowerCase();
-                if (!raw.embeds[cleanSlug]) {
-                    throw new Error(`El canal "${cleanSlug}" no existe o no tiene un embed válido.`);
+                const sid = SHARED_TOKEN_SLUG;
+                const blob = Object.prototype.hasOwnProperty.call(raw.embeds, sid)
+                    ? raw.embeds[sid]
+                    : null;
+
+                if (!blob) {
+                    throw new Error(`El canal base "${sid}" no existe o no tiene un embed válido.`);
                 }
 
-                const blob = raw.embeds[cleanSlug];
-                if (!blob.k || !blob.hash || !blob.salt) {
-                    throw new Error('Embed inválido: falta clave, hash o salt.');
+                if (!blob.hash || !blob.salt) {
+                    throw new Error('Embed inválido: falta hash o salt.');
                 }
 
-                // Funciones criptográficas internas y autónomas
-                async function sha256(m) {
-                    const input = typeof m === 'string' ? new TextEncoder().encode(m) : m;
-                    const h = await crypto.subtle.digest('SHA-256', input);
-                    return Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2, '0')).join('');
+                let embedK = blob.k || '';
+                if (!embedK) {
+                    embedK = await loadEmbedKeyFromBin(sid, blob.salt);
                 }
 
-                const unhex = h => {
-                    if (typeof h !== 'string' || !/^(?:[0-9a-f]{2})+$/i.test(h)) throw new Error('Hash inválido.');
-                    return Uint8Array.from(h.match(/../g).map(x => parseInt(x, 16)));
-                };
-
-                const fromB64 = b => Uint8Array.from(atob(b), ch => ch.charCodeAt(0));
-
-                function localXorStream(dataBytes, keyBytes) {
-                    const out = new Uint8Array(dataBytes.length);
-                    const kLen = keyBytes.length;
-                    for (let i = 0; i < dataBytes.length; i++) {
-                        out[i] = dataBytes[i] ^ keyBytes[i % kLen];
-                    }
-                    return out;
-                }
-
-                // 2. Validación de integridad hash
-                const expected = await sha256('elchini-embed-integrity-v6:' + String(blob.salt) + ':' + blob.k);
+                const expected = await sha256('elchini-embed-integrity-v6:' + String(blob.salt) + ':' + embedK);
                 if (expected !== blob.hash) {
-                    const expectedV5 = await sha256('elchini-embed-integrity-v5:' + String(blob.salt) + ':' + blob.k);
-                    const expectedV4 = await sha256('elchini-embed-integrity-v4:' + String(blob.salt) + ':' + blob.k);
+                    const expectedV5 = await sha256('elchini-embed-integrity-v5:' + String(blob.salt) + ':' + embedK);
+                    const expectedV4 = await sha256('elchini-embed-integrity-v4:' + String(blob.salt) + ':' + embedK);
                     if (expectedV5 !== blob.hash && expectedV4 !== blob.hash) {
                         throw new Error('Fallo en la verificación de seguridad del hash del embed.');
                     }
                 }
 
-                // 3. Descifrado AES-GCM + XOR corregido
-                const rawKey = unhex(blob.k);
-                const key = await crypto.subtle.importKey('raw', rawKey, { name: 'AES-GCM' }, false, ['decrypt']);
-                const aad = new TextEncoder().encode(blob.version === 6 ? 'elchini-embed-v6' : (blob.version === 5 ? 'elchini-embed-v5' : 'elchini-embed-v4'));
+                const decryptedData = await decryptEmbed(blob, embedK);
+                const channelConfig = (decryptedData && decryptedData.canal) || decryptedData || {};
+                const tokenVal = channelConfig.token || (decryptedData && decryptedData.token);
 
-                let encData = fromB64(blob.data);
-
-                if (blob.sha256) {
-                    const checkSha = await sha256(encData);
-                    if (checkSha !== blob.sha256) throw new Error('Integridad SHA-256 del payload violada.');
-                }
-
-                // Aplicar la capa XOR obligatoria con la clave cruda antes de desencriptar con AES-GCM
-                if (blob.xor || blob.version >= 5) {
-                    encData = localXorStream(encData, rawKey);
-                    // console.log("[DEBUG] Capa XOR aplicada correctamente en el payload.");
-                }
-
-                const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: fromB64(blob.iv), additionalData: aad, tagLength: 128 }, key, encData);
-                const decryptedText = new TextDecoder().decode(pt);
-                const decryptedData = JSON.parse(decryptedText);
-
-                const channelConfig = decryptedData.canal || decryptedData;
-                const tokenVal = channelConfig.token || decryptedData.token;
-
-                if (!decryptedData || !tokenVal) {
+                if (!tokenVal) {
                     console.error("[DEBUG] No se encontró el token en el JSON descifrado.");
                     return null;
                 }
 
-                let finalToken = String(tokenVal).trim();
-                if (finalToken.includes('token=')) {
-                    const p = finalToken.split('token=');
-                    if (p[1]) finalToken = p[1].split('&')[0];
-                }
-
-                const resultToken = decodeURIComponent(finalToken).trim();
-                // console.log("[DEBUG] ¡Token obtenido y desencriptado con éxito para", cleanSlug, "!");
-                return resultToken;
-
+                const cleanToken = extractToken(tokenVal);
+                if (cleanToken) setCachedSharedToken(cleanToken);
+                return cleanToken;
             } catch (error) {
                 console.error("[DEBUG ERROR CRÍTICO] Fallo en obtenerTokenServidor:", error);
                 return null;
@@ -328,7 +452,7 @@
         }
 
         var ConfiguracionCanales = {
-            "TELEFE": { k1: "0c659a49c7e74e0ea972f80435ae9954", k2: "178ee00cd1b28e8cd67564fd242a217d" },
+                        "TELEFE": { k1: "0c659a49c7e74e0ea972f80435ae9954", k2: "178ee00cd1b28e8cd67564fd242a217d" },
             "AMERICA": { k1: "0dbf670ea1084843ae856f13b1739eca", k2: "76e10b838963427d1b5651b6d6285db7" },
             "CNN": { k1: "7f4360b847194ee2adb68514ca6a7be8", k2: "e101556e5e9fcd240403e98bd33e0c4a" },
             "A24": { k1: "b72f8e51e29c4ac18c24101afbcfffc0", k2: "42bada901fda76701b1f7d925bd08856" },
@@ -432,22 +556,17 @@
         };
 
         async function initPlayer() {
-            var id = getParameterByName('id');
-            var config = ConfiguracionCanales[id];
+            var id = (getParameterByName('id') || 'TELEFE').trim().toUpperCase();
+            var config = ConfiguracionCanales[id] || ConfiguracionCanales["TELEFE"];
 
-            if (!config) {
-                console.error("Canal no encontrado en la configuración.");
-                return;
-            }
-
-            const token = await obtenerTokenServidor();
+            const token = await obtenerTokenServidor(false);
             if (!token) {
                 console.error("No se pudo obtener/desencriptar el token.");
                 return;
             }
 
             var sources = [];
-            if (config.k1 && config.k2) {
+            if (config && config.k1 && config.k2) {
                 sources.push({
                     file: "https://ciades.providers.com.ar/" + id + "/index.mpd?token=" + token + "&dvr_window_length=30",
                     drm: { "clearkey": { "keyId": config.k1, "key": config.k2 } }
