@@ -9796,7 +9796,7 @@ MisCanales.forEach((canal, nombre, map) => {
         !link.includes("latamlive.html") &&
         !link.includes("extension.html") &&
         !link.includes("jjfutbol2pro.html") &&
-        !link.includes("zapsterpro.html") &&
+        // !link.includes("zapsterpro.html") &&
         !link.includes("ciades.html") &&
         // !link.includes("ciadespro.html") &&
         // !link.includes("zapitvpro.html") &&
